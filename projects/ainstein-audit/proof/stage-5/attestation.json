@@ -1,0 +1,45 @@
+{
+  "note": "This attestation certifies ONLY that the declared deterministic checks ran with the recorded outcomes against unchanged artifacts. It is not a certificate of scientific truth.",
+  "stage_id": "stage-5",
+  "title": "Scientific verdict",
+  "label": "SCIENTIFIC",
+  "status": "NOT STARTED",
+  "verified_at": "2026-08-11T12:57:48.392632+00:00",
+  "git_commit": "f9694198417b9c0391201b9c108a762fca19d29b",
+  "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
+  "python": "3.12.10",
+  "requirements": [
+    {
+      "id": "claim-evidence",
+      "description": "complete claim-to-evidence mapping",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "independent-validation",
+      "description": "independent validation decision recorded",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "contradictions",
+      "description": "all contradictions and limitations recorded",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "wording",
+      "description": "exact allowed public wording fixed",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "decision",
+      "description": "PASS / FAIL / INCONCLUSIVE recorded",
+      "status": "missing",
+      "measured": ""
+    }
+  ],
+  "artifact_hashes": {},
+  "allowed_public_claim": "No scientific verdict exists yet. NEEDS EXPERT REVIEW will apply until qualified external review happens."
+}

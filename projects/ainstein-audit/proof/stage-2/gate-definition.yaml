@@ -1,0 +1,38 @@
+stage_id: stage-2
+title: Verifier calibration
+label: SCIENTIFIC
+question: Does the independent verifier reproduce known analytical answers and reject corrupted input?
+status: VERIFIED
+requirements:
+  - id: minkowski
+    description: analytical Minkowski vacuum
+    status: pass
+    measured: "3 tests passed"
+  - id: schwarzschild
+    description: analytical Schwarzschild vacuum + Kretschmann known answer
+    status: pass
+    measured: "6 tests passed"
+  - id: negative-control
+    description: corrupted metric rejected
+    status: pass
+    measured: "2 tests passed"
+  - id: signature
+    description: invalid signature rejected
+    status: pass
+    measured: "4 tests passed"
+  - id: analytic-4d-route
+    description: 4D Penrose-route analytic floor within thresholds
+    status: pass
+    measured: "max|Ricci|=1.49e-08 (tol 1e-07), K rel err=1.15e-08 (tol 1e-07)"
+  - id: fd-convergence
+    description: FD-step sweep stable on NN metric
+    status: pass
+    measured: "max/min ratio = 1.0002 over 4 steps"
+  - id: precision
+    description: float32 vs float64 sensitivity measured
+    status: pass
+    measured: "float32 inflates median residual 203x -> float64 mandatory"
+  - id: normalization
+    description: upstream loss replicated with independent Ricci (factor < 3)
+    status: pass
+    measured: "replica=8.08e-11 vs upstream=1.57e-10 (factor 1.94); sqrt(loss)=1.253e-05"

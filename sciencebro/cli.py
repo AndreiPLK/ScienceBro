@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+from pathlib import Path
 
 import typer
 from rich.console import Console
@@ -280,6 +281,85 @@ def release_check(project_id: str) -> None:
             console.print(f"  - {b}")
         raise typer.Exit(1)
     console.print("[green]release gate passed (human approval still required to publish)[/green]")
+
+
+# ---------------------------------------------------------------- proof gates
+
+proof_app = typer.Typer(help="Proof packs and attestations.", no_args_is_help=True)
+app.add_typer(proof_app, name="proof")
+
+
+def _print_gate(gate) -> None:  # type: ignore[no-untyped-def]
+    color = {"VERIFIED": "green", "FAILED": "red"}.get(gate.status, "yellow")
+    label = " (ENGINEERING)" if gate.label == "ENGINEERING" else ""
+    console.print(f"[bold]{gate.stage_id}: {gate.title}[/bold] — [{color}]{gate.status}[/{color}]{label}")
+    for r in gate.requirements:
+        mark = {"pass": "[green]PASS[/green]", "fail": "[red]FAIL[/red]",
+                "missing": "[yellow]MISSING[/yellow]"}[r.status]
+        console.print(f"  {mark} {r.description}" + (f" — {r.measured}" if r.measured else ""))
+
+
+@app.command("verify-stage")
+def verify_stage_cmd(project_id: str, stage_id: str) -> None:
+    """Verify one proof-gate stage against repository artifacts. Exit 1 unless VERIFIED."""
+    from sciencebro.proofgate import verify_stage, write_attestation
+
+    gate = verify_stage(_paths(), project_id, stage_id)
+    _print_gate(gate)
+    path = write_attestation(_paths(), project_id, gate)
+    console.print(f"attestation: {path}")
+    raise typer.Exit(0 if gate.status == "VERIFIED" else 1)
+
+
+@app.command("verify-all")
+def verify_all_cmd(project_id: str) -> None:
+    """Verify every stage. Exit 1 if any mandatory stage-1/2 requirement fails."""
+    from sciencebro.proofgate import verify_all, write_attestation
+
+    gates = verify_all(_paths(), project_id)
+    for g in gates:
+        _print_gate(g)
+        write_attestation(_paths(), project_id, g)
+    bad = [g for g in gates if g.status == "FAILED"]
+    raise typer.Exit(1 if bad else 0)
+
+
+@proof_app.command("show")
+def proof_show(project_id: str, stage_id: str) -> None:
+    """Show the stored attestation for a stage."""
+    path = _paths().project_dir(project_id) / "proof" / stage_id / "attestation.json"
+    if not path.exists():
+        console.print(f"[red]no attestation at {path}[/red]")
+        raise typer.Exit(1)
+    console.print_json(path.read_text(encoding="utf-8"))
+
+
+@proof_app.command("export")
+def proof_export(project_id: str, stage_id: str) -> None:
+    """Export the proof pack for a stage (works even when status is not VERIFIED)."""
+    from sciencebro.proofgate import export_proof_pack, verify_stage
+
+    gate = verify_stage(_paths(), project_id, stage_id)
+    pack = export_proof_pack(_paths(), project_id, gate)
+    console.print(f"proof pack: {pack} (status: {gate.status})")
+    for f in sorted(pack.iterdir()):
+        console.print(f"  {f.name}")
+
+
+@proof_app.command("verify-integrity")
+def proof_verify_integrity(proof_pack: str) -> None:
+    """Recompute artifact hashes of a proof pack's attestation. Exit 1 on any change."""
+    from sciencebro.proofgate import check_attestation_integrity
+
+    att = Path(proof_pack)
+    if att.is_dir():
+        att = att / "attestation.json"
+    problems = check_attestation_integrity(att)
+    if problems:
+        for p in problems:
+            console.print(f"[red]{p}[/red]")
+        raise typer.Exit(1)
+    console.print("[green]attestation intact: all artifact hashes match[/green]")
 
 
 # ---------------------------------------------------------------- check / dashboard

@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-08-11T12:52:51.856302+00:00",
+  "pytest_exit_code": 0,
+  "n_passed": 17,
+  "n_failed": 0,
+  "n_skipped": 0,
+  "tests": {
+    "test_export_shape_symmetry_signature": "passed",
+    "test_minkowski_is_vacuum[x0]": "passed",
+    "test_minkowski_is_vacuum[x1]": "passed",
+    "test_minkowski_is_vacuum[x2]": "passed",
+    "test_schwarzschild_is_vacuum[x0]": "passed",
+    "test_schwarzschild_is_vacuum[x1]": "passed",
+    "test_schwarzschild_is_vacuum[x2]": "passed",
+    "test_schwarzschild_kretschmann_known_answer[x0]": "passed",
+    "test_schwarzschild_kretschmann_known_answer[x1]": "passed",
+    "test_schwarzschild_kretschmann_known_answer[x2]": "passed",
+    "test_perturbed_schwarzschild_detected[x0]": "passed",
+    "test_perturbed_schwarzschild_detected[x1]": "passed",
+    "test_perturbation_is_local": "passed",
+    "test_signature_checks[x0]": "passed",
+    "test_signature_checks[x1]": "passed",
+    "test_signature_checks[x2]": "passed",
+    "test_residual_converges_with_step": "passed"
+  }
+}

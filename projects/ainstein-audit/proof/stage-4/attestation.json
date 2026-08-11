@@ -1,0 +1,51 @@
+{
+  "note": "This attestation certifies ONLY that the declared deterministic checks ran with the recorded outcomes against unchanged artifacts. It is not a certificate of scientific truth.",
+  "stage_id": "stage-4",
+  "title": "Independent candidate stress test",
+  "label": "SCIENTIFIC",
+  "status": "NOT STARTED",
+  "verified_at": "2026-08-11T12:57:48.369069+00:00",
+  "git_commit": "f9694198417b9c0391201b9c108a762fca19d29b",
+  "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
+  "python": "3.12.10",
+  "requirements": [
+    {
+      "id": "hidden-points",
+      "description": "hidden-point residuals measured (median/p95/p99/max)",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "signature-det",
+      "description": "signature and determinant checks across domain",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "boundary-maps",
+      "description": "boundary and horizon failure maps",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "convergence",
+      "description": "precision and convergence tests",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "negative-controls",
+      "description": "negative controls fail as expected",
+      "status": "missing",
+      "measured": ""
+    },
+    {
+      "id": "independence",
+      "description": "independent implementation, no upstream loss imports",
+      "status": "missing",
+      "measured": ""
+    }
+  ],
+  "artifact_hashes": {},
+  "allowed_public_claim": "No candidate has been independently stress-tested yet."
+}

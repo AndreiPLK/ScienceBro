@@ -1,0 +1,68 @@
+{
+  "note": "This attestation certifies ONLY that the declared deterministic checks ran with the recorded outcomes against unchanged artifacts. It is not a certificate of scientific truth.",
+  "stage_id": "stage-2",
+  "title": "Verifier calibration",
+  "label": "SCIENTIFIC",
+  "status": "VERIFIED",
+  "verified_at": "2026-08-11T12:57:48.316623+00:00",
+  "git_commit": "f9694198417b9c0391201b9c108a762fca19d29b",
+  "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
+  "python": "3.12.10",
+  "requirements": [
+    {
+      "id": "minkowski",
+      "description": "analytical Minkowski vacuum",
+      "status": "pass",
+      "measured": "3 tests passed"
+    },
+    {
+      "id": "schwarzschild",
+      "description": "analytical Schwarzschild vacuum + Kretschmann known answer",
+      "status": "pass",
+      "measured": "6 tests passed"
+    },
+    {
+      "id": "negative-control",
+      "description": "corrupted metric rejected",
+      "status": "pass",
+      "measured": "2 tests passed"
+    },
+    {
+      "id": "signature",
+      "description": "invalid signature rejected",
+      "status": "pass",
+      "measured": "4 tests passed"
+    },
+    {
+      "id": "analytic-4d-route",
+      "description": "4D Penrose-route analytic floor within thresholds",
+      "status": "pass",
+      "measured": "max|Ricci|=1.49e-08 (tol 1e-07), K rel err=1.15e-08 (tol 1e-07)"
+    },
+    {
+      "id": "fd-convergence",
+      "description": "FD-step sweep stable on NN metric",
+      "status": "pass",
+      "measured": "max/min ratio = 1.0002 over 4 steps"
+    },
+    {
+      "id": "precision",
+      "description": "float32 vs float64 sensitivity measured",
+      "status": "pass",
+      "measured": "float32 inflates median residual 203x -> float64 mandatory"
+    },
+    {
+      "id": "normalization",
+      "description": "upstream loss replicated with independent Ricci (factor < 3)",
+      "status": "pass",
+      "measured": "replica=8.08e-11 vs upstream=1.57e-10 (factor 1.94); sqrt(loss)=1.253e-05"
+    }
+  ],
+  "artifact_hashes": {
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\verifier_selftest.json": "c4b941ba64d72ae93464d09a351aa89cd7bf91bca659b476f069cc0774770417",
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\known_answer_4d.json": "730f56ee9372ec4f862ff3e0236889d222c9e1b84abb31f00a8a7bb3a9915c88",
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\discrepancy_experiment.json": "7bb907b3849fa53f66a586dde4eece113ab473ca1f9baaaa39be6c9facca1725",
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\calibration_maps.json": "8dedcf75d1c58377ebaaac22d21f76daf4b534be0a24f8e6fab0874d020472b9"
+  },
+  "allowed_public_claim": "ScienceBro's independent verifier has passed analytical known-answer tests. Evaluation of neural AInstein candidates is not complete."
+}

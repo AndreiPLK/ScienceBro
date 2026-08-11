@@ -42,38 +42,12 @@ def show_errors(errors: list[str]) -> None:
 # ---------------------------------------------------------------- page 1
 
 if page.startswith("1"):
-    st.header(status.title or project_id)
-    st.subheader("Research question")
-    st.write(status.question)
+    from apps.dashboard import mission_control
 
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.metric("Evidence coverage",
-                  f"{status.claims_supported}/{status.claims_total}",
-                  help="Supported factual claims / all factual claims. Computed from claims.yaml, not invented.")
-    with c2:
-        st.metric("Full-text sources", f"{status.evidence_full_text}/{status.evidence_total}",
-                  help="Evidence records with acquired full text (abstract-only is not full evidence).")
-    with c3:
-        total_v = status.validations_pass + status.validations_fail + status.validations_inconclusive
-        st.metric("Validation",
-                  f"✅{status.validations_pass} ❌{status.validations_fail} ❓{status.validations_inconclusive}",
-                  help=f"pass/fail/inconclusive; {status.validations_pending} pending. "
-                       "'Not started' is an honest state." if total_v == 0 else None)
-
-    st.markdown(f"**Stage:** `{status.stage}` &nbsp;&nbsp; **Git:** `{git['commit']}` "
-                f"({git['last_commit_time']})")
-    st.markdown(f"**Next required action:** {status.next_action}")
-
-    if status.blockers:
-        st.subheader("Blockers")
-        for b in status.blockers:
-            st.warning(b)
+    mission_control.render(project_id)
     if status.errors:
         st.subheader("Repository file errors")
         show_errors(status.errors)
-    if not status.blockers and not status.errors:
-        st.success("No blockers recorded.")
 
 # ---------------------------------------------------------------- page 2
 
