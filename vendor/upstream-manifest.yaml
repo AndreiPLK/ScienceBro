@@ -11,7 +11,7 @@ upstreams:
     branch: blackhole
     pinned_commit: 54736e466e54d948bd509b072e4047cf98405064
     date_inspected: 2026-08-11
-    license: unverified
+    license: "CONFLICT: LICENSE file = GPL-2.0, pyproject.toml = MIT (question for authors; do not copy code until resolved)"
     reused: [exported metric candidates, known Schwarzschild baseline, published configs]
     local_integration: projects/ainstein-audit/upstream/
     update_policy: manual, only with a recorded reason

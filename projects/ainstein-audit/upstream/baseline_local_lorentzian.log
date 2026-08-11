@@ -1,0 +1,133 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786449062.851140  766396 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786449074.866713  766396 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+WARNING:tensorflow:From C:\Users\user\ScienceBro\projects\ainstein-audit\upstream\.venv-upstream\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From C:\Users\user\ScienceBro\projects\ainstein-audit\upstream\.venv-upstream\Lib\site-packages\tensorflow_probability\python\internal\backend\numpy\_utils.py:48: The name tf.logging.TaskLevelStatusMessage is deprecated. Please use tf.compat.v1.logging.TaskLevelStatusMessage instead.
+
+WARNING:tensorflow:From C:\Users\user\ScienceBro\projects\ainstein-audit\upstream\.venv-upstream\Lib\site-packages\tensorflow_probability\python\internal\backend\numpy\_utils.py:48: The name tf.control_flow_v2_enabled is deprecated. Please use tf.compat.v1.control_flow_v2_enabled instead.
+
+I0000 00:00:1786449104.045198  766396 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+W0000 00:00:1786449107.686470  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449107.687854  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449107.688223  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449107.688851  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449107.689073  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449107.690061  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449107.694812  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449107.695109  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.057210  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.067930  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.068545  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.069196  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.069776  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.070493  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.070986  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449108.071830  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.825903  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.826670  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.827059  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.827814  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.828113  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.828966  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.833824  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449112.834173  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.181364  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.192051  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.192787  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.193572  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.194172  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.194926  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.195599  766396 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786449113.196418  766396 util.cc:163] Not handling type DT_DOUBLE
+No GPU found – running on CPU.
+Running blackhole experiment...
+TF random key:  [0.24209415912628174, 0.26856493949890137, 0.4813734292984009, 0.30383026599884033, 0.2956348657608032, 0.8663702011108398]
+NP random key:  [1939682138, 2087710270, 1321693977, 1967327681, 38070799, 232568365]
+Logging to:  runs\dummy-kjjf3e3e_2026-08-11_13-51-44
+Training...
+Epoch 001: Loss: 0.000117
+
+Epoch 002: Loss: 1.15e-05
+
+Epoch 003: Loss: 1.43e-06
+
+Epoch 004: Loss: 1.71e-07
+
+Epoch 005: Loss: 4.39e-08
+
+Epoch 006: Loss: 2.28e-08
+
+Epoch 007: Loss: 1.82e-08
+
+Epoch 008: Loss: 1.61e-08
+
+Epoch 009: Loss: 1.51e-08
+
+Epoch 010: Loss: 1.41e-08
+
+Epoch 011: Loss: 1.28e-08
+
+Epoch 012: Loss: 1.21e-08
+
+Epoch 013: Loss: 1.17e-08
+
+Epoch 014: Loss: 1.03e-08
+
+Epoch 015: Loss: 9.43e-09
+
+Epoch 016: Loss: 8.99e-09
+
+Epoch 017: Loss: 8.08e-09
+
+Epoch 018: Loss: 7.18e-09
+
+Epoch 019: Loss: 6.38e-09
+
+Epoch 020: Loss: 6.15e-09
+
+Epoch 021: Loss: 5.64e-09
+
+Epoch 022: Loss: 5.01e-09
+
+Epoch 023: Loss: 4.56e-09
+
+Epoch 024: Loss: 4.11e-09
+
+Epoch 025: Loss: 3.86e-09
+
+Epoch 026: Loss: 3.55e-09
+
+Epoch 027: Loss: 2.97e-09
+
+Epoch 028: Loss: 2.86e-09
+
+Epoch 029: Loss: 2.56e-09
+
+Epoch 030: Loss: 2.33e-09
+
+Epoch 031: Loss: 2.15e-09
+
+Epoch 032: Loss: 1.83e-09
+
+Epoch 033: Loss: 1.78e-09
+
+Epoch 034: Loss: 1.64e-09
+
+Epoch 035: Loss: 1.44e-09
+
+Epoch 036: Loss: 1.35e-09
+
+Epoch 037: Loss: 1.21e-09
+
+Epoch 038: Loss: 1.12e-09
+
+Epoch 039: Loss: 1.06e-09
+
+Epoch 040: Loss: 9.72e-10
+
+Epoch 041: Loss: 9.16e-10
+
