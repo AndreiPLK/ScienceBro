@@ -33,11 +33,10 @@ def main() -> int:
 
     sys.path.insert(0, str(Path.cwd()))  # upstream checkout root
 
-    import numpy as np
-    import tensorflow as tf
-
     # Importing upstream network module registers the custom Keras classes.
     import network.schwarzschild  # noqa: F401
+    import numpy as np
+    import tensorflow as tf
     from helper_functions.helper_functions import cholesky_from_vec
 
     model = tf.keras.models.load_model(args.model, compile=False)
