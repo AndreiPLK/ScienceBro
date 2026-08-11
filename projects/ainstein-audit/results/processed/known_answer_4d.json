@@ -1,0 +1,127 @@
+{
+  "date": "2026-08-11",
+  "snapshot": "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\raw\\schwarzschild-4d-interim-2026-08-11\\final_model.keras",
+  "note_stage2": "interim checkpoint, ~31/500 epochs \u2014 EXPLORATORY, no claims",
+  "analytic_route": {
+    "n_stencil_points": 516,
+    "rows": [
+      {
+        "point_TXq1q2": [
+          0.1,
+          0.6,
+          0.2,
+          0.1
+        ],
+        "r_independent": 2.2924929872598745,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 9.637469711165636e-09,
+        "kretschmann_fd": 0.3306687391162606,
+        "kretschmann_analytic_48m2_r6": 0.3306687413965245,
+        "kretschmann_rel_err": 6.895916174287383e-09
+      },
+      {
+        "point_TXq1q2": [
+          0.0,
+          0.5,
+          -0.1,
+          0.3
+        ],
+        "r_independent": 2.198806920938357,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 6.735635382781879e-09,
+        "kretschmann_fd": 0.42473560007507083,
+        "kretschmann_analytic_48m2_r6": 0.42473560196397964,
+        "kretschmann_rel_err": 4.44725800806848e-09
+      },
+      {
+        "point_TXq1q2": [
+          -0.15,
+          0.7,
+          0.0,
+          0.0
+        ],
+        "r_independent": 2.4168834454223527,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 1.4851130103465948e-08,
+        "kretschmann_fd": 0.24082800631752632,
+        "kretschmann_analytic_48m2_r6": 0.24082800909555363,
+        "kretschmann_rel_err": 1.1535316505025293e-08
+      },
+      {
+        "point_TXq1q2": [
+          0.05,
+          0.45,
+          0.25,
+          -0.2
+        ],
+        "r_independent": 2.157102243780833,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 7.950775815501743e-09,
+        "kretschmann_fd": 0.4764494740887443,
+        "kretschmann_analytic_48m2_r6": 0.476449476326506,
+        "kretschmann_rel_err": 4.696745121706601e-09
+      }
+    ]
+  },
+  "nn_interim": {
+    "n_stencil_points": 516,
+    "rows": [
+      {
+        "point_TXq1q2": [
+          0.1,
+          0.6,
+          0.2,
+          0.1
+        ],
+        "r_independent": 2.2924929872598745,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 0.17785579458672673,
+        "kretschmann_fd": 0.32943316570256725,
+        "kretschmann_analytic_48m2_r6": 0.3306687413965245,
+        "kretschmann_rel_err": 0.003736596597365147
+      },
+      {
+        "point_TXq1q2": [
+          0.0,
+          0.5,
+          -0.1,
+          0.3
+        ],
+        "r_independent": 2.198806920938357,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 0.14245016147663359,
+        "kretschmann_fd": 0.42664654574438665,
+        "kretschmann_analytic_48m2_r6": 0.42473560196397964,
+        "kretschmann_rel_err": 0.004499137278746592
+      },
+      {
+        "point_TXq1q2": [
+          -0.15,
+          0.7,
+          0.0,
+          0.0
+        ],
+        "r_independent": 2.4168834454223527,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 0.16434449801551398,
+        "kretschmann_fd": 0.23674950186860308,
+        "kretschmann_analytic_48m2_r6": 0.24082800909555363,
+        "kretschmann_rel_err": 0.01693535250433564
+      },
+      {
+        "point_TXq1q2": [
+          0.05,
+          0.45,
+          0.25,
+          -0.2
+        ],
+        "r_independent": 2.157102243780833,
+        "lorentzian_signature": true,
+        "max_abs_ricci": 0.09169596298739746,
+        "kretschmann_fd": 0.47445174516231964,
+        "kretschmann_analytic_48m2_r6": 0.476449476326506,
+        "kretschmann_rel_err": 0.004192954895426025
+      }
+    ]
+  }
+}

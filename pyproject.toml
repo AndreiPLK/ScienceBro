@@ -38,6 +38,7 @@ dev = [
     "pre-commit>=3.7",
     "hypothesis>=6.100",
     "pypdf>=6.15.0",
+    "scipy>=1.18.0",
 ]
 
 [build-system]

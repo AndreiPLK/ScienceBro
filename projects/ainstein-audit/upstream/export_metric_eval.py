@@ -31,6 +31,10 @@ def main() -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--euclidean-out", dest="euclidean_out", default=None,
                     help="also save the Euclideanised metric (lorentzian=False Cholesky)")
+    ap.add_argument("--analytic", action="store_true",
+                    help="ignore --model weights; export the upstream ANALYTIC Schwarzschild "
+                         "metric (geometry.AnalyticMetric_R2S2, m=1) at the same (T,X,q1,q2) "
+                         "coordinates — used to validate the 4D verifier route")
     args = ap.parse_args()
 
     sys.path.insert(0, str(Path.cwd()))  # upstream checkout root
@@ -41,11 +45,30 @@ def main() -> int:
     import tensorflow as tf
     from helper_functions.helper_functions import cholesky_from_vec
 
+    pts = np.load(args.points).astype(np.float64)
+
+    if args.analytic:
+        from geometry.schwarzschild import AnalyticMetric_R2S2
+
+        q4 = tf.constant(pts[:, :4], dtype=tf.float64)
+        g = AnalyticMetric_R2S2(q4, identity=False, lorentzian=True, m=1.0)
+        g = np.asarray(g).astype(np.float64)
+        np.save(args.out, g)
+        meta = {
+            "model_file": "ANALYTIC Schwarzschild (upstream geometry, m=1)",
+            "model_class": "AnalyticMetric_R2S2",
+            "n_points": int(pts.shape[0]),
+            "in_dim": int(pts.shape[1]),
+            "metric_dim": int(g.shape[-1]),
+            "lorentzian": True,
+        }
+        Path(args.out).with_suffix(".json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+        print(json.dumps(meta))
+        return 0
+
     model = tf.keras.models.load_model(args.model, compile=False)
     cfg = model.get_config().get("model_config", {})
     lorentzian = bool(cfg.get("model_specific", {}).get("lorentzian", True))
-
-    pts = np.load(args.points).astype(np.float64)
     vec = model(tf.constant(pts, dtype=tf.float64))
     cls = type(model).__name__
 
