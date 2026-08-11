@@ -1,0 +1,22 @@
+id: H-0001
+statement: >-
+  At least one exported AInstein candidate remains approximately Ricci-flat on
+  independently sampled off-training points and converges toward zero residual with
+  increased numerical precision.
+null_hypothesis: >-
+  The reported low residual is restricted to the upstream training/evaluation
+  procedure and does not survive independent sampling or precision tests.
+predictions:
+  - Independent vacuum residual remains below the predeclared threshold.
+  - Residual decreases with increased precision or resolution.
+  - Metric signature remains Lorentzian throughout the declared valid domain.
+falsification:
+  - Residual fails to converge.
+  - Large hidden residual regions occur away from excluded singular points.
+  - Signature or determinant becomes invalid in the claimed domain.
+confounders:
+  - Coordinate/gauge choices may dominate the comparison to Schwarzschild.
+  - Residual normalization choice may hide or exaggerate failures near curvature zeros.
+  - Float32 training artifacts may masquerade as physical structure.
+primary_metric: normalized_independent_einstein_residual
+status: proposed

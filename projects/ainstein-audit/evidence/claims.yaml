@@ -1,0 +1,28 @@
+claims:
+  - id: CL-0001
+    statement: >-
+      The AInstein authors report Lorentzian, numerically Einstein-vacuum candidate
+      metrics of algebraically general Petrov type with a trapped interior, distinct
+      from Schwarzschild, found by their extended PINN architecture.
+    state: source-supported
+    evidence_ids: [EV-0001, EV-0002]
+    contradicting_evidence_ids: []
+    experiment_ids: []
+    validation_ids: []
+    allowed_public_wording: null
+    blockers: []
+
+  - id: CL-0002
+    statement: >-
+      At least one exported AInstein candidate remains approximately Ricci-flat,
+      Lorentzian, and non-Schwarzschild under an independent evaluator on unseen
+      sample points with convergent residuals.
+    state: speculative
+    evidence_ids: []
+    contradicting_evidence_ids: []
+    experiment_ids: []
+    validation_ids: []
+    allowed_public_wording: null
+    blockers:
+      - "No independent evaluation has been performed yet."
+      - "Upstream candidate export format not yet identified."

@@ -1,0 +1,16 @@
+id: ainstein-audit
+title: Independent Invariant Stress Test of AI-Discovered Black-Hole Metrics
+domain: general-relativity
+stage: research
+owner: Andrey Pluzhnik
+primary_question: Are the reported non-Schwarzschild AInstein candidates genuine vacuum black-hole geometries or numerical/optimization artifacts?
+created_at: 2026-08-11
+compute_budget:
+  device: auto
+  max_single_run_hours: 12
+  max_parallel_runs: 2
+release_targets:
+  - github
+  - zenodo
+  - arxiv-gr-qc
+status_source: computed

@@ -19,6 +19,9 @@ projects/*/upstream/checkout/**
 vendor/checkouts/**
 !projects/*/results/raw/.gitkeep
 
+# Downloaded papers: kept local only (license-safe); hashes live in corpus.jsonl
+projects/*/research/pdfs/**
+
 # OS
 Thumbs.db
 .DS_Store

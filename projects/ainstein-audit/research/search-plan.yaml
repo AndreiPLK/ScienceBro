@@ -1,0 +1,15 @@
+# Literature search plan (roadmap §14 Stage B). Log every executed query with a date.
+queries:
+  - q: "AInstein Einstein equations neural network"
+    status: pending
+  - q: "physics informed neural network black hole metric"
+    status: pending
+  - q: "arXiv:2607.05489 citations"
+    status: pending
+  - q: "AInstein replication OR comment OR erratum OR critique"
+    status: pending
+  - q: "Petrov speciality index numerical"
+    status: pending
+  - q: "trapped surface constraint neural network"
+    status: pending
+executed_log: []
