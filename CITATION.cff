@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use ScienceBro, please cite it as below."
+title: "ScienceBro: local-first AI-assisted computational research workbench"
+type: software
+authors:
+  - family-names: Pluzhnik
+    given-names: Andrey
+version: 0.1.0
+date-released: 2026-08-11
+license: MIT

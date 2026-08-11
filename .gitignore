@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Environments / secrets
+.env
+*.key
+
+# Large local artifacts (manifests + hashes are committed instead)
+projects/*/results/raw/**
+projects/*/upstream/checkout/**
+vendor/checkouts/**
+!projects/*/results/raw/.gitkeep
+
+# OS
+Thumbs.db
+.DS_Store
