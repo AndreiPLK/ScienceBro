@@ -16,9 +16,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from verifier.discrepancy_experiment import export  # noqa: E402
 from verifier.geometry import ricci_tensor  # noqa: E402
 from verifier.interface import RecordingMetric  # noqa: E402
-from verifier.discrepancy_experiment import export  # noqa: E402
 
 OUT_JSON = Path(__file__).resolve().parents[1] / "results" / "processed" / "calibration_maps.json"
 OUT_FIG = Path(__file__).resolve().parents[1] / "results" / "figures" / "residual_map_2d.html"
