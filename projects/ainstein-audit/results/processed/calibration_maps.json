@@ -1,0 +1,18 @@
+{
+  "n_grid_points": 197,
+  "h": 0.003,
+  "float64": {
+    "median": 7.873111045741406e-06,
+    "p95": 2.1661139977664098e-05,
+    "p99": 3.742325016484759e-05,
+    "max": 5.658057205581191e-05
+  },
+  "float32_metric_storage": {
+    "median": 0.001595103161524133,
+    "p95": 0.004823968205053191,
+    "p99": 0.006237243758639259,
+    "max": 0.0070638691420945345
+  },
+  "float32_vs_float64_median_ratio": 202.60137984296944,
+  "conclusion_data": "float32 storage of metric components inflates the FD residual by the measured ratio; see numbers \u2014 no narrative here."
+}

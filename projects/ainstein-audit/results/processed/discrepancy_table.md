@@ -11,7 +11,7 @@ Raw data: `discrepancy_experiment.json`. Every number below is measured, not est
 | 2 | Quantity is defined differently (linear vs quadratic) | compare sqrt(upstream loss) with our max\|Ricci\| | sqrt(1.57e-10) = **1.253e-5** vs our max\|Ricci\| = **1.261e-5** (0.7% apart) | **PRIMARY CAUSE** — upstream loss is quadratic in Ricci (Eq. 39 / losses/schwarzschild.py:1950) |
 | 3 | Contraction & weighting differ (Euclideanised g_E, volume weight, mean-vs-max) | replicate upstream formula exactly, substituting OUR FD Ricci: mean_a\|R g_E⁻¹ g_E⁻¹ R\|·√\|det g\| | **8.08e-11** vs upstream training value **1.57e-10** (factor 1.9) | **CONFIRMED consistent** — residual gap from sampling (24 uniform pts vs their 10k sampler) |
 | 4 | Evaluation points differ | interior ball (r≤0.7) vs near-boundary (r=0.95) | interior max 1.35e-5 / median 4.5e-6; edge max **5.54e-5** / median 7.5e-6 | **contributes** — boundary region is ~4× worse; their sampler and mine weight regions differently |
-| 5 | dtype (float32 vs float64) | not yet run on the NN export | — | pending (queued in calibration backlog) |
+| 5 | dtype (float32 vs float64) | same 197-point grid, metric components stored as float32 then FD | float64 median 7.87e-6 vs float32 median 1.60e-3 (**203× inflation**; p95 4.8e-3, max 7.1e-3) | **excluded as cause** (our export was float64) — but measured as a hard protocol constraint: metric exchange MUST be float64 |
 | 6 | Coordinates/domain mismatch | same coordinates by construction (points fed to the same model) | n/a | excluded by design |
 
 ## Statistics of the independent per-point residual max|R_ab| (interior, h=3e-3, n=24)
@@ -25,8 +25,8 @@ the upstream number is a *quadratic, volume-weighted, sample-averaged* contracti
 the same Ricci field whose *linear pointwise maximum* we report. On identical linear
 footing (square root), upstream and independent values agree to ~1%; replicating the
 full upstream formula with our independently-computed Ricci reproduces their loss to
-within a factor of 2 (attributable to sampling). Remaining open item: float32/float64
-export sensitivity (cause 5).
+within a factor of 2 (attributable to sampling). Cause 5 (dtype) measured and closed:
+float32 metric storage inflates the residual 203× — float64 is mandatory for the audit.
 
 The independent evaluator therefore *corroborates* the upstream 2D training-loss scale
 on this smoke model. No claim about paper candidates follows from this.

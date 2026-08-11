@@ -24,6 +24,6 @@ claims:
     validation_ids: []
     allowed_public_wording: null
     blockers:
-      - "No independent evaluation of a PAPER candidate yet (export interface itself works; verified on the smoke model 2026-08-11)."
-      - "No published candidate checkpoints in the repo — retrain locally (hps_petrovI_*.yaml) or request from authors."
-      - "FD floor for NN metrics not yet calibrated (analytic floor does not transfer automatically)."
+      - "No independent evaluation of a PAPER candidate yet (pipeline PASS on analytic route 2026-08-11: 4D floor ~1e-8)."
+      - "No published candidate checkpoints in the repo — retrain locally (hps_petrovI_*.yaml) or request from authors (draft letter ready, awaiting founder approval)."
+      - "Schwarzschild known-answer baseline training incomplete (31/500 epochs; night CPU run or WSL2 GPU pending)."
