@@ -1,0 +1,40 @@
+# Run record: smallest safe documented upstream baseline (Section 25 item 11).
+# This is an EXPLORATORY smoke run, not a confirmatory experiment: it establishes that
+# the upstream pipeline executes end-to-end on this machine. It says NOTHING about the
+# scientific validity of any candidate (a run completing is not validation — §6 rule 17).
+run_id: RUN-BASELINE-SMOKE-2026-08-11
+exploratory: true
+experiment_id: null                # no frozen experiment yet; pre-Stage-D smoke
+upstream_commit: 54736e466e54d948bd509b072e4047cf98405064
+command: >-
+  WANDB_MODE=disabled .venv-upstream/Scripts/python.exe run.py
+  -c=hyperparameters/hps_local_lorentzian.yaml
+working_dir: projects/ainstein-audit/upstream/checkout
+environment: projects/ainstein-audit/upstream/.venv-upstream (uv, Python 3.12, TF 2.21.0 CPU-only)
+hardware: Windows 11, AMD64; TF CPU-only on native Windows (GPU needs WSL2)
+precision: float64 (per hps_local_lorentzian.yaml)
+started_at: "2026-08-11T13:51:44+02:00"
+finished_at: "2026-08-11T13:59:00+02:00 (approx, from artifact mtimes)"
+exit_code: 0
+observed:
+  epochs: 100
+  final_loss: 1.57e-10
+  loss_at_epoch_1: "see log"
+  notes: >-
+    Loss decreased monotonically to ~1.6e-10 (upstream's own objective on a dim-2 local
+    Lorentzian problem). This is the upstream training loss — NOT an independent
+    correctness measure (§6 rule 19).
+raw_artifacts:
+  dir: projects/ainstein-audit/results/raw/baseline-smoke-2026-08-11/
+  sha256:
+    final_model.keras: 752a7d8bbf9bd9cc7081b58f5fa5f181c1e9354db6b6a00799d1f69f7278ba1f
+    final_batch.npy: 655696f23573f16c0d41919658d8571838e8184d23ef184c8bc45d0f903392bf
+    final_batch_pred.npy: 3be1d78eb84bcb1f39340350ab60a4bfad1957515b3ec19e8ca37c832e729924
+    hps_used.yaml: 1141b7a00d525f98e862e7f9c725001c5509c5490ce7c1cddf33c1c4081e9bf1
+    baseline_local_lorentzian.log: 3bdfae5aec1ae0a619e7be271cd5ced0c78ff361f91f726131dfc3be18ed673d
+documented_discrepancies:
+  - "README references hyperparameters/hps.yaml which does not exist; actual configs are hps_*.yaml."
+  - "Run dir is named dummy-* because wandb is disabled."
+next:
+  - "Schwarzschild known-answer training run (hps_schwarzschild.yaml, 500 epochs) as EXP-0001 after freezing."
+  - "Define neutral exported-metric interface: load final_model.keras, evaluate metric at coordinates, feed to verifier."
