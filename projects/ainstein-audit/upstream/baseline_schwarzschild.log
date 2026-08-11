@@ -1,0 +1,94 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786450398.264658  783592 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786450401.080922  783592 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+WARNING:tensorflow:From C:\Users\user\ScienceBro\projects\ainstein-audit\upstream\.venv-upstream\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From C:\Users\user\ScienceBro\projects\ainstein-audit\upstream\.venv-upstream\Lib\site-packages\tensorflow_probability\python\internal\backend\numpy\_utils.py:48: The name tf.logging.TaskLevelStatusMessage is deprecated. Please use tf.compat.v1.logging.TaskLevelStatusMessage instead.
+
+WARNING:tensorflow:From C:\Users\user\ScienceBro\projects\ainstein-audit\upstream\.venv-upstream\Lib\site-packages\tensorflow_probability\python\internal\backend\numpy\_utils.py:48: The name tf.control_flow_v2_enabled is deprecated. Please use tf.compat.v1.control_flow_v2_enabled instead.
+
+I0000 00:00:1786450408.916518  783592 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:You are casting an input of type complex128 to an incompatible dtype float64.  This will discard the imaginary part and may not be what you intended.
+W0000 00:00:1786450506.913623  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.914481  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.914763  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.915142  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.915500  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.915930  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.922370  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.922612  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.922849  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.923069  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.923290  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450506.923547  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.127154  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.127446  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.127674  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.128061  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.128491  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.128935  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.137305  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.137888  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.139111  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.140281  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.141241  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.141948  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.142641  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.143616  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.144442  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.145095  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.145946  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.146653  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.147051  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.161791  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.162177  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.175960  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.176241  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.190185  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.190604  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.205873  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.250036  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450507.250447  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.165424  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.167064  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.168287  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.169211  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.169880  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.175011  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.178687  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.182401  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.185814  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.188672  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.191904  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.193955  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.197454  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.200284  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.203485  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.205032  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.205910  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.206576  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.207137  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.207979  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.251227  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.251662  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.252153  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.252738  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.253340  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.299691  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.300164  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.300885  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.301380  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.301970  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.349452  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.349998  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.350626  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.351718  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.352209  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.400108  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.400850  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.401363  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.401868  783592 util.cc:163] Not handling type DT_DOUBLE
+W0000 00:00:1786450514.402420  783592 util.cc:163] Not handling type DT_DOUBLE

@@ -1,0 +1,2030 @@
+=== PAGE 1 ===
+Black Hole Black Boxes:
+Numerical Black Hole Metrics via AInstein Neural Networks
+Edward Hirst,1,∗ Tancredi Schettini Gherardini, 2,3,† and Alexander G. Stapleton 4,‡
+1Instituto de Matemática, Estatística e Computação Científica (IMECC)
+da Universidade Estadual de Campinas (UNICAMP), 13083-859, Brasil
+2Mathematisches Institut (MI), University of Bonn, Bonn, Germany
+3Max Planck Institute for Mathematics, Bonn, Germany
+4Centre for Theoretical Physics and Astronomy,
+Queen Mary University of London, London E1 4NS, United Kingdom
+(Dated: July 8, 2026)
+Abstract
+The AInstein architecture introduced an unsupervised neural method for solving the Rieman-
+nian Einstein equations on arbitrary manifolds. This Physics Informed Neural Network approach
+(PINN) is extended here to Lorentzian signature, validated by recovering the maximally extended
+Schwarzschild geometry, and tested as novel search method for arbitrary black hole solutions. The
+topology is built into the architecture by treatingS2 globally through its standard embedding, such
+that the network learns an ambient metric on the manifoldR2 ×R 3, where Penrose coordinates
+are chosen forR 2 and the metric onS2 is obtained by pullback. The architecture is first trained
+with the objective of recovering the Schwarzschild metric via losses encoding the vacuum Einstein
+equation, a quadratic Weyl scalar constraint, and theSO(3)symmetry of the resultant metric;
+directly motivated by the Birkhoff–Jebsen theorem. Following this, the objective is generalised to
+use the Petrov speciality index, a horizon curvature anchor, and a trapped-surface constraint, to
+allow search for algebraically general Petrov type I solutions, finding potentially novel general-type
+Lorentzian Einstein metrics with a genuinely trapped interior.
+∗ ehirst@unicamp.br
+† tsg@math.uni-bonn.de
+‡ a.g.stapleton@qmul.ac.uk
+1
+arXiv:2607.05489v1  [gr-qc]  6 Jul 2026
+=== PAGE 2 ===
+CONTENTS
+I. Introduction 3
+II. Theoretical Prerequisites 4
+A. The Schwarzschild Problem 4
+B. Birkhoff’s Theorem and Scalar Invariants 6
+1. Petrov Classes, Weyl Invariants, and Curvature Scales 6
+2. Killing Vectors and Spherical Symmetry 7
+C. Spacetime Embedding 8
+D. Trapped Surfaces 9
+III. AInstein Embedding Neural Networks 10
+A. Warm up – Local Lorentzian Schwarzschild 10
+B. Network Architecture 10
+C. Data Generation 11
+D. Training Objectives 12
+1. Supervised Network 12
+2. Unsupervised Local Lorentzian Network 12
+3. Unsupervised Schwarzschild Network 12
+4. Unsupervised Petrov Type-I Network 14
+5. Unsupervised Petrov Type-I Black Hole Network 15
+IV. Results 16
+A. Local Lorentzian Searches 16
+B. Schwarzschild Search 16
+C. Petrov-Type I Vacuum Search 19
+D. Petrov-Type I Black Hole Search 20
+V. Conclusions and Outlook 21
+Data Availability 22
+Acknowledgements 22
+A. Invariant Derivations for the Schwarzschild Solution 23
+B. Component-Level Metric and Ricci Visualisations 25
+C. Model Hyperparameters 29
+References 31
+2
+=== PAGE 3 ===
+I. INTRODUCTION
+Finding explicit Einstein metrics is a central problem in geometry and theories of gravity. More
+specifically, in general relativity and its generalisations, one is particularly interested in the con-
+struction of pseudo-Riemannian Lorentzian metrics. LetMbe a smooth manifold equipped with
+a local coordinate chart(U, xµ)on an open setU⊂ M. GivenU, one may locally construct a
+smooth, pseudo-Riemannian metricg µν onUwith an associated Ricci curvature tensorR µν. In
+this notation, an Einstein metric is defined such that Ricci curvature is everywhere proportional to
+the metric itself, i.e.1
+Rµν =λg µν,(1)
+forsomeconstantofproportionalityλreferredtoastheEinstein constant. InRiemanniangeometry,
+Equation (1) says that the space has the same averaged curvature in every tangent direction,
+whilst in general relativity, its pseudo-Riemannian version is the vacuum Einstein equation withλ
+interpreted as a cosmological constant. Although Equation (1) is concise, it represents a non-linear
+second-order system for the metric components. The global problem also requires the local chart
+components to assemble into a single smooth tensor on the whole manifold.
+In numerical relativity and stationary black-hole construction, this non-linear geometric problem
+is usually made tractable by turning the Einstein equations into a well-posed computational system
+after choosing a formulation, coordinates, gauge conditions, boundary data, and a mesh or spectral
+discretisation. The dynamical branch of the field is built around the Cauchy problem, where the
+spacetime is foliated into spatial hypersurfaces, initial data are chosen subject to the Hamiltonian
+and momentum constraints, and the data are evolved by a gauge-fixed form of Einstein’s equations.
+The ADM decomposition is the classical starting point for this viewpoint [1], while standard reviews
+of initial data and numerical-relativity methodology emphasise that the practical problem is not
+only to discretise the equations, but also to control constraints, gauges, singularities, outer bound-
+aries, and wave extraction, see [2, 3] for instance. A major development was the conformal BSSN
+formulation, originating in the work of [4] and systematised by [5], which greatly improved the
+stability of three-dimensional evolutions relative to direct ADM evolution. The binary-black-hole
+breakthrough was obtained in [6] via the first stable full evolution of a binary black-hole spacetime
+using generalized harmonic evolution and excision, while the moving-puncture methods of [7, 8]
+made long-term inspiral, merger, ringdown, and gravitational-wave extraction broadly practical.
+Subsequent reviews describe this as the point at which binary black-hole merger simulations be-
+came routine tools for strong-field gravity and gravitational-wave astronomy [9], with high-accuracy
+spectral evolutions and community infrastructure such as the Einstein Toolkit further maturing the
+field [10, 11]. Stationary black-hole construction is different in character, instead of evolving initial
+data one typically solves a coupled elliptic boundary-value problem for the metric, with boundary
+conditions encoding asymptotic regions, axes, horizons, conformal boundaries, or compact direc-
+tions. The construction of [12], for static axisymmetric vacuum solutions and non-uniform black
+strings, illustrates the role of adapted ansatz choices and elliptic relaxation methods. Similarly, the
+Einstein–DeTurck formulation of [13] gives a systematic gauge-fixed elliptic framework for static nu-
+merical relativity and Kaluza–Klein black holes. This approach was extended toward more general
+stationary vacuum black holes in Lorentzian signature in [14]. This stationary toolkit is reviewed
+in detail by [15, 16] and has been applied in less symmetric and asymptotically AdS settings, for
+example in numerical constructions of black resonators and related AdS instabilities. In all of these
+1 We work with the‘mostly-positive’, or‘East-Coast’signature(−,+,+,+), and use the conventional
+definitionR abcd =∂ cΓa
+db −∂ dΓa
+cb + Γi
+bdΓa
+ic −Γ i
+bcΓa
+id for the Riemann tensor.
+3
+=== PAGE 4 ===
+cases, the metric is represented by finite-dimensional data tied to a coordinate grid, finite-difference
+stencil, finite-element mesh, or spectral basis, and geometric consistency is enforced through the
+discretisedfieldequationstogetherwithcarefullychosengauge, regularity, andboundaryconditions.
+Machine learning provides a complementary representation: the metric is treated as a differen-
+tiable function of the coordinates by representing it with a (smooth) neural network, with geometric
+tensors computed by automatic differentiation and inserted directly into the objective2. This pro-
+gram of repurposing the efficient differentiation mechanisms of AI for differential geometry and
+geometric analysis has been recently pursued in [18, 19] for various problems concerning spheres,
+as well as by pioneering works in the context of Calabi-Yau metrics [20–24],G2 metrics [25, 26],
+hyperbolic spaces [27, 28], modes related to black holes [29–31], and for broader contexts3 such as
+minimal surfaces [28, 35–37].
+AInstein4 [18] introduced this strategy for Riemannian Einstein metrics on spheres. In the
+original construction, the manifold was represented by an atlas, each chart had its own subnetwork,
+points in overlap regions were passed through the relevant transition maps, and an explicit overlap
+loss enforced the tensorial transformation law for the metric. In this way, global consistency became
+a learnable constraint rather than an assumption built into the architecture.
+This work adapts AInstein to first find and approximate the maximally extended Schwarzschild
+solution, then presents a more general Lorentzian metric search. The main changes are a Lorentzian
+metric parametrisation, compactified Penrose-domain sampling, coordinate-invariant scalar losses,
+and an embedded treatment of the topologically non-trivial part of the manifold. The embedding is
+not only a visual convenience; it changes how global consistency is imposed. Rather than learning
+two independent sets of metric components and matching them with a loss term, the model learns
+a single ambient metric, with the two stereographic hemispheres being related analytically by
+pullback.
+II. THEORETICAL PREREQUISITES
+A. The Schwarzschild Problem
+The Schwarzschild metric is an exact solution to Einstein’s field equations that describes the
+spacetime geometry outside a spherically-symmetric non-rotating mass such as a black hole. In this
+section, the coordinate description used throughout the work is developed.
+LetPdenote the two-dimensional compactified Penrose domain [38], i.e. an open hexagonal
+subset ofR 2 (see below), and letS2 denote the 2-sphere. The four-dimensional manifold is
+M=P ×S 2,(2)
+where it should be noted Equation (2) does not assume a product metric – the product notation
+only separates the causal coordinates from the angular coordinates. Although the Schwarzschild
+solution is spherically symmetric, the class of metrics considered later is a general symmetric four-
+dimensional pullback metric, not an ansatz restricted to the diagonal Schwarzschild form.
+Let(T, X)denote Penrose coordinates. A Penrose diagram is a conformally compactified repre-
+sentation of spacetime, infinite regions are mapped to finite boundaries while the light-cone struc-
+ture is preserved. Penrose coordinates are useful because they place the event horizons inside a
+2 This is the Physics Informed Neural Network (PINN) formalism [17].
+3 Here we note complementary applications of pure supervised learning to the black hole context [32–34].
+4 AInstein is available at:https://github.com/xand-stapleton/ainstein.
+4
+=== PAGE 5 ===
+X
+T
+BIBIII
+BII
+BIV
+r= 0
+r= 0
+I
++
+I −
+I +
+I
+−
+T=±X
+−π/2 π/2
+π/4
+−π/4
+FIG. 1: Compactified Penrose domain used in Equation (4). The horizontal and vertical axes are the
+Penrose coordinatesXandT, respectively, with the plot drawn in units ofπ/4. The right and left
+diamonds are the two exterior regionsBI andB III, whileB II andB IV are the future and past black-hole
+interior regions. Dashed diagonal lines denote the null horizonsT=±X, and the red horizontal
+boundaries are the Schwarzschild singularities.
+finite computational domain; the angularS2 directions are suppressed, so each point in the two-
+dimensional diagram represents a sphere, and radial light rays follow diagonal lines. Letm >0
+denote the Schwarzschild mass parameter and letrdenote the Schwarzschild areal radius. In
+Schwarzschild coordinates, the horizon atr= 2mis a coordinate singularity; in Kruskal or Penrose
+coordinates, it is a regular null surface. For any centrec, define the two boundary functions
+τ −
+c (X) =|X−c| − π
+4 , τ +
+c (X) =−|X−c|+ π
+4 .(3)
+Figure 1 shows the corresponding compactified domain. Using Equation (3), the four exte-
+rior/interior diamonds we consider are
+BI ={0< X < π/2, τ−
+π/4 < T < τ+
+π/4},
+BII ={−π/4< X < π/4,|X|< T < π/4},
+BIII ={−π/2< X <0, τ −
+−π/4 < T < τ+
+−π/4},
+BIV ={−π/4< X < π/4,−π/4< T <−|X|}.
+(4)
+The null horizons are the diagonal linesT=±Xin the central diamond, whilst the future and past
+singularities are the horizontal boundariesT=±π/4with|X|< π/4. The remaining null sides are
+the conformal boundaries of the exterior regions.
+In the Penrose coordinates of Equation (4), the target Schwarzschild line element may be written
+as
+ds2 =F(T, X)(−dT 2 + dX2) +r(T, X)2dΩ2
+2,(5)
+wheredΩ 2
+2 is the round metric on the unit two-sphere,r(T, X)is the Schwarzschild areal radius
+andF(T, X)is the Penrose conformal factor. This conformal factor is
+F(T, X) = 32m3e−r(T,X)/(2m)
+r(T, X)
+
+cos2 T−sin 2 X
+2 ,(6)
+withr(T, X)defined below. For stereographic angular coordinates(q1, q2)onS 2,
+dΩ2
+2 = 4
+(1 +q 2
+1 +q 2
+2)2 (dq2
+1 + dq2
+2).(7)
+5
+=== PAGE 6 ===
+The conformal factorFis finite and non-zero at the horizons; the singular behaviour of the
+Schwarzschild solution is instead carried byr(T, X)→0on the spacelike singularity (in addition
+to the conformal boundary divergence). Thus, the singular behaviour is restricted to the boundary
+of the Penrose domain. LetWdenote the real Lambert-Wfunction, and letBlabel one of the four
+regions in Equation (4). The radiusris computed overBI, . . . , BIV by
+r= 2m(1 +W B),(8)
+whereχ= cos 2T /cos 2Xand
+WB =W[exp{−2 arccothχ−1}],B=B I, BIII,
+WB =W[−exp{−2 arctanhχ−1}],B=B II, BIV. (9)
+For a detailed account on these coordinates the reader is referred to [39], for instance. The tensor
+equation to be solved remains the vacuum conditionRµν = 0.
+B. Birkhoff’s Theorem and Scalar Invariants
+This section collects the invariant statements that characterise the Schwarzschild and Type-I
+geometries. The key point here is not that any single scalar uniquely determines the metric in
+general, but rather the specification of increasing numbers of invariants constrains the space of
+possible solutions.
+1. Petrov Classes, Weyl Invariants, and Curvature Scales
+Any smooth region of a 4D classical black-hole spacetime has a local Petrov type. A classifier
+of the type may be defined through the complex speciality index ([40, 41]). LetCabcd denote the
+Weyl tensor and define the self-dual Weyl tensor
+Cabcd :=C abcd −i ⋆Cabcd where ⋆Cabcd := 1
+2 ϵabef Cef cd.(10)
+With our normalisation, the complex Weyl invariants are
+I:= 1
+32 CabcdCabcd andJ:= 1
+384 CabcdCcdef Cef ab.(11)
+The correspondingspeciality indexis
+S:= 27J 2
+I 3 ,(12)
+following the invariant normalisation used by [40], and is defined away from the conformally flat
+locusI= 0. In this convention, an algebraically special Kerr background hasS= 1([40]).
+Schwarzschild is thea= 0Kerr limit; in the Schwarzschild principal tetrad the only non-zero
+Newman–Penrose Weyl scalar is real,Ψ2 =−m/r 3 (see [42]). Therefore
+I= 3Ψ 2
+2 = 3m2
+r6 , J=−Ψ 3
+2 = m3
+r9 ,S Schw = 1 + 0i.(13)
+Equivalently, the algebraically special Petrov condition is measured by the discriminant
+∆Petrov :=I 3 −27J 2.(14)
+Schwarzschild is Petrov typeD, so the invariant target isS= 1, or equivalently∆ Petrov = 0, at
+every non-flat point. The implication is not reversible:∆ Petrov = 0is the algebraically special
+6
+=== PAGE 7 ===
+condition and also includes typeII, while the more degenerate typesIII,N, andOhaveI=J= 0
+and hence a discriminant with an undefined speciality index [41]. Petrov type I is associated with
+a non-zero discriminant. Thus the discriminant is a test for repeated principal null directions, not
+a complete type-Dclassifier, yet corroborates type D and can be used to determine the solution
+isnottype D. The same invariant,S= 27J 2/I 3, is also used in later local Petrov-classification
+diagnostics ([43]).
+TheKretschmann invariantfixes the curvature scale of Schwarzschild giving partial information
+on the coordinate representation. We write
+K:=R abcdRabcd (15)
+for the quadratic curvature scalar. For the Schwarzschild solution,
+KSchw = 48m2
+r6 ,(16)
+whereris the areal radius [42]. Thus the dimensionless product
+Kr 6
+m2 = 48(17)
+is constant on the non-singular Schwarzschild region. This provides an invariant radial scale against
+which the learnt metric can be checked.
+One may also employ a useful Schwarzschild-specific cubic curvature ratio. Let
+Jcub :=R abcdRcdef Ref ab.(18)
+With the Riemann-sign convention fixed throughout this work, the Schwarzschild solution has
+Jcub = 96m3/r9, using [44]. In the Weyl-invariant normalisation of Equation (11), this is equivalent
+toJ cub = 96 Re(J)on Schwarzschild, allowing definition of the dimensionless reference scalar
+ρSchw :=− 96 Re(J)
+|K| 3/2 =− Jcub
+|K| 3/2 =− 1√
+12 ,(19)
+everywhere the metric is defined, with|ρSchw|= 1/
+√
+12; further details are provided in Section A.
+The value follows from the chosen normalisation of the diagnosticρ; the literature input is the
+standard Schwarzschild Weyl and Kretschmann invariants [42], not the diagnostic name itself. This
+ratio is simply an additional scalar check of the Schwarzschild curvature pattern, independent of
+the (areal) radius.
+2. Killing Vectors and Spherical Symmetry
+The analytic Schwarzschild solution is spherically symmetric. The relevant infinitesimal sym-
+metries are the three rotations of the round two-sphere. Equivalently, the Killing algebra of the
+roundS 2 isso(3), generated by the infinitesimal rotations inherited from the ambient Euclidean
+space ([45]). In the Cartesian embeddingS2 ⊂R 3 these are the familiar angular-momentum vector
+fields
+Jx =−z∂ y +y∂ z, J y =z∂ x −x∂ z, J z =−y∂ x +x∂ y.(20)
+To obtain the coordinate formulae used here, one may write the northern inverse stereographic map
+as
+x= 2q1
+1 +|q| 2 , y= 2q2
+1 +|q| 2 , z= 1− |q|2
+1 +|q| 2 ,(21)
+7
+=== PAGE 8 ===
+which yields the following generators in coordinates:
+ξz =−q 2 ∂q1 +q 1 ∂q2,
+ξx =−q 1q2 ∂q1 − 1
+2 (1−q 2
+1 +q 2
+2)∂ q2,
+ξy = 1
+2 (1 +q 2
+1 −q 2
+2)∂ q1 +q 1q2 ∂q2.(22)
+The corresponding formulae on the southern chart differ only by the expected stereographic sign
+changes for two of the generators. A metric is invariant under these rotations precisely when
+(LξAg)µν =ξ ρ
+A∂ρgµν +g ρν∂µξρ
+A +g µρ∂νξρ
+A = 0, A=x, y, z.(23)
+The Killing equations are the infinitesimal statement of spherical symmetry. In the numerical
+workflow below, the same operators are used both as a training loss and as validation residuals.
+This choice makes the Birkhoff–Jebsen hypothesis an explicit part of the Schwarzschild targeted
+search rather than a purely posterior observation. Equivalently, one may construct and implement
+any other symmetry property in this manner to perform other targeted searches.
+The Birkhoff–Jebsen theorem states that a four-dimensional spherically symmetric vacuum so-
+lution is locally Schwarzschild; forλ̸= 0the corresponding solution is Kottler/Schwarzschild–de
+Sitter ([46, 47]). Israel’s theorem gives a complementary static black-hole result, under the standard
+assumptions of asymptotic flatness, regular horizon, vacuum equations, and horizon topology, the
+regular static vacuum black hole is Schwarzschild, as discussed in [48]. These criteria are inten-
+tionally redundant. Ricci flatness and spherical symmetry already place the metric on the local
+Schwarzschild branch by the Birkhoff–Jebsen theorem, while non-degeneracy excludes collapsed
+metric limits and the Kretschmann scale fixes the mass parameter. Since each condition is stated
+tensorially or through scalar curvature invariants, the combined identification is insensitive to the
+coordinates used to represent the metric – it is a diffeomorphism-invariant identification of the
+geometry as Schwarzschild.
+C. Spacetime Embedding
+TheS 2 factor is represented by two stereographic hemispherical charts. This two-chart repre-
+sentation is only a coordinate device. Let
+w= (T, X, q1, q2, p),(24)
+be an intrinsic coordinate together with a chart label, wherep= 0denotes the northern chart
+andp= 1denotes the southern chart. We writeq= (q 1, q2),|q| 2 =q 2
+1 +q 2
+2, and defines 0 = +1,
+s1 =−1, allowing the embedding to be written as
+W(w) =
+
+T, X, 2q1
+1 +|q| 2 , 2q2
+1 +|q| 2 , sp
+1− |q|2
+1 +|q| 2
+
+.(25)
+Equation (25) maps the four intrinsic coordinates in Equation (24) toR2 ×S 2 ⊂R 5. The first
+two coordinates are unchanged, while the final three are the inverse stereographic projection of the
+angular point.
+The embedding JacobianJ Aµ =∂W A/∂w µ reads
+J=
+1 0
+0 1
+
+⊕ 1
+(1 +q 2
+1 +q 2
+2)2
+
+
+2(1 +q 2
+2 −q 2
+1)−4q 1q2
+−4q1q2 2(1 +q 2
+1 −q 2
+2)
+−4spq1 −4spq2
+
+ .(26)
+8
+=== PAGE 9 ===
+The pullback of the flat Euclidean metric on the last three coordinates through Equation (25) gives
+Equation (7). The signs p changes which pole is represented byq= 0, while the induced round
+metric is the same in both charts. This equality of the induced metric is the mathematical reason
+the two hemispheres can be used as one embedded angular manifold.
+All tensorial calculations onP ×S2 are taken with respect to(T, X, q1, q2) =w. The two sets of
+coordinates therefore define a single embedded sphere, rather than two a-priori independent charts
+(which was the case in [18]).
+D. Trapped Surfaces
+The invariants of Section IIB characterise the Schwarzschild solution among vacuum geometries,
+but the defining property of ablack holeis causal rather than curvature-based: the presence of a
+horizon, and locally oftrapped surfaces. The event horizon is a global, teleological (physical)
+object, the boundary of the causal past of future null infinity, and cannot be evaluated pointwise
+on a bounded domain. The quasi-local notion of a trapped surface [49–51] is therefore used, which
+is local and requires no symmetry.
+LetΣbe a closed spacelike two-surface with the two future-directed null normalsℓ, n(normalised
+byg(ℓ, n) =−1), and letq µν =g µν +ℓ µnν +n µℓν project ontoΣ. The null expansions
+θℓ =q µν∇µℓν, θ n =q µν∇µnν,(27)
+give the fractional rate of change of the area element ofΣalong the two light fronts emanating from
+it. In a normal region the outgoing family diverges and the ingoing family converges,θℓ >0> θ n.
+The surface is(future) trappedwhen both expansions are negative,θ ℓ, θn <0, so that even the
+nominally outgoing light is dragged inward;θℓ = 0is the marginal (apparent-horizon) case, and
+θℓ, θn >0is the time-reversed, anti-trapped (white-hole) case. By the Penrose singularity theorem
+([49]) a closed trapped surface, together with the null energy condition (saturated in vacuum), forces
+geodesic incompleteness and lies within the black-hole region; trapped surfaces are the standard
+local certificate of a black-hole interior.
+The manifold Equation (2) supplies a natural family of such surfaces: theS2 fibres at fixed
+(T, X). Their induced metric is exactly the angular block of the pullback Equation (32), with
+no symmetry assumed, so each fibre has a well-defined areaA= 4πR2 and areal radiusR. It is
+convenient to encode the trapping in the single scalar
+Ξ :=g µν ∂µR ∂νR,sign Ξ =−sign(θ ℓθn),(28)
+as the squared norm of the areal-radius gradient, whereΞ>0(spacelike∇R) is untrapped,Ξ = 0
+is marginal, andΞ<0(timelike∇R) is trapped or anti-trapped, the two being distinguished by the
+common sign of the expansions. In spherical symmetryΞreduces to the Misner–Sharp combination
+1−2M MS/Rof Equation (A2) [52], which for Schwarzschild equals1−2m/rand is negative precisely
+on the interiorr <2m.
+Two remarks matter for the non-spherically-symmetric metrics learnt in Section IVD. First,
+the Misner–Sharpmassis only invariantly defined under spherical symmetry and is unavailable
+in general, whereas the trapped conditionθℓ, θn <0is symmetry-free and remains the operative
+definition. Second,Ξis a smooth scalar built from the metric and its first derivatives, hence a
+naturaldifferentiabletrainingsignal, while the individual expansionsθℓ, θn –whichalonedistinguish
+a black hole from its time reverse – are reserved for the posterior certification. The identification
+Equation (28) is exact for round fibres and is corrected only by their departure from roundness,
+which we find to be small.
+9
+=== PAGE 10 ===
+III. AINSTEIN EMBEDDING NEURAL NETWORKS
+A. Warm up – Local Lorentzian Schwarzschild
+Before considering the embedded Schwarzschild problem, we study a local two-dimensional
+Lorentzian simplification. In this mode the manifold is a single coordinate ball, the dimension
+is set tod= 2, and noS 2 embedding is used. The network therefore represents the metric directly
+on the local coordinatesu= (u0, u1). Its outputs are three independent entries of a lower-triangular
+2×2matrixL θ(u), and the Lorentzian metric is obtained from an indefinite-Cholesky parametri-
+sation,
+g(θ)
+µν (u) =
+
+Lθ(u)η(2)Lθ(u)T
+
+µν
+, η (2) = diag(−1,1), µ, ν= 0,1.(29)
+This local architecture isolates the Lorentzian signature and curvature calculation from the addi-
+tional global structure ofP ×S2 later considered.
+The network has a sets of four 128 neuron-wide linear layers, and employs GELU activations;
+GELU allows derivatives to beC2 smooth, as needed for metric derivatives. To mitigate confusion,
+it is emphasised that the network is trained such that allSchwarzschild losseslater defined in Sec-
+tion IIID3 are disabled. Only this Lorentzian Einstein condition is used for each ofλ∈ {−1,0,1}.
+B. Network Architecture
+For the central,global, architecture, letθdenote the trainable weights and biases of the numerical
+model. The neural architecture is built using an internal multilayer perceptron
+Nθ :R 5 − →R15.(30)
+This map in Equation (30) takes the embedded pointW(w) = (T, X, x(q1, q2), y(q1, q2), z(q1, q2)),
+where(x, y, z)are the Cartesian sphere coordinates implicitly defined in Equation (25), and outputs
+the independent entries of a lower-triangular5×5matrixLθ. The use of this lower-triangular matrix
+enforces the symmetric property of the metric under the below combination meaning there are fewer
+components to learn. The ambient Lorentzian metric is
+Gθ =L θηLT
+θ , η= diag(−1,1,1,1,1).(31)
+The four-dimensional metric used in the loss is the pullback
+g(θ)
+µν (w) = (Gθ)AB(W(w))J Aµ(w)J B ν(w).(32)
+Hereµ, ν= 0, . . . ,3andA, B= 0, . . . ,4. The biases of the architecture’s output layer are initialised
+so that the model is initialised near the flat ambient metricη. In the limit that the standard
+deviation of the sample distribution tends to 0, one recovers the flat Minkowski space metric.
+As mentioned, this is where the embedded sphere changes the original AInstein construction. In
+[18], separate chart metrics were matched by an overlap loss. Here both stereographic hemispheres
+are obtained by the push-forward of the same ambient metric through Equation (25), so their
+agreement is built into the parametrisation and no angular overlap loss is needed; any learnt metric
+is automatically globally consistent on the manifold.
+10
+=== PAGE 11 ===
+2
+ 4
+ 0 4
+ 2
+X
+4
+0
+4
+T
+(a) Penrose diagram
+1.00
+ 0.75
+ 0.50
+ 0.25
+ 0.00 0.25 0.50 0.75 1.00
+q1
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+q2
+north
+south (b)S 2 Stereographic Patches
+1.00
+0.75
+0.50
+0.25
+0.000.250.500.751.00
+x 1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+y
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+z
+north
+south (c)S 2 Embedded
+FIG. 2: The sampling distribution, used in training and testing, shown for 2000 points, across the (a)
+Penrose diagram, (b) stereographic patches of theS2 sphere, and (c) the embeddedS2 sphere.
+C. Data Generation
+To sample a general point on theR2 ×S 2 manifold, the Penrose sampler first draws a point in
+a 2-dimensional disc and then maps it to the compactified Penrose domain. This approach is more
+efficient than rejection sampling in the polygonal Penrose diagram, and gives direct control over
+the radial density of a sample.
+LetR P be the maximum radius used in the auxiliary unit disc. We draw a disc pointz=ρu,
+where0≤ρ≤R P ≤1,u= (u T , uX )is a unit vector, and|u|= 1. In the implementation
+ρ=R P b,
+b∼Beta(α −1
+P , αP ),argu∼Unif[0,2π),(33)
+whereα P is the density-power hyperparameter. Define the offset distance
+δ(ρ) = π
+4 (1−ρ)(34)
+and the three radial boundary scales
+A(u) = π/4−δ
+|uT | ,
+B(u) = π/2−
+√
+2δ
+|uT +u X | ,
+C(u) = π/2−
+√
+2δ
+|uX −u T | .
+(35)
+The sampled Penrose point is obtained using the directional scaleℓ(u),
+(T, X) =ℓ(u)u, ℓ(u) = min{A(u), B(u), C(u)},(36)
+with the limiting prescription implied by Equation (35) when a denominator vanishes. A represen-
+tative sample of 2000 points forRρ = 0.85is shown in Figure 2, where the ill-defined nature of the
+singularity at the boundaries motivates this use of aRρ <1. Atρ= 1, Equation (36) reaches the
+full diagram boundary; atρ= 0, it collapses to the centre.
+11
+=== PAGE 12 ===
+D. Training Objectives
+The first step of training a neural architecture is the specification of a training objective in the
+form of a loss function. In this section, the training objectives for supervised training against the
+known target solutions, and then four related problems are outlined. First, local two-dimensional
+Lorentzian Einstein runs are used as a controlled signature test. We then consider the task of
+constructing a simulacrum of the classic Schwarzschild black hole, before introducing two general
+searches for Petrov type I solutions: the first a search agnostic to solution style, and the second
+specifically searching for black hole trapped surfaces.
+1. Supervised Network
+The supervised model, where training instead approximates a known construction directly, is
+used for initialisation and benchmarking. The base network still outputs the ambient Cholesky
+vector, while a wrapper applies Equation (32) and returns the flattened intrinsic metric. For
+training sampleswa and target metricgtar
+µν, the default supervised loss is the componentwise relative
+mean-squared error
+Lsup = 1
+16N
+NX
+a=1
+X
+µ,ν
+
+g(θ)
+µν (wa)−g tar
+µν (wa)
+2
+
+gtarµν (wa)
+2 + 1
+.(37)
+In these investigations, the target metric is either the Lorentzian identity metric onR2 ×R 3 (use-
+ful for a neutral initialisation), or the analytic Schwarzschild metric in Equation (5) (useful for
+benchmarking the general unsupervised search performance).
+2. Unsupervised Local Lorentzian Network
+For the local two-dimensional calibration runs, for each training samplewa, define an Einstein
+error tensor
+Eµν(wa) :=R µν[g(θ)](wa)−λg (θ)
+µν (wa),(38)
+which is used to define the Einstein loss
+LE,Local := 1
+N
+NX
+a=1
+Eµν
+
+g(θ)
+E
+µα
+g(θ)
+E
+νβ Eαβ
+
+wa
+(39)
+whereg E is theEuclideanisedvariant of the metric 5. The network described in Section IIIA is
+then trained with thisLE,Local loss only, forλ∈ {+1,0,−1}.
+3. Unsupervised Schwarzschild Network
+For the four-dimensional Schwarzschild and general Petrov type searches, the vacuum equation
+isR µν = 0, soλ= 0is set 6. The default Schwarzschild Lorentzian Einstein loss is then defined as
+5 By this we meangE is obtained by the same vielbein asg, but usingδas the flat metric, instead ofη.
+6 Note the code also has functionality for generalλsearch.
+12
+=== PAGE 13 ===
+the inverse-metric contraction
+LE,Schw := 1
+N
+NX
+a=1
+1
+min(|K|, Kcap) +ϵ
+Eµν
+
+g(θ)
+E
+µα
+g(θ)
+E
+νβ Eαβ
+
+wa
+,(40)
+where once moreg E is theEuclideanisedversion ofg, producing a well-defined scalar, since all
+objects involved are tensorial (as opposed to using MSE). The numerical prefactor7 involves a local
+scalar weighting which usesKcap =κK hor to cap this factor to the horizon valueKhor = 0.75. The
+numerator of Equation (40) is simply the most basic statement of the Einstein constraint which is
+consistent between all problems (and indeed [18]).
+Secondly, the curvature-scale loss is imposed through the quadratic Weyl invariantI, rather than
+directly through the full Kretschmann scalar. For a Ricci-flat metric the Riemann and Weyl tensors
+agree, but away from the vacuum locus the Kretschmann scalar also contains Ricci contributions.
+UsingItherefore decouples the scale-fixing term from the Einstein residual:L E drives the Ricci
+tensor to zero, while the Weyl term fixes the non-Ricci curvature scale of the Schwarzschild branch.
+With the normalisation in Equation (11), the exact Schwarzschild solution obeys
+|ISchw|= 3m2
+r6 =⇒
+p
+|ISchw|r 3 =
+√
+3m.(41)
+For each sampled point, the implemented Weyl loss is therefore
+LW := 1
+N
+NX
+a=1
+
+r(wa)3p
+|Iθ(wa)|+ϵ−
+√
+3m
+2
+.(42)
+Herer(w a)is the analytic areal radius of the sampled Penrose point, andI θ is computed from
+the self-dual Weyl tensor of the learnt metric. The square-root form removes the six-power radial
+dynamic range of the raw invariant, while still excluding the flatI= 0branch.
+The Birkhoff-motivated symmetry term is
+LSO(3) := 1
+3N
+X
+A=x,y,z
+NX
+a=1
+(LξAg)µν(gE)µα(gE)νβ (LξAg)αβ
+
+wa
+|gµν(gE)µα(gE)νβ gαβ|wa
++ϵ ,(43)
+where the three operatorsξA are the rotational fields in Equation (22),LξA are the usual symmetry
+generators, andg E is the same Euclideanised metric used in Equation (40). In the implementation
+this term is evaluated by a small finite-difference pullback along each rotational flow. Its role is to
+impose the spherical-symmetry assumption needed for the Birkhoff–Jebsen identification, which it
+does by measuring the metric-contracted Killing-vector action along each basis direction relative to
+the metric-contracted size ofg. This action should be zero in each case according to Equation (23).
+Together with the vacuum Einstein loss, this loss selects the Schwarzschild branch locally, while
+the Weyl curvature-scale target fixes scaling over the Penrose diagram to ensure it is fully covered
+and not a more trivial diffeomorphism.
+Finally, in order to aid numerical stability, it is necessary to add a ‘determinant loss’,Ldet, which
+prevents theR 2 block becoming degenerate during training. Letg(θ)
+(T,X) denote the upper-left2×2
+block of the learnt metric in the Penrose directions. The determinant loss is defined by
+Ldet := 1
+N
+NX
+a=1
+1 detg (θ)
+(T,X) (wa)
+ +ϵ
+,(44)
+7 This and other losses haveϵterms in denominators as numerical guards. Unless otherwise specified,
+ϵ= 10 −12.
+13
+=== PAGE 14 ===
+and prevents the degenerate attractor in which the two-dimensional Lorentzian block components
+flow to 0 whilst reducing the curvature terms.
+The Schwarzschild-search objective becomes
+LSchw
+tot (t) := αE(t)LE,Schw +α W (t)LW +α SO(3) (t)LSO(3) +α det(t)Ldet
+αE(t) +α W (t) +α SO(3) (t) +α det(t) ,(45)
+wheretdenotes the training epoch, and theα i(t)are the scheduled multipliers of the active loss
+terms which change the weighting of various loss components throughout training. The training
+samples may optionally be regenerated at every epoch using the current scheduled density powers,
+while the validation set is held fixed. Batches are shuffled through a dataset pipeline, and the
+implementation facilitates Ricci, Kretschmann, and Killing-diagnostic quantity evaluation either
+by the standard two-tape kernel or by the optimised forward-mode kernel; validation is computed
+in batches.
+Post training, on an independent test data sample the training losses are computed to evaluate
+performance. In addition to the losses, the 3 invariant scalars introduced in Section IIB1 are
+computed and compared to the expected values for the Schwarzschild solution as further validation
+of the found solution the architecture is approximating. These include matching the speciality index
+S= 1 + 0i, the Kretschmann scalar Kr 6
+m2 = 48, and the cubic curvature ratioρSchw =− 1√
+12.
+The Schwarzschild-targeted experiment trains Ricci flatness, the Weyl curvature scale, spherical
+symmetry, and non-degeneracy, and then asks whether these independent invariant diagnostics
+agree with the Schwarzschild/type-Dvalues. By Birkhoff’s theorem, if the resulting solution is
+spherically symmetric and vacuum, it is guaranteed to be locally Schwarzschild; these scalar checks
+provide additional confidence that the resulting metric is indeed a Schwarzschild solution.
+4. Unsupervised Petrov Type-I Network
+The Schwarzschild experiment above uses the quadratic Weyl loss to fix the curvature scale
+and then checks the Petrov speciality index and Schwarzschild cubic invariant a posteriori. A
+complementary search can instead use the speciality index in the loss function as a repeller from
+the Schwarzschild/type-DvalueS= 1. This is motivated by the role ofSas an invariant measure
+of deviation from algebraically special Kerr/Schwarzschild geometry [40] and by its later use in
+local Petrov-classification diagnostics [43]. These runs do not include the analytic Schwarzschild
+KretschmannlossortheSO(3)symmetryloss, sothenetworkisnotsuppliedwiththeSchwarzschild
+radial curvature profile.
+Beginning by stating a variant of the Einstein loss, Equation (40), which is homothety8 invariant,
+the type I Einstein loss is defined as
+LE,I := 1
+N
+NX
+a=1
+1
+|Iθ(wa)|+ϵ
+Eµν
+
+g(θ)
+E
+µα 
+g(θ)
+E
+νβ
+Eαβ
+
+
+wa
+.(46)
+For each sample with Weyl invariantsI(wa)andJ(w a), define the speciality index as in Equa-
+tion (12). The implemented Petrov-profile term fits a prescribed nonconstant profileS targ(wa)
+centred away from the algebraically special value1:
+Lprofile
+P := 1
+N
+NX
+a=1
+
+27J(w a)2
+I(w a)3 +ϵ I
+− Starg(wa)
+
+2
+,S targ(wa)̸≡1.(47)
+8 A homothety transform is simply a transformation that scales distances from a fixed point, known as the
+centre, by a given ratio.
+14
+=== PAGE 15 ===
+In the runs reported below the profile is quadrupolar in nature9 and centred near the real value
+2, so agreement withS targ explicitly penalises collapse back to the Schwarzschild/type-Dvalue.
+The target profile is an arbitrary numerical training choice rather than a canonical closed-form
+Ricci-flat solution from the literature, and any complex value would work equivalently well. Since
+S= 1characterises the algebraically special type-Dvalue for Kerr/Schwarzschild, this term is best
+understood as a conservative device for searching away from that basin, not on its own a positive
+classifier for a particular alternative Petrov type. The retainedIandJdiagnostics are therefore
+still needed to check that the model has not collapsed to a conformally flat or otherwise degenerate
+case where the speciality index is ill-conditioned.
+In practice, we also include a bounded curvature repeller
+LKrep := 1
+N
+NX
+a=1
+ϵK
+|Kθ(wa)|+ϵ ,(48)
+to discourage collapse to a conformally flat or nearly flat state. This term does not supply the
+Schwarzschild Kretschmann target; it only acts as a soft barrier against theKθ ≃0failure mode.
+The corresponding objective is thus
+LI
+tot(t) := αE(t)LE,I +α P(t)Lprofile
+P +α det(t)Ldet +α Krep(t)LKrep
+αE(t) +α P(t) +α det(t) +α Krep(t) .(49)
+5. Unsupervised Petrov Type-I Black Hole Network
+The type-I search of Section IIID4 drives the geometry away from the algebraically special
+locus while keeping it numerically Ricci-flat, but it fixes neither an absolute curvature scale nor any
+causal structure. The homothety-invariant lossLE,I is insensitive to constant rescalingsg7→Λ 2g,
+so the resulting type-I vacua carry no distinguished horizon and are not, in themselves, black holes.
+To promote them to black holes we add two terms: a horizon curvature anchor that fixes the scale
+and enforces a regular finite-curvature horizon, and a trapped-surface term that installs the causal
+structure of Section IID.
+The anchor uses the same degree-two Weyl scalar as the Schwarzschild curvature-scale loss
+Equation (42), but Gaussian-localised (sample-wise weighted byϕ−1
+a ) to the horizon bandr≃2m
+rather than imposed everywhere,
+Lhor :=
+P
+a wa
+
+r(wa)3p
+|Iθ(wa)|+ϵ−
+√
+3m
+2
+P
+a ϕa
+, ϕ a = exp
+"
+−
+ r(wa)−2m
+σ2m
+2#
+.(50)
+As the target
+p
+|ISchw|r 3 =
+√
+3mof Equation (41) is a finite constant, anchoring it atr= 2m
+simultaneously fixes the overall scale – so that the Kretschmann invariant attains its physical value
+Khor at the horizon, rather than being sent to zero by the homothety freedom – and forbids a
+divergent, naked curvature there. Imposing the constraint at a single radius, instead of throughout
+the domain as in Equation (42), leaves the bulk profile free to remain type-I rather than collapsing
+back to Schwarzschild. This term subsumes and replaces the curvature repeller Equation (48).
+The trapped-surface term acts on the scalarΞof Equation (28), evaluated for the learnt metric
+by automatic differentiation of the fibre areal radiusR. A black-hole interior requiresΞ<0inside
+9 The bounded quadrupolar target profile used was inspired by [53], with motivation from the Legendre-
+polynomial multipolar structure of Weyl/Zipoy-Voorhees-type static axisymmetric solutions. This choice
+can easily be generalised in the codebase for other searches.
+15
+=== PAGE 16 ===
+r <2mandΞ→0at the horizon; we impose this one-sidedly,
+Ltrap := 1
+N
+NX
+a=1
+h
+max
+
+0, β(ra)−sign(ra−2m) Ξθ(wa)
+i2
+, β(r) =
+
+β0+β1
+max(0,2m−r)
+2m
+
+1r<2m.
+(51)
+The sign factor flips the target across the horizon, requiringΞ≤ −βon the interior andΞ≥0on
+the exterior. The marginβ(r)is the Schwarzschild-linearised trapped depthβ1(2m−r)/2m, which
+vanishes at the horizon and grows inward, plus a small floorβ0 >0that maintains a non-zero
+gradient just insider= 2m, where the linear part is weak. The one-sidedmax(0,·)penalises only
+insufficient trapping and leavesΞfree to be more negative, so that the type-I radial profile is not
+pinned to the Schwarzschild one. SinceΞis invariant under time reversal,Ltrap enforcesΞ<0but
+not the black-hole orientationθℓ, θn <0specifically; the orientation is checked a posteriori.
+The black-hole search objective is therefore
+LBH
+tot (t) := αE(t)LE,I +α P(t)Lprofile
+P +α hor(t)Lhor +α trap(t)Ltrap +α det(t)Ldet
+αE(t) +α P(t) +α hor(t) +α trap(t) +α det(t) .(52)
+Relative to the type-I objective Equation (49), this drops the curvature repeller and addsLhor and
+Ltrap; the trapping weightα trap is switched on only after a warm-up during which the vacuum,
+type-I and horizon terms are first established.
+IV. RESULTS
+This section reports the results from each numerical investigation in the search of Einstein
+metrics using the architectures described in Section IIIB. All runs hyperparameters are stated in
+Table V.
+A. Local Lorentzian Searches
+As a local calibration before the four-dimensional searches, we train two-dimensional Lorentzian
+Einstein metrics on a single ball patch (contractible, topologically trivial) for Einstein constants
+λ∈ {+1,0,−1}. These runs use the same Lorentzian metric parametrisation and the Einstein
+residual in Equation (38), with no other terms in the loss function.
+Table I reports the global test losses for the three Einstein constants, together with the corre-
+sponding mean values ofdet(g)over the sampled points. The losses are small in all three cases,
+with the Ricci-flat case giving the lowest Einstein loss. The determinant values remain negative
+and away from zero, indicating that the learnt metrics retain Lorentzian signature rather than
+collapsing towards a degenerate solution.
+The component plots in Figure 3 show representative learnt metric and Ricci components for
+each sign ofλ. In two dimensions the Einstein condition fixes the Ricci tensor component-wise once
+the metric andλare specified, so the agreement between the small global losses, nonzero negative
+determinants, and the plotted components provides a compact sanity check for the Lorentzian local
+training setup used by the higher-dimensional experiments.
+B. Schwarzschild Search
+Having corroborated the most important term among the PINN’s loss components, the next
+natural step is to test our method for the prototypical Ricci-flat solution: the Schwarzschild black
+16
+=== PAGE 17 ===
+Measureλ= +1λ= 0λ=−1
+Mean Std. Mean Std. Mean Std.
+Einstein loss1.89×10 −4 8.76×10 −5 2.65×10 −8 2.79×10 −8 1.07×10 −4 6.30×10 −5
+det(g)−0.460 0.022−1.402 0.033−0.491 0.027
+TABLE I: Global test losses averaged over 10 runs for neural-network approximations of two-dimensional
+Lorentzian Einstein metrics on single ball patches, together with the mean metric determinant over the
+sampled points. Values are reported to three significant figures, with standard deviations computed across
+the 10 runs.
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x1
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x2
+0.625
+0.600
+0.575
+0.550
+0.525
+0.500
+0.475
+0.450
+g0,0
+0.625
+0.600
+0.575
+0.550
+0.525
+0.500
+0.475
+0.450
+(a)g 00 (λ= +1)
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x1
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x2
+1.22
+1.20
+1.18
+1.16
+1.14
+1.12
+g0,0
+1.22
+1.20
+1.18
+1.16
+1.14
+1.12
+ (b)g 00 (λ= 0)
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x1
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x2
+0.800
+0.775
+0.750
+0.725
+0.700
+0.675
+0.650
+0.625
+g0,0
+0.800
+0.775
+0.750
+0.725
+0.700
+0.675
+0.650
+0.625
+ (c)g 00 (λ=−1)
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x1
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x2
+0.65
+0.60
+0.55
+0.50
+0.45
+R0,0
+0.65
+0.60
+0.55
+0.50
+0.45
+(d)R 00 (λ= +1)
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x1
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x2
+0.06
+0.04
+0.02
+0.00
+0.02
+0.04
+0.06
+R0,0
+1.22
+1.20
+1.18
+1.16
+1.14
+1.12
+ (e)R 00 (λ= 0)
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x1
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+x2
+0.60
+0.65
+0.70
+0.75
+0.80
+R0,0
+0.625
+0.650
+0.675
+0.700
+0.725
+0.750
+0.775
+0.800 (f)R 00 (λ=−1)
+FIG. 3: Visualisations of the(0,0)components of the learnt two-dimensional Lorentzian metrics and their
+respective Ricci tensors on a single ball patch. These metrics solve the Einstein equation with Einstein
+constantsλ∈ {+1,0,−1}.
+hole. As discussed in Section IIA, the choice of Penrose coordinates for this experiment provides
+a finite computational domain and a unified description of the whole spacetime (except the centre
+point of the black hole singularity).
+In order to have a reference benchmark for results obtained through unsupervised training, we
+first performed a series of runs in supervised mode. As described at the beginning of Section IIID,
+the supervised objective simply consists of approximating the target metric, which in this case is
+the Schwarzschild black hole written in Penrose coordinates. Since infinities cannot be represented
+computationally10, points very close to the boundary of the Penrose diagram, which importantly
+include the both spatial infinity and singularity (where curvature blows up), are excluded from the
+10 For a fixed architecture there is a fixed limit of expressibility within the function class the architecture
+approximates. As infinities are approached this leads to numerical instabilities and overflows which need
+to be mitigated.
+17
+=== PAGE 18 ===
+Measures Expected value Supervised Models Unsupervised Models
+Mean Std. Mean Std.
+Loss diagnostics
+Einstein loss0 3.294×10 −2 1.210×10 −2 1.696×10 −4 1.678×10 −5
+Killing loss0 7.814×10 −6 1.914×10 −6 9.322×10 −7 1.579×10 −7
+Weyl loss0 2.118×10 −2 8.165×10 −3 7.191×10 −5 1.328×10 −5
+Invariants
+max(det(g))<0−9044 173.8−7857 156.4
+Re(S) 1 0.9857 1.278×10 −2 0.9999 2.409×10 −5
+Im(S) 0−9.588×10 −6 5.034×10 −5 8.821×10 −7 5.364×10 −6
+Kr 6/m2 48 50.67 0.9672 47.90 4.742×10 −2
+ρ−1/
+√
+12≈ −0.2886(8)−0.2773 4.608×10 −3 −0.2886 9.668×10 −6
+TABLE II: Schwarzschild-search losses and invariants averaged over 10 random seeds for supervised and
+unsupervised models. The loss diagnostics are separated from the posterior invariant checks; the expected
+values are the Schwarzschild targets in the normalisations used in the text.
+experiments. The results presented in rest of the paper were obtained by sampling according to
+the strategy described in Section IIIC withρ= 0.85. This value provides a substantial covering of
+the Penrose diagram, spanning a region from well beyond the event horizon up to multiple event
+horizon radii outside of the black hole.
+For this benchmark10independent supervised training runs were performed, which all saturated
+at a supervised training losses of∼10−3. For each supervised trained model an independent test
+dataset was used to evaluate the performance, as presented in the respective columns of Table II.
+The test evaluation metrics were the same physical losses used in the unsupervised runs (none of
+which are used in supervised training), and the relevant invariants for the Schwarzschild solution,
+as introduced in Section IIB1. These provide the benchmarks to assess the testing metrics of the
+unsupervised runs, whereas the supervised runs have exact knowledge of the analytic Schwarzschild
+solution to train against, and represents the limits of approximation with the allocated computa-
+tional resources. The unsupervised runs to compare against will be performing a general search
+with the Birkhoff-Jebsen aligned training objectives of Section IIID3.
+Proceeding to the unsupervised experiment. These runs were trained subject to the losses pre-
+sented in Section IIID3, i.e. the optimiser is not given the analytic Schwarzschild metric compo-
+nents as pointwise targets, but instead learns a Lorentzian metric by minimising geometric residuals
+computed from its own output by automatic differentiation. The active constraints are Ricci flat-
+ness, the Weyl curvature-scale target, theSO(3)symmetry residual, and the determinant barrier
+preventing degeneration of the Penrose(T, X)block. These losses encode the invariant conditions
+needed to select the Schwarzschild branch, rather than an exact fitting of the metric component-
+by-component.
+Each of the 10 Schwarzschild-targeted runs were evaluated on an independent test sample of 2000
+points. The average test losses (with standard deviation), and invariant values, are given in the
+respective columns of Table II. Each of the test losses are orders of magnitude below the benchmark
+supervised training, validating that this training process has indeed found a Schwarzschild solution
+in each case, in alignment with the Birkhoff-Jebsen conditions. As independent validation, each
+of the invariants computed for the trained models on the independent test data are also orders of
+18
+=== PAGE 19 ===
+magnitude closer to the target values for the Schwarzschild solution, despite the training process
+providing no information about them. Additionally, the low value of the maximum determinant
+across the manifold validates the solutions are consistently Lorentzian. With both the strong loss
+results, and strong independent invariant corroboration, there is solid confidence in concluding the
+AInstein architecture can find and model the Schwarzschild solution.
+For further visual corroboration, Figure 4 shows a learnedg00 component for a representative
+run together with the corresponding Ricci componentR00, as well as the analytic values of each
+from the known Schwarzschild solution for comparison. This metric component has the expected
+large variation across the compactified domain, while the Ricci component remains small on the
+same samples, validating the Ricci-flat behaviour of the found Schwarzschild solution for this repre-
+sentative component. The remaining components of the trained metric and respective Ricci tensor
+for a representative Schwarzschild run are shown in Figure 7 of Section B, which further corrobo-
+rates the Ricci-flat nature of the found solution; additional plots onS2 domain are included in the
+associated GitHub repository.
+The independent scalar checks in Figure 5 visualise the deviation of each invariant of Equa-
+tion (13) for a representative unsupervised trained Schwarzschild solution from the expected values
+of Schwarzschild. Corroborating the low deviation from expectation shown in Table II, all residuals
+in this figure show low values, demonstrated by the colour scales. This again provides independent
+corroboration that this training process and AI architecture can indeed reproduce the Schwarzschild
+solution via a targeted search.
+C. Petrov-Type I Vacuum Search
+The second experiment uses the same embedded Lorentzian architecture and compactified sam-
+pling domain, but changes the target from Schwarzschild targeted search to a general type-I vacuum
+search. As described in Section IIID4, the Einstein residual is replaced by the homothety-invariant
+LE,I, so the search is insensitive to overall constant metric rescalings, whilst the Schwarzschild
+Weyl-scale loss is removed and replaced with the speciality-index profile loss in Equation (47). The
+vacuum type-I objective of Equation (49) therefore combines this Ricci-flatness condition with an
+arbitrary target speciality index profile which is representative of type I solutions, and includes
+two non-physical artefact losses to deter degeneracy (determinant barrier and the boundary curva-
+ture repeller). TheSO(3)symmetry term is not used as a training constraint in this run, so the
+model is free to find non-symmetric solutions; the Killing residual is retained only as a diagnostic
+of departure from this spherically-symmetric basin.
+Table III reports the test diagnostics for the 10 seed runs of 2000 points, showing test losses and
+relevant invariant values. The low average Einstein loss (still lower than supervised Schwarzschild
+benchmark) shows that these runs do find numerically Ricci-flat solutions; and that these solutions
+do match the arbitrary speciality index profile. This strongly supports the idea that the AInstein
+architecture can be used for more general Ricci-flat vacuum solutions, with freedom to change the
+profile to match desired conditions.
+In addition to these test losses, the Killing loss was also computed, and the reported value
+is much larger than in the Schwarzschild search, indicating the found solutions are not spherically
+symmetric (which is expected because spherical symmetry is no longer imposed as a loss in training).
+The determinant check remains strictly negative, confirming the consistent Lorentzian nature, and
+the speciality index is centred near the intended type-I profile value.
+The full component-level metric and Ricci diagnostics for the Petrov type-I vacuum search are
+collected in Figure 8 of Section B. These plots provide the component-level counterpart to the
+19
+=== PAGE 20 ===
+Measures Expected value Unsupervised Models
+Mean Std.
+Loss diagnostics
+Einstein loss0 9.449×10 −3 5.811×10 −4
+Speciality loss0 7.159×10 −3 2.082×10 −3
+Killing loss0 0.2454 6.442×10 −2
+Invariants
+max(det(g))<0−2.536×10 4 1.310×10 4
+Re(S) 2 1.994 5.201×10 −3
+Im(S) 0−5.321×10 −5 3.560×10 −4
+TABLE III: Petrov Type-I search losses and invariants for unsupervised models, averaged over 10 random
+seeds.
+invariant diagnostics in Table III: the learnt metric components are non-Schwarzschild in scale
+and structure, while the Ricci components remain small relative to the metric components. Taken
+together, the loss diagnostics, determinant check, and speciality-index profile indicate that the
+model has found non-degenerate, numerically Ricci-flat geometries outside the Schwarzschild/type-
+Dbasin.
+D. Petrov-Type I Black Hole Search
+The final experiment applies the black-hole objective Equation (52) on the same embedded
+domain, adding the horizon anchor Equation (50) and the trapped-surface term Equation (51) to
+the type-I recipe of Section IVC. Two variants are reported here, differing only in the trapped-
+surface margin and weight,(β0, αtrap) = (0.05,15)and(0.08,25)(both withβ 1 = 1), each over10
+random seeds, withαtrap warmed up over the first30%of training. Table IV collects the diagnostics,
+evaluated on the independent test samples of 2000 points; the interior/exterior of each fibre and its
+expansionsθ ℓ, θn are computed by finite differences of the learnt areal radius.
+Across all20runs the black-hole criteria hold simultaneously and robustly. The geometry is
+numerically Ricci-flat, shown by the average Einstein loss matching the supervised Schwarzschild
+scale. The full component-level metric and Ricci diagnostics for the black-hole search are collected
+in Figure 9 of Section B. The components of the trained metric and respective Ricci tensor for
+a representative Schwarzschild run in the(β0, αtrap) = (0.08,25)case are shown in Figure 9 of
+Section B, which visually validate the Ricci-flat nature of the found solutions.
+Table IV also shows the solutions are algebraically general,S ≃1.99, well away from the type-D
+value. The horizon curvatures are regular and at the Schwarzschild scale,
+p
+|I|r 3 →1.75≈
+√
+3
+andK hor →0.77≈0.75, so the solutions are not naked singularities; the negative max(det(g))
+confirms the solutions are consistently Lorentzian; and the metric is manifestly non-Schwarzschild,
+with relative Frobenius distance≃0.6to the analytic solution. Crucially in each run, the interior
+is genuinely trapped:Ξ<0on97–99%of the interior samples, with interior medianΞ≃ −0.1.
+BecauseΞis invariant under time reversal, the loss fixesΞ<0but not the black-hole orientation.
+We resolve it a posteriori through the two null expansionsθℓ, θn, with the convention calibrated so
+20
+=== PAGE 21 ===
+Measure Expected(β 0, αtrap) = (0.05,15) (β 0, αtrap) = (0.08,25)
+Mean Std. Mean Std.
+Loss diagnostics
+Einstein loss0 7.046×10 −2 8.330×10 −3 6.326×10 −2 3.919×10 −3
+Killing loss0 4.207×10 −2 5.715×10 −3 3.939×10 −2 6.655×10 −3
+Speciality loss0 4.718×10 −2 1.542×10 −2 3.526×10 −2 1.073×10 −2
+Invariants
+max(det(g))<0−18.04 2.614−18.33 1.476
+Re(S) 2 1.993 3.973×10 −3 1.992 4.399×10 −3
+Im(S) 0−3.353×10 −4 4.620×10 −4 −8.320×10 −5 2.469×10 −4
+p
+|I|r 3/m
+√
+3≈1.732 1.750 4.6×10 −3 1.750 1.8×10 −3
+Khor 0.75 0.763 5.2×10 −3 0.766 3.1×10 −3
+rel. Frobenius distance≫0 0.625 5.7×10 −3 0.615 8.2×10 −3
+Ξint (interior median)<0−8.6×10 −2 1.5×10 −3 −1.13×10 −1 2.0×10 −3
+trapped fraction (interior)→1 0.972 5.2×10 −3 0.985 3.6×10 −3
+TABLE IV: Black-hole-search loss diagnostics and invariants for the two trapped-surface variants,
+averaged over 10 random seeds. Beyond the standard loss and invariant diagnostics, the quantities
+p
+|I|r 3
+andK hor are evaluated in the horizon bandr≃2m; rel. Frobenius distance is∥g−g Schw∥/∥gSchw∥;Ξ int is
+the interior median of Equation (28) and the trapped fraction is the share of interior samples withΞ<0.
+that the future interiorBII of the analytic Schwarzschild solution comes out future-trapped.11
+Figure 6 shows where the trapped region sits for this model, and reproduces the expected causal
+structure of Figure 1: the trapped region coincides with the interiorr <2m, bounded by the null
+horizonsT=±X, with the exteriors untrapped.
+Finally, as these metrics are not spherically symmetric, we confirm thatΞfaithfully reports
+the trapping. Recomputing the expansions with the exact fibre normals – which, owing to the
+small residualR 2–S2 cross terms of the learnt metric, do not lie exactly in the(T, X)plane –
+shiftsθ ℓ, θn by only about5%, far below their interior magnitude≃0.1, and leaves the whole
+interior future-trapped. The classification is therefore robust against the departure from spherical
+symmetry.
+These final results therefore validate that the AInstein architecture can be specialised to trapped
+surface solutions too, setting up the codebase and this methodology for general black hole search.
+V. CONCLUSIONS AND OUTLOOK
+This work upgrades AInstein from Riemannian sphere searches to Lorentzian black-hole ge-
+ometries. The essential ingredients are an indefinite metric parametrisation, compactified Penrose-
+domain sampling, a single ambient network whose pullback handles theS2 topology globally, and
+differentiable losses built directly from curvature, invariants, non-degeneracy, and trapping diag-
+nostics. This allows for general vacuum solution search while retaining tensorial control over the
+geometry being learnt.
+11 Interestingly, but a-posteriori unsurprisingly, the seeds divide almost evenly: half realise a genuineblack
+hole, withθ ℓ, θn <0throughoutB II, and half the time-reversed anti-trapped (white-hole) branch.
+21
+=== PAGE 22 ===
+The results show this machinery working in increasing generality. Local Lorentzian tests recover
+two-dimensional Einstein metrics with all three signs ofλ. The Schwarzschild experiment then
+recovers the maximally extended vacuum black hole from geometric constraints rather than super-
+vised metric fitting: Ricci flatness, the Weyl scale, and spherical symmetry select the Schwarzschild
+branch, while independent invariant checks confirm the expected type-Dcurvature structure. The
+Petrov-profile search generalises from Schwarzschild-specific desired curvatures and uses the same
+framework to find non-degenerate, numerically Ricci-flat metrics in a different Petrov class, type I.
+Finally, adding a horizon curvature anchor and a trapped-surface loss leads the architecture to find
+and approximate algebraically general vacuum black-hole candidates with regular Schwarzschild-
+scale horizons and trapped interiors.
+This work develops the AInstein methodology into Lorentzian solution reproduction, and then
+further into a flexible variational search engine for vacuum geometry. One may specify invariant
+profiles and causal conditions, and the network searches the corresponding metric space directly.
+This is especially promising for black-hole problems where analytic ansätze are restrictive or un-
+available, yet this AI methodology can provide numerical approximations. Natural next targets
+include Kaluza–Klein black strings and localized black holes, non-uniform or distorted horizons,
+AdS black holes with prescribed boundary data, and stationary vacuum searches where symmetry
+assumptions should be relaxed rather than built in from the start.
+DATA AVAILABILITY
+The respective codebase was written inPython, and scripts used to generate all the results are
+available at the AInstein repository:
+https://github.com/xand-stapleton/ainstein.
+ACKNOWLEDGEMENTS
+The authors thank Michael Douglas, Fabian Ruehle, and Tomás Silva for helpful comments
+duringthe“MathematicsandMachineLearningProgram” atHarvardUniversity; GianfrancoCortes
+and Yueqing Feng for discussions on the embedding architecture; Kymani Armstrong-Williams for
+comments on the Kretschmann invariant of the Schwarzschild solution; and David Berman for
+helpful comments on well-defined tensorial integration measures, as well as bringing us all together.
+EH is supported by São Paulo Research Foundation (FAPESP) grant 2024/18994-7. TSG is
+supported by the 2024 Max Planck-Humboldt Research Award bestowed on Geordie Williamson
+and Catharina Stroppel by the Max Planck Society and the Alexander von Humboldt Foundation.
+AGS and TSG acknowledge support from Pierre Andurand over the course of this research.
+ComputationswereperformedontheHPCsystemViperattheMaxPlanckComputingandData
+Facility. This research utilised computational resources of theCentro Nacional de Processamento
+de Alto Desempenho em São Paulo(CENAPAD-SP). This research used Queen Mary’s Apocrita
+HPC facility, supported by QMUL Research-IT.
+22
+=== PAGE 23 ===
+Appendix A: Invariant Derivations for the Schwarzschild Solution
+Spherical symmetry gives a preferred geometrical radius, the areal radiusr, defined by the area
+Aof each two-sphere,
+A= 4πr 2.(A1)
+In any spherically symmetric spacetime there is a corresponding Misner–Sharp massMMS, defined
+invariantly by
+1− 2MMS
+r =∇ ar∇ar.(A2)
+This definition depends only on the areal radius and the spacetime metric, not on a particular
+Schwarzschild coordinate chart. The Einstein equations imply the local mass-balance relation
+∇aMMS = 4πr2
+
+Tab∇br−T AA∇ar
+
+,(A3)
+withT AA =T tt+T rr being the trace over the 2D space normal to the symmetry spheres. Therefore,
+in vacuum,T ab = 0, the Misner–Sharp mass is constant:
+MMS =m.(A4)
+In an orthonormal frame adapted to the static Schwarzschild geometry, withe0 timelike,e 1
+radial, ande 2, e3 tangent to the symmetry two-sphere, the independent non-zero Riemann compo-
+nents are
+R0101 =− 2m
+r3 , R 0202 =R 0303 = m
+r3 ,
+R1212 =R 1313 =− m
+r3 , R 2323 = 2m
+r3 ,(A5)
+up to the overall sign convention for the Riemann tensor. The Kretschmann scalar is insensitive
+to this overall sign, and the final Schwarzschild value agrees with the standard curvature-invariant
+expression [42]. Using the usual Riemann symmetries, the contraction counts each independent
+sectional component four times, giving
+KSchw =R abcdRabcd
+= 4
+" 2m
+r3
+2
++
+ m
+r3
+2
++
+ m
+r3
+2
++
+ m
+r3
+2
++
+ m
+r3
+2
++
+ 2m
+r3
+2#
+= 48m2
+r6 .(A6)
+Equivalently, this gives the invariant checkKr6 = 48m2. Substituting the Penrose-domain radius
+r= 2m(1 +W B)from Equation (8) then gives the analytic target used in the implementation,
+KSchw = 48m2
+r6 = 3
+4m4(1 +W B)6 .(A7)
+Thesameorthonormalcomponentsgivethecubiccontraction. Toseethenumericalfactorexplicitly,
+raise the second antisymmetric index pair. In the ordered bivector basis
+(01),(02),(03),(12),(13),(23),
+the non-zero diagonal entries ofRabcd are
+R0101 = 2m
+r3 , R 0202 =R 0303 =R 1212 =R 1313 =− m
+r3 , R 2323 = 2m
+r3 .(A8)
+23
+=== PAGE 24 ===
+The signs differ from the lowered components whenever a time index is raised. Since the full Einstein
+summation is over ordered antisymmetric pairs, each independent bivector eigenvalue appears eight
+times: for example the01bivector contributes through the choicesab= 01or10,cd= 01or10,
+andef= 01or10. The three antisymmetry signs multiply to give the same contribution in each
+case. Equivalently, the contraction is eight times the trace of the cube of the curvature operator on
+Λ2:
+RabcdRcdef Ref ab = 8
+" 2m
+r3
+3
++
+
+− m
+r3
+3
++
+
+− m
+r3
+3
++
+
+− m
+r3
+3
++
+
+− m
+r3
+3
++
+ 2m
+r3
+3#
+= 96
+ m
+r3
+3
+.(A9)
+Thus
+Jcub =R abcdRcdef Ref ab = 96 m3
+r9 .(A10)
+Combining Equation (A6) and Equation (A10) gives
+Jcub
+K3/2
+Schw
+= 96m3r−9
+(48m2r−6)3/2 = 1√
+12 .(A11)
+The sign of this cubic contraction changes with the opposite Riemann-tensor convention, whereas
+the Kretschmann scalar does not.
+The speciality-index calculation uses the complex Weyl invariantsIandJ, not the real Riemann
+contractionJ cub. The relevant invariant construction is the one used by Baker and Campanelli for
+the speciality index, and by later Petrov-classification diagnostics [40, 43]. In Newman–Penrose
+notation [54] the five Weyl scalarsΨ0, . . . ,Ψ4 are the components of the Weyl tensor in a complex
+null tetrad, and the scalar polynomial invariants may be written as
+I= Ψ 0Ψ4 −4Ψ 1Ψ3 + 3Ψ2
+2,
+J=
+
+Ψ4 Ψ3 Ψ2
+Ψ3 Ψ2 Ψ1
+Ψ2 Ψ1 Ψ0
+
+.(A12)
+These are the Newman–Penrose form of the self-dual Weyl contractions in Equation (11), with
+the same normalisation. The speciality index is thenS= 27J 2/I 3, which equals unity for the
+algebraically special Kerr/type-Dlimit in this convention [40]. In vacuumR abcd =C abcd, and in
+the Schwarzschild principal tetrad the only non-zero Weyl scalar is
+Ψ2 =− m
+r3 ,(A13)
+which is real [42]. All other Weyl scalars vanish in this tetrad. Substituting
+Ψ0 = Ψ1 = Ψ3 = Ψ4 = 0
+into Equation (A12) gives
+I= 3Ψ 2
+2 = 3m2
+r6 , J=−Ψ 3
+2 = m3
+r9 ,S= 27J 2
+I 3 = 1 + 0i.(A14)
+Thus the constants in the Schwarzschild speciality-index target come directly from the stan-
+dard Newman–Penrose invariant polynomials and the single Coulomb Weyl scalar of the type-D
+24
+=== PAGE 25 ===
+Schwarzschild geometry. Comparing Equation (A10) and Equation (A14) givesJcub = 96 Re(J)
+for the convention used here. Therefore the dimensionless scalar reported in the diagnostics is
+ρ:=− 96 Re(J)
+|K| 3/2 =− Jcub
+|K| 3/2 , ρ Schw =− 1√
+12 ,|ρ Schw|= 1√
+12 .(A15)
+This last normalisation defines the diagnostic used in the numerical plots; the cited invariant results
+are the Schwarzschild Weyl scalar, Weyl invariants, and Kretschmann scalar. Hence the invariant
+targets are not additional coordinate ansatz data: they follow from the vacuum equation, spherical
+symmetry, and the areal-radius functionr(T, X).
+Appendix B: Component-Level Metric and Ricci Visualisations
+This appendix collects the full component-level validation plots for the three main four-
+dimensional runs. In each figure, the left block shows the learnt metric componentsg µν and
+the right block shows the corresponding Ricci tensor componentsRµν, both arranged by tensor in-
+dex over the validation samples. The shared colour bar beneath each pair fixes the component scale
+used across the metric and Ricci panels, while the captions report the mean absolute component
+sizes used in the diagnostics.
+25
+=== PAGE 26 ===
+2
+4
+0
+4
+2
+X
+4
+0
+4
+T
+80
+70
+60
+50
+40
+30
+20
+10
+0
+(a)g 00 Analytic
+2
+4
+0
+4
+2
+X
+4
+0
+4
+T
+80
+70
+60
+50
+40
+30
+20
+10
+0
+ (b)g 00 Learnt
+2
+4
+0
+4
+2
+X
+4
+0
+4
+T
+0
+10
+20
+30
+40
+50
+60
+70
+80
+(c)g 11 Analytic
+2
+4
+0
+4
+2
+X
+4
+0
+4
+T
+0
+10
+20
+30
+40
+50
+60
+70
+80
+ (d)g 11 Learnt
+FIG. 4: Diagonal metric components of the Penrose spacetime submanifold, for the analytic Schwarzschild
+solution and a representative trained solution, over the random sample of 2000 points.
+2
+ 4
+ 0 4
+ 2
+X
+4
+0
+4
+T
+10 6
+10 5
+10 4
+||S| 1|
+(a)
+|S| −1
+ residual.
+Statistics:min = 1.658×10 −8,
+mean = 7.830×10 −5,
+max = 1.312×10 −2,
+std = 5.467×10 −4.
+2
+ 4
+ 0 4
+ 2
+X
+4
+0
+4
+T
+10 4
+10 3
+10 2
+|K Kanalytic|
+(b)|K pred −K Schw|residual.
+Statistics:min = 4.905×10 −6,
+mean = 5.050×10 −3,
+max = 1.115×10 −1,
+std = 1.179×10 −2.
+2
+ 4
+ 0 4
+ 2
+X
+4
+0
+4
+T
+10 5
+10 4
+10 3
+|| | 1/ 12|
+(c)| |ρ| −1/
+√
+12|residual.
+Statistics:min = 8.063×10 −8,
+mean = 9.389×10 −5,
+max = 2.326×10 −3,
+std = 2.806×10 −4.
+FIG. 5: Invariant constant residuals for a representative Schwarzschild run. The three panels compare the
+learned curvature invariants against the Schwarzschild speciality-index, Kretschmann, andρ-constant
+targets.
+26
+=== PAGE 27 ===
+1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0
+areal radius r
+−0.4
+−0.2
+0.0
+0.2
+0.4
+0.6
+Ξ ≡ gμν∂μR ∂νR
+r = 2m
+untrapped
+future-trapped (BH interior)
+anti-trapped
+Schwarzschild 1 − 2m/r
+(a)Ξversus areal radius
+−1.0 −0.5 0.0 0.5 1.0
+X
+−0.8
+−0.6
+−0.4
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+T
+untrapped
+future-trapped (BH)
+anti-trapped (b) trapping class over the Penrose diagram
+FIG. 6: Location of the trapped region for an example learnt black-hole model.(a)The scalarΞof
+Equation (28) is negative on the interiorr <2m, crosses zero at the horizon, and is positive outside,
+following the shape of the Schwarzschild1−2m/rprofile (dashed) while remaining milder, as expected for
+a distorted type-I geometry.(b)Each fibre, coloured by the signs of(θℓ, θn): the future interiorBII is
+future-trapped, the exteriors are untrapped, and the null linesT=±Xseparate them, reproducing the
+causal structure of Figure 1.
+Metric components
+(a)g 00
+ (b)g 01
+ (c)g 02
+ (d)g 03
+(e)g 10
+ (f)g 11
+ (g)g 12
+ (h)g 13
+(i)g 20
+ (j)g 21
+ (k)g 22
+ (l)g 23
+(m)g 30
+ (n)g 31
+ (o)g 32
+ (p)g 33
+Ricci components
+(q)R 00
+ (r)R 01
+ (s)R 02
+ (t)R 03
+(u)R 10
+ (v)R 11
+ (w)R 12
+ (x)R 13
+(y)R 20
+ (z)R 21
+ (aa)R 22
+ (bb)R 23
+(cc)R 30
+ (dd)R 31
+ (ee)R 32
+ (ff)R 33
+60
+ 40
+ 20
+ 0 20 40 60
+Component scaling
+FIG. 7: Full component validation for the Schwarzschild run. The left block shows the learned metric
+componentsg µν, and the right block shows the learned Ricci tensor componentsRµν, both arranged by
+tensor index over the validation samples. Ricci flatness corresponds to the Ricci panels being close to zero.
+Over the samples and components the absolute value means are|ˆgij|= 4.316±2.374and
+| ˆRij|= 0.015±0.012.
+27
+=== PAGE 28 ===
+Metric components
+(a)g 00
+ (b)g 01
+ (c)g 02
+ (d)g 03
+(e)g 10
+ (f)g 11
+ (g)g 12
+ (h)g 13
+(i)g 20
+ (j)g 21
+ (k)g 22
+ (l)g 23
+(m)g 30
+ (n)g 31
+ (o)g 32
+ (p)g 33
+Ricci components
+(q)R 00
+ (r)R 01
+ (s)R 02
+ (t)R 03
+(u)R 10
+ (v)R 11
+ (w)R 12
+ (x)R 13
+(y)R 20
+ (z)R 21
+ (aa)R 22
+ (bb)R 23
+(cc)R 30
+ (dd)R 31
+ (ee)R 32
+ (ff)R 33
+0 100 200 300 400
+Component scaling
+FIG. 8: Full component validation for the Petrov type-I search. The left block shows the learned metric
+componentsg µν, and the right block shows the learned Ricci tensor componentsRµν, both arranged by
+tensor index over the validation samples. Over the samples and components the absolute value means are
+|ˆgij|= 48.99±2.40and| ˆRij|= 0.038±0.006.
+Metric components
+(a)g 00
+ (b)g 01
+ (c)g 02
+ (d)g 03
+(e)g 10
+ (f)g 11
+ (g)g 12
+ (h)g 13
+(i)g 20
+ (j)g 21
+ (k)g 22
+ (l)g 23
+(m)g 30
+ (n)g 31
+ (o)g 32
+ (p)g 33
+Ricci components
+(q)R 00
+ (r)R 01
+ (s)R 02
+ (t)R 03
+(u)R 10
+ (v)R 11
+ (w)R 12
+ (x)R 13
+(y)R 20
+ (z)R 21
+ (aa)R 22
+ (bb)R 23
+(cc)R 30
+ (dd)R 31
+ (ee)R 32
+ (ff)R 33
+0 10 20 30 40
+Shared component scaling
+FIG. 9: Full component validation for the Petrov type-I black-hole search, with(β0, αtrap) = (0.08,25), of
+Section IIID5. The left block shows the learned metric componentsgµν, and the right block shows the
+learned Ricci tensor componentsRµν, both arranged by tensor index over the validation samples. Over the
+10 random seeds, the absolute component means are|ˆgij|= 1.780±0.044and| ˆRij|= 0.0350±0.0007.
+28
+=== PAGE 29 ===
+Appendix C: Model Hyperparameters
+Summaries of the optimal training hyperparameters for the Schwarzschild experiment are pre-
+sented in Table V, whilst Table VI highlights the key changes for the Type-I vacuum search, and
+Table VII the key changes for the black hole search. An exhaustive list of parameters is presented
+in the GitHub repository.
+Category Parameter Value
+Training Training samples8,000
+Training Epochs1000
+Training Batch size512
+Training Initial learning rate3×10 −4
+Training Minimum learning rate3×10 −6
+Model Hidden width256
+Model Hidden layers6
+Model Activation GELU
+Model Biastrue
+Model Precisionfloat64
+Geometry Dimension4
+Geometry Overlap upper width0.1
+Geometry Einstein constant0.0
+Geometry Density power onR 2 1.0
+Geometry Density power onS 2 1.0
+Geometry Patch width onR 2 0.85
+Geometry Patch width onS 2 1.0
+Geometry Mass parameter (m)1.0
+Loss weights Einstein multiplier1.0
+Loss weights Weyl invariant multiplier1.0
+Loss weightsR 2 determinant multiplier0.075
+Loss weights Speciality-index multiplier0.0
+Loss weights Killing-symmetry multiplier1.0
+Loss weightsK-repeller multiplier0.0
+Loss weights Speciality-index radial-profile multiplier0.0
+TABLE V: Key configuration parameters for the Schwarzschild experiment (full set are available on
+GitHub).
+29
+=== PAGE 30 ===
+Category Parameter Value
+Loss weights Einstein multiplier1.0
+Loss weightsR 2 determinant multiplier0.075
+Loss weights Speciality-index radial profile multiplier1.0
+Loss weights Trapped surface multiplier0.0
+Loss weights Kretschmann multiplier0.0
+Loss weights Killing symmetry multiplier0.0
+Loss weightsKrepeller multiplier0.0
+TABLE VI: Summary of key configuration parameter deviations of the Petrov Type-I vacuum search from
+the Schwarzschild experiment.
+Category Parameter Value
+Loss weights Einstein multiplier1.0
+Loss weightsR 2 determinant multiplier0.075
+Loss weights Speciality-index radial profile multiplier1.0
+Loss weights Horizon anchor3.0
+Loss weights Trapped surface multiplier25.0
+Loss weights Kretschmann multiplier0.0
+Loss weights Killing symmetry multiplier0.0
+Loss weightsKrepeller multiplier0.0
+TABLE VII: Summary of key configuration parameter deviations of the Petrov Type-I BH search from the
+Schwarzschild experiment.
+30
+=== PAGE 31 ===
+[1] R.Arnowitt, S.Deser, andC.W.Misner,in Gravitation: An Introduction to Current Research,
+edited by L. Witten (Wiley, New York, 1962) pp. 227–265, arXiv:gr-qc/0405109.
+[2] G. B. Cook, Living Reviews in Relativity3, 5 (2000), arXiv:gr-qc/0007085.
+[3] L. Lehner, Classical and Quantum Gravity18, R25 (2001), arXiv:gr-qc/0106072.
+[4] M. Shibata and T. Nakamura, Physical Review D52, 5428 (1995).
+[5] T. W. Baumgarte and S. L. Shapiro, Physical Review D59, 024007 (1999), arXiv:gr-
+qc/9810065.
+[6] F. Pretorius, Phys. Rev. Lett.95, 121101 (2005), arXiv:gr-qc/0507014.
+[7] M. Campanelli, C. O. Lousto, P. Marronetti, and Y. Zlochower, Physical Review Letters96,
+111101 (2006), arXiv:gr-qc/0511048.
+[8] J. G. Baker, J. Centrella, D.-I. Choi, M. Koppitz, and J. van Meter, Physical Review Letters
+96, 111102 (2006), arXiv:gr-qc/0511103.
+[9] J. M. Centrella, J. G. Baker, B. J. Kelly, and J. R. van Meter, Reviews of Modern Physics
+82, 3069 (2010), arXiv:1010.5260 [gr-qc].
+[10] M. A. Scheel, M. Boyle, T. Chu, L. E. Kidder, K. D. Matthews, and H. P. Pfeiffer, Physical
+Review D79, 024003 (2009), arXiv:0810.1767 [gr-qc].
+[11] F. Löffler, J. Faber, E. Bentivegna, T. Bode, P. Diener, R. Haas, I. Hinder, B. C. Mundim,
+C. D. Ott, E. Schnetter, G. Allen, M. Campanelli, and P. Laguna, Classical and Quantum
+Gravity29, 115001 (2012), arXiv:1111.3344 [gr-qc].
+[12] T. Wiseman, Class. Quant. Grav.20, 1137 (2003), arXiv:hep-th/0209051.
+[13] M. Headrick, S. Kitchen, and T. Wiseman, Class. Quant. Grav.27, 035002 (2010),
+arXiv:0905.1822 [gr-qc].
+[14] A. Adam, S. Kitchen, and T. Wiseman, Class. Quant. Grav.29, 165002 (2012),
+arXiv:1105.6347 [gr-qc].
+[15] O. J. C. Dias, J. E. Santos, and B. Way, Classical and Quantum Gravity33, 133001 (2016),
+arXiv:1510.02804 [hep-th].
+[16] O. J. C. Dias, G. T. Horowitz, and J. E. Santos, Class. Quant. Grav.32, 145003 (2015),
+arXiv:1501.06574 [gr-qc].
+[17] M. Raissi, P. Perdikaris, and G. E. Karniadakis, J. Comput. Phys.378, 686 (2019),
+arXiv:1711.10561 [cs.AI].
+[18] E. Hirst, T. S. Gherardini, and A. G. Stapleton, AI for Science1, 025001 (2025).
+[19] G. Cortés, M. Esteban-Casadevall, Y. Feng, J. Henkel, E. Hirst, T. S. Gherardini, and A. G.
+Stapleton, “A Machine Learning Approach to the Nirenberg Problem,” (2026), arXiv preprint,
+arXiv:2602.12368 [cs.LG].
+[20] A. Ashmore and Y.-H. He, Fortschr. Phys.68, 2000068 (2020), arXiv:1910.08605 [hep-th].
+[21] M. Douglas, S. Lakshminarasimhan, and Y. Qi, in
+Proceedings of the 2nd Mathematical and Scientific Machine Learning Conference, Pro-
+ceedings of Machine Learning Research, Vol. 145, edited by J. Bruna, J. Hesthaven, and
+L. Zdeborova (PMLR, 2022) pp. 223–252.
+[22] M. Larfors, A. Lukas, F. Ruehle, and R. Schneider, Mach. Learn. Sci. Tech.3, 035014 (2022),
+arXiv:2111.01436 [hep-th].
+[23] M. Gerdes and S. Krippendorf, Mach. Learn. Sci. Tech.4, 025031 (2023), arXiv:2211.12520
+[hep-th].
+[24] P. Berglund, G. Butbaia, T. Hüubsch, V. Jejjala, D. Mayorga Peña, C. Mishra, and J. Tan,
+Adv. Theor. Math. Phys.27, 1107 (2023), arXiv:2211.09801 [hep-th].
+31
+=== PAGE 32 ===
+[25] M. R. Douglas, D. Platt, Y. Qi, and R. Barbosa, “Harmonic1-forms on real loci of Calabi-Yau
+manifolds,” (2024), arXiv preprint, arXiv:2405.19402 [math.DG].
+[26] E. Heyes, E. Hirst, H. N. S. Earp, and T. S. R. Silva, “Neural and numerical methods for
+G2-structures on contact Calabi-Yau 7-manifolds,” (2026), arXiv preprint, arXiv:2602.12438
+[math.DG].
+[27] G. B. De Luca, “Machine learning gravity compactifications on negatively curved manifolds,”
+(2025), arXiv:2501.00093 [hep-th].
+[28] T. S. Gherardini and M. Usula, “Minimal surfaces, knots, and neural networks,” (2026),
+arXiv:2605.26234 [math.DG].
+[29] P. Kumar, T. Mandal, and S. Mondal, JHEP10, 107 (2023), arXiv:2306.14817 [hep-th].
+[30] N. Patel, A. Aykutalp, and P. Laguna, “Calculating Quasi-Normal Modes of
+Schwarzschild Black Holes with Physics Informed Neural Networks,” (2024), arXiv preprint,
+arXiv:2401.01440 [gr-qc].
+[31] S. S. Cranganore, A. Bodnar, A. Berzins, and J. Brandstetter, “Einstein Fields: A Neural Per-
+spective To Computational General Relativity,” (2025), arXiv preprint. Published as NeurIPS
+conference paper., arXiv:2507.11589 [cs.LG].
+[32] Y.-H. He and J. M. Pérez Ipiña, Phys. Lett. B832, 137213 (2022), arXiv:2201.01644 [gr-qc].
+[33] V. Jejjala, S. Mondkar, A. Mukhopadhyay, and R. Raj, Phys. Rev. D111, 026016 (2025),
+arXiv:2312.08442 [hep-th].
+[34] V. Jejjala, S. Nampuri, D. Nxumalo, P. Roy, and A. Swain, “Machine learning automorphic
+forms for black holes,” (2025), arXiv preprint, arXiv:2505.05549 [hep-th].
+[35] K. Hashimoto, K. Kyo, M. Murata, G. Ogiwara, and N. Tanahashi, Mach. Learn. Sci. Tech.
+7, 015013 (2026), arXiv:2509.10866 [hep-th].
+[36] E. Hirst, H. N. S. Earp, and T. S. R. Silva, “Minimising Willmore Energy via Neural Flow,”
+(2026), arXiv preprint, arXiv:2604.04321 [math.DG].
+[37] E. Hirst, “PINNs in More General Geometry,” (2026), arXiv preprint, arXiv:2604.25020
+[math.DG].
+[38] R. Penrose, Physical Review Letters10, 66 (1963).
+[39] C. Röken, “The construction and application of penrose diagrams, with a focus on the maxi-
+mally analytically extended schwarzschild spacetime,” (2026), arXiv:2507.23514 [gr-qc].
+[40] J. Baker and M. Campanelli, Physical Review D62, 127501 (2000), gr-qc/0003031.
+[41] H. Stephani, D. Kramer, M. MacCallum, C. Hoenselaers, and E. Herlt,
+Exact Solutions of Einstein’s Field Equations, 2nd ed. (Cambridge University Press, 2003).
+[42] C. Cherubini, D. Bini, S. Capozziello, and R. Ruffini, International Journal of Modern Physics
+D11, 827 (2002), gr-qc/0302095.
+[43] N. Rosato, H. Nakano, and C. O. Lousto, Physical Review D104, 044047 (2021).
+[44] E. Zakhary and C. B. G. Mcintosh, General Relativity and Gravitation29, 539–581 (1997).
+[45] J. M. Lee,Introduction to Riemannian Manifolds, 2nd ed. (Springer, 2018).
+[46] G. D. Birkhoff, Relativity and Modern Physics (Harvard University Press, Cambridge, MA,
+1923).
+[47] J. T. Jebsen, Arkiv för Matematik, Astronomi och Fysik15, 1 (1921).
+[48] W. Israel, Physical Review164, 1776 (1967).
+[49] R. Penrose, Phys. Rev. Lett.14, 57 (1965).
+[50] S. A. Hayward, Phys. Rev. D49, 6467 (1994).
+[51] A. Ashtekar and B. Krishnan, Living Rev. Rel.7, 10 (2004), arXiv:gr-qc/0407042.
+[52] C. W. Misner and D. H. Sharp, Phys. Rev.136, B571 (1964).
+32
+=== PAGE 33 ===
+[53] H. Quevedo, S. Toktarbay, and A. Yerlan, Version published in International Journal of
+Mathematics and Physics3, 133 (2012), arXiv:1310.5339 [gr-qc].
+[54] E. Newman and R. Penrose, J. Math. Phys.3, 566 (1962).
+33
