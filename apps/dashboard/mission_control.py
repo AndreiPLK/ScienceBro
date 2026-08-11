@@ -81,12 +81,12 @@ def _training_state(proj: Path) -> dict:
 
 
 RU_TITLES = {
-    "stage-1": "Система ScienceBro построена",
-    "stage-2": "Верификатор откалиброван",
-    "stage-3": "Кандидат Petrov-I обучен",
-    "stage-4": "Кандидат независимо проверен",
-    "stage-5": "Научный вердикт получен",
-    "stage-6": "Публичный релиз подготовлен",
+    "stage-1": "ScienceBro system built",
+    "stage-2": "Verifier calibrated",
+    "stage-3": "Petrov-I candidate trained",
+    "stage-4": "Candidate independently stress-tested",
+    "stage-5": "Scientific verdict reached",
+    "stage-6": "Public release prepared",
 }
 
 
@@ -118,20 +118,20 @@ def compute_stages(project_id: str) -> tuple[list[Stage], dict, list]:
             if unmet:
                 status = "BLOCKED"
         n_pass = sum(1 for r in g.requirements if r.status == "pass")
-        note = f"{n_pass}/{len(g.requirements)} требований"
+        note = f"{n_pass}/{len(g.requirements)} requirements"
         if g.label == "ENGINEERING" and status == "VERIFIED":
-            note += " · engineering, не научный"
+            note += " · engineering, not scientific"
         stages.append(Stage(RU_TITLES.get(g.stage_id, g.title), status, note))
     return stages, ctx, gates
 
 
 RU_SHORT = {
-    "stage-1": "Система",
-    "stage-2": "Верификатор",
-    "stage-3": "Кандидат",
-    "stage-4": "Стресс-тест",
-    "stage-5": "Вердикт",
-    "stage-6": "Релиз",
+    "stage-1": "System",
+    "stage-2": "Verifier",
+    "stage-3": "Candidate",
+    "stage-4": "Stress test",
+    "stage-5": "Verdict",
+    "stage-6": "Release",
 }
 
 STAGE_ICONS = {
@@ -224,16 +224,16 @@ def _checks_grid(gate) -> str:  # type: ignore[no-untyped-def]
 
 def _render_gate_details(gate, project_id: str) -> None:  # type: ignore[no-untyped-def]
     """Per-stage proof-gate panel: question, requirements, buttons."""
-    st.write(f"**Что проверяет:** {gate.question}")
-    st.write(f"**Почему важно:** {gate.why_it_matters}")
+    st.write(f"**What it checks:** {gate.question}")
+    st.write(f"**Why it matters:** {gate.why_it_matters}")
     passed = [r for r in gate.requirements if r.status == "pass"]
     open_reqs = [r for r in gate.requirements if r.status != "pass"]
     if passed:
-        st.write("**Пройдено:** " + "; ".join(r.description for r in passed))
+        st.write("**Passed:** " + "; ".join(r.description for r in passed))
     if open_reqs:
-        st.write("**Не решено:** " + "; ".join(
+        st.write("**Unresolved:** " + "; ".join(
             f"{r.description} ({r.status})" for r in open_reqs))
-    st.write(f"**Разрешённая публичная формулировка:** {gate.allowed_public_claim}")
+    st.write(f"**Allowed public claim:** {gate.allowed_public_claim}")
 
     b1, b2, b3 = st.columns(3)
     att_path = (loaders.paths().project_dir(project_id) / "proof" / gate.stage_id
@@ -243,7 +243,7 @@ def _render_gate_details(gate, project_id: str) -> None:  # type: ignore[no-unty
             if att_path.exists():
                 st.json(json.loads(att_path.read_text(encoding="utf-8")))
             else:
-                st.warning("Аттестации ещё нет — выполните Re-run verification.")
+                st.warning("No attestation yet - click Re-run verification.")
     with b2:
         if st.button("Re-run verification", key=f"rv-{gate.stage_id}"):
             import subprocess as sp
@@ -281,28 +281,28 @@ def render(project_id: str) -> None:
     running = (training["exists"] and not training["finished"]
                and not training.get("stalled"))
     if running:
-        tr_val = f"эпоха {training['epochs']}/500"
+        tr_val = f"epoch {training['epochs']}/500"
         tr_color = COLORS["IN PROGRESS"]
-        tr_sub = (f"loss {training['last_loss']:.1e} · идёт"
-                  if training["last_loss"] else "идёт")
+        tr_sub = (f"loss {training['last_loss']:.1e} · running"
+                  if training["last_loss"] else "running")
     elif training["finished"] and training["exit_code"] == 0:
-        tr_val, tr_color, tr_sub = "завершён", COLORS["VERIFIED"], "500/500"
+        tr_val, tr_color, tr_sub = "complete", COLORS["VERIFIED"], "500/500"
     else:
-        tr_val = f"пауза · {training['epochs']}/500"
-        tr_color, tr_sub = COLORS["IN PROGRESS"], "чекпоинт сохранён"
+        tr_val = f"paused · {training['epochs']}/500"
+        tr_color, tr_sub = COLORS["IN PROGRESS"], "checkpoint preserved"
     n2 = sum(1 for r in gates[1].requirements if r.status == "pass")
     claims, _c = loaders.claims(project_id)
     blockers = [b for c in claims for b in c.blockers]
     hud = (
         '<div style="display:flex;flex-wrap:wrap;">'
-        + _hud_card("Эталонный тренинг (NN Шварцшильд)", tr_val, tr_color, tr_sub)
-        + _hud_card("Проверки верификатора", f"{n2}/{len(gates[1].requirements)}",
+        + _hud_card("Baseline training (NN Schwarzschild)", tr_val, tr_color, tr_sub)
+        + _hud_card("Verifier checks", f"{n2}/{len(gates[1].requirements)}",
                     COLORS["VERIFIED"] if gates[1].status == "VERIFIED" else COLORS["IN PROGRESS"],
-                    "аналитика · контроль · точность")
-        + _hud_card("Кандидаты проверено", "0", "#8a8a8a", "ждёт эталон")
-        + _hud_card("Блокер", "1" if blockers else "0",
+                    "analytic · controls · precision")
+        + _hud_card("Candidates tested", "0", "#8a8a8a", "awaits baseline")
+        + _hud_card("Blocker", "1" if blockers else "0",
                     COLORS["IN PROGRESS"] if blockers else COLORS["VERIFIED"],
-                    (blockers[0][:60] + "…") if blockers else "чисто")
+                    (blockers[0][:60] + "…") if blockers else "clear")
         + "</div>"
     )
     st.markdown(hud, unsafe_allow_html=True)
@@ -312,9 +312,9 @@ def render(project_id: str) -> None:
     st.markdown(_checks_grid(gates[1]), unsafe_allow_html=True)
 
     # proof-gate panel for the current stage + expanders for the rest
-    with st.expander(f"Текущий этап подробно: {RU_TITLES.get(gates[current_idx].stage_id)}"):
+    with st.expander(f"Current stage in detail: {RU_TITLES.get(gates[current_idx].stage_id)}"):
         _render_gate_details(gates[current_idx], project_id)
-    with st.expander("Proof-gate всех этапов"):
+    with st.expander("Proof gates for all stages"):
         for i, g in enumerate(gates):
             if i == current_idx:
                 continue
@@ -323,12 +323,12 @@ def render(project_id: str) -> None:
             st.divider()
 
     # 4. plain english
-    st.markdown("### Что это значит простыми словами")
+    st.markdown("### What this means in plain English")
     st.info(
-        "Исследовательская система и независимый геометрический проверщик работают на "
-        "аналитических примерах. Сейчас мы проверяем, даст ли нейросетевая метрика "
-        "Шварцшильда тот же ответ. Ни один новый кандидат в чёрные дыры пока не "
-        "подтверждён и не отвергнут."
+        "The research system and the independent geometry checker are working on analytical "
+        "examples. We are now testing whether a neural-network-generated Schwarzschild "
+        "metric produces the same answer. No new black-hole candidate has been confirmed "
+        "or rejected yet."
     )
 
     # 5. live results (compact: the analytic checks already live in the grid above)
@@ -344,39 +344,39 @@ def render(project_id: str) -> None:
             unsafe_allow_html=True,
         )
 
-    st.markdown("**Две шкалы (пока не сравнивать напрямую):**")
+    st.markdown("**Two different scales (do not compare directly yet):**")
     ca, cb = st.columns(2)
     with ca:
         loss_txt = f"{training['last_loss']:.2e}" if training["last_loss"] else "UNKNOWN"
-        st.metric("Upstream loss (их шкала, квадратичная)", loss_txt,
-                  help="Свёрнутый квадрат Ricci с весом объёма — шкала авторов")
+        st.metric("Upstream loss (their scale, quadratic)", loss_txt,
+                  help="Contracted squared Ricci with volume weight - the authors own scale")
     with cb:
         if ka4d:
             nn_rows = ka4d.get("nn_interim", {}).get("rows", [])
             ric = max((r["max_abs_ricci"] for r in nn_rows), default=None)
-            st.metric("Независимый Ricci (наша шкала, линейная)",
+            st.metric("Independent Ricci (our scale, linear)",
                       f"{ric:.2e}" if ric else "UNKNOWN",
-                      help="Максимум |R_ab| нашего конечно-разностного маршрута")
+                      help="Max |R_ab| from our finite-difference route")
         else:
-            st.metric("Независимый Ricci (наша шкала, линейная)", "UNKNOWN")
+            st.metric("Independent Ricci (our scale, linear)", "UNKNOWN")
     comparable = disc is not None
-    _row("Сопоставимость нормировок", True if comparable else None,
-         "объяснена и измерена на 2D-модели (√loss ≈ наш Ricci, 0.7%); для 4D — после дотренинга"
-         if comparable else "не установлена")
+    _row("Normalization comparability", True if comparable else None,
+         "explained and measured on the 2D model (sqrt(loss) matches our Ricci to 0.7%); 4D after training"
+         if comparable else "not established")
 
     claims, _ = loaders.claims(project_id)
     blockers = [b for c in claims for b in c.blockers]
-    _row("Текущий блокер", None, blockers[0] if blockers else "не записан")
+    _row("Current blocker", None, blockers[0] if blockers else "none recorded")
 
     # 6. allowed public claim
-    st.markdown("### Что мы можем честно сказать публично")
+    st.markdown("### What we can honestly say publicly")
     st.success(
-        "Независимый верификатор ScienceBro прошёл аналитические known-answer тесты. "
-        "Проверка нейросетевых кандидатов AInstein не завершена."
+        "ScienceBro's independent verifier has passed analytical known-answer tests. "
+        "Evaluation of neural AInstein candidates is not complete."
     )
 
     # 7. meta
-    st.markdown("### Служебное")
+    st.markdown("### Operational")
     git = loaders.git_info()
     when = None
     if selftest:
@@ -386,32 +386,32 @@ def render(project_id: str) -> None:
             when = selftest.get("generated_at")
     m1, m2, m3 = st.columns(3)
     with m1:
-        st.write(f"**Обновлено:** git {git['commit']} · {git['last_commit_time']}")
-        st.write(f"**Самопроверка верификатора:** {when or 'нет артефакта'}")
+        st.write(f"**Updated:** git {git['commit']} · {git['last_commit_time']}")
+        st.write(f"**Verifier self-test:** {when or 'no artifact'}")
     with m2:
-        st.write("**Последний завершённый эксперимент:** 4D known-answer pipeline "
-                 "(аналитический маршрут, PASS)")
-        running = (f"тренинг эталона (эпоха {training['epochs']}/500)"
+        st.write("**Latest completed experiment:** 4D known-answer pipeline "
+                 "(analytic route, PASS)")
+        running = (f"baseline training (epoch {training['epochs']}/500)"
                    if training["exists"] and not training["finished"]
-                   and not training.get("stalled") else "нет")
-        st.write(f"**Сейчас выполняется:** {running}")
+                   and not training.get("stalled") else "none")
+        st.write(f"**Currently running:** {running}")
     with m3:
-        st.write("**Реалистичный срок:** эталон ≈ 13 ч CPU после рестарта; "
-                 "первый научный вердикт ≈ 3–7 дней (быстрее на GPU)")
-        st.write("**Требуется решение:** установка WSL2 для GPU (см. GPU_MIGRATION.md); "
-                 "одобрение письма авторам")
+        st.write("**Realistic ETA:** baseline ~13-17 h on CPU; "
+                 "first scientific verdict ~3-7 days (faster on GPU)")
+        st.write("**Decision needed:** reboot Windows to finish WSL2 GPU setup; "
+                 "approve the draft letter to the authors")
 
     # 9. technical details, hidden by default
-    with st.expander("Технические детали (логи, хеши, сырые метрики)"):
+    with st.expander("Technical details (logs, hashes, raw metrics)"):
         proj = _proj_dir(project_id)
-        st.write("**Артефакты:**")
+        st.write("**Artifacts:**")
         for rel in ["results/processed/known_answer_4d.json",
                     "results/processed/discrepancy_experiment.json",
                     "results/processed/calibration_maps.json",
                     "results/processed/verifier_selftest.json",
                     "upstream/baseline_schwarzschild.log"]:
             p = proj / rel
-            st.write(f"- `{rel}` — {'есть' if p.exists() else 'НЕТ'}")
+            st.write(f"- `{rel}` — {'present' if p.exists() else 'MISSING'}")
         if ka4d:
             st.json(ka4d)
         if disc:
