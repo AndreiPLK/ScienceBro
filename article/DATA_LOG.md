@@ -49,3 +49,4 @@ old entries; append corrections as new entries.
 - 23:34 — GPU measured: 17 min/epoch (float64 on consumer RTX = 1/64 FP64 rate) vs CPU 1.7 min/epoch — GPU 10x SLOWER; documented, falling back to full-speed CPU for the night. GPU finding itself is article material.
 - 23:45 — Full-speed CPU rate measured: 26 s/epoch (3 epochs / 78 s). New ETA: baseline complete ~03:15, thresholds frozen ~04:30, candidate launch ~04:45.
 - 00:20 — night2 clean run: epoch 100/500, loss 1.03e-3 (trajectory matches previous runs).
+- 01:05 — night2: epoch 200/500, loss 7.62e-4.
