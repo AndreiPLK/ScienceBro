@@ -22,6 +22,9 @@ vendor/checkouts/**
 # Downloaded papers: kept local only (license-safe); hashes live in corpus.jsonl
 projects/*/research/pdfs/**
 
+# Live training logs churn every second; immutable copies land in results/raw/ on completion
+projects/*/upstream/*.log
+
 # OS
 Thumbs.db
 .DS_Store
