@@ -1,0 +1,36 @@
+{
+  "model": "runs/dummy-kjjf3e3e_2026-08-11_13-51-44/final_model.keras",
+  "upstream_final_loss": 1.57e-10,
+  "fd_step_sweep": {
+    "0.01": {
+      "max_abs_ricci": 1.2613003827848001e-05,
+      "median_max_per_point": 4.100314918845665e-06
+    },
+    "0.003": {
+      "max_abs_ricci": 1.2613000738522276e-05,
+      "median_max_per_point": 4.100310108433024e-06
+    },
+    "0.001": {
+      "max_abs_ricci": 1.261314981379426e-05,
+      "median_max_per_point": 4.100318614018156e-06
+    },
+    "0.0003": {
+      "max_abs_ricci": 1.2614970108973768e-05,
+      "median_max_per_point": 4.099955165936514e-06
+    }
+  },
+  "interior_h3e-3": {
+    "n_points": 24,
+    "max_abs_ricci": 1.3476287135465365e-05,
+    "median": 4.547025780924422e-06,
+    "p95": 1.2603314400153757e-05,
+    "frobenius_mean": 8.122315997487908e-06
+  },
+  "edge_h3e-3": {
+    "n_points": 12,
+    "max_abs_ricci": 5.5393142877892084e-05,
+    "median": 7.473169845041536e-06
+  },
+  "upstream_loss_replica_with_our_ricci": 8.077760107809677e-11,
+  "sqrt_upstream_final_loss": 1.2529964086141669e-05
+}

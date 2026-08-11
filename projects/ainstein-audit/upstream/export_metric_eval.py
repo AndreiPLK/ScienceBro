@@ -29,6 +29,8 @@ def main() -> int:
     ap.add_argument("--model", required=True)
     ap.add_argument("--points", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--euclidean-out", dest="euclidean_out", default=None,
+                    help="also save the Euclideanised metric (lorentzian=False Cholesky)")
     args = ap.parse_args()
 
     sys.path.insert(0, str(Path.cwd()))  # upstream checkout root
@@ -65,6 +67,11 @@ def main() -> int:
         g = cholesky_from_vec(vec, lorentzian=lorentzian).numpy().astype(np.float64)
 
     np.save(args.out, g)
+    if args.euclidean_out:
+        # Euclideanised variant used by the upstream loss contraction
+        # (losses/schwarzschild.py:1949): same Cholesky vector, lorentzian=False.
+        ge = cholesky_from_vec(vec, lorentzian=False).numpy().astype(np.float64)
+        np.save(args.euclidean_out, ge)
     meta = {
         "model_file": args.model,
         "model_sha256": hashlib.sha256(Path(args.model).read_bytes()).hexdigest(),
