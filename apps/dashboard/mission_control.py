@@ -125,16 +125,101 @@ def compute_stages(project_id: str) -> tuple[list[Stage], dict, list]:
     return stages, ctx, gates
 
 
-def _stage_box(stage: Stage, current: bool) -> str:
-    color = COLORS[stage.status]
-    border = f"3px solid {color}" if current else f"1px solid {color}"
-    marker = "&#9654; " if current else ""
+RU_SHORT = {
+    "stage-1": "Система",
+    "stage-2": "Верификатор",
+    "stage-3": "Кандидат",
+    "stage-4": "Стресс-тест",
+    "stage-5": "Вердикт",
+    "stage-6": "Релиз",
+}
+
+STAGE_ICONS = {
+    "stage-1": "&#9881;",   # gear
+    "stage-2": "&#128300;", # microscope
+    "stage-3": "&#129504;", # brain
+    "stage-4": "&#9876;",   # crossed swords
+    "stage-5": "&#9878;",   # scales
+    "stage-6": "&#128640;", # rocket
+}
+
+
+def _display_status(gate) -> str:  # type: ignore[no-untyped-def]
+    """Stage-3 shows BLOCKED while its preconditions are unmet (directive §4)."""
+    if gate.stage_id == "stage-3" and gate.status in ("NOT STARTED", "IN PROGRESS"):
+        if any(r.status != "pass" for r in gate.requirements):
+            return "BLOCKED"
+    return gate.status
+
+
+def _quest_map_svg(gates: list, current_idx: int) -> str:
+    """Game-style quest map: 6 nodes on a path. Colors = honest proof-gate statuses."""
+    w, h = 1180, 230
+    xs = [90 + i * 200 for i in range(6)]
+    y = 100
+    parts = [
+        f'<svg viewBox="0 0 {w} {h}" style="width:100%;height:auto;" '
+        f'xmlns="http://www.w3.org/2000/svg">',
+        "<style>.pulse{animation:pu 1.6s ease-in-out infinite;}"
+        "@keyframes pu{0%,100%{stroke-opacity:0.25;stroke-width:6}50%{stroke-opacity:0.9;stroke-width:12}}"
+        ".lbl{font:600 17px sans-serif;fill:#c9c9c9;}"
+        ".st{font:700 13px sans-serif;}"
+        ".ico{font-size:26px;}</style>",
+    ]
+    # path segments
+    for i in range(5):
+        done = gates[i].status == "VERIFIED"
+        seg = COLORS["VERIFIED"] if done else "#555"
+        dash = "" if done else ' stroke-dasharray="7 7"'
+        parts.append(f'<line x1="{xs[i]+42}" y1="{y}" x2="{xs[i+1]-42}" y2="{y}" '
+                     f'stroke="{seg}" stroke-width="5"{dash}/>')
+    for i, g in enumerate(gates):
+        disp = _display_status(g)
+        c = COLORS.get(disp, "#8a8a8a")
+        x = xs[i]
+        n_pass = sum(1 for r in g.requirements if r.status == "pass")
+        n_all = len(g.requirements)
+        if i == current_idx:
+            parts.append(f'<circle class="pulse" cx="{x}" cy="{y}" r="50" fill="none" '
+                         f'stroke="{c}"/>')
+        fill = c if disp == "VERIFIED" else "none"
+        txtc = "#111" if disp == "VERIFIED" else c
+        parts.append(f'<circle cx="{x}" cy="{y}" r="40" fill="{fill}" stroke="{c}" '
+                     f'stroke-width="4"/>')
+        icon = "&#10004;" if disp == "VERIFIED" else ("&#10008;" if disp == "FAILED"
+                 else STAGE_ICONS.get(g.stage_id, "?"))
+        parts.append(f'<text x="{x}" y="{y+10}" text-anchor="middle" class="ico" '
+                     f'fill="{txtc}">{icon}</text>')
+        parts.append(f'<text x="{x}" y="{y-58}" text-anchor="middle" class="lbl">'
+                     f'{RU_SHORT.get(g.stage_id, g.title)}</text>')
+        parts.append(f'<text x="{x}" y="{y+68}" text-anchor="middle" class="st" '
+                     f'fill="{c}">{disp}</text>')
+        parts.append(f'<text x="{x}" y="{y+88}" text-anchor="middle" class="st" '
+                     f'fill="#888">{n_pass}/{n_all}</text>')
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def _hud_card(title: str, value: str, color: str, sub: str = "") -> str:
     return (
-        f'<div style="border:{border};border-radius:8px;padding:10px 12px;margin:4px 0;">'
-        f'<div style="font-weight:600;">{marker}{stage.title}</div>'
-        f'<div style="color:{color};font-weight:600;font-size:0.9em;">{stage.status}</div>'
-        f'<div style="font-size:0.85em;opacity:0.8;">{stage.note}</div></div>'
+        f'<div style="flex:1;min-width:150px;border:1px solid {color};border-radius:10px;'
+        f'padding:10px 14px;margin:4px;">'
+        f'<div style="font-size:0.8em;opacity:0.7;">{title}</div>'
+        f'<div style="font-size:1.25em;font-weight:700;color:{color};">{value}</div>'
+        + (f'<div style="font-size:0.75em;opacity:0.6;">{sub}</div>' if sub else "")
+        + "</div>"
     )
+
+
+def _checks_grid(gate) -> str:  # type: ignore[no-untyped-def]
+    cells = []
+    for r in gate.requirements:
+        c = {"pass": COLORS["VERIFIED"], "fail": COLORS["FAILED"]}.get(r.status, "#8a8a8a")
+        mark = {"pass": "&#10004;", "fail": "&#10008;"}.get(r.status, "&#8943;")
+        cells.append(
+            f'<div style="border:1px solid {c};border-radius:8px;padding:6px 10px;margin:3px;'
+            f'font-size:0.8em;color:{c};white-space:nowrap;">{mark} {r.id}</div>')
+    return ('<div style="display:flex;flex-wrap:wrap;">' + "".join(cells) + "</div>")
 
 
 def _render_gate_details(gate, project_id: str) -> None:  # type: ignore[no-untyped-def]
@@ -181,22 +266,54 @@ def render(project_id: str) -> None:
     stages, ctx, gates = compute_stages(project_id)
     training = ctx["training"]
     selftest, ka4d, disc = ctx["selftest"], ctx["ka4d"], ctx["disc"]
+    _ = stages
 
     # 1. mission
     st.markdown(f"## {MISSION}")
 
-    # 2. roadmap (dominant visual)
+    # 2. quest map — the dominant visual
     current_idx = next(
-        (i for i, s in enumerate(stages) if s.status not in ("VERIFIED",)), len(stages) - 1
+        (i for i, g in enumerate(gates) if g.status != "VERIFIED"), len(gates) - 1
     )
-    cols = st.columns(3)
-    for i, s in enumerate(stages):
-        with cols[i % 3]:
-            st.markdown(_stage_box(s, i == current_idx), unsafe_allow_html=True)
+    st.markdown(_quest_map_svg(gates, current_idx), unsafe_allow_html=True)
+
+    # HUD row — big numbers, minimal text
+    running = (training["exists"] and not training["finished"]
+               and not training.get("stalled"))
+    if running:
+        tr_val = f"эпоха {training['epochs']}/500"
+        tr_color = COLORS["IN PROGRESS"]
+        tr_sub = (f"loss {training['last_loss']:.1e} · идёт"
+                  if training["last_loss"] else "идёт")
+    elif training["finished"] and training["exit_code"] == 0:
+        tr_val, tr_color, tr_sub = "завершён", COLORS["VERIFIED"], "500/500"
+    else:
+        tr_val = f"пауза · {training['epochs']}/500"
+        tr_color, tr_sub = COLORS["IN PROGRESS"], "чекпоинт сохранён"
+    n2 = sum(1 for r in gates[1].requirements if r.status == "pass")
+    claims, _c = loaders.claims(project_id)
+    blockers = [b for c in claims for b in c.blockers]
+    hud = (
+        '<div style="display:flex;flex-wrap:wrap;">'
+        + _hud_card("Эталонный тренинг (NN Шварцшильд)", tr_val, tr_color, tr_sub)
+        + _hud_card("Проверки верификатора", f"{n2}/{len(gates[1].requirements)}",
+                    COLORS["VERIFIED"] if gates[1].status == "VERIFIED" else COLORS["IN PROGRESS"],
+                    "аналитика · контроль · точность")
+        + _hud_card("Кандидаты проверено", "0", "#8a8a8a", "ждёт эталон")
+        + _hud_card("Блокер", "1" if blockers else "0",
+                    COLORS["IN PROGRESS"] if blockers else COLORS["VERIFIED"],
+                    (blockers[0][:60] + "…") if blockers else "чисто")
+        + "</div>"
+    )
+    st.markdown(hud, unsafe_allow_html=True)
+
+    # checks grid for the current scientific stage (stage-2)
+    st.markdown('<div style="margin-top:6px;"></div>', unsafe_allow_html=True)
+    st.markdown(_checks_grid(gates[1]), unsafe_allow_html=True)
 
     # proof-gate panel for the current stage + expanders for the rest
-    st.markdown(f"### Текущий этап: {stages[current_idx].title}")
-    _render_gate_details(gates[current_idx], project_id)
+    with st.expander(f"Текущий этап подробно: {RU_TITLES.get(gates[current_idx].stage_id)}"):
+        _render_gate_details(gates[current_idx], project_id)
     with st.expander("Proof-gate всех этапов"):
         for i, g in enumerate(gates):
             if i == current_idx:
@@ -204,33 +321,6 @@ def render(project_id: str) -> None:
             st.markdown(f"**{RU_TITLES.get(g.stage_id, g.title)}** — {g.status}")
             _render_gate_details(g, project_id)
             st.divider()
-
-    # 3. where we are now — four blocks
-    st.markdown("### Где мы сейчас")
-    c1, c2, c3, c4 = st.columns(4)
-    with c1:
-        st.markdown("**Проверено**")
-        n_tests = selftest["n_passed"] if selftest else "?"
-        st.write(f"Система V1; верификатор: {n_tests} тестов на аналитических решениях; "
-                 "формат экспорта метрик")
-    with c2:
-        st.markdown("**Сейчас выполняется**")
-        if training["exists"] and not training["finished"] and not training.get("stalled"):
-            st.write(f"Тренинг нейронного Шварцшильда: эпоха {training['epochs']}/500")
-        elif training["finished"] and training["exit_code"] == 0:
-            st.write("Фоновых задач нет; тренинг эталона завершён")
-        else:
-            st.write(f"Тренинг эталона остановлен на эпохе {training['epochs']}/500 "
-                     "(чекпоинт сохранён; перезапуск ночью или на GPU)")
-    with c3:
-        st.markdown("**Не решено**")
-        claims, _ = loaders.claims(project_id)
-        blockers = [b for c in claims for b in c.blockers]
-        st.write(blockers[0] if blockers else "блокеров не записано")
-    with c4:
-        st.markdown("**Дальше**")
-        st.write("Дотренировать эталон → заморозить пороги → обучить кандидата Petrov-I "
-                 "→ независимая проверка на скрытых точках")
 
     # 4. plain english
     st.markdown("### Что это значит простыми словами")
@@ -241,9 +331,7 @@ def render(project_id: str) -> None:
         "подтверждён и не отвергнут."
     )
 
-    # 5. live results
-    st.markdown("### Ключевые результаты")
-
+    # 5. live results (compact: the analytic checks already live in the grid above)
     def _row(label: str, ok: bool | None, detail: str) -> None:
         if ok is True:
             icon, color = "&#9679;", COLORS["VERIFIED"]
@@ -255,29 +343,6 @@ def render(project_id: str) -> None:
             f'<span style="color:{color};">{icon}</span> **{label}** — {detail}',
             unsafe_allow_html=True,
         )
-
-    tests = (selftest or {}).get("tests", {})
-
-    def _suite(prefix: str) -> bool | None:
-        rel = {k: v for k, v in tests.items() if prefix in k}
-        if not rel:
-            return None
-        return all(v == "passed" for v in rel.values())
-
-    _row("Аналитический Минковский", _suite("minkowski"),
-         "вакуум подтверждён" if _suite("minkowski") else "нет данных")
-    _row("Аналитический Шварцшильд", _suite("schwarzschild_is_vacuum"),
-         "вакуум + Кречман 48M²/r⁶" if _suite("schwarzschild_is_vacuum") else "нет данных")
-    _row("Негативный контроль (испорченная метрика)", _suite("perturbed"),
-         "подделка детектируется" if _suite("perturbed") else "нет данных")
-
-    if training["exists"]:
-        done = training["finished"] and training["exit_code"] == 0
-        _row("Нейронный Шварцшильд (тренинг)", True if done else None,
-             f"эпоха {training['epochs']}/500, loss {training['last_loss']:.2e}"
-             if training["last_loss"] else f"эпоха {training['epochs']}/500")
-    else:
-        _row("Нейронный Шварцшильд (тренинг)", None, "UNKNOWN — лог не найден")
 
     st.markdown("**Две шкалы (пока не сравнивать напрямую):**")
     ca, cb = st.columns(2)
