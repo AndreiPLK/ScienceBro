@@ -51,10 +51,14 @@ def _load_json(path: Path) -> dict | None:
 
 
 def _training_state(proj: Path) -> dict:
-    """Parse the Schwarzschild training log (real file, no invention)."""
-    log = proj / "upstream" / "baseline_schwarzschild.log"
+    """Parse the newest Schwarzschild training log (real file, no invention)."""
+    candidates = sorted(
+        (proj / "upstream").glob("baseline_schwarzschild*.log"),
+        key=lambda p: p.stat().st_mtime, reverse=True,
+    )
+    log = candidates[0] if candidates else proj / "upstream" / "baseline_schwarzschild.log"
     out: dict = {"exists": log.exists(), "epochs": 0, "last_loss": None,
-                 "finished": False, "exit_code": None}
+                 "finished": False, "exit_code": None, "log": str(log)}
     if not log.exists():
         return out
     try:
