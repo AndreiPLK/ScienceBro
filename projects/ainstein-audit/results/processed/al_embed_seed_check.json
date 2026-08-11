@@ -1,0 +1,61 @@
+{
+  "model": "seed_models/AL_embed.keras (supervised on analytic Schwarzschild)",
+  "rows": [
+    {
+      "point_TXq1q2": [
+        0.1,
+        0.6,
+        0.2,
+        0.1
+      ],
+      "r_independent": 2.2924929872598745,
+      "lorentzian_signature": true,
+      "max_abs_ricci": 0.06400941909853818,
+      "kretschmann_fd": 0.3357532542313985,
+      "kretschmann_analytic_48m2_r6": 0.3306687413965245,
+      "kretschmann_rel_err": 0.01537645443412762
+    },
+    {
+      "point_TXq1q2": [
+        0.0,
+        0.5,
+        -0.1,
+        0.3
+      ],
+      "r_independent": 2.198806920938357,
+      "lorentzian_signature": true,
+      "max_abs_ricci": 0.1296225431885243,
+      "kretschmann_fd": 0.45976506322347116,
+      "kretschmann_analytic_48m2_r6": 0.42473560196397964,
+      "kretschmann_rel_err": 0.08247356966902494
+    },
+    {
+      "point_TXq1q2": [
+        -0.15,
+        0.7,
+        0.0,
+        0.0
+      ],
+      "r_independent": 2.4168834454223527,
+      "lorentzian_signature": true,
+      "max_abs_ricci": 0.1050403523373129,
+      "kretschmann_fd": 0.23101766721524175,
+      "kretschmann_analytic_48m2_r6": 0.24082800909555363,
+      "kretschmann_rel_err": 0.040735884157143104
+    },
+    {
+      "point_TXq1q2": [
+        0.05,
+        0.45,
+        0.25,
+        -0.2
+      ],
+      "r_independent": 2.157102243780833,
+      "lorentzian_signature": true,
+      "max_abs_ricci": 0.14914497538445204,
+      "kretschmann_fd": 0.5025707393979477,
+      "kretschmann_analytic_48m2_r6": 0.476449476326506,
+      "kretschmann_rel_err": 0.054824833207584536
+    }
+  ]
+}
