@@ -1,0 +1,33 @@
+id: EXP-0001
+hypothesis_id: H-0001
+status: frozen
+code_commit: 6a2951e97ff55eb61c3eb7a4143ef96ff28e6327
+upstream_commit: 54736e466e54d948bd509b072e4047cf98405064
+environment_lock_hash: null  # upstream env is uv-managed separately; see INSPECTION.md
+command: >-
+  WANDB_MODE=disabled OMP_NUM_THREADS=6 TF_NUM_INTRAOP_THREADS=6 TF_NUM_INTEROP_THREADS=2
+  ../.venv-upstream/Scripts/python.exe run.py -c=hyperparameters/hps_schwarzschild.yaml
+inputs:
+  - "hyperparameters/hps_schwarzschild.yaml sha256=5e39a538964977537338eba8dd5d7793b7c7ba79f8d74f9e8917b623b867894d"
+outputs:
+  - "runs/<run-dir>/final_model.keras (hash recorded on completion)"
+seeds: [0]  # upstream generates np/tf seeds when null in config; actual seeds read from saved model config on completion
+precision: float64
+hardware: "Windows 11 AMD64, TF 2.21.0 CPU-only, BelowNormal priority, 6 intraop threads"
+primary_metric: normalized_independent_einstein_residual
+threshold:
+  type: preregistered-after-baseline-calibration
+  note: >-
+    Known-answer run: this experiment PRODUCES the NN-Schwarzschild baseline whose
+    hidden-point residual distribution will set the frozen candidate thresholds
+    (validations/THRESHOLDS_DRAFT.md). Analytic-route pipeline gate already frozen:
+    max|Ricci| < 1e-7, Kretschmann rel err < 1e-7.
+analysis_plan: >-
+  On completion: (1) hash checkpoint + log; (2) export metric at hidden probe points
+  (never used in training sampling review); (3) independent FD Ricci/Kretschmann,
+  signature, determinant; (4) compare against analytic Schwarzschild via the
+  independent Lambert-W r(T,X); (5) measure median/p95/p99/max residuals -> freeze
+  candidate thresholds in THRESHOLDS_FROZEN.md BEFORE any Petrov-I output exists;
+  (6) replicate upstream quadratic loss with independent Ricci (4D normalization
+  comparability, extending the 2D result in results/processed/discrepancy_table.md).
+exploratory: false
