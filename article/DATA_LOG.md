@@ -50,3 +50,4 @@ old entries; append corrections as new entries.
 - 23:45 — Full-speed CPU rate measured: 26 s/epoch (3 epochs / 78 s). New ETA: baseline complete ~03:15, thresholds frozen ~04:30, candidate launch ~04:45.
 - 00:20 — night2 clean run: epoch 100/500, loss 1.03e-3 (trajectory matches previous runs).
 - 01:05 — night2: epoch 200/500, loss 7.62e-4.
+- 01:47 — night2: epoch 300/500, loss 6.78e-4.
