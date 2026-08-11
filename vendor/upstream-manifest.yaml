@@ -1,0 +1,150 @@
+# Donor and upstream repositories (roadmap §7).
+# All pinned on 2026-08-11 via `git ls-remote`. Code is NOT vendored in V1 —
+# these are references and idea sources; adapters degrade gracefully when absent.
+# licenses marked "unverified" have not been read from the repo yet — verify before
+# copying ANY code (roadmap §6 rule 33).
+
+upstreams:
+  - name: ainstein
+    role: first-scientific-upstream
+    repository: https://github.com/xand-stapleton/ainstein
+    branch: blackhole
+    pinned_commit: 54736e466e54d948bd509b072e4047cf98405064
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [exported metric candidates, known Schwarzschild baseline, published configs]
+    local_integration: projects/ainstein-audit/upstream/
+    update_policy: manual, only with a recorded reason
+    security_notes: untrusted code; run in isolated uv env; validator must NOT import its losses
+
+  - name: claude-scholar
+    role: primary-architecture-donor
+    repository: https://github.com/Galaxy-Dawn/claude-scholar
+    pinned_commit: 2f7766fd541a723d4ddc6230b3277f948d61b093
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [lifecycle ideas, evidence-record/claim-gate concepts, blocker-first reporting]
+    local_integration: ideas only (no code copied)
+    update_policy: manual
+    security_notes: never run its global installer
+
+  - name: paper-pilot
+    role: literature-acquisition-donor
+    repository: https://github.com/aytzey/paper-pilot
+    pinned_commit: 6c24cb238d418f09882ca5d226cffd360c49da1c
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [adapter interface design]
+    local_integration: sciencebro/adapters/paper_pilot.py (stub, filesystem fallback)
+    update_policy: manual
+    security_notes: project-scoped MCP/CLI only when enabled
+
+  - name: paper-qa
+    role: document-reasoning-donor
+    repository: https://github.com/future-house/paper-qa
+    pinned_commit: d7675d7b7eddeb3535e8c260399c5bbeeb818c50
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [corpus deep-reading concept]
+    local_integration: sciencebro/adapters/paperqa.py (stub)
+    update_policy: manual
+    security_notes: heavy dependency tree; keep out of core lock
+
+  - name: scholar-megasearch
+    role: broad-discovery-donor (experimental, optional)
+    repository: https://github.com/TaewoooPark/scholar-megasearch
+    pinned_commit: a24fa3e3274afe84f958279f8b34bc3c67a6b0b5
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [multi-source dedup concept]
+    local_integration: sciencebro/adapters/scholar_search.py (stub)
+    update_policy: manual; core must never depend on it
+    security_notes: new project, inspect before enabling
+
+  - name: scientific-agent-skills
+    role: skill-donor (selective import only)
+    repository: https://github.com/K-Dense-AI/scientific-agent-skills
+    pinned_commit: d661d27ef4ddad5b9287bdd84887ace27e2320b8
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [none yet; candidates: astropy, sympy, units, experimental-design skills]
+    local_integration: .claude/skills/ (only explicitly selected, licensed skills)
+    update_policy: manual, one skill at a time with license check
+    security_notes: never load all 161 skills
+
+  - name: curie
+    role: experiment-loop-donor (design patterns only)
+    repository: https://github.com/Just-Curieous/Curie
+    pinned_commit: db1b1f56159b591515f77e03c55bf473d5c1c201
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [diagnosed-failure retry pattern, experiment lineage concept]
+    local_integration: ideas only
+    update_policy: manual
+    security_notes: claim truth never delegated to it
+
+  - name: ai-scientist-v2
+    role: exploration-donor (ideas only)
+    repository: https://github.com/SakanaAI/AI-Scientist-v2
+    pinned_commit: 96bd51617cfdbb494a9fc283af00fe090edfae48
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [branching-proposal / preserved-failed-branch ideas]
+    local_integration: ideas only; never the autonomous driver
+    update_policy: manual
+    security_notes: executes generated code upstream — do not adopt that pattern
+
+  - name: agent-laboratory
+    role: role-organization-donor
+    repository: https://github.com/SamuelSchmidgall/AgentLaboratory
+    pinned_commit: d9017d90e329112d2a80b7712f37ee9094d2cd27
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [literature/experiment/report role separation]
+    local_integration: .claude/agents/ role design
+    update_policy: manual
+    security_notes: model routing and paper generation not copied
+
+  - name: open-deep-research
+    role: research-planning-donor
+    repository: https://github.com/langchain-ai/open_deep_research
+    pinned_commit: 1b7d2e80db9faa586165c60e09096dbbfd483a64
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [planner/executor separation idea]
+    local_integration: ideas only; no LangGraph in V1
+    update_policy: manual
+    security_notes: none
+
+  - name: gpt-researcher
+    role: research-planning-donor
+    repository: https://github.com/assafelovic/gpt-researcher
+    pinned_commit: 5d84d2f5553e70a2765a8ff3a0d2672d60437ce8
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [subquestion decomposition, source-level notes before synthesis]
+    local_integration: ideas only
+    update_policy: manual
+    security_notes: none
+
+  - name: inspect-ai
+    role: agent-evaluation-donor
+    repository: https://github.com/UKGovernmentBEIS/inspect_ai
+    pinned_commit: 030bcb6cbff16e598b6a233e20333316e826b559
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [task/solver/scorer separation for future agent evals]
+    local_integration: sciencebro/adapters/inspect_ai.py (stub); tests/evals as pytest for now
+    update_policy: manual
+    security_notes: model grader never sole scorer of scientific truth
+
+  - name: claude-code-plugins
+    role: official-claude-code-donor
+    repository: https://github.com/anthropics/claude-code
+    pinned_commit: 54cc51a08a5d3900e5abd02ad75a2ce46f3f008c
+    date_inspected: 2026-08-11
+    license: unverified
+    reused: [project-scoped commands/skills structure, hooks patterns]
+    local_integration: .claude/
+    update_policy: manual
+    security_notes: none

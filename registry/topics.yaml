@@ -1,0 +1,124 @@
+# Research opportunity backlog (roadmap §16). Rank = initial priority, not permanent truth.
+# Readiness states only: ready | needs setup | needs domain collaborator | blocked by data | archived
+# No invented probabilities.
+
+topics:
+  - id: ainstein-audit
+    rank: 1
+    domain: general-relativity
+    question: Are AI-discovered black-hole candidates real or numerical artifacts?
+    starting_point: "arXiv:2607.05489 + github.com/xand-stapleton/ainstein@blackhole"
+    one_week_artifact: Independent invariant validator and pass/fail map
+    compute: home
+    readiness: ready
+    scientific_ceiling: Confirmation or refutation of a published AI-discovered geometry
+    publication_path: GitHub, Zenodo, arXiv gr-qc; CQG or PRD if scientifically strong
+    required_upstreams: [ainstein]
+
+  - id: photon-ring-spin
+    rank: 2
+    domain: general-relativity
+    question: Does photon-ring scrambling predict remnants for aligned-spin mergers?
+    starting_point: "arXiv:2603.08643 + SXS catalog"
+    one_week_artifact: Reproduction plus spin-extension test
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: Extension or falsification of a proposed universal relation
+    publication_path: GitHub, Zenodo, arXiv gr-qc; PRD/CQG
+    required_upstreams: [sxs-catalog]
+
+  - id: aion-lens-search
+    rank: 3
+    domain: astronomy
+    question: Can robust semantic retrieval surface credible new strong-lens candidates?
+    starting_point: "arXiv:2512.11982 + github.com/NolanKoblischke/AION-Search"
+    one_week_artifact: Reproducible ranked candidate catalog
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: New celestial candidates (requires expert validation)
+    publication_path: GitHub, Zenodo; MNRAS/A&A after expert validation
+    required_upstreams: [aion-search]
+
+  - id: gw-validity-atlas
+    rank: 4
+    domain: gravitational-waves
+    question: Where do gravitational-wave surrogate models become unreliable?
+    starting_point: "arXiv:2605.11269 + github.com/tousifislam/gwBenchmarks"
+    one_week_artifact: Calibrated failure atlas and model
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: Trust map used by waveform practitioners
+    publication_path: GitHub, Zenodo; JOSS for tool or PRD/CQG for scientific result
+    required_upstreams: [gwbenchmarks]
+
+  - id: kerr-qnm-formula
+    rank: 5
+    domain: gravitational-waves
+    question: Can a compact symbolic formula approximate Kerr quasinormal modes at high accuracy?
+    starting_point: gwBenchmarks ringdown task + public QNM data/code
+    one_week_artifact: Compact expression, benchmark, error map
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: Compact-form discovery with rigorous error bounds
+    publication_path: GitHub, Zenodo, arXiv gr-qc; CQG/PRD
+    required_upstreams: [gwbenchmarks]
+
+  - id: eccentric-surrogate-audit
+    rank: 6
+    domain: gravitational-waves
+    question: Where does the published AI eccentric waveform surrogate fail out of distribution?
+    starting_point: "arXiv:2605.11280 + github.com/tousifislam/GWAgent"
+    one_week_artifact: Adversarial failure map and correction if found
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: OOD failure characterization of a published model
+    publication_path: GitHub, Zenodo, arXiv; PRD or MLST
+    required_upstreams: [gwagent]
+
+  - id: pta-gravity-speed
+    rank: 7
+    domain: gravitational-waves
+    question: What PTA precision is required to detect modified gravitational-wave phase velocity?
+    starting_point: "arXiv:2607.25672 + NANOGrav public analysis and discovery code"
+    one_week_artifact: Reproduced overlap curve and sensitivity forecast
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: Sensitivity forecast under explicit assumptions
+    publication_path: GitHub, Zenodo, arXiv; PRD/CQG
+    required_upstreams: [nanograv-15yr, nanograv-discovery]
+
+  - id: gwtc5-anomalies
+    rank: 8
+    domain: gravitational-waves
+    question: Which GWTC-5 events are anomalous after accounting for posterior uncertainty?
+    starting_point: "gwosc.org/GWTC-5.0 + API"
+    one_week_artifact: Posterior-aware anomaly catalog
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: Ranked anomaly catalog with uncertainty
+    publication_path: GitHub, Zenodo; ApJ/MNRAS/PRD if robust
+    required_upstreams: [gwosc]
+
+  - id: desi-dark-energy-audit
+    rank: 9
+    domain: cosmology
+    question: How sensitive is evolving-dark-energy evidence to datasets, priors, and exclusions?
+    starting_point: DESI DR2 public chains and products
+    one_week_artifact: Leave-one-dataset-out and prior-sensitivity atlas
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: Robustness atlas for a headline cosmology claim
+    publication_path: GitHub, Zenodo, arXiv astro-ph.CO; JCAP/PRD
+    required_upstreams: [desi-dr2]
+
+  - id: tess-calibration
+    rank: 10
+    domain: exoplanets
+    question: Can uncertainty calibration identify overlooked high-value TESS candidates?
+    starting_point: "github.com/nasa/Exominer + TESS public data"
+    one_week_artifact: Calibrated ranked candidate list
+    compute: home
+    readiness: needs setup
+    scientific_ceiling: Candidate list (not confirmed planets)
+    publication_path: GitHub, Zenodo; AJ/MNRAS after astronomical validation
+    required_upstreams: [exominer]

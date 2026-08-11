@@ -1,0 +1,15 @@
+# Template: release checklist (roadmap §13 page 7, §18)
+project_id: ""
+clean_clone_test: pending
+environment_lock: pending
+test_suite: pending
+citation_audit: pending
+license_audit: pending
+data_availability: pending
+ai_use_disclosure: pending
+figures_and_tables: pending
+repository_release: pending
+doi: pending
+preprint: pending
+journal_candidate: pending
+human_approval: pending      # publication is always a deliberate human action

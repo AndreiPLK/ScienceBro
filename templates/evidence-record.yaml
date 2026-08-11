@@ -1,0 +1,30 @@
+# Template: evidence record (append as JSONL line to projects/<id>/evidence/records.jsonl
+# or keep as YAML for drafting). Schema: sciencebro.schemas.EvidenceRecord
+id: EV-0000
+claim_id: null
+source:
+  type: arxiv-paper          # arxiv-paper | journal-paper | preprint | code-repository | dataset | documentation | webpage | book
+  identifier: ""             # DOI, arXiv ID, URL, or repo@commit
+  url: null
+  title: null
+location:
+  section: null
+  equation: null
+  figure: null
+  table: null
+  pages: null
+  code_lines: null
+access:
+  full_text: false
+  abstract_only: false
+  acquired_at: null
+  local_file: null
+  file_sha256: null
+paraphrase: ""
+support: context             # supporting | contradicting | context
+strength: unclassified
+limitations: []
+verified_by:
+  metadata: false
+  content: false
+  second_reader: false

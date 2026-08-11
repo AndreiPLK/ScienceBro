@@ -1,0 +1,15 @@
+# Template: validation result. Schema: sciencebro.schemas.ValidationResult
+id: VAL-0000
+experiment_id: EXP-0000
+validator: independent-validator
+independence_level: separate-formulation   # separate-formulation | separate-implementation | shared-dependency-documented
+checks:
+  known_answer: pending
+  negative_control: pending
+  hidden_points: pending
+  precision_convergence: pending
+  boundary_map: pending
+  signature: pending
+decision: pending            # pending | pass | fail | inconclusive
+allowed_claim_state: speculative
+blockers: []

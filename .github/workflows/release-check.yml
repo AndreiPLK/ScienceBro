@@ -1,0 +1,18 @@
+name: Release check
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --all-groups
+      - name: Release gate dry run (expected to fail until gates pass)
+        run: uv run sb release check ainstein-audit

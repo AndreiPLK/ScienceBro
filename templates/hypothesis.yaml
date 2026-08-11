@@ -1,0 +1,9 @@
+# Template: hypothesis. Schema: sciencebro.schemas.Hypothesis
+id: H-0000
+statement: ""
+null_hypothesis: ""
+predictions: []
+falsification: []
+confounders: []
+primary_metric: ""
+status: proposed             # proposed | frozen | tested | retired

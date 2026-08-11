@@ -1,0 +1,17 @@
+# Template: experiment manifest. Schema: sciencebro.schemas.Experiment
+id: EXP-0000
+hypothesis_id: H-0000
+status: draft                # draft | frozen | running | completed | failed
+code_commit: null
+upstream_commit: null
+environment_lock_hash: null
+command: null
+inputs: []
+outputs: []
+seeds: [0]
+precision: float64
+hardware: auto
+primary_metric: ""
+threshold: {}
+analysis_plan: null
+exploratory: false
