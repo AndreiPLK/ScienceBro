@@ -50,6 +50,7 @@ packages = ["sciencebro"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+extend-exclude = ["projects/*/upstream/checkout"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B"]
@@ -61,5 +62,5 @@ ignore_missing_imports = true
 check_untyped_defs = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "projects/ainstein-audit/verifier"]
 addopts = "-q"
