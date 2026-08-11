@@ -45,3 +45,4 @@ old entries; append corrections as new entries.
 - 16:05 — Article folder created (this file).
 - 18:00 — Baseline training milestone: epoch 100/500, loss 1.03e-3 (clean run, CPU BelowNormal).
 - 20:45 — Baseline training milestone: epoch 200/500, loss 7.64e-4.
+- 22:54 — Reboot for WSL2; CPU run preserved at epoch 275 (loss 7.04e-4, checkpoint sha 550a9463...). GPU env install in progress. Loss-curve visual saved.
