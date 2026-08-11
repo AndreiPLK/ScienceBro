@@ -5,8 +5,16 @@ code_commit: 6a2951e97ff55eb61c3eb7a4143ef96ff28e6327
 upstream_commit: 54736e466e54d948bd509b072e4047cf98405064
 environment_lock_hash: null  # upstream env is uv-managed separately; see INSPECTION.md
 command: >-
-  WANDB_MODE=disabled OMP_NUM_THREADS=6 TF_NUM_INTRAOP_THREADS=6 TF_NUM_INTEROP_THREADS=2
+  WANDB_MODE=disabled
   ../.venv-upstream/Scripts/python.exe run.py -c=hyperparameters/hps_schwarzschild.yaml
+deviations:
+  - "2026-08-11 ~21:10: first CPU attempt (thread-capped, BelowNormal) interrupted at
+    epoch 275 by the WSL2-install reboot; checkpoint preserved in results/raw/
+    schwarzschild-4d-cpu-epoch275-2026-08-11 (NOT used for the final run)."
+  - "2026-08-11 23:33: GPU attempt measured 17 min/epoch (float64 on consumer RTX,
+    1/64 FP64 rate) vs 1.7 min/epoch CPU — GPU abandoned, documented in DATA_LOG."
+  - "2026-08-11 23:35: final run is a CLEAN 500-epoch CPU run at full thread count
+    (night, machine dedicated); no warm restart, no thread caps."
 inputs:
   - "hyperparameters/hps_schwarzschild.yaml sha256=5e39a538964977537338eba8dd5d7793b7c7ba79f8d74f9e8917b623b867894d"
 outputs:
