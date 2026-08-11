@@ -45,13 +45,30 @@ def main() -> int:
 
     pts = np.load(args.points).astype(np.float64)
     vec = model(tf.constant(pts, dtype=tf.float64))
-    g = cholesky_from_vec(vec, lorentzian=lorentzian).numpy().astype(np.float64)
+    cls = type(model).__name__
+
+    if cls == "SchwarzschildGlobalModel":
+        # 4D embedding architecture (network/schwarzschild.py):
+        # inputs (N,5) = [T, X, q1, q2, patch_idx]; model returns 15 Cholesky
+        # components of the 5D ambient metric. Pull back to the 4D intrinsic
+        # metric with the analytic embedding Jacobian, exactly as
+        # SchwarzschildSupervisedWrapper.call does.
+        from geometry.schwarzschild import embedding_jacobian_stereo
+
+        q4 = tf.constant(pts[:, :4], dtype=tf.float64)
+        patch_idx = tf.cast(tf.constant(pts[:, 4]), tf.int32)
+        g5 = cholesky_from_vec(vec, lorentzian=lorentzian)          # (N,5,5)
+        jac = embedding_jacobian_stereo(q4, patch_idx)              # (N,5,4)
+        g = tf.einsum("sAB,sAm,sBn->smn", g5, jac, jac).numpy().astype(np.float64)
+    else:
+        # Direct local models: output is the Cholesky vector of the metric itself.
+        g = cholesky_from_vec(vec, lorentzian=lorentzian).numpy().astype(np.float64)
 
     np.save(args.out, g)
     meta = {
         "model_file": args.model,
         "model_sha256": hashlib.sha256(Path(args.model).read_bytes()).hexdigest(),
-        "model_class": type(model).__name__,
+        "model_class": cls,
         "n_points": int(pts.shape[0]),
         "in_dim": int(pts.shape[1]),
         "metric_dim": int(g.shape[-1]),

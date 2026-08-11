@@ -81,11 +81,21 @@ def export_points(model_path: str, points: np.ndarray) -> tuple[np.ndarray, dict
     return values, meta
 
 
-def tabulated_metric_for(model_path: str, compute, x: np.ndarray, dim: int, **kwargs):
+def tabulated_metric_for(
+    model_path: str,
+    compute,
+    x: np.ndarray,
+    dim: int,
+    extra_cols: list[float] | None = None,
+    **kwargs,
+):
     """Record the stencil of `compute(g, x, **kwargs)`, export it, and return
     (result, meta) computed on the tabulated exported metric.
 
     `compute` is any verifier geometry function taking (g, x, ...).
+    `extra_cols`: constant columns appended to every exported point but NOT part of
+    the differentiated coordinates (e.g. the patch index of the 4D embedding model,
+    whose exporter expects (T, X, q1, q2, patch_idx)).
     """
     rec = RecordingMetric(dim)
     try:
@@ -95,7 +105,11 @@ def tabulated_metric_for(model_path: str, compute, x: np.ndarray, dim: int, **kw
         # still recorded, which is all we need.
         pass
     pts = np.array(rec.points, dtype=np.float64)
-    values, meta = export_points(model_path, pts)
+    export_pts = pts
+    if extra_cols:
+        extra = np.tile(np.asarray(extra_cols, dtype=np.float64), (len(pts), 1))
+        export_pts = np.hstack([pts, extra])
+    values, meta = export_points(model_path, export_pts)
     table = {tuple(p): values[i] for i, p in enumerate(np.round(pts, 12))}
     result = compute(TabulatedMetric(table), x, **kwargs)
     return result, meta
