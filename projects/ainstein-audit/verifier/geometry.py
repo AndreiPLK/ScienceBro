@@ -13,17 +13,18 @@ from collections.abc import Callable
 
 import numpy as np
 
-# A MetricFunction maps coordinates x (shape (4,)) to metric components (4, 4).
+# A MetricFunction maps coordinates x (shape (n,)) to metric components (n, n).
+# Dimension is inferred from the input; 4D for GR, 2D for local models.
 MetricFunction = Callable[[np.ndarray], np.ndarray]
 
-DIM = 4
 
 
 def _d1(g: MetricFunction, x: np.ndarray, h: float) -> np.ndarray:
     """First derivatives d_c g_ab, shape (c, a, b), 4th-order central differences."""
-    out = np.empty((DIM, DIM, DIM))
-    for c in range(DIM):
-        e = np.zeros(DIM)
+    n = len(x)
+    out = np.empty((n, n, n))
+    for c in range(n):
+        e = np.zeros(n)
         e[c] = h
         out[c] = (
             -g(x + 2 * e) + 8 * g(x + e) - 8 * g(x - e) + g(x - 2 * e)
@@ -44,9 +45,10 @@ def christoffel(g: MetricFunction, x: np.ndarray, h: float = 3e-3) -> np.ndarray
 def riemann_tensor(g: MetricFunction, x: np.ndarray, h: float = 3e-3) -> np.ndarray:
     """Riemann tensor R^a_{bcd} via finite differences of Christoffel symbols."""
     gamma = christoffel(g, x, h)
-    dgamma = np.empty((DIM, DIM, DIM, DIM))  # dgamma[c, a, b, d] = d_c Gamma^a_{bd}
-    for c in range(DIM):
-        e = np.zeros(DIM)
+    n = len(x)
+    dgamma = np.empty((n, n, n, n))  # dgamma[c, a, b, d] = d_c Gamma^a_{bd}
+    for c in range(n):
+        e = np.zeros(n)
         e[c] = h
         dgamma[c] = (
             -christoffel(g, x + 2 * e, h)

@@ -1,0 +1,10 @@
+{
+  "model_file": "runs/dummy-kjjf3e3e_2026-08-11_13-51-44/final_model.keras",
+  "model_sha256": "752a7d8bbf9bd9cc7081b58f5fa5f181c1e9354db6b6a00799d1f69f7278ba1f",
+  "model_class": "SchwarzschildLocal2DModel",
+  "n_points": 4,
+  "in_dim": 2,
+  "metric_dim": 2,
+  "lorentzian": true,
+  "raw_output_dim": 3
+}
