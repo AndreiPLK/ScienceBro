@@ -43,3 +43,4 @@ old entries; append corrections as new entries.
 - 16:05 — Dashboard translated to English; game-style Mission Control (quest map,
   HUD, proof-gate chips). Screenshot: visuals/dashboard-mission-control-2026-08-11.png.
 - 16:05 — Article folder created (this file).
+- 18:00 — Baseline training milestone: epoch 100/500, loss 1.03e-3 (clean run, CPU BelowNormal).
