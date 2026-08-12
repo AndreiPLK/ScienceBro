@@ -1,0 +1,32 @@
+id: VAL-0002
+claim_id: CL-0002
+experiment_id: EXP-0003
+validator: independent-verifier (deterministic pipeline, no upstream imports)
+independence_level: separate-formulation
+date: 2026-08-12
+method: >-
+  Identical to VAL-0001: hidden points (seed derived from checkpoint sha256
+  e047b05f..., deterministic), independent FD evaluation against
+  THRESHOLDS_FROZEN.md (tag thresholds-frozen). Pipeline validity re-confirmed.
+measurements:
+  candidate_ricci_median: 0.2334
+  candidate_ricci_p95: 0.3194
+  candidate_ricci_max: 0.3488
+  frozen_median_limit: 0.286
+  frozen_p95_limit: 0.573
+  baseline_ricci_median: 0.123
+  fd_convergence_median_spread: 3.94e-06
+  signature_ok_fraction: 1.0
+decision: pass
+scope_and_limits: >-
+  PASS means: this retrained candidate (seed 124) meets the pre-frozen
+  vacuum-comparability, signature, and convergence criteria relative to our
+  reproduced Schwarzschild baseline. It does NOT establish that the metric is
+  algebraically general (Petrov type I), non-Schwarzschild, or a new solution —
+  those diagnostics (speciality index, invariant checks) are not yet independently
+  implemented. Combined with VAL-0001 (seed 123 FAIL, median 0.915), the committed
+  configuration exhibits ~4x seed-to-seed variability in independent vacuum quality.
+next: >-
+  (1) independent Petrov-type diagnostics (speciality index from our own Weyl
+  computation) for run2; (2) author checkpoints request (pending founder approval);
+  (3) more seeds if variability needs tighter bounds.

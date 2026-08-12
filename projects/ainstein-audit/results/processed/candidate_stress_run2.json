@@ -1,0 +1,71 @@
+{
+  "date": "2026-08-12",
+  "experiment": "EXP-0002",
+  "model_sha256": "e047b05f5778917b1dc92bdce467fd994f99900e302eb1d9a84c5351088527d6",
+  "hidden_seed": 1615310943,
+  "criteria": {
+    "c1_pipeline_validity": {
+      "pass": true,
+      "worst_ricci": 1.4851130103465948e-08,
+      "worst_k_rel": 1.1535316505025293e-08
+    },
+    "c2_vacuum_comparability": {
+      "pass": true,
+      "limits": [
+        0.286,
+        0.573
+      ]
+    },
+    "c3_signature": {
+      "pass": true
+    },
+    "c4_convergence": {
+      "pass": true,
+      "median_spread": 3.935943352013492e-06
+    },
+    "c5_float64": {
+      "pass": true,
+      "note": "exporter is float64-only"
+    },
+    "c6_negative_control": {
+      "pass": true
+    }
+  },
+  "hidden_stats_h3e-3": {
+    "h": 0.003,
+    "median": 0.23340763502219208,
+    "p95": 0.31936133902383046,
+    "p99": 0.34204197958191057,
+    "max": 0.3488066055224408,
+    "signature_ok_fraction": 1.0
+  },
+  "h_sweep": [
+    {
+      "h": 0.001,
+      "median": 0.2334076414692028,
+      "p95": 0.3193613852871015,
+      "p99": 0.3420419948385911,
+      "max": 0.34880661135106017,
+      "signature_ok_fraction": 1.0
+    },
+    {
+      "h": 0.01,
+      "median": 0.2334067227935639,
+      "p95": 0.319356141794323,
+      "p99": 0.34204050386531065,
+      "max": 0.3488061821390418,
+      "signature_ok_fraction": 1.0
+    }
+  ],
+  "negative_control_amp0.5": {
+    "h": 0.003,
+    "median": 0.8835833817899165,
+    "p95": 31.439177503292342,
+    "p99": 54.03181564147318,
+    "max": 60.066172197780865,
+    "signature_ok_fraction": 1.0
+  },
+  "frozen_thresholds": "validations/THRESHOLDS_FROZEN.md @ tag thresholds-frozen",
+  "verdict_under_frozen_criteria": "PASS",
+  "note": "PASS here means 'meets the frozen audit criteria relative to the reproduced Schwarzschild baseline'; it is NOT a confirmation of a new solution."
+}

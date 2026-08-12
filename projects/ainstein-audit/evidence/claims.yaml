@@ -24,8 +24,9 @@ claims:
     validation_ids: [VAL-0001]
     allowed_public_wording: null
     blockers:
-      - "First retrained candidate FAILED the frozen criteria (VAL-0001); the paper's own checkpoints remain unavailable — request to authors pending founder approval."
-      - "Seed-to-seed variability being measured (EXP-0003, seed 124, running)."
+      - "Seed 123 FAILED, seed 124 PASSED the frozen vacuum criteria (VAL-0001/0002) — vacuum comparability achieved for one of two seeds."
+      - "Petrov-type (algebraic generality) and non-Schwarzschild diagnostics not yet independently implemented — required before this claim can advance."
+      - "The paper's own checkpoints remain unavailable — request to authors pending founder approval."
 
   - id: CL-0003
     statement: >-
@@ -47,5 +48,5 @@ claims:
       says nothing definitive about the authors' own (unpublished) candidate
       checkpoints.
     blockers:
-      - "Single seed so far; EXP-0003 (seed 124) running to measure variability."
+      - "Seed 124 replicate PASSED the same criteria (VAL-0002): the FAIL is seed-specific, not config-universal — statement scope narrowed accordingly."
       - "Not independently validated by a second implementation or reviewer yet."
