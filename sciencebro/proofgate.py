@@ -253,7 +253,7 @@ def _stage3(paths: RepoPaths, project_id: str) -> GateResult:
     proj = paths.project_dir(project_id)
     checks: dict[str, tuple[str, str]] = {}
 
-    frozen_cfg = proj / "experiments" / "hps_petrovI_bh_frozen.yaml"
+    frozen_cfg = proj / "experiments" / "configs" / "hps_petrovI_bh_frozen.yaml"
     exp2 = proj / "experiments" / "EXP-0002.yaml"
     if frozen_cfg.exists() and exp2.exists():
         checks["frozen-config"] = ("pass", f"EXP-0002 + config sha {_sha256(frozen_cfg)[:16]}")

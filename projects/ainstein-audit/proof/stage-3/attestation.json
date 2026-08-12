@@ -3,23 +3,23 @@
   "stage_id": "stage-3",
   "title": "Candidate generation",
   "label": "SCIENTIFIC",
-  "status": "IN PROGRESS",
-  "verified_at": "2026-08-12T17:46:49.530137+00:00",
-  "git_commit": "60a9f7567dc96ff15d18e686dfe9e80a326712df",
+  "status": "VERIFIED",
+  "verified_at": "2026-08-12T17:47:42.354529+00:00",
+  "git_commit": "8125771be4be0a144a31aa7a03bfab735821dab7",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [
     {
       "id": "frozen-config",
       "description": "training config frozen before run",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "EXP-0002 + config sha 4611a31caf4f0d60"
     },
     {
       "id": "seed",
       "description": "exact seed recorded",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "np/tf seed 123 (as committed by upstream)"
     },
     {
       "id": "checkpoint-hash",
@@ -47,6 +47,8 @@
     }
   ],
   "artifact_hashes": {
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\experiments\\configs\\hps_petrovI_bh_frozen.yaml": "4611a31caf4f0d60b90f7005b5feb6c71fbc6e7fb938363cdd4b31eab9245591",
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\experiments\\EXP-0002.yaml": "ff7d613ee28ede54824ca563a5a9795afdf345ce06efa5193c51110426f1bbd2",
     "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\raw\\petrovI-bh-run1\\final_model.keras": "fd56f1709961f3e324baf5a041c4a2ed62c702049d9088c3b4e85e1ddf7ef52d",
     "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\validations\\THRESHOLDS_FROZEN.md": "230d1e04855ec4e618a064798cdc10c054524ab6be12592ff8061ec460ee9aeb"
   },

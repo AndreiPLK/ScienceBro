@@ -4,8 +4,8 @@
   "title": "Scientific verdict",
   "label": "SCIENTIFIC",
   "status": "IN PROGRESS",
-  "verified_at": "2026-08-12T17:46:49.564666+00:00",
-  "git_commit": "60a9f7567dc96ff15d18e686dfe9e80a326712df",
+  "verified_at": "2026-08-12T17:47:42.388071+00:00",
+  "git_commit": "8125771be4be0a144a31aa7a03bfab735821dab7",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [
