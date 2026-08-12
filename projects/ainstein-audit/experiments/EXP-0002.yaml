@@ -1,0 +1,27 @@
+id: EXP-0002
+hypothesis_id: H-0001
+status: frozen
+code_commit: recorded-at-launch  # updated in outputs on completion
+upstream_commit: 54736e466e54d948bd509b072e4047cf98405064
+command: >-
+  WANDB_MODE=disabled ../.venv-upstream/Scripts/python.exe run.py
+  -c=C:/Users/user/ScienceBro/projects/ainstein-audit/experiments/hps_petrovI_bh_frozen.yaml
+inputs:
+  - "experiments/hps_petrovI_bh_frozen.yaml sha256=4611a31caf4f0d60 (full hash in git)"
+outputs: []
+seeds: [123]  # np/tf seeds as committed by upstream authors
+precision: float64
+hardware: "Windows 11 AMD64, TF 2.21.0 CPU (full threads, night)"
+primary_metric: normalized_independent_einstein_residual
+threshold:
+  type: frozen
+  note: "validations/THRESHOLDS_FROZEN.md (git tag thresholds-frozen) — frozen BEFORE this run started."
+analysis_plan: >-
+  Petrov type-I BH search exactly as upstream committed (hps_petrovI_bh.yaml @54736e46)
+  with ONE documented deviation: epochs 10 -> 500 (10 is a debug leftover; upstream's
+  own history fixed the same value for the Schwarzschild config in commit 8d9def6 but
+  not for petrovI). Paper Table VII specifies only loss-weight deviations from the
+  Schwarzschild experiment. On completion: hash checkpoint; evaluate on fresh hidden
+  points with seed = sha256(checkpoint) mod 2^31; apply frozen criteria 1-6; every
+  outcome (pass/fail/inconclusive) is preserved and reported.
+exploratory: false
