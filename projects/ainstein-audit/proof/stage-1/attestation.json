@@ -4,8 +4,8 @@
   "title": "Research infrastructure",
   "label": "ENGINEERING",
   "status": "VERIFIED",
-  "verified_at": "2026-08-12T10:20:25.898610+00:00",
-  "git_commit": "309a3e96a846cd3d17d8e7028e0bc251679dac20",
+  "verified_at": "2026-08-12T17:46:49.488348+00:00",
+  "git_commit": "60a9f7567dc96ff15d18e686dfe9e80a326712df",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [

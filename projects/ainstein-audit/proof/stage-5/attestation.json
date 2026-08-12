@@ -4,8 +4,8 @@
   "title": "Scientific verdict",
   "label": "SCIENTIFIC",
   "status": "IN PROGRESS",
-  "verified_at": "2026-08-12T10:20:46.052531+00:00",
-  "git_commit": "309a3e96a846cd3d17d8e7028e0bc251679dac20",
+  "verified_at": "2026-08-12T17:46:49.564666+00:00",
+  "git_commit": "60a9f7567dc96ff15d18e686dfe9e80a326712df",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [
@@ -13,25 +13,25 @@
       "id": "claim-evidence",
       "description": "complete claim-to-evidence mapping",
       "status": "pass",
-      "measured": "2 promoted claims, all mapped to evidence/experiments"
+      "measured": "3 promoted claims, all mapped to evidence/experiments"
     },
     {
       "id": "independent-validation",
       "description": "independent validation decision recorded",
       "status": "pass",
-      "measured": "VAL-0001:fail, VAL-0002:pass, VAL-0003:pass, VAL-0004:pass"
+      "measured": "VAL-0001:fail, VAL-0002:pass, VAL-0003:pass, VAL-0004:pass, VAL-0005:pass"
     },
     {
       "id": "contradictions",
       "description": "all contradictions and limitations recorded",
       "status": "pass",
-      "measured": "2 promoted claims record their own limitations openly"
+      "measured": "3 promoted claims record their own limitations openly"
     },
     {
       "id": "wording",
       "description": "exact allowed public wording fixed",
       "status": "pass",
-      "measured": "2/2 promoted claims carry exact allowed wording"
+      "measured": "3/3 promoted claims carry exact allowed wording"
     },
     {
       "id": "expert-review",
@@ -43,14 +43,15 @@
       "id": "decision",
       "description": "PASS / FAIL / INCONCLUSIVE recorded",
       "status": "pass",
-      "measured": "3 pass / 1 fail recorded"
+      "measured": "4 pass / 1 fail recorded"
     }
   ],
   "artifact_hashes": {
     "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\validations\\VAL-0001.yaml": "7b24fc2bc8d99cda094efae2ac615e0532226f7fd37f132704cb6709d279b6d2",
     "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\validations\\VAL-0002.yaml": "362c51657ce2050074e785ba53bc05242a2c5fdcd3f2bda9491151923765c5aa",
     "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\validations\\VAL-0003.yaml": "4fbf3b03a9f13de83a68d62cabb83bef21c453716fcea0b2608c02378c0b886e",
-    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\validations\\VAL-0004.yaml": "eba67b2e3de83a80bd4f218d6f0a93bea112cba403dd557f457fefe33d9cf716"
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\validations\\VAL-0004.yaml": "eba67b2e3de83a80bd4f218d6f0a93bea112cba403dd557f457fefe33d9cf716",
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\validations\\VAL-0005.yaml": "0409ab586164496ed7096672698875c42f20a9bc87fe4ee1642aad56fd2dfd8a"
   },
   "allowed_public_claim": "No scientific verdict exists yet. NEEDS EXPERT REVIEW will apply until qualified external review happens."
 }
