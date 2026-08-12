@@ -20,10 +20,32 @@ claims:
     state: speculative
     evidence_ids: []
     contradicting_evidence_ids: []
-    experiment_ids: []
-    validation_ids: []
+    experiment_ids: [EXP-0002]
+    validation_ids: [VAL-0001]
     allowed_public_wording: null
     blockers:
-      - "No independent evaluation of a PAPER candidate yet (pipeline PASS on analytic route 2026-08-11: 4D floor ~1e-8)."
-      - "No published candidate checkpoints in the repo — retrain locally (hps_petrovI_*.yaml) or request from authors (draft letter ready, awaiting founder approval)."
-      - "Schwarzschild known-answer baseline training incomplete (31/500 epochs; night CPU run or WSL2 GPU pending)."
+      - "First retrained candidate FAILED the frozen criteria (VAL-0001); the paper's own checkpoints remain unavailable — request to authors pending founder approval."
+      - "Seed-to-seed variability being measured (EXP-0003, seed 124, running)."
+
+  - id: CL-0003
+    statement: >-
+      A Petrov type-I black-hole candidate retrained verbatim from the committed
+      upstream configuration (hps_petrovI_bh.yaml @54736e46, seed 123, 500 epochs,
+      one documented epochs fix) does NOT meet the pre-frozen vacuum-comparability
+      criteria under independent finite-difference evaluation on hidden points:
+      max|Ricci| median 0.915 vs frozen limit 0.286 and reproduced Schwarzschild
+      baseline 0.123, with FD-converged residuals and valid Lorentzian signature.
+    state: experimentally-supported
+    evidence_ids: [EV-0001]
+    contradicting_evidence_ids: []
+    experiment_ids: [EXP-0001, EXP-0002]
+    validation_ids: [VAL-0001]
+    allowed_public_wording: >-
+      In our independent re-training of the committed AInstein black-hole
+      configuration, the resulting candidate did not reach the vacuum quality of our
+      reproduced Schwarzschild baseline under identical independent evaluation. This
+      says nothing definitive about the authors' own (unpublished) candidate
+      checkpoints.
+    blockers:
+      - "Single seed so far; EXP-0003 (seed 124) running to measure variability."
+      - "Not independently validated by a second implementation or reviewer yet."
