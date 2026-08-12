@@ -52,3 +52,4 @@ old entries; append corrections as new entries.
 - 01:05 — night2: epoch 200/500, loss 7.62e-4.
 - 01:47 — night2: epoch 300/500, loss 6.78e-4.
 - 02:30 — night2: epoch 400/500, loss 5.91e-4. Final 100 epochs ~45 min.
+- 03:55 — EXP-0001 artifacts preserved (ckpt sha 7651ff3d, seeds 66/66). Hidden-point stress: Ricci median 0.123 / p95 0.286 / max 0.297; K err <=1.34%; signature 24/24. Detection floor: bump amp 0.2 (max 0.58) detectable, 0.05 not. THRESHOLDS FROZEN + git tag before any candidate. EXP-0002 (Petrov-I BH, upstream config verbatim + documented epochs fix) LAUNCHED ~03:50.

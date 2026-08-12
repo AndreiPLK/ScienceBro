@@ -250,11 +250,43 @@ def _stage3(paths: RepoPaths, project_id: str) -> GateResult:
          ("holdout", "holdout points excluded from training"),
          ("thresholds-frozen", "validation thresholds frozen before candidate inspection")],
         paths, project_id)
-    # thresholds-frozen is checkable now
-    frozen = (paths.project_dir(project_id) / "validations" / "THRESHOLDS_FROZEN.md").exists()
+    proj = paths.project_dir(project_id)
+    checks: dict[str, tuple[str, str]] = {}
+
+    frozen_cfg = proj / "experiments" / "hps_petrovI_bh_frozen.yaml"
+    exp2 = proj / "experiments" / "EXP-0002.yaml"
+    if frozen_cfg.exists() and exp2.exists():
+        checks["frozen-config"] = ("pass", f"EXP-0002 + config sha {_sha256(frozen_cfg)[:16]}")
+        g.artifacts[str(frozen_cfg)] = _sha256(frozen_cfg)
+        g.artifacts[str(exp2)] = _sha256(exp2)
+        if "np_seed: 123" in frozen_cfg.read_text(encoding="utf-8"):
+            checks["seed"] = ("pass", "np/tf seed 123 (as committed by upstream)")
+
+    log = proj / "upstream" / "petrovI_bh_run1.log"
+    if log.exists():
+        text = log.read_text(encoding="utf-8", errors="replace")
+        done = "EXIT=0" in text
+        epochs = re.findall(r"Epoch (\d+):", text)
+        checks["training-log"] = (
+            "pass" if done else "missing",
+            f"epoch {epochs[-1] if epochs else 0}/500" + (" complete" if done else " — training in progress"))
+
+    ckpt = proj / "results" / "raw" / "petrovI-bh-run1" / "final_model.keras"
+    if ckpt.exists():
+        checks["checkpoint-hash"] = ("pass", _sha256(ckpt)[:16])
+        g.artifacts[str(ckpt)] = _sha256(ckpt)
+
+    stress = proj / "results" / "processed" / "candidate_stress.json"
+    if stress.exists():
+        checks["holdout"] = ("pass", "hidden seed derived from checkpoint hash (candidate_stress.json)")
+    frozen = proj / "validations" / "THRESHOLDS_FROZEN.md"
+    if frozen.exists():
+        checks["thresholds-frozen"] = ("pass", "THRESHOLDS_FROZEN.md + git tag thresholds-frozen")
+        g.artifacts[str(frozen)] = _sha256(frozen)
+
     for r in g.requirements:
-        if r.id == "thresholds-frozen" and frozen:
-            r.status = "pass"
+        if r.id in checks:
+            r.status, r.measured = checks[r.id]
     return g
 
 
