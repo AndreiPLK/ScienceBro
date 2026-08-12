@@ -2,16 +2,16 @@ stage_id: stage-3
 title: Candidate generation
 label: SCIENTIFIC
 question: Was a Petrov-I candidate trained under a frozen configuration with holdout points?
-status: VERIFIED
+status: IN PROGRESS
 requirements:
   - id: frozen-config
     description: training config frozen before run
-    status: pass
-    measured: "EXP-0002 + config sha 4611a31caf4f0d60"
+    status: missing
+    measured: ""
   - id: seed
     description: exact seed recorded
-    status: pass
-    measured: "np/tf seed 123 (as committed by upstream)"
+    status: missing
+    measured: ""
   - id: checkpoint-hash
     description: checkpoint sha256 recorded
     status: pass

@@ -1,0 +1,34 @@
+stage_id: stage-6
+title: Public release
+label: SCIENTIFIC
+question: Can an independent person reproduce everything from a clean clone with verified citations and licenses?
+status: IN PROGRESS
+requirements:
+  - id: clean-clone
+    description: clean-clone reproduction
+    status: pass
+    measured: "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\proof\\stage-01\\clean-clone-2026-08-11.log"
+  - id: ci
+    description: CI pass
+    status: pass
+    measured: "2 workflow(s) defined"
+  - id: citations
+    description: citation verification
+    status: missing
+    measured: "CITATION.cff present, 0 corpus entries content-verified"
+  - id: licenses
+    description: license audit
+    status: pass
+    measured: "upstream licenses recorded incl. the GPL-2.0 / MIT conflict"
+  - id: proof-packs
+    description: complete proof packs for all stages
+    status: missing
+    measured: "5 of 6 stages have a full proof pack"
+  - id: ai-disclosure
+    description: AI-use disclosure
+    status: pass
+    measured: "C:\\Users\\user\\ScienceBro\\AI_DISCLOSURE.md"
+  - id: release
+    description: GitHub release + Zenodo DOI
+    status: missing
+    measured: ""

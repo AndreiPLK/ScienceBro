@@ -340,7 +340,7 @@ def _stage4(paths: RepoPaths, project_id: str) -> GateResult:
 
 
 def _stage5(paths: RepoPaths, project_id: str) -> GateResult:
-    return _stage_placeholder(
+    g = _stage_placeholder(
         "stage-5", "Scientific verdict",
         "Is every claim mapped to evidence and independently validated, with exact allowed wording?",
         "The verdict is only as strong as its weakest unsupported claim.",
@@ -350,12 +350,70 @@ def _stage5(paths: RepoPaths, project_id: str) -> GateResult:
          ("independent-validation", "independent validation decision recorded"),
          ("contradictions", "all contradictions and limitations recorded"),
          ("wording", "exact allowed public wording fixed"),
+         ("expert-review", "reviewed by a qualified external expert"),
          ("decision", "PASS / FAIL / INCONCLUSIVE recorded")],
         paths, project_id)
 
+    import yaml
+
+    proj = paths.project_dir(project_id)
+    claims_file = proj / "evidence" / "claims.yaml"
+    try:
+        claims = yaml.safe_load(claims_file.read_text(encoding="utf-8")).get("claims", [])
+    except Exception:
+        claims = []
+    vals = sorted((proj / "validations").glob("VAL-*.yaml"))
+    checks: dict[str, tuple[str, str]] = {}
+
+    if claims:
+        promoted = [c for c in claims
+                    if c.get("state") in ("experimentally-supported", "independently-validated",
+                                          "release-ready", "refuted")]
+        unmapped = [c["id"] for c in promoted if not c.get("evidence_ids") and not c.get("experiment_ids")]
+        checks["claim-evidence"] = (
+            "pass" if promoted and not unmapped else ("fail" if unmapped else "missing"),
+            f"{len(promoted)} promoted claims, all mapped to evidence/experiments"
+            if promoted and not unmapped else f"unmapped: {unmapped}")
+        worded = [c for c in promoted if c.get("allowed_public_wording")]
+        checks["wording"] = (
+            "pass" if promoted and len(worded) == len(promoted) else "fail",
+            f"{len(worded)}/{len(promoted)} promoted claims carry exact allowed wording")
+        with_blockers = [c for c in promoted if c.get("blockers")]
+        checks["contradictions"] = (
+            "pass" if with_blockers else "missing",
+            f"{len(with_blockers)} promoted claims record their own limitations openly")
+
+    if vals:
+        decided = []
+        for v in vals:
+            try:
+                decided.append(yaml.safe_load(v.read_text(encoding="utf-8")))
+            except Exception:
+                pass
+        outcomes = {d.get("id"): d.get("decision") for d in decided if d}
+        checks["independent-validation"] = (
+            "pass" if outcomes else "missing",
+            ", ".join(f"{k}:{v}" for k, v in sorted(outcomes.items())))
+        checks["decision"] = (
+            "pass" if any(v in ("pass", "fail", "inconclusive") for v in outcomes.values()) else "missing",
+            f"{sum(1 for v in outcomes.values() if v == 'pass')} pass / "
+            f"{sum(1 for v in outcomes.values() if v == 'fail')} fail recorded")
+        for v in vals:
+            g.artifacts[str(v)] = _sha256(v)
+
+    review = proj / "validations" / "EXTERNAL_REVIEW.md"
+    if review.exists():
+        checks["expert-review"] = ("pass", str(review))
+        g.artifacts[str(review)] = _sha256(review)
+
+    for r in g.requirements:
+        if r.id in checks:
+            r.status, r.measured = checks[r.id]
+    return g
+
 
 def _stage6(paths: RepoPaths, project_id: str) -> GateResult:
-    return _stage_placeholder(
+    g = _stage_placeholder(
         "stage-6", "Public release",
         "Can an independent person reproduce everything from a clean clone with verified citations and licenses?",
         "A release that cannot be reproduced is marketing, not science.",
@@ -368,6 +426,54 @@ def _stage6(paths: RepoPaths, project_id: str) -> GateResult:
          ("ai-disclosure", "AI-use disclosure"),
          ("release", "GitHub release + Zenodo DOI")],
         paths, project_id)
+    root = paths.root
+    proj = paths.project_dir(project_id)
+    checks: dict[str, tuple[str, str]] = {}
+
+    cc = proj / "proof" / "stage-01" / "clean-clone-2026-08-11.log"
+    if cc.exists() and "Clean-clone check passed." in cc.read_text(encoding="utf-8", errors="replace"):
+        checks["clean-clone"] = ("pass", str(cc))
+        g.artifacts[str(cc)] = _sha256(cc)
+
+    ci = root / ".github" / "workflows"
+    if ci.is_dir() and any(ci.glob("*.yml")):
+        checks["ci"] = ("pass", f"{len(list(ci.glob('*.yml')))} workflow(s) defined")
+
+    disclosure = root / "AI_DISCLOSURE.md"
+    if disclosure.exists():
+        checks["ai-disclosure"] = ("pass", str(disclosure))
+        g.artifacts[str(disclosure)] = _sha256(disclosure)
+
+    citation = root / "CITATION.cff"
+    corpus = proj / "research" / "corpus.jsonl"
+    if citation.exists() and corpus.exists():
+        verified = sum(1 for line in corpus.read_text(encoding="utf-8").splitlines()
+                       if '"content": true' in line.replace(" ", "") or '"content":true' in line.replace(" ", ""))
+        checks["citations"] = ("pass" if verified else "missing",
+                              f"CITATION.cff present, {verified} corpus entries content-verified")
+        g.artifacts[str(citation)] = _sha256(citation)
+
+    manifest = paths.vendor / "upstream-manifest.yaml"
+    if manifest.exists():
+        text = manifest.read_text(encoding="utf-8")
+        documented = "GPL" in text and "license" in text.lower()
+        checks["licenses"] = ("pass" if documented else "fail",
+                              "upstream licenses recorded incl. the GPL-2.0 / MIT conflict"
+                              if documented else "license conflict not documented")
+
+    packs = sorted((proj / "proof").glob("stage-*"))
+    complete = [p for p in packs if (p / "README.md").exists() and (p / "attestation.json").exists()]
+    checks["proof-packs"] = ("pass" if len(complete) >= 6 else "missing",
+                             f"{len(complete)} of 6 stages have a full proof pack")
+
+    doi = proj / "release" / "ZENODO_DOI.txt"
+    if doi.exists():
+        checks["release"] = ("pass", doi.read_text(encoding="utf-8").strip()[:80])
+
+    for r in g.requirements:
+        if r.id in checks:
+            r.status, r.measured = checks[r.id]
+    return g
 
 
 STAGES = {

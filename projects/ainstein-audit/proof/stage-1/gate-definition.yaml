@@ -1,0 +1,22 @@
+stage_id: stage-1
+title: Research infrastructure
+label: ENGINEERING
+question: Does a clean clone reproduce the environment, schemas, tests and provenance tracking?
+status: VERIFIED
+requirements:
+  - id: env-lock
+    description: uv.lock present
+    status: pass
+    measured: "11704d4fd8fa9376"
+  - id: clean-clone
+    description: clean-clone reproduction log
+    status: pass
+    measured: "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\proof\\stage-01\\clean-clone-2026-08-11.log"
+  - id: unit-tests
+    description: schema/gate unit tests pass
+    status: pass
+    measured: "..................                                                       [100%]"
+  - id: provenance
+    description: upstream manifest with pinned commits
+    status: pass
+    measured: "C:\\Users\\user\\ScienceBro\\vendor\\upstream-manifest.yaml"

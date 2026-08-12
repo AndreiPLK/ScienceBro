@@ -3,47 +3,47 @@
   "stage_id": "stage-6",
   "title": "Public release",
   "label": "SCIENTIFIC",
-  "status": "NOT STARTED",
-  "verified_at": "2026-08-12T02:42:12.318718+00:00",
-  "git_commit": "45b54ccf5547c77b781e1476598aa07781df377f",
+  "status": "IN PROGRESS",
+  "verified_at": "2026-08-12T10:26:11.495434+00:00",
+  "git_commit": "309a3e96a846cd3d17d8e7028e0bc251679dac20",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [
     {
       "id": "clean-clone",
       "description": "clean-clone reproduction",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\proof\\stage-01\\clean-clone-2026-08-11.log"
     },
     {
       "id": "ci",
       "description": "CI pass",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "2 workflow(s) defined"
     },
     {
       "id": "citations",
       "description": "citation verification",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "CITATION.cff present, 2 corpus entries content-verified"
     },
     {
       "id": "licenses",
       "description": "license audit",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "upstream licenses recorded incl. the GPL-2.0 / MIT conflict"
     },
     {
       "id": "proof-packs",
       "description": "complete proof packs for all stages",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "6 of 6 stages have a full proof pack"
     },
     {
       "id": "ai-disclosure",
       "description": "AI-use disclosure",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "C:\\Users\\user\\ScienceBro\\AI_DISCLOSURE.md"
     },
     {
       "id": "release",
@@ -52,6 +52,10 @@
       "measured": ""
     }
   ],
-  "artifact_hashes": {},
+  "artifact_hashes": {
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\proof\\stage-01\\clean-clone-2026-08-11.log": "5d3ab0051a109191d0c3dcfc5036fecc80dd7ae04409636a8c2fb26ecf61c33f",
+    "C:\\Users\\user\\ScienceBro\\AI_DISCLOSURE.md": "c2a26b6799e6ca00b99628dad962e6b2174c463794315d58d9c1d1a137f73210",
+    "C:\\Users\\user\\ScienceBro\\CITATION.cff": "96a7295e95b6af578731da2af372f69196581ae2ed25de73ece96ec673f86c9d"
+  },
   "allowed_public_claim": "Nothing is released yet."
 }

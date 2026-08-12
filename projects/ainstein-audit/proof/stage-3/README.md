@@ -1,21 +1,20 @@
 # Proof pack: Candidate generation (stage-3)
 
-**Status: VERIFIED**
+**Status: IN PROGRESS**
 
 **Question:** Was a Petrov-I candidate trained under a frozen configuration with holdout points?
 
 **Why it matters:** Unfrozen configs or leaked holdout points would invalidate the audit.
 
 ## What passed
-- training config frozen before run: EXP-0002 + config sha 4611a31caf4f0d60
-- exact seed recorded: np/tf seed 123 (as committed by upstream)
 - checkpoint sha256 recorded: fd56f1709961f3e3
 - immutable training log preserved: epoch 500/500 complete
 - holdout points excluded from training: hidden seed derived from checkpoint hash (candidate_stress.json)
 - validation thresholds frozen before candidate inspection: THRESHOLDS_FROZEN.md + git tag thresholds-frozen
 
 ## What is not settled
-- nothing — all requirements passed
+- training config frozen before run (missing): 
+- exact seed recorded (missing): 
 
 ## How to reproduce
 Run `commands.sh` (POSIX) or `commands.ps1` (Windows) from the repository root.

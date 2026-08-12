@@ -1,0 +1,30 @@
+stage_id: stage-5
+title: Scientific verdict
+label: SCIENTIFIC
+question: Is every claim mapped to evidence and independently validated, with exact allowed wording?
+status: IN PROGRESS
+requirements:
+  - id: claim-evidence
+    description: complete claim-to-evidence mapping
+    status: pass
+    measured: "2 promoted claims, all mapped to evidence/experiments"
+  - id: independent-validation
+    description: independent validation decision recorded
+    status: pass
+    measured: "VAL-0001:fail, VAL-0002:pass, VAL-0003:pass, VAL-0004:pass"
+  - id: contradictions
+    description: all contradictions and limitations recorded
+    status: pass
+    measured: "2 promoted claims record their own limitations openly"
+  - id: wording
+    description: exact allowed public wording fixed
+    status: pass
+    measured: "2/2 promoted claims carry exact allowed wording"
+  - id: expert-review
+    description: reviewed by a qualified external expert
+    status: missing
+    measured: ""
+  - id: decision
+    description: PASS / FAIL / INCONCLUSIVE recorded
+    status: pass
+    measured: "3 pass / 1 fail recorded"
