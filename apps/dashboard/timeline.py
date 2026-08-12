@@ -162,31 +162,80 @@ def build_steps(proj: Path) -> list[Step]:
             steps.append(Step("Candidates", "Finding: the authors' recipe is seed-unstable",
                               DONE, f"{ratio:.1f}x spread between two seeds — measured, recorded in VAL-0001/0002"))
 
-    # ---------- next scientific steps (honest TODO with artifact-based checks)
+    # ---------- geometry identity: is it actually a new kind of black hole
     petrov = _j(proc / "petrov_diagnostics.json")
-    steps.append(Step("Next", "Check if candidate #2 is a genuinely NEW type of geometry",
-                      DONE if petrov else NEXT,
-                      "independent Petrov/speciality-index diagnostics recorded" if petrov
-                      else "our own Weyl-invariant implementation needed — this is what turns a "
-                           "PASS into a scientific statement",
-                      "" if petrov else "~3-5 h of work"))
+    if petrov:
+        cand = petrov.get("candidate_seed124", {}).get("rows", [])
+        s_vals = [r["S_real"] for r in cand if "S_real" in r]
+        ctrl = petrov.get("nn_schwarzschild_baseline", {}).get("rows", [])
+        floor = max((r["abs_S_minus_1"] for r in ctrl if "abs_S_minus_1" in r), default=None)
+        steps.append(Step("Identity", "Is it a genuinely different geometry, or Schwarzschild in disguise?",
+                          DONE, f"speciality index {min(s_vals):.2f}-{max(s_vals):.2f} vs exactly 1 for "
+                                f"Schwarzschild (trained-network floor {floor:.1e})"
+                          if s_vals and floor else "measured"))
+    else:
+        steps.append(Step("Identity", "Is it a genuinely different geometry, or Schwarzschild in disguise?",
+                          NEXT, "our own Weyl-invariant implementation needed", "~3 h"))
+
+    horizon = _j(proc / "horizon_diagnostics.json")
+    if horizon:
+        rows = horizon.get("candidate_seed124", {}).get("rows", [])
+        tr = sum(1 for r in rows if r.get("classification") == "future-trapped")
+        steps.append(Step("Identity", "Does it actually trap light, like a black hole must?",
+                          DONE, f"{tr}/{len(rows)} probe points future-trapped; the same test "
+                                f"reproduces the textbook horizon on two controls"))
+    else:
+        steps.append(Step("Identity", "Does it actually trap light, like a black hole must?",
+                          TODO, "trapped-surface diagnostics not run yet", "~2 h"))
+
+    shape = _j(proc / "horizon_shape.json")
+    steps.append(Step("Identity", "How does its horizon shape differ from Schwarzschild's?",
+                      DONE if shape else TODO,
+                      "Xi = 0 surface located per model by bisection" if shape
+                      else "bisection script ready, runs after the seed sweep", "" if shape else "~1 h"))
+
+    # ---------- reproducibility of the recipe
+    sweep = _j(proc / "seed_sweep.json")
+    trained = len(list((proj / "results" / "raw").glob("petrovI-bh-*")))
+    if sweep:
+        steps.append(Step("Reproducibility", "How often does the recipe actually work?",
+                          DONE, f"{sweep['n_satisfying_all_three']} of {sweep['n_seeds']} seeds "
+                                f"satisfy vacuum + type I + trapping"))
+    else:
+        steps.append(Step("Reproducibility", "How often does the recipe actually work?",
+                          RUNNING if trained < 5 else NEXT,
+                          f"{trained} of 5 candidate seeds trained; the sweep evaluates all three "
+                          f"legs per seed", "~25 min each" if trained < 5 else "~40 min"))
 
     letter_sent = (proj / "release" / "author-reply.md").exists()
-    steps.append(Step("Next", "Get the authors' own trained models",
+    steps.append(Step("Reproducibility", "Test the authors' own trained models",
                       DONE if letter_sent else WAITING,
                       "reply received" if letter_sent
-                      else "letter drafted in your Gmail — needs your Send; without their "
-                           "checkpoints we can only audit our own retrains",
-                      "" if letter_sent else "days (their reply)"))
+                      else "letter sent 2026-08-12; their checkpoints were never published, so "
+                           "until they reply we audit the recipe, not their output",
+                      "" if letter_sent else "their reply"))
 
-    seeds = len(list(proc.glob("candidate_stress*.json")))
-    steps.append(Step("Next", "More seeds to bound the instability properly",
-                      DONE if seeds >= 5 else TODO,
-                      f"{seeds} seeds evaluated; 5+ gives a defensible spread", "~1.5 h per seed"))
+    # ---------- release
+    disclosure = (proj.parents[1] / "AI_DISCLOSURE.md").exists()
+    packs = [p for p in sorted((proj / "proof").glob("stage-*"))
+             if (p / "README.md").exists() and (p / "attestation.json").exists()]
+    steps.append(Step("Release", "Proof packs, citations, licences, AI disclosure",
+                      DONE if (len(packs) >= 6 and disclosure) else TODO,
+                      f"{len(packs)}/6 stages carry a full proof pack with attestation"
+                      + ("; AI use disclosed" if disclosure else "")))
 
-    steps.append(Step("Release", "Public release package (GitHub + Zenodo DOI)",
-                      TODO, "needs the Petrov diagnostics and a settled verdict first",
-                      "after the verdict"))
+    doi = (proj / "release" / "ZENODO_DOI.txt").exists()
+    review = (proj / "validations" / "EXTERNAL_REVIEW.md").exists()
+    steps.append(Step("Release", "Expert review by a qualified relativist",
+                      DONE if review else WAITING,
+                      "review recorded" if review
+                      else "nobody with the right training has checked this yet, so it stays an "
+                           "independent measurement rather than accepted physics"))
+    steps.append(Step("Release", "Public release with a citable DOI",
+                      DONE if doi else TODO,
+                      "DOI recorded" if doi
+                      else "package is assembled; creating the repository and Zenodo release is "
+                           "a human action", "" if doi else "your click"))
     return steps
 
 
