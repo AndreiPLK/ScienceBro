@@ -56,14 +56,17 @@ claims:
       A Petrov type-I black-hole candidate retrained from the committed upstream
       configuration (seed 124) is, under an independent finite-difference evaluation,
       simultaneously (a) vacuum-comparable to our reproduced Schwarzschild baseline on
-      hidden points and (b) algebraically general: our own Weyl-operator speciality
+      hidden points, (b) algebraically general: our own Weyl-operator speciality
       index gives S = 2.27..2.55, while the same code returns S = 1 to 4e-16 on
-      analytic Schwarzschild and to 1.7e-6 on a trained neural Schwarzschild.
+      analytic Schwarzschild and to 1.7e-6 on a trained neural Schwarzschild, and
+      (c) equipped with a future-trapped region (Xi < 0 with both null expansions
+      negative) whose location differs from Schwarzschild's, on a diagnostic that
+      reproduces the Schwarzschild horizon exactly on two controls.
     state: experimentally-supported
     evidence_ids: [EV-0001]
     contradicting_evidence_ids: []
     experiment_ids: [EXP-0001, EXP-0003]
-    validation_ids: [VAL-0002, VAL-0003]
+    validation_ids: [VAL-0002, VAL-0003, VAL-0004]
     allowed_public_wording: >-
       In an independent re-implementation of the geometry checks, one of our retrained
       AInstein black-hole candidates is both approximately vacuum (to the level of our
@@ -73,7 +76,8 @@ claims:
       explicitly; it is not by itself evidence of a new exact solution, and it says
       nothing yet about the authors' own unpublished checkpoints.
     blockers:
-      - "S ~ 2 is an explicit training target of the upstream loss (Eq. 47), so this corroborates the method rather than demonstrating a new solution."
-      - "Trapped-surface / horizon structure not yet independently verified."
-      - "Single seed satisfies both conditions; seed 123 is type I but fails vacuum."
+      - "All three properties (S ~ 2, vacuum, trapping) are explicit training targets of the upstream loss (Eq. 46/47, trapping weight 25.0), so this corroborates the method rather than demonstrating a new solution."
+      - "Single seed satisfies all three conditions; seed 123 is type I and trapped but fails vacuum."
+      - "Marginally trapped surface (Xi = 0) not located precisely; single angular slice q = (0.1, 0.1)."
       - "Not reviewed by a qualified external expert (NEEDS EXPERT REVIEW)."
+      - "The authors' own checkpoints remain unavailable; request sent 2026-08-12."

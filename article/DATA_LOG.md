@@ -70,3 +70,13 @@ old entries; append corrections as new entries.
   it does not demonstrate a new solution. VAL-0003 (pass, scope-limited) + CL-0004
   (experimentally-supported) recorded. Combined with VAL-0002, seed 124 is both
   vacuum-comparable and type I under independent evaluation.
+- 13:05 — INDEPENDENT TRAPPED-SURFACE DIAGNOSTICS (verifier/horizon.py, own 2+2 split).
+  Controls: analytic Schwarzschild 4/4 exterior untrapped (Xi +0.038..+0.151), 8/8 interior
+  future-trapped (Xi -0.005..-0.390), areal radius = independent Lambert-W r(T,X) to 3 dp;
+  TRAINED neural Schwarzschild reproduces the identical 4/8 split (horizon location learned).
+  Candidates: seed 124 and seed 123 both 11/12 future-trapped, areal radius departing from
+  Schwarzschild by up to 0.44 -> a trapped region exists and sits elsewhere.
+  Known-answer tests added (4 pass), incl. the honest orientation rule: inside a
+  Schwarzschild-coordinate horizon x^0 is spacelike, so orientation is reported as ambiguous
+  instead of guessed. VAL-0004 (pass, scope-limited) recorded; CL-0004 now carries all three
+  legs (vacuum + type I + trapped) with the caveat that all three are training targets.

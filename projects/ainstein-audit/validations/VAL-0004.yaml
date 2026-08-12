@@ -1,0 +1,41 @@
+id: VAL-0004
+claim_id: CL-0004
+experiment_id: EXP-0003
+validator: independent-verifier (own 2+2 trapping diagnostics, no upstream imports)
+independence_level: separate-formulation
+date: 2026-08-12
+method: >-
+  Independent trapped-surface diagnostics (verifier/horizon.py): areal radius R read
+  from the angular block (R = sqrt(g_qq (1+|q|^2)^2 / 4), cross-checked between the two
+  angular entries), gradient of R by finite differences in the 2D (T, X) block,
+  Xi = h^ab d_a R d_b R, and the two null directions of the block with the time
+  orientation reported only where the coordinate time is timelike. Xi < 0 with both
+  null derivatives of R negative = future-trapped. 12 probe points spanning the
+  analytic exterior and interior at q = (0.1, 0.1), h = 3e-3, float64.
+measurements:
+  control_analytic: "4/4 exterior points untrapped (Xi = +0.038..+0.151); 8/8 interior points future-trapped (Xi = -0.005..-0.390); areal radius matches the independent Lambert-W r(T,X) to 3 decimals at every point"
+  control_nn_trained_schwarzschild: "identical classification to the analytic control (4 untrapped / 8 future-trapped): a trained type-D network reproduces the horizon location"
+  candidate_seed124: "11/12 points future-trapped (Xi = -0.025..-0.201), 1 untrapped; areal radius departs from Schwarzschild's r(T,X) by up to 0.44 (1.880 vs 1.439)"
+  candidate_seed123: "11/12 points future-trapped, same pattern"
+decision: pass
+scope_and_limits: >-
+  PASS means: both retrained candidates possess a future-trapped region under an
+  independent 2+2 computation, and the diagnostic reproduces the Schwarzschild horizon
+  exactly on two controls (analytic and trained-network).
+
+  Reading the numbers correctly: the "exterior/interior" labels come from the ANALYTIC
+  Schwarzschild r(T, X) and are only a reference grid. A candidate being trapped at a
+  point that is exterior for Schwarzschild is not a contradiction; it means its
+  apparent horizon sits elsewhere in these coordinates, consistent with a different
+  geometry (its areal radius differs from Schwarzschild's by up to ~0.44).
+
+  What this does NOT establish: the upstream black-hole objective trains the trapping
+  term explicitly (weight 25.0 in the committed config), so as with the speciality
+  index this corroborates that the method achieves its stated target rather than
+  demonstrating a new exact solution. Marginally trapped surfaces (Xi = 0) were not
+  located to high precision, the angular direction was sampled at a single q, and
+  these remain our retrains rather than the authors' checkpoints.
+next: >-
+  (1) locate the Xi = 0 surface per model to compare horizon shapes quantitatively;
+  (2) evaluate the authors' checkpoints on the same three-leg test when received;
+  (3) external expert review before any public scientific claim.
