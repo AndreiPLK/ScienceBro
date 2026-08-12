@@ -1,0 +1,23 @@
+id: EXP-0003
+hypothesis_id: H-0001
+status: frozen
+code_commit: recorded-at-launch
+upstream_commit: 54736e466e54d948bd509b072e4047cf98405064
+command: >-
+  WANDB_MODE=disabled ../.venv-upstream/Scripts/python.exe run.py
+  -c=C:/Users/user/ScienceBro/projects/ainstein-audit/experiments/hps_petrovI_bh_seed124.yaml
+inputs:
+  - "experiments/hps_petrovI_bh_seed124.yaml (EXP-0002 config, seeds 123->124 only)"
+outputs: []
+seeds: [124]
+precision: float64
+hardware: "Windows 11 AMD64, TF 2.21.0 CPU (full threads, night)"
+primary_metric: normalized_independent_einstein_residual
+threshold:
+  type: frozen
+  note: "Same THRESHOLDS_FROZEN.md; seed replicate of EXP-0002 to address the single-seed caveat."
+analysis_plan: >-
+  Identical to EXP-0002 (same frozen criteria, hidden seed derived from checkpoint
+  sha256). Purpose: measure seed-to-seed variability of the committed BH config
+  under independent evaluation. Every outcome preserved.
+exploratory: false

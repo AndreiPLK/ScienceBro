@@ -3,23 +3,23 @@
   "stage_id": "stage-4",
   "title": "Independent candidate stress test",
   "label": "SCIENTIFIC",
-  "status": "NOT STARTED",
-  "verified_at": "2026-08-11T16:00:35.289953+00:00",
-  "git_commit": "f9e1f7debb0cb820fd9ab0a602bb6900e8114663",
+  "status": "IN PROGRESS",
+  "verified_at": "2026-08-12T02:43:05.298597+00:00",
+  "git_commit": "45b54ccf5547c77b781e1476598aa07781df377f",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [
     {
       "id": "hidden-points",
       "description": "hidden-point residuals measured (median/p95/p99/max)",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "n=24 median 0.915 p95 1.357 max 1.493 (verdict FAIL)"
     },
     {
       "id": "signature-det",
       "description": "signature and determinant checks across domain",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "signature ok fraction 1.0"
     },
     {
       "id": "boundary-maps",
@@ -30,22 +30,24 @@
     {
       "id": "convergence",
       "description": "precision and convergence tests",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "median spread 1.67e-06"
     },
     {
       "id": "negative-controls",
       "description": "negative controls fail as expected",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "amp-0.5 control breaks criteria as expected"
     },
     {
       "id": "independence",
       "description": "independent implementation, no upstream loss imports",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "FD verifier, subprocess boundary, no upstream imports"
     }
   ],
-  "artifact_hashes": {},
+  "artifact_hashes": {
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\candidate_stress.json": "ba236d7142dca02215939421dc348282a570b498f4448415974fb92524cd3101"
+  },
   "allowed_public_claim": "No candidate has been independently stress-tested yet."
 }

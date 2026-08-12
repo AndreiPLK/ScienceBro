@@ -1,0 +1,5 @@
+{
+  "git_commit": "45b54ccf5547c77b781e1476598aa07781df377f",
+  "upstream": "see vendor/upstream-manifest.yaml",
+  "verifier": "projects/ainstein-audit/verifier/ (no upstream imports)"
+}

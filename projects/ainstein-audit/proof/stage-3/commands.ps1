@@ -1,0 +1,5 @@
+uv sync --all-groups
+uv run pytest -q
+uv run sb verify-stage ainstein-audit stage-3
+uv run python projects/ainstein-audit/verifier/make_selftest_artifact.py
+uv run python projects/ainstein-audit/verifier/known_answer_4d.py

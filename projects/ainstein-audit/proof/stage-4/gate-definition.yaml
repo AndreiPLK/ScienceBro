@@ -1,0 +1,30 @@
+stage_id: stage-4
+title: Independent candidate stress test
+label: SCIENTIFIC
+question: Does the candidate survive hidden-point, convergence, signature and boundary checks?
+status: NOT STARTED
+requirements:
+  - id: hidden-points
+    description: hidden-point residuals measured (median/p95/p99/max)
+    status: missing
+    measured: ""
+  - id: signature-det
+    description: signature and determinant checks across domain
+    status: missing
+    measured: ""
+  - id: boundary-maps
+    description: boundary and horizon failure maps
+    status: missing
+    measured: ""
+  - id: convergence
+    description: precision and convergence tests
+    status: missing
+    measured: ""
+  - id: negative-controls
+    description: negative controls fail as expected
+    status: missing
+    measured: ""
+  - id: independence
+    description: independent implementation, no upstream loss imports
+    status: missing
+    measured: ""

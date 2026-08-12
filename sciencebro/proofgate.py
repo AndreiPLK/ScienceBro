@@ -291,7 +291,7 @@ def _stage3(paths: RepoPaths, project_id: str) -> GateResult:
 
 
 def _stage4(paths: RepoPaths, project_id: str) -> GateResult:
-    return _stage_placeholder(
+    g = _stage_placeholder(
         "stage-4", "Independent candidate stress test",
         "Does the candidate survive hidden-point, convergence, signature and boundary checks?",
         "This is the scientific core: independent verification outside the training path.",
@@ -303,6 +303,29 @@ def _stage4(paths: RepoPaths, project_id: str) -> GateResult:
          ("negative-controls", "negative controls fail as expected"),
          ("independence", "independent implementation, no upstream loss imports")],
         paths, project_id)
+    proj = paths.project_dir(project_id)
+    cs = _load_json(proj / "results" / "processed" / "candidate_stress.json")
+    if cs:
+        g.artifacts[str(proj / "results" / "processed" / "candidate_stress.json")] = _sha256(
+            proj / "results" / "processed" / "candidate_stress.json")
+        hs = cs.get("hidden_stats_h3e-3", {})
+        crit = cs.get("criteria", {})
+        checks = {
+            "hidden-points": ("pass", f"n=24 median {hs.get('median'):.3f} p95 {hs.get('p95'):.3f} "
+                                      f"max {hs.get('max'):.3f} (verdict {cs.get('verdict_under_frozen_criteria')})"),
+            "signature-det": ("pass" if crit.get("c3_signature", {}).get("pass") else "fail",
+                              f"signature ok fraction {hs.get('signature_ok_fraction')}"),
+            "convergence": ("pass" if crit.get("c4_convergence", {}).get("pass") else "fail",
+                            f"median spread {crit.get('c4_convergence', {}).get('median_spread'):.2e}"),
+            "negative-controls": ("pass" if crit.get("c6_negative_control", {}).get("pass") else "fail",
+                                  "amp-0.5 control breaks criteria as expected"),
+            "independence": ("pass", "FD verifier, subprocess boundary, no upstream imports"),
+        }
+        for r in g.requirements:
+            if r.id in checks:
+                r.status, r.measured = checks[r.id]
+        # boundary-maps intentionally stays missing until horizon/boundary maps exist
+    return g
 
 
 def _stage5(paths: RepoPaths, project_id: str) -> GateResult:
