@@ -24,16 +24,24 @@ def _network() -> bool:
         return False
 
 
+def _skip_if_network_error(check) -> None:
+    if check.status == "unverified" and check.detail and "network error" in check.detail:
+        pytest.skip(f"arXiv API unreachable — eval skips, never fakes a pass: {check.detail[:120]}")
+
+
 @pytest.mark.skipif(not _network(), reason="offline — eval skips, never fakes a pass")
 def test_g01_citation_metadata_validity():
     check = verify_arxiv_id("arXiv:2607.05489")
+    _skip_if_network_error(check)
     assert check.status == "verified"
     assert check.title is not None and "AInstein" in check.title
 
 
 @pytest.mark.skipif(not _network(), reason="offline — eval skips, never fakes a pass")
 def test_g02_fabricated_citation_detected():
-    assert verify_arxiv_id("arXiv:2607.99999").status in ("not-found", "invalid-id")
+    check = verify_arxiv_id("arXiv:2607.99999")
+    _skip_if_network_error(check)
+    assert check.status in ("not-found", "invalid-id")
 
 
 def test_g03_claim_evidence_gate_blocks_unsupported():
