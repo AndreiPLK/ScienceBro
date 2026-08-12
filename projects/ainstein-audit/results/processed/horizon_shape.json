@@ -1,0 +1,166 @@
+{
+  "date": "2026-08-12",
+  "q": [
+    0.1,
+    0.1
+  ],
+  "h": 0.003,
+  "bisection_rounds": 7,
+  "note": "Analytic Schwarzschild horizon in these coordinates is X = |T|; delta_from_analytic is the measured departure from that line.",
+  "analytic": {
+    "slices": [
+      {
+        "T": 0.1,
+        "X_horizon": 0.09984375000000001,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.1,
+        "delta_from_analytic": -0.00015624999999999667
+      },
+      {
+        "T": 0.2,
+        "X_horizon": 0.20078125,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.2,
+        "delta_from_analytic": 0.0007812499999999833
+      },
+      {
+        "T": 0.3,
+        "X_horizon": 0.30171875000000004,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.3,
+        "delta_from_analytic": 0.0017187500000000466
+      },
+      {
+        "T": 0.4,
+        "X_horizon": 0.40265625000000005,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.4,
+        "delta_from_analytic": 0.0026562500000000266
+      },
+      {
+        "T": 0.5,
+        "X_horizon": 0.49828125000000006,
+        "uncertainty": 0.002656249999999971,
+        "X_analytic_expectation": 0.5,
+        "delta_from_analytic": -0.0017187499999999356
+      }
+    ]
+  },
+  "nn_schwarzschild_baseline": {
+    "slices": [
+      {
+        "T": 0.1,
+        "X_horizon": 0.09984375000000001,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.1,
+        "delta_from_analytic": -0.00015624999999999667
+      },
+      {
+        "T": 0.2,
+        "X_horizon": 0.20078125,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.2,
+        "delta_from_analytic": 0.0007812499999999833
+      },
+      {
+        "T": 0.3,
+        "X_horizon": 0.30171875000000004,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.3,
+        "delta_from_analytic": 0.0017187500000000466
+      },
+      {
+        "T": 0.4,
+        "X_horizon": 0.40796875,
+        "uncertainty": 0.002656249999999999,
+        "X_analytic_expectation": 0.4,
+        "delta_from_analytic": 0.007968749999999969
+      },
+      {
+        "T": 0.5,
+        "X_horizon": 0.5089062500000001,
+        "uncertainty": 0.0026562500000000266,
+        "X_analytic_expectation": 0.5,
+        "delta_from_analytic": 0.008906250000000115
+      }
+    ]
+  },
+  "candidate_seed124": {
+    "slices": [
+      {
+        "T": 0.1,
+        "X_horizon": 0.62578125,
+        "uncertainty": 0.002656249999999971,
+        "X_analytic_expectation": 0.1,
+        "delta_from_analytic": 0.52578125
+      },
+      {
+        "T": 0.2,
+        "X_horizon": 0.63109375,
+        "uncertainty": 0.0026562500000000266,
+        "X_analytic_expectation": 0.2,
+        "delta_from_analytic": 0.43109375
+      },
+      {
+        "T": 0.3,
+        "X_horizon": 0.6417187500000001,
+        "uncertainty": 0.002656249999999971,
+        "X_analytic_expectation": 0.3,
+        "delta_from_analytic": 0.3417187500000001
+      },
+      {
+        "T": 0.4,
+        "X_horizon": 0.64703125,
+        "uncertainty": 0.002656249999999971,
+        "X_analytic_expectation": 0.4,
+        "delta_from_analytic": 0.24703124999999992
+      },
+      {
+        "T": 0.5,
+        "X_horizon": 0.65234375,
+        "uncertainty": 0.0026562500000000266,
+        "X_analytic_expectation": 0.5,
+        "delta_from_analytic": 0.15234375
+      }
+    ]
+  },
+  "candidate_seed123": {
+    "slices": [
+      {
+        "T": 0.1,
+        "X_horizon": 0.6151562500000001,
+        "uncertainty": 0.0026562500000000266,
+        "X_analytic_expectation": 0.1,
+        "delta_from_analytic": 0.5151562500000001
+      },
+      {
+        "T": 0.2,
+        "X_horizon": 0.6364062500000001,
+        "uncertainty": 0.0026562500000000266,
+        "X_analytic_expectation": 0.2,
+        "delta_from_analytic": 0.43640625000000005
+      },
+      {
+        "T": 0.3,
+        "X_horizon": 0.6629687500000001,
+        "uncertainty": 0.002656249999999971,
+        "X_analytic_expectation": 0.3,
+        "delta_from_analytic": 0.3629687500000001
+      },
+      {
+        "T": 0.4,
+        "X_horizon": 0.6895312499999999,
+        "uncertainty": 0.002656249999999971,
+        "X_analytic_expectation": 0.4,
+        "delta_from_analytic": 0.2895312499999999
+      },
+      {
+        "T": 0.5,
+        "X_horizon": 0.7107812499999999,
+        "uncertainty": 0.002656249999999971,
+        "X_analytic_expectation": 0.5,
+        "delta_from_analytic": 0.21078124999999992
+      }
+    ]
+  }
+}

@@ -89,3 +89,7 @@ old entries; append corrections as new entries.
   so no comparison claim is made from it. Independent agreement worth noting: our own
   boundary measurement showed the same region as the hardest (edge max|Ricci| 5.5e-5 vs
   interior 1.3e-5). Seeds 125/126/127 launched for the instability statistics.
+- 15:43 — HORIZON SHAPE (bisection of Xi=0, +-0.003 in X): analytic control X_h = T exactly;
+  trained NN Schwarzschild X_h = T within +0.009 (network learned the horizon to ~1%);
+  candidate seed124 horizon is a near-vertical line X ~ 0.63-0.65 (delta from analytic
+  +0.53..+0.15), seed123 X ~ 0.62-0.71. Quantitatively different horizon geometry, measured.
