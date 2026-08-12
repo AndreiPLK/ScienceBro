@@ -50,3 +50,30 @@ claims:
     blockers:
       - "Seed 124 replicate PASSED the same criteria (VAL-0002): the FAIL is seed-specific, not config-universal — statement scope narrowed accordingly."
       - "Not independently validated by a second implementation or reviewer yet."
+
+  - id: CL-0004
+    statement: >-
+      A Petrov type-I black-hole candidate retrained from the committed upstream
+      configuration (seed 124) is, under an independent finite-difference evaluation,
+      simultaneously (a) vacuum-comparable to our reproduced Schwarzschild baseline on
+      hidden points and (b) algebraically general: our own Weyl-operator speciality
+      index gives S = 2.27..2.55, while the same code returns S = 1 to 4e-16 on
+      analytic Schwarzschild and to 1.7e-6 on a trained neural Schwarzschild.
+    state: experimentally-supported
+    evidence_ids: [EV-0001]
+    contradicting_evidence_ids: []
+    experiment_ids: [EXP-0001, EXP-0003]
+    validation_ids: [VAL-0002, VAL-0003]
+    allowed_public_wording: >-
+      In an independent re-implementation of the geometry checks, one of our retrained
+      AInstein black-hole candidates is both approximately vacuum (to the level of our
+      own reproduced Schwarzschild baseline) and algebraically general rather than
+      Schwarzschild-like. This corroborates that the published architecture can move a
+      metric off the algebraically special family, which the paper trains for
+      explicitly; it is not by itself evidence of a new exact solution, and it says
+      nothing yet about the authors' own unpublished checkpoints.
+    blockers:
+      - "S ~ 2 is an explicit training target of the upstream loss (Eq. 47), so this corroborates the method rather than demonstrating a new solution."
+      - "Trapped-surface / horizon structure not yet independently verified."
+      - "Single seed satisfies both conditions; seed 123 is type I but fails vacuum."
+      - "Not reviewed by a qualified external expert (NEEDS EXPERT REVIEW)."

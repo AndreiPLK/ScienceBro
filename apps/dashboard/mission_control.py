@@ -263,20 +263,21 @@ def _render_gate_details(gate, project_id: str) -> None:  # type: ignore[no-unty
 
 
 def render(project_id: str) -> None:
-    stages, ctx, gates = compute_stages(project_id)
-    training = ctx["training"]
-    selftest, ka4d, disc = ctx["selftest"], ctx["ka4d"], ctx["disc"]
-    _ = stages
-
     # 1. mission
     st.markdown(f"## {MISSION}")
 
-    # 1b. big ETA banner + step progress (what to expect, always visible)
+    # 1b. big ETA banner + step progress FIRST: artifact-only, renders instantly
     from apps.dashboard import timeline
 
     timeline.render_eta_and_timeline(_proj_dir(project_id))
 
-    # 2. quest map — the dominant visual
+    # 2. proof gates (slower: they re-run deterministic checks) + quest map
+    with st.spinner("Verifying stages against hashed artifacts..."):
+        stages, ctx, gates = compute_stages(project_id)
+    training = ctx["training"]
+    selftest, ka4d, disc = ctx["selftest"], ctx["ka4d"], ctx["disc"]
+    _ = stages
+
     current_idx = next(
         (i for i, g in enumerate(gates) if g.status != "VERIFIED"), len(gates) - 1
     )

@@ -61,3 +61,12 @@ old entries; append corrections as new entries.
 - 06:30 — EXP-0003 (seed 124) complete + evaluated: PASS frozen criteria (median 0.233 vs limit 0.286; p95 0.319; signature 24/24; convergence 3.9e-6). Seed contrast: 123 FAIL (0.915) vs 124 PASS (0.233) — 4x seed-to-seed variability of the committed BH config, measured. VAL-0002 recorded. Petrov-type diagnostics still pending — PASS is vacuum-comparability only.
 - 08:51 — PRESS_RELEASE.md living draft assembled (all night results + visuals table); morning dashboard screenshot captured.
 - 09:42 — Letter to AInstein authors SENT by founder (all three authors, with verified attachment). Awaiting reply.
+- 12:20 — INDEPENDENT PETROV DIAGNOSTICS (verifier/petrov.py, own Weyl operator, no upstream code).
+  Controls: analytic Schwarzschild |S-1| = 4.4e-16; TRAINED neural Schwarzschild |S-1| <= 1.7e-6
+  (so a type-D neural metric still reads S = 1 through this pipeline).
+  Candidates: seed 123 S = 2.294..2.580; seed 124 S = 2.273..2.550 -> both algebraically
+  GENERAL (Petrov type I), ~6 orders above the neural-metric floor. Caveat recorded: the
+  upstream loss explicitly trains S toward ~2 (Eq. 47), so this corroborates the method,
+  it does not demonstrate a new solution. VAL-0003 (pass, scope-limited) + CL-0004
+  (experimentally-supported) recorded. Combined with VAL-0002, seed 124 is both
+  vacuum-comparable and type I under independent evaluation.

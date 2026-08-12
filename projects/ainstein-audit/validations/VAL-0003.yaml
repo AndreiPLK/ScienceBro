@@ -1,0 +1,43 @@
+id: VAL-0003
+claim_id: CL-0004
+experiment_id: EXP-0003
+validator: independent-verifier (own Weyl operator + speciality index, no upstream imports)
+independence_level: separate-formulation
+date: 2026-08-12
+method: >-
+  Independent Petrov diagnostics implemented from textbook definitions
+  (verifier/petrov.py): finite-difference Riemann -> Weyl tensor -> orthonormal
+  Lorentzian tetrad -> complex Weyl operator Q = E + iB -> eigenvalues ->
+  I = (sum l^2)/2, J = det Q, speciality index S = 27 J^2 / (4 I^3), where S = 1
+  exactly for algebraically special geometries. Evaluated at 4 exterior probe points,
+  h = 3e-3, float64. Two controls run through the SAME code path in the same session.
+measurements:
+  control_analytic_schwarzschild_absS_minus_1: 4.4e-16   # type D, exact expectation S=1
+  control_nn_trained_schwarzschild_absS_minus_1_max: 1.7e-06
+  candidate_seed124_S_real_range: [2.2734, 2.5495]
+  candidate_seed124_absS_minus_1_median: 1.3453
+  candidate_seed123_S_real_range: [2.2942, 2.5797]
+  candidate_seed123_absS_minus_1_median: 1.3773
+decision: pass
+scope_and_limits: >-
+  PASS means: both retrained candidates are algebraically GENERAL (Petrov type I) under
+  an independent Weyl computation. The deviation from S = 1 is ~1.3, i.e. six orders of
+  magnitude above the measurement floor established on a TRAINED neural Schwarzschild
+  (1.7e-6) and fifteen orders above the analytic control (4e-16), so it cannot be a
+  finite-difference or neural-approximation artifact.
+
+  What this does NOT establish: (1) The paper's loss explicitly TRAINS the speciality
+  index toward a profile centred near S = 2 (Eq. 47), so S ~ 2.3 confirms the method
+  achieves its stated target, it does not by itself demonstrate a new solution.
+  (2) Only the seed-124 candidate also meets the frozen vacuum criteria (VAL-0002);
+  seed-123 is type I but fails vacuum (VAL-0001). (3) Trapped-surface / horizon
+  structure has not been independently verified. (4) These are our retrains, not the
+  authors' published checkpoints, which remain unavailable.
+
+  Combined statement supported by VAL-0002 + VAL-0003 for the seed-124 candidate:
+  vacuum quality comparable to our reproduced Schwarzschild baseline AND an
+  algebraically general Weyl structure, measured independently.
+next: >-
+  (1) independent trapped-surface / horizon diagnostics (theta_l, theta_n) to complete
+  the black-hole part of the claim; (2) evaluate the authors' own checkpoints when
+  received; (3) more seeds to bound how often vacuum + type I co-occur.
