@@ -3,9 +3,9 @@
   "stage_id": "stage-4",
   "title": "Independent candidate stress test",
   "label": "SCIENTIFIC",
-  "status": "IN PROGRESS",
-  "verified_at": "2026-08-12T02:43:05.298597+00:00",
-  "git_commit": "45b54ccf5547c77b781e1476598aa07781df377f",
+  "status": "VERIFIED",
+  "verified_at": "2026-08-12T02:46:30.550808+00:00",
+  "git_commit": "073e0c5c75067efc230673c651efe8acb1bfd021",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [
@@ -24,8 +24,8 @@
     {
       "id": "boundary-maps",
       "description": "boundary and horizon failure maps",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "95 grid pts incl. horizon: exterior median 1.098, interior 0.986"
     },
     {
       "id": "convergence",
@@ -47,7 +47,8 @@
     }
   ],
   "artifact_hashes": {
-    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\candidate_stress.json": "ba236d7142dca02215939421dc348282a570b498f4448415974fb92524cd3101"
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\candidate_stress.json": "ba236d7142dca02215939421dc348282a570b498f4448415974fb92524cd3101",
+    "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\results\\processed\\boundary_map.json": "0818c930f308598117f2e2fd5769a50bbfd41e8bc73b7f0c53168906b89aa4c4"
   },
   "allowed_public_claim": "No candidate has been independently stress-tested yet."
 }

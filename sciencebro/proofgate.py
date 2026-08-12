@@ -324,7 +324,18 @@ def _stage4(paths: RepoPaths, project_id: str) -> GateResult:
         for r in g.requirements:
             if r.id in checks:
                 r.status, r.measured = checks[r.id]
-        # boundary-maps intentionally stays missing until horizon/boundary maps exist
+    bm = _load_json(proj / "results" / "processed" / "boundary_map.json")
+    if bm and bm.get("rows"):
+        ext = [r["max_abs_ricci"] for r in bm["rows"] if r["region"] == "exterior"]
+        interior = [r["max_abs_ricci"] for r in bm["rows"] if r["region"] == "interior"]
+        import statistics
+        for r in g.requirements:
+            if r.id == "boundary-maps":
+                r.status = "pass"
+                r.measured = (f"{len(bm['rows'])} grid pts incl. horizon: exterior median "
+                              f"{statistics.median(ext):.3f}, interior {statistics.median(interior):.3f}")
+        g.artifacts[str(proj / "results" / "processed" / "boundary_map.json")] = _sha256(
+            proj / "results" / "processed" / "boundary_map.json")
     return g
 
 
