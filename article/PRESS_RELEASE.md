@@ -25,7 +25,36 @@ of the AInstein black-hole search (arXiv:2607.05489) overnight.
 | float32 checkpoint storage penalty on curvature | 203× residual inflation | `calibration_maps.json` |
 | Consumer-GPU float64 penalty (RTX 4070 SUPER) | 10× slower than CPU | DATA_LOG 23:33 |
 
-### The three-leg independent check (added 2026-08-12)
+### Five-seed sweep: the instability has a precise location (added 2026-08-12, 16:10)
+
+Five candidates trained from the identical committed configuration, differing only in the
+random seed, each evaluated by the same independent code (`seed_sweep.json`):
+
+| Seed | Its own training loss | Our vacuum residual | Vacuum | Petrov S | Trapped | All three |
+| --- | --- | --- | --- | --- | --- | --- |
+| 126 | 1.32e-2 | **0.228** | PASS | 2.29–2.56 | 11/12 | **yes** |
+| 124 | 1.18e-2 | **0.233** | PASS | 2.27–2.55 | 11/12 | **yes** |
+| 125 | 1.10e-2 | 0.317 | FAIL | 2.30–2.58 | 11/12 | no |
+| 123 | 1.11e-2 | 0.915 | FAIL | 2.29–2.58 | 11/12 | no |
+| 127 | **1.09e-2** | **1.100** | FAIL | 2.29–2.58 | 11/12 | no |
+
+Three measured statements:
+
+1. **Two of five** retrains satisfy all three black-hole properties at once.
+2. **The instability is confined to one leg.** The exotic algebraic type and the trapped
+   region appear in 5 of 5 runs, tightly clustered; the vacuum condition — the Einstein
+   equation itself — holds in 2 of 5, spanning a factor 4.8 (0.228 to 1.100).
+3. **The reported loss does not track independent quality.** It varies by a factor 1.21
+   across seeds while the independent residual varies by 4.8, and in this sample the ordering
+   is inverted: the lowest-loss run has the worst geometry. At n = 5 this is suggestive, not
+   established — and it is precisely the failure mode an external instrument exists to catch.
+
+Horizon shape, measured by bisecting the Ξ = 0 surface to ±0.003: a network trained to
+imitate Schwarzschild recovers the textbook horizon X = T to within 0.009 (so the method is
+sound), while the candidates' horizons are near-vertical lines at X ≈ 0.63–0.71 — a different
+shape, not a displaced copy.
+
+### The three-leg independent check
 
 A "new black hole" claim needs three properties at once. Each was tested with our own
 implementation, each with its own control:

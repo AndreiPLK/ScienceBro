@@ -1,0 +1,157 @@
+{
+  "date": "2026-08-12",
+  "frozen_limits": {
+    "median": 0.286,
+    "p95": 0.573
+  },
+  "n_seeds": 5,
+  "n_satisfying_all_three": 2,
+  "rows": [
+    {
+      "seed": 123,
+      "model_sha256": "fd56f1709961f3e3",
+      "hidden_seed": 2102849904,
+      "vacuum": {
+        "median": 0.9148441960387894,
+        "p95": 1.3572916691877739,
+        "max": 1.4930435332033123,
+        "signature_ok_fraction": 1.0,
+        "pass": false
+      },
+      "petrov": {
+        "S_values": [
+          2.4457140214679156,
+          2.308926486565298,
+          2.5796574301173525,
+          2.2941519881366816
+        ],
+        "S_min": 2.2941519881366816,
+        "S_max": 2.5796574301173525,
+        "type_I": true
+      },
+      "trapping": {
+        "future_trapped": 11,
+        "points": 12,
+        "pass": true
+      },
+      "all_three": false
+    },
+    {
+      "seed": 124,
+      "model_sha256": "e047b05f5778917b",
+      "hidden_seed": 1615310943,
+      "vacuum": {
+        "median": 0.23340763502219208,
+        "p95": 0.31936133902383046,
+        "max": 0.3488066055224408,
+        "signature_ok_fraction": 1.0,
+        "pass": true
+      },
+      "petrov": {
+        "S_values": [
+          2.407545702255395,
+          2.2831028262855786,
+          2.54954858954985,
+          2.273361327051792
+        ],
+        "S_min": 2.273361327051792,
+        "S_max": 2.54954858954985,
+        "type_I": true
+      },
+      "trapping": {
+        "future_trapped": 11,
+        "points": 12,
+        "pass": true
+      },
+      "all_three": true
+    },
+    {
+      "seed": 125,
+      "model_sha256": "e46237025ba3d191",
+      "hidden_seed": 1684158210,
+      "vacuum": {
+        "median": 0.31732089737854485,
+        "p95": 0.5351722340193757,
+        "max": 0.7440217914087248,
+        "signature_ok_fraction": 1.0,
+        "pass": false
+      },
+      "petrov": {
+        "S_values": [
+          2.4246557395324464,
+          2.2976844476233556,
+          2.5803895534403956,
+          2.3032458272284044
+        ],
+        "S_min": 2.2976844476233556,
+        "S_max": 2.5803895534403956,
+        "type_I": true
+      },
+      "trapping": {
+        "future_trapped": 11,
+        "points": 12,
+        "pass": true
+      },
+      "all_three": false
+    },
+    {
+      "seed": 126,
+      "model_sha256": "5a84809938969852",
+      "hidden_seed": 1518633113,
+      "vacuum": {
+        "median": 0.22804046315967552,
+        "p95": 0.33704087887073003,
+        "max": 0.3529095017245152,
+        "signature_ok_fraction": 1.0,
+        "pass": true
+      },
+      "petrov": {
+        "S_values": [
+          2.4273903235421064,
+          2.289009628055787,
+          2.5596014298723095,
+          2.2864802997118305
+        ],
+        "S_min": 2.2864802997118305,
+        "S_max": 2.5596014298723095,
+        "type_I": true
+      },
+      "trapping": {
+        "future_trapped": 11,
+        "points": 12,
+        "pass": true
+      },
+      "all_three": true
+    },
+    {
+      "seed": 127,
+      "model_sha256": "b865b0c551d6ad2f",
+      "hidden_seed": 946188485,
+      "vacuum": {
+        "median": 1.100051404746763,
+        "p95": 1.5739931053794438,
+        "max": 1.6162470975989345,
+        "signature_ok_fraction": 1.0,
+        "pass": false
+      },
+      "petrov": {
+        "S_values": [
+          2.441912740495587,
+          2.2929474520419166,
+          2.5813590950138967,
+          2.29015383829152
+        ],
+        "S_min": 2.29015383829152,
+        "S_max": 2.5813590950138967,
+        "type_I": true
+      },
+      "trapping": {
+        "future_trapped": 11,
+        "points": 12,
+        "pass": true
+      },
+      "all_three": false
+    }
+  ],
+  "note": "Legs: vacuum (frozen criteria), Petrov type I (|S-1| > 1e-3 at every probe), trapped region present. All three are explicit training targets upstream."
+}

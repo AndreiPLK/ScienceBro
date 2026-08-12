@@ -33,6 +33,39 @@ All values measured on 2026-08-11, Windows 11, Python 3.12, float64, RTX 4070 SU
 | float32 metric storage penalty | 203x median inflation | calibration_maps.json |
 | Protocol consequence | float64 mandatory for all metric exchange | THRESHOLDS_DRAFT.md |
 
+## Five-seed sweep (2026-08-12, the headline result)
+
+| Seed | Final training loss | Independent vacuum median | Vacuum verdict | Petrov S | Trapped points |
+| --- | --- | --- | --- | --- | --- |
+| 123 | 1.11e-2 | 0.915 | FAIL | 2.29–2.58 | 11/12 |
+| 124 | 1.18e-2 | 0.233 | PASS | 2.27–2.55 | 11/12 |
+| 125 | 1.10e-2 | 0.317 | FAIL | 2.30–2.58 | 11/12 |
+| 126 | 1.32e-2 | 0.228 | PASS | 2.29–2.56 | 11/12 |
+| 127 | 1.09e-2 | 1.100 | FAIL | 2.29–2.58 | 11/12 |
+
+- All three legs satisfied: **2 of 5** seeds.
+- Type I and trapping: **5 of 5**, S confined to 2.27–2.58.
+- Vacuum spread: **4.8×** (0.228 … 1.100) against a training-loss spread of only **1.21×**.
+- Ordering inverted in this sample (lowest loss → worst geometry); n = 5, suggestive only.
+  Source: `loss_vs_vacuum.json`.
+
+## Horizon shape (bisection of Xi = 0, ±0.003 in X)
+
+| Model | Apparent horizon | Departure from analytic X = T |
+| --- | --- | --- |
+| Analytic Schwarzschild | X = T | 0.000 … −0.002 |
+| Trained neural Schwarzschild | X = T | +0.000 … +0.009 |
+| Candidate seed 124 | X ≈ 0.626 … 0.652 | +0.53 … +0.15 |
+| Candidate seed 123 | X ≈ 0.615 … 0.711 | +0.52 … +0.21 |
+
+## Independent Petrov diagnostics
+
+| Model | speciality index S | abs(S − 1) |
+| --- | --- | --- |
+| Analytic Schwarzschild (type D control) | 1.0000000000000004 | 4.4e-16 |
+| Trained neural Schwarzschild (control) | 1.000002 | ≤1.7e-6 |
+| Candidates (all five seeds) | 2.27 … 2.58 | ≥1.27 |
+
 ## Side observation: supervised vs unsupervised
 
 | Model | max abs Ricci | Kretschmann rel. err |

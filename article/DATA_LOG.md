@@ -89,6 +89,21 @@ old entries; append corrections as new entries.
   so no comparison claim is made from it. Independent agreement worth noting: our own
   boundary measurement showed the same region as the hardest (edge max|Ricci| 5.5e-5 vs
   interior 1.3e-5). Seeds 125/126/127 launched for the instability statistics.
+- 16:06 — All five candidate seeds trained (123, 124, 125, 126, 127). Final training losses
+  1.11e-2, 1.18e-2, 1.10e-2, 1.32e-2, 1.09e-2 — a spread of only 1.21x, so the runs are nearly
+  indistinguishable by their own loss. Checkpoints preserved and hashed.
+- 16:12 — FIVE-SEED SWEEP (verifier/seed_sweep.py, three legs per seed, hidden points derived
+  from each checkpoint's own SHA-256):
+  seed 123 vac 0.915 FAIL | S 2.29-2.58 | 11/12 trapped -> no
+  seed 124 vac 0.233 PASS | S 2.27-2.55 | 11/12 trapped -> YES
+  seed 125 vac 0.317 FAIL | S 2.30-2.58 | 11/12 trapped -> no
+  seed 126 vac 0.228 PASS | S 2.29-2.56 | 11/12 trapped -> YES
+  seed 127 vac 1.100 FAIL | S 2.29-2.58 | 11/12 trapped -> no
+  => 2 of 5 satisfy all three legs. The instability is CONFINED TO THE VACUUM LEG: type I and
+  trapping reproduce 5/5 and cluster tightly, vacuum holds 2/5 with a 4.8x spread. The reported
+  training loss does not track independent vacuum quality (1.21x vs 4.8x) and in this sample the
+  ordering is inverted: lowest-loss run (127) has the worst residual, highest-loss run (126) the
+  best. n=5, reported as suggestive not established. VAL-0005 + CL-0005 recorded.
 - 15:43 — HORIZON SHAPE (bisection of Xi=0, +-0.003 in X): analytic control X_h = T exactly;
   trained NN Schwarzschild X_h = T within +0.009 (network learned the horizon to ~1%);
   candidate seed124 horizon is a near-vertical line X ~ 0.63-0.65 (delta from analytic

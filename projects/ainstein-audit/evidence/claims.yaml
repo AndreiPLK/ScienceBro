@@ -81,3 +81,29 @@ claims:
       - "Marginally trapped surface (Xi = 0) not located precisely; single angular slice q = (0.1, 0.1)."
       - "Not reviewed by a qualified external expert (NEEDS EXPERT REVIEW)."
       - "The authors' own checkpoints remain unavailable; request sent 2026-08-12."
+
+  - id: CL-0005
+    statement: >-
+      Across five retrains of the committed black-hole configuration differing only in random
+      seed, the three black-hole properties are not equally reproducible under independent
+      evaluation: the Petrov type-I signature and a trapped region appear in 5 of 5 runs
+      (S confined to 2.27..2.58), while the vacuum condition is met in 2 of 5, with the
+      independent hidden-point residual spanning 0.228 to 1.100 (factor 4.8) even though the
+      final training loss spans only a factor 1.21.
+    state: experimentally-supported
+    evidence_ids: [EV-0001]
+    contradicting_evidence_ids: []
+    experiment_ids: [EXP-0002, EXP-0003]
+    validation_ids: [VAL-0005]
+    allowed_public_wording: >-
+      In our five independent retrains of the published black-hole configuration, the
+      algebraic type and the trapped region reproduced every time, while the vacuum condition
+      held in two runs out of five. The training loss varied far less than the independently
+      measured vacuum quality, so the loss on its own does not indicate how close a run is to
+      a vacuum solution. This concerns our retrains of the configuration, not the authors'
+      own reported candidates.
+    blockers:
+      - "Five seeds and one configuration; the sample is small."
+      - "The apparent inversion between training loss and independent vacuum quality is suggestive at n = 5, not established."
+      - "Hidden-point sets differ per seed by construction (derived from each checkpoint hash), so per-seed numbers are not at identical coordinates."
+      - "Not reviewed by a qualified external expert (NEEDS EXPERT REVIEW)."

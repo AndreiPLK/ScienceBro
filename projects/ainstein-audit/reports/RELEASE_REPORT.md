@@ -86,21 +86,55 @@ weight 25.0). Measuring them therefore corroborates that the published architect
 what it was designed to achieve, **as judged by an outside instrument for the first time**. It
 is not evidence that a new exact solution of Einstein's equations exists.
 
-### 5.2 The configuration is seed-unstable
+### 5.2 The configuration is seed-unstable, and the instability is confined to one leg
 
-Two runs differing only in random seed, same code, same 500 epochs, near-identical training
-loss curves (final 1.11e-2 vs 1.18e-2):
+Five candidates were trained from the identical committed configuration, differing only in
+the random seed, then evaluated by the same independent code (`seed_sweep.json`):
 
-| Seed | Hidden-point vacuum median | Verdict under the frozen criteria |
+| Seed | Final training loss | Hidden-point vacuum median | Vacuum verdict | Petrov S | Trapped points | All three |
+| --- | --- | --- | --- | --- | --- | --- |
+| 123 | 1.11e-2 | 0.915 | FAIL | 2.29–2.58 | 11/12 | no |
+| 124 | 1.18e-2 | 0.233 | PASS | 2.27–2.55 | 11/12 | **yes** |
+| 125 | 1.10e-2 | 0.317 | FAIL | 2.30–2.58 | 11/12 | no |
+| 126 | 1.32e-2 | 0.228 | PASS | 2.29–2.56 | 11/12 | **yes** |
+| 127 | 1.09e-2 | 1.100 | FAIL | 2.29–2.58 | 11/12 | no |
+
+Three measured statements follow.
+
+**(a) Two of five retrains satisfy all three properties.** The configuration does produce
+such candidates, but not reliably.
+
+**(b) The legs are not equally reproducible.** The speciality index and the trapped region
+appear in 5 of 5 runs, with S confined to 2.27–2.58 across every seed; the vacuum condition
+holds in 2 of 5, spanning 0.228 to 1.100 — a factor 4.8. The instability is specific to the
+Einstein/vacuum part of the objective, not to the exotic-geometry parts.
+
+**(c) The reported training loss does not track independent vacuum quality.** It spans a
+factor 1.21 across seeds while the independent residual spans 4.8, and in this sample the
+ordering is inverted: the lowest-loss run (seed 127, 1.09e-2) has the worst independent
+residual (1.100) and the highest-loss run (seed 126, 1.32e-2) has the best (0.228). At n = 5
+this ordering is **suggestive, not established** (`loss_vs_vacuum.json`); it is stated here
+because it is exactly the failure mode an external instrument exists to detect, and because
+it is cheap for anyone to test with more seeds.
+
+The seed-123 failure is **global** across the Penrose block rather than localized near the
+horizon or the boundary (`boundary_map.json`, 95 grid points: exterior median 1.098, interior
+0.986). None of this sensitivity is reported in the paper.
+
+### 5.2b The candidates' horizons are quantitatively displaced
+
+Bisecting the Ξ = 0 surface at five time slices (`horizon_shape.json`, resolution ±0.003 in X):
+
+| Model | Apparent horizon | Departure from the analytic X = T |
 | --- | --- | --- |
-| 124 | 0.233 | PASS |
-| 123 | 0.915 | FAIL (3.2× over the limit) |
+| Analytic Schwarzschild (control) | X = T exactly | 0.000 … −0.002 |
+| Trained neural Schwarzschild (control) | X = T | +0.000 … +0.009 |
+| Candidate seed 124 | X ≈ 0.626 … 0.652, nearly vertical | +0.53 … +0.15 |
+| Candidate seed 123 | X ≈ 0.615 … 0.711 | +0.52 … +0.21 |
 
-The seed-123 failure is **global** across the Penrose block, not localized near the horizon
-or the boundary (`boundary_map.json`, 95 grid points: exterior median 1.098, interior 0.986).
-Both runs are type I and both trap light; they differ in whether the vacuum condition is met.
-This sensitivity is not reported in the paper. A five-seed sweep is in progress to bound how
-often the recipe produces a candidate satisfying all three legs.
+A network trained to imitate Schwarzschild recovers the textbook horizon to about one
+percent, which validates the procedure; the candidates' horizons are a different shape
+altogether, not a displaced copy.
 
 ### 5.3 Incidental measurement: fitting a metric is not fitting its curvature
 

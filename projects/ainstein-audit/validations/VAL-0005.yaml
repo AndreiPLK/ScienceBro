@@ -1,0 +1,52 @@
+id: VAL-0005
+claim_id: CL-0005
+experiment_id: EXP-0003
+validator: independent-verifier (three-leg sweep across five seeds, no upstream imports)
+independence_level: separate-formulation
+date: 2026-08-12
+method: >-
+  Five candidates were trained from the identical committed configuration
+  (hyperparameters/hps_petrovI_bh.yaml @54736e46, epochs 10 -> 500 documented), differing
+  only in the random seed (123, 124, 125, 126, 127). Each was then evaluated by the same
+  independent code on three legs: (1) vacuum quality on hidden points whose seed is derived
+  deterministically from the checkpoint SHA-256, judged against the criteria frozen and
+  git-tagged before any candidate existed; (2) Petrov speciality index from our own Weyl
+  operator; (3) trapped-surface classification from our own 2+2 split. Script:
+  verifier/seed_sweep.py, output results/processed/seed_sweep.json.
+measurements:
+  seeds_satisfying_all_three: "2 of 5 (seeds 124 and 126)"
+  vacuum_median_by_seed: {123: 0.915, 124: 0.233, 125: 0.317, 126: 0.228, 127: 1.100}
+  vacuum_pass_by_seed: {123: false, 124: true, 125: false, 126: true, 127: false}
+  vacuum_spread_factor: 4.8
+  petrov_type_I_by_seed: "5 of 5 (S ranges 2.27..2.58 across every seed)"
+  trapped_points_by_seed: "5 of 5 at 11/12 probe points"
+  final_training_loss_by_seed: {123: 0.0111, 124: 0.0118, 125: 0.0110, 126: 0.0132, 127: 0.0109}
+  training_loss_spread_factor: 1.21
+decision: pass
+scope_and_limits: >-
+  PASS refers to the sweep being a valid measurement, not to the candidates passing. The
+  measured content is threefold.
+
+  (a) Two of five retrains satisfy all three black-hole properties simultaneously. The
+  committed configuration therefore does produce such candidates, but not reliably.
+
+  (b) The three legs are not equally reproducible. The speciality index (type I) and the
+  trapped region appear in 5 of 5 runs, with S confined to 2.27..2.58 across every seed;
+  the vacuum condition holds in 2 of 5, spanning 0.228 to 1.100, a factor 4.8. The
+  instability is specific to the Einstein/vacuum part of the objective.
+
+  (c) The final training loss does not track independent vacuum quality: it varies by only
+  a factor 1.21 across seeds while the independent residual varies by 4.8, and the ordering
+  is inverted in this sample (the lowest-loss run, seed 127 at 1.09e-2, has the worst
+  independent vacuum residual at 1.100; the highest-loss run, seed 126 at 1.32e-2, has the
+  best at 0.228). With n = 5 this ordering is suggestive, not established; the rank
+  correlation is reported in results/processed/loss_vs_vacuum.json with its own caveat.
+
+  Limitations: five seeds; one configuration; our retrains rather than the authors'
+  checkpoints; hidden-point sets differ between seeds by construction (each derived from its
+  own checkpoint hash), which is deliberate for independence but means the per-seed numbers
+  are not measured at identical coordinates.
+next: >-
+  (1) quantify the loss-versus-quality relationship with more seeds before making any claim
+  about it; (2) evaluate the authors' checkpoints on the same three legs when received;
+  (3) expert review.
