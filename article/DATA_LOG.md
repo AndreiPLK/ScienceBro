@@ -80,3 +80,12 @@ old entries; append corrections as new entries.
   Schwarzschild-coordinate horizon x^0 is spacelike, so orientation is reported as ambiguous
   instead of guessed. VAL-0004 (pass, scope-limited) recorded; CL-0004 now carries all three
   legs (vacuum + type I + trapped) with the caveat that all three are training targets.
+- 10:30 (2026-08-12) — Checkpoint hunt: no GitHub releases/tags on xand-stapleton/ainstein,
+  only seed_models (2 current + 11 archived). Their repo DOES contain
+  notebooks/examine_output_schwarzschild.ipynb with saved outputs from one of their own runs:
+  det(g) spans -3.3e8 .. -699 (never near zero, so their determinant barrier works, but the
+  metric scale explodes by ~6 orders near the Penrose boundary), plus a printed
+  einstein_loss = 0.0690. Which seed the notebook loaded is ambiguous from the saved output,
+  so no comparison claim is made from it. Independent agreement worth noting: our own
+  boundary measurement showed the same region as the hardest (edge max|Ricci| 5.5e-5 vs
+  interior 1.3e-5). Seeds 125/126/127 launched for the instability statistics.
