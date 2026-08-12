@@ -25,6 +25,27 @@ of the AInstein black-hole search (arXiv:2607.05489) overnight.
 | float32 checkpoint storage penalty on curvature | 203× residual inflation | `calibration_maps.json` |
 | Consumer-GPU float64 penalty (RTX 4070 SUPER) | 10× slower than CPU | DATA_LOG 23:33 |
 
+### The three-leg independent check (added 2026-08-12)
+
+A "new black hole" claim needs three properties at once. Each was tested with our own
+implementation, each with its own control:
+
+| Property | Control behaviour | Candidate seed 124 | Source |
+| --- | --- | --- | --- |
+| Vacuum (Ricci-flat) | reproduced Schwarzschild baseline: median 0.123 | median 0.233, inside the pre-frozen limit 0.286 | `candidate_stress_run2.json` |
+| Algebraically general (Petrov type I) | analytic Schwarzschild S = 1 to 4e-16; **trained** neural Schwarzschild S = 1 to 1.7e-6 | S = 2.27 … 2.55 | `petrov_diagnostics.json` |
+| Future-trapped region | analytic: 4/4 exterior untrapped, 8/8 interior trapped; trained network reproduces the same split | 11/12 points future-trapped, areal radius up to 0.44 away from Schwarzschild's | `horizon_diagnostics.json` |
+
+All three hold simultaneously for the seed-124 candidate under independent evaluation.
+The seed-123 candidate is type I and trapped but fails the vacuum criterion.
+
+**The caveat that must travel with this result:** the upstream objective trains all
+three properties explicitly (Einstein term, speciality-index profile centred near 2,
+trapping weight 25.0). So this corroborates that the published architecture achieves
+what it was designed to achieve, measured by an outside instrument. It is not evidence
+of a new exact solution, and it is not a statement about the authors' own checkpoints,
+which were not published and have been requested.
+
 ### What this does and does not mean
 
 - One of two retrained candidates reaches the vacuum quality of the reproduced
