@@ -5,9 +5,9 @@ code_commit: recorded-at-launch  # updated in outputs on completion
 upstream_commit: 54736e466e54d948bd509b072e4047cf98405064
 command: >-
   WANDB_MODE=disabled ../.venv-upstream/Scripts/python.exe run.py
-  -c=C:/Users/user/ScienceBro/projects/ainstein-audit/experiments/hps_petrovI_bh_frozen.yaml
+  -c=C:/Users/user/ScienceBro/projects/ainstein-audit/experiments/configs/hps_petrovI_bh_frozen.yaml
 inputs:
-  - "experiments/hps_petrovI_bh_frozen.yaml sha256=4611a31caf4f0d60 (full hash in git)"
+  - "experiments/configs/hps_petrovI_bh_frozen.yaml sha256=4611a31caf4f0d60 (full hash in git)"
 outputs: []
 seeds: [123]  # np/tf seeds as committed by upstream authors
 precision: float64

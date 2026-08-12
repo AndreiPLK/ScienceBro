@@ -2,6 +2,7 @@ id: VAL-0001
 claim_id: CL-0002
 experiment_id: EXP-0002
 validator: independent-verifier (deterministic pipeline, no upstream imports)
+independence_level: separate-formulation
 date: 2026-08-12
 method: >-
   Hidden-point independent FD evaluation (seed 2102849904 derived from checkpoint

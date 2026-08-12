@@ -55,7 +55,6 @@ def evaluate(model_path: str, points: list[np.ndarray], perturb: bool = False) -
     pts5 = np.hstack([stencil4, np.zeros((len(stencil4), 1))])
     values = ka.export(pts5, analytic=False)
     if perturb:
-        rng = np.random.default_rng(1)
         bump = np.array([0.0, 0.55, 0.1, 0.1])
         for i, p in enumerate(stencil4):
             d2 = float(np.sum((p - bump) ** 2))

@@ -5,9 +5,9 @@ code_commit: recorded-at-launch
 upstream_commit: 54736e466e54d948bd509b072e4047cf98405064
 command: >-
   WANDB_MODE=disabled ../.venv-upstream/Scripts/python.exe run.py
-  -c=C:/Users/user/ScienceBro/projects/ainstein-audit/experiments/hps_petrovI_bh_seed124.yaml
+  -c=C:/Users/user/ScienceBro/projects/ainstein-audit/experiments/configs/hps_petrovI_bh_seed124.yaml
 inputs:
-  - "experiments/hps_petrovI_bh_seed124.yaml (EXP-0002 config, seeds 123->124 only)"
+  - "experiments/configs/hps_petrovI_bh_seed124.yaml (EXP-0002 config, seeds 123->124 only)"
 outputs: []
 seeds: [124]
 precision: float64
