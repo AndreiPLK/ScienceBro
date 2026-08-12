@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>An independent verifier for machine-learned spacetimes</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  html { font-size: 10.5pt; }
+  body { font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+         color: #111; line-height: 1.45; margin: 0; }
+  h1 { font-size: 17pt; font-weight: 600; line-height: 1.2; margin: 0 0 6pt;
+       text-align: left; }
+  .authors { font-size: 11.5pt; margin: 0 0 2pt; }
+  .meta { font-size: 9pt; color: #555; margin: 0 0 14pt; font-style: italic; }
+  h2 { font-size: 12pt; font-weight: 600; margin: 16pt 0 4pt; }
+  p { margin: 0 0 7pt; text-align: justify; hyphens: auto; }
+  .abstract { background: #f4f4f2; padding: 9pt 11pt; margin: 0 0 12pt;
+              font-size: 9.7pt; border-left: 2.5pt solid #444; }
+  .abstract b { font-variant: small-caps; letter-spacing: 0.03em; }
+  table { border-collapse: collapse; width: 100%; margin: 8pt 0 10pt;
+          font-size: 9pt; font-family: "Segoe UI", Arial, sans-serif; }
+  th, td { border-bottom: 0.5pt solid #bbb; padding: 3.5pt 5pt; text-align: left;
+           vertical-align: top; }
+  th { border-bottom: 1pt solid #555; font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums;
+                   font-family: Consolas, monospace; }
+  code, pre { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.8pt; }
+  pre { background: #f4f4f2; padding: 6pt 8pt; overflow-x: auto; margin: 6pt 0 9pt; }
+  .refs p { font-size: 9pt; text-indent: -14pt; padding-left: 14pt; text-align: left; }
+  .disclosure { font-size: 9pt; background: #f7f5f0; padding: 8pt 10pt;
+                border: 0.5pt solid #ccc; margin-top: 12pt; }
+  em.math { font-style: italic; }
+  .avoid-break { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<h1>An independent verifier for machine-learned spacetimes,<br>with a reproducibility audit of a neural black-hole search</h1>
+<p class="authors">Andrey Pluzhnik</p>
+<p class="meta">Preprint, 12 August 2026. Not peer-reviewed.</p>
+
+<div class="abstract">
+<p><b>Abstract.</b> Neural networks are increasingly used to produce approximate solutions of
+the Einstein field equations, and their quality is normally reported using the same loss
+functions that were optimised to produce them. We present an independent evaluator that
+measures curvature from a metric callable by finite differences and shares no code with the
+systems it audits, calibrated so that its own error floor is published: it returns Ricci
+residuals of order 10<sup>&minus;10</sup> on analytic Schwarzschild, a Petrov speciality index
+of 1 to within 4&times;10<sup>&minus;16</sup> on a type-D metric and to 1.7&times;10<sup>&minus;6</sup>
+on a <em>trained network</em> imitating one, and it localises deliberately corrupted metrics.
+Applying it to five retrainings of the published black-hole configuration of the AInstein
+project (arXiv:2607.05489), which differ only in random seed, we find that the algebraic type
+and the trapped region reproduce in 5 of 5 runs while the vacuum condition holds in 2 of 5,
+with the independent residual spanning a factor 4.8 against a reported training-loss spread of
+1.21. In this sample the reported loss ranks the runs in the opposite order to independently
+measured vacuum quality (Spearman &minus;0.90, two-sided <em>p</em> = 0.037, <em>n</em> = 5,
+exploratory). We argue that a self-reported loss is insufficient evidence of geometric quality
+in this setting, and release the evaluator and all artifacts, including failed runs.</p>
+</div>
+
+<h2>1. Why an external instrument</h2>
+<p>A physics-informed network that outputs a metric is trained to minimise a residual of the
+field equations, and the same residual is then quoted as evidence that the output solves them.
+This is not circular in principle &mdash; the residual is a real quantity &mdash; but it becomes
+fragile in practice for three reasons. The reported number is usually a sample average of a
+squared, weighted contraction, so it can be small while pointwise curvature errors are not; it
+is computed with the same differentiation kernel that shaped the optimisation, so shared bugs
+cancel; and it is evaluated on the sampling distribution used for training. None of these is a
+criticism of any particular paper. They are reasons why an outside measurement is worth making,
+in the ordinary sense in which an outside measurement is always worth making.</p>
+<p>Our contribution is deliberately modest in scope: an evaluator that can be pointed at any
+system producing a metric, whose own error floor is measured and published, and a discipline
+that makes its verdicts checkable rather than assertable.</p>
+
+<h2>2. The evaluator</h2>
+<p>Given a callable returning the metric <em class="math">g<sub>&mu;&nu;</sub></em> at a point,
+we compute Christoffel symbols, the Riemann tensor, the Ricci tensor and the Kretschmann scalar
+by nested central differences in float64, choosing the step size by convergence sweep rather
+than by default. From the Weyl tensor we form an orthonormal Lorentzian frame, the complex Weyl
+operator <em class="math">Q = E + iB</em>, and the algebraic invariants
+<em class="math">I = &frac12;&sum;&lambda;<sub>i</sub><sup>2</sup></em>,
+<em class="math">J = det Q</em>, giving the speciality index
+<em class="math">S = 27J<sup>2</sup>/(4I<sup>3</sup>)</em>, which equals 1 exactly for
+algebraically special geometries. For trapping we use the 2+2 split: the areal radius
+<em class="math">R</em> read from the angular block, its gradient in the two-dimensional
+Lorentzian block, and <em class="math">&Xi; = h<sup>ab</sup>&part;<sub>a</sub>R&thinsp;&part;<sub>b</sub>R</em>,
+together with the two null directions of the block; <em class="math">&Xi;&lt;0</em> with both
+null derivatives of <em class="math">R</em> negative is a future-trapped surface. Where the
+coordinate time is spacelike the orientation is reported as ambiguous rather than guessed.</p>
+<p>The evaluator imports no code from the audited system. Metric values cross the boundary as
+plain float64 arrays produced by a subprocess in an isolated environment, so a bug in the
+audited implementation cannot propagate into the measurement.</p>
+
+<h2>3. Calibration, stated before use</h2>
+<table class="avoid-break">
+<tr><th>Check</th><th class="num">Measured</th></tr>
+<tr><td>Analytic Schwarzschild is vacuum (Schwarzschild coordinates)</td><td class="num">8.7e&minus;11</td></tr>
+<tr><td>Kretschmann against 48M&sup2;/r&#8310;</td><td class="num">1.1e&minus;9 rel.</td></tr>
+<tr><td>Analytic Schwarzschild in the audited paper's Penrose and stereographic chart</td><td class="num">6.7e&minus;9 … 1.5e&minus;8</td></tr>
+<tr><td>Areal radius from the metric against an independent Lambert-W r(T,X)</td><td class="num">3 decimals, 12 pts</td></tr>
+<tr><td>Speciality index on a type-D metric</td><td class="num">|S&minus;1| = 4.4e&minus;16</td></tr>
+<tr><td>Speciality index on a <em>trained network</em> imitating Schwarzschild</td><td class="num">|S&minus;1| &le; 1.7e&minus;6</td></tr>
+<tr><td>Trapping on the analytic metric</td><td class="num">4/4 out, 8/8 in</td></tr>
+<tr><td>Apparent horizon of a trained network imitating Schwarzschild</td><td class="num">X = T &plusmn; 0.009</td></tr>
+<tr><td>Deliberately corrupted metric</td><td class="num">detected, localised</td></tr>
+<tr><td>float32 storage of metric components</td><td class="num">203&times; inflation</td></tr>
+<tr><td>Finite-difference step, h &isin; [3e&minus;4, 1e&minus;2]</td><td class="num">stable to 5 digits</td></tr>
+</table>
+<p>The two network-based controls matter most. A trained network that approximates a type-D
+vacuum still reads as type D through this pipeline, and still places its horizon where the
+textbook one is, which is what licenses interpreting a departure as physics rather than as
+neural-approximation noise.</p>
+
+<h2>4. The audit</h2>
+<p>The AInstein project [1] reports neural metrics that are numerically Ricci-flat,
+algebraically general and possess trapped interiors. Its trained candidates are not published,
+so the object of audit is necessarily the published configuration rather than the reported
+candidates; this distinction is maintained throughout, and a request for the checkpoints has
+been sent to the authors.</p>
+<p>We retrained the committed black-hole configuration five times, changing only the random
+seed, with one documented deviation: the committed <code>epochs: 10</code> debug value was set
+to 500. Each resulting metric was evaluated on 24 hidden points whose sampling seed is derived
+deterministically from the checkpoint's own SHA-256, so the evaluation coordinates cannot be
+chosen after seeing a result. Pass criteria were derived from a separately retrained neural
+Schwarzschild baseline, then committed and version-tagged <b>before</b> any candidate
+existed.</p>
+<table class="avoid-break">
+<tr><th>Seed</th><th class="num">Reported final loss</th><th class="num">Independent vacuum median</th><th>Vacuum</th><th class="num">Speciality index</th><th class="num">Trapped</th></tr>
+<tr><td>126</td><td class="num">1.32e&minus;2</td><td class="num">0.228</td><td>pass</td><td class="num">2.29&ndash;2.56</td><td class="num">11/12</td></tr>
+<tr><td>124</td><td class="num">1.18e&minus;2</td><td class="num">0.233</td><td>pass</td><td class="num">2.27&ndash;2.55</td><td class="num">11/12</td></tr>
+<tr><td>125</td><td class="num">1.10e&minus;2</td><td class="num">0.317</td><td>fail</td><td class="num">2.30&ndash;2.58</td><td class="num">11/12</td></tr>
+<tr><td>123</td><td class="num">1.11e&minus;2</td><td class="num">0.915</td><td>fail</td><td class="num">2.29&ndash;2.58</td><td class="num">11/12</td></tr>
+<tr><td>127</td><td class="num">1.09e&minus;2</td><td class="num">1.100</td><td>fail</td><td class="num">2.29&ndash;2.58</td><td class="num">11/12</td></tr>
+</table>
+<p>Three observations follow, in decreasing order of confidence.</p>
+<p><b>The reproducible parts and the fragile part are different parts.</b> The speciality index
+and the trapped region appear in every run, and the index is reproducible to 0.43 % relative
+standard deviation across seeds. The vacuum condition &mdash; the field equation itself &mdash;
+holds in two runs of five, spanning a factor 4.8. The instability is specific to the Einstein
+term.</p>
+<p><b>Two of five runs satisfy all three properties simultaneously.</b> The configuration does
+produce candidates of the advertised kind, but not reliably, and the failure mode is not
+localised: the worst run's residual is elevated across the whole sampled Penrose block
+(exterior median 1.098, interior 0.986 over 95 grid points) rather than near the horizon or the
+diagram boundary.</p>
+<p><b>The reported loss does not track independent quality in this sample.</b> It varies by
+1.21&times; where the independent residual varies by 4.8&times;, and the ordering is inverted:
+the lowest-loss run has the worst independent residual and the highest-loss run the best
+(Spearman &minus;0.90, two-sided <em>p</em> = 0.037; Pearson &minus;0.63, <em>p</em> = 0.26). We
+label this <b>exploratory</b>: the hypothesis was not pre-registered, it was noticed in the
+sweep output, and <em>n</em> = 5. We report it because it is inexpensive for others to test and
+because it is precisely the failure mode an external instrument exists to detect.</p>
+<p>We also locate the apparent horizon per model by bisecting <em class="math">&Xi; = 0</em> to
+&plusmn;0.003 in X. The analytic control returns the exact line X = T, a trained network
+imitating Schwarzschild returns it to within 0.009, and the candidates return near-vertical
+surfaces at X &asymp; 0.63&ndash;0.71: a different horizon shape, not a displaced copy.</p>
+
+<h2>5. What this does and does not establish</h2>
+<p>All three measured properties are explicit targets of the audited objective, which includes
+an Einstein term, a speciality-index profile centred near 2, and a trapping term with weight 25
+against the Einstein term's weight 1. Measuring them therefore corroborates that the published
+architecture achieves what it was designed to achieve, as judged from outside for the first
+time. It is not evidence that a new exact solution exists, and it is not a verdict on the
+authors' own candidates, which remain unpublished. A failed replication is not a refutation.</p>
+<p>An incidental measurement is worth recording for anyone auditing such systems: the
+repository's supervised seed model, trained to match the analytic metric componentwise, has
+<em>worse</em> curvature than a physics-informed network at 6 % of training (Kretschmann error
+1.5&ndash;8.2 % against 0.4&ndash;1.7 %). Pointwise metric agreement is not evidence of
+geometric agreement.</p>
+
+<h2>6. Limitations</h2>
+<p>No qualified relativist has reviewed this work. The sample is five seeds of one
+configuration. Hidden-point sets differ per seed by construction, which protects against
+coordinate selection but means runs are not compared at identical points. The marginally
+trapped surface is located only to bisection resolution, and the angular direction was sampled
+at a single stereographic point. The four-dimensional equivalent of the audited loss was not
+replicated exactly; the comparison on the authors' own scale is restricted to the
+two-dimensional case, where the square root of their reported loss and our pointwise maximum
+agree to 0.7 %. Training ran on CPU because consumer-GPU float64 measured ten times slower.</p>
+
+<h2>7. Availability</h2>
+<p>The evaluator, the workbench that computes stage statuses from hashed artifacts, all
+measurements and all failed runs are released under MIT. Stage statuses, thresholds and
+attestations are reproducible with</p>
+<pre>uv sync --all-groups &amp;&amp; uv run sb verify-all ainstein-audit &amp;&amp; uv run pytest -q</pre>
+<p>Validation thresholds were frozen and version-tagged before the results they judge existed;
+attestations record the git commit, the environment lock hash and per-artifact SHA-256 digests,
+and become invalid automatically when an artifact changes.</p>
+
+<div class="disclosure">
+<b>AI use.</b> An AI agent (Claude, Anthropic) wrote the code and executed the experiments under
+the author's direction. The author set the research question, imposed the constraint that the
+agent may never mark its own scientific work as verified, required that discrepancies be
+resolved by measurement, and performed all external communication. Deterministic gates and
+preserved artifacts, not the agent's assertions, are what make the results checkable.
+</div>
+
+<h2>References</h2>
+<div class="refs">
+<p>[1] E. Hirst, T. Schettini Gherardini and A. G. Stapleton, <em>Black Hole Black Boxes:
+Numerical Black Hole Metrics via AInstein Neural Networks</em>, arXiv:2607.05489 (2026). Code:
+github.com/xand-stapleton/ainstein, branch <code>blackhole</code>, commit 54736e46.</p>
+</div>
+
+</body>
+</html>
