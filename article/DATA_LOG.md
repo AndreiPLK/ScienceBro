@@ -51,3 +51,4 @@ old entries; append corrections as new entries.
 - 00:20 — night2 clean run: epoch 100/500, loss 1.03e-3 (trajectory matches previous runs).
 - 01:05 — night2: epoch 200/500, loss 7.62e-4.
 - 01:47 — night2: epoch 300/500, loss 6.78e-4.
+- 02:30 — night2: epoch 400/500, loss 5.91e-4. Final 100 epochs ~45 min.
