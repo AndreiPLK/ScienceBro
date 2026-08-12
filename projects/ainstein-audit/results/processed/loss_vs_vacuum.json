@@ -1,0 +1,25 @@
+{
+  "n": 5,
+  "spearman_rho": -0.9,
+  "spearman_p_two_sided": 0.0374,
+  "pearson_r": -0.6283,
+  "pearson_p_two_sided": 0.2563,
+  "vacuum_spread_factor": 4.824,
+  "loss_spread_factor": 1.211,
+  "final_losses": {
+    "123": 0.0111,
+    "124": 0.0118,
+    "125": 0.011,
+    "126": 0.0132,
+    "127": 0.0109
+  },
+  "vacuum_medians": {
+    "123": 0.9148441960387894,
+    "124": 0.23340763502219208,
+    "125": 0.31732089737854485,
+    "126": 0.22804046315967552,
+    "127": 1.100051404746763
+  },
+  "speciality_index_relative_std_percent": 0.433,
+  "caveat": "n = 5. A rank correlation of this magnitude at n = 5 sits at the edge of significance, so this is reported as suggestive and not as an established relationship. It is stated because it is cheap for anyone to test with more seeds and because it is the failure mode an external instrument exists to catch."
+}

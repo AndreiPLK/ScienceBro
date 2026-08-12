@@ -208,6 +208,7 @@
         The training loss each run reported is shown alongside and does not follow the same
         order.</desc>
         <line class="s-rule" x1="170" y1="16" x2="170" y2="196" stroke-width="1"/>
+        <line class="s-dash" x1="235" y1="20" x2="235" y2="196" stroke-width="1.3"/>
 
         <text class="lbl-name" x="14" y="42">my textbook copy</text>
         <rect class="bar-teal" x="170" y="30" width="28" height="16"/>
@@ -236,7 +237,6 @@
         <rect class="bar-rust" x="170" y="170" width="250" height="16"/>
         <text class="lbl-num-rust" x="428" y="183">1.100</text>
 
-        <line class="s-dash" x1="235" y1="20" x2="235" y2="196" stroke-width="1.3"/>
         <text class="lbl" x="14" y="216">dashed line: pass limit 0.286, fixed before any of these
         runs existed</text>
         <text class="lbl-soft" x="14" y="238">seed 127 reported the lowest loss of the five and has
@@ -254,10 +254,11 @@
       showed up in <b>all five</b> runs, tightly clustered. The plain requirement that spacetime be
       empty &mdash; the actual Einstein equation &mdash; held in only <b>two of five</b>.</p>
       <p>Worse, the number these networks report about themselves does not see it. Training loss
-      barely moved across the five runs while the real geometric error moved by a factor of five,
-      and the run that looked best by its own loss was the worst when measured from outside. With
-      five runs that ordering is suggestive rather than proven, but it is exactly the failure mode
-      an outside instrument exists to catch.</p>
+      barely moved across the five runs (21 percent) while the real geometric error moved by a
+      factor of five, and the run that looked best by its own loss was the worst when measured from
+      outside &mdash; the ranking is reversed, with a rank correlation of &minus;0.90. I went looking
+      for this only after seeing the sweep, on five runs, so I file it as a lead rather than a
+      result. It is also exactly the failure mode an outside instrument exists to catch.</p>
       <p>That is the argument for this kind of audit in one paragraph: when a network reports on its
       own success, someone has to check with a different ruler.</p>
     </div>

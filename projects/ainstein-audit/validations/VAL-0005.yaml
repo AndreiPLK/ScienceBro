@@ -21,7 +21,13 @@ measurements:
   petrov_type_I_by_seed: "5 of 5 (S ranges 2.27..2.58 across every seed)"
   trapped_points_by_seed: "5 of 5 at 11/12 probe points"
   final_training_loss_by_seed: {123: 0.0111, 124: 0.0118, 125: 0.0110, 126: 0.0132, 127: 0.0109}
-  training_loss_spread_factor: 1.21
+  training_loss_spread_factor: 1.211
+  speciality_index_relative_std_percent: 0.433
+  loss_vs_vacuum_spearman_rho: -0.90
+  loss_vs_vacuum_spearman_p_two_sided: 0.0374
+  loss_vs_vacuum_pearson_r: -0.628
+  loss_vs_vacuum_pearson_p_two_sided: 0.2563
+  loss_vs_vacuum_analysis_status: exploratory   # hypothesis was NOT pre-registered
 decision: pass
 scope_and_limits: >-
   PASS refers to the sweep being a valid measurement, not to the candidates passing. The
@@ -39,8 +45,15 @@ scope_and_limits: >-
   a factor 1.21 across seeds while the independent residual varies by 4.8, and the ordering
   is inverted in this sample (the lowest-loss run, seed 127 at 1.09e-2, has the worst
   independent vacuum residual at 1.100; the highest-loss run, seed 126 at 1.32e-2, has the
-  best at 0.228). With n = 5 this ordering is suggestive, not established; the rank
-  correlation is reported in results/processed/loss_vs_vacuum.json with its own caveat.
+  best at 0.228). Measured: Spearman rho = -0.90 (two-sided p = 0.037), Pearson r = -0.63
+  (p = 0.26) — the rank ordering is inverted while no linear relationship is established.
+  THIS ANALYSIS IS EXPLORATORY: the hypothesis was not pre-registered, it was noticed in the
+  sweep output, and n = 5. It is recorded because it is the exact failure mode an external
+  instrument exists to detect and because it is cheap for anyone to test with more seeds. It
+  must not be presented as a confirmatory result.
+
+  For contrast, the reproducible leg is reproducible to half a percent: the speciality index
+  midpoint has a relative standard deviation of 0.43% across the five seeds.
 
   Limitations: five seeds; one configuration; our retrains rather than the authors'
   checkpoints; hidden-point sets differ between seeds by construction (each derived from its
