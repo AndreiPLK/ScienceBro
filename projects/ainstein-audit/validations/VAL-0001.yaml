@@ -1,0 +1,36 @@
+id: VAL-0001
+claim_id: CL-0002
+experiment_id: EXP-0002
+validator: independent-verifier (deterministic pipeline, no upstream imports)
+date: 2026-08-12
+method: >-
+  Hidden-point independent FD evaluation (seed 2102849904 derived from checkpoint
+  sha256, not tunable) against THRESHOLDS_FROZEN.md (git tag thresholds-frozen,
+  frozen before the candidate existed). Pipeline validity re-confirmed on the
+  analytic route in the same session (worst Ricci 1.49e-8, worst K rel 1.15e-8).
+measurements:
+  candidate_ricci_median: 0.9148
+  candidate_ricci_p95: 1.3573
+  candidate_ricci_max: 1.493
+  frozen_median_limit: 0.286
+  frozen_p95_limit: 0.573
+  baseline_ricci_median: 0.123
+  fd_convergence_median_spread: 1.67e-06
+  signature_ok_fraction: 1.0
+  negative_control_p95: 56.7
+decision: fail
+scope_and_limits: >-
+  FAIL applies ONLY to this retrained candidate (upstream config hps_petrovI_bh.yaml
+  @54736e46 verbatim, documented epochs 10->500 fix, seed 123 as committed, 500
+  epochs). It is NOT a refutation of the published paper: (a) the authors published
+  no candidate checkpoints, so the published artifacts could not be evaluated
+  directly; (b) the composite BH objective (trapped-surface 25.0, horizon 3.0,
+  S-profile 1.0) trades off against the Einstein term by design; (c) single seed,
+  single run. A failed replication is not a refutation unless shown methodological
+  or intrinsic (claim-gates rule). This run is preserved in full
+  (results/raw/petrovI-bh-run1, checkpoint sha256 fd56f170...).
+next: >-
+  (1) request author checkpoints/configs (draft letter pending founder approval);
+  (2) optional: longer training / seed sweep to test whether the committed config
+  can reach vacuum comparability at all; (3) 4D normalization replication to compare
+  our pointwise numbers with the paper's quadratic losses on their own scale.
