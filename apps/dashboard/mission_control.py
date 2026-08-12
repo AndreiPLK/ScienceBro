@@ -299,7 +299,10 @@ def render(project_id: str) -> None:
         + _hud_card("Verifier checks", f"{n2}/{len(gates[1].requirements)}",
                     COLORS["VERIFIED"] if gates[1].status == "VERIFIED" else COLORS["IN PROGRESS"],
                     "analytic · controls · precision")
-        + _hud_card("Candidates tested", "0", "#8a8a8a", "awaits baseline")
+        + _hud_card("Candidates tested",
+                    str(len(list((_proj_dir(project_id) / "results" / "processed").glob("candidate_stress*.json")))),
+                    COLORS["VERIFIED"] if list((_proj_dir(project_id) / "results" / "processed").glob("candidate_stress*.json")) else "#8a8a8a",
+                    "frozen-criteria evaluations")
         + _hud_card("Blocker", "1" if blockers else "0",
                     COLORS["IN PROGRESS"] if blockers else COLORS["VERIFIED"],
                     (blockers[0][:60] + "…") if blockers else "clear")
