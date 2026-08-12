@@ -271,10 +271,16 @@ def render(project_id: str) -> None:
     # 1. mission
     st.markdown(f"## {MISSION}")
 
+    # 1b. big ETA banner + step progress (what to expect, always visible)
+    from apps.dashboard import timeline
+
+    timeline.render_eta_and_timeline(_proj_dir(project_id))
+
     # 2. quest map — the dominant visual
     current_idx = next(
         (i for i, g in enumerate(gates) if g.status != "VERIFIED"), len(gates) - 1
     )
+    st.markdown("### Roadmap")
     st.markdown(_quest_map_svg(gates, current_idx), unsafe_allow_html=True)
 
     # HUD row — big numbers, minimal text

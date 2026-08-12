@@ -1,0 +1,42 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  body { margin:0; background:#fff; font-family: Arial, Helvetica, sans-serif; }
+  #wrap { width: 860px; padding: 18px 22px; }
+  h3 { font-size: 15px; font-weight: 600; margin: 0 0 2px 0; color:#111; }
+  p.sub { font-size: 12px; color:#555; margin: 0 0 14px 0; }
+  .row { display:flex; align-items:center; gap:10px; margin: 7px 0; }
+  .lbl { width: 220px; font-size: 12.5px; color:#222; text-align:right; }
+  .barwrap { flex:1; position:relative; height: 22px; background:#f2f2f2; }
+  .bar { height:100%; }
+  .val { width:52px; font-size:12.5px; color:#222; font-weight:600; text-align:left; }
+  .thr { position:absolute; top:-4px; bottom:-4px; width:2px; background:#444; }
+  .legend { display:flex; gap:18px; font-size:12px; color:#333; margin-top:16px; }
+  .sw { display:inline-block; width:11px; height:11px; margin-right:5px; }
+  .note { font-size:11.5px; color:#666; margin-top:10px; }
+</style>
+<div id="wrap">
+  <h3>Independent curvature residual on 24 hidden points (never used in training)</h3>
+  <p class="sub">Finite-difference max |R_ab|, float64, h = 3e-3, evaluated in Penrose + stereographic coordinates</p>
+
+  <div class="row"><div class="lbl">Schwarzschild baseline (mine)</div>
+    <div class="barwrap"><div class="bar" style="width:8.2%;background:#2e7d32"></div>
+      <div class="thr" style="left:19.1%"></div></div><div class="val">0.123</div></div>
+
+  <div class="row"><div class="lbl">BH candidate, seed 124</div>
+    <div class="barwrap"><div class="bar" style="width:15.6%;background:#ef9a00"></div>
+      <div class="thr" style="left:19.1%"></div></div><div class="val">0.233</div></div>
+
+  <div class="row"><div class="lbl">BH candidate, seed 123</div>
+    <div class="barwrap"><div class="bar" style="width:61.2%;background:#c62828"></div>
+      <div class="thr" style="left:19.1%"></div></div><div class="val">0.915</div></div>
+
+  <div class="legend">
+    <span><span class="sw" style="background:#2e7d32"></span>reproduced known solution</span>
+    <span><span class="sw" style="background:#ef9a00"></span>candidate within my threshold</span>
+    <span><span class="sw" style="background:#c62828"></span>candidate above my threshold</span>
+    <span><span class="sw" style="background:#444"></span>threshold 0.286 (fixed before training the candidates)</span>
+  </div>
+  <p class="note">Median over the 24 points. Same evaluator, same points, same step size for all three models.
+     Bars share a linear scale up to 1.5.</p>
+</div>
