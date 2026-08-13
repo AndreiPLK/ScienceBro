@@ -114,3 +114,10 @@ old entries; append corrections as new entries.
   zenodo.org/records/21915627. ORCID registered: 0009-0005-5660-2603. Stage-6 gate
   VERIFIED 7/7 — first fully closed public-release gate of the project. Remaining human
   action: JOSS form (values prepared).
+- 2026-08-13 (late) — JOSS compliance pass: requirements read in full; submission POSTPONED
+  to earliest 2027-02-13 (6-month public-history rule; single-burst histories explicitly out
+  of scope) — checked BEFORE submitting, desk rejection avoided. JOSS profile completed
+  (email + @AndreiPLK) via founder's browser. Public repo hardened: CI (pytest on
+  Linux/Windows, py3.10/3.12) GREEN on GitHub's clean machines; JOSS draft-pdf action GREEN
+  (paper.md compiles with their own tooling); CONTRIBUTING.md + CHANGELOG.md added.
+  One-pager artifact switched to public link sharing.
