@@ -1,5 +1,13 @@
 # ScienceBro — Claude Code project instructions
 
+## MANDATORY: North Star check
+Before selecting, starting or closing ANY task, reread `NORTH_STAR.md`. Every experiment
+and mission must carry `north_star_relevance`. Infrastructure budget: ≤20% of effort;
+≥80% goes to physics. The active program is the quantum-gravity S-matrix bootstrap
+(`docs/QG_BOOTSTRAP_PLAN.md`); the AInstein audit is COMPLETE and archived in place
+(`projects/ainstein-audit/`, published as github.com/AndreiPLK/spacetime-verifier,
+DOI 10.5281/zenodo.21915627).
+
 Authoritative spec: `SCIENCEBRO_MASTER_ROADMAP.md`. Deviations: `docs/DECISIONS.md`.
 
 ## Non-negotiable scientific rules (short form; full list in roadmap §6)
