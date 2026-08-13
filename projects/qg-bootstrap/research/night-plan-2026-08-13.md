@@ -36,3 +36,10 @@ N5. If time remains: q>1 peek (Card B direction) — does the edge law survive
   accumulate in chat).
 - Compute-runner rules for anything > 30 s. No claims promoted at night —
   everything logged as derived/verified-numerically for morning review.
+
+N6 (MORNING DELIVERABLE, founder 23:0x): comic-style video over ALL results —
+    "в нашей системе с чёрными линиями", bright, interesting, ENGLISH captions.
+    Format: panel-based comic (toon shading, black outlines via toy_style
+    S.outline / 2D panels), punchy story: scan -> edge theorem -> 176 zombies
+    -> executions -> atlas of 7 islands -> rivals agree (MS) -> "boundary is
+    now a formula". Build ~05:30-08:00 after science slices; music per canon.
