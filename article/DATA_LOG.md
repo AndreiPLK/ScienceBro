@@ -125,3 +125,9 @@ old entries; append corrections as new entries.
   derived independently from truncation-point crossing (SymPy, pure symbols, N=5): 6/6 PASS.
   Calibration: N=5 ~3 min foreground; N=7 heavy (background). Next slice: exact-rational
   positivity spot-check of one Fig.1 point (in/out of the island).
+- 2026-08-13 13:2x — QG ITERATION 2 (PASS): exact-rational positivity machine validated by
+  two independent routes (paper Eq. A6 in Fractions VS first-principles residue + exact
+  Legendre projection): signs agree everywhere tested; Veneziano clean n<=8; far point
+  (-3/2,3/2) excluded with 19 negative coefficients. Bonus: removable singularity in A6 at
+  n = mu0+2r+4 documented (naive implementations divide by zero there). Predicted 30 min,
+  actual ~25. Next: full Fig.1 island map (visual).
