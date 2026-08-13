@@ -5,7 +5,7 @@ type: software
 authors:
   - given-names: Andrey
     family-names: Pluzhnik
-    # orcid: "https://orcid.org/0000-0000-0000-0000"  # fill in after registering
+    orcid: "https://orcid.org/0009-0005-5660-2603"
 abstract: >-
   A research workbench for auditing machine-learning claims in general relativity. It
   contains an independent finite-difference curvature evaluator (Ricci, Kretschmann,

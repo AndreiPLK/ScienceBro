@@ -9,7 +9,7 @@ tags:
   - Petrov classification
 authors:
   - name: Andrey Pluzhnik
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0005-5660-2603
     affiliation: 1
 affiliations:
   - name: Independent researcher
