@@ -248,3 +248,12 @@ old entries; append corrections as new entries.
   sample points).
 - Card A core status: analytic laws INDEPENDENTLY REVIEWED + adversarially
   survived; completeness of the characterization remains a labeled conjecture.
+
+## 2026-08-13 — Stage-closure cinematic THE ISLAND delivered
+- 40 s Godot film (NOVA/viz/island.gd, art-bible style): every plate = real
+  allowed (r,w) point (655 coarse + 1145 fine), yellow wall = theorem edge
+  r=-1/2, 176 pink crystals = theorem-killed points sinking, probe scans the
+  rim. Music Truthfall 0.08 + space rumble at the execution. QC: 6 frames from
+  the FINAL mp4 inspected. Copy: article/visuals/qg-the-island-cinematic.mp4.
+- Ops lesson archived in reality-production skill: MovieMaker PNG has alpha=0
+  on BG pixels; viewers render it white — phantom "white sky" (30 min bisect).
