@@ -203,3 +203,15 @@ old entries; append corrections as new entries.
   constraint there; next suspect a_{n,n-2}. Theorem is one-sided (outer bound),
   so no contradiction.
 - Visual: article/visuals/qg-island-edge-theorem.png (Relic style, real data).
+
+## 2026-08-13 — a_{n,n-2} closed form + COMPLETE analytic characterization (mu0=0)
+- Third trajectory: sign(a_{n,n-2}) = sign[12(2n-1)(1+r)(nr+2w)+n(n^2+5n-2)] —
+  kills only in a finite n-window (cubic term wins asymptotically). Verified vs
+  brute force n=3..8 (positive constant ratios).
+- Killer census over all 714 excluded cells: every binding constraint is either
+  n<=5 (explicit curves, e.g. a_{2,0}: 3(1+r)(r+w)+1>=0) or the l=n-1 ladder.
+- COMPLETE CHARACTERIZATION TEST: analytic island (n<=5 curves + ladder + domain)
+  vs scans: 1369/1369 coarse (N=40, boundary stable to 80) and 2411/2411 fine
+  (0.02, theorem-corrected) — ZERO mismatches on 3780 exact points.
+- Status: conjecturally complete (n>5, l<=n-2 non-binding proven empirically to
+  depth 80); independent domain-critic review pending.

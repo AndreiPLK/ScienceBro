@@ -90,9 +90,35 @@ Prediction for the mu0 stack maps: left edges at -(1+mu0)/2 = -0.2 (mu0=-3/5),
 -0.5 (mu0=0), -0.8 (mu0=3/5), etc. — to be checked against the N=10 stack with
 the finite-depth caveat (cells die only at n > w/|r-edge| <= NMAX).
 
-## Open
+## Third trajectory a_{n,n-2} (mu0=0) — closed form
 
-- Same analysis for the leading trajectory a_{n,n} (top coefficient always
-  positive — leading trajectory never kills; consistent with data).
+Same technique, two contributing monomials (x^n and x^{n-2} both project on
+P_{n-2}). With rho = I(n,n-2)/I(n-2,n-2) = n(n-1)/(2(2n-1)):
+
+    sign(a_{n,n-2}) = sign[ 12(2n-1)(1+r)(nr+2w) + n(n^2+5n-2) ]
+
+(physical domain; positive constant checked against brute force for n=3..8).
+Consequence: the cubic-in-n term dominates, so a_{n,n-2} is eventually positive
+for every fixed (r,w) — the third trajectory only kills in a finite n-window.
+
+## Killer census and COMPLETE CHARACTERIZATION (mu0=0)
+
+Census of first-negative (n,l) over all 714 excluded cells of the N=40 map:
+every killer is either (i) a constraint with n <= 5, or (ii) the l=n-1 ladder
+(n=4..19), or (iii) a domain pole. No other constraint binds anywhere.
+
+Conjectured complete characterization of the island at mu0=0:
+
+    allowed(r,w)  <=>  all a_{n,l} >= 0 for n <= 5  (20 explicit curves, e.g.
+                       a_{2,0}: 3(1+r)(r+w)+1 >= 0,
+                       a_{3,0}: 4r^3+4r^2w+6r^2+8rw+8r+6w+3 >= 0)
+                       AND the ladder condition: not(r < -1/2 and w > 0)
+                       AND not(r = -1/2 and w < 0), within the domain.
+
+Verified: 1369/1369 coarse cells (N=40 scan, boundary stable to N=80) and
+2411/2411 fine boundary points (N=20 scan + theorem correction) — zero
+mismatches on 3780 exact points. Status: conjecturally complete (killers with
+l <= n-2, n > 5 assumed non-binding — proven only empirically to depth 80);
+the l=n-1 part is analytic for all n.
 - a_{n,n-2} (third trajectory): does it produce the N>=2-depth edges elsewhere?
 - Cross-check against Mansfield-Spradlin w=0 limit.
