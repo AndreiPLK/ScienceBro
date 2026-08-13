@@ -123,9 +123,9 @@ the l=n-1 part is analytic for all n.
 
 ## Open
 
-- Cross-check against Mansfield-Spradlin w=0 limit (2409.09561).
 - Prove non-binding of l <= n-2, n > n_min+4 killers (close the conjecture).
 - General-D (Gegenbauer) version of all three closed forms.
+- (done 2026-08-13) Mansfield-Spradlin w=0 cross-check — see section below, PASSED.
 
 ## Full mu0 stack: threshold structure and stack-wide characterization
 
@@ -145,3 +145,12 @@ edge — the same "nine casualties" phenomenon as mu0=0. Four sample cells
 verified by direct evaluation: a_{10w, 10w-1} = 0 exactly and
 a_{10w+1, 10w} < 0 (mu0 = -9/5, -6/5, -3/5, +3/5). Zero true mismatches on
 11994 exact points across the stack.
+
+## External control: Mansfield-Spradlin w=0 cross-check — PASSED
+
+arXiv:2409.09561, Theorem 11 / Eq. (5.16) (p.25-27): on the w=0 slice their
+double-contour Regge asymptotics for odd Delta = n-j carries the overall factor
+(2r + m^2 + 1) — asymptotic positivity of the l=n-1 trajectory requires exactly
+r > -(1+m^2)/2, the same critical line as our exact law sign(n(r+(1+mu0)/2)+w)
+restricted to w=0. Independent method, matching edge (EV-QG-0002). Our result is
+exact at every finite n and extends to w != 0, which their paper does not treat.

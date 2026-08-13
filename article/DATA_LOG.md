@@ -226,3 +226,12 @@ old entries; append corrections as new entries.
 - Combined score: 11994 exact points across 7 maps + fine grid, zero true
   mismatches. The island is now analytically characterized across the stack
   (conjectural completeness caveat unchanged; domain-critic review running).
+
+## 2026-08-13 — External control passed: Mansfield-Spradlin agree on the edge at w=0
+- Their Theorem 11 (contour asymptotics, w=0): odd-Delta Regge coefficient sign
+  ruled by (2r+m^2+1) -> critical line r=-(1+m^2)/2 = our edge -(1+mu0)/2.
+  Different method, same line. Our law is exact per-n and covers w!=0 (novel).
+
+## 2026-08-13 — Island Atlas visual
+- article/visuals/qg-island-atlas.png: seven mu0 islands, one analytic edge law
+  -(1+mu0)/2 overlaid; mu0<=0 islands hug the line, mu0>0 gap = threshold scalar.
