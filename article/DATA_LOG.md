@@ -276,3 +276,13 @@ old entries; append corrections as new entries.
 - New structural note: beyond the edge (r=-3/5) fixed-spin coefficients also
   turn negative at large n (l=1,3 from n=50) — the edge is witnessed at fixed
   spin, not only on the l=n-1 ladder. To derive analytically next.
+
+## 2026-08-13 night N2 (analytic part, in progress)
+- Localization at x=1 gives fixed-spin law a_{n,l} ~ (2l+1) * C(r,w)/(n ln n),
+  C > 0 in the domain (heuristic derivation; leading order w-free, C ~ 1/(1+r)
+  up to a Gamma-ratio integral). Numeric: (2l+1) scaling exact (l=0 vs l=2
+  ratios coincide to 3 digits); measured C at 4 points positive, drifting
+  logarithmically (0.27..0.86 at n=200). Exact constant + rigor = morning task.
+- Implication: fixed-spin family asymptotically safe across the domain —
+  completeness conjecture now supported on ALL asymptotic families
+  (l=n-1, n-2, n-3 exact; fixed-l asymptotic).
