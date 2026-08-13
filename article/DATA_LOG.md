@@ -235,3 +235,16 @@ old entries; append corrections as new entries.
 ## 2026-08-13 — Island Atlas visual
 - article/visuals/qg-island-atlas.png: seven mu0 islands, one analytic edge law
   -(1+mu0)/2 overlaid; mu0<=0 islands hug the line, mu0>0 gap = threshold scalar.
+
+## 2026-08-13 — Independent review PASSED; all 7 fixes applied
+- Domain-critic verdict: NO algebraic error in the three closed forms; a_{n,n-2}
+  bracket upgraded to proven-for-all-n (reviewer's polynomial identity,
+  C(n)=24(2n-1)/(n-1)). Adversarial script (6 attacks incl. route1-vs-route2 at
+  mu0!=0 and below-threshold sanity) executed: SURVIVED, exit 0. Script archived
+  as lab/attack_left_edge.py.
+- Fixes applied: domain defined explicitly; n=3mu0 identical-zero edge case
+  stated; "true left edge" reworded to exclusion-direction-only; caps header ->
+  "conjectured"; redundant r=-1/2,w<0 clause resolved via n=1 block (6 exact
+  sample points).
+- Card A core status: analytic laws INDEPENDENTLY REVIEWED + adversarially
+  survived; completeness of the characterization remains a labeled conjecture.

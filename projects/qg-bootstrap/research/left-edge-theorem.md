@@ -2,8 +2,18 @@
 
 Date: 2026-08-13. Status: analytic derivation below, numerically verified in exact
 arithmetic at 66 points (6 targeted predictions incl. two exact zeros at off-grid
-points + 60 random (n,r,w)). Independent review: NOT yet done (domain-critic pass
-pending) — do not promote beyond "analytic derivation, numerically confirmed".
+points + 60 random (n,r,w)). Independent review: domain-critic pass DONE
+2026-08-13 (left-edge-theorem-review.md) — no algebraic error found in claims 1-3;
+its adversarial script executed same day: 6/6 attacks survived, exit 0 (includes
+route1-vs-route2 cross-validation at mu0 != 0, closing gap E1, and the
+below-threshold sanity check). Review fixes E2-E4 and wording applied below.
+
+DOMAIN (E3, binding for every sign statement in this note): 2+r > 0 and
+1+r+w > 0; the poles 1+r = 0 and 1+r+w = 0 are excluded. Outside this domain
+the prefactor (1+n+r+w)/((2+r)_n (1+r+w)) can flip sign and the raw bracket
+laws do not apply (the full sign law with prefactor was checked separately).
+EDGE CASE (E2): at n = 3*mu0 exactly, alpha = 0 and a_{n,n-1} vanishes
+identically; the sign law is stated for n > 3*mu0.
 
 ## Claim
 
@@ -62,8 +72,10 @@ K(n) = (2n-1)/2 * (n/2)^{n-1} * 2^n ((n-1)!)^2/(2n-1)! > 0.  QED (elementary).
    the (n, n-1) trajectory fails first at n = 10w+1 — exactly the measured kill
    list (w=1 -> [11,10] ... w=9/5 -> [19,18]), and exactly why these cells
    survived N=10 but died at N=20 (n_crit in 11..19), with no casualties after.
-2. **The island's true left edge at mu0=0 is r = -1/2** (for w > 0): every point
-   with r < -1/2 is excluded at depth n > w/|r+1/2|. Finite-depth maps overstate
+2. **Exclusion edge at mu0=0: nothing survives left of r = -1/2** (for w > 0):
+   every point with r < -1/2 is excluded at depth n > w/|r+1/2|. (That the edge
+   is attained — allowed points exist arbitrarily close to it — is empirical,
+   from the scans, not proven here.) Finite-depth maps overstate
    the island in the sliver r in (-0.6, -0.5); erosion is slow (depth ~ 1/dist)
    but total. At r = -1/2 the coefficient equals w * (positive) >= 0: marginal,
    never negative — the edge itself survives all depths on this trajectory.
@@ -97,11 +109,13 @@ P_{n-2}). With rho = I(n,n-2)/I(n-2,n-2) = n(n-1)/(2(2n-1)):
 
     sign(a_{n,n-2}) = sign[ 12(2n-1)(1+r)(nr+2w) + n(n^2+5n-2) ]
 
-(physical domain; positive constant checked against brute force for n=3..8).
+(physical domain; constant C(n) = 24(2n-1)/(n-1) > 0 — the reviewer's re-derivation
+proved the identity for ALL n via exact polynomial-degree argument, upgrading the
+original n=3..8 brute-force check to a theorem; see left-edge-theorem-review.md).
 Consequence: the cubic-in-n term dominates, so a_{n,n-2} is eventually positive
 for every fixed (r,w) — the third trajectory only kills in a finite n-window.
 
-## Killer census and COMPLETE CHARACTERIZATION (mu0=0)
+## Killer census and CONJECTURED complete characterization (mu0=0)
 
 Census of first-negative (n,l) over all 714 excluded cells of the N=40 map:
 every killer is either (i) a constraint with n <= 5, or (ii) the l=n-1 ladder
@@ -112,8 +126,12 @@ Conjectured complete characterization of the island at mu0=0:
     allowed(r,w)  <=>  all a_{n,l} >= 0 for n <= 5  (20 explicit curves, e.g.
                        a_{2,0}: 3(1+r)(r+w)+1 >= 0,
                        a_{3,0}: 4r^3+4r^2w+6r^2+8rw+8r+6w+3 >= 0)
-                       AND the ladder condition: not(r < -1/2 and w > 0)
-                       AND not(r = -1/2 and w < 0), within the domain.
+                       AND the ladder condition: not(r < -1/2 and w > 0),
+                       within the domain defined above. (E4 resolved: the former
+                       extra clause "not(r=-1/2 and w<0)" is redundant — at
+                       r=-1/2 the n=1 block already kills all w<0: a_{1,0} ~ w
+                       for -1/2<w<0 and a_{1,1} flips via the prefactor for
+                       w<-1/2; verified exactly at 6 sample points.)
 
 Verified: 1369/1369 coarse cells (N=40 scan, boundary stable to N=80) and
 2411/2411 fine boundary points (N=20 scan + theorem correction) — zero
