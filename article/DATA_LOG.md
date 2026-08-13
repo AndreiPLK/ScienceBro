@@ -108,3 +108,4 @@ old entries; append corrections as new entries.
   trained NN Schwarzschild X_h = T within +0.009 (network learned the horizon to ~1%);
   candidate seed124 horizon is a near-vertical line X ~ 0.63-0.65 (delta from analytic
   +0.53..+0.15), seed123 X ~ 0.62-0.71. Quantitatively different horizon geometry, measured.
+- 10:22 — PUBLISHED: github.com/AndreiPLK/spacetime-verifier (public, MIT) — verifier + note + audit data + proof packs; the proof-gate workbench deliberately kept private (middle option per founder). 20 tests green standalone; local paths stripped; secret scan clean. Next: ORCID + Zenodo toggle -> DOI.
