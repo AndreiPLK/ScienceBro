@@ -192,3 +192,14 @@ old entries; append corrections as new entries.
 - sign(a_{n,n-1}) = sign(n(r+(1+mu0)/2)+w) for n > 3mu0: the island's left edge
   moves as r = -(1+mu0)/2. Razor tests at mu0=+-3/5 passed with exact zeros at
   predicted off-grid points (n=20 and n=15).
+
+## 2026-08-13 — Fine boundary 0.02 + theorem correction + mu0-stack test
+- Fine scan (84 boundary squares, 2411 points, NMAX=20 exact): 1321 allowed raw.
+- Theorem post-processing removed 176 false positives (r<-1/2 cells doomed at
+  n>20) -> 1145/2411 allowed. Artifact: fine_boundary_mu0_N20_corrected.json.
+- mu0-stack left edges vs theorem -(1+mu0)/2: EXACT match for mu0 = -9/5, -6/5,
+  -3/5, 0 (predicted -0.20/-0.10.../-0.50 all observed). For mu0 > 0 the island
+  is cut tighter than the theorem line -> a_{n,n-1} is not the binding
+  constraint there; next suspect a_{n,n-2}. Theorem is one-sided (outer bound),
+  so no contradiction.
+- Visual: article/visuals/qg-island-edge-theorem.png (Relic style, real data).
