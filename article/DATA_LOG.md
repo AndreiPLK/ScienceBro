@@ -292,3 +292,7 @@ old entries; append corrections as new entries.
   with 1/(D-1) coefficients. D=4 limits reproduce all verified curves exactly.
 - Explains analytically why the island shrinks with D while the left edge is
   pinned at -(1+mu0)/2.
+
+## 2026-08-14 night N4 — paper skeleton drafted
+- article/qg-island-draft.md: title, abstract, 9-claim status table (honest),
+  section plan, figure list, limitations, repro pack. Morning review target.
