@@ -184,3 +184,18 @@ is positive for every D>3, by the same parity/degree argument. Hence
 The island's left edge is DIMENSION-INDEPENDENT, even though the island itself
 shrinks with D (anchor paper). Verified: 10/10 predictions (incl. four exact
 zeros) at D=6 and D=10 via symbolic Gegenbauer projection.
+
+## Fourth trajectory a_{n,n-3} (night slice N1, mu0=0, D=4)
+
+Three monomials (x^{n-1}, x^{n-3}) feed P_{n-3}; same method with
+I(l+2,l)/I(l,l) = (l+2)(l+1)/(2(2l+3)). Verified closed form (ratio to brute
+force = positive n-only constant, n=4..9, random rational (r,w)):
+
+  sign(a_{n,n-3}) ~ (n-1)(n-2)/(48(2n-3)) * [ n^3(2r+1) + 16n^2 r^3 + 24n^2 r^2
+    + 14n^2 r + 2n^2 w + 3n^2 - 24nr^3 + 48nr^2 w - 36nr^2 + 96nrw - 12nr
+    + 54nw - 72r^2 w - 144rw - 72w ]
+
+Large-n: leading term n^3(2r+1) -> for r > -1/2 eventually POSITIVE (kills only
+in a finite window, like a_{n,n-2}); for r < -1/2 eventually negative,
+consistent with the ladder edge. Supports the completeness conjecture: every
+near-leading trajectory is asymptotically safe strictly inside the island.

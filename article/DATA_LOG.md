@@ -262,3 +262,9 @@ old entries; append corrections as new entries.
 - sign(a_{n,n-1}) = sign(n(r+(1+mu0)/2)+w) for all D>3 (x^{n-1} coefficient is
   D-free; Gegenbauer norm positive). 10/10 checks incl. 4 exact zeros at D=6,10.
 - The island shrinks with D, but its left edge stays pinned at -(1+mu0)/2.
+
+## 2026-08-13 night N1 — a_{n,n-3} closed form derived and verified
+- Ratio to brute force = positive constant for n=4..9 at random (r,w).
+- Leading n^3(2r+1): fourth trajectory asymptotically safe for r>-1/2 —
+  another brick under the completeness conjecture.
+- Video paused by founder; captions switch to ENGLISH on resume.
