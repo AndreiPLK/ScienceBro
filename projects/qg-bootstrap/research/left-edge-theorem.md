@@ -120,8 +120,12 @@ Verified: 1369/1369 coarse cells (N=40 scan, boundary stable to N=80) and
 mismatches on 3780 exact points. Status: conjecturally complete (killers with
 l <= n-2, n > 5 assumed non-binding — proven only empirically to depth 80);
 the l=n-1 part is analytic for all n.
-- a_{n,n-2} (third trajectory): does it produce the N>=2-depth edges elsewhere?
-- Cross-check against Mansfield-Spradlin w=0 limit.
+
+## Open
+
+- Cross-check against Mansfield-Spradlin w=0 limit (2409.09561).
+- Prove non-binding of l <= n-2, n > n_min+4 killers (close the conjecture).
+- General-D (Gegenbauer) version of all three closed forms.
 
 ## Full mu0 stack: threshold structure and stack-wide characterization
 
