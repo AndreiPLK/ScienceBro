@@ -172,3 +172,15 @@ double-contour Regge asymptotics for odd Delta = n-j carries the overall factor
 r > -(1+m^2)/2, the same critical line as our exact law sign(n(r+(1+mu0)/2)+w)
 restricted to w=0. Independent method, matching edge (EV-QG-0002). Our result is
 exact at every finite n and extends to w != 0, which their paper does not treat.
+
+## Dimension universality (night slice 2026-08-13)
+
+The x^{n-1} coefficient of the residue polynomial carries no D-dependence, and
+the Gegenbauer projection constant (alpha=(D-3)/2, weight (1-x^2)^{alpha-1/2})
+is positive for every D>3, by the same parity/degree argument. Hence
+
+    sign(a_{n,n-1}) = sign(n(r+(1+mu0)/2)+w)   for ALL D > 3.
+
+The island's left edge is DIMENSION-INDEPENDENT, even though the island itself
+shrinks with D (anchor paper). Verified: 10/10 predictions (incl. four exact
+zeros) at D=6 and D=10 via symbolic Gegenbauer projection.

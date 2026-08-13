@@ -257,3 +257,8 @@ old entries; append corrections as new entries.
   the FINAL mp4 inspected. Copy: article/visuals/qg-the-island-cinematic.mp4.
 - Ops lesson archived in reality-production skill: MovieMaker PNG has alpha=0
   on BG pixels; viewers render it white — phantom "white sky" (30 min bisect).
+
+## 2026-08-13 night — Left edge is dimension-universal
+- sign(a_{n,n-1}) = sign(n(r+(1+mu0)/2)+w) for all D>3 (x^{n-1} coefficient is
+  D-free; Gegenbauer norm positive). 10/10 checks incl. 4 exact zeros at D=6,10.
+- The island shrinks with D, but its left edge stays pinned at -(1+mu0)/2.
