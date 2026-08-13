@@ -1,8 +1,17 @@
 # Where to click — step by step
 
-> **Progress (2026-08-13):** Steps 0–2 are DONE. ORCID 0009-0005-5660-2603 · repo
+> **Progress (2026-08-13):** Steps 0–2 DONE. ORCID 0009-0005-5660-2603 · repo
 > github.com/AndreiPLK/spacetime-verifier · release v0.1.1 · DOI 10.5281/zenodo.21915627.
-> Only step 3 (JOSS, ~10 min) remains, values below.
+>
+> **Step 3 (JOSS) checked and POSTPONED — this is deliberate.** JOSS requires the
+> repository to be public for MORE THAN SIX MONTHS with iterative development history and
+> evidence of use by other researchers ("a single burst of commits" is explicitly out of
+> scope). Our repo went public 2026-08-13, so the earliest eligible submission is
+> **2027-02-13**, and only if by then the history shows ongoing commits and some external
+> use. JOSS profile is already complete (email + @AndreiPLK), CI and the JOSS paper-build
+> action run in the repo, so on the day of eligibility the submission is a 5-minute form.
+> What to accumulate until then: iterative commits (the SMBH work will provide them),
+> at least one external user or citation, and reviewer-friendly docs.
 
 Everything below is prepared. Nothing here requires a connection, an invitation or an
 endorsement. Total hands-on time: about 25 minutes, spread over three sittings.
