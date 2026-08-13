@@ -122,3 +122,22 @@ l <= n-2, n > 5 assumed non-binding — proven only empirically to depth 80);
 the l=n-1 part is analytic for all n.
 - a_{n,n-2} (third trajectory): does it produce the N>=2-depth edges elsewhere?
 - Cross-check against Mansfield-Spradlin w=0 limit.
+
+## Full mu0 stack: threshold structure and stack-wide characterization
+
+Killer census for mu0>0 maps: the dominant constraints sit at the FIRST
+above-threshold level n_min = min{n : n >= 3*mu0} (mu0=3/5 -> (2,l); 6/5 ->
+(4,l); 9/5 -> (6,l)), mostly the scalar l=0: at threshold the residue
+polynomial degenerates (alpha = (n-3mu0)/2 -> 0) toward pure l=0. Symbolic
+threshold curve derived, e.g. a_{2,0}(r,w,mu0) ~ 6mu0^2+6mu0 r+3mu0 w-3mu0
++6r^2+6rw+6r+6w+2; at mu0=2/3 it factors as (3r+4)(3r+3w+1)/9.
+
+Stack-wide test of the analytic verdict {a_{n,l}>=0 for n_min<=n<=n_min+4}
+AND ladder edge r >= -(1+mu0)/2 AND domain, against all six mu0!=0 maps
+(N=10, 1369 cells each): mu0=6/5, 9/5 PERFECT; the only discrepancies are
+9+9+9 cells (mu0=-9/5,-6/5,-3/5) and 3 cells (mu0=3/5), ALL of type
+map-allowed/analytic-doomed, all in the column at distance 0.1 left of the
+edge — the same "nine casualties" phenomenon as mu0=0. Four sample cells
+verified by direct evaluation: a_{10w, 10w-1} = 0 exactly and
+a_{10w+1, 10w} < 0 (mu0 = -9/5, -6/5, -3/5, +3/5). Zero true mismatches on
+11994 exact points across the stack.

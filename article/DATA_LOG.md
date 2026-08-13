@@ -215,3 +215,14 @@ old entries; append corrections as new entries.
   (0.02, theorem-corrected) — ZERO mismatches on 3780 exact points.
 - Status: conjecturally complete (n>5, l<=n-2 non-binding proven empirically to
   depth 80); independent domain-critic review pending.
+
+## 2026-08-13 — mu0>0 solved: threshold scalar binds; stack-wide characterization
+- Killers at mu0>0 = first above-threshold level n_min = ceil(3mu0 boundary)
+  (2/4/6 for mu0=3/5,6/5,9/5), scalar l=0 dominant; symbolic threshold curve
+  a_{2,0}(r,w,mu0) derived, factors at mu0=2/3 as (3r+4)(3r+3w+1)/9.
+- Analytic verdict vs ALL SIX mu0!=0 maps: 2 perfect; 30 discrepancies total,
+  every one a predicted-doomed cell (dist 0.1 from edge, dies at n=10w+1);
+  4 verified by direct deep evaluation incl. exact marginal zeros.
+- Combined score: 11994 exact points across 7 maps + fine grid, zero true
+  mismatches. The island is now analytically characterized across the stack
+  (conjectural completeness caveat unchanged; domain-critic review running).
