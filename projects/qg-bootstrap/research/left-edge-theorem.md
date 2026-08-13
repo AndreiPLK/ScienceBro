@@ -71,10 +71,28 @@ K(n) = (2n-1)/2 * (n/2)^{n-1} * 2^n ((n-1)!)^2/(2n-1)! > 0.  QED (elementary).
    rule on the left edge; a cell at r = -1/2 - eps apparently "allowed" at
    NMAX=20 is doomed iff w > 20*eps.
 
+## Generalization to arbitrary mu0 (added same day, verified)
+
+With the shifted substitution t' = alpha x + beta, alpha = (n-3mu0)/2,
+beta = -alpha - mu0, the x^{n-1} coefficient becomes alpha^{n-1}(A + n*beta), and
+
+    A + n*beta = n(r + (1+mu0)/2) + w.
+
+So for n > 3mu0 (alpha > 0, which holds above threshold):
+
+    sign(a_{n,n-1}) = sign( n(r + (1+mu0)/2) + w )   [same positive prefactor domain]
+
+**The island's left edge at spectrum shift mu0 is r = -(1+mu0)/2.**
+Razor tests passed (exact zeros at predicted (n, mu0) off-grid points):
+mu0=3/5, (r,w)=(-82/100, 2/5): a_{19,18}>0, a_{20,19}=0, a_{21,20}<0.
+mu0=-3/5, (r,w)=(-1/4, 3/4): a_{14,13}>0, a_{15,14}=0, a_{16,15}<0.
+Prediction for the mu0 stack maps: left edges at -(1+mu0)/2 = -0.2 (mu0=-3/5),
+-0.5 (mu0=0), -0.8 (mu0=3/5), etc. — to be checked against the N=10 stack with
+the finite-depth caveat (cells die only at n > w/|r-edge| <= NMAX).
+
 ## Open
 
-- Same analysis for the leading trajectory a_{n,n} (top coefficient (n/2)^n > 0
-  always — leading trajectory never kills; consistent with data).
-- General mu0 (shifted substitution t = -(n-3mu0)(1-x)/2 - mu0) — next slice.
+- Same analysis for the leading trajectory a_{n,n} (top coefficient always
+  positive — leading trajectory never kills; consistent with data).
 - a_{n,n-2} (third trajectory): does it produce the N>=2-depth edges elsewhere?
 - Cross-check against Mansfield-Spradlin w=0 limit.

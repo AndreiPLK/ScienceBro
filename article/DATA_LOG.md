@@ -187,3 +187,8 @@ old entries; append corrections as new entries.
   overstate the sliver (-0.6,-0.5); erosion depth ~ w/|r+1/2|.
 - Note: projects/qg-bootstrap/research/left-edge-theorem.md. Independent review
   pending — not promoted beyond "analytic derivation, numerically confirmed".
+
+## 2026-08-13 — Left-edge theorem generalized to arbitrary mu0
+- sign(a_{n,n-1}) = sign(n(r+(1+mu0)/2)+w) for n > 3mu0: the island's left edge
+  moves as r = -(1+mu0)/2. Razor tests at mu0=+-3/5 passed with exact zeros at
+  predicted off-grid points (n=20 and n=15).
