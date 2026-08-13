@@ -131,3 +131,10 @@ old entries; append corrections as new entries.
   (-3/2,3/2) excluded with 19 negative coefficients. Bonus: removable singularity in A6 at
   n = mu0+2r+4 documented (naive implementations divide by zero there). Predicted 30 min,
   actual ~25. Next: full Fig.1 island map (visual).
+- 2026-08-13 14:xx — QG ITERATION 3 (Fig.1 + Card A start): stacked islands over 7 values of
+  mu0 reproduced exactly (allowed counts 399/504/615/664/605/455/302 of 1369); structure
+  matches the paper's Fig.1 (wedge, lower lobe, Veneziano marginal). DEPTH ESCALATION at
+  mu0=0: N=10 -> 664 allowed, N=20 -> 655 (nine cells fell, ALL in one column r=-3/5,
+  w>=1), N=40 -> 655 (STABLE under doubling). Boundary-only N=80 re-test running.
+  Early read: the island STABILIZES rather than melting to the Veneziano point —
+  candidate first finding of the program (needs N=80 + finer grid before any claim).
