@@ -1,0 +1,1953 @@
+USTC-ICTS/PCFT-26-44
+Imperial–TP–2026–cdr–4
+Unitary Dual-Resonance S-matrices
+Claudia de Rham, 1, 2,∗ Andrew J. Tolley, 1,† Zhuo-Hui Wang,3, 4,‡ and Shuang-Yong Zhou 3, 4,§
+1Abdus Salam Centre for Theoretical Physics, Imperial College, London, SW7 2AZ, UK
+2Perimeter Institute for Theoretical Physics, 31 Caroline St N, Waterloo, ON, N2L 2Y5, Canada
+3Interdisciplinary Center for Theoretical Study, University of Science and Technology of China, Hefei, Anhui 230026, China
+4Peng Huanwu Center for Fundamental Theory, Hefei, Anhui 230026, China
+(Dated: July 29, 2026)
+Dual-resonance models realize crossing symmetry, Regge behavior and infinitely many resonances
+in a compact analytic form but their canonical tree-level realizations fall short of genuine S-matrix
+unitarity. Here we explicitly construct fully unitary dual-resonance amplitudes distinct from the con-
+ventional worldsheet construction. The zero-width resonance towers are promoted into a physical
+absorptive spectrum that retains their characteristic crossing and Regge organization, while uni-
+tarizing the amplitude through a mechanism distinct from standard eikonalization. The resulting
+S-matrices are also local and analytic, and can contain controllable second-sheet Regge trajectories
+as well as substantial inelasticity. More broadly, our construction opens up a new route to charting
+the space of consistent strongly coupled S-matrices.
+Dual-resonance models [1–11] provided a seminal
+framework for understanding high-energy scattering am-
+plitudes directly from analyticity, crossing symmetry and
+Regge behavior [12–20]. Their defining feature is chan-
+nel duality: resonances in one channel and the crossed-
+channel description are two representations of the same
+analytic amplitude, not independent contributions to be
+added. This is clearly visible in the Veneziano block [1]
+Vα′(s, t) =Γ(−α′s)Γ(−α′t)
+Γ(−α′s−α ′t) ,(1)
+which admits a dual expansion in terms of eithers- or
+t-channel poles
+Vα′(s, t) =
+∞X
+n=0
+(α′s+ 1) n
+n!(n−α ′t) =
+∞X
+n=0
+(α′t+ 1) n
+n!(n−α ′s) ,(2)
+withs, tandu=−(s+t) being the standard Mandelstam
+variables and (a)n ≡Γ(a+n)/Γ(a) being the Pochham-
+mer symbol. This duality ultimately led to string theory.
+Yet, viewed as physical S-matrices, without string loop
+corrections, these dual models have a basic shortcom-
+ing: they arenot unitary. Being tree-level meromorphic
+amplitudes, their absorptive parts are supported only on
+isolated poles, and hence they do not satisfyfull partial-
+wave unitarity1. In the context of hadron scattering,
+the Veneziano amplitude only provides a qualitative de-
+scription of the strong-interaction data.
+This leaves an important gap in the modern S-matrix
+bootstrap [21–71], which routinely imposes fundamen-
+tal principles such as unitarity, analyticity and locality,
+but explicit amplitudes realizing all of them while retain-
+ing the dual-resonance structure are rare. Extending the
+1 Throughout this paper,full unitarityrefers to exact partial-wave
+unitarity of the four-point amplitude.
+dual-resonance framework beyond tree-level string ampli-
+tudes would provide a new analytic handle on consistent
+dual S-matrices and useful new tools for strongly coupled
+theories.
+In this Letter, we construct a novel class of fully
+unitary dual-resonance models by smearing (zero-width)
+dual-amplitudes over a continuous Regge slope, convert-
+ing the infinite tower of poles into physical branch cuts
+while preserving the underlying crossing and Regge be-
+havior. For definiteness, we focus on identical scalar am-
+plitudes that are triple crossing-symmetric, with massless
+exchange poles in thes,t, anduchannels. The conditions
+required on the smearing function are derived by analyz-
+ing the relevant asymptotic regimes of the proposed dual
+amplitude. We verify both analytically and numerically
+that the resulting amplitudes define local, analytic and
+unitary S-matrices, with controllable second-sheet res-
+onance trajectories and, in general, substantial inelas-
+ticity. One can further vary the smearing weights to
+obtain a wide family of fully unitary dual-amplitudes,
+ranging from resonance-dominated models with Regge-
+organized second-sheet poles to purely nonresonant ab-
+sorptive backgrounds. This provides a concrete starting
+point for a broader S-matrix bootstrap program to con-
+struct consistent dual-amplitudes with strong inelasticity.
+Unitary dual models:Full unitarity requires the pres-
+ence of branch cuts along the real axes of the Mandel-
+stam variables. A natural way to generate such cuts from
+poles is to smear them by integration 2 much as loop am-
+plitudes arise from tree-level propagators integrated over
+continuous momenta. Our strategy to construct unitary
+dual amplitudes is to start with Veneziano amplitudes
+and convolve them with an appropriate weight function
+2 For example, the Cauchy transform of a continuous line segment
+of poles givesF(z) =
+R 1
+0
+dx
+z−x = logz−log(z−1).
+arXiv:2607.24922v1  [hep-th]  27 Jul 2026
+2
+ϕ(y) over a continuous range of Regge slopesy
+M(s, t) =
+Z ∞
+α′
+dy ϕ(y)Wy(s, t, u),(3)
+Wy(s, t, u)≡Vy(s, t) +Vy(u, t) +Vy(s, u).
+The lower cutoff isα ′ (rather than 0) so as to effectively
+set a maximum string tension in the spectral distribution.
+The Feynmaniϵprescription is implied in the physical
+region. For example, in thes-channel (−s < t <0),s
+should be understood ass+iϵ. With this prescription,
+the Veneziano poles are shifted away from the realy-
+integration contour, so that the integral is well defined.
+As will become clearer later, the amplitude in Eq. (3) is
+not valid for all complexsandt, and an analytic contin-
+uation is necessary in some regions.
+Much of the analysis is valid in arbitraryDdimensions,
+includingD= 4, which is relevant for hadron scattering
+and is explored in depth in [72] alongside unitary dual
+models in other dimensions, with internal symmetries, or
+with higher spins. In this Letter, however, we focus on
+D= 10 for the sake of concreteness. A simple family
+of weight functions that lead to fully unitary dual reso-
+nances is given by
+ϕ(y) =Cα ′2
+
+1− α′
+y
+β  y
+α′
+−p+2 Γ2
+(y−y 0)2 +Γ 2 ,(4)
+where 1< p≤2,β >0,y 0 > α′,Cis a dimensionless
+(positive) constant andΓis a positive constant with the
+same dimension asα ′. For this simple family, we find
+by analyzing its partial-wave expansion that theℓ-wave
+resonance poles on the second Riemann sheet are located
+at
+s(ℓ)
+n = n
+y0 +iΓ = ny0
+y2
+0 +Γ 2 −i nΓ
+y2
+0 +Γ 2 , ℓ≤2⌊ n
+2 ⌋(5)
+with the decay width3 given by Γdecay
+n ≡ −2 Im(s(ℓ)
+n )1/2 =√
+2n
+
+((y2
+0 +Γ 2)1/2 −y 0)/(y2
+0 +Γ 2)
+1/2
+. The selection rule
+ℓ≤2⌊n/2⌋is inherited from the seed Veneziano ampli-
+tude, since theysmearing leaves the angular dependence
+of each level-nresidue unchanged. Some spins allowed by
+this bound may nevertheless be absent at particular lev-
+els, exactly as in the seed amplitude.
+To see this, note that these second-Riemann-sheet
+poles are essentially pinch singularities of they-
+integration contour in Eq. (3). Recall that thes-channel
+poles ofW y(s, t, u) are located aty=n/s, which can
+be seen by examining the partial-wave amplitudes. For
+our massless scattering, we define the second-Riemann-
+sheet partial-wave amplitude by analytically continuing
+3 Note that for largen, this implies that the widths grow as √n.
+Yet such a growth is consistent with the Froissart bound as
+checked explicitly.
+Figure 1. (Left) Deformation of theyintegration contour
+of amplitude (3), making numerical integration practical.
+(Right) Continuation through the cut 0< s <1/α ′, caus-
+ingϕ(y)’s pole to pinch with a Veneziano pole to generate
+second-sheet resonance poles.
+through the first cut connecting to the origin of thes
+plane, 0< s <1/α ′. Assis continued to the second
+Riemann sheet, thes-channel polesy=n/smove into
+the upper halfy-plane. When one of these moving poles
+hits the upper-half-plane pole ofϕ(y):n/s=y 0 +iΓ, the
+ycontour is pinched, producing a resonance pole in the
+dual model on the second sheet.
+It is worth noting that the uniform spacing of the
+resonance poles in thes-plane, together with the fixed
+decay-width-to-mass ratio, is reminiscent of the behavior
+of open-string resonances once loop corrections are in-
+cluded (see for example [73, 74]), even though the present
+unitarization mechanism differs in the detailed structure
+of its long-range behavior. Also, unlike standard eikon-
+alization, which is primarily a high-energy, small-angle
+resummation and becomes compulsory for gravitational
+spin-2 exchange, our mechanism unitarizes scalar dual-
+resonance amplitudes by replacing zero-width pole tow-
+ers with physical absorptive cuts.
+The requirement ofβ >0 is mandated by the conver-
+gence of the smearing integration when theypoles of the
+Veneziano kernels coincide with the lower limit,α′, of the
+integration, whilep >1 is required so that the smearing
+integration converges for largey. The conditionp≤2
+is determined by imposing partial-wave unitarity near
+threshold. Specifically, unitarity constrains the asymp-
+totic behavior ofϕ(y) because the threshold behavior of
+Ima ℓ(s) is controlled by the largeypart of the smearing
+integral, which can be seen by using the pole representa-
+tion of the Veneziano kernel (2); see Appendix B. Apart
+from the threshold, the large-energy and large-spin limit
+as well as the finite-energy and large-spin limit are also
+sensitive to the largeypart of the smearing integral, and
+thus partial-wave unitarity in these limits also imposes
+constraints on the asymptotic behavior ofϕ(y). How-
+ever, they are weaker than the threshold constraint; see
+Appendices C and D.
+Preserving F ull Unitarity:While unitarity being sat-
+isfied in various asymptotic regions is encouraging, it is
+central to verify partial-wave unitarity at finite energies
+and spins.
+3
+To evaluate the amplitude (3), the Feynmaniϵpre-
+scription implies that we must integrate above the real
+axis in the complexyplane, avoiding the poles aty=
+n/s, n∈Z >0. A convenient choice that ensures fast
+convergence is to rotate the contour aroundy=α ′ anti-
+clockwise by an angle ofφ y =π/3, which additionally
+picks up a pole contribution originating from the weight
+functionϕ(y).
+The choice is suited for our use of the double-
+exponential method for the numerical integration, which
+handles endpoint singularities, although its precision is
+sensitive to the distance between the poles and the in-
+tegration contour. More explicitly, we use the double-
+exponential mapy=α ′ + 2α′eiφy exp
+  π
+2 sinhw y
+
+, and
+sample uniformly along the realw y axis with spacing
+hy = 2 −9. The upper end of thew y range is truncated
+once its contribution to the sum falls belowO(10 −150).
+For the later partial-wave projection, the integrand con-
+tains branch cuts in the complexz-plane. The double-
+exponential method is therefore again useful, and we set
+z= tanh
+  π
+2 sinhw z
+
+, with precision settings similar to
+those used above.
+Thes-channel partial-wave amplitude can be obtained
+by using
+aℓ(s) = ND
+2
+Z 1
+−1
+dz
+ 
+1−z 2 D−4
+2
+s
+4−D
+2
+P (D)
+ℓ (z)M
+
+s, s
+2 (z−1)
+
+,(6)
+where the coefficients are normalised so that|1+ia ℓ| ≤1,
+withz≡cosθ,P (D)
+ℓ (z) = 2F1
+ 
+−ℓ, ℓ+D−3; D−2
+2 ; 1−z
+2
+
+,
+andN D = (16π)
+2−D
+2 /Γ
+  D−2
+2
+
+. Partial-wave unitarity
+must be satisfied in the physical region (for evenℓ)
+0≤Q ℓ(s)≡ |aℓ(s)|2
+2 Ima ℓ(s) ≤1, s >0.(7)
+At threshold, phase-space suppression givesa ℓ = 0, so
+the unitarity inequality is trivial. Since the Veneziano
+kernel has positive partial-wave residues forD≤10 and
+we choose a positive weight function, Ima ℓ(s) is obvi-
+ously positive, and we only need to verify thatQ ℓ(s)≤1.
+For theD= 10 explicit model (4), we chooseβ= 3,
+p= 2,y 0 = 2α′, andΓ= 3α ′/5 to present numerical re-
+sults.C= 1.84×10 7 is chosen to approximately saturate
+partial-wave unitarity for the most constraining partial
+wave, which occurs nears≈1.8/α ′.
+In Figure 2, we see that partial-wave unitarity is sat-
+isfied in all sampledsandℓ. For the explicit model (4),
+low spin dominance is manifest, and theℓ= 0 partial
+wave saturates the unitarity bound ats∼O(1/α ′). A
+key feature is that partial waves are well within the uni-
+tarity bounds for large and finitesandℓ. This, together
+with the asymptotic regimes we have probed, indicates
+that partial-wave unitarity is satisfied for allsandℓ.
+From the Regge-theory point of view, a Veneziano am-
+plitudeW y(s, t, u) with fixedygives rise tot-channel
+Figure 2. The left panel displays log 10 Qℓ(s) for finitesand
+ℓin the explicit model (4). Partial-wave unitarity is satisfied
+in all regions. The right panel shows theℓ= 0 partial wave.
+We have chosenC= 1.84×10 7,β= 3,p= 2,y 0 = 2α′, and
+Γ= 3α ′/5.
+partial-wave amplitudes with only Regge poles in the
+complexℓplane, which violates unitarity [75, 76]. They
+integration smearing upgrades the Regge poles to Regge
+cuts and thus resolves the unitarity violation. For ex-
+ample, forϕ(y)∼(y−α ′)β with integerβ, the lead-
+ing/rightmostℓ-plane polea y
+ℓ (t)∼1/(ℓ−yt) is upgraded
+to a Regge cut of the form
+aℓ(t)∼
+Z ∞
+α′
+dyϕ(y)a y
+ℓ (t)∼(ℓ−α ′t)β log (ℓ−α ′t).(8)
+Note that, in a bootstrap setup, one may change the
+locations and types of the Regge cuts by adjusting the
+lower integration limit andϕ(y)’s behavior near it.
+Locality:Our dual amplitude is local in the sense that
+it is polynomially bounded at largesfor fixedt <0.
+This would be immediate ify max were finite, since the
+Veneziano kernel is itself local. The analysis in Appendix
+C indicates that, in the Regge limit|s| ≫ −t, one has,
+for example,|V y(s, t)| ∼y−1/2 exp [tlog(α ′|s|)y] wheny
+is large. Sincet <0, the large-yregion of the integral is
+exponentially suppressed and therefore subdominant. It
+follows that our dual amplitude is local.
+It actually preserves the Regge behavior of the
+Veneziano kernel, up to logarithmic corrections. To see
+this, note that for fixedt <0 and|s| ≫ −t, theyinte-
+gral is dominated by the (−yt) 2/(y|s|)≪1 region, and
+we have
+V(s, t)≡
+Z ∞
+α′
+dy ϕ(y)Vy(s, t)∼
+Z ∞
+α′
+dyΓ(−yt)ϕ(y)(−ys) yt .
+For a sufficiently larges, we have−1/(α ′t)≪log(α ′|s|),
+in which case the endpoint regiony∼α ′ controls the
+integral. Substitutingϕ(y→α ′+)∼(y−α ′)β, we get
+V(s, t)∼Γ(−α ′t)(−α′s)α′t [−α′tlog(−α ′s)]−(β+1) .(9)
+Here log(−α ′s) is defined with a cut alongs≥0 and is
+real fors <0. Thus, theV(s, t) block is polynomially
+bounded in the complexsplane for fixedt <0, with
+only logarithmic corrections. The logarithmic corrections
+4
+are exactly due to a Regge pole being smeared into a
+(β+ 2)-Reggeon branch cut (ifβis an integer). The
+same argument applies toV y(u, t) after replacingsbyu,
+because|u| ∼ |s|in the fixed-tRegge limit. ForV y(s, u),
+a minor refinement is required, but it leads to a slightly
+softer Regge behavior.
+Maximal analyticity:We now show that our dual am-
+plitude is maximally analytic in the Mandelstam sense.
+Since the three blocks of the amplitude are simple cross-
+ings of each other, it suffices to prove maximal analyticity
+for one block, say,V(s, t). That is, we show thatV(s, t)
+is analytic in (C\[0,∞)) s ×(C\[0,∞)) t. We note that
+this cannot be directly inferred from Eq. (3), since they
+integral in that representation does not converge for all
+sandtin this domain.
+We start with the worldsheet/Euler-Beta represen-
+tation of the Veneziano block, which converges when
+Res,Ret <0,
+V(s, t) =
+Z 1
+0
+dx
+x(1−x) Fϕ(As,t(x)),(10)
+where we have definedF ϕ(A)≡
+R ∞
+α′ dy ϕ(y)e−Ay and
+As,t(x)≡slogx+tlog(1−x). For Res,Ret <0,
+ReA s,t(x)>0 on 0< x <1, allowing the exchange
+ofxandyintegrations; Eq. (10) thus gives the ana-
+lytic germ of the original representation. First, note
+that with our choice of the smearing function,F ϕ(A)
+can be continued to the entire complexA-plane ex-
+cept for a finite branch point atA= 0. To see this,
+for anyA̸= 0, one may deform they-contour, avoid-
+ing the singularities ofϕ, so that it approaches infin-
+ity along a direction wheree −Ay decays. On the other
+hand, whenAis analytically continued around the ori-
+gin, due to theysingularities inϕ(y), the continued
+contour does not return to the original one, implying
+thatF ϕ(A) has a branch point atA= 0 4. Equiva-
+lently, this branch point can be read off directly from
+the large-ybehavior: ifϕ(y)∼ P
+k cky−p−k asy→ ∞,
+then the infinite part of the Laplace transform contains
+terms
+R ∞
+R dy y−p−ke−Ay =A p+k−1Γ(1−p−k, AR),which
+generateA p+k−1 or, for integer exponents,A p+k−1 logA
+nearA= 0. This branch point is actually a soft one with
+a finite limiting value, because the integration overycon-
+verges whenA= 0. Another fact that we will use is that
+for ReA >0 on the first Riemann sheet andA→ ∞, the
+yintegral definingF ϕ(A) is controlled by the threshold
+behavior neary=α ′, which implies
+Fϕ(A)∼A −β−1e−α′A.(11)
+4 For example, forϕ(y) =y −p(1−α ′/y)β ,F ϕ(A)∝e −α′AU(β+
+1,2−p, α ′A), whereUis the Tricomi confluent hypergeometric
+function, which has precisely this singularity structure.
+Let us now analytically continueV(s, t) from Res,Ret <
+0 to general complexsandt, by deforming thexcon-
+tour. Let us first deform the portions of the contour
+near the end pointsx= 0,1. Nearx= 0, it is simplest
+to make a change of variablex→L= logxand de-
+form theLcontour instead. Obviously, we must choose
+theLcontour, parametrized asL≃ −Re iϑ, to end at
+x= 0, which requires Ree iϑ >0 whenR→+∞. By
+Eq. (11) and dx/x= dL, a valid deformation also re-
+quires Re(−seiϑ)>0, in order for the deformed integral
+to converge nearx= 0. Thus, such anL-contour de-
+formation nearx= 0 is valid precisely whens /∈[0,∞).
+Although this portion of the contour is simply a straight
+ray in theL-plane, from thex-plane perspective it spirals
+aroundx= 0 whenevere iϑ has a nonzero imaginary part.
+The contour nearx= 1 can be treated analogously, and
+the corresponding deformation is unobstructed precisely
+whent /∈[0,∞). Therefore, the endpoint singularities
+single out exactly thes- andt-channel cuts.
+Next, we must show that the remaining portion of the
+xcontour is free of pinch singularities; that is, the branch
+point ofF ϕ(A) atA= 0 does not pinch thexcontour
+assandtare continued away from thes- andt-channel
+cuts. For this purpose, it suffices to show that the Landau
+equations
+As,t(x∗) = 0 and∂ xAs,t(x∗) = 0 (12)
+have no solutions on the relevant contour. To see this,
+first note that fors+t= 0 ands̸= 0,∂ xAs,t(x) =
+s/[x(1−x)] has no finite zero and hence produces no in-
+ternal pinch. Fors+t̸= 0, the second equation above
+givesx ∗ =s/(s+t), and substituting this into the first
+equation givesx ∗ logx ∗ + (1−x ∗) log(1−x ∗) = 0.Since
+Fϕ(A) has a finite limiting value atA= 0, a simple
+preimageA s,t(x) = 0 can be avoided by an arbitrarily
+small detour without a finite deformation of the contour.
+The derivative∂ xAs,t is log-branch independent, so, for
+each fixeds, t∈C\[0,∞) withs+t̸= 0, any finite so-
+lution of∂ xAs,t = 0 projects tox ∗ =s/(s+t)/∈ {0,1};
+the endpoint windings can then be confined to suffi-
+ciently small neighborhoods ofx= 0,1 that avoid this
+point. Hence a possible pinch can only occur on the mid-
+dle contour, wherex ∗ logx ∗ + (1−x ∗) log(1−x ∗) = 0,
+which is impossible because the left-hand side is strictly
+negative for 0< x ∗ <1 5. Since the continuation is
+unobstructed throughout the simply connected domain
+(C\[0,∞)) s ×(C\[0,∞)) t, the resulting analytic con-
+tinuation is unique and independent of the continuation
+path.
+5 Only Landau solutions lying on the contour can pinch it. Since
+the endpoint deformations are confined nearx= 0,1, solutions
+withx ∗ /∈(0,1) remain separated from the contour; the branch
+ofF ϕ is followed continuously.
+5
+Dual models without resonances:It is interesting to
+note that an alternative weight function
+ϕB(y) =Bα ′2(1−α ′/y)β(y/α′)−p ,(13)
+without complexypoles still defines a valid S-matrix,
+provided thatBlies below a suitable upper bound. The
+Mamplitude constructed withϕ B(y) still has unitary
+asymptotic limits. Moreover, it can be shown that the
+amplitude remains unitary at finitesandℓ, with the
+largest value ofQ ℓ occurring arounds∼ O(1/α′) for the
+ℓ= 0 partial wave, similar to that in Figure 2. However,
+ϕB(y) is holomorphic in the upper half plane, so there
+are no second-Riemann-sheet resonance poles at all in
+this model. To see this, recall that the would-be reso-
+nance poles arise as pinch singularities in theyintegra-
+tion, but there is no pole in the smearing functionϕ B(y),
+with which the poles ofW y(s, t, u) can form a pinch sin-
+gularity. Moreover, for complexsat fixed−1≤z≤1,
+the deformedyintegration converges. Nevertheless, as
+we can see in Figure 3, the partial-wave amplitudes still
+feature resonance-like peaks, and we shall refer toϕ B(y)
+as an absorptive background. In this case, if we perform
+a phase shift analysis, the observed phase shift jumps
+do not correspond to the resonance poles in the second-
+Riemann-sheet sense.
+This situation is reminiscent of ordinary loop ampli-
+tudes in weakly coupled UV completions: they gener-
+ate the required branch cuts but do not by themselves
+generate second-Riemann-sheet resonance poles. A sim-
+ple example is a two-scalar theory (χ l, χh) with a mass
+hierarchy and no cubic interactions, where the leading
+light amplitudeχ lχl →χ lχl is produced by a heavy-
+particle loop. At fixed perturbative order, the amplitude
+contains threshold cuts but no resonance poles. Non-
+perturbatively, however, this conclusion may change.
+This can be seen by resumming thes-channel bubble-
+chain diagrams in theχ lχl →χ lχl scattering, which pro-
+duces a denominator in theℓ= 0 partial wave, and thus a
+second-sheet pole. If the diagonal self-interactions of the
+two scalars are somehow tuned to be loop-suppressed,
+then there is no pre-existing bound state in the heavy
+channel. In that case, a resonance pole in this mini-
+mal off-diagonal model requires the transition coupling
+to be of order one in partial-wave units,i.e., a genuinely
+strong-coupling regime.
+Enhanced inelasticity:Combining a resonant smear-
+ing function with such an absorptive background yields
+a richer class of unitary S-matrices. It can increase
+both the allowed interaction strength and the inelastic-
+ity, while leaving the resonance pattern essentially in-
+tact. In the model (4), the allowed scattering strength
+is moderate, because increasing the scattering strength
+readily drives the spin-0 partial wave to saturate partial-
+wave unitarity nears= 3/(2α ′). However, by adding a
+=α'/5
+=2α'/5
+=3α'/5
+ϕB
+0 1 2 3 4
+0.98
+0.99
+1.00
+2α's
+|S0|
+=2α'/5
+=2α'/5 w/background
+0 1 2 3 4 5
+0.85
+0.90
+0.95
+1.00
+2α's
+Figure 3. (Left)S 0 = 1 +ia 0 for several values ofΓwith
+β= 3,p= 2 (see Eq. (13) for absorptive backgroundϕ B).
+(Right) Combining the dual-resonance amplitude (3) with the
+Virasoro-Shapiro-like absorptive background significantly en-
+hances inelasticity/coupling strength.
+Virasoro-Shapiro-like absorptive background term,
+Z ∞
+α′
+dy eϕB(y) (s2 +t 2 +u 2) Γ(−ys)Γ(−yt)Γ(−yu)
+Γ(1 +ys)Γ(1 +yt)Γ(1 +yu) ,(14)
+with eϕB(y) =C Bα′4(1−α ′/y)3(y/α′)−1, to the explicit
+amplitude (4), we can significantly enhance the scatter-
+ing strength, as shown in Figure 3. This particular back-
+ground term is chosen because it generates a sizable imag-
+inary part of the spin-0 partial wave nears= 3/(2α ′).
+Establishing maximal analyticity for this block is sub-
+stantially more involved than in the Veneziano case; the
+proof is given in Appendix F.
+Discussion:The construction presented in this pa-
+per suggests that the essential data of a unitary dual-
+resonance model need not be a discrete tower of zero-
+width states, but rather a spectral distribution over
+Regge slopes. In this language, ordinary dual models cor-
+respond to singular measures, while unitary dual ampli-
+tudes arise from sufficiently smooth distributions whose
+analytic structure supplies the absorptive cuts required
+by unitarity. The large-slope tail of the distribution is
+essential for partial-wave unitarity near threshold and at
+high spin. Singularities of the smearing function, on the
+other hand, determine the pattern of second-sheet reso-
+nances, whereas holomorphic weights generate nonreso-
+nant absorptive backgrounds. Thus, the smearing data
+provide a direct handle on both resonance physics and
+inelasticity.
+We can further leverage this generic construction
+into a novel bootstrap program aimed at character-
+izing the Regge-slope spectral densities compatible
+with crossing, analyticity, locality, and, crucially, full
+unitarity. The examples studied here contain at most
+one family of second-sheet Regge trajectories, but
+more general smearing data can generate multiple
+trajectories and nonresonant absorptive backgrounds,
+with various different Regge cuts in the complexℓ
+plane. Regge-slope smearing therefore provides a
+crossing-symmetric unitarization mechanism distinct
+from standard eikonalization, and opens an analytic
+route to classifying strongly coupled S-matrices that
+6
+realize resonance–Regge duality beyond conventional
+string perturbation theory.
+Acknowledgments:We would like to thank Shi-Lin
+Wan for helpful discussions. SYZ acknowledges support
+from the National Natural Science Foundation of China
+under Grant No. 12475074 and No. 12247103. The work
+of CdR and AJT is supported by STFC Consolidated
+Grant ST/X000575/1. CdR is also supported by a
+Simons Investigator award 690508. This research is
+also supported by the advanced computing resources
+provided by the Supercomputing Center of the USTC.
+CdR would like to thank the Perimeter Institute for
+Theoretical Physics for its hospitality while this work
+was finalized.
+∗ c.de-rham@imperial.ac.uk
+† a.tolley@imperial.ac.uk
+‡ wzh33@mail.ustc.edu.cn
+§ zhoushy@ustc.edu.cn
+[1] G. Veneziano, Construction of a crossing - symmetric,
+Regge behaved amplitude for linearly rising trajectories,
+Nuovo Cim. A57, 190 (1968).
+[2] M. A. Virasoro, Alternative constructions of crossing-
+symmetric amplitudes with regge behavior, Phys. Rev.
+177, 2309 (1969).
+[3] C. Lovelace, A novel application of Regge trajectories,
+Phys. Lett. B28, 264 (1968).
+[4] J. A. Shapiro, Narrow-resonance model with regge be-
+havior for pi pi scattering, Phys. Rev.179, 1345 (1969).
+[5] D. D. Coon, Quantization conditions for linear and non-
+linear trajectories, Phys. Rev.186, 1422 (1969).
+[6] K. Bardakci and H. Ruegg, Reggeized resonance model
+for arbitrary production processes, Phys. Rev.181, 1884
+(1969).
+[7] Z. Koba and H. B. Nielsen, Reaction amplitude for n
+mesons: A Generalization of the Veneziano-Bardakci-
+Ruegg-Virasoro model, Nucl. Phys. B10, 633 (1969).
+[8] K. Kikkawa, B. Sakita, and M. A. Virasoro, Feynman-like
+diagrams compatible with duality. I: Planar diagrams,
+Phys. Rev.184, 1701 (1969).
+[9] A. Martin, Smoothing veneziano, Phys. Lett. B29, 431
+(1969).
+[10] N. F. Bali, D. D. Coon, and J. W. Dash, Unstable parti-
+cles, two-body inelastic unitarity, and veneziano’s model,
+Phys. Rev. Lett.23, 900 (1969).
+[11] K. Huang, Unitarization of the veneziano model, pomer-
+anchuk singularity, and the pion mass, Phys. Rev. Lett.
+23, 903 (1969).
+[12] V. De Alfaro, S. Fubini, G. Rossetti, and G. Furlan, Sum
+rules for strong interactions, Phys. Lett.21, 576 (1966).
+[13] K. Igi and S. Matsuda, New Sum Rules and Singularities
+in the Complex J Plane, Phys. Rev. Lett.18, 625 (1967).
+[14] A. A. Logunov, L. D. Soloviev, and A. N. Tavkhelidze,
+Dispersion sum rules and high-energy scattering, Phys.
+Lett. B24, 181 (1967).
+[15] R. Dolen, D. Horn, and C. Schmid, Prediction of Regge
+Parameters of rho Poles from Low-Energy pi N Data,
+Phys. Rev. Lett.19, 402 (1967).
+[16] R. Dolen, D. Horn, and C. Schmid, Finite energy sum
+rules and their application to pi N charge exchange, Phys.
+Rev.166, 1768 (1968).
+[17] M. Ademollo, H. R. Rubinstein, G. Veneziano, and M. A.
+Virasoro, Bootstraplike Conditions from Superconver-
+gence, Phys. Rev. Lett.19, 1402 (1967).
+[18] S. Mandelstam, Dynamics Based on Rising Regge Tra-
+jectories, Phys. Rev.166, 1539 (1968).
+[19] G. F. Chew and A. Pignotti, Dolen-Horn-Schmid Duality
+and the Deck Effect, Phys. Rev. Lett.20, 1078 (1968).
+[20] C. Schmid, Meson Bootstrap with Finite-Energy Sum
+Rules, Phys. Rev. Lett.20, 628 (1968).
+[21] M. F. Paulos, J. Penedones, J. Toledo, B. C. van Rees,
+and P. Vieira, The S-matrix bootstrap. Part I: QFT in
+AdS, JHEP11, 133, arXiv:1607.06109 [hep-th].
+[22] M. F. Paulos, J. Penedones, J. Toledo, B. C. van
+Rees, and P. Vieira, The S-matrix bootstrap. Part
+III: higher dimensional amplitudes, JHEP12, 040,
+arXiv:1708.06765 [hep-th].
+[23] C. de Rham, S. Melville, A. J. Tolley, and S.-Y. Zhou,
+Positivity bounds for scalar field theories, Phys. Rev. D
+96, 081702 (2017), arXiv:1702.06134 [hep-th].
+[24] A. J. Tolley, Z.-Y. Wang, and S.-Y. Zhou, New positiv-
+ity bounds from full crossing symmetry, JHEP05, 255,
+arXiv:2011.02400 [hep-th].
+[25] S. Caron-Huot and V. Van Duong, Extremal Effective
+Field Theories, JHEP05, 280, arXiv:2011.02957 [hep-
+th].
+[26] N. Arkani-Hamed, T.-C. Huang, and Y.-t. Huang, The
+EFT-Hedron, JHEP05, 259, arXiv:2012.15849 [hep-th].
+[27] B. Bellazzini, J. Elias Mir´ o, R. Rattazzi, M. Riembau,
+and F. Riva, Positive moments for scattering amplitudes,
+Phys. Rev. D104, 036006 (2021), arXiv:2011.00037 [hep-
+th].
+[28] A. Hebbar, D. Karateev, and J. Penedones, Spinning S-
+matrix bootstrap in 4d, JHEP01, 060, arXiv:2011.11708
+[hep-th].
+[29] A. Sinha and A. Zahed, Crossing Symmetric Dispersion
+Relations in Quantum Field Theories, Phys. Rev. Lett.
+126, 181601 (2021), arXiv:2012.04877 [hep-th].
+[30] G. N. Remmen and N. L. Rodd, Flavor Constraints from
+Unitarity and Analyticity, Phys. Rev. Lett.125, 081601
+(2020), [Erratum: Phys.Rev.Lett. 127, 149901 (2021)],
+arXiv:2004.02885 [hep-ph].
+[31] C. Zhang and S.-Y. Zhou, Convex Geometry Perspective
+on the (Standard Model) Effective Field Theory Space,
+Phys. Rev. Lett.125, 201601 (2020), arXiv:2005.03047
+[hep-ph].
+[32] X. Li, H. Xu, C. Yang, C. Zhang, and S.-Y. Zhou, Pos-
+itivity in Multifield Effective Field Theories, Phys. Rev.
+Lett.127, 121601 (2021), arXiv:2101.01191 [hep-ph].
+[33] S. Caron-Huot, D. Mazac, L. Rastelli, and D. Simmons-
+Duffin, Sharp boundaries for the swampland, JHEP07,
+110, arXiv:2102.08951 [hep-th].
+[34] L.-Y. Chiang, Y.-t. Huang, W. Li, L. Rodina, and H.-C.
+Weng, Into the EFThedron and UV constraints from IR
+consistency, JHEP03, 063, arXiv:2105.02862 [hep-th].
+[35] A. Guerrieri, J. Penedones, and P. Vieira, Where Is String
+Theory in the Space of Scattering Amplitudes?, Phys.
+Rev. Lett.127, 081601 (2021), arXiv:2102.02847 [hep-
+th].
+[36] L. Alberte, C. de Rham, S. Jaitly, and A. J. Tolley, Re-
+7
+verse Bootstrapping: IR Lessons for UV Physics, Phys.
+Rev. Lett.128, 051602 (2022), arXiv:2111.09226 [hep-
+th].
+[37] K. H¨ aring and A. Zhiboedov, Gravitational Regge
+bounds, SciPost Phys.16, 034 (2024), arXiv:2202.08280
+[hep-th].
+[38] Y.-t. Huang and G. N. Remmen, UV-complete gravity
+amplitudes and the triple product, Phys. Rev. D106,
+L021902 (2022), arXiv:2203.00696 [hep-th].
+[39] J. Henriksson, B. McPeak, F. Russo, and A. Vichi,
+Bounding violations of the weak gravity conjecture,
+JHEP08, 184, arXiv:2203.08164 [hep-th].
+[40] A. Antunes, M. S. Costa, and J. Pereira, Exploring in-
+elasticity in the S-matrix Bootstrap, Phys. Lett. B846,
+138225 (2023), arXiv:2301.13219 [hep-th].
+[41] K. H¨ aring and A. Zhiboedov, The stringy S-matrix
+bootstrap: maximal spin and superpolynomial softness,
+JHEP10, 075, arXiv:2311.13631 [hep-th].
+[42] C. Cheung and G. N. Remmen, Bespoke dual resonance,
+Phys. Rev. D108, 086009 (2023), arXiv:2308.03833 [hep-
+th].
+[43] N. Geiser, The Baker-Coon-Romans N-point amplitude
+and an exact field theory limit of the Coon amplitude,
+JHEP10, 010, arXiv:2311.04130 [hep-th].
+[44] D. Karateev, S. Kuhn, and J. Penedones, Bootstrap-
+ping Massive Quantum Field Theories, JHEP07, 035,
+arXiv:1912.08940 [hep-th].
+[45] Y. He and M. Kruczenski, Bootstrapping gauge theories,
+Phys. Rev. Lett.133, 191601 (2024), arXiv:2309.12402
+[hep-th].
+[46] J. Albert, J. Henriksson, L. Rastelli, and A. Vichi, Boot-
+strapping mesons at large N: Regge trajectory from spin-
+two maximization, JHEP09, 172, arXiv:2312.15013 [hep-
+th].
+[47] F. Bhat, D. Chowdhury, A. P. Saha, and A. Sinha, Boot-
+strapping string models with entanglement minimization
+and machine learning, Phys. Rev. D111, 066013 (2025),
+arXiv:2409.18259 [hep-th].
+[48] S. Caron-Huot and Y.-Z. Li, Gravity and a universal cut-
+off for field theory, JHEP02, 115, arXiv:2408.06440 [hep-
+th].
+[49] C. Cheung, A. Hillman, and G. N. Remmen, Bootstrap
+Principle for the Spectrum and Scattering of Strings,
+Phys. Rev. Lett.133, 251601 (2024), arXiv:2406.02665
+[hep-th].
+[50] C. Eckner, F. Figueroa, and P. Tourkine, Regge boot-
+strap: From linear to nonlinear trajectories, Phys. Rev.
+D111, 126005 (2025), arXiv:2401.08736 [hep-th].
+[51] A. Guerrieri, A. Homrich, and P. Vieira, Multiparticle
+Flux-Tube S-matrix Bootstrap, Phys. Rev. Lett.134,
+041601 (2025), arXiv:2404.10812 [hep-th].
+[52] A. Guerrieri, K. H¨ aring, and N. Su, From data to the ana-
+lytic S-matrix: A Bootstrap fit of the pion scattering am-
+plitude, SciPost Phys.20, 034 (2026), arXiv:2410.23333
+[hep-th].
+[53] S.-L. Wan and S.-Y. Zhou, Matrix moment approach to
+positivity bounds and UV reconstruction from IR, JHEP
+02, 168, arXiv:2411.11964 [hep-th].
+[54] A. P. Saha and A. Sinha, Field Theory Expansions of
+String Theory Amplitudes, Phys. Rev. Lett.132, 221601
+(2024), arXiv:2401.05733 [hep-th].
+[55] B. Bellazzini, J. Berman, G. Isabella, F. Riva, M. Ro-
+mano, and F. Sciotti, Positivity with Long-Range Inter-
+actions (2025), arXiv:2512.13780 [hep-th].
+[56] J. Berman, H. Elvang, and C. Figueiredo, Splitting re-
+gions and shrinking islands from higher point constraints,
+JHEP10, 226, arXiv:2506.22538 [hep-th].
+[57] C. Cheung and G. N. Remmen, Multipositivity bounds
+for scattering amplitudes, Phys. Rev. D112, 016017
+(2025), arXiv:2505.05553 [hep-th].
+[58] M. Correia and C. Pasiecznik, Resonances: Uni-
+versality and Factorization on Higher Sheets (2025),
+arXiv:2512.13775 [hep-th].
+[59] M. Correia, A. Georgoudis, and A. L. Guerrieri, Cross-
+Section Bootstrap: Unveiling the Froissart Amplitude
+(2025), arXiv:2506.04313 [hep-th].
+[60] Y. He and M. Kruczenski, The Gauge Theory Boot-
+strap: Predicting Pion Dynamics from QCD, PTEP
+2026, 063B05 (2026), arXiv:2505.19332 [hep-th].
+[61] C. de Rham, A. J. Tolley, Z.-H. Wang, and S.-Y. Zhou,
+Primal S-matrix bootstrap with dispersion relations,
+JHEP01, 027, arXiv:2506.22546 [hep-th].
+[62] L. F. Alday, E. Armanini, K. H¨ aring, and A. Zhiboe-
+dov, From Partons to Strings: Scattering on the Coulomb
+Branch ofN= 4 SYM (2025), arXiv:2510.19909 [hep-th].
+[63] H. Elvang, A. Herderschee, and R. Morales, String
+theory from maximal supersymmetry, JHEP07, 105,
+arXiv:2601.11705 [hep-th].
+[64] F.-M. Chang, Z.-Y. Chen, and S.-Y. Zhou, Full positivity
+bounds for anomalous quartic gauge couplings in SMEFT
+(2026), arXiv:2604.00107 [hep-ph].
+[65] F. Calisto, C. Cheung, G. N. Remmen, F. Sciotti, and
+M. Tarquini, The Equivalence Principle at High Energies
+Completes the Spectrum (2026), arXiv:2605.20319 [hep-
+th].
+[66] C. Cheung, J. Jeong, P. Ko, A. Pomarol, G. N. Remmen,
+and F. Sciotti, Multipositivity Constrains the Chiral La-
+grangian (2026), arXiv:2605.21582 [hep-th].
+[67] J. Elias Miro, A. Guerrieri, and M. A. Gumus,
+The Phases of the Scalar S-Matrix Island (2026),
+arXiv:2605.06613 [hep-th].
+[68] S.-L. Wan and S.-Y. Zhou, Analytic Bootstrap of the
+Veneziano Amplitude (2026), arXiv:2605.11084 [hep-th].
+[69] M. A. Gumus, D. Leflot, P. Tourkine, and A. Zhiboe-
+dov, Neural S-matrix bootstrap II: solvable 4d ampli-
+tudes with particle production (2026), arXiv:2601.22145
+[hep-th].
+[70] M. Boisvert, W. Knop, and L. Rastelli, Where is tree-
+level heterotic string theory? (2026), arXiv:2606.09980
+[hep-th].
+[71] J. Berman, S. Caron-Huot, A. V. Chandra, H. Elvang,
+A. Herderschee, L. L. Lin, and R. Morales, Gravitational
+Effective Theories with Maximal Supersymmetry and a
+Peculiar Parity (2026), arXiv:2607.14230 [hep-th].
+[72] C. de Rham, A. J. Tolley, Z.-H. Wang, and S.-Y. Zhou,
+Unitary dual-resonance models, to appear.
+[73] L. Eberhardt and S. Mizera, Unitarity cuts of the world-
+sheet, SciPost Phys.14, 015 (2023), arXiv:2208.12233
+[hep-th].
+[74] P. Banerjee, L. Eberhardt, and S. Mizera, Regge limit of
+one-loop string amplitudes, SciPost Phys.19, 052 (2025),
+arXiv:2403.07064 [hep-th].
+[75] D. Amati, A. Stanghellini, and S. Fubini, Theory of high-
+energy scattering and multiple production, Nuovo Cim.
+26, 896 (1962).
+[76] S. Mandelstam, Cuts in the Angular Momentum Plane.
+2, Nuovo Cim.30, 1148 (1963).
+8
+A. Unitarity violation in finitely smeared amplitudes
+In the main text, we pointed out that a finite-range
+smearing [9] of the form
+M(s, t) =
+Z ymax
+α′
+dy ϕ(y)Wy(s, t, u) (15)
+necessarily leads to unitarity violation in the high-spin
+partial waves. To see this, let us examine the imaginary
+part of this amplitude in thes-channel, which receives
+contributions from theV y(s, t) andVy(s, u) blocks. The
+tucrossing symmetry implies that contributions from
+Vy(s, t) andV y(s, u) cancel each other for odd-ℓpar-
+tial waves, while for even-ℓpartial wavesV y(s, t) and
+Vy(s, u) give the same contribution. Using the fact that
+Im
+
+1/(n−y(s+i0))] =πδ(n−ys) and the expansion (2),
+we get, in thes-channel physical region (s >0, t <0),
+ImM(s, t) =
+X
+⌈α′s⌉≤n≤⌊ymaxs⌋
+ϕ
+ n
+s
+
+(16)
+×
+ π( n
+2 (z−1) + 1) n
+n!s + π( n
+2 (−z−1) + 1) n
+n!s
+
+,
+where we have also replacedtin favor ofz= 1 + 2t/s.
+Since the Pochhammer symbol (n
+2 (z−1)+1) n is a polyno-
+mial inz, a finitey max means that ImM(s, t) is a poly-
+nomial with finite degree. Thus, there is a finiteℓ max
+beyond which Ima ℓ>ℓmax (s) = 0. For the present model,
+however, Rea ℓ(s)̸= 0 for evenℓ > ℓ max, and therefore
+partial-wave unitarity is violated.
+B. Threshold behavior
+We now analyze the behavior of the amplitude near the
+thresholds→0. This is one of the asymptotic regions
+that cannot be fully tested by a finite numerical scan.
+The large-ytail of the smearing weight function controls
+the absorptive part of the amplitude in this limit. Re-
+versing the argument, the absorptive part guides us in
+the design of acceptable weight functions.
+Let us assume thatϕ(y→+∞)∼y −p, and use
+unitarity to constrainp. Near threshold, ReM(s, t) is
+dominated by the massless pole of the Veneziano kernel:
+Wy(s, t, u)∼1/s, and thus its partial wave is given by
+Rea ℓ(s)∼s −1+ D−4
+2 .(17)
+To get the imaginary part, we can use the pole repre-
+sentation (Eq. (16)), which, upon substitutingϕ(y→
++∞)∼y −p, leads to ImM(s, t)∼s p−1. A partial-wave
+projection gives
+Ima ℓ(s)∼s p−1+ D−4
+2 .(18)
+Then, partial-wave unitarity|a ℓ(s)|2 ≤2 Ima ℓ(s) re-
+quiresp≤ D−4
+2 −1, which inD= 10 imposes the condi-
+tion
+p≤2.(19)
+C. Impact-parameter analysis
+We now analyze the large-energy and large-spin behav-
+ior of the smeared amplitude. This region is important
+because the massless pole gives a long-range tail that is
+most naturally studied in impact-parameter space.
+We denote the transverse dimension byd=D−2. In
+the eikonal regime, the partial waves (ℓ∼b √s/2) can be
+approximated by the Fourier transform of the amplitude
+in the transverse momentum transfer:
+a(b, s) = 1
+2s
+Z ddq
+(2π)d eiq·b
+Z ∞
+α′
+dy ϕ(y)Vy(s,−q 2),(20)
+where we have focused first on a single Veneziano chan-
+nel. The other crossed channels can be treated analo-
+gously and will be added in the final result. In the Regge
+limit (largesandq 2 =−t≪s), using Stirling’s formula,
+we can infer that they-integral in Eq. (20) is localized in
+the regionyq 2 ≲max{ 1
+log(α′s) , α′q2}, in which we have
+(yq 2)2/ys≪1. With the condition (yq 2)2/ys≪1, we
+can replace the Veneziano kernel in the integration by
+Vy(s,−q 2)∼Γ(yq 2)e iπyq 2
+exp
+
+−yq 2 log(ys)
+
+.(21)
+Since we are interested in the regionq 2 ∼0 andyq 2 ∼0,
+we can approximate the prefactor with Γ(yq 2)eiπyq 2
+=
+1
+yq 2 −γ+iπ+· · ·, whereγis the Euler constant. Thus,
+the leading imaginary part of the partial wave is
+Ima(b, s) =
+Z ∞
+α′
+dy 2−d−1π1−d/2ϕ(y)
+s[ylog(ys)] d/2 e− b2
+4ylog(ys) .(22)
+For the real part, making use ofe−τ0q2
+/q2 =
+R ∞
+τ0
+dτ e−τ q2
+,
+we get
+Rea(b, s) =
+Z ∞
+α′
+dy π−d/2ϕ(y)
+2d+1s y
+Z ∞
+ylog(ys)
+dτ τ− d
+2 e− b2
+4τ .(23)
+Let us now extract the asymptotic behavior in different
+impact-parameter regions.
+Large impact parameterIn the regionb 2 ≫
+α′ log(α′s), Eq. (22) is dominated by large values ofyfor
+which the Regge widthylog(ys) is comparable tob 2. So
+we can drop the integration belowy ∗:y ∗ log(sy∗)≡b 2.
+Withϕ(y)∼y −p, we can integrate to find that
+Ima(b, s)∼ 1
+s
+[log
+ 
+sb2
+]p−1
+bd+2p−2 .(24)
+For the real part Rea(b, s), theyintegration abovey ∗
+is subleading and can be dropped. Fory≪y ∗, one has
+9
+b2 ≫ylog(ys), so we can approximate theτintegral with
+the Gamma function, which gives
+Rea(b, s)∼ 1
+s bd−2
+Z y∗
+α′
+dy ϕ(y)
+y ∼ 1
+s bd−2 .(25)
+Then, partial-wave unitarity|a ℓ(s)|2 ≤2 Ima ℓ(s) re-
+quires 2p−d+ 2≤0, which inD= 10 givesp≤3. Note
+that this condition onpis weaker than the condition ex-
+tracted from the threshold, and thus can be dropped.
+Crossover regionWe now consider the regionb 2 ≲
+α′ log(α′s). In this region, they-integrals of Ima(b, s)
+and Rea(b, s) are dominated byy=O(α ′), and the ex-
+ponential factors areO(1). Then, we can integrate to
+get
+Ima(b, s)∼ 1
+s[log(α′s)]d/2 ,(26)
+Rea(b, s)∼ 1
+s[log(α′s)]d/2−1 .(27)
+The unitarity ratio in this region behaves as
+|a(b, s)|2
+2 Ima(b, s)∼ 1
+α′s
+1
+[log(α′s)]d/2−2 ,(28)
+which decreases assincreases. Thus, if unitarity is sat-
+isfied at finites, we expect it to hold also at larges.
+D. Finite-energy , large-spin behavior
+We now look at the limit of finitesand largeℓ, in which
+it is convenient to writet=−sϱ 2, ϱ2 = (1−cosθ)/2. In
+thes-channel, bothV y(s, t) andVy(s, u) contribute to the
+absorptive part, but their partial-wave projections differ
+only by (−1) ℓ, sincet↔usendsz→ −z. Thus this
+only affects the even/odd projection and not the large-ℓ
+falloff. It is therefore enough to display theV y(s, t) block.
+Our aim is to extract the leading non-analyticity at
+smallϱ 2, which controls the large-ℓbehavior. At fixeds,
+thenth term in the pole representation of the absorptive
+part probes the smearing function aty=n/s. If the
+smearing range had a finite upper endpoint, only finitely
+manynwould contribute, and the resulting dependence
+onϱ 2 would be analytic. Thus, in the present model, the
+non-analyticity can only originate from the unbounded
+large-slope tail. Keeping only the leading large-nasymp-
+totics relevant for this non-analyticity, the sum takes the
+formS p(ϱ2) = P
+n≥⌈α′s⌉ n−pe−ϱ2nlogn . Forp >1,S p(0)
+is finite. The coefficient of (ϱ 2)k in its formal Taylor
+expansion is proportional to P nk−p(logn) k, which con-
+verges precisely whenk < p−1. The convergent coeffi-
+cients receive their main contributions from a finite range
+ofn, corresponding at fixedsto a finite range of Regge
+slopes, and give analytic terms inϱ 2. By contrast, as
+ϱ→0, the contributions associated with the divergent
+Taylor coefficients are controlled by increasingly largen,
+and hence probe increasingly large Regge slopes. It is
+this growing sensitivity to the large-ntail that prevents
+the small-ϱ2 expansion from being interchanged with the
+sum and generates the non-analyticity.
+Letmdenote the highest Taylor order with a con-
+vergent coefficient. Explicitly,m=⌊p−1⌋forp /∈Z,
+whereasm=p−2 forp∈Z. We then subtract all
+Taylor terms through ordermand define the remainder
+Rp(ϱ2) =
+X
+n≥⌈α′s⌉
+n−p
+"
+e−ϱ2nlogn −
+mX
+k=0
+(−ϱ2nlogn) k
+k!
+#
+.(29)
+To estimate this remainder, we introducen ∗ through
+ϱ2n∗ logn ∗ ≃1.
+Ifpis not an integer, thenR < ∼
+(ϱ2)m+1nm+2−p
+∗ (logn ∗)m+1, whileR > ∼
+(ϱ2)mnm+1−p
+∗ (logn ∗)m, and both scale as
+Rp(ϱ2)∼(ϱ 2)p−1
+
+log 1
+ϱ2
+p−1
+, p /∈Z.(30)
+Ifpis an integer, so thatp=m+ 2,
+the first non-subtracted term is marginal:R < ∼
+(ϱ2)m+1 P
+n<n∗
+(logn) m+1/n∼(ϱ 2)m+1(log
+ 
+1/ϱ2
+)m+2,
+whileR > ∼(ϱ 2)m+1(log
+ 
+1/ϱ2
+)m+1 is subleading. Thus
+Rp(ϱ2)∼ϱ 2p−2
+
+log 1
+ϱ2
+p
+, p∈Z.(31)
+The extra logarithm at integerpdoes not change the
+large-ℓscaling. In the large-ℓlimit, the partial-wave pro-
+jection is equivalent to a transverse Fourier transform
+withb≃2ℓ/ √s,
+Z ddq
+(2π)d eiq·b(q2)α =C(α)b −d−2α, C(α)∝ 1
+Γ(−α) .(32)
+For the non-integer case, this directly gives
+(logb) p−1/bd+2p−2. On the other hand, for integer
+p=m+ 2, the relevant power isα=p−1 =m+ 1, for
+whichC(m+ 1) = 0; differentiatingm+ 2 times with
+respect toαremoves the would-be (logb) m+2 term and
+leaves (logb) m+1/bd+2(m+1). Therefore, in both cases,
+Ima ℓ(s)∼ (logℓ) p−1
+ℓd+2p−2 ,(33)
+which agrees with the large-impact-parameter estimate
+derived in the eikonal regime.
+The real part of the amplitude is controlled by the
+massless pole att= 0, which gives, in the largeℓlimit,
+Rea ℓ(s)∼ 1
+ℓd−2 .(34)
+Consequently, partial-wave unitarity in this case requires
+2p−d+ 2≤0,(35)
+which inD= 10 givesp≤3.
+10
+E. Analyticity and locality via explicit continuation
+In the main text, we have proven that our dual ampli-
+tudes satisfy Mandelstam’s maximal analyticity using the
+Euler-Beta representation and a Landau analysis. Here,
+we provide an alternative proof of analyticity for general
+sandt <0, as well as locality. That is, we show that our
+dual amplitudes satisfy the fixed-tdispersion relation.
+At fixedt, the real-yintegration defining our unitary
+dual amplitudeM(s, t) converges in most of the com-
+plexsplane, except within a small region surrounding
+the segment 0< s <−t. The precise shape of this
+non-convergent region depends mildly on the block un-
+der consideration and is controlled by the large positive-y
+asymptotics
+|Vy(s, u)| ∼y− 1
+2 eyRe[−slog (−α′s)−tlog (−α′t)−ulog (−α′u)],
+|Vy(s, t)| ∼y− 1
+2 eyRe[−slog (−α′s)−tlog (−α′t)−ulog (α′u)],
+with|V y(u, t)|’s region the same as|V y(s, t)|’s. Here the
+estimate forV y(s, u) keeps only the large-yexponential
+rate fory >0, while the full asymptotics also contain the
+reflection-formula factor sin(πyt), which is bounded for
+fixed realt <0 and hence does not affect the convergence
+of the real-yintegral. Whenever the real part of the ex-
+ponent is positive, the integrand grows exponentially at
+largey, and the correspondingyintegral becomes diver-
+gent.
+However, this small region is also analytic away from
+the realsaxis. In the following, we will show this for the
+V(s, t) (orV(u, t)) andV(s, u) blocks separately, by an-
+alytically continuing and verifying the fixedtdispersion
+relation.
+•For theV(s, t) (or similarlyV(u, t)) block, the ana-
+lytic continuation can be implemented by simply rotating
+they-integration contour away from the real-yaxis (see
+Figure 1), with the residue contributions from any poles
+crossed during the deformation included. One can verify
+numerically that, at fixedt, as the rotation angleφ y in-
+creases, the analyticity domain ofV(s, t)| φy expands to
+cover an increasing portion of the small region surround-
+ing the segment 0< s <−t, namely the nonanalytic
+region ofV(s, t)|φy=0. Above a critical valueφ c
+y(t), this
+analyticity domain covers the upper half of the nonana-
+lytic region ofV(s, t)|φy=0 and at the same time overlaps
+with the analytic region ofV(s, t)| φy=0, thus constitut-
+ing an analytic continuation. (The analytic continuation
+can also be done via the Abel-Pad´ e method that will
+be discussed shortly, and we have checked that the two
+methods agree with each other.)
+With the analytic continuation established, we can ver-
+ify that theV(s, t) block indeed satisfies an unsubtracted
+dispersion relation
+¯V(s, t) =1
+π
+Z ∞
+0
+dµ Im ¯V(µ+i0, t)
+µ−s ,(36)
+where for clarity we have subtracted thes= 0 poles
+on both sides, ¯V(s, t) =V(s, t)−(...)/s. For example,
+choosing six representative points in thes, tplane and
+takingϕ(y) = 16α ′2(1−α ′/y)/(y/α ′)2, we find that the
+dispersion relation indeed reconstructs our original dual
+amplitude block:
+(α′s, α′t) ¯Vdisp(s, t)/(2α′)3 ¯Vdirect(s, t)/(2α′)3
+(−47/14,−1/4) 0.340 0.340
+(−i/8,−1/4) 0.635 + 0.071i 0.635 + 0.071i
+(3/2 +i/2,−1/4) 0.357 + 0.424i 0.357 + 0.424i
+(2 + 3i/4,−1/4) 0.302 + 0.378i 0.302 + 0.378i
+(−11/14,−1/6) 1.049 1.049
+(1/2 +i/2,−1/6) 1.181 + 0.589i 1.181 + 0.589i
+•For theV(s, u) block, however, the same contour ro-
+tation does not work. This is because, in the 0< s <−t
+region, we haveu >0, and thus thes- andu-channel
+poles both lie along the positiveyaxis, with thes-channel
+poles below the axis and theu-channel poles above it.
+This is different from Figure 1, which pinches theycon-
+tour to the real axis. Thus, in that case, we instead use an
+Abel-summed pole representation, and then evaluate the
+continuation numerically by a Pad´ e approximation. This
+gives the discontinuity within the interval 0< s <−t
+needed for the dispersion-relation check.
+Recall that thes-channel discontinuity ofV(s, u) can
+be written as
+DiscsV(s, u)≡ 1
+2i
+
+V(s+i0, u−i0)− V(s−i0, u+i0)
+
+=
+X
+n≥⌈α′s⌉
+cn(s, t)−
+X
+n≥⌈α′u⌉
+cn(u, t),
+wherec n(s, t) = (−1)n π
+s
+ϕ(n/s)Γ(n(1+t/s))
+Γ(n+1)Γ(n(t/s)) . For 0< s <
+−t, this sum is divergent and must be understood by
+analytic continuation. At largen,c n(s, t)∼e H(s,t)n/s ,
+whereH(s, t) =−slog(α ′s)−tlog(−α ′t)−ulog(α ′u)>
+0 in the interval 0< s <−t. This motivates us to
+introduce the Abel regulated discontinuity
+DiscsV (ϵ)(s, u) :=
+X
+n≥⌈α′s⌉
+cn(s, t)e−ϵ n
+s −
+X
+n≥⌈α′u⌉
+cn(u, t)e−ϵ n
+u .
+This sum converges if we chooseϵ > H. The next step
+is to construct a Pad´ e approximation in the convergent
+region ofϵand analytically continue it toϵ= 0. To
+this end, we Taylor-expand Disc sV (ϵ)(s, u) around, say,
+ϵ=H+ 1
+4α′ to a certain order, and then approximate this
+truncated Taylor series with a diagonal Pad´ e series, i.e.,
+a rational function whose numerator and denominator
+are polynomials of equal order. Then we take the limit
+ϵ= 0, which completes the Abel-Pad´ e continuation if
+numerical stability is observed as the order of the Pad´ e
+approximant is increased.
+Using this continued discontinuity, we reconstruct the
+11
+Contour rotation
+Pade w/ kmax=60
+Pade w/ kmax=100
+Pade w/ kmax=200
+0.1 0.2 0.3 0.4
+-0.5
+-0.4
+-0.3
+-0.2
+-0.1
+0.0
+2α's
+Im V(s+i0, t)
+Pade w/ kmax=60
+Pade w/ kmax=100
+Pade w/ kmax=200
+0.1 0.2 0.3 0.4
+-2
+-1
+0
+1
+2
+2α's
+Im V(s+i0, u-i0)
+Figure 4. Analytic continuation at−α ′t= 1/4. TheTop
+panel shows that, for theV(s, t) block, the contour rotation
+method agrees with the Abel-Pad´ e method. TheBottom
+panel demonstrates the validity of the Abel-Pad´ e continua-
+tion method forV(s, u) with different Pad´ e orders.
+V(s, u) block from the fixed-tdispersion relation
+¯V(s, u) =
+Z ∞
+−t/2
+dµ
+π
+ Discs ¯V(µ,−µ−t)
+µ−s + (s→u)
+
+,
+(37)
+where the barred quantity ¯V(s, u) again denotes the am-
+plitude with thes= 0 andu= 0 poles subtracted. We
+can numerically verify thatV(s, u) obtained in this way
+agrees with the result from theyintegration. For exam-
+ple, withϕ(y) = 16α ′2(1−α ′/y)/(y/α ′)2, we have, after
+subtracting thes, u= 0 poles,
+(α′s, α′t)
+¯Vdisp(s,u)
+(2α′)3
+¯Vdirect(s,u)
+(2α′)3
+(i/4,−1/4) 0.496−0.287i 0.496−0.287i
+(101/200 +i/2,−1/4) 0.099 + 0.176i 0.099 + 0.176i
+(3/2 +i/2,−1/4) −0.033 + 0.019i −0.033 + 0.019i
+(2 + 3i/4,−1/4) −0.014 + 0.014i −0.014 + 0.014i
+(−51/200 +i/20,−1/6) 0.292 + 0.767i 0.292 + 0.767i
+Thus, we have established that our dual amplitude sat-
+isfies an unsubtracted dispersion relation at fixedt <0.
+F. Continuation for the Virasoro-Shapiro-like block
+In the main text, we have also used the Virasoro-
+Shapiro-like block as an absorptive background to en-
+hance the inelasticity or coupling strength. In this ap-
+pendix, we show that, as in the Veneziano case, this
+Virasoro-Shapiro-like block satisfies Mandelstam’s maxi-
+mal analyticity condition, namely that it only has branch
+cuts for
+s∈[0,∞) ort∈[0,∞) oru∈[0,∞).(38)
+As in the Veneziano case, we begin with the complex
+Beta integral
+Iy(a, b) =
+Z
+C
+d2ζ|ζ| −2ya−2|1−ζ| −2yb−2.(39)
+By analytic continuation of the standard complex Beta
+integral, one has
+Iy(a, b) =π Γ(−ya)Γ(−yb)Γ(1 +y(a+b))
+Γ(1 +ya)Γ(1 +yb)Γ(−y(a+b)) ,(40)
+which leads to
+− 1
+πy 2 [Iy(s, t) +Iy(t, u) +Iy(u, s)]
+= (s2 +t 2 +u 2) Γ(−ys)Γ(−yt)Γ(−yu)
+Γ(1 +ys)Γ(1 +yt)Γ(1 +yu) .(41)
+We want to determine the analyticity of Eq. (41) upon
+integration overy. For this, it suffices to analyze one
+term in this cyclic sum.
+Let us define
+I(s, t) =−1
+π
+Z ∞
+α′
+dy
+eϕB(y)
+y2 Iy(s, t)
+=
+Z
+C
+d2ζ
+|ζ| 2|1−ζ| 2 Gϕ
+ 
+As,t(ζ, ¯ζ)
+
+,(42)
+where the second equality is understood formally at this
+stage and will be made precise below by complexifying ¯ζ
+and specifying the contourC, and
+Gϕ(A) =− 1
+π
+Z ∞
+α′
+dy
+eϕB(y)
+y2 e−Ay,(43)
+As,t(ζ, ¯ζ) =slog|ζ| 2 +tlog|1−ζ| 2.(44)
+Unlike for the Veneziano block, where Res <0 and
+Ret <0 provide an undeformed contour with ReA s,t >
+0, the second equality in Eq. (42) does not follow here
+from a common undeformed convergence region valid for
+ally. For our purpose, it is sufficient to justify the ex-
+change in a neighbourhood of a single suitable base point,
+thereby identifying the two representations as the same
+analytic germ. The required contour will be constructed
+later, at the base point introduced in Eq. (62).
+As in the main text,G ϕ(A) can be continued to an
+analytic function ofAexcept for a finite branch point
+atA= 0. Also, there are three degenerate cases of the
+integration, in which|A s,t(ζ, ¯ζ)| → ∞fors, t, u̸= 0,
+ζ= 0, ζ= 1, ζ=∞.(45)
+12
+Note that the degenerate cases can still be well-defined
+as long asG ϕ(A) decays exponentially asA → ∞. This
+happens in any sector with ReA>0 on the first Riemann
+sheet. We will show that, by contour deformation, all the
+degenerate cases fall in this class. For this, let us uplift
+¯ζto an independent complex variable, and the original
+integration contour lies in the subspace of the 2D complex
+spaceC 2:
+CE ={(ζ, eζ) : eζ= ¯ζ}.(46)
+We want to deform the contour within the 2D complex
+space, making the replacements
+|ζ| 2 →ζ eζ,|1−ζ| 2 →(1−ζ)(1− eζ).(47)
+Here and below, each deformed contour is regarded as an
+oriented real two-dimensional contour, with integration
+measure given by the holomorphic two-form
+Ω≡ i
+2
+dζ∧d eζ
+ζ eζ(1−ζ)(1− eζ)
+,(48)
+whose restriction toC E is the original measure
+d2ζ/(|ζ| 2|1−ζ| 2). Nearζ= 0, the original contour can
+be parametrized as
+ζ=ζ 0e−R+iθ, eζ= eζ0e−R−iθ, R→+∞, θ∈[0,2π),(49)
+and we can deform the radial direction by taking
+ζ=ζ 0e−Rvs+iθ, eζ= eζ0e−Rvs−iθ.(50)
+The condition that the deformed contour still ends at
+ζ= eζ= 0 is simply Rev s >0. Near this endpoint,
+As,t(ζ, eζ)∼slogζ eζ, and hence the endpoint integral
+converges if Re(−sv s)>0. Such a directionv s exists
+precisely when
+s /∈[0,∞).(51)
+The endpointζ= 1 can be treated in the same way,
+using local coordinates 1−ζand 1− eζ. The corresponding
+contour deformation is unobstructed precisely when
+t /∈[0,∞).(52)
+For the endpointζ=∞, we set
+ζ= 1
+χ , eζ= 1
+eχ,(53)
+and considerχ,eχ→0. In this region,A s,t(χ,eχ)∼ −(s+
+t) log(χeχ). Thus, the same endpoint analysis shows that
+the deformation is unobstructed precisely when
+−(s+t)/∈[0,∞),oru /∈[0,∞).(54)
+It remains to exclude possible internal pinch singular-
+ities. SinceG ϕ(A) has a finite limiting value atA= 0,
+any simple preimage ofA s,t = 0 can be bypassed by an
+arbitrarily small local detour. Simple intersections with
+As,t = 0 are therefore harmless; an internal obstruction
+can arise only from a critical encounter of this branch lo-
+cus with the chosen contour, whose necessary condition
+is given by the Landau equations
+As,t(ζ∗, eζ∗) = 0, ∂ζAs,t(ζ∗, eζ∗) = 0, ∂eζAs,t(ζ∗, eζ∗) = 0.
+(55)
+ThroughoutD s,t, the variabless, t, uare nonzero. Hence
+s+t=−u̸= 0, and the last two Landau equations imply
+ζ∗ = eζ∗ = s
+s+t ≡r.(56)
+For each fixed (s, t)∈ Ds,t, the quantityris finite and
+distinct from 0 and 1. The endpoint deformations can
+therefore be confined to sufficiently small neighborhoods
+ofζ= 0,1,∞that avoidr, while the complementary
+finite part is kept on the initial contoureζ= ¯ζ; this critical
+point can pinch the latter only whenris real.
+For finite realr̸= 0,1, substituting the critical point
+intoA s,t = 0 gives
+rlog
+ 
+r2
++ (1−r) log
+ 
+(1−r) 2
+= 0.(57)
+This equation has no finite real solution: its left-hand
+side is negative for 0< r <1 and positive forr <0 or
+r >1. Therefore there is no additional internal first-sheet
+pinch.
+We finally establish that the analytic continuation is
+independent of the path in (s, t) space. The preceding
+endpoint and no-pinch analysis ensures local continua-
+tion along every path in
+Ds,t =
+
+(s, t)∈C 2  s, t, u=−s−t /∈[0,∞)
+	
+.(58)
+It remains to exclude a possible global monodromy. Un-
+like a single Veneziano block in the main text, whose
+continuation domain is the simply connected product of
+two slit planes, the present domain also imposesu=
+−s−t /∈[0,∞) and contains one noncontractible cycle.
+To see this, writeν=ξ ν +iη ν forν∈ {s, t, u}and define
+P × ={η∈R 3 :η s +η t +η u = 0,η̸= 0}. The ori-
+gin is excluded becauseη s =η t =η u = 0 would require
+ξs, ξt, ξu <0, contradictingξ s +ξ t +ξ u = 0. For each
+η∈P ×, the allowed real parts form a convex set. A
+continuous choice within this set is
+ξ⋆
+ν (η) = η2
+ν − |η|2/3
+|η| , ν∈ {s, t, u},(59)
+for whichξ ⋆
+ν =−|η|/3<0 wheneverη ν = 0. Linear
+interpolation to this choice gives a strong deformation
+retraction, so
+Ds,t ≃P × ∼= R2 \ {0} ≃S1, π 1(Ds,t) ∼= Z.(60)
+13
+We may therefore check the monodromy along a single
+generating cycle. Forκ >0, we define
+ck(θ) = cos
+
+θ+ 2πk
+3
+
+,
+ωk(θ) =κ
+
+ck(θ)2 − 1
+2 +ic k(θ)
+
+, k= 0,1,2,(61)
+and set (s, t, u) = (ω0, ω1, ω2) for 0≤θ≤2π. The
+identities P
+k ck = 0 and P
+k c2
+k = 3/2 implys+t+u= 0.
+Moreover, ifc k ̸= 0, thenω k is nonreal, while ifc k = 0,
+thenω k =−κ/2<0. The cycle therefore remains inD s,t,
+and its imaginary part winds once around the origin of
+P ×, so it represents a generator ofπ 1(Ds,t). Atθ= 0,
+its base point is
+(s, t, u) =κ
+ 1
+2 +i,− 1
+4 − i
+2 ,− 1
+4 − i
+2
+
+, κ >0 (62)
+which lies in the starting region used above.
+Along this cycle it is convenient to use the fixed-real-y
+representation
+I(s, t) =u2J(s, t, u),(63)
+J(s, t, u) =
+Z ∞
+α′
+dy eϕB(y)
+Y
+ν∈{s,t,u}
+Γ(−yν)
+Γ(1 +yν) .
+For fixedy >0, the integrand is single-valued and holo-
+morphic onD s,t. Using the reflection formula together
+with the uniform Stirling expansion gives
+
+Y
+ν∈{s,t,u}
+Γ(−yν)
+Γ(1 +yν)
+ =O
+
+y−3e−yE(s,t,u)
+
+,(64)
+whereE(s, t, u) is the real exponential rate controlling
+the large-ymagnitude of the integrand. We have
+E(s, t, u) = 2 Re
+X
+ν∈{s,t,u}
+νlog(−α ′ν)−π
+X
+ν∈{s,t,u}
+|Imν|.(65)
+Direct substitution of the generating cycle gives
+E
+ 
+ω0(θ), ω1(θ), ω2(θ)
+
+≥κlog 2>0.(66)
+Since the cycle is compact, the same estimate, with
+some positive lower boundδ, holds in an open tubu-
+lar neighbourhoodU⊂ D s,t of the entire cycle. As
+eϕB(y) =O(y −1) for largey, while its behaviour aty=α ′
+is integrable, one has
+ eϕB(y)
+Y
+ν∈{s,t,u}
+Γ(−yν)
+Γ(1 +yν)
+ ≤Cy −4e−δy (67)
+uniformly on compact subsets ofU. The bound above en-
+sures that theyintegral converges locally uniformly onU.
+Since the integrand is single-valued and holomorphic in
+(s, t) for every fixedy,J U is a single-valued holomorphic
+function onU. Every closed path inD s,t is homotopic to
+an integer power of the generating cycle, so it is sufficient
+to prove that the continuation around this cycle has triv-
+ial monodromy. Sinceu 2JU is already single-valued in a
+neighbourhood of the cycle, this will follow once we show
+that, at the base point, it defines the same analytic germ
+as the worldsheet representation in Eq. (42).
+The discussion above leaves only one point to prove:
+the single-valued functionu 2JU must agree, near the
+base point Eq. (62), with the germ defined by the world-
+sheet representation in Eq. (42). We now construct the
+worldsheet contour required for this identification. The
+identification proceeds in two steps. We first construct
+from the endpoint-regularized contour ay-independent
+contourC + allowing the exchange of theyand world-
+sheet integrations, and then show thatC + gives the same
+Gϕ integral as the original endpoint-deformed contour by
+a non-pinched lifted homotopy.
+Let (s 0, t0, u0) denote the base point in Eq. (62), and
+writeA 0 =A s0,t0 . On the original surfaceC E,
+A0 =s 0
+
+log|ζ| 2 − 1
+2 log|1−ζ| 2
+
+.(68)
+The expression in parentheses is real. Consequently,
+ReA 0 → −∞only at the endpointζ= 0, whereas it
+tends to +∞atζ= 1 andζ=∞. We therefore deform
+only theζ= 0 end. More explicitly, for sufficiently large
+R0, the part withR≥R 0 in Eq. (49) may be replaced
+by
+ζ=ζ 0e−R0−(R−R0)eiπ/4+iθ, eζ= eζ0e−R0−(R−R0)eiπ/4−iθ.
+(69)
+This corresponds to the choicev s0 =e iπ/4 in Eq. (50).
+Along this contour,
+A0 =−2s 0eiπ/4R+O(1) = κR√
+2 (1−3i) +O(1).(70)
+Thus, by takingR 0 sufficiently large, the entire deformed
+tail can be chosen so that
+ReA 0 →+∞,ImA 0 <0.(71)
+We denote the resulting integration surface byC reg. For
+every fixedy >0, after fixing the logarithmic lift inher-
+ited fromC E, the surfaceC reg is obtained by continuously
+deforming the original integration surface along a path in
+parameter space from a point where the complex Beta in-
+tegral is absolutely convergent to the base point, while
+keeping its noncompact ends in the corresponding decay
+sectors. Its fixed-yintegral therefore gives the analytic
+continuation ofI y(s, t) and remains equal to Eq. (40).
+This endpoint regularization is sufficient for each fixed-
+yintegral, but it does not yet justify exchanging they
+and (ζ, eζ) integrations: ReA 0 may still be nonpositive
+on a compact middle part ofC reg. We shall continuously
+14
+deformC reg to ay-independent surface on which ReA 0
+has a uniform positive lower bound.
+For this purpose, follow the logarithms continuously so
+thatA 0 is single-valued on the corresponding logarithmic
+covering space, and setR= ReA 0. We equip this cov-
+ering space with the pullback of the complete Hermitian
+metric
+g=
+ 1
+|ζ| 2 + 1
+|1−ζ| 2
+
+|dζ| 2 +
+ 
+1
+|eζ| 2
++ 1
+|1− eζ| 2
+!
+|deζ| 2.
+(72)
+All gradients and norms below are taken with respect to
+g. Define the upward flow Φ τ by
+d
+dτ Φτ (X) = ∇gR
+1 +∥∇ gR∥2g
+
+Φτ (X)
+,Φ 0 = id.(73)
+The denominator bounds theg-speed without changing
+the flow trajectories. Together with the completeness of
+g, this makes the finite-time flow well defined, as verified
+below. SinceA 0 is holomorphic andgis Hermitian, the
+Cauchy–Riemann equations give
+d
+dτ R(Φτ (X)) = ∥∇gR(Φτ (X))∥ 2
+g
+1 +∥∇ gR(Φτ (X))∥ 2g
+≥0,
+d
+dτ ImA0(Φτ (X)) = 0.(74)
+The real part therefore increases along the flow, while the
+imaginary part remains fixed.
+We now show that the flow moves every point of the
+integration surface above a fixed positive level. By a
+saddle we mean a critical point ofA 0,
+dA0 = 0,(75)
+or equivalently, by the Cauchy–Riemann equations,
+∇gR= 0. A trajectory that failed to reach the desired
+positive region would have two apparent possibilities: it
+could accumulate at a saddle withR<0, or it could en-
+ter a noncompact region whileRremains negative. Such
+noncompact regions arise when eitherζor eζapproaches
+0, 1, or∞, or when the logarithmic sheet label becomes
+unbounded. We first determine which saddles can be ac-
+cumulation points of a flow starting fromC reg. We then
+show that a trajectory with boundedRcannot avoid this
+conclusion by wandering through noncompact regions: it
+must still have a saddle as an accumulation point. The
+resulting bound on the saddle values will exclude both
+apparent possibilities.
+The critical equations imply that all saddle lifts project
+to
+ζ= eζ= 2.(76)
+Although the two logarithms separately carry branch la-
+bels (m, n)∈Z 2, the branches relevant here are those of
+their combinationA 0. At the base point,
+∆A0 = 2πi(ms0 +nt 0) = 2πis0σ, σ=m− n
+2 ∈ 1
+2 Z.(77)
+Pairs (m, n) with the sameσdefine the same branch of
+A0, so its logarithmic sheets may be labelled directly by
+σ. The corresponding saddle values are
+A0(pσ) =s 0 (log 4 + 2πiσ).(78)
+We next determine which of these saddles could be
+approached fromC reg. On its undeformed part,
+ImA 0 = 2R.(79)
+If a trajectory starting atX 0 on this part accumulated at
+pσ, conservation of the imaginary part and monotonicity
+ofRwould require
+1
+2 ImA 0(pσ) =R(X 0)≤ReA 0(pσ).(80)
+Substituting the saddle values givesσ≤0, and therefore
+ReA 0(pσ)≥κlog 2.(81)
+On the regulated part, one has ImA 0 <0. A saddle
+with the same conserved imaginary part must then have
+σ≤ −1/2, and hence satisfies the even stronger bound
+ReA 0(pσ)≥κ(log 2 +π)> κlog 2.(82)
+Thus, every saddle that can be approached by a trajec-
+tory starting onC reg has
+ReA 0(pσ)≥κlog 2.(83)
+Choosec >0 such that
+0<3c < κlog 2.(84)
+Suppose that a trajectory starting atX 0 ∈ Creg with
+R(X0)<2cnever reachesR= 2c. SinceRis monotone
+and bounded, it has a finite limit
+R(Φτ (X0))− → R∞ ≤2c.(85)
+The imaginary part ofA 0 is conserved, so the full value
+ofA 0 remains in the compact line segment
+A0(Φτ (X0))∈[R(X 0),R ∞] +iImA 0(X0).(86)
+Moreover,
+Z ∞
+0
+∥∇gR(Φτ (X0))∥2
+g
+1 +∥∇ gR(Φτ (X0))∥2g
+dτ=R ∞−R(X0)<∞.(87)
+There must therefore exist a sequenceτ j → ∞for which
+∥∇gR(Φτj (X0))∥g →0.(88)
+15
+SetX j = Φτj (X0). IfX j has a convergent subsequence
+with limitX ∗, continuity gives
+∥∇gR(X∗)∥g = lim
+j→∞
+∥∇gR(Xj)∥g = 0.(89)
+The trajectory would therefore have a lifted saddle as an
+accumulation point. It remains only to show that such
+a convergent subsequence exists, or equivalently thatX j
+cannot leave a compact subset of the logarithmic covering
+space.
+We first exclude the endpoint regions. Nearζ= 0,
+ζ= 1, andζ=∞, the derivatives ofA 0 with respect to
+the corresponding local variables logζ, log(1−ζ), and
+log(1/ζ) approachs 0,t 0, andu 0, respectively. The same
+statement holds for eζ. The metric chosen above is uni-
+formly comparable to the flat metric in each of these log-
+arithmic coordinates near the corresponding endpoint.
+Sinces 0,t 0, andu 0 are all nonzero, the derivative lim-
+its above imply that∥∇ gR∥g has a positive lower bound
+whenever eitherζor eζapproaches 0, 1, or∞. If sev-
+eral such limits are approached simultaneously, they give
+independent components of the gradient, so the same
+conclusion holds. Since∥∇ gR(Xj)∥g →0, the sequence
+must remain away from all these endpoint regions.
+Its projection therefore lies in a compact interior re-
+gion. On the logarithmic covering space, boundedness
+ofA 0(Xj) also restricts the sequence to finitely many
+sheets: on this compact projected region, the value of
+A0 on a fixed reference branch is uniformly bounded as
+the projected point varies, while the remaining branches
+differ by
+2πis0σ, σ∈ 1
+2 Z.(90)
+Sinces 0 ̸= 0, only finitely many values ofσare compat-
+ible withA 0(Xj) remaining in a compact set. ThusX j
+lies in a compact subset of the logarithmic covering space
+and has a convergent subsequence. Its limit is a lifted
+saddlep σ. Conservation of the imaginary part gives
+A0(pσ) =R ∞ +iImA 0(X0).(91)
+But every saddle that can be an accumulation point of a
+trajectory starting onC reg satisfies ReA 0(pσ)≥κlog 2,
+whereas
+κlog 2≤ReA 0(pσ) =R ∞ ≤2c < κlog 2,(92)
+which is impossible. Hence every point withR<2c
+reaches the levelR= 2cafter a finite flow time.
+Finally,
+K=C reg ∩ {R ≤2c}(93)
+is compact becauseR →+∞along every noncompact
+end ofC reg. Every trajectory starting inKactually
+crosses toR>2c, since an obstruction atR= 2cwould
+be an accessible saddle with real value 2c < κlog 2. Con-
+tinuous dependence on the initial point therefore gives
+a neighbourhood of each point ofKwhose trajectories
+cross this level within a common finite time. The com-
+pactness ofK, together with the monotonicity ofR, then
+gives a single finite timeTvalid for all points ofK.
+To leave the distant endpoint regions unchanged, we
+now multiply the flow vector field by a smooth function
+ofRthat equals one forR ≤2cand zero forR ≥3c,
+and continue to denote the resulting flow by Φ τ . This
+does not affect the argument above, since every trajec-
+tory considered there remains below 2cuntil it reaches
+the desired level. Moreover,C reg ∩ {R ≤3c}is com-
+pact, so only a compact part of the integration surface is
+moved. We have therefore constructed
+C+ = ΦT (Creg),ReA 0
+
+C+
+≥2c >0.(94)
+Only a compact part of the integration surface has
+been moved, while all its asymptotic regions are left un-
+changed. On the chosen logarithmic cover of the com-
+plexified (ζ, eζ) space, the fixed-ycomplex Beta inte-
+grand, with the replacements in Eq. (47), is holomor-
+phic throughout the deformation. We now justify explic-
+itly that the finite-time flow cannot reach any of the loci
+ζ, eζ= 0,1,∞.
+The metric chosen above is complete. Indeed, for any
+curveγalong whichζapproaches either 0 or∞,
+Lengthg(γ)≥
+Z
+γ
+|dζ|
+|ζ| ≥ |∆ log|ζ|| → ∞,(95)
+whereas for a curve approachingζ= 1,
+Lengthg(γ)≥
+Z
+γ
+|dζ|
+|1−ζ| ≥ |∆ log|1−ζ|| → ∞.(96)
+The same estimates hold for eζ. Thus every curve leav-
+ing through one of these endpoint regions has infinite
+g-length. The pullback of this metric to the logarithmic
+covering space is complete as well.
+The normalized flow has uniformly boundedg-speed,
+and the cutoff introduced above can only decrease it:
+
+dX
+dτ
+
+g
+≤ ∥∇gR∥g
+1 +∥∇ gR∥2g
+≤ 1
+2 .(97)
+Letd g denote the distance induced byg. If a trajectory
+had a finite maximal flow timeT max, then for 0≤τ 1 <
+τ2 < Tmax,
+dg(X(τ 1), X(τ2))≤
+Z τ2
+τ1
+
+dX
+dτ
+
+g
+dτ≤ τ2 −τ 1
+2 . (98)
+It follows thatX(τ) is a Cauchy curve asτ→T max.
+Completeness gives a limit inside the logarithmic cover-
+ing space, and the smooth flow equation then extends the
+trajectory beyondT max, contradicting maximality. The
+16
+flow therefore exists for every finite time and reaches none
+of the lociζ, eζ= 0,1,∞.
+The deformation is consequently supported on a com-
+pact part of the integration surface and leaves all its
+asymptotic boundaries unchanged, so it produces no ad-
+ditional boundary contribution. Its fixed-yintegral is
+therefore unchanged, andC + gives the same analytically
+continued complex Beta integralI y(s0, t0) asC reg. (Such
+a construction should not be expected at (s, t) values for
+which theyrepresentation does not converge. Indeed,
+if there existed ay-independent admissible contour sat-
+isfying the same endpoint bounds and ReA s,t ≥c >0,
+absolute convergence would allow the two integrations to
+be interchanged and would produce a convergentyrep-
+resentation, contradicting its known large-ybehaviour.
+Consistently, away from the base-point region the rele-
+vant saddle values need not have positive real part and
+may obstruct the flow construction.)
+Keeping the same lift of the contour 6, the deformation
+above remains valid in a sufficiently small neighbourhood
+of the base point. Since ReA 0 ≥2conC + and the end-
+point inequalities on its unchanged noncompact tails are
+strict, sufficiently small variations of (s, t) cannot make
+ReA s,t nonpositive anywhere on this contour. The neigh-
+bourhood can therefore be chosen so that
+ReA s,t
+
+C+
+≥c >0.(99)
+Theyand worldsheet integrations may consequently be
+interchanged in this neighbourhood. Thus, for (s, t) in a
+sufficiently small neighbourhood of (s 0, t0), one obtains
+Z
+C+
+ΩG ϕ(As,t(ζ, eζ)) =− 1
+π
+Z ∞
+α′
+dy
+eϕB(y)
+y2 Iy(s, t).(100)
+This shows that the two representations define the same
+holomorphic germ at the base point.
+However, to connect this representation back to the
+analytic continuation constructed above, we must verify
+that the flow deformation preserves the originalG ϕ inte-
+gral. Namely, after possibly shrinking the neighbourhood
+Uof the base point, we need
+Z
+C+
+ΩG ϕ(As,t(ζ, eζ)) =
+Z
+Creg
+ΩG ϕ(As,t(ζ, eζ)). (101)
+This follows from the absence of pinches during the fixed
+lifted homotopy fromC + toC reg. (Starting fromC +,
+where ReA s,t >0 fixesG ϕ on its first Riemann sheet, we
+followG ϕ continuously on its Riemann surface along the
+lifted homotopy toC reg. Any simple crossing ofA s,t = 0
+is understood through an infinitesimal detour that con-
+tinuesG ϕ onto the appropriate sheet; since this branch
+point is soft, the detour gives no contribution in the zero-
+radius limit, and only a pinch withA s,t = dA s,t = 0
+can obstruct the deformation.) Indeed, only the compact
+partC reg ∩ {ReA0 ≤3c}is moved, and the finite-time
+flow sweeps out a compact region, denoted byW. At
+the base point, a pinch of the branch locus during the
+deformation would require
+A0 = 0,dA 0 = 0.(102)
+The second condition is precisely the saddle condition of
+the flow, since for any holomorphicA s,t the Hermitian
+metricggives dA s,t = 0 if and only if∇ g ReA s,t = 0.
+The saddle analysis above, which was used to construct
+the flow, also implies that every accessible saddle satisfies
+ReA 0 >0, and hence cannot lie onA 0 = 0. Therefore,
+min
+X∈W
+(|A0(X)|+∥∇ g ReA 0(X)∥ g)>0.(103)
+By continuity and compactness ofW, the neighbourhood
+Ucan be chosen so that, on the same lifted homotopy
+min
+X∈W
+(|As,t(X)|+∥∇ g ReA s,t(X)∥ g)>0 (104)
+for all (s, t)∈ U. Thus no pinch occurs during the flow
+deformation throughoutU. Together with the analytic-
+continuation argument above, this completes the proof.
+The same argument applies toI(s, u) andI(u, t).
+Therefore the Virasoro-Shapiro-like block is analytic in
+the Mandelstam domain
+s, t, u /∈[0,∞),(105)
+and its only first-sheet singular loci are the three physical
+channel cuts, with massless poles at their endpoints.
+6 For generic (s, t), the branches of the two logarithms entering
+As,t must be followed separately, so the contour is lifted to the
+full logarithmic cover labelled by (m, n)∈Z 2, rather than only
+by the effective labelσused at the base point. The branches
+defining the starting complex-Beta germ select a lift ofC reg to
+this cover. Once this initial lift is fixed, the homotopy-lifting
+property gives a unique lift of the entire contour deformation,
+and this lifted contour is kept fixed as (s, t) varies.

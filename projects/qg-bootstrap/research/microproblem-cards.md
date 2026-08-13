@@ -25,9 +25,19 @@ multi-parameter family of crossing-symmetric, dual-resonant, unitarity-compatibl
 non-string tree amplitudes; if it collapses, unitarity forces (near-)Veneziano without
 invoking superpolynomial softness. Either outcome is a real statement.
 
-**Already known.** Paper: "broad regions consistent with positivity" at n ≤ 10, D = 4
-(Fig. 1); region diminishes with D; q>1 excluded asymptotically via a_{n,n−1}/a_{n,n}.
-Nothing published (per the paper) about N→∞ at q=1.
+**Already known** (novelty radar 2026-08-13 over all 49 citing papers, INSPIRE):
+- Anchor paper: "broad regions consistent with positivity" at n ≤ 10, D = 4 (Fig. 1);
+  region diminishes with D; q>1 excluded asymptotically via a_{n,n−1}/a_{n,n}.
+- **Mansfield–Spradlin 2409.09561** rule large (r, m², D) regions in/out — but for the
+  w = 0 hypergeometric slice (plus their own superstring analogue). MUST cite and build on;
+  do not blindly redo w=0.
+- 2502.20372: Veneziano point only, D=10. 2406.04410: bespoke family (different).
+- 2607.24922 (de Rham–Tolley–Wang–Zhou, Jul 2026): unitarization-by-widths program,
+  different object; cite as context.
+- **No dedicated analysis found of the w ≠ 0 class or the joint (r,w,µ(0)) island fate at
+  N→∞.** That is our unique slice; the card's focus narrows accordingly to w ≠ 0 and the
+  joint island, with the w = 0 boundary cross-checked against Mansfield–Spradlin as an
+  external control.
 
 **Suspected gap.** No asymptotic analysis of a_{n,ℓ} at q=1 in (r,w); n=10 may be far from
 asymptopia. Analogy with the q>1 sign-clash argument suggests trying closed-form ratios
