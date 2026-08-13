@@ -1,5 +1,7 @@
 # ScienceBro — Claude Code project instructions
 
+For every ScienceBro research action, invoke /sciencebro-research-loop before planning or execution.
+
 ## MANDATORY: North Star check
 Before selecting, starting or closing ANY task, reread `NORTH_STAR.md`. Every experiment
 and mission must carry `north_star_relevance`. Infrastructure budget: ≤20% of effort;
