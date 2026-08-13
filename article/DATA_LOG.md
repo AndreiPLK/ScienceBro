@@ -169,3 +169,21 @@ old entries; append corrections as new entries.
   126: 0.1865 PASS | 127: 1.1763 FAIL — identical verdict pattern to the
   24-point run (frozen H1/H2 both confirmed). 2/5 seeds pass the vacuum leg.
 - Artifact: projects/ainstein-audit/results/processed/vacuum_deep_N2000.json
+
+## 2026-08-13 — Reply to Hirst SENT (founder pressed Send)
+- Content: N=2000 re-evaluation (verdicts unchanged, 2/5 pass), repo+DOI link,
+  soft repeat of the checkpoint request. Correspondence continues as EV-CORR-0001.
+
+## 2026-08-13 — ANALYTIC RESULT: the island's left edge is r = -1/2
+- Derived in closed form: a_{n,n-1} = K(n)(n(r+1/2)+w)(1+n+r+w)/((2+r)_n(1+r+w)),
+  K(n)>0, at mu0=0, D=4, q=1. In the physical domain sign(a_{n,n-1}) =
+  sign(n(r+1/2)+w).
+- Explains ALL nine N=10->20 casualties exactly (kill level n=10w+1 at r=-3/5,
+  matches the measured (n,l) list cell by cell) and why no cell fell afterwards.
+- Razor test passed: predicted an exact zero at n=25 for the never-scanned point
+  (r,w)=(-13/25,1/2); exact arithmetic confirms a_{24,23}>0, a_{25,24}=0,
+  a_{26,25}<0. Plus 60/60 random points.
+- Corollary: true left edge of the island at mu0=0 is r=-1/2; finite-N maps
+  overstate the sliver (-0.6,-0.5); erosion depth ~ w/|r+1/2|.
+- Note: projects/qg-bootstrap/research/left-edge-theorem.md. Independent review
+  pending — not promoted beyond "analytic derivation, numerically confirmed".
