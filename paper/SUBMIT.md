@@ -1,5 +1,9 @@
 # Where to click — step by step
 
+> **Progress (2026-08-13):** Steps 0–2 are DONE. ORCID 0009-0005-5660-2603 · repo
+> github.com/AndreiPLK/spacetime-verifier · release v0.1.1 · DOI 10.5281/zenodo.21915627.
+> Only step 3 (JOSS, ~10 min) remains, values below.
+
 Everything below is prepared. Nothing here requires a connection, an invitation or an
 endorsement. Total hands-on time: about 25 minutes, spread over three sittings.
 
@@ -52,7 +56,7 @@ reviewers' comments are the useful part.
 
 1. Read the two-minute checklist: <https://joss.readthedocs.io/en/latest/submitting.html>
 2. Open <https://joss.theoj.org/papers/new>
-3. Fill in: repository URL (step 1), version `v0.1.0`, and the Zenodo DOI (step 2).
+3. Fill in: repository URL `https://github.com/AndreiPLK/spacetime-verifier`, branch `main`, version `v0.1.1`, archive DOI `10.5281/zenodo.21915627`.
 4. `paper/paper.md` and `paper/paper.bib` are already in the format JOSS expects, in the
    location it looks for.
 5. Submit. An editor opens a public GitHub issue; reviewers comment there; I answer every

@@ -1,6 +1,6 @@
 # PRESS RELEASE (living draft — updated at every milestone)
 
-**Status: DRAFT. Not for distribution until founder approval and stage-6 release gate.**
+**Status: RELEASED 2026-08-13.** DOI: [10.5281/zenodo.21915627](https://doi.org/10.5281/zenodo.21915627) · Code: [github.com/AndreiPLK/spacetime-verifier](https://github.com/AndreiPLK/spacetime-verifier) · Stage-6 release gate VERIFIED 7/7.
 Wording constraints: no "discovery / confirmation / refutation" — none of these has
 passed independent validation. Allowed claims only.
 

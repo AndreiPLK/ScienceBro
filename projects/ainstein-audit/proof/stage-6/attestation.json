@@ -3,9 +3,9 @@
   "stage_id": "stage-6",
   "title": "Public release",
   "label": "SCIENTIFIC",
-  "status": "IN PROGRESS",
-  "verified_at": "2026-08-12T17:47:42.405611+00:00",
-  "git_commit": "8125771be4be0a144a31aa7a03bfab735821dab7",
+  "status": "VERIFIED",
+  "verified_at": "2026-08-13T09:17:59.060636+00:00",
+  "git_commit": "b73a21495bf10bc5b5c4bb9805d3370dfbbe2ff7",
   "uv_lock_sha256": "11704d4fd8fa93768158ac7608eb2018d6baa49d312943397366986858b63565",
   "python": "3.12.10",
   "requirements": [
@@ -48,14 +48,14 @@
     {
       "id": "release",
       "description": "GitHub release + Zenodo DOI",
-      "status": "missing",
-      "measured": ""
+      "status": "pass",
+      "measured": "10.5281/zenodo.21915627 (version v0.1.1); concept DOI all-versions: 10.5281/zeno"
     }
   ],
   "artifact_hashes": {
     "C:\\Users\\user\\ScienceBro\\projects\\ainstein-audit\\proof\\stage-01\\clean-clone-2026-08-11.log": "5d3ab0051a109191d0c3dcfc5036fecc80dd7ae04409636a8c2fb26ecf61c33f",
     "C:\\Users\\user\\ScienceBro\\AI_DISCLOSURE.md": "c2a26b6799e6ca00b99628dad962e6b2174c463794315d58d9c1d1a137f73210",
-    "C:\\Users\\user\\ScienceBro\\CITATION.cff": "96a7295e95b6af578731da2af372f69196581ae2ed25de73ece96ec673f86c9d"
+    "C:\\Users\\user\\ScienceBro\\CITATION.cff": "3220b3dd05b9749245a32b4e570f0c3d3cd9a57746252708d1a6414659d402a4"
   },
   "allowed_public_claim": "Nothing is released yet."
 }
