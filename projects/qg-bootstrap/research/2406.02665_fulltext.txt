@@ -1,0 +1,832 @@
+=== PAGE 1 ===
+CALT-TH 2024-022
+Bootstrap Principle for the Spectrum and Scattering of Strings
+Clifford Cheung,1 Aaron Hillman,1 and Grant N. Remmen2
+1Walter Burke Institute for Theoretical Physics, California Institute of Technology, Pasadena, CA 91125
+2Center for Cosmology and Particle Physics, Department of Physics, New York University, New York, NY 10003
+We show that the Veneziano amplitude of string theory is the unique solution to an analytically
+solvable bootstrap problem. Uniqueness follows from two assumptions: faster than power-law falloff
+in high-energy scattering and the existence of some infinite sequence in momentum transfer at which
+higher-spin exchanges cancel. The string amplitude—including the mass spectrum—is an output of
+this bootstrap. If the amplitude merely vanishes at high energies, the solution is a three-parameter
+family containing the Veneziano, Coon, and hypergeometric amplitudes, and more.
+Introduction.—String theory is a rare working proto-
+type for how to consistently reconcile quantum mechan-
+ics and gravity at arbitrarily short distances. To do so,
+it asserts that the most basic building blocks of nature
+are vibrating strings rather than point particles. But is
+this assumption in any sense unique or inevitable?
+Naively, theonly wayto assesstheuniquenessofstring
+theory is to compare and contrast it against its alterna-
+tives, but these are few and far between. A more system-
+atic path is to apply the bootstrap principle, which aims
+to sculpt the observables of a theory directly from a set
+of conservative, bottom-up assumptions. A particularly
+fruitful version of this idea is the scattering amplitudes
+bootstrap, which utilizes basic principles like Lorentz in-
+variance, locality, and unitarity to construct the space of
+all possible scattering amplitudes, which in turn dictates
+the space of all possible theories [1–4]. In this approach,
+theories like quantum chromodynamics and general rel-
+ativity are not derived from textbook gauge invariance
+and general covariance, but rather as the unique theo-
+ries of the interactions of massless spin one and spin two
+particles that are Lorentz invariant, local, and unitary.
+Assumptions.—What are the bottom-up assumptions
+that fix the scattering amplitudes of string theory? That
+is, without any preconceived notions about the string,
+like its detailed spectrum or dynamics, how would we
+arrive at those elements from a systematic bootstrap?
+We can look for hints to this question within the string
+amplitudes themselves, which famously exhibit a num-
+ber of extraordinary properties. Chief among these is
+their high-energy behavior, which does not diverge with
+center-of-mass energy but rather attenuates, and at a
+rate that is impossible in a quantum theory of point par-
+ticles. This falloff is encoded in the Regge limit,
+lim
+|s|→∞
+A(s,t)∼s J(t), (1)
+whereJ(t)is the Regge trajectory. When there exists
+some range oftfor whichJ(t)<0, as is the case for
+tree-level string amplitudes, an unsubtracted dispersion
+relation then implies that [5],
+A(s,t) =
+˛
+s′=s
+ds′
+2πi
+A(s′,t)
+s′−s =
+ˆ ∞
+−∞
+ds′
+π
+ImA(s′,t)
+s′−s . (2)
+A priori, the amplitude can have discontinuities in both
+thesandtchannels. Nevertheless, it has been recast as
+a sum over solelyschannel contributions. This property
+ofdual resonance—that the amplitude can be expressed
+either as a sum oversortchannel exchanges—is implied
+by vanishing Regge behavior [6–10].
+Throughout this work, we will posit a weakly coupled
+tree-level amplitude, so the right-hand side of the dis-
+persion relation is a sum over simple poles,
+A(s,t) =
+∞∑
+n=0
+R(n,t)
+µ(n)−s ,(3)
+where the sequenceµ(n)parameterizes an a priori arbi-
+trary spectrum indexed by a level numbern, which runs
+over the nonnegative integers.
+By definition, the pole in Eq. (3) at levelncomprises
+a set of exactly degenerate exchanged states of different
+spins. The degree of each residueR(n,t)with respect
+totdictates the maximal spin exchanged at leveln. If
+R(n,t)is nonpolynomial, then the exchanged state is of
+finite energy butinfinitespin. Any such mode has infi-
+nite extent, thus running afoul of locality [11, 12]. No-
+tably, unphysical amplitudes of this type—for example,
+A∝1/(s−m 2)(t−m 2)(u−m 2)—appear as “extremal”
+amplitudes that are formally unitary but are nonlocal
+and frequently contaminate numerical bootstrap analy-
+ses [12–14]. In order to prune away these pathological
+amplitudes, we impose the additional assumption of lo-
+cality, so any exchanged state has finite spin andR(n,t)
+is a polynomial. Crossing symmetry then implies that
+Eq. (3) must have poles insat arbitrarily high levelnin
+order to account for expansion of the poles in thetchan-
+nel. Assuming for simplicity that there are no distinct
+resonances with the same maximal spin, then without
+further loss of generality we can define the ordering ofn
+such thatnis the degree ofR(n,t), soµ(n)is a nonre-
+peating sequence and the sum in Eq. (3) runs over spin.
+The amplitudes of confining gauge theories and funda-
+mental strings both have vanishing Regge behavior, but
+it is the strength of this falloff that distinguishes them.
+For confining gauge theories,J(t)asymptotes to a con-
+stant for negativet, corresponding to the impossibility
+of arbitrarily soft high-energy behavior in quantum field
+theory [15, 16]. For fundamental strings, however,J(t)
+arXiv:2406.02665v2  [hep-th]  9 Sep 2025
+=== PAGE 2 ===
+2
+decreases unboundedly for negativet. In the parlance of
+Ref. [17], such amplitudes are “superpolynomially soft,”
+which means that for any positive integerkthere exists
+some range oftfor whichA(s,t)is bounded bys−k. This
+implies that there exist sometk for whichA(s,tk)∼s −k
+in the Regge limit [18]. This scaling implies that the
+Regge trajectoryJ(t)crosses all negative integers, so
+J(tk) =−k. SinceA(s,t k)∼s −k, it is then natural to
+wonder if the amplitude is actually arationalfunction
+ofsat these points. Indeed, this is precisely the case for
+the Veneziano amplitude [19],
+AV (s,t) = Γ(−s)Γ(−t)
+Γ(−s−t) ,(4)
+which degenerates to a rational polynomial of degree−k
+precisely whent=−k. In particular, at these special
+values of the momentum transfer, the Veneziano ampli-
+tude exhibits afinitenumber of poles in theschannel,
+AV (s,−k) =
+k−1∑
+n=0
+(1−k) n
+n!
+1
+n−s ,(5)
+where we have defined the Pochhammer symbol(a)n =∏n−1
+k=0(a+k) = Γ(a+n)/Γ(a). Settingt=−k, the par-
+tial waves at each leveln≥kdestructively interfere,
+leaving no sign of those exchanged states in the am-
+plitude. We dub this phenomenon “level truncation,”
+where all terms at leveln≥kin the dual resonant sum
+in Eq. (3) vanish at some sequence of values oftthat
+we callξ(k), leaving a finite sum over poles. By defini-
+tion, an amplitude that satisfies level truncation will be
+a rational polynomial att=ξ(k), with Regge behavior
+going at most likes−1; while the tree-level string itself
+has softer Regge scaling∼s−k, we will not enforce this
+improvement for now.
+Approach and Results.—In this paper, we take this cu-
+rious property of the Veneziano amplitude and elevate
+it the status of aninput assumptionof a bootstrap cal-
+culation. Concretely, we present an analytic bootstrap
+for tree-level, crossing symmetric amplitudesA(s,t)de-
+scribing a tower of finite-spin modes whose spectrum is
+an unspecified sequenceµ(n). At the heart of our con-
+struction lie two nontrivial assumptions. The first is that
+the amplitude has vanishing Regge behavior, so it can be
+expressed as a sum over poles in just theschannel, as
+in Eq. (3). The second is level truncation, which states
+that this sum only receives contributions from a finite
+set of levels withn<kwhent=ξ(k), whereξ(k)is yet
+another unspecified sequence.
+This bootstrap problem can be solved analytically and
+exactly. Our construction imposes nonlinear constraints
+on the sequencesξ(n)andc(n)and on the spectrum
+µ(n). Consequently, unlike all prior analyses in this sub-
+ject, the spectrumµ(n)is anoutputof our bootstrap
+rather than an input. The general solution of this boot-
+strap problem is a three-parameter(q,r,w)family of am-
+plitudes. The spectrum is
+µ(n) = [n]q = 1−q n
+1−q , (6)
+which is theq-integer spectrum of the Coon ampli-
+tude [20]. As we will find,q≥1is mandated by conver-
+gence of the dual resonant sum, but unitarity is violated
+forq >1. Hence, we are left withq= 1, corresponding
+to the linear spectrum of the string. Meanwhile,rde-
+scribes the parameter of the hypergeometric amplitudes
+proposed in Ref. [6], and the remaining parameterw
+characterizesanewclassofamplitudes. Byconstruction,
+all of these amplitudes have vanishing Regge behavior
+but only forr=w= 0is the amplitude superpolynomi-
+ally soft. As a result, the unique object satisfying this
+last condition is precisely the Veneziano amplitude.
+Analytic Bootstrap.—Vanishing Regge behavior im-
+plies that the amplitude admits the dual resonant repre-
+sentation in Eq. (3). We now show how level truncation
+constrains the residue and impose crossing symmetry.
+Residue Structure.—Att=ξ(1), the amplitude only re-
+ceives contributions from leveln= 0. Consequently, all
+the other residues must vanish and are hence propor-
+tional tot−ξ(1). On the other hand, att=ξ(2)the
+only exchanges are from levelsn= 0,1, so the remain-
+ing residues are proportional tot−ξ(2), and so forth.
+Iterating this logic, we learn that the residues are
+R(n,t) =c(n)
+n∏
+k=1
+(t−ξ(k)), (7)
+wherec(n)is an unspecified sequence.
+Together, Eqs. (3) and (7) describe an amplitude pa-
+rameterized by three infinite sequences: the spectrum
+µ(n), the residue normalizationc(n), and the loci of level
+truncationξ(k). The resulting amplitude has the same
+structure of coincident residue zeros as the Veneziano
+amplitude, but with the positions of all poles and zeroes
+insandttransformed by the schematic replacement,
+integer−→arbitrary sequence. (8)
+Said another way, our bootstrap automatically sculpts
+outaputativespaceofscatteringamplitudeswhosepoles
+and residue zeros have the same overall structure as
+Veneziano, but at a priori different locations.
+Without loss of generality, let us consider all ampli-
+tudes with fixed overall normalization and modulo arbi-
+trary transformations ofsandtunder shifts and rescal-
+ing. We can eliminate these degrees of freedom by fixing
+µ(0) = 0,µ(1) = 1, andc(0) = 1, which will reduce the
+complexity of our formulas.
+A common obstacle in attempting to bootstrap string
+amplitudes from first principles is that most starting as-
+sumptions allow for the possibility ofsums ofVeneziano
+satellites[17,21], whicharesimplyVenezianoamplitudes
+evaluated at shifted or rescaled values ofsandt. Hence,
+one typically anticipates an infinite space of viable so-
+lutions to any given bootstrap. However, in our case
+Eq. (7) shows that the residues that are implied by our
+assumptions are very constrained. A sum of Veneziano
+=== PAGE 3 ===
+3
+satellites will in general fail the condition required by
+Eq. (7). This is a victory because it means that the so-
+lution space of our bootstrap problem will not be diluted
+by these infinite classes of amplitudes.
+Crossing Symmetry.—The requirement of crossing sym-
+metry has yet to be imposed. In general this is a
+formidablebutinsomecasesachievabletask[22]because
+the amplitude is an infinite sum of terms, as described
+in Eq. (3). Hence, crossing symmetry places an infinite
+number of constraints on an infinite number of param-
+eters. However, due to level truncation we know that
+the amplitude reduces to a finite collection of terms at
+certain kinematic points, in which case the conditions of
+crossing symmetry are similarly finite.
+Consider the amplitude ats=ξ(i)andt=ξ(j)for
+some positive integersiandj,
+A(ξ(i),ξ(j)) =
+j−1∑
+n=0
+c(n)∏n
+k=1(ξ(j)−ξ(k))
+µ(n)−ξ(i) . (9)
+Imposing crossing symmetry, and assuming thatξ(i)and
+ξ(j)have real parts in the regime of convergence of the
+dual resonant sum, we have
+A(ξ(i),ξ(j)) =A(ξ(j),ξ(i)), (10)
+mandating nonlinear constraints on the sequencesc(n),
+ξ(n), andµ(n). While these constraints are complicated,
+they only involve a finite number of sequence variables,
+and it turns out that we can solve them analytically.
+Without prior knowledge of the existence of string am-
+plitudes, it would be surprising that these equations ad-
+mit any solutions at all. In particular, the constraint of
+crossing symmetry in Eq. (10) at largeiandjinvolves
+a maximal leveln max∼max(i,j). The number of un-
+knowns in the sequencesc(n),ξ(n), andµ(n)up to this
+maximal level scales as3nmax, while the number of equa-
+tions in Eq. (10) scales asn2
+max. Hence, this system of
+nonlinear equations is exceedingly overconstrained.
+While Eq. (10) is a system of nonlinear equations, we
+can actually solve them sequentially as linear equations.
+First, we determine the normalization sequencec(n)by
+solving Eq. (10) in the case ofi= 1andj≥2, yielding
+c(n) = (−1)n (ξ(1)−µ(n))
+n+1∏
+k=1
+(ξ(k))−1.(11)
+Second, Eq. (10) fori= 2andj≥3uniquely fixes the
+spectrumµ(n), whose solutions are defined by the re-
+cursion relation,
+µ(n) = [µ(n−1)(ξ(n+ 1)−1) +ξ(2)]/ξ(n+ 1).(12)
+Last, Eq. (10) fori= 3andj≥4determines the loci of
+level truncation, which are recursively defined by
+ξ(n) =ξ(3)(ξ(n−1)−1)/(ξ(2)−1).(13)
+Note that the above manipulations assume that the se-
+quenceξ(n)is nonrepeating, which is equivalent to re-
+quiring that under level truncation the dual resonant
+sum att=ξ(k)receives contributionsat and only at
+each polen < k. The resulting space of solutions de-
+pends solely on three remaining variablesξ(1),ξ(2), and
+ξ(3), which we remap to new parameters(q,r,w)via
+ξ(1) = [−1−r−w] q, ξ(2) = [−2−r] q,
+ξ(3) = [−3−r] q. (14)
+The sequences are then
+µ(n) = [n]q
+ξ(n) = [−n−r−δ 1nw]q
+c(n) = (1−q) nqn(n+3+2r)/2[1 +n+r+w] q
+(q2+r;q)n[1 +r+w] q
+,
+(15)
+where(a;q) n = ∏n−1
+k=0(1−aq k)is theq-Pochhammer
+symbol. Thus, we arrive at a three-parameter(q,r,w)
+space of amplitudes. Note that Eq. (10) is necessary but
+not sufficient for crossing symmetry, and one must still
+check that the amplitudes corresponding to Eq. (15) are
+crossing symmetric at genericsandtfor consistency.
+Solution Space.—The solutions in Eq. (15) encode the
+full space of scattering amplitudes that satisfy our boot-
+strap. Let us now present explicit expressions for these
+amplitudes and study their high-energy behavior.
+Amplitudes.—For notational ease, let us first define con-
+venient kinematic variablesσ= log[1−(1−q)s]/logq
+andτ= log[1−(1−q)t]/logq, which are constructed
+so that[σ] q =sand[τ] q =t. Plugging Eq. (15) into
+Eq. (7), we have the residues
+R(n,t) = qn(q1+r+τ ;q)n[1+r+τ+w]q[1+n+r+w]q
+qw(q2+r;q)n[1+r+τ]q[1+r+w]q
+, (16)
+forn>0, while then= 0residue isR(0,t) = 1.
+We then insert the residue in Eq. (16) into the dual
+resonant form of the amplitude in Eq. (3). From the
+definition of theq-deformed generalized hypergeometric
+functions [23] and their various identities, we obtain the
+amplitude in manifestly crossing symmetric form,
+A(s,t) = [1 +r]q
+[1 +r+w] q
+qστ−w Γq(−σ)Γq(−τ)
+Γq(−σ−τ) 3ϕ2
+[
+q−σ, q−τ, qr
+q−σ−τ, q1+r ;q;q
+]
++q−w [w]q ([1 +r+w] q + [1 +r]q)
+[1 +r+w] qst
+−qστ−w [w]q ([1 +r+w] q + [1 +r]q−[−σ] q−[−τ] q)
+[1 +r+w] q
+Γq(−σ)Γq(−τ)
+Γq(1−σ−τ) 3ϕ2
+[
+q−σ, q−τ, q1+r
+q1−σ−τ, q2+r ;q;q
+]
+.
+(17)
+=== PAGE 4 ===
+4
+Independently ofrandw, Eq. (17) scales asA∼q στ
+in the Regge limit, which vanishes whenRe(τ)<0[24].
+Forq≥1, this corresponds to a window|1/(q−1) +t|<
+1/(q−1), within which the amplitude indeed obeys the
+unsubtracted dispersion relation in Eq. (2). In this case,
+theamplitudecanbeexpressedinthedualresonantform
+in Eq. (3), as advertised. Forq <1the dual resonant
+sum in Eq. (3) does not even converge in general, so we
+restrict toq≥1throughout [25].
+Our solution (17) unifies many amplitudes previously
+discussed in the literature. Forw= 0, it is theq-
+hypergeometric amplitude of Ref. [6], while further set-
+tingr= 0yields the Coon amplitude [20]. Forr=w= 0
+andq= 1, it becomes the Veneziano amplitude (4).
+Whileq≥1is permitted by crossing symmetry, we
+find that unitarity excludesq >1. See App. A for a
+detailed analysis. Consequently, we henceforth consider
+q= 1, corresponding to the linear string spectrum. In
+this case, the amplitude in Eq. (17) can be written as
+A(s,t) = 1 +r
+1 +r+w
+Γ(−s)Γ(−t)
+Γ(−s−t)
+(
+3F2
+[−s,−t,r
+−s−t,1+r ; 1
+]
++ w(2 + 2r+w+s+t)
+(1 +r)(s+t) 3F2
+[−s,−t,1+r
+1−s−t,2+r ; 1
+])
++ w(2 + 2r+w)
+(1 +r+w)st ,
+(18)
+which is dual resonant forRe(t)<0.
+High-Energy Behavior.—Let us consider the behavior of
+the amplitude in Eq. (18) for high-energy scattering in
+the Regge limit, and for fixed angle, respectively.
+In the Regge limit, the amplitude in Eq. (18) scales as
+A∼s J(s,t) + C(r,w)
+s(1 +t) + w
+st(1 +t) +···, (19)
+whereC(r,w) = 1+r+w−(1+r)/(1+r+w)andJ(s,t) =
+t+···, with ellipses denoting subleading terms. For
+t>−1, the amplitude exhibits thest scaling reminiscent
+of string theory, while fort <−1it falls off as a power
+law. The apparenttchannel pole is spurious, and simply
+indicates the transition between these two behaviors.
+Crucially, we observe that superpolynomial softness
+for a range oftholds if the terms in Eq. (19) vanish,
+which requiresr=w= 0. Hence, the unique amplitude
+that exhibits superpolynomial softness and level trunca-
+tion is the Veneziano amplitude.
+On the other hand, for hard fixed-angle scattering,
+where|s|,|t|→∞at fixedt/s, Eq. (18) scales
+A∼e B(s,t) + C(r,w)
+st +···,(20)
+whereB(s,t) = (s+t) log(s+t)−slogs−tlogt+···.
+Fort >0, the amplitude diverges as in the Veneziano
+case, while fort<0there is power-law scaling.
+Discussion.—We have presented a bootstrap problem
+that is analytically solvable and whose complete solution
+space spans the Veneziano amplitude and its cousins.
+Our starting point is an arbitrary crossing symmetric
+amplitude with an unknown spectrumµ(n). We then
+assume vanishing Regge behavior and level truncation,
+which mandates that att=ξ(k)the amplitude only re-
+ceives contributions from levelsn<k. These conditions
+sculpt out a three-parameter(q,r,w)space of solutions.
+Onlyq= 1is consistent with positivity, and within this
+space onlyr=w= 0exhibits superpolynomial softness.
+Thus, the unique object satisfying our most stringent
+conditions is the Veneziano amplitude.
+Since our bootstrap conditions are very constraining,
+it is natural to relax our assumptions to accommodate
+more solutions. A natural deformation that weakens
+our criteria is to instead assumepartiallevel truncation,
+which zeros out all exchanges at leveln≥k+λ, where
+λis a nonnegative integer andλ= 0corresponds to our
+originalanalysis. Partialleveltruncationrequiresamore
+flexible form for the residue than Eq. (7). For example,
+it is possible to consider the residue ansatz,
+R(n,t) =c(n)
+n−λ∏
+k=1
+(t−ξ(k))
+n∏
+j=n−λ+1
+(t−γ(n,j)), (21)
+whereγ(n,j)are unknowns. Plugging Eq. (21) into
+Eq. (3) and enforcing the crossing symmetry conditions
+of Eq. (10), we obtain a system of nonlinear equations for
+the sequences of variablesc(n),ξ(n),µ(n), andγ(n,j).
+This system of equations is finite but not solvable us-
+ing the straightforward analytic methods that were suffi-
+cient for theλ= 0case. Indeed, the algebraic variety de-
+fined by these equations is sufficiently complicated that
+it approaches the limits of existing numerical techniques.
+It would be interesting to explore the varieties defined
+by our problem more systematically using the modern
+tools of algebraic geometry.
+Nonetheless, sincetheVenezianoamplitudeisaknown
+solution of these nonlinear equations in the space of
+sequence variables, we can considerlinear perturba-
+tionsabout it. Expanding to linear order in perturba-
+tions of the sequence variables and finding the solutions
+that exhibit superpolynomial falloff—soA(s,ξ(k))∼s−k
+for allk—we find forλ= 0,1,2,3,4that there are
+1,5,11,18,27such solutions, with spectra more general
+thanthe(q-deformed)integers. Whilesomeorevenallof
+these solutions may be spurious and could violate cross-
+ing symmetry at higher order in perturbations, it is en-
+ticing to imagine that these could be bona fide scattering
+amplitudes. We leave a full analysis of these other puta-
+tive solutions of the bootstrap to future work.
+Anotherpossibledirectionforfutureworkisthegener-
+alization to higher-point scattering. As noted in Eq. (8),
+the constraint of level truncation yields amplitudes that
+are structurally similar to the Veneziano amplitude but
+with kinematic poles and zeros shifted from integers to
+arbitrary sequences. This observation immediately sug-
+gests a natural higher-point generalization. For example,
+=== PAGE 5 ===
+5
+higher-point string amplitudes have well known integer-
+spaced poles, and their residues have numerous zeros and
+conform to stringent factorization constraints [26–28]. It
+would be interesting to relocate these poles and zeroes to
+arbitrary locations to evaluate the uniqueness of higher-
+point string amplitudes. Of course, the physical motiva-
+tion for level truncation itself remains a compelling open
+question.
+Last but not least is the question of extending our
+setup to include gravity. Here the natural object of study
+is the Virasoro-Shapiro amplitude of string theory, which
+describes scattering gravitons. Notably, the residues of
+the Virosoro-Shapiro amplitude exhibitdouble zeroes, in
+contrast with the single zeros that appear in Eq. (7). For
+this reason it would be natural to explore whether gravi-
+tational amplitudes are uniquely specified by their Regge
+behavior and some version of enhanced level trunction.
+Acknowledgments:We thank Nima Arkani-Hamed,
+Justin Berman, Henriette Elvang, David Gross, Sebas-
+tian Mizera, Hirosi Ooguri, Simon Telen, and Sasha
+Zhiboedov for discussions. C.C. and A.H. are sup-
+ported by the Department of Energy (Grant No. DE-
+SC0011632) and by the Walter Burke Institute for The-
+oretical Physics. G.N.R. is supported by the James
+Arthur Postdoctoral Fellowship at New York University.
+Appendix A: Positivity
+A necessary but not sufficient condition for unitarity is positivity of the partial wave coefficients of the amplitude.
+Tostudythiscondition, weperformapartialwavedecompositionoftheresidueinEq.(16)inDspacetimedimensions,
+R(n,t) =
+n∑
+ℓ=0
+an,ℓG(D)
+ℓ (cosθ),(A1)
+whereG (D)
+ℓ (cosθ)are Gegenbauer polynomials for scattering angleθand
+t=− 1
+2(s−4µ(0))(1−cosθ). (A2)
+Note that for our positivity analysis, we will reintroduce the parameterµ(0), which was fixed to zero earlier via the
+freedom of shifting the kinematic invariantssandt. To do so, we simply reverse this procedure, sendings→s−µ(0)
+andt→t−µ(0)in Eq. (16) before expanding. Physically,µ(0)describes the zero point of the Regge trajectory,
+otherwise known as the mass squared of the lowest lying exchanged state. We have chosenµ(0)to be the mass
+squared of the external states as well.
+The partial wave coefficients for the general(q,r,w)amplitude are then straightforwardly calculated. See the
+appendix of Ref. [29] for various useful identities. Forn>0, we have
+an,ℓ =
+(
+1 + 2ℓ
+D−3
+)
+Γ
+(D−1
+2
+) qn[1 +n+r+w] q
+[1 +r+w] q(q2+r;q)n
+
+
+n∑
+k=max(ℓ,1)
+⌊ k−ℓ
+2 ⌋∑
+j=0
+(ℓ+ 2j)f(n,ℓ,k,j)
++
+n∑
+k=ℓ+1
+⌊ k−ℓ−1
+2 ⌋∑
+j=0
+(k−ℓ−2j) (2[−1−r−w] q + [n]q−µ(0))
+2
+1−q + [n]q−µ(0) f(n,ℓ,k,j)
+
+
+f(n,ℓ,k,j) = [k]qqk(k+2r+1)/2(q;q)n(q−1) k
+[n]q(q;q)k(q;q)n−k
+(k−1)!
+(k−ℓ−2j)!j!
+(
+2
+1−q + [n]q−µ(0)
+)k−ℓ−2j
+(3µ(0)−[n] q)ℓ+2j
+2k+ℓ+2jΓ
+(D−1
+2 +ℓ+j
+) ,
+(A3)
+while forn= 0, we havea 0,0 = 1in our normalization. In particular, forn≥1the partial wave coefficients of the
+leading Regge trajectory atℓ=nare
+an,n =
+(
+1 + 2n
+D−3
+)
+n!(q−1) nqn(n+3+2r)/2
+(D−1
+2
+)
+n 22n
+[1 +n+r+w] q (3µ(0)−[n] q)n
+[1 +r+w] q(q2+r;q)n
+,(A4)
+while those of the first subleading Regge trajectory atℓ=n−1are given by
+an,n−1 = (2n+d−5)
+[
+2n−(q−1)n([n] q−µ(0)) + 2q−1−r([1−n] q−q−w)
+]
+n(q−1) ([n] q−3µ(0)) an,n.(A5)
+=== PAGE 6 ===
+6
+<latexit sha1_base64="y/Y+hOdmzq4zw6VH6DqP1Of07bQ=">AAAB7XicbVDLSgNBEOyNrxhfUY9eBoMQL2FXJOYY8OIxgnlAsoTZyWwyZh7LzKwQQv7BiwdFvPo/3vwbJ8keNLGgoajqprsrSjgz1ve/vdzG5tb2Tn63sLd/cHhUPD5pGZVqQptEcaU7ETaUM0mblllOO4mmWESctqPx7dxvP1FtmJIPdpLQUOChZDEj2Dqp1RNp2b/sF0t+xV8ArZMgIyXI0OgXv3oDRVJBpSUcG9MN/MSGU6wtI5zOCr3U0ASTMR7SrqMSC2rC6eLaGbpwygDFSruSFi3U3xNTLIyZiMh1CmxHZtWbi/953dTGtXDKZJJaKslyUZxyZBWav44GTFNi+cQRTDRztyIywhoT6wIquBCC1ZfXSeuqElQr1fvrUr2WxZGHMziHMgRwA3W4gwY0gcAjPMMrvHnKe/HevY9la87LZk7hD7zPH5R5jnY=</latexit>
+µ(0)
+<latexit sha1_base64="xXN7HGmGRYme6QdNBxLCT6SOv9g=">AAAB6HicbVBNS8NAEJ34WetX1aOXxSJ4KolI7bHgxWML9gPaUDbbSbt2swm7G6GE/gIvHhTx6k/y5r9x2+agrQ8GHu/NMDMvSATXxnW/nY3Nre2d3cJecf/g8Oi4dHLa1nGqGLZYLGLVDahGwSW2DDcCu4lCGgUCO8Hkbu53nlBpHssHM03Qj+hI8pAzaqzUVINS2a24C5B14uWkDDkag9JXfxizNEJpmKBa9zw3MX5GleFM4KzYTzUmlE3oCHuWShqh9rPFoTNyaZUhCWNlSxqyUH9PZDTSehoFtjOiZqxXvbn4n9dLTVjzMy6T1KBky0VhKoiJyfxrMuQKmRFTSyhT3N5K2JgqyozNpmhD8FZfXift64pXrVSbN+V6LY+jAOdwAVfgwS3U4R4a0AIGCM/wCm/Oo/PivDsfy9YNJ585gz9wPn8A3bGM9w==</latexit>
+r
+<latexit sha1_base64="vn/jrrGPEgZ8+IaN1nyAuuPAjdE=">AAAB6HicbVDLTgJBEOzFF+IL9ehlIjHxRHaNQY4kXjxCIo8ENmR2aGBkdnYzM6shG77AiweN8eonefNvHGAPClbSSaWqO91dQSy4Nq777eQ2Nre2d/K7hb39g8Oj4vFJS0eJYthkkYhUJ6AaBZfYNNwI7MQKaRgIbAeT27nffkSleSTvzTRGP6QjyYecUWOlxlO/WHLL7gJknXgZKUGGer/41RtELAlRGiao1l3PjY2fUmU4Ezgr9BKNMWUTOsKupZKGqP10ceiMXFhlQIaRsiUNWai/J1Iaaj0NA9sZUjPWq95c/M/rJmZY9VMu48SgZMtFw0QQE5H512TAFTIjppZQpri9lbAxVZQZm03BhuCtvrxOWldlr1KuNK5LtWoWRx7O4BwuwYMbqMEd1KEJDBCe4RXenAfnxXl3PpatOSebOYU/cD5/AOVFjPw=</latexit>
+w
+<latexit sha1_base64="DucfUenx/Oa1xYomF/mW6XT840M=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyERqT0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXvNobVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJmoEGZNJaqgky0VRypGJUf44GjFFieEzSzBRzN6KyAQrTIyNp2JD8FdfXieda9evu/WHm1rTK+IowxmcwyX4cAtNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w/HaY1f</latexit>
+ 1.8
+<latexit sha1_base64="jCDvYNqFJk7tWOzGynaQRZVUAEg=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyGRUj0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXvNobVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJroNMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46167fcBsP9VrTK+IowxmcwyX4cANNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w/EYY1d</latexit>
+ 1.6
+<latexit sha1_base64="pc5Mtm08a7BR/52/kpZdP2degds=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyGRUj0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXv1ofVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJroNMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46167fcBsP9VrTK+IowxmcwyX4cANNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w/BWY1b</latexit>
+ 1.4
+<latexit sha1_base64="0FUlcNpJZtHiq+WYYN0BgVH6org=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyEpUj0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXv1ofVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJroNMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46dddvuI2H61rTK+IowxmcwyX4cANNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w++UY1Z</latexit>
+ 1.2
+<latexit sha1_base64="pkYgB75CjB4764r7O8bex+TBcvg=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyGRUj0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXvesNqzXO9BdA68QtSgwKtYfVrMIpJKqg0hGOt+76XmCDDyjDC6bwySDVNMJniMe1bKrGgOsgWt87RhVVGKIqVLWnQQv09kWGh9UyEtlNgM9GrXi7+5/VTE90GGZNJaqgky0VRypGJUf44GjFFieEzSzBRzN6KyAQrTIyNp2JD8FdfXieda9dvuI2Heq3pFXGU4QzO4RJ8uIEm3EML2kBgAs/wCm+OcF6cd+dj2VpyiplT+APn8we7SY1X</latexit>
+ 1.0
+<latexit sha1_base64="cKlBJr4vWgDhDgJClngUvCjztu0=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyERqT0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXnNobVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJmoEGZNJaqgky0VRypGJUf44GjFFieEzSzBRzN6KyAQrTIyNp2JD8FdfXieda9evu/WHm1rTK+IowxmcwyX4cAtNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w/F441e</latexit>
+ 0.8
+<latexit sha1_base64="F80vD9HOa9xH//Z8EUf/uv6HuyY=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyGRUj0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXnNobVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJroNMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46167fcBsP9VrTK+IowxmcwyX4cANNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w/C241c</latexit>
+ 0.6
+<latexit sha1_base64="gPQqAZTWKjw/ChHdXPyWyEMY98M=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyGRUj0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXn1ofVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJroNMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46167fcBsP9VrTK+IowxmcwyX4cANNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w+/041a</latexit>
+ 0.4
+<latexit sha1_base64="u4TeQHqhogL4C8QxFBq3Ro+ra0A=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBbBiyEpUj0WvHisYD+gDWWz3bRLdzdhdyOU0L/gxYMiXv1D3vw3btoctPXBwOO9GWbmhQln2njet1Pa2Nza3invVvb2Dw6PqscnHR2nitA2iXmseiHWlDNJ24YZTnuJoliEnHbD6V3ud5+o0iyWj2aW0EDgsWQRI9jk0pXn1ofVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJroNMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46dddvuI2H61rTK+IowxmcwyX4cANNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w+8y41Y</latexit>
+ 0.2
+<latexit sha1_base64="N1k7HwW0c8epXRur0RmZbu57UXU=">AAAB6HicbVBNS8NAEJ3Ur1q/qh69LBbBU0lEqseCF48t2A9oQ9lsJ+3azSbsboQS+gu8eFDEqz/Jm//GbZuDtj4YeLw3w8y8IBFcG9f9dgobm1vbO8Xd0t7+weFR+fikreNUMWyxWMSqG1CNgktsGW4EdhOFNAoEdoLJ3dzvPKHSPJYPZpqgH9GR5CFn1Fip6Q7KFbfqLkDWiZeTCuRoDMpf/WHM0gilYYJq3fPcxPgZVYYzgbNSP9WYUDahI+xZKmmE2s8Wh87IhVWGJIyVLWnIQv09kdFI62kU2M6ImrFe9ebif14vNeGtn3GZpAYlWy4KU0FMTOZfkyFXyIyYWkKZ4vZWwsZUUWZsNiUbgrf68jppX1W9WrXWvK7U3TyOIpzBOVyCBzdQh3toQAsYIDzDK7w5j86L8+58LFsLTj5zCn/gfP4Ad0GMrQ==</latexit>
+0
+<latexit sha1_base64="Z7x0wghLtDGpI4T/tpXkcZX3SC8=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEJSpHosePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvPrQ+rNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTXQbZEwmqaGSLBdFKUcmRvnjaMQUJYbPLMFEMXsrIhOsMDE2nooNwV99eZ106q7fcBsP17WmV8RRhjM4h0vw4QaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx+5vY1W</latexit>
++0.2
+<latexit sha1_base64="jY5SSknTJ61X3gOWTLqHLKGSBn8=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEIipXosePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvPrQ+rNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTXQbZEwmqaGSLBdFKUcmRvnjaMQUJYbPLMFEMXsrIhOsMDE2nooNwV99eZ10rl2/4TYe6rWmV8RRhjM4h0vw4QaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx+8xY1Y</latexit>
++0.4
+<latexit sha1_base64="dF+AK/zewenz8qKtDVbtoHvP7xk=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEIipXosePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvPbQyrNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTXQbZEwmqaGSLBdFKUcmRvnjaMQUJYbPLMFEMXsrIhOsMDE2nooNwV99eZ10rl2/4TYe6rWmV8RRhjM4h0vw4QaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx+/zY1a</latexit>
++0.6
+<latexit sha1_base64="T6RoZOSxC0pIt1I0D2oIE/hA6DE=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEIiUnssePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvPbQyrNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTdQIMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46165fd+sPN7WmV8RRhjM4h0vw4RaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx/C1Y1c</latexit>
++0.8
+<latexit sha1_base64="OaebZipirY0+h9oex/Miz5Z/TwI=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEIipXosePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvf9YbVmud6C6B14hekBgVaw+rXYBSTVFBpCMda930vMUGGlWGE03llkGqaYDLFY9q3VGJBdZAtbp2jC6uMUBQrW9Kghfp7IsNC65kIbafAZqJXvVz8z+unJroNMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46167fcBsP9VrTK+IowxmcwyX4cANNuIcWtIHABJ7hFd4c4bw4787HsrXkFDOn8AfO5w+4O41V</latexit>
++1.0
+<latexit sha1_base64="IK+2xl2XO/0QJtQYw4FXLWF/0ho=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEJSpHosePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvfrQ+rNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTXQbZEwmqaGSLBdFKUcmRvnjaMQUJYbPLMFEMXsrIhOsMDE2nooNwV99eZ106q7fcBsP17WmV8RRhjM4h0vw4QaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx+7Q41X</latexit>
++1.2
+<latexit sha1_base64="rCSP5nuodRLRD+enQjBhFa3Lehg=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEIipXosePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvfrQ+rNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTXQbZEwmqaGSLBdFKUcmRvnjaMQUJYbPLMFEMXsrIhOsMDE2nooNwV99eZ10rl2/4TYe6rWmV8RRhjM4h0vw4QaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx++S41Z</latexit>
++1.4
+<latexit sha1_base64="3t7rnoQkKQYusjXSkypoU3RSd/s=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEIipXosePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvfbQyrNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTXQbZEwmqaGSLBdFKUcmRvnjaMQUJYbPLMFEMXsrIhOsMDE2nooNwV99eZ10rl2/4TYe6rWmV8RRhjM4h0vw4QaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx/BU41b</latexit>
++1.6
+<latexit sha1_base64="H8m0l/tXaX76iqow+zNinBla3Ug=">AAAB63icbVBNS8NAEJ3Ur1q/qh69LBZBEEIiUnssePFYwX5AG8pmu2mX7m7C7kYooX/BiwdFvPqHvPlv3LQ5aOuDgcd7M8zMCxPOtPG8b6e0sbm1vVPereztHxweVY9POjpOFaFtEvNY9UKsKWeStg0znPYSRbEIOe2G07vc7z5RpVksH80soYHAY8kiRrDJpSvfbQyrNc/1FkDrxC9IDQq0htWvwSgmqaDSEI617vteYoIMK8MIp/PKINU0wWSKx7RvqcSC6iBb3DpHF1YZoShWtqRBC/X3RIaF1jMR2k6BzUSvern4n9dPTdQIMiaT1FBJlouilCMTo/xxNGKKEsNnlmCimL0VkQlWmBgbT8WG4K++vE46165fd+sPN7WmV8RRhjM4h0vw4RaacA8taAOBCTzDK7w5wnlx3p2PZWvJKWZO4Q+czx/EW41d</latexit>
++1.8
+Figure 1. Parameter space consistent with positivity for the amplitude in Eq. (18) withq= 1for various choices forr,w, and
+the mass squared of the external states,µ(0). Here we have included positivity bounds up to maximum leveln= 10. We have
+restricted toD= 4spacetime dimensions, but the positive region only diminishes forD >4, on account of the positivity of
+the connection coefficients of the Gegenbauer polynomials.
+Forq >1, we see that asnbecomes largea n,n−1∼−2na n,n, so asn→∞it is impossible fora n,n anda n,n−1 to
+have the same sign ifq >1, for any values ofD,µ(0),r, andw. Since the dual resonant sum requiresq≥1in order
+to converge, unitarity—that is, the absence of ghosts—requires us to restrict toq= 1.
+Fixingqto1, we find that the partial wave coefficients forn>0are
+an,ℓ =
+(
+1 + 2ℓ
+D−3
+)
+Γ
+(D−1
+2
+) 1 +n+r+w
+(1 +r+w)(2 +r) n
+
+
+n∑
+k=max(ℓ,1)
+⌊ k−ℓ
+2 ⌋∑
+j=0
+(ℓ+ 2j)f(n,ℓ,k,j)
++
+n∑
+k=ℓ+1
+⌊ k−ℓ−1
+2 ⌋∑
+j=0
+(k−ℓ−2j)(n−µ(0)−2r−2−2w)
+n−µ(0)−2r−4 f(n,ℓ,k,j)
+
+
+f(n,ℓ,k,j) = (−1) kS1(n−1,k−1) (k−1)!
+(k−ℓ−2j)!j!
+(n−µ(0)−2r−4) k−ℓ−2j (3µ(0)−n) ℓ+2j
+2k+ℓ+2jΓ
+(D−1
+2 +ℓ+j
+) ,
+(A6)
+whereS 1(n,k)is the unsigned Stirling number of the first kind. As depicted in Fig. 1, there are broad regions of
+(r,w,µ(0))consistent with positivity.
+Let us briefly comment on an important but underappreciated caveat with positivity analyses that is relevant to
+our specific setup. Naively, partial wave unitarity requires thatan,ℓ≥0for all levelsnand spinsℓ. However, when
+µ(n)<4µ(0), the levelnstate is below the physical threshold for production and can never go on shell. Since this
+state is physically inaccessible, we should not place a positivity bound on its residue. In particular, we should only
+enforcea n,ℓ≥0for above-threshold states whose levels satisfyµ(n)≥4µ(0)[27]. The crossover between physical
+and unphysical regimes atµ(n) = 4µ(0)is encoded in a sign flip in Eq. (A2) that in turn flips the sign of the
+corresponding residue for oddℓ. So for example at leveln= 1, the naive positivity boundµ(0)≤1/3is a reflection
+of this crossover rather than of bona fide unitarity violation. Said another way, partial wave unitarity forn= 1
+whenµ(0)≤1/3is spurious because it applies to a below-threshold state. We emphasize that this subtlety is not
+a minor splitting of hairs. Enforcing positivity for below-threshold states would rule out the standard model, since
+theZboson cannot be produced on shell from a pair of Higgs bosons due to the fact thatm2
+Z <4m 2
+H.
+[1] H. Elvang and Y.-t. Huang,Scattering Amplitudes in
+Gauge Theory and Gravity. Cambridge University
+Press, 2015.
+[2] L. J. Dixon, “Calculating scattering amplitudes effi-
+ciently,” inTheoretical Advanced Study Institute in Ele-
+mentary Particle Physics (TASI 95): QCD and Beyond,
+pp. 539–584. 1996.arXiv:hep-ph/9601359.
+[3] C. Cheung,TASI Lectures on Scattering Amplitudes,
+pp. 571–623. 2018.arXiv:1708.03872 [hep-ph].
+[4] G. Travaglini et al., “The SAGEX review on scat-
+tering amplitudes,”J. Phys. A55(2022) 443001,
+arXiv:2203.13011 [hep-th].
+=== PAGE 7 ===
+7
+[5] Throughout this paper we consider planar, color-
+ordered amplitudes, which arise in gauge theories or
+open string theory.
+[6] C. Cheung and G. N. Remmen, “Stringy dynamics from
+an amplitudes bootstrap,”Phys. Rev. D108(2023)
+026011,arXiv:2302.12263 [hep-th].
+[7] S. Caron-Huot, Z. Komargodski, A. Sever, and A. Zhi-
+boedov, “Strings from Massive Higher Spins: The
+Asymptotic Uniqueness of the Veneziano Amplitude,”
+JHEP10(2017) 026,arXiv:1607.04253 [hep-th].
+[8] C. Cheung and G. N. Remmen, “Bespoke dual
+resonance,”Phys. Rev. D108(2023) 086009,
+arXiv:2308.03833 [hep-th].
+[9] N. Nakanishi, “Four-Point and Five-Point Veneziano-
+Type Formulas on the Basis of Spectral Representa-
+tions,”Phys. Rev. D2(1970) 288.
+[10] S. Matsuda, “Uniqueness of the Veneziano Representa-
+tion,”Phys. Rev.185(1969) 1811.
+[11] Y.-t. Huang and G. N. Remmen, “UV-complete gravity
+amplitudes and the triple product,”Phys. Rev. D106
+(2022) L021902,arXiv:2203.00696 [hep-th].
+[12] Z. Bern, D. Kosmopoulos, and A. Zhiboedov, “Gravita-
+tional effective field theory islands, low-spin dominance,
+and the four-graviton amplitude,”J. Phys. A54(2021)
+344002,arXiv:2103.12728 [hep-th].
+[13] S. Caron-Huot and V. Van Duong, “Extremal Effective
+Field Theories,”JHEP05(2021) 280,arXiv:2011.02957
+[hep-th].
+[14] S. Caron-Huot, D. Mazac, L. Rastelli, and D. Simmons-
+Duffin, “Sharp boundaries for the swampland,”JHEP
+07(2021) 110,arXiv:2102.08951 [hep-th].
+[15] F. A. Cerulus and A. Martin, “A lower bound for large
+angle elastic scattering at high energies,”Phys. Lett.8
+(1964) 80.
+[16] L. Buoninfante, J. Tokuda, and M. Yamaguchi, “New
+lower bounds on scattering amplitudes: non-locality
+constraints,”JHEP01(2024) 082,arXiv:2305.16422
+[hep-th].
+[17] K. Häring and A. Zhiboedov, “The Stringy S-matrix
+Bootstrap: Maximal Spin and Superpolynomial Soft-
+ness,”arXiv:2311.13631 [hep-th].
+[18] If the sequencetk is unboundedly negative for largek
+thent=t k interpolates to the regime of high-energy
+fixed-angle scattering. In this case, superpolynomial
+softness coincides with exponentially soft fixed-angle
+scattering, which is another calling card of string am-
+plitudes. A loophole to this logic is iftk approaches an
+accumulation point, which actually occurs for the Coon
+amplitude whenq >1.
+[19] The Veneziano amplitude referred to here and through-
+out describes the scattering of external states that are
+masslesscoloredscalars.Thisamplitudeisobtainedbya
+trivial affine shift ofsandtin the bosonic string ampli-
+tude or, alternatively, by stripping off the polarization
+data from superstring scattering, which is also known
+as theZ-theory amplitude [30].
+[20] D. D. Coon, “Uniqueness of the Veneziano representa-
+tion,”Phys. Lett. B29(1969) 669.
+[21] D. J. Gross, “Factorization and the generalized
+Veneziano model with satellites,”Nucl. Phys. B13
+(1969) 467.
+[22] C. Eckner, F. Figueroa, and P. Tourkine, “The
+Regge bootstrap, from linear to non-linear trajectories,”
+arXiv:2401.08736 [hep-th].
+[23] Theq-deformed (basic) generalized hypergeometric
+functions are defined by the sum
+n+1ϕn
+[a1,...,an+1
+b1,...,bn ;q;z
+]
+= Σ
+∞
+k=0
+(a1;q)k···(an+1;q)k
+(b1;q)k···(bn;q)k
+zk
+(q;q)k
+,
+andΓ q(z) = (1−q) 1−z(q;q)∞/(qz;q)∞ is theq-gamma
+function.
+[24] A remarkable feature of this amplitude is the appear-
+ance of theqστ prefactor. This very same quantity was
+introduced as a nonunique [31] fudge factor sitting in
+front of the amplitude in Ref. [32] in order to cancel the
+nonpolynomiality of the residues of the original Coon
+amplitude [20] forq <1. Surprisingly, we find that this
+same prefactor arisesautomaticallyfrom the meromor-
+phic dual resonant sum for the amplitude forq >1,
+and need not be included by hand. Meanwhile, in the
+high-energy fixed-angle limit defined by|s|,|t|→∞at
+fixedt/s, we find thatlogA∼logslogt/logqforq >1.
+This is the distinctive double-log scaling characteristic
+of the Coon amplitude [7, 29], but which we have found
+here to be independent of the new parametersrandw.
+Notably, such behavior forq <1can arise in consistent
+ultraviolet theories, such as the anti-de Sitter/D-brane
+construction of Ref. [33], but in such cases we should
+not expect strict dual resonance, due to the modified
+Regge behavior.
+[25] One could alternatively consider this object as an gener-
+alization of the Coon amplitude, and perhaps introduce
+contact terms to revive a less strict form of dual reso-
+nance.
+[26] N. Arkani-Hamed, Q. Cao, J. Dong, C. Figueiredo,
+and S. He, “Hidden zeros for particle/string amplitudes
+and the unity of colored scalars, pions and gluons,”
+arXiv:2312.16282 [hep-th].
+[27] N. Arkani-Hamed, C. Cheung, C. Figueiredo, and G. N.
+Remmen, “Multiparticle Factorization and the Rigidity
+of String Theory,”Phys. Rev. Lett.132(2024) 091601,
+arXiv:2312.07652 [hep-th].
+[28] N. Arkani-Hamed, C. Cheung, C. Figueiredo, and G. N.
+Remmen. In progress.
+[29] C. Cheung and G. N. Remmen, “Veneziano variations:
+how unique are string amplitudes?,”JHEP01(2023)
+122,arXiv:2210.12163 [hep-th].
+[30] J. J. M. Carrasco, C. R. Mafra, and O. Schlot-
+terer, “AbelianZ-theory: NLSM amplitudes andα ′-
+corrections from the open string,”JHEP06(2017) 093,
+arXiv:1608.02569 [hep-th].
+[31] C. B. Jepsen, “Cutting the Coon amplitude,”JHEP06
+(2023) 114,arXiv:2303.02149 [hep-th].
+[32] D. D. Coon, U. P. Sukhatme, and J. Tran Thanh Van,
+“Duality and proton-proton scattering at all angles,”
+Phys. Lett. B45(1973) 287.
+[33] J. Maldacena and G. N. Remmen, “Accumulation-point
+amplitudes in string theory,”JHEP08(2022) 152,
+arXiv:2207.06426 [hep-th].
