@@ -121,3 +121,7 @@ old entries; append corrections as new entries.
   Linux/Windows, py3.10/3.12) GREEN on GitHub's clean machines; JOSS draft-pdf action GREEN
   (paper.md compiles with their own tooling); CONTRIBUTING.md + CHANGELOG.md added.
   One-pager artifact switched to public link sharing.
+- 2026-08-13 13:0x — QG PROGRAM, ITERATION 1 (vertical slice): Eqs. (11)-(13) of 2406.02665
+  derived independently from truncation-point crossing (SymPy, pure symbols, N=5): 6/6 PASS.
+  Calibration: N=5 ~3 min foreground; N=7 heavy (background). Next slice: exact-rational
+  positivity spot-check of one Fig.1 point (in/out of the island).
