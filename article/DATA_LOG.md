@@ -138,3 +138,34 @@ old entries; append corrections as new entries.
   w>=1), N=40 -> 655 (STABLE under doubling). Boundary-only N=80 re-test running.
   Early read: the island STABILIZES rather than melting to the Veneziano point —
   candidate first finding of the program (needs N=80 + finer grid before any claim).
+
+## 2026-08-13 — Card A: boundary stable under N=40 -> N=80 doubling
+- All 42 boundary cells of the mu0=0 island (allowed cells touching an excluded
+  neighbour at N=40) re-tested at unitarity depth n<=80, exact rational arithmetic,
+  incremental levels 41..80 only. Result: **0 fell — BOUNDARY STABLE**.
+- Island trajectory at 0.1 grid: N=10 664/1369 -> N=20 655 -> N=40 655 -> N=80
+  boundary unchanged. The only casualties ever seen: 9 cells, all in column r=-3/5,
+  w>=1 (N=10->20). Status: NUMERICALLY_SUPPORTED, grid 0.1, mu0=0, D=4, q=1.
+- Artifact: projects/qg-bootstrap/results/boundary_N80_mu0.json
+- Ops note: first N=80 attempt died at spawn (exit 127, uv wrapper) with zero log;
+  rewritten per compute-runner rules (direct python -u, per-cell progress,
+  incremental depth) -> full run ~75 min.
+
+## 2026-08-13 — Author reply received (AInstein audit) + N=2000 re-evaluation
+- Dr. Edward Hirst replied (EV-CORR-0001): confirms the search is statistical
+  ("sometimes it will converge... sometimes it won't"); reads our seed-124 run as
+  approximately Ricci-flat below our threshold; flags 24 hidden points as too few
+  (paper standard 2000). No checkpoints offered.
+- Response-in-kind: vacuum leg re-running on N=2000 hidden points, all 5 seeds,
+  same frozen thresholds (H1/H2 frozen in verifier/vacuum_deep.py BEFORE results).
+  Smoke test at N=20 reproduced the 24-point verdicts (123 FAIL / 124 PASS /
+  125 FAIL / 126 PASS / 127 FAIL).
+
+## 2026-08-13 — N=2000 vacuum re-evaluation: all five verdicts unchanged
+- Hirst's methodological point addressed: hidden test set 24 -> 2000 points
+  (paper standard), same frozen thresholds, same evaluator, hidden seeds derived
+  from checkpoint sha256. Runtime ~3-5 min/seed.
+- seed 123: median 0.9606 FAIL | 124: 0.2223 PASS | 125: 0.3781 FAIL |
+  126: 0.1865 PASS | 127: 1.1763 FAIL — identical verdict pattern to the
+  24-point run (frozen H1/H2 both confirmed). 2/5 seeds pass the vacuum leg.
+- Artifact: projects/ainstein-audit/results/processed/vacuum_deep_N2000.json

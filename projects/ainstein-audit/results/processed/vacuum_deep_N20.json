@@ -1,0 +1,71 @@
+{
+  "date": "2026-08-13",
+  "n_points": 20,
+  "frozen_limits": {
+    "median": 0.286,
+    "p95": 0.573
+  },
+  "context": "author-response upgrade: Dr. Hirst noted 24 pts too few; paper standard is 2000",
+  "rows": [
+    {
+      "seed": 123,
+      "model_sha256": "fd56f1709961f3e3",
+      "hidden_seed": 2102849904,
+      "n_points": 20,
+      "median": 0.9070512883923968,
+      "p95": 1.1759331854675563,
+      "max": 1.3689753222242254,
+      "signature_ok_fraction": 1.0,
+      "pass_frozen": false,
+      "runtime_s": 46.5
+    },
+    {
+      "seed": 124,
+      "model_sha256": "e047b05f5778917b",
+      "hidden_seed": 1615310943,
+      "n_points": 20,
+      "median": 0.22866185742476186,
+      "p95": 0.32086575924633787,
+      "max": 0.3488066055224408,
+      "signature_ok_fraction": 1.0,
+      "pass_frozen": true,
+      "runtime_s": 10.9
+    },
+    {
+      "seed": 125,
+      "model_sha256": "e46237025ba3d191",
+      "hidden_seed": 1684158210,
+      "n_points": 20,
+      "median": 0.3372554633670752,
+      "p95": 0.558849317952495,
+      "max": 0.7440217914087248,
+      "signature_ok_fraction": 1.0,
+      "pass_frozen": false,
+      "runtime_s": 10.9
+    },
+    {
+      "seed": 126,
+      "model_sha256": "5a84809938969852",
+      "hidden_seed": 1518633113,
+      "n_points": 20,
+      "median": 0.22049400526100982,
+      "p95": 0.3079441074543447,
+      "max": 0.3529095017245152,
+      "signature_ok_fraction": 1.0,
+      "pass_frozen": true,
+      "runtime_s": 11.7
+    },
+    {
+      "seed": 127,
+      "model_sha256": "b865b0c551d6ad2f",
+      "hidden_seed": 946188485,
+      "n_points": 20,
+      "median": 1.0690869036946669,
+      "p95": 1.555915533073742,
+      "max": 1.577382650186763,
+      "signature_ok_fraction": 1.0,
+      "pass_frozen": false,
+      "runtime_s": 11.0
+    }
+  ]
+}

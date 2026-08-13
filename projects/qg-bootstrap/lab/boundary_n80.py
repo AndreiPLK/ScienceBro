@@ -35,10 +35,20 @@ def main() -> int:
     print(f"boundary cells at N=40: {len(boundary)}")
 
     fell = []
-    for (r, w) in sorted(boundary):
-        ok, first_neg = point_allowed(r, w, F(0), nmax=80)
-        if not ok:
-            fell.append({"r": str(r), "w": str(w), "first_negative": first_neg})
+    from repro_r4_positivity_spot import a_route1
+    for i, (r, w) in enumerate(sorted(boundary), 1):
+        bad = None
+        for n in range(41, 81):   # cells already passed n<=40: check only new levels
+            for ell in range(0, n + 1):
+                if a_route1(n, ell, r, w, F(0)) < 0:
+                    bad = (n, ell)
+                    break
+            if bad:
+                break
+        if bad:
+            fell.append({"r": str(r), "w": str(w), "first_negative": bad})
+        print(f"[{i}/{len(boundary)}] r={r} w={w}: {'FELL ' + str(bad) if bad else 'holds'}",
+              flush=True)
     out = {"boundary_cells": len(boundary), "fell_at_N80": fell,
            "stable": not fell}
     (RES / "boundary_N80_mu0.json").write_text(json.dumps(out, indent=2),
