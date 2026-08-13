@@ -286,3 +286,9 @@ old entries; append corrections as new entries.
 - Implication: fixed-spin family asymptotically safe across the domain —
   completeness conjecture now supported on ALL asymptotic families
   (l=n-1, n-2, n-3 exact; fixed-l asymptotic).
+
+## 2026-08-14 night N3 — D-dependence of binding curves in closed form
+- a_{1,0}: D-independent; a_{2,0}: (1+r)(r+w) >= -1/(D-1); a_{3,0}: closed form
+  with 1/(D-1) coefficients. D=4 limits reproduce all verified curves exactly.
+- Explains analytically why the island shrinks with D while the left edge is
+  pinned at -(1+mu0)/2.

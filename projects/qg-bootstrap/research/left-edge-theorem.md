@@ -199,3 +199,19 @@ Large-n: leading term n^3(2r+1) -> for r > -1/2 eventually POSITIVE (kills only
 in a finite window, like a_{n,n-2}); for r < -1/2 eventually negative,
 consistent with the ladder edge. Supports the completeness conjecture: every
 near-leading trajectory is asymptotically safe strictly inside the island.
+
+## D-dependence of the binding scalar curves (night slice N3)
+
+After dividing the positive factor sqrt(pi)Gamma(D/2-1)/Gamma(D/2-1/2) (D>3),
+with c = 2/(D-1):
+
+  a_{1,0} ~ r + w + 1/2                        (D-INDEPENDENT; = ladder n=1)
+  a_{2,0} ~ (1+r)(r+w) + 1/(D-1)               (hyperbola tightens as D grows;
+                                                D=4 reproduces the verified -1/3)
+  a_{3,0} ~ r^3+r^2 w+(3/2)r^2+2rw - r/4 + (3/4)w - 3/8
+            + (27/8)c r + (9/8)c w + (27/16)c  (D=4, c=2/3: exactly the verified
+                                                cubic 4r^3+4r^2w+6r^2+8rw+8r+6w+3)
+
+Analytic explanation of the anchor paper's numeric observation that the island
+shrinks with D: the scalar constraints tighten like 1/(D-1) while the left edge
+stays pinned (D-universal law). As D->infinity, a_{2,0} -> (1+r)(r+w) >= 0.
