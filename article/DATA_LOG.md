@@ -268,3 +268,11 @@ old entries; append corrections as new entries.
 - Leading n^3(2r+1): fourth trajectory asymptotically safe for r>-1/2 —
   another brick under the completeness conjecture.
 - Video paused by founder; captions switch to ENGLISH on resume.
+
+## 2026-08-13 night N2 (numeric part) — fixed-spin tails clean to n=100
+- 10 island points (incl. on-edge r=-1/2 and near-hyperbola): a_{n,l} > 0 for
+  l=0..3 at n=10..100, exact arithmetic. Both excluded controls show negatives
+  (control valid). Artifact: results/n2_fixed_spin.json.
+- New structural note: beyond the edge (r=-3/5) fixed-spin coefficients also
+  turn negative at large n (l=1,3 from n=50) — the edge is witnessed at fixed
+  spin, not only on the l=n-1 ladder. To derive analytically next.
