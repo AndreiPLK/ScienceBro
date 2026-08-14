@@ -407,3 +407,13 @@ old entries; append corrections as new entries.
   dimension 26, NOT a smooth n_crit(D) divergence. Either the true positivity
   bound for massless VS sits at ~23, or the transition is cliff-like.
   Artifact: results/vs_d_clock.json. Literature check + deeper D=22 scan next.
+
+## 2026-08-14 — Novelty radar on the gravity slice (worked as designed)
+- Our VS D-cliff reproduces KNOWN physics: arXiv:2210.14920 maps D_crit(n)
+  from ~26 (low n) to 10 (n->infinity). Method validated on the gravity side;
+  no novelty claim made (playbook step 2 saved us again).
+- Found 'Uniqueness criteria for the Virasoro-Shapiro amplitude' — possibly
+  the CHR program already done for VS. MUST read before freezing the gravity
+  card. Next: deep-read that + 2210.14920, then freeze our unique slice
+  (candidate: the deformation-FAMILY island of VS analogs via our
+  top-coefficient machinery — the analog of our w!=0 niche).
