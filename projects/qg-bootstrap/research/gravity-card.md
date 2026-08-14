@@ -95,3 +95,20 @@ any fixed D — the asymptotic D<=10 lore must come from low-spin constraints
 n=3..12, shrinking toward lambda=1; their closed form and the full
 lambda_min(D) exclusion map are the remaining pieces. Status: derived +
 verified 10/10; independent review pending.
+
+
+## SLICE 3 (2026-08-14): the fate of the alternatives in D=4
+
+(i) LEMMA (analytic, n=3..12): at D=4 the near-leading even trajectory bracket
+q_hat*4+p_hat is a positive-definite quadratic in lambda (negative discriminant,
+positive lead, all ten cases) — this trajectory excludes NOTHING in 4D.
+(ii) Exact scan: 13 lambda values including the extremal corners 1/100 and 100
+(gravity-plus-scalar and single-resonance limits): ALL clean on l<=8 to depth
+n=60 at D=4. Artifact: results/grav_d4_lowspin.json.
+
+Combined headline (current evidence level): within CHR's closed-string
+bootstrap assumptions, string gravity is NOT forced in D=4 — the alternative
+family survives deep unitarity; while in high D the dangerous lambda-window
+shrinks toward pure VS. Uniqueness of the string is DIMENSION-GRADED.
+Status: lemma derived (n<=12) + exact scans; general-n proof and independent
+review pending before any promotion.

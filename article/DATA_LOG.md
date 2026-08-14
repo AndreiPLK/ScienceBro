@@ -440,3 +440,9 @@ old entries; append corrections as new entries.
 - D_n(1) = 2(n^2+4n-9)/(n-2), verified 10/10 for n=3..12; min = 23 at n=4.
   The D-cliff of pure closed-string gravity is now a formula. lambda-windows
   for n=3..12 computed exactly.
+
+## 2026-08-14 — Gravity slice 3: alternatives SURVIVE in D=4
+- Lemma: near-leading bracket positive-definite at D=4 for all lambda (10/10
+  discriminants negative). Exact scan: 13 lambdas incl. corners 1/100, 100 —
+  clean, l<=8, depth 60. Headline forming: string uniqueness is
+  dimension-graded (free in 4D, forced in high D on these trajectories).

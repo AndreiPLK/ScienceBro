@@ -1,0 +1,80 @@
+[
+ {
+  "lambda": "1/100",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "1/10",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "1/4",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "1/2",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "3/4",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "9/10",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "1",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "11/10",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "3/2",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "2",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "4",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "10",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ },
+ {
+  "lambda": "100",
+  "first_negative_low_spin": null,
+  "nmax": 60,
+  "lmax": 8
+ }
+]
