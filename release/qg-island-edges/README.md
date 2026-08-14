@@ -1,5 +1,7 @@
 # The Island Has Edges
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21934462.svg)](https://doi.org/10.5281/zenodo.21934462)
+
 Exact boundary laws for unitary deformations of the Veneziano amplitude
 (the (q,r,w) family of Cheung–Hillman–Remmen, arXiv:2406.02665 / PRL 133, 251601).
 

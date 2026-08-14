@@ -374,3 +374,9 @@ old entries; append corrections as new entries.
   on the front page). Placement checklist vs project 1: GitHub+release+web
   paper+portfolio DONE; Zenodo DOI pending founder toggle; arXiv planned via
   endorsement.
+
+## 2026-08-14 — DOI MINTED: 10.5281/zenodo.21934462
+- Zenodo toggle (founder) -> release v1.0.1 -> DOI. Final PDF with DOI in
+  author footnote + repro section; pushed to repo and site; DOI badge in
+  README, DOI buttons on portfolio. CHR letter draft updated with final links
+  (site PDF, repo, DOI); awaiting founder's Send.
