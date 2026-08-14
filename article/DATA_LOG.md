@@ -322,3 +322,8 @@ old entries; append corrections as new entries.
 - q-Veneziano exclusion depth measured exactly for six q values; exponent -1/2
   stable; q=1 control clean. Explains finite-depth scans admitting small q-1.
   New beyond the anchor paper (they had q>1 asymptotic-only).
+
+## 2026-08-14 — q-clock exponent -1/2 mechanically derived
+- g(n) = -dlog a_{n,0}/dq |_{q=1} ~ 0.3 n^2 (exact finite difference h=1e-6);
+  eps*n^2 ~ 1 crossing reproduces the measured exponent; first-order constant
+  1.8 vs measured 1.1 (higher orders kill sooner).

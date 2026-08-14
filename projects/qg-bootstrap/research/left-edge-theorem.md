@@ -246,3 +246,12 @@ explains why depth-10 scans (their Fig. 1) admit q-1 < (C/10)^2 ~ 0.012.
 Status: numerically established (exact arithmetic); the -1/2 exponent is a
 conjectured exact law; analytic derivation open. Killer is LOW spin (l=0,1),
 not the l=n-1 ladder.
+
+### q-clock mechanism (same day)
+
+Exact log-derivative at q=1: g(n) = -dlog a_{n,0}/dq grows quadratically,
+g(n) ~ 0.3 n^2 (mild log drift 0.56->0.29 over n=5..30). First-order crossing
+eps*g(n) ~ 1 then gives n_crit ~ (0.3 eps)^{-1/2} = 1.8/sqrt(eps) vs measured
+1.1/sqrt(eps): the -1/2 exponent is DERIVED from the quadratic growth of the
+relative q-correction (spectrum drift [n]_q ~ n(1+eps(n-1)/2) accumulating);
+the constant requires higher orders (nonlinearities accelerate death).
