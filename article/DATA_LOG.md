@@ -467,3 +467,7 @@ old entries; append corrections as new entries.
 - Corrected law: positivity <=> D <= T_n(lambda) (quadratics listed in card);
   T_3(0)=9 explains CHR's D>=9 onset; lambda_min(10)=0.0816 matches scanner
   bracket; VS D_n(1) formula unaffected. Buggy belt claims voided.
+
+## 2026-08-14 — Gravity slice 5: lambda_min(D) exact; lambda_min(23)=1
+- Single curve: onset D=9 at lambda=0; exact surd values; reaches the string
+  exactly at D=23; beyond it for D>=24. n=3->n=4 dominance switch at D~18.

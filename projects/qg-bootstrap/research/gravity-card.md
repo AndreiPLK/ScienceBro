@@ -154,3 +154,17 @@ Consequences (all verified against the corrected exact scanner):
 Bug provenance and validation: DATA_LOG 2026-08-14; razor lesson recorded —
 razors sharing the evaluator with the bracket are circular; external anchors
 (CHR Fig. 1 behavior) catch what internal razors cannot.
+
+
+## SLICE 5 (2026-08-14): the single curve lambda_min(D) — exact
+
+lambda_min(D) = max over n of the positive root of T_n(lambda) = D:
+  D=10: -2+sqrt(39)/3 (n=3); D=12: -2+sqrt(5); D=16: -2+sqrt(57)/3;
+  D=20: -3+6*sqrt(10)/5 (n=4 takes over); **D=23: EXACTLY 1 (the string)**;
+  D=26: -3+2*sqrt(110)/5.
+Story in one curve: born at 0 when D=9 (CHR onset explained), rises through
+exact surds, hits pure VS at D=23, passes beyond it for D>=24 (string dies,
+matching D_n(1) min=23). D<=9: this knife touches nothing => D=4 trivially
+safe for all lambda on this trajectory. Dominant level switches n=3 -> n=4
+between D=16 and 20. Remaining for paper: general-n T_n(lambda), full-l
+corrected scans, independent review.
