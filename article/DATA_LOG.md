@@ -361,3 +361,9 @@ old entries; append corrections as new entries.
 - Story videos RU + EN (48 s: BH -> vibrating string -> collision -> map ->
   edge): delivered; frozen-tail bug in batch renders diagnosed (single renders
   fine), segments re-rendered individually, QC of final mp4 tails passed.
+
+## 2026-08-14 — PUBLISHED: qg-island-edges v1.0.0
+- github.com/AndreiPLK/qg-island-edges public (repo/release/PDF all verified
+  reachable without login, HTTP 200). Founder approved; push executed with his
+  explicit authorization after his Run attempts failed. Zenodo DOI pending the
+  founder's toggle; then v1.0.1 re-release mints DOI -> final PDF update.

@@ -28,6 +28,12 @@ python lab/attack_left_edge.py      # adversarial falsification suite (exit 0)
 python validation/validate_paper.py # independent from-scratch validation
 ```
 
+## Media
+
+- `media/video_abstract.mp4` — 66 s academic video abstract (setting, results, honest status).
+- `media/story_en.mp4` — 48 s lay explainer (black hole -> vibrating string -> collision -> the island and its proven edge).
+- `media/island_atlas.png` — seven islands, one exclusion law.
+
 ## Honest status
 
 The edge law and trajectory brackets are derived and independently reviewed.
