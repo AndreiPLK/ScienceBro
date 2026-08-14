@@ -296,3 +296,11 @@ old entries; append corrections as new entries.
 ## 2026-08-14 night N4 — paper skeleton drafted
 - article/qg-island-draft.md: title, abstract, 9-claim status table (honest),
   section plan, figure list, limitations, repro pack. Morning review target.
+
+## 2026-08-14 morning — Comic video delivered (N6)
+- article/visuals/comic/comic_island.mp4: 33 s, 8 panels, EN captions, black
+  outlines + halftone comic system (panel_style.css reusable), real data in
+  every panel (atlas, edge map, MS match, 11994/0 stats). Music Truthfall ->
+  Civilize, boom on finale. QC frames from final mp4 inspected.
+- Night loop incident: no wakeups fired 00:15-08:16 (machine/app sleep
+  suspected); N5 (q-deformation) carried to today.

@@ -1,0 +1,50 @@
+/* REALITY ENGINE comic system: black outlines, bright flats, halftone */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1920px; overflow: hidden;
+  background: #f7ef6a;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.13) 2.4px, transparent 2.6px);
+  background-size: 26px 26px;
+  font-family: 'Arial Black', 'Segoe UI Black', sans-serif;
+}
+.frame {
+  position: absolute; inset: 34px;
+  border: 11px solid #101010; border-radius: 6px;
+  background: transparent;
+}
+.title-box {
+  position: absolute; left: 70px; right: 70px; top: 90px;
+  background: #101010; color: #fff; padding: 34px 40px;
+  transform: rotate(-1.6deg);
+  box-shadow: 14px 14px 0 rgba(0,0,0,0.35);
+}
+.title-box h1 { font-size: 84px; line-height: 1.02; letter-spacing: 1px; }
+.title-box .accent { color: #05d9e8; }
+.title-box .pink { color: #ff2a6d; }
+.caption {
+  position: absolute; left: 70px; right: 70px;
+  background: #fff; border: 9px solid #101010; padding: 30px 36px;
+  font-size: 52px; line-height: 1.14; color: #101010;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.30);
+}
+.caption .num { color: #ff2a6d; }
+.caption .cyan { background: #05d9e8; padding: 0 10px; }
+.caption .lime { background: #c6f24e; padding: 0 10px; }
+.burst {
+  position: absolute; background: #ff2a6d; color: #fff;
+  border: 9px solid #101010; padding: 22px 34px;
+  font-size: 56px; transform: rotate(3deg);
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+}
+.art {
+  position: absolute; border: 10px solid #101010; background: #0a0a12;
+  box-shadow: 14px 14px 0 rgba(0,0,0,0.32); overflow: hidden;
+}
+.art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.formula {
+  position: absolute; background: #101010; color: #f9f871;
+  font-family: Consolas, monospace; font-weight: bold;
+  border: 8px solid #ff2a6d; padding: 26px 38px; font-size: 64px;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.35);
+}
+.small { font-size: 40px; }
