@@ -327,3 +327,9 @@ old entries; append corrections as new entries.
 - g(n) = -dlog a_{n,0}/dq |_{q=1} ~ 0.3 n^2 (exact finite difference h=1e-6);
   eps*n^2 ~ 1 crossing reproduces the measured exponent; first-order constant
   1.8 vs measured 1.1 (higher orders kill sooner).
+
+## 2026-08-14 — Big-idea concept video delivered
+- article/visuals/qg-island-bigidea.mp4 (35 s, EN): black hole (EHT shader) ->
+  "which string theory?" -> landscape slice -> consistency wave sinks bad tiles
+  -> glowing edge + formula -> "our piece of the big puzzle". QC 6 frames from
+  final mp4. Scenes: NOVA/viz/bh_intro.gd + island_mini.gd (reusable).
