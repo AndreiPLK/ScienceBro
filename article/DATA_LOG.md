@@ -390,3 +390,13 @@ old entries; append corrections as new entries.
   two outreach letters live (Hirst thread + CHR).
 - Next: await replies (CHR endorsement -> arXiv submission); science resumes
   with Card B and the gravity direction (CHR open problem O3).
+
+## 2026-08-14 — GRAVITY SLICE 1 STARTED: the D-clock of Virasoro-Shapiro
+- Scientist playbook (12 steps + house methods) saved to permanent memory per
+  founder's order; North Star confirmed (are gravitational amplitudes forced
+  to be string-like?).
+- VS residues derived exactly: R_n(t) = [prod_{k=1}^{n-1}(t+k)]^2 / const —
+  double zeros confirmed (CHR O3 gateway).
+- First scan: positivity clean to n=16 for D=4..20; D=26 breaks at (n,l)=(3,2).
+  The critical dimension D=10 must emerge at depth — a D-clock, mirroring our
+  q-clock. Deep scan to n=40 running (lab/vs_d_clock.py).
