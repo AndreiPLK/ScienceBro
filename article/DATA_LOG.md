@@ -311,3 +311,9 @@ old entries; append corrections as new entries.
   even trajectories positive on both sides. Edge witnessed by an infinite
   constraint family. Initial "failures" were finite-threshold effects — now
   quantitatively explained, no contradictions.
+
+## 2026-08-14 — Video abstract for the paper delivered
+- article/visuals/vabstract/video_abstract.mp4: 66 s, 1920x1080, academic
+  style (7 slides: setting, edge theorem + prediction table, erosion + 176
+  corrections, boundary algebra, cross-checks, honest status + repro links).
+  Quiet bed, slow fades. QC frames from final mp4 inspected.
