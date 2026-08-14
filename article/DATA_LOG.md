@@ -400,3 +400,10 @@ old entries; append corrections as new entries.
 - First scan: positivity clean to n=16 for D=4..20; D=26 breaks at (n,l)=(3,2).
   The critical dimension D=10 must emerge at depth — a D-clock, mirroring our
   q-clock. Deep scan to n=40 running (lab/vs_d_clock.py).
+
+## 2026-08-14 — VS D-clock deep scan: a CLIFF, not a clock
+- D=12..22: positivity clean to n=40. D=24: first negative (4,4); D=26,28,30:
+  (3,2). Sharp transition between D=22 and 24 — near the bosonic critical
+  dimension 26, NOT a smooth n_crit(D) divergence. Either the true positivity
+  bound for massless VS sits at ~23, or the transition is cliff-like.
+  Artifact: results/vs_d_clock.json. Literature check + deeper D=22 scan next.

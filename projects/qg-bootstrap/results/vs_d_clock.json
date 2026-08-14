@@ -2,32 +2,32 @@
  {
   "D": 12,
   "first_negative": null,
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 14,
   "first_negative": null,
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 16,
   "first_negative": null,
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 18,
   "first_negative": null,
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 20,
   "first_negative": null,
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 22,
   "first_negative": null,
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 24,
@@ -35,7 +35,7 @@
    4,
    4
   ],
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 26,
@@ -43,7 +43,7 @@
    3,
    2
   ],
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 28,
@@ -51,7 +51,7 @@
    3,
    2
   ],
-  "nmax_checked": 8
+  "nmax_checked": 40
  },
  {
   "D": 30,
@@ -59,6 +59,6 @@
    3,
    2
   ],
-  "nmax_checked": 8
+  "nmax_checked": 40
  }
 ]
