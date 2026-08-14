@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\title{The Shore of Closed-String Gravity:\ an Exact Unitarity Boundary for the\ Cheung--Hillman--Remmen Graviton Family}
+\author{Andrei Pluzhnik\thanks{ORCID 0009-0005-5660-2603. Code and data to be
+released with this preprint; companion work: DOI 10.5281/zenodo.21934462.}}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The level-truncation bootstrap of Cheung, Hillman and Remmen produces a
+one-parameter family of graviton amplitudes containing the Virasoro--Shapiro
+amplitude at $\lambda=1$, with residues that are perfect squares; partial-wave
+positivity was known to bound $\lambda$ from below for $D\ge 9$, numerically.
+We derive the boundary in closed form. The near-leading even trajectory obeys
+$a_{n,2n-4}\ge 0 \iff D\le T_n(\lambda)$ with
+$T_n(\lambda)=\tfrac{3(2n-3)}{n(n-2)}\bigl(\lambda^2+(2n-2)\lambda+1\bigr)+2n$,
+verified exactly for $n\le 14$ and against exact-rational scans. The true
+boundary is the envelope $\min_n T_n$: it is born at $(D,\lambda)=(9,0)$ ---
+explaining the onset observed by CHR --- passes \emph{exactly} through the
+string at $D=23$ (so pure Virasoro--Shapiro first loses positivity on this
+trajectory at $D=24$, via the level-4 spin-4 wave, matching exact scans), and
+straightens onto the exact asymptote $D=(12+4\sqrt3)\,\lambda$ with active
+level $n^*\simeq\sqrt3\,\lambda$. Doomed-cell predictions of the envelope are
+confirmed by direct evaluation. We conjecture the envelope is the complete
+boundary and report the falsification battery it has survived.
+\end{abstract}
+
+\section{Setup}
+Family (CHR, PRD 111, 086034): $\mu(n)=\frac{n+\lambda-1}{\lambda}$,
+$R(n,t)=\bigl[\,((1{+}\lambda)/2+\lambda t)_{n-1}/((1{+}3\lambda)/2)_{n-1}\bigr]^2$,
+massless external states ($s+t+u=0$), $\lambda\ge0$, VS at $\lambda=1$.
+Partial waves: Gegenbauer coefficients at $s=\mu(n)$, $t=-\mu(n)(1-x)/2$; odd
+waves vanish by the $t\leftrightarrow u$ symmetry of the squared residue.
+All computations exact-rational; evaluator validated against CHR's reported
+behavior (D=4 positivity for all $\lambda$; onset of the lower bound at
+$D\ge9$).
+
+\section{The trajectory law}
+[Derivation: top-3 coefficients of the squared polynomial; projection ratio
+$\rho(\ell,D)=\frac{(\ell+1)(\ell+2)}{2(D+2\ell-1)}$; theorem statement;
+verification 12/12 vs extracted brackets; executions of doomed cells.]
+
+\section{The envelope}
+[Born at (9,0); magic point $\lambda_{\min}(23)=1$; dominance ladder
+$n^*(\lambda)$; exact asymptote; comparison figures: continent + complete
+creature.]
+
+\section{Virasoro--Shapiro thresholds}
+[$D_n(1)=2(n^2+4n-9)/(n-2)$, min $=23$ at $n{=}4$; relation to the
+$D_{\rm crit}(n)$ literature.]
+
+\section{Conjectured completeness and its battery}
+[Model: alive $\iff D\le\min_n T_n$. Battery: full-spin exact scans, doomed
+classification, zero alarms (to be updated); independent adversarial review.]
+
+\section{Discussion}
+[Dimension-graded rigidity of closed-string gravity; D=4 freedom; the road to
+predictions for gravitational-wave phenomenology; method transfer from the
+open-string companion paper.]
+
+\section*{Reproducibility and AI disclosure}
+[Same standard as companion: exact arithmetic, published battery, adversarial
+review script, AI assistance disclosed in full. A sign-convention bug found
+and fixed during this work is documented in the public research log ---
+including which results it did and did not affect.]
+
+\begin{thebibliography}{9}
+\bibitem{CHR2024b} C.~Cheung, A.~Hillman and G.~N.~Remmen,
+``Uniqueness Criteria for the Virasoro-Shapiro Amplitude,''
+Phys.\ Rev.\ D 111, 086034 (2025), arXiv:2408.03362.
+\bibitem{CHR2024} C.~Cheung, A.~Hillman and G.~N.~Remmen,
+``Bootstrap Principle for the Spectrum and Scattering of Strings,''
+Phys.\ Rev.\ Lett.\ 133, 251601 (2024), arXiv:2406.02665.
+\bibitem{us} A.~Pluzhnik, ``The Island Has Edges,'' DOI 10.5281/zenodo.21934462.
+\end{thebibliography}
+\end{document}
