@@ -428,3 +428,10 @@ old entries; append corrections as new entries.
   hidden-zeros analytic bounds -- abstract does not treat the lambda-family;
   full-text verification required before any novelty claim).
 - Card: research/gravity-card.md (metric frozen before computing).
+
+## 2026-08-14 — GRAVITY SLICE 1: edge law of the closed-string island DERIVED
+- sign a_{n,2n-4} = sign[q_n(lambda) D + p_n(lambda)] with explicit quadratics;
+  exact rho(l,D)=(l+1)(l+2)/(2(D+2l-1)). VS thresholds D_n=24,23,24,51/2,136/5
+  (min 23 at n=4) EXPLAIN our measured D-cliff to the unit; razor zero D*=45
+  at lambda=2 confirmed (+/- bracketing at 44/46). Dangerous lambda-window
+  shrinks to pure VS like ~1.1/n. Note: research/gravity-card.md.

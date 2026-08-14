@@ -57,3 +57,26 @@ n-only constant), same standard as Card A.
   (no edge at finite lambda in any D) => the result becomes "the gravitational
   island has NO finite-depth edge on these trajectories" — still publishable,
   smaller.
+
+
+## SLICE 1 RESULT (2026-08-14): the gravitational edge law — derived and razor-verified
+
+With the exact projection ratio rho(l,D) = (l+1)(l+2)/(2(D+2l-1)) (measured
+exactly, closed form identified), the near-leading even trajectory obeys
+
+  sign a_{n,2n-4} = sign[ q_n(lambda) * D + p_n(lambda) ],   e.g.
+  n=3: (2l^2-6l+3)D + (9l^2-6l+21)     [l=lambda]
+  n=4: (52l^2-120l+60)D + (379l^2-750l+555)
+  n=5: (58l^2-126l+63)D + (645l^2-1330l+805)   (odd trajectories vanish identically)
+
+Verified: (i) VS (lambda=1) thresholds D_n = 24, 23, 24, 51/2, 136/5 for
+n=3..7 -> first negativity at D>23, killed by (4,4): matches the exact D-scan
+(D=24 first negative (4,4); D=22 clean to 40) to the unit. (ii) Razor at
+lambda=2, n=3: predicted zero at D*=45; exact arithmetic gives + at D=44 and
+- at D=46. (iii) Bracket sign matches exact sign at random (lambda, D) spots.
+
+Structure found: the dangerous lambda-window (where q_n < 0) shrinks toward
+lambda = 1 (pure VS) roughly like 1 +- 1.1/n; within it the kill threshold is
+D_n(lambda) = -p_n/q_n. General-n closed forms of q_n, p_n and the full
+lambda_min(D) map: next slice. Status: derived + numerically verified;
+independent review pending (Card-A standard).
