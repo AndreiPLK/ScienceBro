@@ -380,3 +380,13 @@ old entries; append corrections as new entries.
   author footnote + repro section; pushed to repo and site; DOI badge in
   README, DOI buttons on portfolio. CHR letter draft updated with final links
   (site PDF, repo, DOI); awaiting founder's Send.
+
+## 2026-08-14 — CHR letter SENT by founder; publication stage CLOSED
+- Letter (short, human tone) to Cheung cc Remmen with paper/repo/DOI links and
+  endorsement request; forward-to-Hillman asked. EV-CORR-0002.
+- Stage totals: theorems reviewed+attacked+validated; repo+release v1.0.1;
+  DOI 10.5281/zenodo.21934462; site with 'Explain it to anyone' section and
+  site-wide readability fix (dark link contrast verified programmatically);
+  two outreach letters live (Hirst thread + CHR).
+- Next: await replies (CHR endorsement -> arXiv submission); science resumes
+  with Card B and the gravity direction (CHR open problem O3).
