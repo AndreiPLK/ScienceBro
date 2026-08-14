@@ -462,3 +462,8 @@ old entries; append corrections as new entries.
   chasing a contradiction with CHR's "D>=9 bounds lambda from below" (my
   small-lambda scans were clean — too clean). Lesson: razor tests that share
   the evaluator with the bracket are circular; independent check caught it.
+
+## 2026-08-14 — Gravity slices corrected: lambda_min(D) in closed form
+- Corrected law: positivity <=> D <= T_n(lambda) (quadratics listed in card);
+  T_3(0)=9 explains CHR's D>=9 onset; lambda_min(10)=0.0816 matches scanner
+  bracket; VS D_n(1) formula unaffected. Buggy belt claims voided.

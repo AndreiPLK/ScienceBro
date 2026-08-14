@@ -133,3 +133,24 @@ constraints bound lambda from below, killing the small-lambda corner. The
 combined picture (this trajectory + low spins) is the true lambda_min/max(D)
 map — assembling it exactly is the next slice. Correction logged per playbook
 (failures and corrections stay visible).
+
+
+## SLICES 1-4 CORRECTED (2026-08-14, after the Pochhammer-step bug)
+
+Corrected near-leading law (positive factors removed):
+  positivity of a_{n,2n-4}  <=>  D <= T_n(lambda), with
+  T_3 = 3l^2+12l+9;  T_4 = (15l^2+90l+79)/8;  T_5 = (7l^2+56l+57)/5;
+  T_6 = (9l^2+90l+105)/8;  T_7 = (33l^2+396l+523)/35.   [l = lambda]
+
+Consequences (all verified against the corrected exact scanner):
+- lambda_min(D) = largest positive root of T_n(l) = D, maximized over n —
+  the EXACT closed form of CHR's numerically observed lower bound.
+- T_3(0) = 9 explains CHR's "when D >= 9" threshold exactly (their Fig. 1).
+- lambda_min(10) ~ 0.0816 from the formula; scanner: 1/20 dead, 1/10 alive ✓.
+- VS thresholds unchanged: D_n(1) = 2(n^2+4n-9)/(n-2), min 23 at n=4 (the
+  lam=1 point was untouched by the bug).
+- The buggy "exclusion belt around lambda=1" is VOID; the true structure is a
+  lower bound in lambda rising with D. D=4 lemma to be re-derived next.
+Bug provenance and validation: DATA_LOG 2026-08-14; razor lesson recorded —
+razors sharing the evaluator with the bracket are circular; external anchors
+(CHR Fig. 1 behavior) catch what internal razors cannot.
