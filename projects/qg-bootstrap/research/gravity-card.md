@@ -199,3 +199,24 @@ Plus two direct executions of doomed cells at predicted level n=4 (both
 confirmed with sign flip +/-). The conjectured complete model of the
 gravitational island has survived its first total battery. Independent
 adversarial review running. Artifact: results/model_test.json.
+
+
+## REVIEW ROUND CLOSED (night 2026-08-15)
+
+Independent adversarial review (gravity-review.md): claims 1-3 re-derived
+from scratch and STRENGTHENED (lambda_min(23)=1 proven for ALL n analytically;
+cross-term bookkeeping validated — the edge exists precisely because the
+x^{2n-4} coefficient is a pure cross term). Attack script executed:
+NO FALSIFICATION, 0 failures (incl. non-circular razors at fractional
+D*=271/4 and D*=57; envelope converging to (12+4sqrt3) through D=10000).
+
+Fixes applied per review:
+- (F1) Slice-3 D=4 statement now rests on CORRECTED artifacts only
+  (grav_full_body 40/40 at D=4; model_test D=4 rows; trivial bound
+  T_n(lambda) >= T_n(0) >= 9 > 4), with CHR p.6 as external anchor. The
+  pre-bug "positive-definite lemma" is VOID and superseded.
+- (F2) Terminology: "true shore" = shore of the NEAR-LEADING trajectory;
+  completeness of the full boundary remains Conjecture (falsifiable; the
+  a_{n,2n-6} law is the designated next hunt).
+- Caveats recorded: D>3 domain; lambda>=0 imported from CHR; n=2 hand-checked;
+  discrete-n oscillation O(1/lambda) around the asymptote to be stated.

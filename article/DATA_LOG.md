@@ -497,3 +497,8 @@ old entries; append corrections as new entries.
 
 ## 2026-08-15 night — Complete-model battery: 494/494, zero alarms
 - alive <=> D <= min_n T_n matched every exact verdict; executions confirmed.
+
+## 2026-08-15 night — Gravity review round CLOSED
+- Claims 1-3 independently re-derived and strengthened; attack script: NO
+  FALSIFICATION (0 failures, 4.3 s); fixes F1-F2 applied; completeness stays
+  a labeled conjecture with a designated next hunt (a_{n,2n-6}).
