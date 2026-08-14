@@ -112,3 +112,24 @@ family survives deep unitarity; while in high D the dangerous lambda-window
 shrinks toward pure VS. Uniqueness of the string is DIMENSION-GRADED.
 Status: lemma derived (n<=12) + exact scans; general-n proof and independent
 review pending before any promotion.
+
+
+## SLICE 4 (2026-08-14): the exclusion map — and a CORRECTION
+
+Exact lambda-exclusion union from the n<=16 brackets (per even D):
+  D<=20: empty (this trajectory excludes nothing).
+  D=22: [1.026, 1.533]  — a belt NEXT TO the string; VS itself still alive.
+  D=24: [0.980, 1.632]  — the belt now swallows lambda=1 (VS dies; matches
+        D_min = 23).
+  D=40: [0.811, 1.953]  — belt widens slowly; EXTREME deformations (small and
+        large lambda) SURVIVE this trajectory at every D scanned.
+
+CORRECTION of the earlier framing: "unitarity squeezes neighbors toward the
+string" was WRONG as stated. The shrinking q_n<0 windows mark VULNERABILITY,
+and the realized exclusion at fixed D is a belt AROUND/NEAR lambda=1: at
+D>=24 the string and its closest neighbors die on the near-leading trajectory
+while extreme alternatives survive it. Complement (CHR): for D>=9 low-spin
+constraints bound lambda from below, killing the small-lambda corner. The
+combined picture (this trajectory + low spins) is the true lambda_min/max(D)
+map — assembling it exactly is the next slice. Correction logged per playbook
+(failures and corrections stay visible).

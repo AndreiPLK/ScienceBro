@@ -446,3 +446,10 @@ old entries; append corrections as new entries.
   discriminants negative). Exact scan: 13 lambdas incl. corners 1/100, 100 —
   clean, l<=8, depth 60. Headline forming: string uniqueness is
   dimension-graded (free in 4D, forced in high D on these trajectories).
+
+## 2026-08-14 — Gravity slice 4: exclusion map + honest correction
+- Exact exclusion belts per D (n<=16): empty for D<=20; [1.03,1.53] at D=22;
+  swallows lambda=1 at D=24; widens to [0.81,1.95] at D=40. Extremes survive
+  this trajectory. CORRECTED earlier "squeeze toward the string" claim: the
+  belt kills the string's NEIGHBORHOOD (and VS itself for D>=24); small-lambda
+  corner is killed separately by low-spin constraints (CHR, D>=9).
