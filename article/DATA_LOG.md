@@ -475,3 +475,10 @@ old entries; append corrections as new entries.
 ## 2026-08-14 — M2 main frame delivered: THE FATE CURVE
 - article/visuals/qg-fate-curve.png: exact lambda_min(D) curve, dead zone,
   string line, magic point (23,1), our-world marker. Lesson delivered (below).
+
+## 2026-08-14 — THE CONTINENT: full body drawn, analytic shore matches
+- grav_full_body.json: 560 exact verdicts (lambda 0.05..2 x D 4..30, all even
+  spins, depth 14). D<=8 fully alive (40/40); erosion from below as D grows
+  (12/40 at D=30). Analytic shore lambda_min(D) traces the frontier; string
+  drowns past D=23 as predicted. Visual: qg-continent.png. Founder's question
+  "can we draw the full object?" answered: yes — this is it.
