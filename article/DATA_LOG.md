@@ -453,3 +453,12 @@ old entries; append corrections as new entries.
   this trajectory. CORRECTED earlier "squeeze toward the string" claim: the
   belt kills the string's NEIGHBORHOOD (and VS itself for D>=24); small-lambda
   corner is killed separately by low-spin constraints (CHR, D>=9).
+
+## 2026-08-14 — BUG FOUND & OWNED: gravity-family Pochhammer step
+- ((1+lam)/2+lam*t)_{n-1} increments by 1; my evaluator incremented by lam.
+  At lam=1 both coincide -> all VS (lam=1) results REMAIN VALID (D-cliff,
+  D_n(1) formula checks at lam=1). All lam != 1 claims (windows, belts, D=4
+  lemma/scans, razor at lam=2) are VOID and being recomputed. Found while
+  chasing a contradiction with CHR's "D>=9 bounds lambda from below" (my
+  small-lambda scans were clean — too clean). Lesson: razor tests that share
+  the evaluator with the bracket are circular; independent check caught it.
