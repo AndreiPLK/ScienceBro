@@ -340,3 +340,9 @@ old entries; append corrections as new entries.
   characterization as labeled Conjecture, threshold + D-dependence, q-clock
   section, Mansfield-Spradlin relation, honest discussion, AI disclosure,
   repro section). MiKTeX installing for local compile QC.
+
+## 2026-08-14 — Big-idea video v2 (BH -> particle collision -> map), 41 s
+- New collide_beat.gd (two particles -> flash: the S-matrix as "the sharpest
+  test"); captions rewritten for lay accuracy (probabilities-never-negative =
+  positivity; PROVED refers to the exclusion direction which is proven).
+- Paper compiled: main.pdf, 5 pages (MiKTeX). Next: internal validation.
