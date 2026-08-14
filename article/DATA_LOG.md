@@ -333,3 +333,10 @@ old entries; append corrections as new entries.
   "which string theory?" -> landscape slice -> consistency wave sinks bad tiles
   -> glowing edge + formula -> "our piece of the big puzzle". QC 6 frames from
   final mp4. Scenes: NOVA/viz/bh_intro.gd + island_mini.gd (reusable).
+
+## 2026-08-14 — Preprint main.tex written (full draft v1)
+- projects/qg-bootstrap/paper/main.tex: complete LaTeX (abstract, setup, edge
+  theorem with proof sketch, trajectory laws + dichotomy, island
+  characterization as labeled Conjecture, threshold + D-dependence, q-clock
+  section, Mansfield-Spradlin relation, honest discussion, AI disclosure,
+  repro section). MiKTeX installing for local compile QC.
