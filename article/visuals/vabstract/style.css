@@ -1,0 +1,22 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1920px; height:1080px; overflow:hidden; background:#fafaf8;
+  font-family: Georgia, 'Times New Roman', serif; color:#1a1a2e; }
+.slide { position:absolute; inset:0; padding:90px 120px; }
+h1 { font-size:64px; font-weight:normal; line-height:1.25; }
+h2 { font-size:44px; font-weight:normal; color:#27496d; margin-bottom:28px; }
+p  { font-size:34px; line-height:1.5; color:#333; }
+.rule { width:180px; height:4px; background:#27496d; margin:36px 0; }
+.formula { font-family:'Cambria Math', Consolas, serif; font-size:52px;
+  background:#f0f2f5; border-left:6px solid #27496d; padding:28px 44px;
+  display:inline-block; margin:18px 0; }
+.fig { border:1px solid #ccc; box-shadow:0 3px 14px rgba(0,0,0,0.10); }
+.figcap { font-size:26px; color:#666; font-style:italic; margin-top:14px; }
+.foot { position:absolute; bottom:44px; left:120px; right:120px;
+  font-size:24px; color:#999; display:flex; justify-content:space-between; }
+.badge { display:inline-block; font-family:Consolas; font-size:28px;
+  background:#e8f4ea; color:#1d6b3a; border:1px solid #9fd0ab;
+  padding:8px 18px; border-radius:4px; margin-right:14px; }
+.warn { background:#fdf3e3; color:#8a5a13; border-color:#e2c185; }
+td, th { font-size:30px; padding:12px 26px; text-align:left; }
+th { border-bottom:3px solid #27496d; color:#27496d; }
+td { border-bottom:1px solid #ddd; font-family:Consolas; }

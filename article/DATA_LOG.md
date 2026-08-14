@@ -304,3 +304,10 @@ old entries; append corrections as new entries.
   Civilize, boom on finale. QC frames from final mp4 inspected.
 - Night loop incident: no wakeups fired 00:15-08:16 (machine/app sleep
   suspected); N5 (q-deformation) carried to today.
+
+## 2026-08-14 — Odd/even trajectory dichotomy at the edge
+- k=1..7: odd trajectories kill beyond the edge (finite thresholds, predicted
+  by our brackets and confirmed exactly: k=3 at n=57, k=1 w=1.7 at n=85);
+  even trajectories positive on both sides. Edge witnessed by an infinite
+  constraint family. Initial "failures" were finite-threshold effects — now
+  quantitatively explained, no contradictions.

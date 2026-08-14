@@ -215,3 +215,17 @@ with c = 2/(D-1):
 Analytic explanation of the anchor paper's numeric observation that the island
 shrinks with D: the scalar constraints tighten like 1/(D-1) while the left edge
 stays pinned (D-universal law). As D->infinity, a_{2,0} -> (1+r)(r+w) >= 0.
+
+## Odd/even trajectory dichotomy (2026-08-14)
+
+Numerically established for k = 1..7 (exact arithmetic, n ~ 41..57):
+beyond the edge (r < -(1+mu0)/2, w > 0) every ODD near-leading trajectory
+a_{n,n-k} eventually turns negative, at a k- and w-dependent finite threshold
+n_crit(k, r, w); every EVEN trajectory stays positive on both sides. The
+k=1,3 thresholds are quantitatively predicted by our closed-form brackets
+(k=3 crossover predicted n=57, measured sign flip between 55 and 59; k=1 at
+w=17/10 predicted n=85, measured + at 84 / - at 86). Consequence: the left
+edge is witnessed by an infinite family of independent constraints — a
+robustness statement far stronger than any single trajectory. General-k
+analytic proof: open (leading coefficient pattern suggests odd-k leading term
+proportional to (r+1/2)).
