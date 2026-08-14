@@ -367,3 +367,10 @@ old entries; append corrections as new entries.
   reachable without login, HTTP 200). Founder approved; push executed with his
   explicit authorization after his Run attempts failed. Zenodo DOI pending the
   founder's toggle; then v1.0.1 re-release mints DOI -> final PDF update.
+
+## 2026-08-14 — Portfolio updated and live
+- andreiplk.github.io: new work card + one-pager works/qg-island-edges/ with
+  paper.pdf and edge map; visibility verified (page 200, paper 200, 5 mentions
+  on the front page). Placement checklist vs project 1: GitHub+release+web
+  paper+portfolio DONE; Zenodo DOI pending founder toggle; arXiv planned via
+  endorsement.
