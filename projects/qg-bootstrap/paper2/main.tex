@@ -46,22 +46,93 @@ behavior (D=4 positivity for all $\lambda$; onset of the lower bound at
 $D\ge9$).
 
 \section{The trajectory law}
-[Derivation: top-3 coefficients of the squared polynomial; projection ratio
-$\rho(\ell,D)=\frac{(\ell+1)(\ell+2)}{2(D+2\ell-1)}$; theorem statement;
-verification 12/12 vs extracted brackets; executions of doomed cells.]
+
+\begin{theorem}[Near-leading even trajectory]\label{thm:traj}
+For the residues above, $\lambda>0$ and $D>3$,
+\begin{equation}
+a_{n,2n-4}\;\ge\;0 \quad\Longleftrightarrow\quad D\;\le\;T_n(\lambda),\qquad
+T_n(\lambda)=\frac{3(2n-3)}{n(n-2)}\bigl(\lambda^2+(2n-2)\lambda+1\bigr)+2n .
+\end{equation}
+\end{theorem}
+
+\emph{Derivation.} Write $\lambda\bigl(t-\xi(k)\bigr)=\tfrac12\bigl[(n{+}\lambda{-}1)x+(2k{-}n)\bigr]$
+at level $n$; the residue is the square of $Q(x)=\prod_{k=1}^{n-1}\lambda(t-\xi(k))$
+up to a positive factor. The roots $x_k=(n-2k)/(n{+}\lambda{-}1)$ are symmetric
+under $x\to-x$, so $Q$ has definite parity: odd partial waves vanish
+identically, and the subleading coefficient $q_{n-2}$ of $Q$ vanishes. Hence
+the $x^{2n-4}$ coefficient of $Q^2$ is the \emph{pure cross term}
+$2q_{n-1}q_{n-3}<0$ --- a naive term-by-term estimate would miss the edge
+entirely. Only $x^{2n-2}$ and $x^{2n-4}$ feed the Gegenbauer mode
+$\ell=2n-4$ (parity and degree), with the exact projection ratio
+$\rho(\ell,D)=\frac{(\ell+1)(\ell+2)}{2(D+2\ell-1)}$; assembling the two
+contributions and removing positive factors yields $T_n$. Using
+$e_2(\text{roots})=-\tfrac{n(n-1)(n-2)}{6(\lambda+n-1)^2}$ one obtains the
+equivalent closed form $T_n=\tfrac{3(2n-3)(\lambda+n-1)^2}{n(n-2)}-(4n-9)$.
+
+\emph{Verification.} The bracket was extracted independently by symbolic
+computation for every $n\le14$ and matches $T_n$ identically ($12/12$); an
+independent adversarial review re-derived the theorem from scratch, and its
+falsification suite (published with the code) found no counterexample,
+including razor zeros at fractional dimensions $D^*=271/4$ ($n{=}5$,
+$\lambda{=}7/2$) and $D^*=57$ ($n{=}6$, $\lambda{=}3$) computed directly from
+the projection with symbolic $D$. Doomed-cell executions confirm predicted
+kill levels exactly (e.g.\ $(\lambda,D)=(3/2,32)$ and $(2,40)$: sign flip at
+$n=4$ as predicted).
 
 \section{The envelope}
-[Born at (9,0); magic point $\lambda_{\min}(23)=1$; dominance ladder
-$n^*(\lambda)$; exact asymptote; comparison figures: continent + complete
-creature.]
+
+The boundary implied by Theorem~\ref{thm:traj} is the envelope
+$\lambda_{\min}(D)$ defined by $D=\min_{n\ge3}T_n(\lambda)$. Its structure:
+
+\textbf{Onset at $D=9$.} $T_n(0)=2n+\tfrac{3(2n-3)}{n(n-2)}$ is minimized at
+$n=3$ with $T_3(0)=9$: the trajectory constrains nothing for $D\le9$ ---
+reproducing, as a formula, the onset CHR observed numerically ($D\ge9$).
+
+\textbf{The magic point.} $T_n(1)=\tfrac{2(n^2+4n-9)}{n-2}$, whose integer
+minimum is $23$, attained only at $n=4$ (continuous minimum at
+$n=2+\sqrt3$). Hence $\lambda_{\min}(23)=1$ \emph{exactly}: the shore passes
+through the Virasoro--Shapiro point, and pure closed-string gravity first
+loses positivity on this trajectory at $D=24$, through its level-4 spin-4
+wave --- matching the exact scan (first negative at $(n,\ell)=(4,4)$ for
+$D=24$, clean at $D=22$ to depth $40$).
+
+\textbf{The straight far edge.} Minimizing $T_n$ over continuous $n$ at large
+$\lambda$ gives the active level $n^*=\sqrt3\,\lambda$ and the exact
+asymptote $D=(12+4\sqrt3)\lambda$; numerically $D/\lambda_{\min}$ rises
+$18.75\to18.92$ over $D=60\to10^4$ against $12+4\sqrt3=18.928\ldots$, with
+the residual $O(1/\lambda)$ oscillation caused by the discreteness of
+$n^*$.
 
 \section{Virasoro--Shapiro thresholds}
-[$D_n(1)=2(n^2+4n-9)/(n-2)$, min $=23$ at $n{=}4$; relation to the
-$D_{\rm crit}(n)$ literature.]
+
+For the string itself the theorem gives the threshold sequence
+$D_n(1)=2(n^2+4n-9)/(n-2)=24,\,23,\,24,\,\tfrac{51}2,\,\tfrac{136}5,\ldots$
+--- an exact refinement, on this trajectory, of the finite-level
+$D_{\rm crit}(n)$ phenomenology known for Veneziano-type amplitudes. Because
+$D_n(1)$ grows linearly, the trajectory endangers VS only within a finite
+window of levels at any fixed $D$; the deep asymptotic bounds of the
+literature arise from other (low-spin) constraints and are complementary to
+the exact finite-level statement proven here.
 
 \section{Conjectured completeness and its battery}
-[Model: alive $\iff D\le\min_n T_n$. Battery: full-spin exact scans, doomed
-classification, zero alarms (to be updated); independent adversarial review.]
+
+\begin{conjecture}\label{conj:model}
+A point $(\lambda,D)$ of the family is consistent with partial-wave
+positivity at all levels iff $D\le\min_{n\ge3}T_n(\lambda)$.
+\end{conjecture}
+
+The conjecture is falsifiable: a single exact negative coefficient at a point
+with $D\le\min_nT_n$ refutes it. Its current battery: $494/494$ agreements
+with exact full-spin scans (all even $\ell\le2n-2$, depth $16$, grid
+$\lambda\in[0.1,10]$, $D\in[4,40]$) with zero alarms of either type; two
+direct doomed-cell executions at the predicted level; and an independent
+adversarial review whose suite (seven attack batteries) found no
+counterexample. The most plausible additional knife --- the $\ell=2n-6$
+trajectory --- is under derivation and will either extend the boundary or
+strengthen the conjecture. In $D=4$ the model predicts (and scans confirm,
+$40/40$ to depth $14$ plus the trivial bound $T_n\ge T_n(0)\ge9>4$) that the
+entire family survives: within these assumptions, four-dimensional gravity is
+\emph{not} forced to be string-like at any finite depth we can reach.
 
 \section{Discussion}
 [Dimension-graded rigidity of closed-string gravity; D=4 freedom; the road to
