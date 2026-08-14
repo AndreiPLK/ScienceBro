@@ -482,3 +482,10 @@ old entries; append corrections as new entries.
   (12/40 at D=30). Analytic shore lambda_min(D) traces the frontier; string
   drowns past D=23 as predicted. Visual: qg-continent.png. Founder's question
   "can we draw the full object?" answered: yes — this is it.
+
+## 2026-08-14 — Zoom-out: the whole creature
+- grav_zoomout.json (lambda 0.05..10, D 4..60, depth 12): the body is an OPEN
+  WEDGE — for every D there survive sufficiently string-y candidates
+  (lambda above the shore); the dead mouth widens with D; the string lane
+  drowns past 23. Visual: qg-zoomout.png. Doctrine elevated: memorize+improve
+  at every step = the main development thread (iteration-doctrine).
