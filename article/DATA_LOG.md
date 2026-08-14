@@ -346,3 +346,18 @@ old entries; append corrections as new entries.
   test"); captions rewritten for lay accuracy (probabilities-never-negative =
   positivity; PROVED refers to the exclusion direction which is proven).
 - Paper compiled: main.pdf, 5 pages (MiKTeX). Next: internal validation.
+
+## 2026-08-14 — Validation battery round 1 + fixes; story videos RU/EN
+- Independent validator (fresh code, no lab imports): PASS 5/5 (razor, a_{2,0}
+  law, nine casualties, q-clock spots, D=6 zero).
+- Release review: 6 blockers found and ALL FIXED in main.tex v2: correct CHR
+  title (PRL 133, 251601), abstract reworded to exclusion-only + mu0>0 caveat,
+  novelty scoped to INSPIRE-citing works, repo link removed pending release
+  package, n=200 wording matched to artifacts, "unexplained" mismatches,
+  finite-difference wording; figures added (atlas + edge map). 6 pages.
+- artifacts_battery.py persists all paper-cited computations (census, stack
+  11994, dichotomy, q-clock + derivative, D checks, fixed-spin) -> re-running
+  after JSON-serialization fix.
+- Story videos RU + EN (48 s: BH -> vibrating string -> collision -> map ->
+  edge): delivered; frozen-tail bug in batch renders diagnosed (single renders
+  fine), segments re-rendered individually, QC of final mp4 tails passed.

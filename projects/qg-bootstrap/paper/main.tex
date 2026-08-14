@@ -14,8 +14,9 @@
 \newcommand{\sgn}{\operatorname{sgn}}
 
 \title{The Island Has Edges:\\ Exact Boundary Laws for Unitary Deformations\\ of the Veneziano Amplitude}
-\author{Andrei Pluzhnik\thanks{ORCID 0009-0005-5660-2603. Code and data:
-\href{https://github.com/AndreiPLK/spacetime-verifier}{github.com/AndreiPLK/spacetime-verifier}.}}
+\author{Andrei Pluzhnik\thanks{ORCID 0009-0005-5660-2603. Code and data are
+released as an ancillary package (repository and DOI to accompany this
+preprint).}}
 \date{August 2026}
 
 \begin{document}
@@ -27,9 +28,11 @@ Cheung, Hillman and Remmen from level truncation and crossing constraints is
 restricted by partial-wave positivity to an ``island'' in parameter space,
 previously mapped numerically at level depth $n\le 10$. We derive exact
 closed-form sign laws for the near-leading Regge partial waves of this family
-at $q=1$ and obtain: (i) the island's left edge is the line
-$r=-(1+\mu_0)/2$, exactly, at every level and in every spacetime dimension
-$D>3$; (ii) the erosion of finite-depth islands is explained cell by cell by a
+at $q=1$ and obtain: (i) nothing survives left of the line
+$r=-(1+\mu_0)/2$ --- an exclusion valid at every level and in every spacetime
+dimension $D>3$ (for $\mu_0\le 0$ the allowed region extends up to this line
+in our scans; for $\mu_0>0$ threshold constraints cut strictly inside it);
+(ii) the erosion of finite-depth islands is explained cell by cell by a
 single linear-in-$n$ law, which also removes $176$ false-positive points from a
 fine-grained depth-$20$ scan; (iii) the remaining boundary is cut by an
 explicit finite set of low-level algebraic curves whose $D$-dependence is a
@@ -43,7 +46,8 @@ measure the exact depth at which unitarity excludes the deformation,
 $n_{\rm crit}\simeq 1.1\,(q-1)^{-1/2}$, and derive the $-1/2$ exponent from
 the quadratic growth of the relative $q$-correction. On the $w=0$ slice our
 edge law reproduces the asymptotic contour result of Mansfield and Spradlin;
-the $w\neq 0$ region is charted here for the first time.
+to our knowledge --- based on a survey of the works citing CHR indexed in
+INSPIRE --- the $w\neq 0$ region has not been treated analytically before.
 \end{abstract}
 
 \section{Introduction}
@@ -180,7 +184,7 @@ independent constraints; a general-$k$ proof is left open.
 A census of first-negative pairs $(n,\ell)$ over all $714$ excluded cells of
 the depth-$40$ map at $\mu_0=0$ shows that \emph{every} binding constraint is
 either (i) a level $n\le 5$ constraint, (ii) the $\ell=n-1$ ladder of
-Theorem~\ref{thm:edge}, or (iii) a domain pole. This motivates:
+Theorem~\ref{thm:edge}, or (iii) a domain pole. This motivates (see Figs.~\ref{fig:atlas}--\ref{fig:edge}):
 
 \begin{conjecture}[Complete characterization, $\mu_0=0$, $D=4$]\label{conj:complete}
 $(r,w)$ is allowed at all depths iff all $a_{n,\ell}\ge 0$ for $n\le 5$
@@ -196,10 +200,32 @@ of the finite-depth scan --- and extends across the $\mu_0$ stack: with the
 binding window taken at the first above-threshold levels
 ($n_{\min}=\min\{n:n\ge 3\mu_0\}$), the analytic verdict matches all six
 $\mu_0\neq 0$ maps up to precisely the thirty doomed cells described above.
-Total: $11{,}994$ exact verdicts, zero mismatches. What remains unproven is
+Total: $11{,}994$ exact verdicts with zero \emph{unexplained} mismatches (the
+thirty doomed cells are finite-depth artifacts of the $n\le 10$ maps,
+predicted by the ladder and verified by direct evaluation in four cases). What remains unproven is
 that no constraint with $\ell\le n-2$, $n>n_{\min}+4$ ever binds; supporting
 evidence includes the finite kill-windows of
 Eqs.~\eqref{eq:k2}--\eqref{eq:k3} and fixed-spin positivity below.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_atlas.png}
+\caption{Positivity islands for seven mass shifts $\mu_0$ (exact rational
+scans; cyan = allowed). Dashed line: the exclusion edge $r=-(1+\mu_0)/2$. For
+$\mu_0\le 0$ the island reaches the line; for $\mu_0>0$ threshold constraints
+cut strictly inside it.}
+\label{fig:atlas}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{fig_edge.png}
+\caption{Fine boundary scan at resolution $0.02$ ($\mu_0=0$, depth $n\le 20$).
+Cyan: allowed; grey: excluded by direct computation; pink diamonds: the $176$
+points admitted by the finite-depth scan but excluded by the ladder law, each
+with its predicted death depth; dashed line: $r=-1/2$.}
+\label{fig:edge}
+\end{figure}
 
 \textbf{Threshold structure at $\mu_0>0$.} The dominant killers sit at the
 first above-threshold level ($n_{\min}=2,4,6$ for $\mu_0=3/5,6/5,9/5$),
@@ -221,8 +247,9 @@ pinned at $-(1+\mu_0)/2$ in every dimension.
 
 \textbf{Fixed-spin tails.} Localizing the projection at $x=1$ gives
 $a_{n,\ell}\sim (2\ell+1)\,C(r,w)/(n\ln n)$ with $C>0$ across the domain; the
-$(2\ell+1)$ scaling is confirmed exactly in numerics up to $n=200$, while the
-constant converges logarithmically. This part is heuristic-plus-numeric.
+$(2\ell+1)$ scaling agrees to three digits between $\ell=0$ and $\ell=2$ in
+exact numerics, with positivity checked up to $n=200$ at representative points,
+while the constant converges logarithmically. This part is heuristic-plus-numeric.
 
 \section{The $q$-clock}
 
@@ -241,7 +268,8 @@ $n_{\rm crit}$ & $34$ & $15$ & $11$ & $8$ & $5$ & $4$\\
 \end{center}
 consistent with $n_{\rm crit}\simeq 1.1\,(q-1)^{-1/2}$ over two decades (the
 $q=1$ control is clean to $n=25$; the killer is low spin, $\ell=0,1$, not the
-ladder). The exponent follows from the exact logarithmic derivative
+ladder). The exponent follows from the logarithmic derivative (computed as an exact
+finite difference at step $10^{-6}$)
 $-\partial_q \log a_{n,0}\big|_{q=1}\approx 0.3\,n^2$: the relative
 $q$-correction grows quadratically (the spectrum drift $[n]_q\approx
 n\bigl(1+\tfrac{(n-1)(q-1)}{2}\bigr)$ accumulates), so the crossing occurs at
@@ -286,8 +314,8 @@ independent adversarial review recorded in the repository.
 
 \begin{thebibliography}{9}
 \bibitem{CHR2024} C.~Cheung, A.~Hillman and G.~N.~Remmen,
-``Uniqueness Criteria for the Veneziano Amplitude,''
-arXiv:2406.02665.
+``Bootstrap Principle for the Spectrum and Scattering of Strings,''
+Phys.\ Rev.\ Lett.\ 133, 251601 (2024), arXiv:2406.02665.
 \bibitem{MS2024} G.~Mansfield and M.~Spradlin,
 ``On Unitarity of the Hypergeometric Amplitude,''
 arXiv:2409.09561.
