@@ -80,3 +80,18 @@ lambda = 1 (pure VS) roughly like 1 +- 1.1/n; within it the kill threshold is
 D_n(lambda) = -p_n/q_n. General-n closed forms of q_n, p_n and the full
 lambda_min(D) map: next slice. Status: derived + numerically verified;
 independent review pending (Card-A standard).
+
+
+## SLICE 2 (2026-08-14): closed form of the VS threshold sequence
+
+  D_n(1) = 2(n^2 + 4n - 9)/(n - 2)   — matches all computed n=3..12 exactly
+                                       (10/10); minimum over n is 23 at n=4.
+
+Hence pure Virasoro-Shapiro keeps a_{n,2n-4} >= 0 iff D <= 23; first violation
+at D=24 via (n,l)=(4,4) — previously our measured cliff, now a formula. Since
+D_n(1) grows ~2n, this trajectory endangers VS only in a finite n-window for
+any fixed D — the asymptotic D<=10 lore must come from low-spin constraints
+(next slice target). Dangerous lambda-windows (l_n, u_n) computed exactly for
+n=3..12, shrinking toward lambda=1; their closed form and the full
+lambda_min(D) exclusion map are the remaining pieces. Status: derived +
+verified 10/10; independent review pending.

@@ -435,3 +435,8 @@ old entries; append corrections as new entries.
   (min 23 at n=4) EXPLAIN our measured D-cliff to the unit; razor zero D*=45
   at lambda=2 confirmed (+/- bracketing at 44/46). Dangerous lambda-window
   shrinks to pure VS like ~1.1/n. Note: research/gravity-card.md.
+
+## 2026-08-14 — Gravity slice 2: VS threshold in closed form
+- D_n(1) = 2(n^2+4n-9)/(n-2), verified 10/10 for n=3..12; min = 23 at n=4.
+  The D-cliff of pure closed-string gravity is now a formula. lambda-windows
+  for n=3..12 computed exactly.
