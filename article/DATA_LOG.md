@@ -471,3 +471,7 @@ old entries; append corrections as new entries.
 ## 2026-08-14 — Gravity slice 5: lambda_min(D) exact; lambda_min(23)=1
 - Single curve: onset D=9 at lambda=0; exact surd values; reaches the string
   exactly at D=23; beyond it for D>=24. n=3->n=4 dominance switch at D~18.
+
+## 2026-08-14 — M2 main frame delivered: THE FATE CURVE
+- article/visuals/qg-fate-curve.png: exact lambda_min(D) curve, dead zone,
+  string line, magic point (23,1), our-world marker. Lesson delivered (below).
