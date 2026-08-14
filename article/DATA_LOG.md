@@ -494,3 +494,6 @@ old entries; append corrections as new entries.
 - T_n = 3(2n-3)/(n(n-2))(lambda^2+(2n-2)lambda+1)+2n, verified 12/12;
   true shore (n<=400): lambda_min(23)=1 survives; asymptote D=(12+4sqrt3)lambda
   (n* = sqrt(3) lambda). The unfinished-figure question is answered exactly.
+
+## 2026-08-15 night — Complete-model battery: 494/494, zero alarms
+- alive <=> D <= min_n T_n matched every exact verdict; executions confirmed.

@@ -188,3 +188,14 @@ asymptotic edge. Founder's "figure is unfinished" instinct directly produced
 the general law + the asymptote. Status: derived + verified numerically;
 independent review pending (Card-A standard). Next: full-l envelope check,
 review, paper 2.
+
+
+## SLICE 7 (night 2026-08-14/15): the complete-model battery — CLEAN
+
+Model test (alive <=> D <= min_n T_n) vs exact full-spin scans (all even l,
+depth 16) over 494 grid points (lambda 0.1..10, D 4..40):
+  AGREE 494/494 | doomed-discrepancies 0 | ALARMS (other knives) 0.
+Plus two direct executions of doomed cells at predicted level n=4 (both
+confirmed with sign flip +/-). The conjectured complete model of the
+gravitational island has survived its first total battery. Independent
+adversarial review running. Artifact: results/model_test.json.
