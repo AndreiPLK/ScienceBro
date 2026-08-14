@@ -168,3 +168,23 @@ matching D_n(1) min=23). D<=9: this knife touches nothing => D=4 trivially
 safe for all lambda on this trajectory. Dominant level switches n=3 -> n=4
 between D=16 and 20. Remaining for paper: general-n T_n(lambda), full-l
 corrected scans, independent review.
+
+
+## SLICE 6 (2026-08-14): THE GENERAL LAW and the true shore
+
+  T_n(lambda) = [3(2n-3)/(n(n-2))] * (lambda^2 + (2n-2)lambda + 1) + 2n
+  positivity of a_{n,2n-4}  <=>  D <= T_n(lambda);  TRUE shore = min over n.
+
+Verified exactly against all extracted brackets n=3..14 (12/12 identical).
+Envelope computed to n=400: lambda_min(23) = 1 SURVIVES the full envelope
+(the magic point is real, not an artifact of few levels). Large-D asymptote
+derived: optimal level n* = sqrt(3)*lambda, giving
+
+  D  ->  (12 + 4*sqrt(3)) * lambda_min,   slope 1/(12+4sqrt3) ~ 0.0528,
+
+numerics: D/lambda_min = 18.96, 18.75, 18.76, 18.83 at D=60..400 vs
+12+4sqrt3 = 18.928 — the creature's mouth closes onto an exactly straight
+asymptotic edge. Founder's "figure is unfinished" instinct directly produced
+the general law + the asymptote. Status: derived + verified numerically;
+independent review pending (Card-A standard). Next: full-l envelope check,
+review, paper 2.

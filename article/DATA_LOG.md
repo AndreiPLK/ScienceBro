@@ -489,3 +489,8 @@ old entries; append corrections as new entries.
   (lambda above the shore); the dead mouth widens with D; the string lane
   drowns past 23. Visual: qg-zoomout.png. Doctrine elevated: memorize+improve
   at every step = the main development thread (iteration-doctrine).
+
+## 2026-08-14 — GENERAL LAW: T_n closed form + straight asymptote
+- T_n = 3(2n-3)/(n(n-2))(lambda^2+(2n-2)lambda+1)+2n, verified 12/12;
+  true shore (n<=400): lambda_min(23)=1 survives; asymptote D=(12+4sqrt3)lambda
+  (n* = sqrt(3) lambda). The unfinished-figure question is answered exactly.

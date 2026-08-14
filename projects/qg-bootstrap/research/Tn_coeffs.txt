@@ -1,0 +1,12 @@
+n=3: -(lambda + 2)**2*(D - 3*lambda**2 - 12*lambda - 9)/8
+n=4: -(lambda + 3)**4*(8*D - 15*lambda**2 - 90*lambda - 79)/64
+n=5: -(lambda + 4)**6*(5*D - 7*lambda**2 - 56*lambda - 57)/64
+n=6: -5*(lambda + 5)**8*(8*D - 9*lambda**2 - 90*lambda - 105)/1024
+n=7: -(lambda + 6)**10*(35*D - 33*lambda**2 - 396*lambda - 523)/2048
+n=8: -7*(lambda + 7)**12*(16*D - 13*lambda**2 - 182*lambda - 269)/16384
+n=9: -3*(lambda + 8)**14*(7*D - 5*lambda**2 - 80*lambda - 131)/8192
+n=10: -3*(lambda + 9)**16*(80*D - 51*lambda**2 - 918*lambda - 1651)/262144
+n=11: -5*(lambda + 10)**18*(33*D - 19*lambda**2 - 380*lambda - 745)/524288
+n=12: -11*(lambda + 11)**20*(40*D - 21*lambda**2 - 462*lambda - 981)/4194304
+n=13: -(lambda + 12)**22*(143*D - 69*lambda**2 - 1656*lambda - 3787)/4194304
+n=14: -13*(lambda + 13)**24*(56*D - 25*lambda**2 - 650*lambda - 1593)/67108864
