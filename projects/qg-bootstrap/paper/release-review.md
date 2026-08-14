@@ -1,271 +1,192 @@
 # Release review — projects/qg-bootstrap/paper/main.tex
 
-Reviewer: release-reviewer agent, 2026-08-14.
-Scope: claim-evidence alignment, overclaim check, citation verification (arXiv API +
-INSPIRE + local fulltexts + downloaded MS PDF), completeness, peer-review risk.
-Verdict: **NOT RELEASE-READY — 6 blockers.** All are fixable; none invalidates the
-underlying mathematics (every derivation-level claim traced clean).
+Reviewer: release-reviewer agent. v1 review 2026-08-14 (6 blockers); v2 re-review
+2026-08-14 after fixes (paper recompiled: 6 pages, 2 figures).
+
+## VERDICT (v2): all 6 blockers CLOSED (B4 conditionally). Release-ready
+**contingent on** (a) the code/data package actually being assembled, published and
+DOI-minted before submission (the paper now promises it in present tense), and
+(b) human approval. Remaining items are warnings only. No agent submits anything.
 
 ---
 
-## BLOCKERS
+## v2 PER-BLOCKER RE-CHECK
 
-### B1. Wrong title in the CHR citation (bibliography, \bibitem{CHR2024})
-main.tex cites arXiv:2406.02665 as "Uniqueness Criteria for the Veneziano Amplitude".
-The actual title — verified 2026-08-14 against the arXiv API, INSPIRE, and the local
-fulltext `research/2406.02665_fulltext.txt` (page 1) — is:
-**"Bootstrap Principle for the Spectrum and Scattering of Strings"**,
-C. Cheung, A. Hillman, G. N. Remmen, arXiv:2406.02665, **Phys. Rev. Lett. 133, 251601 (2024)**.
-Citing the anchor paper of the entire work under an invented title is an instant
-credibility kill at review. Fix title + add journal reference.
+### B1 — CHR citation. CONFIRMED CLOSED.
+\bibitem{CHR2024} now reads "Bootstrap Principle for the Spectrum and Scattering of
+Strings," Phys. Rev. Lett. 133, 251601 (2024), arXiv:2406.02665 — matches arXiv API,
+INSPIRE publication record, and the local fulltext. Correct.
 
-### B2. Attainment overclaim in the abstract (result (i)) and "pinned" phrasing
-Abstract: "the island's left edge **is** the line r=-(1+mu0)/2, exactly, at every level
-and in every spacetime dimension D>3". What is proven (Theorem 1) is one-sided:
-**exclusion** of r < -(1+mu0)/2 (w>0). Attainment is (a) empirical-only at mu0<=0
-(depth-80 scans), and (b) **false at mu0>0 by our own data**: DATA_LOG 2026-08-13
-("For mu0 > 0 the island is cut tighter than the theorem line... Theorem is one-sided
-(outer bound)") and the atlas note ("mu0>0 gap = threshold scalar"). The independent
-review (left-edge-theorem-review.md, Overclaim check) explicitly required splitting
-"analytic exclusion bound" from "empirical attainment"; the fix was applied in the
-research note but NOT carried into the paper's abstract. Same issue in abstract (iii)
-and Sec. 5: "its left edge stays pinned at -(1+mu0)/2 in every dimension".
-Allowed wording: see W-section "Allowed public wording", claim 1.
+### B2 — attainment overclaim. CONFIRMED CLOSED.
+Abstract (i) is now exclusion-only: "nothing survives left of the line ... an
+exclusion valid at every level and in every spacetime dimension D>3", with the
+mu0<=0 attainment caveat ("extends up to this line in our scans") and the mu0>0
+threshold note ("cut strictly inside it"). Figure captions use "exclusion edge" and
+repeat the mu0>0 caveat. Residual nits (not blocking, logged as W12): "left edge
+stays pinned" survives in abstract (iii) and Sec. 5, and fig_atlas's embedded title
+says "left edge r=-(1+mu0)/2" — tolerable now that (i) fixes the exclusion sense,
+but "exclusion edge stays pinned" would be cleaner.
 
-### B3. "charted here for the first time" (abstract, last sentence) — "first" gate not passed at that scope
-The only novelty gate on record is the frozen novelty radar (microproblem-cards.md,
-2026-08-13): no treatment of w != 0 found **among the 49 INSPIRE-citing works of CHR**.
-That gate supports a scoped statement, not an unqualified "for the first time".
-Required rewording: "the w != 0 region, which is not treated in [MS2024] and, among
-the works citing CHR (INSPIRE, August 2026), has no dedicated analysis we are aware of."
-(Sec. 7's phrasing "Within the 49 works citing CHR we found no other treatment" is
-already correctly scoped — mirror it in the abstract.)
+### B3 — novelty scoping. CONFIRMED CLOSED.
+Abstract now: "to our knowledge --- based on a survey of the works citing CHR
+indexed in INSPIRE --- the w!=0 region has not been treated analytically before."
+Matches the gate that actually exists (novelty radar, microproblem-cards.md,
+INSPIRE citation count re-verified = 49 on 2026-08-14). Recommend adding the survey
+date (W4).
 
-### B4. Repro link points to the wrong repository; no public code/data/DOI for this project
-Footnote: "Code and data: github.com/AndreiPLK/spacetime-verifier". Verified via GitHub
-API 2026-08-14: that repo is the **AInstein audit** ("An independent curvature evaluator
-for machine-learned spacetimes"; contents: verifier/, audit/, proof/ ...). It contains
-**none** of the qg-bootstrap island code or data. The Reproducibility section promises
-"the two-route evaluator, all maps and scans, the razor tests, the independent
-reviewer's attack script, and the append-only research log" — currently published
-nowhere. Required: publish the qg-bootstrap package (new repo, or a clearly separated
-subtree) + Zenodo DOI, and point the footnote there. Publication itself = human action.
+### B4 — repro link. CONDITIONALLY CLOSED.
+The wrong spacetime-verifier link is gone; footnote now promises an "ancillary
+package (repository and DOI to accompany this preprint)". Honest as a forward
+commitment. BUT the Reproducibility section still speaks in present tense ("the
+repository contains...", "outputs are published") — true only once the package
+ships. Release gate: assemble + publish the package (manifest below) and insert the
+real repo URL + DOI before any submission. Until then this blocker is closed on
+wording, open on substance.
 
-### B5. Paper numbers with no preserved artifact under results/ (experiment-contract gap)
-Backed only by prose in DATA_LOG.md / left-edge-theorem.md, with no script in lab/ and
-no results/*.json:
-- **q-clock table** 34/15/11/8/5/4 and the constant 1.1 (Sec. 6) — no scan script, no artifact;
-- **g(n) ~ 0.3 n^2 log-derivative** (Sec. 6) — no artifact;
-- **odd/even dichotomy, k=1..7** incl. the n=57 measurement and the test point
-  (r,w)=(-0.52,1) — the (r,w) attribution for the k=3 test appears ONLY in main.tex
-  (notes/log record "predicted 57, measured 55..59" without coordinates) — unverifiable;
-- **killer census over 714 excluded cells** (Sec. 5) — no artifact;
-- **stack-wide 11,994-point comparison** (the headline number) — component maps exist
-  (7 x 1369 + 2411 = 11,994 checks out) but the comparison run itself has no artifact;
-- **D=6,10 checks** ("10/10 incl. four exact zeros") — no artifact;
-- **doomed-cell deep verifications** (4 of 30) — no artifact;
-- **fixed-spin n=200 spot checks** — artifact n2_fixed_spin.json stops at n=100.
-Required before release: commit the scripts + raw outputs (results/raw/, immutable) for
-each, or delete/downgrade the corresponding numbers. This is also what makes B4's
-"all maps and scans" sentence true.
+### B5 — unpersisted numbers. CONFIRMED CLOSED.
+New artifact results/paper_artifacts.json (generator lab/artifacts_battery.py,
+imports the two-route-validated evaluator) verified value-by-value against the
+paper, and spot-reproduced by re-execution (census, q=1.1 clock entry, k=3
+threshold signs, fixed-spin n=200 point — all reproduced exactly):
+- Killer census: 714 excluded cells, 27 distinct killers, machine-checked that
+  every killer satisfies (n<=5) OR (l=n-1 ladder, entries (4,3)...(17,16)) OR
+  domain — exactly the paper's trichotomy.
+- Stack comparison: total_points=11,994; 30 coarse discrepancies, ALL
+  map-allowed/analytic-doomed (9/9/9 at mu0=-9/5,-6/5,-3/5, 3 at mu0=3/5; r values
+  0.3/0.0/-0.3/-0.9 = exactly 0.1 left of the shifted edges); fine_mismatches=0.
+  Backs "11,994 exact verdicts with zero unexplained mismatches" as now worded.
+- Dichotomy: k=1..7 at n=41..47 — odd beyond-edge negative, even positive, all
+  inside positive; thresholds: k=3 at (r,w)=(-13/25,1)= (-0.52,1) sign +@55/-@59
+  (paper: "predicts n=57...measured between 55 and 59" — now artifact-backed,
+  coordinates included); k=1 at w=17/10 sign +@84/-@86 (predicted 85).
+- q-clock: first negatives at n=34/15/11/8/5/4 for q-1=0.001...0.1 (plus extra q
+  values), killers at l in {0,1} as claimed; q=1 control clean to n=25;
+  g/n^2 = 0.56->0.29 over n=5..30, consistent with "~0.3 n^2".
+- D-universality: a_{10,9}=0 exactly and a_{11,10}<0 at D=6 and D=10 (symbolic
+  Gegenbauer route).
+- Fixed-spin: positivity at n=50/100/200, l=0,2, at 4 representative points incl.
+  near-edge — backs the new n=200 wording.
+Residuals (W13): the "(2l+1) agrees to three digits" figure is still note-only
+(battery records signs, not ratios); the note's fuller "10/10 at D=6,10" set is
+persisted only as the 2 zero-checks (paper wording is covered).
 
-### B6. "the (2l+1) scaling is confirmed exactly in numerics up to n=200" (Sec. 5, fixed-spin) — contradicts the artifact
-results/n2_fixed_spin.json reaches n=100; the night-N2 note records "l=0 vs l=2 ratios
-coincide **to 3 digits**" and C drifting logarithmically (0.27..0.86 at n=200).
-"Confirmed exactly" fails the confirmation gate (3-digit agreement is not exact; the
-n=200 points are unpreserved). Allowed wording: "consistent with (2l+1) scaling to
-three digits in exact-arithmetic scans up to n=100 (spot checks to n=200); the constant
-converges only logarithmically." The paragraph's closing label "heuristic-plus-numeric"
-is good — keep it.
+### B6 — fixed-spin wording. CONFIRMED CLOSED.
+Now: "(2l+1) scaling agrees to three digits between l=0 and l=2 in exact numerics,
+with positivity checked up to n=200 at representative points" — accurate to the
+artifacts and honestly labeled "heuristic-plus-numeric". "Confirmed exactly" gone.
 
----
-
-## WARNINGS
-
-- **W1. "zero mismatches" accounting (abstract (iv) + Sec. 5).** Against the raw N=10
-  mu0!=0 maps there are exactly 30 disagreements; all are theorem-predicted doomed
-  cells, but only 4/30 were verified by direct deep evaluation (with exact marginal
-  zeros). Say "zero unexplained mismatches" and state that 26/30 doomed verdicts rest
-  on the proven ladder law rather than direct evaluation.
-- **W2. Abstract dichotomy sentence unscoped.** "every odd near-leading trajectory
-  eventually turns negative at a threshold our closed forms predict exactly" — the body
-  is honest (empirical for k<=7; closed forms only k<=3; general-k open); the abstract
-  should carry "(observed for k<=7)".
-- **W3. "exact logarithmic derivative" (Sec. 6).** DATA_LOG 2026-08-14: it is a
-  **finite difference at h=1e-6** (computed in exact arithmetic). Reword. Also the
-  exponent "derivation" is first-order (predicts constant 1.8 vs measured 1.1; note
-  says "higher orders kill sooner" and "analytic derivation open") — add one clause
-  ("at first order" / "mechanistic"), and keep abstract's "derive the -1/2 exponent"
-  only if that clause is present.
-- **W4. "49 works citing CHR".** Re-verified 2026-08-14 via INSPIRE: citation_count=49
-  today — but it is a moving number. Date-stamp it: "the 49 citing works (INSPIRE,
-  August 2026)".
-- **W5. No evidence record for CHR.** evidence-records.jsonl contains only EV-QG-0002
-  (Mansfield-Spradlin). Add EV-QG-0001 for 2406.02665 (local PDF sha256 is already in
-  the reading notes header).
-- **W6. Bibliography lacks journal references.** CHR = Phys. Rev. Lett. 133, 251601
-  (2024); MS = JHEP 02 (2025) 145 (INSPIRE-verified). Cite published versions.
-- **W7. Conjecture window under-specified (Sec. 5).** The stack-wide analytic verdict
-  used the window n_min <= n <= n_min+4 (research note); the paper says only "binding
-  window taken at the first above-threshold levels". State the window; also state that
-  the six mu0!=0 maps are depth N=10 (artifacts confirm nmax=10).
-- **W8. No figures at all.** graphicx is loaded but unused; the island atlas / edge-map
-  visuals exist (article/visuals/). A numerics-heavy bootstrap paper with zero figures
-  will read as unfinished; include at least the mu0-stack atlas with the edge law
-  overlaid and the q-clock log-log fit.
-- **W9. Abstract result (iii) reads as established completeness.** "the remaining
-  boundary is cut by an explicit finite set of low-level algebraic curves" — the
-  completeness of that finite set is Conjecture 1. Insert "conjecturally" (the body and
-  Discussion label it correctly; the abstract must too).
-- **W10. Theorem 1 ships only a "proof sketch".** The full derivation exists and passed
-  independent review + 6/6 adversarial attacks; for a theorem carrying the paper, put
-  the complete (short) proof in an appendix. Cheap insurance at review.
-- **W11. "island" is our coinage** — current text does not attribute it to CHR (good);
-  keep it that way in press materials too.
+Also verified in v2: "zero unexplained mismatches" wording present with the correct
+accounting sentence (30 doomed = finite-depth artifacts, 4 directly verified);
+q-clock derivative now "computed as an exact finite difference at step 10^-6";
+figures fig_atlas.png / fig_edge.png exist, are included in the compiled PDF
+(pages 4-5 of 6), captions are exclusion-correct, in-figure numbers self-consistent
+(2411 = 1145+1090+176; atlas panels match map artifacts 399/504/615/655/605/455/302);
+compiled PDF re-scanned: no local paths, no secrets, no stale spacetime-verifier link.
 
 ---
 
-## OK-LIST (verified claim-by-claim)
+## WARNINGS (open; none blocking)
 
-Citations and attributions:
-- arXiv:2409.09561 = "On Unitarity of the Hypergeometric Amplitude", Gareth Mansfield,
-  Marcus Spradlin — title and authors VERIFIED (arXiv API, 2026-08-14). 38 pp as in EV-QG-0002.
-- MS Theorem 11 / Eq. (5.16): odd-Delta factor (2r + m^2 + 1) — VERIFIED directly in the
-  downloaded arXiv PDF (p.27); matches EV-QG-0002 and the paper's Sec. 7 usage; the
-  w=0 edge-line agreement claim is correct, and the paper correctly says their result
-  is asymptotic-only and w=0-only.
-- CHR Eq. (16) = level-n residue R(n,t) in q-Pochhammer form — VERIFIED in the local
-  fulltext; the paper's Eq. (1) is its correctly stated q->1 reduction (matches the
-  two-route-validated form in lab/repro_r4_positivity_spot.py).
-- CHR Fig. 1 depth n<=10, D=4; threshold caveat mu(n)>=4mu0; q>1 asymptotic exclusion;
-  "region diminishes for D>4" — all match the reading notes.
-
-Numbers with artifact/log support:
-- 11,994 = 7x1369 + 2411 — arithmetic and components check (fig1_map_*.json all
-  total=1369; fine_boundary_mu0_N20.json points=2411).
-- 1369/1369 coarse (N=40) and boundary re-test at depth 80: boundary_N80_mu0.json —
-  42 boundary cells, fell_at_N80=[], stable=true.
-- 176 false positives removed: fine_boundary_mu0_N20_corrected.json,
-  theorem_correction.false_positives_removed=176; allowed 1321 -> 1145.
-- 9 casualties: N=10 664 -> N=20 655 (artifacts), all at r=-3/5, kill law n=10w+1
-  consistent with r+1/2=-1/10; (11,10)...(19,18) matches the note.
-- 30 doomed cells = 9+9+9 (mu0=-9/5,-6/5,-3/5) + 3 (mu0=3/5); "four verified directly"
-  matches the note (artifact gap -> B5).
-- 714 excluded cells = 1369 - 655 (consistent with N=40 map).
-- 8 razor zeros = 4 (mu0 = 0 twice incl. off-grid (-13/25,1/2) n=25; mu0=+-3/5 at
-  n=20/15) + 4 at D=6,10 — documented in the note (D=6/10 artifact gap -> B5).
-- 6/6 attacks, exit 0: script exists (lab/attack_left_edge.py), run recorded in note
-  header + DATA_LOG; includes route1-vs-route2 at mu0!=0 (closes review gap E1).
-- Thresholds: k=3 predicted 57, measured 55..59; k=1 at w=17/10 predicted 85, measured
-  +84/-86 — note-supported (paper cites only 57; coordinates issue -> B5).
-- q-clock 34/15/11/8/5/4 consistent with 1.1(q-1)^{-1/2} (checked: 34.8/15.6/11/7.8/4.9/3.5);
-  q=1 control clean to n=25; killer l=0,1; tolerance (1.1/10)^2 ~ 0.012 — all
-  note-supported (artifact gap -> B5).
-- n_min = 2,4,6 for mu0=3/5,6/5,9/5; threshold scalar curve incl. mu0=2/3 factorization
-  (3r+4)(3r+3w+1)/9 — match the note.
-- a_{2,0}: 3(1+r)(r+w)+1; a_{3,0} cubic; twenty n<=5 curves; a_{2,0} D-form
-  (1+r)(r+w)+1/(D-1); k=2 constant 24(2n-1)/(n-1); k=3 bracket — all character-for-
-  character consistent with note + review.
-
-Overclaim hygiene (where it is already right):
-- Conjecture 1 is a labeled \conjecture; Discussion calls it "one conjectural
-  completeness statement"; "What remains unproven..." paragraph present.
-- "proven" used exactly twice-worth: Theorem 1 (reviewed, attacked, survived) and the
-  k=2 all-n identity (reviewer's polynomial-identity proof) — both gates passed.
-- k=3 honestly labeled "verified against brute force n=4..9".
-- Fixed-spin section explicitly labeled "heuristic-plus-numeric".
-- E2 (n=3mu0 identically-zero case), E3 (explicit domain), E4 (redundant clause
-  removed) — all review fixes present in the paper.
-- Two-route evaluator description ("up to a positive l-dependent normalization") honest.
-- "discovered/refuted/novel" — not used. "confirmed" used only for deterministic exact
-  checks (except B6).
-
-Completeness/security:
-- AI disclosure present and accurate (Reproducibility and AI disclosure section).
-- Compiled main.pdf scanned: no local paths, no usernames, no secrets, no temp paths;
-  only links = GitHub footnote (wrong target -> B4) + ORCID (correct: 0009-0005-5660-2603).
-- License: quoting equations/results from arXiv papers with citation is fine; own code
-  MIT; arXiv PDFs under research/pdfs/ are working copies, not for redistribution in
-  the release package.
+- **W2.** Abstract dichotomy sentence still unscoped: "every odd near-leading
+  trajectory eventually turns negative at a threshold our closed forms predict
+  exactly" — body says (correctly) empirical for k<=7, closed-form thresholds only
+  k<=3, general-k open. Add "(observed for k<=7)" to the abstract.
+- **W4.** Date-stamp the INSPIRE survey: "49 works citing CHR (INSPIRE, August 2026)"
+  — the count is a moving number (re-verified 49 on 2026-08-14).
+- **W5.** evidence-records.jsonl still lacks an EV record for CHR 2406.02665
+  (only EV-QG-0002/MS exists). Add EV-QG-0001 before release.
+- **W6.** MS bibitem still lacks the journal reference: JHEP 02 (2025) 145
+  (INSPIRE-verified). CHR is fixed; do the same for MS.
+- **W9.** Abstract (iii) still reads as established completeness ("the remaining
+  boundary is cut by an explicit finite set of low-level algebraic curves") —
+  insert "conjecturally" (the body/Conjecture 1/Discussion are correctly labeled).
+- **W10.** Theorem 1 ships as "proof sketch" only; the full short proof exists
+  (left-edge-theorem.md, independently reviewed) — put it in an appendix.
+- **W12.** "left edge stays pinned" (abstract (iii), Sec. 5) and fig_atlas's
+  embedded title "left edge r=-(1+mu0)/2" — prefer "exclusion edge" for
+  consistency with the corrected abstract (i).
+- **W13.** "(2l+1) to three digits" rests on the research note; persist the ratio
+  data (one small addition to artifacts_battery.py). The battery's analytic verdict
+  also includes an "r=edge and w<0 -> excluded" clause that Conjecture 1 does not
+  state (review E4 showed it redundant — the n=1 block kills those points); verify
+  redundancy in code or align the predicate exactly with the conjecture text.
+- **W14 (new, figures).** fig_edge.png contains viewer scrollbar artifacts (right +
+  bottom edges) — crop. Both figures are dark neon-styled; fine for arXiv, but
+  print/journal versions usually want light background. Atlas mixes depths across
+  panels (mu0=0 at N>=20 -> 655, others N=10) — say so in the caption.
+- **W15.** Reproducibility section present tense ("outputs are published") — becomes
+  true only when the B4 package ships; keep in sync with the actual release moment.
 
 ---
 
-## ALLOWED PUBLIC WORDING (per claim, after fixes)
+## OK-LIST (v1 verifications that remain valid)
 
-1. **Edge law**: "We prove that positivity fails for all r < -(1+mu0)/2, w > 0, at every
-   level n > w/|r+(1+mu0)/2|, in every dimension D > 3 — an exact, dimension-universal
-   exclusion bound. At mu0 <= 0 the observed island reaches this bound (empirically, to
-   depth 80); at mu0 > 0 threshold constraints cut strictly inside it."
-   NOT allowed: "the island's left edge **is** the line ... exactly" / "pinned" without
-   the exclusion-vs-attainment split.
-2. **Completeness**: "conjecturally complete characterization; consistent with 11,994
-   exact-rational verdicts with zero unexplained mismatches (30 finite-depth map
-   disagreements are all theorem-predicted doomed cells, 4 verified by deep evaluation)."
-   NOT allowed: completeness as fact; unqualified "zero mismatches".
-3. **k=2 identity**: "proven for all n" — allowed (gate passed).
-4. **k=3 / dichotomy**: "verified n=4..9" / "observed for k <= 7; general-k proof open"
-   — allowed only with scope.
-5. **q-clock**: "measured exact exclusion depths, consistent with 1.1 (q-1)^{-1/2};
-   the -1/2 exponent explained at first order by the finite-difference log-derivative
-   g(n) ~ 0.3 n^2 (constant not reproduced at first order)."
-   NOT allowed: "exact logarithmic derivative"; "derived" without the first-order caveat.
-6. **Novelty**: "no dedicated analysis of the w != 0 region among the 49 works citing
-   CHR (INSPIRE, August 2026)". NOT allowed: unscoped "for the first time".
-7. **Fixed-spin tails**: "heuristic-plus-numeric; (2l+1) scaling consistent to three
-   digits up to n=100". NOT allowed: "confirmed exactly".
-8. **MS relation**: "our exact finite-n law reduces on the w=0 slice to the same
-   critical line as their asymptotic Theorem 11" — allowed (verified against their PDF).
+- MS 2409.09561 title/authors verified (arXiv API); Theorem 11 / Eq. (5.16) odd-Delta
+  factor (2r+m^2+1) verified in the downloaded PDF (p.27); w=0 edge-line agreement
+  claim correct, asymptotic-only/w=0-only caveats correct.
+- CHR Eq. (16) residue verified in local fulltext; paper Eq. (1) is its correct q->1
+  reduction; Fig. 1 depth n<=10 D=4, threshold caveat mu(n)>=4mu0, q>1 asymptotic
+  exclusion all match reading notes.
+- 11,994 = 7x1369 + 2411; fig1_map_*.json totals 1369 each; fine 2411; 176 removed
+  (1321->1145); 9 casualties (664->655, r=-3/5, n=10w+1); 42 boundary cells stable
+  at depth 80; 8 razor zeros accounting (4 at D=4/mu0 variants + 4 at D=6,10);
+  6/6 attack script (lab/attack_left_edge.py) exit 0 on record.
+- k=2 identity proven all n (reviewer's polynomial identity, constant 24(2n-1)/(n-1));
+  k=3 bracket character-identical to the note, verified n=4..9; domain/E2/E3/E4
+  review fixes present; Conjecture properly labeled in body; fixed-spin labeled
+  heuristic; "proven" used only where gates passed; no "discovered/refuted/novel".
+- AI disclosure present; ORCID correct; license posture fine (MIT own code; cited
+  formulas fine; don't ship third-party arXiv PDFs in the package).
 
----
+## ALLOWED PUBLIC WORDING — unchanged from v1 (section retained)
 
-## RELEASE CHECKLIST (templates/release-checklist.yaml, filled)
+1. Edge law: exclusion proven (every level, every D>3); attainment empirical at
+   mu0<=0; threshold constraints cut inside the line at mu0>0. No "the left edge IS
+   the line" without this split.
+2. Completeness: "conjecturally complete"; "11,994 exact verdicts, zero unexplained
+   mismatches (30 doomed cells predicted by the ladder, 4 verified directly)".
+3. k=2 identity: "proven for all n" — allowed.
+4. Dichotomy: "observed for k<=7; general-k proof open".
+5. q-clock: "measured, consistent with 1.1(q-1)^{-1/2}; exponent explained at first
+   order via finite-difference log-derivative g(n)~0.3n^2".
+6. Novelty: only the INSPIRE-scoped "to our knowledge" form (now in the paper).
+7. Fixed-spin: "heuristic-plus-numeric; three-digit (2l+1) agreement; positivity
+   checked to n=200" — as now worded.
+8. MS relation: "our exact finite-n law reduces on the w=0 slice to their asymptotic
+   critical line" — allowed.
+
+## RELEASE CHECKLIST (templates/release-checklist.yaml, v2)
 
 ```yaml
 project_id: "qg-bootstrap"
-clean_clone_test: fail        # no public package exists for this project yet (B4)
-environment_lock: pass        # uv.lock in repo; exact-rational stack, no GPU deps
-test_suite: pending           # run `uv run sb check` on the final package
-citation_audit: fail          # B1 (CHR title wrong); W6 (journal refs missing)
-license_audit: pass           # MIT own code; cited formulas fine; don't ship arXiv PDFs
-data_availability: fail       # B5 (q-clock, dichotomy, census, 11994 comparison, D=6/10 unarchived)
+clean_clone_test: pending     # run on the assembled public package
+environment_lock: pass        # uv.lock; pure exact-rational stack
+test_suite: pending           # uv run sb check on final package
+citation_audit: pass          # B1 fixed; W6 (MS journal ref) cosmetic
+license_audit: pass
+data_availability: pass       # paper_artifacts.json + battery close B5 (W13 minor)
 ai_use_disclosure: pass
-figures_and_tables: fail      # W8 (no figures); q-clock table lacks artifact (B5)
-repository_release: fail      # B4 (wrong repo link; nothing published)
-doi: fail                     # none minted for this project
-preprint: pending             # human action only — do not submit
+figures_and_tables: pass      # two figures in PDF; W14 polish items
+repository_release: pending   # B4 condition: assemble + publish package
+doi: pending                  # mint with the package
+preprint: pending             # human action only
 journal_candidate: pending
 human_approval: pending       # publication is always a deliberate human action
 ```
 
----
+## PUBLICATION PACKAGE MANIFEST (unchanged scope, updated for new files)
 
-## PUBLICATION PACKAGE MANIFEST (what must ship, once blockers close)
+Ship: paper/main.tex + main.pdf + fig_atlas.png + fig_edge.png;
+lab/repro_r1_crossing.py, repro_r4_positivity_spot.py, fig1_island_map.py,
+fine_grid_boundary.py, boundary_n80.py, n2_fixed_spin.py, attack_left_edge.py,
+**artifacts_battery.py**; results/fig1_map_*.json (9 files), boundary_N80_mu0.json,
+fine_boundary_mu0_N20{,_corrected}.json, n2_fixed_spin.json,
+**paper_artifacts.json**; research/left-edge-theorem.md,
+left-edge-theorem-review.md, 2406.02665-notes.md, microproblem-cards.md,
+evidence-records.jsonl (+EV-QG-0001); article/DATA_LOG.md (QG sections);
+README, LICENSE (MIT), CITATION.cff, AI_DISCLOSURE.md.
+Exclude: research/pdfs/, __pycache__, main.log|aux|out, personal data.
+After publishing: put the real repo URL + DOI into the footnote and the
+Reproducibility section, recompile, then human submits.
 
-Existing (repo paths relative to C:\Users\user\ScienceBro\projects\qg-bootstrap\):
-- paper/main.tex (+ compiled main.pdf) — after B1-B6/W fixes
-- lab/repro_r1_crossing.py, lab/repro_r4_positivity_spot.py (two-route evaluator)
-- lab/fig1_island_map.py, lab/fine_grid_boundary.py, lab/boundary_n80.py,
-  lab/n2_fixed_spin.py, lab/attack_left_edge.py (adversarial script)
-- results/fig1_map_mu{-9_5,-6_5,-3_5,0_1,3_5,6_5,9_5}.json, fig1_map_mu0_1_{N20,N40}.json,
-  boundary_N80_mu0.json, fine_boundary_mu0_N20.json, fine_boundary_mu0_N20_corrected.json,
-  n2_fixed_spin.json
-- research/left-edge-theorem.md, research/left-edge-theorem-review.md,
-  research/2406.02665-notes.md, research/microproblem-cards.md,
-  research/evidence-records.jsonl (+ new EV-QG-0001)
-- article/DATA_LOG.md (append-only log, QG sections)
-
-To create before release (closes B5/B4):
-- lab/q_clock.py + results/q_clock.json (table + local exponents + g(n) data)
-- lab/dichotomy_scan.py + results/dichotomy_k1_7.json (incl. the k=3 point coordinates)
-- lab/killer_census.py + results/killer_census_N40.json (714 cells)
-- lab/stackwide_verdict.py + results/stackwide_11994.json (incl. 30 doomed cells,
-  4 deep verifications)
-- lab/gegenbauer_D.py + results/edge_D6_D10.json (10/10 checks, 4 zeros)
-- README.md, LICENSE (MIT), CITATION.cff, AI_DISCLOSURE.md for the public repo
-- New public repository (do NOT reuse spacetime-verifier) + Zenodo DOI; update footnote
-
-Excluded from package: research/pdfs/ (third-party arXiv PDFs), lab/__pycache__/,
-paper/main.log|aux|out, any founder-personal data.
-
-**No part of this package is to be pushed, submitted, or published by an agent.
-Every publication step is a deliberate human action (founder).**
+**No part of this package is to be pushed, submitted, or published by an agent.**

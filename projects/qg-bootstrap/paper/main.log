@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.8.14)  14 AUG 2026 12:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.8.14)  14 AUG 2026 12:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -440,34 +440,27 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/user/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-<fig_atlas.png, id=82, 1606.0pt x 401.5pt>
+[3]
+<fig_atlas.png, id=91, 1606.0pt x 401.5pt>
 File: fig_atlas.png Graphic file (type png)
 <use fig_atlas.png>
-Package pdftex.def Info: fig_atlas.png  used on input line 212.
+Package pdftex.def Info: fig_atlas.png  used on input line 213.
 (pdftex.def)             Requested size: 469.75502pt x 117.43674pt.
-
-[3]
 <fig_edge.png, id=92, 1003.75pt x 762.85pt>
 File: fig_edge.png Graphic file (type png)
 <use fig_edge.png>
-Package pdftex.def Info: fig_edge.png  used on input line 222.
+Package pdftex.def Info: fig_edge.png  used on input line 223.
 (pdftex.def)             Requested size: 422.77664pt x 321.31439pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 254.
+(hyperref)                removing `math shift' on input line 255.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 254.
+(hyperref)                removing `math shift' on input line 255.
 
-[4 <./fig_atlas.png (PNG copy)>] [5 <./fig_edge.png (PNG copy)>]
-Underfull \hbox (badness 3514) in paragraph at lines 319--322
-[]\OT1/cmr/m/n/10.95 G. Mans-field and M. Spradlin, ``On Uni-tar-ity of the Hy-
-per-ge-o-met-ric Am-pli-tude,''
- []
-
-[6] (main.aux)
+[4 <./fig_atlas.png (PNG copy)>] [5 <./fig_edge.png (PNG copy)>] [6] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -482,7 +475,7 @@ Here is how much of TeX's memory you used:
  39595 multiletter control sequences out of 15000+600000
  641116 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,79p,543b,475s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,543b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\user\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0
 600.pk> <C:\Users\user\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 tcrm0800.pk><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
@@ -509,7 +502,7 @@ Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/
 user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C
 :/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/
 msam10.pfb>
-Output written on main.pdf (6 pages, 460942 bytes).
+Output written on main.pdf (6 pages, 461469 bytes).
 PDF statistics:
  214 PDF objects out of 1000 (max. 8388607)
  28 named destinations out of 1000 (max. 500000)
