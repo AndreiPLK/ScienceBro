@@ -417,3 +417,14 @@ old entries; append corrections as new entries.
   card. Next: deep-read that + 2210.14920, then freeze our unique slice
   (candidate: the deformation-FAMILY island of VS analogs via our
   top-coefficient machinery — the analog of our w!=0 niche).
+
+## 2026-08-14 — GRAVITY CARD FROZEN: exact edge of the closed-string island
+- Deep-read 2408.03362 (CHR did O3 themselves!): one-parameter lambda-family
+  of VS deformations, residues are perfect squares, D>=9 positivity bounds
+  lambda from below -- NUMERICALLY, finite depth, no closed form. Our frozen
+  question: lambda_min(D) exactly via top-coefficient method (a_{n,2n-4} law,
+  odd trajectories vanish), + erosion clock, + lambda=1 VS cross-check.
+- Novelty radar: 37 citing works enumerated; adjacent art flagged (2607.27300
+  hidden-zeros analytic bounds -- abstract does not treat the lambda-family;
+  full-text verification required before any novelty claim).
+- Card: research/gravity-card.md (metric frozen before computing).
