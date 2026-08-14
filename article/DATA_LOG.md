@@ -317,3 +317,8 @@ old entries; append corrections as new entries.
   style (7 slides: setting, edge theorem + prediction table, erosion + 176
   corrections, boundary algebra, cross-checks, honest status + repro links).
   Quiet bed, slow fades. QC frames from final mp4 inspected.
+
+## 2026-08-14 N5 — the q-clock: n_crit ~ 1.1/sqrt(q-1)
+- q-Veneziano exclusion depth measured exactly for six q values; exponent -1/2
+  stable; q=1 control clean. Explains finite-depth scans admitting small q-1.
+  New beyond the anchor paper (they had q>1 asymptotic-only).

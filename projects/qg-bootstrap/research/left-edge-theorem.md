@@ -229,3 +229,20 @@ edge is witnessed by an infinite family of independent constraints — a
 robustness statement far stronger than any single trajectory. General-k
 analytic proof: open (leading coefficient pattern suggests odd-k leading term
 proportional to (r+1/2)).
+
+## N5: the q-clock — exact exclusion depth for q > 1 (2026-08-14)
+
+Using Eq. 15-16 (roots xi(k) = [-1-r-k]_q bounded by -1/(q-1) while the angle
+substitution scales as [n]_q ~ q^n), the q-Veneziano line (r=w=0) was scanned
+in exact rational arithmetic (integer r,w keep q-powers rational):
+
+  q-1:    0.001  0.005  0.01  0.02  0.05  0.1   |  q=1 control: clean to n=25
+  n_crit:   34     15    11     8     5    4    |  first negative in scalar/l=1
+
+Scaling: n_crit ~ C (q-1)^{-1/2}, C ~ 1.1 (local exponents 0.51/0.45/0.46/0.51
+across two decades). NEW quantitative content: the anchor paper excludes q>1
+only asymptotically; this gives the finite depth at which each q dies, and
+explains why depth-10 scans (their Fig. 1) admit q-1 < (C/10)^2 ~ 0.012.
+Status: numerically established (exact arithmetic); the -1/2 exponent is a
+conjectured exact law; analytic derivation open. Killer is LOW spin (l=0,1),
+not the l=n-1 ladder.
