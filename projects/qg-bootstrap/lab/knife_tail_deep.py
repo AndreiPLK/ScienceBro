@@ -113,17 +113,58 @@ def bernstein_in_D(P_of_D, D_var, lo, hi):
     return bs
 
 
-def bisect_t(builder, a, b, depth, gens, tag, log):
-    """builder(a,b) -> список выражений (Бернштейн-коэффициенты);
-    все должны быть положительны."""
+def bernstein2_coeffs(P_expr, tau, th):
+    """Двойной Бернштейн: P полином по (tau, th) на [0,1]^2 ->
+    матрица коэффициентов b_{p,q}; все >= 0 => P >= 0 на квадрате."""
+    pp = sp.Poly(sp.expand(P_expr), tau, th)
+    dt = pp.degree(tau)
+    dh = pp.degree(th)
+    C = {}
+    for (pt, qt), cc in pp.terms():
+        C[(pt, qt)] = C.get((pt, qt), 0) + cc
+    out = []
+    for p in range(dt + 1):
+        for q in range(dh + 1):
+            b = sp.Integer(0)
+            for p2 in range(p + 1):
+                for q2 in range(q + 1):
+                    cc = C.get((p2, q2))
+                    if cc is None:
+                        continue
+                    b += (sp.binomial(p, p2) / sp.binomial(dt, p2)
+                          * sp.binomial(q, q2) / sp.binomial(dh, q2) * cc)
+            out.append(sp.expand(b))
+    return out
+
+
+def poly_v_nonneg(c):
+    """полином от v: неотрицательность на v >= 0 (коэф. или изоляция корней)"""
+    if not c.free_symbols:
+        return c >= 0
+    P = sp.Poly(c, v)
+    if all(cc >= 0 for _, cc in P.terms()):
+        return True
+    if P.LC() < 0:
+        return False
+    roots = [r for r in P.real_roots() if r >= 0]
+    if roots:
+        return False
+    return c.subs(v, 1) > 0
+
+
+def bisect_t(builder, a, b, depth, tag, log):
+    """builder(a,b) -> список полиномов от v (двойные Бернштейн-коэф.);
+    все должны быть >= 0 на v >= 0."""
     exprs = builder(a, b)
-    if all(certify(e, gens, f"{tag}", log) for e in exprs):
+    bad = sum(0 if poly_v_nonneg(e) else 1 for e in exprs)
+    log.append({"cell": tag, "coeffs": len(exprs), "bad": bad})
+    if bad == 0:
         return True
     if depth == 0:
         return False
     mid = (a + b) / 2
-    return (bisect_t(builder, a, mid, depth - 1, gens, tag, log) and
-            bisect_t(builder, mid, b, depth - 1, gens, tag, log))
+    return (bisect_t(builder, a, mid, depth - 1, tag, log) and
+            bisect_t(builder, mid, b, depth - 1, tag, log))
 
 
 def main() -> int:
@@ -141,28 +182,37 @@ def main() -> int:
             if kk == 4:
                 mu_lo = sp.Rational(2, 3)
 
-        D0 = sp.Symbol('D0')
+        tau, th = sp.symbols('tau theta', nonnegative=True)
 
         def build(a, b, kk=kk):
-            lam_e = a + (b - a) * (w / (1 + w))
+            lam_e = a + (b - a) * tau                  # полиномиально!
             Tk = (sp.Rational(3 * (2 * kk - 3), kk * (kk - 2))
                   * (lam_e ** 2 + (2 * kk - 2) * lam_e + 1) + 2 * kk)
-            P = P_sym(lam_e, D0, 41 + v)
-            return bernstein_in_D(P, D0, sp.Integer(4), Tk)
+            D_e = 4 + (Tk - 4) * th                    # полиномиально!
+            P = P_sym(lam_e, D_e, 41 + v)
+            return bernstein2_coeffs(P, tau, th)
 
-        got = bisect_t(build, mu_lo, mu_hi, 4, (v, w),
-                       f"stail_k{kk}", log)
+        got = bisect_t(build, mu_lo, mu_hi, 5, f"stail_k{kk}", log)
         ok &= got
         print(f"shallow-tail k={kk}: {'OK' if got else 'FAIL'}"
               f" ({time.time()-t0:.0f}s)", flush=True)
 
     # ---- DEEP-FIXED: m = J-2..40, lam = 26+x ----
+    th = sp.Symbol('theta', nonnegative=True)
     D_hi = (12 + 4 * r3) * (26 + x)
-    D0 = sp.Symbol('D0')
     deep_fixed_ok = True
     for mv in range(max(1, J - 2), 41):
-        P = P_sym(26 + x, D0, sp.Integer(mv))
-        bs = bernstein_in_D(P, D0, sp.Integer(4), D_hi)
+        D_e = 4 + (D_hi - 4) * th                      # полиномиально
+        P = P_sym(26 + x, D_e, sp.Integer(mv))
+        # Бернштейн по th; коэффициенты — полиномы (x) над Q(sqrt3)
+        pp = sp.Poly(sp.expand(P), th)
+        dh = pp.degree()
+        cs = [pp.coeff_monomial(th ** q) for q in range(dh + 1)]
+        bs = []
+        for i2 in range(dh + 1):
+            b = sum(sp.binomial(i2, q) / sp.binomial(dh, q) * cs[q]
+                    for q in range(i2 + 1))
+            bs.append(sp.expand(b))
         got = all(certify(e, (x,), f"deep_m{mv}", log) for e in bs)
         deep_fixed_ok &= got
         if not got:
@@ -171,10 +221,123 @@ def main() -> int:
     print(f"deep-fixed m<{41}: {'OK' if deep_fixed_ok else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)
 
-    # ---- DEEP-TAIL: m = 41+v ----
-    P = P_sym(26 + x, D0, 41 + v)
-    bs = bernstein_in_D(P, D0, sp.Integer(4), D_hi)
-    got = all(certify(e, (v, x), "deep_tail", log) for e in bs)
+    # ---- DEEP-TAIL v2: m = 41+v, дрейф-фри параметризация k = K+2,
+    #      lam = (K+theta_L)*sqrt3/3, K >= 45 (=> lam >= 25.98), cap = T_k(lam)
+    K = sp.Symbol('K', nonnegative=True)
+    thL = sp.Symbol('thL', nonnegative=True)
+    lam_e = (K + 45 + thL) * r3 / 3
+    kk_ = K + 45 + 2
+    Tk = (3 * (2 * kk_ - 3) / (kk_ * (kk_ - 2))
+          * (lam_e ** 2 + (2 * kk_ - 2) * lam_e + 1) + 2 * kk_)
+    # знаменатель kk_(kk_-2) > 0: домножим P на него ПОСЛЕ подстановки
+    def deep_cell(a1, b1, a2, b2, depth):
+        tL = a1 + (b1 - a1) * thL
+        tD = a2 + (b2 - a2) * th
+        lam_c = (K + 45 + tL) * r3 / 3
+        kk_c = K + 47
+        Tk_c = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
+                * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+        D_c = 4 + (Tk_c - 4) * tD
+        P = P_sym(lam_c, D_c, 41 + v)
+        P = sp.expand(sp.fraction(sp.together(P))[0])
+        exprs = bernstein2_coeffs(P, thL, th)
+        if all(certify(e, (v, K), "deep_tail_v2", log) for e in exprs):
+            return True
+        if depth == 0:
+            return False
+        m1 = (a1 + b1) / 2
+        m2 = (a2 + b2) / 2
+        return (deep_cell(a1, m1, a2, m2, depth-1) and
+                deep_cell(a1, m1, m2, b2, depth-1) and
+                deep_cell(m1, b1, a2, m2, depth-1) and
+                deep_cell(m1, b1, m2, b2, depth-1))
+
+    def bern1(expr, var):
+        pp = sp.Poly(sp.expand(expr), var)
+        d = pp.degree()
+        cs = [pp.coeff_monomial(var ** q) for q in range(d + 1)]
+        out = []
+        for i2 in range(d + 1):
+            b = sum(sp.binomial(i2, q) / sp.binomial(d, q) * cs[q]
+                    for q in range(i2 + 1))
+            out.append(sp.expand(b))
+        return out
+
+    def poly_K_nonneg(c):
+        if not c.free_symbols:
+            return c >= 0
+        # коэффициенты могут содержать sqrt3: разделить и проверить как раньше
+        if c.has(r3):
+            a = sp.Poly(sp.expand(c.coeff(r3, 0)), K)
+            b = sp.Poly(sp.expand(c.coeff(r3, 1)), K)
+            # достаточно: обе части >= 0 на K>=0 (грубо, с изоляцией корней)
+            def okpoly(P):
+                if all(cc >= 0 for _, cc in P.terms()):
+                    return True
+                if P.LC() < 0:
+                    return False
+                return not [r for r in P.real_roots() if r >= 0]
+            if okpoly(a) and okpoly(b):
+                return True
+            return False
+        P = sp.Poly(c, K)
+        if all(cc >= 0 for _, cc in P.terms()):
+            return True
+        if P.LC() < 0:
+            return False
+        roots = [r for r in P.real_roots() if r >= 0]
+        return not roots and c.subs(K, 1) > 0
+
+    sig = sp.Symbol('sigma', nonnegative=True)
+    vpp = sp.Symbol('vpp', nonnegative=True)
+
+    def deep_cell3(vsub, extra_var, a1, b1, a2, b2, depth, tag):
+        tL = a1 + (b1 - a1) * thL
+        tD = a2 + (b2 - a2) * th
+        lam_c = (K + 45 + tL) * r3 / 3
+        kk_c = K + 47
+        Tk_c = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
+                * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+        D_c = 4 + (Tk_c - 4) * tD
+        P = P_sym(lam_c, D_c, 41 + vsub)
+        P = sp.expand(sp.fraction(sp.together(P))[0])
+        exprs = bernstein2_coeffs(P, thL, th)
+        allok = True
+        for e in exprs:
+            if extra_var is sig:
+                subs_ok = all(poly_K_nonneg(b2c) for b2c in bern1(e, sig))
+            else:
+                # (K, vpp) ортант: покоэффициентно + fallback нет
+                Pp = sp.Poly(sp.expand(e), K, vpp)
+                subs_ok = all(
+                    (cc >= 0) if not cc.has(r3) else (
+                        cc.coeff(r3, 0) >= 0 and cc.coeff(r3, 1) >= 0)
+                    for _, cc in Pp.terms())
+            if not subs_ok:
+                allok = False
+                break
+        log.append({"cell": tag, "box": [str(a1), str(b1), str(a2), str(b2)],
+                    "ok": bool(allok)})
+        if allok:
+            return True
+        if depth == 0:
+            return False
+        m1 = (a1 + b1) / 2
+        m2 = (a2 + b2) / 2
+        return all(deep_cell3(vsub, extra_var, aa, bb, cc2, dd, depth-1, tag)
+                   for aa, bb, cc2, dd in
+                   [(a1, m1, a2, m2), (a1, m1, m2, b2),
+                    (m1, b1, a2, m2), (m1, b1, m2, b2)])
+
+    gotA = deep_cell3((K + 4) * sig, sig, sp.Integer(0), sp.Integer(1),
+                      sp.Integer(0), sp.Integer(1), 3, "deep_below_diag")
+    print(f"deep-tail below-diagonal: {'OK' if gotA else 'FAIL'}"
+          f" ({time.time()-t0:.0f}s)", flush=True)
+    gotB = deep_cell3(K + 4 + vpp, vpp, sp.Integer(0), sp.Integer(1),
+                      sp.Integer(0), sp.Integer(1), 3, "deep_above_diag")
+    print(f"deep-tail above-diagonal: {'OK' if gotB else 'FAIL'}"
+          f" ({time.time()-t0:.0f}s)", flush=True)
+    got = gotA and gotB
     ok &= got
     print(f"deep-tail: {'OK' if got else 'FAIL'} ({time.time()-t0:.0f}s)",
           flush=True)

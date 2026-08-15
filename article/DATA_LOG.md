@@ -787,3 +787,13 @@ old entries; append corrections as new entries.
   decomposition - the bracket is degree j-1 in D, so interval positivity
   reduces to j Bernstein coefficients, each with ONE variable fewer.
   Reusable for the whole conveyor. Rerun in progress.
+
+## 2026-08-16 — Knife-4 deep-tail: the diagonal fight (honest log)
+- Bernstein v1 (rational subs): hung, killed. Double Bernstein (polynomial
+  subs): shallow-tail 43/43 in 19 s + deep-fixed OK; deep-tail FAIL.
+- Drift-free k-parametrization (v2): still FAIL. Quad-bisection depth 3:
+  still FAIL (487 s) -> diagnosis: the tight direction is DIAGONAL
+  (optimal level tracks the branch, m* ~ K+49); per-coefficient positivity
+  in (v, K) is blind along diagonals.
+- v3 (running): split v relative to the diagonal: below (v=(K+4)sigma,
+  Bernstein in sigma, root isolation in K) and above (v=K+4+v'').
