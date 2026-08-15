@@ -707,3 +707,8 @@ old entries; append corrections as new entries.
   attribution. Both provers re-run on clean HEAD with metadata.
 - github.com/AndreiPLK/qg-blade-theorem live; portfolio one-pager + card
   live (hero: the tangent fleet; the caught-bug story told openly).
+
+## 2026-08-16 — PAPER 4 PUBLISHED: DOI 10.5281/zenodo.21948833
+- Founder toggle -> v1.0.0 -> DOI -> final PDF (DOI in footnote + repro) ->
+  repo v1.0.1 -> site with DOI button. FOUR published works in the program,
+  all with DOI; the fourth carries the lab's first fully proven theorem.

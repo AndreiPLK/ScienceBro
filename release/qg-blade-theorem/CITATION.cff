@@ -8,6 +8,7 @@ authors:
 version: "1.0.0"
 date-released: "2026-08-16"
 license: MIT
+doi: 10.5281/zenodo.21948833
 repository-code: "https://github.com/AndreiPLK/qg-blade-theorem"
 keywords:
   - S-matrix bootstrap

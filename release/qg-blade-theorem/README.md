@@ -1,5 +1,7 @@
 # The Blades Never Touch the Shore
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21948833.svg)](https://doi.org/10.5281/zenodo.21948833)
+
 **Paper:** `paper/main.pdf` (LaTeX source and figures alongside).
 Sequel to [The Shore of Closed-String Gravity](https://doi.org/10.5281/zenodo.21944818)
 and [A Master Positivity Formula](https://doi.org/10.5281/zenodo.21947272).
