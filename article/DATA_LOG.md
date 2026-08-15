@@ -517,3 +517,15 @@ old entries; append corrections as new entries.
   meaning of both papers in one glance (gravity is the stricter judge).
   Yellow diamond visibility issue in the 3D bow noted (opaque body) — cutaway
   version queued.
+
+## 2026-08-15 — Paper 2 goes public: package, GitHub, site
+- Paper 2 final: 6 pages, max visuals per the new explain-to-everyone law
+  (Fig 3 = 3D cliff of survival, new "Explain it to anyone" section,
+  Fig 4 = companion ship's bow as fun). Lost ef repaired (CR byte).
+- B6 closed: generators written for grav_zoomout (v2 matches original 330/330),
+  hunt_2n8 (0 alarms, 680 checks, now with metadata), lowspin_stress (0 alarms).
+- Package release/qg-gravity-shore assembled per release-review manifest;
+  EV-CORR-0002 (private correspondence) excluded from public evidence file;
+  py_compile all green, smoke run clean, secret scan clean.
+- Published: github.com/AndreiPLK/qg-gravity-shore (main), portfolio one-pager
+  live with Explain-it-to-anyone + 3D media. Zenodo toggle = founder's click.
