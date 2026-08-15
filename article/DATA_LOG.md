@@ -712,3 +712,13 @@ old entries; append corrections as new entries.
 - Founder toggle -> v1.0.0 -> DOI -> final PDF (DOI in footnote + repro) ->
   repo v1.0.1 -> site with DOI button. FOUR published works in the program,
   all with DOI; the fourth carries the lab's first fully proven theorem.
+
+## 2026-08-16 — Dashboard + a beautiful negative result
+- github.com/AndreiPLK profile dashboard live (news EN, program progress bar,
+  latest visual); standing rule: update at every milestone.
+- NEGATIVE RESULT (logged honestly): the Schoenberg shortcut to the grand
+  theorem dies. Q itself is NOT positive-definite inside the allowed region
+  (negative Gegenbauer coefficients of Q at every test point, e.g. n=7
+  lam=1 D=22: b_4<0) - so positivity of Q^2 rests on cancellation structure,
+  not on Q-PD + product theorem. The grand theorem needs the per-j
+  certificate road (or a smarter identity).
