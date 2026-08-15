@@ -16,7 +16,7 @@
   "A4 point lam=100 D=4 n<=30: min_n T_n = 31209 (n=3), model=ALIVE, negatives=0, even zeros=[]",
   "A4 dead-control PASS: lam=1/20, D=10: knife (3, 2) negative as predicted (all negatives: [(3, 2)])",
   "A4 dead-control PASS: lam=1, D=24: knife (4, 4) negative as predicted (all negatives: [(4, 4)])",
-  "A4 PASS (no counterexample found; NOT a proof of C4). runtime 0.4s",
+  "A4 PASS (no counterexample found; NOT a proof of C4). runtime 0.5s",
   "A5 PASS: for n=3..8 (symbolic lambda): q_(n-2)==0, the x^(2n-4) coefficient is PURE cross term 2 q_(n-1) q_(n-3) < 0, the bracket C + A*rho has its unique D-root exactly at T_n(lambda), and the full projection is a positive multiple of the bracket",
   "A6 PASS: lam_min(23)=1 exact -- T_n(1) >= 23 for n=3..2000 with equality only at n=4 (plus analytic: integer min of 2(n^2+4n-9)/(n-2) sits at n=4)",
   "A6 PASS: D_n(1) = 2(n^2+4n-9)/(n-2) == T_n(1) for n=3..199",
@@ -28,6 +28,6 @@
   "A6 envelope D=3000: lam_min~158.62160 (n*=274), D/lam_min=18.9129 vs 12+4sqrt3=18.9282, sqrt3*lam_min=274.74",
   "A6 envelope D=10000: lam_min~528.44170 (n*=915), D/lam_min=18.9236 vs 12+4sqrt3=18.9282, sqrt3*lam_min=915.29",
   "A6 PASS: D=200 spot: a_(18,32) < 0 at lam_min-2e-5, trajectory clean for n<=60 at lam_min+2e-5",
-  "TOTAL: NO FALSIFICATION; failures=0; runtime 4.3s"
+  "TOTAL: NO FALSIFICATION; failures=0; runtime 5.1s"
  ]
 }
