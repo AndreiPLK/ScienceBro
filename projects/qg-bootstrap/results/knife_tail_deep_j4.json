@@ -4,6 +4,6 @@
  "cells": 207,
  "stages": "shallow-tail(m>=41) + deep-fixed + deep-tail",
  "command": "KNIFE_J=4 python lab/knife_tail_deep.py",
- "git": "adf5540",
- "runtime_s": 2022.5
+ "git": "946ac50",
+ "runtime_s": 1149.7
 }

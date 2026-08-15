@@ -809,3 +809,16 @@ old entries; append corrections as new entries.
   (D < r1 characterization), not more subdivision.
 - Night queue: exact battery over the open region (knife 4, levels below
   optimal, lam 26..300, D <= envelope) + j=5 tail stages.
+
+## 2026-08-17 — Knife-4 below-diagonal: margin measured, elevation deployed
+- MEASUREMENT (the scientific move after two certificate failures): exact
+  scan of knife-4 first-negativity edge vs envelope in the open region:
+  MINIMUM MARGIN = 5.0 dimensions (n=90, lam=54) - healthier than the blade
+  theorem's 2.15. The theorem is comfortably true; the certificate is
+  technically blind, not the math.
+- Cure: Bernstein DEGREE ELEVATION (BERN_ELEV=8) + targeted stage flag
+  (KNIFE_STAGE=belowdiag) to re-run only the stubborn cell. Also v4's
+  Descartes-at-cap lemma stays: positivity of all y-coefficients of
+  P(T_cap - y) covers the whole half-line D <= T_cap - the universal
+  deep-water tool for every knife degree.
+- j=5 tails running in parallel (E-interpolation range bug fixed).

@@ -51,7 +51,8 @@ def e_doubled_int(n: int):
 def E_poly_m(t: int):
     """E_{2t}(n=m+3) как точный полином от m (deg 3t) + верификация."""
     deg = 3 * t
-    pts = [(mm, e_doubled_int(mm + 3)[t]) for mm in range(1, deg + 5)]
+    lo = max(1, t - 1)
+    pts = [(mm, e_doubled_int(mm + 3)[t]) for mm in range(lo, lo + deg + 4)]
     poly = sp.expand(sp.interpolate(pts[:deg + 1], m))
     for mm, val in pts[deg + 1:]:
         assert poly.subs(m, mm) == val, f"E_poly_m fail t={t} m={mm}"
@@ -172,8 +173,9 @@ def main() -> int:
     log = []
     ok = True
 
+    STAGE = os.environ.get("KNIFE_STAGE", "all")
     # ---- SHALLOW-TAIL: m = 41+v ----
-    for kk in range(3, 46):
+    for kk in ([] if STAGE == "belowdiag" else range(3, 46)):
         if kk == 3:
             mu_lo, mu_hi = sp.Rational(1, 1000), sp.Rational(2, 3)
         else:
@@ -201,7 +203,7 @@ def main() -> int:
     th = sp.Symbol('theta', nonnegative=True)
     D_hi = (12 + 4 * r3) * (26 + x)
     deep_fixed_ok = True
-    for mv in range(max(1, J - 2), 41):
+    for mv in ([] if STAGE == "belowdiag" else range(max(1, J - 2), 41)):
         D_e = 4 + (D_hi - 4) * th                      # полиномиально
         P = P_sym(26 + x, D_e, sp.Integer(mv))
         # Бернштейн по th; коэффициенты — полиномы (x) над Q(sqrt3)
@@ -252,14 +254,21 @@ def main() -> int:
                 deep_cell(m1, b1, a2, m2, depth-1) and
                 deep_cell(m1, b1, m2, b2, depth-1))
 
-    def bern1(expr, var):
+    ELEV = int(os.environ.get("BERN_ELEV", "0"))
+
+    def bern1(expr, var, elev=None):
         pp = sp.Poly(sp.expand(expr), var)
-        d = pp.degree()
-        cs = [pp.coeff_monomial(var ** q) for q in range(d + 1)]
+        d = pp.degree() + (ELEV if elev is None else elev)
+        cs = [pp.coeff_monomial(var ** q) if q <= pp.degree() else 0
+              for q in range(d + 1)]
+        # коэффициенты полинома в мономах остаются прежними; Бернштейн
+        # берём на поднятой степени d
+        cs = [pp.coeff_monomial(var ** q) if q <= pp.degree()
+              else sp.Integer(0) for q in range(d + 1)]
         out = []
         for i2 in range(d + 1):
             b = sum(sp.binomial(i2, q) / sp.binomial(d, q) * cs[q]
-                    for q in range(i2 + 1))
+                    for q in range(min(i2, pp.degree()) + 1))
             out.append(sp.expand(b))
         return out
 
@@ -373,8 +382,9 @@ def main() -> int:
                       6, "deep_below_diag_v4")
     print(f"deep-tail below-diagonal: {'OK' if gotA else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)
-    gotB = deep_cell3(K + 4 + vpp, vpp, sp.Integer(0), sp.Integer(1),
-                      sp.Integer(0), sp.Integer(1), 3, "deep_above_diag")
+    gotB = True if STAGE == "belowdiag" else deep_cell3(
+        K + 4 + vpp, vpp, sp.Integer(0), sp.Integer(1),
+        sp.Integer(0), sp.Integer(1), 3, "deep_above_diag")
     print(f"deep-tail above-diagonal: {'OK' if gotB else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)
     got = gotA and gotB
