@@ -722,3 +722,25 @@ old entries; append corrections as new entries.
   lam=1 D=22: b_4<0) - so positivity of Q^2 rests on cancellation structure,
   not on Q-PD + product theorem. The grand theorem needs the per-j
   certificate road (or a smarter identity).
+
+## 2026-08-16 — BINOMIAL COLLAPSE: every knife is a power of the first
+- Scaling limit of the master formula (m->infty, rho=s/m, u=(delta+4)m):
+  term_{i+1}/term_i = -[(j-1-i)/(i+1)] * X with X = 6 rho^2/(delta+4)
+  => B_j ~ term_0 * (1 - X)^{j-1}. EVERY knife's bracket is, at leading
+  order, a PERFECT POWER of the first knife's linear form. One critical
+  surface u = 6 rho^2 m for all j; minimizing over levels reproduces
+  rho* = 1+1/sqrt3 and the envelope asymptote - the tangency of the blade
+  theorem is the j=3 shadow of this universal structure.
+- Exact-arithmetic verification (n=30..60, j=2..6): all negativity zones of
+  all knives cluster within ~O(sqrt(m)) offsets (-50..+30) of the level's
+  critical line, splitting into floor(j/2) zones - exactly the degenerate
+  root of (1-X)^{j-1} splitting at subleading order. Sign pattern matches
+  the (-1)^{j-1} convention: even-j knives kill on the dead side only,
+  odd-j knives cut thin slabs hugging the line.
+- GRAND THEOREM ROADMAP: (1) binomial collapse organizes the large-m tail
+  UNIFORMLY IN j (one lemma instead of infinitely many cones); (2) moderate
+  m stays on exact certificates per the blade architecture; (3) remaining
+  hard core: subleading (sqrt-m) control of slab edges near the optimal
+  level. Caveat logged: the asymptotic critical line is quantitatively far
+  from exact T_n at moderate m (checked: n=8, lam=5: 152.8 vs exact 94) -
+  the collapse is a tail tool, not a substitute for certificates.

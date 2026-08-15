@@ -256,3 +256,7 @@ stress at large D.
   (blade_proof.py, ALL CERTIFIED, exit 0); plus for lam >= 26 levels n <= 81
   have no window (78 certificates). Open: single deep-water cell
   (n >= 82, lam > 26); regime-split certificates next.
+
+## Slice 12 (2026-08-16): binomial collapse B_j ~ (1 - 6rho^2/(delta+4))^{j-1}
+- Verified exactly n=30..60, j=2..6 (zone clustering). Grand-theorem roadmap
+  fixed: collapse tail lemma (uniform in j) + certificates for moderate m.
