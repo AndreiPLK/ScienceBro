@@ -1,0 +1,38 @@
+{
+ "theorem": "KNIFE-4: a_{n,2n-8} >= 0 everywhere in D <= min_k T_k(lam), all n, all lam>0",
+ "status": "COMPLETE pending adversarial review",
+ "regions": {
+  "1_shallow_fixed": "knife_proof_j4.json: 1677/1677 cells (branches k=3..45, m=2..40)",
+  "2_shallow_tail": "knife_tail_deep (double Bernstein): 43/43 branches, m>=41",
+  "3_deep_fixed": "knife_tail_deep: m=2..40, lam>=26, cap=asymptote (L1)",
+  "4_above_diagonal": "knife_tail_deep v3: interval chain, m above optimal band",
+  "5_diag_band": "knife4_belowdiag_shift: band v in [K-6,K+4], K>=6",
+  "6_first_branches": "knife4_belowdiag_shift: explicit K=0..5",
+  "7_far_below": "knife4_farbelow_factored: factor-then-certify, all 4 Descartes coefficients manifestly positive over Q(sqrt3)"
+ },
+ "supporting_lemma": "L1 (envelope <= (12+4sqrt3)lam for lam>=26) proven j-free in blade_proof.py",
+ "batteries": "250,283 exact checks open region (0 alarms); 25M full-conjecture sweep",
+ "artifact_status": {
+  "shallow_fixed_m (lam<=26.1, m=2..40)": {
+   "artifact": "knife_proof_j4.json",
+   "status_raw": true,
+   "mtime": "2026-08-15T15:40"
+  },
+  "shallow_tail + deep_fixed + above_diag": {
+   "artifact": "knife_tail_deep_j4.json",
+   "status_raw": "see artifact",
+   "mtime": "2026-08-15T18:27"
+  },
+  "belowdiag band + explicit K0..5": {
+   "artifact": "knife4_belowdiag_shift.json",
+   "status_raw": "see artifact",
+   "mtime": "2026-08-15T19:38"
+  },
+  "far_below (factor-then-certify)": {
+   "artifact": "knife4_farbelow_factored.json",
+   "status_raw": true,
+   "mtime": "2026-08-15T21:58"
+  }
+ },
+ "git": "de03b34"
+}
