@@ -876,3 +876,8 @@ old entries; append corrections as new entries.
 - РАЗБОР СБОЯ (правило основателя): три причины, три железных фикса —
   в skill sciencebro-scientist (нарезка задач, протокол воскрешения,
   10-минутные идеи сразу).
+
+## 2026-08-17 (ночь) — Knife 6 shallow certified
+- KNIFE_J=6 shallow: 1591/1591 cells, 43 branches, 369 s, zero failures.
+  Shallow now certified for knives j=3..6. Knife 7 at branch 24/45 and
+  climbing; knife 5 far-below factoring (night batch).
