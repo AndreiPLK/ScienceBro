@@ -840,3 +840,10 @@ old entries; append corrections as new entries.
   compact4d Bernstein (both orthant vars compactified) at elevations 6/12,
   then orthant at elevation 16. Everything else of knife-4 is CERTIFIED:
   shallow full, deep fixed, above-diagonal, diagonal band, first branches.
+
+## 2026-08-17 — Knife-5 tails verdict: mirrors knife-4 exactly
+- j=5: shallow-tail 43/43 OK, deep-fixed OK, ABOVE-diagonal OK (9827 s),
+  below-diagonal FAIL - the same single structural blind spot as j=4.
+  The pattern is systematic: one recipe (the shift assault + whatever cracks
+  the far-below piece) closes BOTH knives; then the conveyor is mechanical
+  for j=6..8. Night fan is working the far-below variants.

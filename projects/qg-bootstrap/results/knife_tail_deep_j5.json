@@ -1,0 +1,9 @@
+{
+ "j": 5,
+ "all_certified": false,
+ "cells": 241,
+ "stages": "shallow-tail(m>=41) + deep-fixed + deep-tail",
+ "command": "KNIFE_J=5 python lab/knife_tail_deep.py",
+ "git": "9e4d903",
+ "runtime_s": 9827.0
+}

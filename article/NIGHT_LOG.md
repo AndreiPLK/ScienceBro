@@ -28,3 +28,7 @@
 - 18:15:00 START j6-brackets
 - 18:17:43 DONE  j6-brackets: j=6 brackets extracted for n=7..9
 - 18:17:43 night batch finished
+
+## Night batch 2026-08-15 19:40
+- 19:40:03 queue loaded: 6 tasks
+- 19:40:03 START knife4-far-below-variants
