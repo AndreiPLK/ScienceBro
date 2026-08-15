@@ -1,5 +1,5 @@
 {
- "theorem": "j=3 blades never cut the shore",
+ "theorem": "j=3 blades never cut the shore - COMPLETE: branches k=3..45 (lam<=26.1) + tail lam>=26 (T0/L2/L1/L3)",
  "branches": "k=3 on (0,2/3]; k>=4 on [(2/3)(k-3),(2/3)(k-2)]",
  "all_certified": true,
  "cells": [
@@ -1320,9 +1320,32 @@
    "cell": "k45_tail",
    "m_start": 46,
    "cert": "OK"
+  },
+  {
+   "cell": "tail_T0_nowindow_m1..78",
+   "fails": []
+  },
+  {
+   "cell": "tail_L2_window_containment",
+   "ok": true
+  },
+  {
+   "cell": "tail_L1_envelope_below_asymptote",
+   "monomials": 9,
+   "bad": 0
+  },
+  {
+   "cell": "tail_L3a_B_at_asymptote",
+   "monomials": 40,
+   "bad": 0
+  },
+  {
+   "cell": "tail_L3b_vertex",
+   "monomials": 21,
+   "bad": 0
   }
  ],
  "command": "python lab/blade_proof.py",
- "git": "92e4f17",
- "runtime_s": 50.8
+ "git": "ab9adb7",
+ "runtime_s": 57.9
 }

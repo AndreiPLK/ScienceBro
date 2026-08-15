@@ -658,3 +658,24 @@ old entries; append corrections as new entries.
   argmin (linear in k) - certify explicit branches instead; (2) cell logic
   must include the no-window alternative; (3) head-pipe on a background run
   kills the process before it writes artifacts - log to file.
+
+## 2026-08-16 — BLADE THEOREM COMPLETE (pending final adversarial review)
+- Tail lam >= 26 closed with four lemmas, all by exact certificates:
+  T0 (m<=78: no windows at all, 78 univariate certs);
+  L2 (windows require s <= (4/3)(m+3): S2max <= (16/9)(m+3)^2, two
+  positive-coefficient certs, m>=79);
+  L1 (envelope <= (12+4sqrt3)lam for lam>=26, k=floor(sqrt3 lam)+2,
+  certificate over Q(sqrt3), 9/9 monomials);
+  L3 (deep water: Bhat(u_A)>0 and u_A<vertex at the asymptote shore bound,
+  region s<=(4/3)(m+3), certs over Q(sqrt3), 40+21 monomials, 0 bad).
+- KEY discovery en route: the tangency at infinity is EXACT: the margin
+  quadratic 6 rho^2 - (12+4sqrt3) rho + 8+4sqrt3 has a DOUBLE root at
+  rho = 1+1/sqrt3 (discriminant exactly 0) - the blade cone is tangent to
+  the shore asymptote; windows live at rho <= sqrt(5/3) < 1+1/sqrt3, which
+  is why the theorem holds and why naive Polya diverged.
+- Full prover: one command (lab/blade_proof.py), ALL CERTIFIED, exit 0.
+- Recheck rule applied (founder 2026-08-16: recheck important math many
+  times): brute force 60,000 random points incl. deep water and tangency
+  direction: min margin 2.18 dims, zero counterexamples. Independent
+  adversarial review of the full proof chain launched (logic audit +
+  numeric attack + certificate rebuild).

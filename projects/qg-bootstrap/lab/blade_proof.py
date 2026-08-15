@@ -198,9 +198,82 @@ def main() -> int:
               f" {'OK' if branch_ok else 'FAIL'} ({time.time()-t0:.0f}s)",
               flush=True)
 
+    # ---------- TAIL lam >= 26 ----------
+    x, z, r3 = sp.Symbol('x', nonnegative=True), sp.Symbol('z', nonnegative=True), sp.sqrt(3)
+    disc_g = sp.expand((2*al + G*s_**2)**2 - 4*al*s_**4)
+    # Part T0: m <= 78 -> no window at lam >= 26 (univariate certificates)
+    t0fails = []
+    for mv in range(1, 79):
+        d = sp.expand(-disc_g.subs([(m, mv), (lam, 26 + x)]))
+        num = sp.expand(sp.fraction(sp.together(d))[0])
+        P = sp.Poly(num, x)
+        if any(c < 0 for _, c in P.terms()):
+            roots = [r for r in P.real_roots() if r >= 0]
+            if roots or num.subs(x, 1) <= 0:
+                t0fails.append(mv)
+    ok &= not t0fails
+    log.append({"cell": "tail_T0_nowindow_m1..78", "fails": t0fails})
+
+    def q3_nonneg(c):
+        c = sp.expand(c)
+        a, b = c.coeff(r3, 0), c.coeff(r3, 1)
+        if a >= 0 and b >= 0:
+            return True
+        if a >= 0 and b < 0:
+            return bool(a**2 >= 3*b**2)
+        if a < 0 and b >= 0:
+            return bool(3*b**2 >= a**2)
+        return False
+
+    def cert_q3(E, gens_and_ranges, tag):
+        num = sp.expand(sp.fraction(sp.together(E))[0])
+        for gvar in gens_and_ranges:
+            deg = sp.Poly(num, gvar).degree()
+            num = sp.expand(sp.fraction(sp.together(
+                num.subs(gvar, w/(1+w)) * (1+w)**deg))[0])
+        P = sp.Poly(num, v, w)
+        bad = sum(0 if q3_nonneg(c) else 1 for _, c in P.terms())
+        log.append({"cell": tag, "monomials": len(P.terms()), "bad": bad})
+        return bad == 0
+
+    # Part T1 (L2): no window when s > (4/3)(m+3), for m >= 79
+    beta = sp.together(4*al - G**2)
+    RHS = sp.together(sp.Rational(16, 9)*(m+3)**2*beta - 2*al*G)
+    e1 = sp.expand(sp.fraction(RHS)[0].subs(m, v + 79))
+    e2 = sp.expand(sp.fraction(sp.together(RHS**2 - 16*al**3))[0].subs(m, v + 79))
+    okL2 = (all(c >= 0 for _, c in sp.Poly(e1, v).terms()) and
+            all(c >= 0 for _, c in sp.Poly(e2, v).terms()))
+    ok &= okL2
+    log.append({"cell": "tail_L2_window_containment", "ok": bool(okL2)})
+
+    # Part T2 (L1): envelope <= (12+4*sqrt3)*lam for lam >= 26
+    K, th = sp.symbols('K theta', nonnegative=True)
+    lamK = (K + th)*r3/3
+    kk_ = K + 2
+    TkK = 3*(2*kk_-3)/(kk_*(kk_-2))*(lamK**2 + (2*kk_-2)*lamK + 1) + 2*kk_
+    Delta = sp.together(sp.radsimp(sp.expand((12+4*r3)*lamK - TkK)))
+    numD = sp.expand(sp.fraction(Delta)[0]).subs([(K, v + 45), (th, z)])
+    okL1 = cert_q3(numD, [z], "tail_L1_envelope_below_asymptote")
+    ok &= okL1
+
+    # Part T3 (L3): deep water m>=79, 26<=lam<=26+(v+7)/3 (s <= 4(m+3)/3)
+    mdeep = v + 79
+    lamdeep = 26 + z*(v + 7)/3
+    sdeep = lamdeep + mdeep + 2
+    Gd = G.subs(m, mdeep)
+    ald = al.subs(m, mdeep)
+    uA = (12 + 4*r3)*lamdeep + 4*mdeep + 1
+    Bd = sp.together(sp.expand(ald*uA*(uA-2) - Gd*uA*sdeep**2 + sdeep**4))
+    Vd = sp.together(sp.expand(Gd*sdeep**2 - ((12+4*r3)*lamdeep + 4*mdeep)*2*ald))
+    okL3 = (cert_q3(Bd, [z], "tail_L3a_B_at_asymptote") and
+            cert_q3(Vd, [z], "tail_L3b_vertex"))
+    ok &= okL3
+    print(f"TAIL lam>=26: T0={not t0fails} L2={okL2} L1={okL1} L3={okL3}"
+          f" ({time.time()-t0:.0f}s)", flush=True)
+
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
-    out = {"theorem": "j=3 blades never cut the shore",
+    out = {"theorem": "j=3 blades never cut the shore - COMPLETE: branches k=3..45 (lam<=26.1) + tail lam>=26 (T0/L2/L1/L3)",
            "branches": "k=3 on (0,2/3]; k>=4 on [(2/3)(k-3),(2/3)(k-2)]",
            "all_certified": bool(ok), "cells": log,
            "command": "python lab/blade_proof.py", "git": git,
