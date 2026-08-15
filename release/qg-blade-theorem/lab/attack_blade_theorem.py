@@ -841,6 +841,11 @@ def main() -> int:
         code = 1
     results["verdict"] = verdict
     results["runtime_s"] = round(time.time() - T0_START, 1)
+    import subprocess as _sp
+    results["_meta"] = {
+        "command": "python lab/attack_blade_theorem.py",
+        "git": _sp.run(["git", "rev-parse", "--short", "HEAD"],
+                       capture_output=True, text=True).stdout.strip()}
     OUT.write_text(json.dumps(results, indent=1), encoding="utf-8")
     log_print(f"VERDICT: {verdict} (exit {code}); artifact {OUT}")
     return code

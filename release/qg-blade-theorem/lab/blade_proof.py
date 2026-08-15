@@ -274,7 +274,7 @@ def main() -> int:
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
     out = {"theorem": "j=3 blades never cut the shore - COMPLETE: branches k=3..45 (lam<=26.1) + tail lam>=26 (T0/L2/L1/L3)",
-           "branches": "k=3 on (0,2/3]; k>=4 on [(2/3)(k-3),(2/3)(k-2)]",
+           "branches": "k=3 on (0,2/3]; k=4 on [2/3,3/2]; k=5..45 on [3(2k-5)/10, 3(2k-3)/10]; tail lam>=26",
            "all_certified": bool(ok), "cells": log,
            "command": "python lab/blade_proof.py", "git": git,
            "runtime_s": round(time.time() - t0, 1)}
