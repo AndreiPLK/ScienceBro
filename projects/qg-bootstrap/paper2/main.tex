@@ -98,6 +98,19 @@ overlaid; every cell is an exact rational verdict (all even spins, depth 14).}
 \label{fig:continent}
 \end{figure}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_cliff3d.png}
+\caption{The same boundary as a landscape (every point an exact rational
+verdict). Height is the depth to which a candidate survives the positivity
+tests: the cyan plateau is the allowed region, the wall falls exactly along
+$\min_n T_n(\lambda)$, and the floor is the excluded region. The yellow lane
+is the string ($\lambda=1$) walking the plateau as $D$ grows; the white
+diamond marks $D=23$, where the shore passes exactly through it. For $D<9$
+there is no wall at all.}
+\label{fig:cliff3d}
+\end{figure}
+
 \section{The envelope}
 
 The boundary implied by Theorem~\ref{thm:traj} is the envelope
@@ -165,10 +178,22 @@ precisely in the gravitational, high-dimensional setting. The method (top
 coefficients of residue polynomials through the partial-wave projection)
 transfers verbatim between families and is cheap: every number here was
 computed on a desktop in exact arithmetic. Natural next steps: closing
-Conjecture~ef{conj:model}; the planar analogues CHR construct; and mapping
+Conjecture~\ref{conj:model}; the planar analogues CHR construct; and mapping
 the surviving $D=4$ alternatives to their effective-field-theory
 coefficients, where gravitational-wave phenomenology could in principle
 discriminate them from the string.
+
+\section*{Explain it to anyone}
+Imagine every possible theory of quantum gravity in this family as a hiker on
+a high plateau (Fig.~\ref{fig:cliff3d}). Walking east means adding spacetime
+dimensions. Our result is the exact map of the cliff at the plateau's edge:
+below nine dimensions there is no cliff and everyone is safe --- including
+our own four-dimensional world; from nine dimensions on, a cliff appears, and
+we found the formula for exactly where it runs. The most famous hiker ---
+string theory --- walks the plateau and reaches the very edge of the cliff at
+exactly $23$ dimensions: one more step and it falls. That the boundary of
+consistency passes exactly through the string, and only in high dimensions,
+is the whole story of this paper in one picture.
 
 \section*{Reproducibility and AI disclosure}
 All claim-bearing computations use exact rational arithmetic; the evaluator,
