@@ -752,3 +752,9 @@ old entries; append corrections as new entries.
   collapse). The scientist decides and announces when a result is
   paper-worthy. Paper 5 stays as research note collapse-lemma.md; its critic
   round continues as an internal gate.
+
+## 2026-08-16 — Deep completeness battery: 25,002,978 / 0
+- Night task (fixed KeyError, ensure_E(80)): ALL knives j=3..n-1, n<=80,
+  every integer D inside the conjectured-allowed region, lam 0.05..200:
+  ZERO alarms (results/completeness_deep_n80.json). The conjecture's total
+  battery now exceeds 25M exact verdicts.
