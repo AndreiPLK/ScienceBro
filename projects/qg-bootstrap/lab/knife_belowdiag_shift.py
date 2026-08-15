@@ -201,38 +201,79 @@ def main() -> int:
 
     # (iv) far below: K = 6 + K2, v = K2*sigma (v in [0, K-6]),
     #      Декарт у мыса: коэффициенты по y
+    # (iv-v2) far below: v свободен, K2 = v + K3 (гарантирует v <= K-6),
+    #          обе переменные по ортанту — как в победившем above-diagonal
+    K3 = sp.Symbol('K3', nonnegative=True)
+
     def build_far(a, b):
         tL = a + (b - a) * thL
-        lam_c = (K2 + 6 + 45 + tL) * r3 / 3
-        kk_c = K2 + 6 + 47
+        Kc = v + K3
+        lam_c = (Kc + 6 + 45 + tL) * r3 / 3
+        kk_c = Kc + 6 + 47
         Tk = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
               * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
-        P = P_sym(lam_c, Tk - yv, 41 + K2 * sig)
+        D_c = 4 + (Tk - 4) * th
+        P = P_sym(lam_c, D_c, 41 + v)
         return sp.expand(sp.fraction(sp.together(P))[0])
 
-    def far_ok(a, b, depth):
-        P = build_far(a, b)
-        allok = True
-        for e in sp.Poly(P, yv).all_coeffs()[::-1]:
-            for b1_ in bern1(sp.expand(e), thL, ELEV):
-                for b2_ in bern1(b1_, sig, ELEV):
-                    if not polyK_nonneg(sp.expand(b2_)):
-                        allok = False
-                        break
-                if not allok:
-                    break
-            if not allok:
-                break
-        log.append({"cell": "far_below", "range": [str(a), str(b)],
-                    "ok": bool(allok)})
-        if allok:
+    def cert_orthant2(P, tag):
+        for b2_ in bern2(P, thL, th, ELEV):
+            Pp = sp.Poly(sp.expand(b2_), v, K3)
+            for _, cc in Pp.terms():
+                r = q3_parts_nonneg(sp.expand(cc)) if cc.has(r3) else (cc >= 0)
+                if r is not True:
+                    log.append({"cell": tag, "ok": False})
+                    return False
+        log.append({"cell": tag, "ok": True})
+        return True
+
+    def bisect_far(a, b, depth):
+        if cert_orthant2(build_far(a, b), "far_below_orthant"):
             return True
         if depth == 0:
             return False
         mid = (a + b) / 2
-        return far_ok(a, mid, depth - 1) and far_ok(mid, b, depth - 1)
+        return bisect_far(a, mid, depth - 1) and bisect_far(mid, b, depth - 1)
 
-    got = far_ok(sp.Integer(0), sp.Integer(1), 5)
+    MODE = os.environ.get("FAR_MODE", "orthant")
+    if MODE == "compact4d":
+        w1 = sp.Symbol('w1', nonnegative=True)
+        w2 = sp.Symbol('w2', nonnegative=True)
+
+        def build_far_c(a, b):
+            tL = a + (b - a) * thL
+            vv = 40 * w1 / (1 - w1 + sp.Rational(1, 1000))
+            KK3 = 40 * w2 / (1 - w2 + sp.Rational(1, 1000))
+            Kc = vv + KK3
+            lam_c = (Kc + 6 + 45 + tL) * r3 / 3
+            kk_c = Kc + 6 + 47
+            Tk = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
+                  * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+            D_c = 4 + (Tk - 4) * th
+            P = P_sym(lam_c, D_c, 41 + vv)
+            return sp.expand(sp.fraction(sp.together(P))[0])
+
+        def cert4(P, tag):
+            for b1_ in bern2(P, thL, th, ELEV):
+                for b2_ in bern2(b1_, w1, w2, ELEV):
+                    rr = q3_parts_nonneg(sp.expand(b2_))
+                    if rr is not True:
+                        log.append({"cell": tag, "ok": False})
+                        return False
+            log.append({"cell": tag, "ok": True})
+            return True
+
+        def bisect_c(a, b, depth):
+            if cert4(build_far_c(a, b), "far_compact4d"):
+                return True
+            if depth == 0:
+                return False
+            mid = (a + b) / 2
+            return bisect_c(a, mid, depth-1) and bisect_c(mid, b, depth-1)
+
+        got = bisect_c(sp.Integer(0), sp.Integer(1), 4)
+    else:
+        got = bisect_far(sp.Integer(0), sp.Integer(1), 5)
     ok &= got
     print(f"(iv) far below: {'OK' if got else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)

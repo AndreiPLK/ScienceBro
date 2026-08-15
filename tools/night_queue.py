@@ -120,7 +120,25 @@ def task_knife4_belowdiag_shift():
     return f"belowdiag-shift exit {r.returncode}: {tail}"
 
 
+def task_far_below_variants():
+    """Ночной веер по куску (iv): compact4d, затем elevation sweep."""
+    import os
+    outs = []
+    for mode, elev in (("compact4d", "6"), ("compact4d", "12"),
+                       ("orthant", "16")):
+        env = dict(os.environ, FAR_MODE=mode, BERN_ELEV=elev)
+        r = subprocess.run([sys.executable, "-u",
+                            str(LAB / "knife_belowdiag_shift.py")],
+                           capture_output=True, text=True, timeout=10800,
+                           env=env)
+        outs.append(f"{mode}/e{elev}: exit {r.returncode}")
+        if r.returncode == 0:
+            break
+    return "far-below variants: " + "; ".join(outs)
+
+
 TASKS = [
+    ("knife4-far-below-variants", task_far_below_variants),
     ("knife4-belowdiag-shift", task_knife4_belowdiag_shift),
     ("knife4-open-region", task_knife4_open_region),
     ("completeness-deep-n80", task_completeness_deep),

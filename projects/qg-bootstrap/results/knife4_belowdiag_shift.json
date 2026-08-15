@@ -1,0 +1,8 @@
+{
+ "all_certified": false,
+ "cells": 13,
+ "elev": 6,
+ "command": "python lab/knife_belowdiag_shift.py",
+ "git": "cd21545",
+ "runtime_s": 2146.2
+}

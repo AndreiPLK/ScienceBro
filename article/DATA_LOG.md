@@ -833,3 +833,10 @@ old entries; append corrections as new entries.
   session implements if night placeholder does not.
 - j=5 tails: shallow-tail 43/43 OK + deep-fixed OK (72 s) - awaiting
   diagonal verdicts.
+
+## 2026-08-17 — Knife-4 (iv) far-below: three certificate attempts, night fan
+- Interval chain and orthant variants both blind on the fat-margin far
+  region (sign mixing of comparable ladder terms). Night fan queued:
+  compact4d Bernstein (both orthant vars compactified) at elevations 6/12,
+  then orthant at elevation 16. Everything else of knife-4 is CERTIFIED:
+  shallow full, deep fixed, above-diagonal, diagonal band, first branches.
