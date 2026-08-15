@@ -502,3 +502,10 @@ old entries; append corrections as new entries.
 - Claims 1-3 independently re-derived and strengthened; attack script: NO
   FALSIFICATION (0 failures, 4.3 s); fixes F1-F2 applied; completeness stays
   a labeled conjecture with a designated next hunt (a_{n,2n-6}).
+
+## 2026-08-15 — THE BODY: full 3D island assembled from the 7 mu0 slices
+- 9583 exact voxels (r, w, mu0) -> isosurface body; the slanted top facet is
+  the -(1+mu0)/2 edge tilting with mass shift. Visual: island-body-3d.png.
+  Founder's intuition "we hold edges of a full figure" rendered literally.
+- Night rules v2 recorded (batch nights, always-background); fast 2n-6 hunt
+  running (completeness test of the gravity model).
