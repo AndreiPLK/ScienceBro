@@ -511,3 +511,9 @@ old entries; append corrections as new entries.
   running (completeness test of the gravity model).
 
 ## 2026-08-15 — 2n-6 hunt: zero alarms; completeness conjecture strengthened
+
+## 2026-08-15 — Pop-science key insight visual delivered
+- string-inside-vs-edge.png: two-panel "inside vs on-the-wall" — the core
+  meaning of both papers in one glance (gravity is the stricter judge).
+  Yellow diamond visibility issue in the 3D bow noted (opaque body) — cutaway
+  version queued.
