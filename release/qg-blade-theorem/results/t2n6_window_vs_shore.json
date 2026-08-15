@@ -1,0 +1,29 @@
+{
+ "dips_below_shore": [],
+ "dense_grid": {
+  "lams": "0.05..20 step 0.05 + {25,30,40,50,75,100}",
+  "n_range": "4..300",
+  "worst_margin": 2.1729,
+  "worst_at": {
+   "lam": 0.05,
+   "n": 6
+  }
+ },
+ "tail": {
+  "lams": [
+   200,
+   500,
+   1000
+  ],
+  "n_range": "4..4*lam",
+  "worst_margin": 336.053,
+  "worst_at": {
+   "lam": 200,
+   "n": 687
+  }
+ },
+ "arithmetic": "float64 scan; any negative margin would trigger exact re-verification (none found)",
+ "command": "python lab/window_vs_shore.py",
+ "git": "c019b2f",
+ "runtime_s": 0.2
+}

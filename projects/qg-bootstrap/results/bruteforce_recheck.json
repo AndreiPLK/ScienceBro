@@ -1,0 +1,14 @@
+{
+ "seed": 4242,
+ "points": 60000,
+ "with_windows": 26074,
+ "min_margin_dims": 2.1798,
+ "min_margin_at": {
+  "n": 6,
+  "lam": 0.0632
+ },
+ "counterexamples": 0,
+ "command": "python lab/bruteforce_recheck.py",
+ "git": "f00f145",
+ "runtime_s": 3.4
+}

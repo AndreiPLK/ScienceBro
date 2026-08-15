@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+title: "The Blades Never Touch the Shore: a Proof for the Second Knife of Closed-String Gravity"
+authors:
+  - family-names: Pluzhnik
+    given-names: Andrei
+    orcid: "https://orcid.org/0009-0005-5660-2603"
+version: "1.0.0"
+date-released: "2026-08-16"
+license: MIT
+repository-code: "https://github.com/AndreiPLK/qg-blade-theorem"
+keywords:
+  - S-matrix bootstrap
+  - partial-wave unitarity
+  - positivity certificates
+  - graviton scattering
+  - Virasoro-Shapiro amplitude
+references:
+  - type: article
+    title: "A Master Positivity Formula for the Cheung-Hillman-Remmen Graviton Family"
+    authors:
+      - family-names: Pluzhnik
+        given-names: Andrei
+    identifiers:
+      - type: doi
+        value: 10.5281/zenodo.21947272
+  - type: article
+    title: "The Shore of Closed-String Gravity"
+    authors:
+      - family-names: Pluzhnik
+        given-names: Andrei
+    identifiers:
+      - type: doi
+        value: 10.5281/zenodo.21944818
