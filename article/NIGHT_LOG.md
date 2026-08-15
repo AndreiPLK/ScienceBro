@@ -57,3 +57,4 @@ SHALLOW CERTIFIED (cells 1591)
 
 - 22:54:26 START knife6-tails
 - 00:54:22 FAIL  knife6-tails: subprocess.TimeoutExpired: Command '['C:\\Users\\user\\ScienceBro\\.venv\\Scripts\\python.exe', '-u', 'C:\\Users\\user\\ScienceBro\\projects\\qg-bootstrap\\lab\\knife_tail_deep.py']' timed out after 7200 seconds
+- 00:54:23 night batch finished
