@@ -1,5 +1,7 @@
 # The Shore of Closed-String Gravity
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21944818.svg)](https://doi.org/10.5281/zenodo.21944818)
+
 An exact unitarity boundary for the Cheung–Hillman–Remmen graviton family
 (arXiv:2408.03362 / PRD 111, 086034), containing Virasoro–Shapiro at λ=1.
 

@@ -529,3 +529,10 @@ old entries; append corrections as new entries.
   py_compile all green, smoke run clean, secret scan clean.
 - Published: github.com/AndreiPLK/qg-gravity-shore (main), portfolio one-pager
   live with Explain-it-to-anyone + 3D media. Zenodo toggle = founder's click.
+
+## 2026-08-15 — DOI minted, publication complete
+- Zenodo toggle by founder -> release v1.0.0 -> DOI 10.5281/zenodo.21944818.
+- Final PDF (DOI in footnote + Reproducibility) recompiled, propagated to the
+  public repo (v1.0.1), the site one-pager (DOI button), package README badge,
+  CITATION.cff. Letter 2 draft ready (same thread, no-ask tone), awaiting
+  founder Send.
