@@ -543,3 +543,20 @@ old entries; append corrections as new entries.
   shore through VS at D=23, asymptote, repo + DOI. EV-CORR-0003.
 - Paper 2 pipeline CLOSED end to end: science -> review -> package -> GitHub
   -> site -> Zenodo -> DOI -> final PDF -> letter. Same-day publication.
+
+## 2026-08-15 — SECOND KNIFE LAW (l = 2n-6): closed form found
+- Symbolic brackets extracted for n=4..9 (polynomial Pochhammer ratios killed
+  the gamma soup; sympify-locals bug found and fixed). All spot signs match the
+  exact evaluator.
+- The bracket collapses to ONE line: with m=n-3, s=lam+n-1, u=D+4m+1,
+  Bhat = alpha*u*(u-2) - G*u*s^2 + s^4,
+  G = 2(m+1)(m+3)/(3(2m+3)), alpha = (m+3)(5m^3+21m^2+19m+15)/(45(2m+1)(2m+3)).
+  Exact relations verified on all six levels: R = 8mA, W = A(16m^2-1),
+  V = P(4m+1). Structure: QUADRATIC in D => the knife cuts a WINDOW of D,
+  releasing at large D (first knife was a half-line).
+- Live confirmation: predicted string window at n=7 (D~26.2..30.3) confirmed
+  by exact evaluator: a_{7,8}<0 exactly at D=28,30; positive at 26 and 32.
+  Window lies BELOW the shore (string already dead at D=24) => completeness
+  conjecture untouched so far; analytic dip-check is the next slice.
+- Blind grid verification running: law fitted on n=4..9, scanned n=4..12
+  (n=10..12 never seen by the fit), lam 0.1..20, D 4..40, exact arithmetic.

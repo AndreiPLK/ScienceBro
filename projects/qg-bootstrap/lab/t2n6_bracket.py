@@ -53,17 +53,19 @@ def gegen_sym(l: int):
     return p1
 
 
-def weight_int(k: int, mW_sym):
-    """int_{-1}^1 x^k (1-x^2)^{mW} dx as a ratio of Pochhammers in mW (symbolic D).
-
-    For even k: 2 * B(mW+1, (k+1)/2) = 2 * Gamma(mW+1)Gamma((k+1)/2)/Gamma(mW+(k+3)/2).
-    We keep it as gamma and let sympy simplify ratios later; k is bounded (<= 4n),
-    so this stays manageable if we always take RATIOS to the k=0 integral.
+def weight_ratio(k: int):
+    """I_k / I_0 where I_k = int_{-1}^1 x^k (1-x^2)^{(D-4)/2} dx, as a RATIONAL
+    function of D with no gammas: I_k/I_0 = (k-1)!! / prod_{j=1..k/2} (D-3+2j).
     """
     if k % 2:
         return sp.Integer(0)
-    kk = sp.Integer(k)
-    return 2 * sp.gamma(mW_sym + 1) * sp.gamma((kk + 1) / 2) / sp.gamma(mW_sym + (kk + 3) / 2)
+    num = sp.Integer(1)
+    for m in range(1, k, 2):
+        num *= m                     # (k-1)!!
+    den = sp.Integer(1)
+    for j in range(1, k // 2 + 1):
+        den *= (D - 3 + 2 * j)
+    return sp.Rational(1) * num / den
 
 
 def bracket_for(n: int):
@@ -75,9 +77,7 @@ def bracket_for(n: int):
     for i, a_ in enumerate(q):
         for j, b_ in enumerate(q):
             P[i + j] = sp.expand(P[i + j] + a_ * b_)
-    mW = (D - 4) / 2
     cl = gegen_sym(l)
-    I0 = weight_int(0, mW)
     total = sp.Integer(0)
     for i, ci in enumerate(cl):
         if ci == 0:
@@ -88,12 +88,10 @@ def bracket_for(n: int):
             k = i + k2
             if k % 2:
                 continue
-            ratio = sp.simplify(weight_int(k, mW) / I0)   # rational function of D
-            total = total + ci * ck * ratio
-    total = sp.together(sp.expand(sp.simplify(total)))
+            total = total + ci * ck * weight_ratio(k)
+    total = sp.cancel(sp.together(sp.expand(total)))
     num, den = sp.fraction(total)
-    fac = sp.factor(num)
-    return fac, sp.factor(den)
+    return sp.factor(num), sp.factor(den)
 
 
 def main() -> int:

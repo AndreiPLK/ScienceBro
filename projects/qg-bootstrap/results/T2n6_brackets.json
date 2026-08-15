@@ -1,0 +1,151 @@
+{
+ "4": {
+  "numerator_factored": "(D - 3)*(D - 2)*(lam + 3)**2*(16*D**2 - 48*D*lam**2 - 288*D*lam - 304*D + 45*lam**4 + 540*lam**3 + 2190*lam**2 + 3420*lam + 1725)",
+  "denominator_factored": "64*(D - 1)*(D + 1)*(D + 3)*(D + 5)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "5": {
+  "numerator_factored": "D*(D - 3)*(D - 2)*(lam + 4)**4*(59*D**2 - 150*D*lam**2 - 1200*D*lam - 1456*D + 105*lam**4 + 1680*lam**3 + 8730*lam**2 + 16080*lam + 8997)",
+  "denominator_factored": "128*(D + 1)*(D + 3)*(D + 5)*(D + 7)*(D + 9)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "6": {
+  "numerator_factored": "D*(D - 3)*(D - 2)*(D + 2)*(lam + 5)**6*(264*D**2 - 560*D*lam**2 - 5600*D*lam - 7664*D + 315*lam**4 + 6300*lam**3 + 39970*lam**2 + 84700*lam + 52627)",
+  "denominator_factored": "512*(D + 3)*(D + 5)*(D + 7)*(D + 9)*(D + 11)*(D + 13)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "7": {
+  "numerator_factored": "3*D*(D - 3)*(D - 2)*(D + 2)*(D + 4)*(lam + 6)**8*(581*D**2 - 1050*D*lam**2 - 12600*D*lam - 19208*D + 495*lam**4 + 11880*lam**3 + 89070*lam**2 + 213480*lam + 147075)",
+  "denominator_factored": "4096*(D + 5)*(D + 7)*(D + 9)*(D + 11)*(D + 13)*(D + 15)*(D + 17)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "8": {
+  "numerator_factored": "21*D*(D - 3)*(D - 2)*(D + 2)*(D + 4)*(D + 6)*(lam + 7)**10*(224*D**2 - 352*D*lam**2 - 4928*D*lam - 8288*D + 143*lam**4 + 4004*lam**3 + 34650*lam**2 + 92708*lam + 70511)",
+  "denominator_factored": "16384*(D + 7)*(D + 9)*(D + 11)*(D + 13)*(D + 15)*(D + 17)*(D + 19)*(D + 21)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "9": {
+  "numerator_factored": "21*D*(D - 3)*(D - 2)*(D + 2)*(D + 4)*(D + 6)*(D + 8)*(lam + 8)**12*(131*D**2 - 182*D*lam**2 - 2912*D*lam - 5360*D + 65*lam**4 + 2080*lam**3 + 20410*lam**2 + 60320*lam + 50365)",
+  "denominator_factored": "16384*(D + 9)*(D + 11)*(D + 13)*(D + 15)*(D + 17)*(D + 19)*(D + 21)*(D + 23)*(D + 25)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "_meta": {
+  "command": "python lab/t2n6_bracket.py",
+  "git": "5ce65bc",
+  "runtime_s": 1281.2
+ }
+}
