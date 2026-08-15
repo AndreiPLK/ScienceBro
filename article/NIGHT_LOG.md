@@ -15,3 +15,4 @@
 - 13:25:11 DONE  closest-approach-exact: closest-approach exact: 24375 checks, 0 alarms
 - 13:25:11 START j6-brackets
 - 13:27:41 DONE  j6-brackets: j=6 brackets extracted for n=7..9
+- 13:27:41 night batch finished
