@@ -509,3 +509,5 @@ old entries; append corrections as new entries.
   Founder's intuition "we hold edges of a full figure" rendered literally.
 - Night rules v2 recorded (batch nights, always-background); fast 2n-6 hunt
   running (completeness test of the gravity model).
+
+## 2026-08-15 — 2n-6 hunt: zero alarms; completeness conjecture strengthened

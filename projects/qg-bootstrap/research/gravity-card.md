@@ -220,3 +220,13 @@ Fixes applied per review:
   a_{n,2n-6} law is the designated next hunt).
 - Caveats recorded: D>3 domain; lambda>=0 imported from CHR; n=2 hand-checked;
   discrete-n oscillation O(1/lambda) around the asymptote to be stated.
+
+
+## SLICE 8 (2026-08-15): the 2n-6 hunt — CLEAN
+
+The reviewer-designated most-plausible second knife (a_{n,2n-6}) tested across
+stress zones hugging the model boundary (34 lambda values incl. 0.1..3 and
+4..10; D windows [minT-3, minT]; n=4..14): ZERO alarms — it never cuts inside
+the model. Artifact: results/hunt_2n6.json. Conjecture 1 (completeness)
+survives its designated hunt; next natural probes: 2n-8 spot checks + low-spin
+stress at large D.
