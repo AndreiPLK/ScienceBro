@@ -238,3 +238,15 @@ stress at large D.
   n=7, lam=1: (26.2, 30.3) predicted, exact evaluator confirms (28,30 NEG).
 - Window never dips below min_n T_n (lam to 1000, n to 4*lam): worst margin
   2.17 dims at lam=0.05 n=6. Conjecture 1 strengthened.
+
+## Slice 10 (2026-08-15, FROZEN BEFORE RESULTS): EFT map of D=4 survivors
+- Hypothesis: members of the lambda-family differ in low-energy (Wilson)
+  coefficients; the family is thus observationally distinguishable in
+  principle, with lambda=1 (string) a specific point on the dial.
+- Primary metric: dimensionless ratios r_k(lambda) = c_k(lambda)/c_k(1),
+  where c_k = sum_n R(n,0)/mu(n)^k, k=3,5 (analogues of 2*zeta(3), 2*zeta(5)
+  coefficients of the VS low-energy expansion).
+- Known-answer anchor (gate): at lambda=1 the sums must reproduce zeta(3),
+  zeta(5) structure of Virasoro-Shapiro to stated precision.
+- Negative control: r_k(1) = 1 identically by construction.
+- Status: EXPLORATORY (first map; no claim promotion from this slice alone).
