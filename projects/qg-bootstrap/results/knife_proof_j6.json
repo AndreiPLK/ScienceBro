@@ -4,6 +4,6 @@
  "scope": "shallow branches k=3..45, m=4..40 (m-tail and deep water: next stage)",
  "cells": 1591,
  "command": "KNIFE_J=6 python lab/knife_proof.py",
- "git": "6db7747",
- "runtime_s": 368.9
+ "git": "51833a9",
+ "runtime_s": 350.2
 }

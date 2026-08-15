@@ -45,3 +45,13 @@
 FAR-BELOW(j=5) CLOSED
 
 - 22:48:35 START knife6-shallow
+- 22:54:26 DONE  knife6-shallow: knife6 shallow: exit 0:  (293s)
+branch k=39: OK (301s)
+branch k=40: OK (309s)
+branch k=41: OK (317s)
+branch k=42: OK (325s)
+branch k=43: OK (333s)
+branch k=44: OK (342s)
+branch k=45: OK (350s)
+SHALLOW CERTIFIED (cells 1591)
+
