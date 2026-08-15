@@ -560,3 +560,14 @@ old entries; append corrections as new entries.
   conjecture untouched so far; analytic dip-check is the next slice.
 - Blind grid verification running: law fitted on n=4..9, scanned n=4..12
   (n=10..12 never seen by the fit), lam 0.1..20, D 4..40, exact arithmetic.
+
+## 2026-08-15 — Slice 9: the window never dips below the shore
+- Blind law check: 2052/2052 exact sign agreements (fit n=4..9, scan n=4..12).
+- Dip scan with BOTH closed forms (lam 0.05..100 dense, n 4..300): the 2n-6
+  negativity window stays ABOVE min_n T_n everywhere; closest approach
+  margin 2.17 dimensions at lam=0.05, n=6. Large-lambda tail (lam 200..1000,
+  n to 4*lam): margin grows (336 at lam=200). Zero dips.
+- CONSEQUENCE: the completeness conjecture survives its strongest analytic
+  attack to date: the second knife is now a THEOREM-GRADE formula and it
+  provably (numerically, closed-form scan) never cuts into conjectured-alive
+  territory on the scanned ranges. Artifact: t2n6_window_vs_shore.json.

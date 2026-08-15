@@ -230,3 +230,11 @@ stress zones hugging the model boundary (34 lambda values incl. 0.1..3 and
 the model. Artifact: results/hunt_2n6.json. Conjecture 1 (completeness)
 survives its designated hunt; next natural probes: 2n-8 spot checks + low-spin
 stress at large D.
+
+## Slice 9 (2026-08-15): SECOND KNIFE LAW l=2n-6 + window-vs-shore
+- Closed form: Bhat = alpha*u*(u-2) - G*u*s^2 + s^4 (m=n-3, s=lam+n-1,
+  u=D+4m+1); exact relations R=8mA, W=A(16m^2-1), V=P(4m+1).
+- Blind verification 2052/2052 (n=10..12 unseen by fit). String window at
+  n=7, lam=1: (26.2, 30.3) predicted, exact evaluator confirms (28,30 NEG).
+- Window never dips below min_n T_n (lam to 1000, n to 4*lam): worst margin
+  2.17 dims at lam=0.05 n=6. Conjecture 1 strengthened.

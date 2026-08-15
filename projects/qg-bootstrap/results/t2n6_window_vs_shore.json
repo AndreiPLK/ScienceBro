@@ -1,0 +1,23 @@
+{
+ "law": "Bhat = alpha*u*(u-2) - G*u*s^2 + s^4; m=n-3, s=lam+n-1, u=D+4m+1; G=2(m+1)(m+3)/(3(2m+3)); alpha=(m+3)(5m^3+21m^2+19m+15)/(45(2m+1)(2m+3))",
+ "exact_relations": "R=8mA, W=A(16m^2-1), V=P(4m+1) on all six symbolic levels",
+ "blind_check": "2052/2052 signs match exact evaluator, n=4..12 (fit used n=4..9), lam 0.1..20, D 4..40 even",
+ "string_window_n7": "predicted (26.2,30.3) at lam=1; exact: NEG at D=28,30; pos at 26,32",
+ "dip_scan": {
+  "grid": "lam 0.05..100 (dense to 20), n 4..300",
+  "dips_below_shore": 0,
+  "worst_margin": 2.1729,
+  "worst_at": "lam=0.05 n=6"
+ },
+ "large_lambda_tail": {
+  "lams": [
+   200,
+   500,
+   1000
+  ],
+  "worst_margin": 336.053,
+  "at": "lam=200 n=687"
+ },
+ "command": "python (dip scan inline, persisted here)",
+ "git": "b740d98"
+}
