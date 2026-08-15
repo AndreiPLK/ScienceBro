@@ -18,7 +18,8 @@ sys.path.insert(0, str(LAB))
 
 def task_completeness_deep():
     """Скан полноты глубже: n<=80, lam до 200, все целые D под берегом."""
-    from master_completeness_scan import master_sign, min_T_exact
+    from master_completeness_scan import master_sign, min_T_exact, ensure_E
+    ensure_E(80)
     lams = ([F(i, 10) for i in range(1, 31)] +
             [F(4), F(5), F(7), F(10), F(20), F(50), F(100), F(200)])
     alarms = []

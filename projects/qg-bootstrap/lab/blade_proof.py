@@ -11,7 +11,7 @@ BRANCH k=3, lambda in (0, 2/3]:
   (a) n=4,5: no window at all (disc<0; univariate root isolation);
   (b) n>=6: Bhat(T_3)>0 AND T_3 left of the vertex - both by direct
       positive-coefficient certificates after m=v+3, lam=(2/3)(1-w/(1+w)).
-BRANCHES k>=4, lambda in [(2/3)(k-3), (2/3)(k-2)]:
+BRANCHES k=4..45, lambda in [3(2k-5)/10, 3(2k-3)/10] (k=4 starts at 2/3):
   For each pair of inequalities (Bhat(T_k)>0; vertex OR no-window) run an
   ADAPTIVE certifier: substitute lam=(2/3)(kap+1+t), t in [a,b] subinterval,
   t = a+(b-a)*w/(1+w); m=v+m0 (small m handled per-value); kap=K+k0; check
@@ -172,7 +172,7 @@ def main() -> int:
         m_start = 4
         tail_done = False
         while m_start <= 120 and not tail_done:
-            for m0 in range(1 if m_start == 4 else m_start - 1, m_start):
+            for m0 in range(1 if m_start == 4 else m_start - 6, m_start):
                 branch_ok &= cell_fixed_m(Bk, Vk, disc, m0, lam_sub, log,
                                           f"k{kk}_m{m0}")
             # хвост m >= m_start: 2-var Пойя для B и V

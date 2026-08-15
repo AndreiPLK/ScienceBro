@@ -35,6 +35,12 @@ def e_doubled(n: int):
 
 
 E = {n: e_doubled(n) for n in range(3, NMAX + 1)}
+
+
+def ensure_E(nmax):
+    for n in range(3, nmax + 1):
+        if n not in E:
+            E[n] = e_doubled(n)
 W = {}
 
 

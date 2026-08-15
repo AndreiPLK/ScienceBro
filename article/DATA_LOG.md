@@ -679,3 +679,17 @@ old entries; append corrections as new entries.
   direction: min margin 2.18 dims, zero counterexamples. Independent
   adversarial review of the full proof chain launched (logic audit +
   numeric attack + certificate rebuild).
+
+## 2026-08-16 — Critic round on the blade theorem: GAP FOUND AND FIXED
+- Critic verdict: GAP FOUND (740 uncovered (k,m) cells from an escalation
+  off-by-bug: range backfilled only 1 of 6 skipped m-values), theorem NOT
+  refuted; all other audit points (junctions, strictness, vertex logic,
+  L2 squaring, L1 floor bookkeeping) sound. The lab's 'ALL CERTIFIED' was
+  false as a coverage statement - the review gate did exactly its job.
+- Fix: backfill range(m_start-6, m_start) on escalation; full prover re-run:
+  ALL CERTIFIED, exit 0 (75s), coverage verified in artifact.
+- Critic's independent battery (attack_blade_theorem.py, no imports from the
+  prover, own exact evaluator, re-certifies the 740 gap cells) running.
+- Lesson: 'exit 0' proves what the script CHECKED, not what it COVERED;
+  coverage must be auditable from the artifact (per-cell log now includes
+  every m).
