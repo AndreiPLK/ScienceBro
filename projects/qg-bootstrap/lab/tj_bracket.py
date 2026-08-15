@@ -125,7 +125,7 @@ def main() -> int:
                   flush=True)
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
-    out["_meta"] = {"command": "python lab/t2n6_bracket.py", "git": git,
+    out["_meta"] = {"command": f"python lab/tj_bracket.py (TJ_J={J})", "git": git,
                     "runtime_s": round(time.time() - t0, 1)}
     (RES / f"T2n{2*J}_brackets.json").write_text(json.dumps(out, indent=1),
                                             encoding="utf-8")

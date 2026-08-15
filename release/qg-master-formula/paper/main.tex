@@ -19,16 +19,16 @@ released with this preprint; companion works: DOI 10.5281/zenodo.21934462
 For the one-parameter graviton family of Cheung, Hillman and Remmen
 (containing Virasoro--Shapiro at $\lambda=1$) we derive a single closed-form
 expression for the sign of \emph{every} near-leading partial wave
-$a_{n,\,2n-2j}$, $j\ge2$: an alternating ``ladder'' polynomial, of degree
+$a_{n,\,2n-2j}$, $2\le j\le n-1$: an alternating ``ladder'' polynomial, of degree
 $j{-}1$ in the spacetime dimension $D$, whose coefficients are explicit
 factorial weights times symmetric functions of the residue roots. The two
 laws we published previously are its first two rungs: $j{=}2$ reproduces the
-trajectory law $T_n(\lambda)$, and $j{=}3$ yields a new phenomenon --- each
+trajectory law $T_n(\lambda)$, and $j{=}3$ reveals a phenomenon invisible at $j{=}2$ --- each
 level cuts a finite \emph{window} of dimensions, re-releasing at large $D$;
-for the string the first such window is $D\in(26.2,\,30.3)$ at level $7$,
+for the string the first such window is $D\in(26.2,\,30.4)$ at level $7$,
 confirmed by exact evaluation. The formula is derived, not fitted (residue
 roots + an exact monomial--Gegenbauer integral), and passes an
-overdetermined battery: $21/21$ symbolic matches against independently
+overdetermined battery: $22/22$ symbolic matches against independently
 extracted brackets ($j\le5$); $702/702$ exact sign checks including the
 never-extracted $j{=}6$; and an independent adversarial review that
 re-derived the formula, re-proved the integral identity by rational
@@ -97,16 +97,17 @@ $(D+4n-4j-1+2r)/2$ contributing one ladder factor and one factor of $2$.
 
 \emph{Verification (all exact arithmetic).} Independently extracted symbolic
 brackets for $j=2$ ($n\le11$), $j=3$ ($n\le9$), $j=4$ ($n\le10$) and $j=5$
-($n=6$) match Eq.~\eqref{eq:master} up to positive constants in all $21$
+($n=6$) match Eq.~\eqref{eq:master} up to positive constants in all $22$
 cases; at $j{=}5$, $n{=}6$ the ladder's five coefficients are overdetermined
-by sixteen monomial identities, all satisfied. A sign grid against the exact
+by fifteen monomial identities, all satisfied (all checks persisted by a
+single battery script released with the code). A sign grid against the exact
 rational evaluator gives $702/702$ agreements over $j\le6$, $n\le10$,
 $\lambda\in[\tfrac14,7]$, $D\le36$ --- including $j{=}6$, for which no
 symbolic bracket was ever extracted: a blind test of the formula. Finally, an independent adversarial
 review re-derived the theorem end-to-end, proved
 Eq.~\eqref{eq:integral} mechanically (rational-function interpolation at
-$45$ exact $\alpha$ values, $3465$ checks), and confronted the formula with
-its own from-scratch evaluator built directly from the residue definition:
+$45$ exact $\alpha$ values, $3465$ checks), and wrote its own from-scratch evaluator directly from the residue
+definition (executed by the lab, exit code $0$):
 $4{,}060/4{,}060$ sign agreements, including odd $D$, non-integer rational
 $D$ ($7/2$, $53/7$), $\lambda=10^{-2}$ and $10^{2}$, and depth $n=15$; at
 $j{=}2$ the bracket root was confirmed to be an exact zero of the amplitude
@@ -116,7 +117,9 @@ in $24/24$ cases.
 
 \textbf{$j=2$: the shore.} Equation~\eqref{eq:master} at $j{=}2$ is a single
 linear factor and reproduces the trajectory law
-$a_{n,2n-4}\ge0\iff D\le T_n(\lambda)$ of \cite{shore} exactly, for all $n$.
+$a_{n,2n-4}\ge0\iff D\le T_n(\lambda)$ of \cite{shore} --- verified
+symbolically for $n\le11$, with the bracket root an exact amplitude zero in
+all $24$ tested cases.
 
 \textbf{$j=3$: windows.} At $j{=}3$ the ladder is quadratic in $D$: with
 $m=n-3$, $u=D+4m+1$, the bracket collapses to
@@ -127,10 +130,9 @@ be negative only \emph{between} its roots: each level cuts a finite
 \textbf{window} of dimensions and re-releases at large $D$ --- a phenomenon
 invisible at $j=2$. For the string ($\lambda=1$) the discriminant is negative
 at levels $n\le6$ (no window at all); the first window opens at level $7$,
-$D\in(26.2,\,30.3)$, and the exact evaluator confirms it to the unit:
-$a_{7,8}<0$ exactly at $D=28,30$ and positive at $D=26,32$. A blind check of
-this rung on levels the fit never saw ($n=10..12$) gave $2052/2052$ sign
-agreements.
+$D\in(26.2,\,30.4)$, and the exact evaluator confirms it to the unit:
+$a_{7,8}<0$ exactly at $D=28,30$ and positive at $D=26,32$. A sign grid over $n=4..12$ gave $2052/2052$ agreements, $684$ of them on
+levels $n=10..12$ that the rung's coefficient fit never saw.
 
 \begin{figure}[t]
 \centering
@@ -161,7 +163,9 @@ $3{,}053{,}832$ exact verdicts, \quad $0$ violations.
 The sweep evaluates the master formula rather than the partial waves
 directly; its force therefore rests on the formula's independent
 verification above. The $\ell=0$ and fixed-spin waves lie outside the
-trajectory scaling and are covered by the direct scans of \cite{shore}.
+trajectory scaling and are covered by the direct scans of \cite{shore}
+(informally, the review	extquotesingle s $j{=}n$ extrapolation of the formula to
+$\ell=0$ agreed with the evaluator in $96/96$ trials).
 Separately, the $j{=}3$ windows were traced in closed form against the shore
 for $\lambda$ up to $10^3$ and $n$ up to $4\lambda$: the lower window edge
 stays above the envelope everywhere, with the closest approach ($2.17$
@@ -194,11 +198,11 @@ somewhere else. This paper finds the formula for \emph{every} trapdoor at
 once. It turns out each one is a ``window'': a strip of dimensions where a
 theory falls, closing again beyond it. We drew all the windows
 (Fig.~\ref{fig:knives}): they all hang strictly above the cliff line, like
-blades floating over the shore, never cutting below it. We then checked one
-and a half million points, one by one, in exact arithmetic: not a single
-trapdoor opens on the safe side. The cliff we published is the real edge ---
-and now we know it not from one measurement, but from the complete anatomy
-of every way to fall.
+blades floating over the shore, never cutting below it. We then checked
+three million points, one by one, in exact arithmetic: not a single
+trapdoor opens on the safe side. Within everything we can reach, the cliff we published keeps looking like
+the true edge --- and now that is backed not by one measurement, but by the
+anatomy of every way to fall that we know how to write down.
 
 \section*{Reproducibility and AI disclosure}
 All claim-bearing computations use exact rational arithmetic. The bracket
