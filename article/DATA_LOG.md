@@ -571,3 +571,15 @@ old entries; append corrections as new entries.
   attack to date: the second knife is now a THEOREM-GRADE formula and it
   provably (numerically, closed-form scan) never cuts into conjectured-alive
   territory on the scanned ranges. Artifact: t2n6_window_vs_shore.json.
+
+## 2026-08-15 — Slice 10 (EXPLORATORY): the lambda dial of D=4 survivors
+- Known-answer gate did its job TWICE: first version expected zeta(3) at
+  lam=1 and FAILED (R(n,0)=1/n^2, not 1 - my reference was wrong, machinery
+  right); corrected anchors c3(1)=zeta(5), c5(1)=zeta(7) pass to <1e-10.
+- Moment sums c_k = sum R(n,0)/mu^k, dial ratios r_k = c_k/c_k(1):
+  r3 runs 0.965 (lam=0.1) -> 1.076 (lam=20); r5: 0.992 -> 1.095.
+  Monotone in lambda; two moments give independent coordinates.
+- Meaning (exploratory): the surviving D=4 family members differ from the
+  string by only ~3-10% in these low-energy moments - the dial exists and is
+  monotone (distinguishable in principle), but the family is low-energy
+  QUASI-STRING-LIKE. Artifact: eft_map_d4.json.
