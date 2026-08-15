@@ -70,3 +70,5 @@ SHALLOW CERTIFIED (cells 1591)
 (iv) far below: FAIL (2405s)
 INCOMPLETE
 
+- 01:44:24 START knife4-open-region
+- 01:44:33 DONE  knife4-open-region: knife4 open region: 250283 checks, 0 alarms
