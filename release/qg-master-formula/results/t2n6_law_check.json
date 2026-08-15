@@ -1,0 +1,9 @@
+{
+ "checks": 2052,
+ "mismatches": [],
+ "fitted_on": "n=4..9",
+ "blind_levels": "n=10..12",
+ "command": "python lab/t2n6_law_check.py",
+ "git": "5ce65bc",
+ "runtime_s": 2.2
+}

@@ -1,0 +1,9 @@
+{
+ "checks": 3053832,
+ "alarms": [],
+ "nmax": 40,
+ "region": "ALL integer D (even+odd) <= exact floor(min_n T_n), all j=3..n-1",
+ "command": "python lab/master_completeness_scan.py",
+ "git": "761f6e8",
+ "runtime_s": 290.9
+}

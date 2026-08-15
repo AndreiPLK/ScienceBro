@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+title: "A Master Positivity Formula for the Cheung-Hillman-Remmen Graviton Family"
+authors:
+  - family-names: Pluzhnik
+    given-names: Andrei
+    orcid: "https://orcid.org/0009-0005-5660-2603"
+version: "1.0.0"
+date-released: "2026-08-15"
+license: MIT
+repository-code: "https://github.com/AndreiPLK/qg-master-formula"
+keywords:
+  - S-matrix bootstrap
+  - Virasoro-Shapiro amplitude
+  - partial-wave unitarity
+  - Gegenbauer polynomials
+  - graviton scattering
+references:
+  - type: article
+    title: "Uniqueness Criteria for the Virasoro-Shapiro Amplitude"
+    authors:
+      - family-names: Cheung
+        given-names: Clifford
+      - family-names: Hillman
+        given-names: Aaron
+      - family-names: Remmen
+        given-names: Grant N.
+    journal: "Physical Review D"
+    volume: 111
+    year: 2025
+    identifiers:
+      - type: doi
+        value: 10.1103/PhysRevD.111.086034
+  - type: article
+    title: "The Shore of Closed-String Gravity (companion, rung j=2)"
+    authors:
+      - family-names: Pluzhnik
+        given-names: Andrei
+    identifiers:
+      - type: doi
+        value: 10.5281/zenodo.21944818
+  - type: article
+    title: "The Island Has Edges (companion open-string work)"
+    authors:
+      - family-names: Pluzhnik
+        given-names: Andrei
+    identifiers:
+      - type: doi
+        value: 10.5281/zenodo.21934462

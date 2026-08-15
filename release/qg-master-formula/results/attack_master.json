@@ -1,0 +1,96 @@
+{
+ "identity": {
+  "checks": 3465,
+  "fails": [],
+  "note": "per (l,u): equality at > 2l+2u rational alpha points = rational-function identity"
+ },
+ "controls": {
+  "known_answer_48_7": "48/7",
+  "failures": []
+ },
+ "sign_grid": {
+  "total": 4060,
+  "mismatches": [],
+  "tallies": {
+   "odd_D": {
+    "ok": 2028,
+    "n": 2028
+   },
+   "even_D": {
+    "ok": 2004,
+    "n": 2004
+   },
+   "noninteger_D": {
+    "ok": 28,
+    "n": 28
+   },
+   "lam_extreme": {
+    "ok": 1368,
+    "n": 1368
+   },
+   "deep_n": {
+    "ok": 72,
+    "n": 72
+   },
+   "zeros_seen": 3
+  }
+ },
+ "window_n7_lam1": {
+  "rows": [
+   {
+    "D": 26,
+    "sign_evaluator": 1,
+    "sign_master": 1
+   },
+   {
+    "D": 27,
+    "sign_evaluator": -1,
+    "sign_master": -1
+   },
+   {
+    "D": 28,
+    "sign_evaluator": -1,
+    "sign_master": -1
+   },
+   {
+    "D": 29,
+    "sign_evaluator": -1,
+    "sign_master": -1
+   },
+   {
+    "D": 30,
+    "sign_evaluator": -1,
+    "sign_master": -1
+   },
+   {
+    "D": 31,
+    "sign_evaluator": 1,
+    "sign_master": 1
+   },
+   {
+    "D": 32,
+    "sign_evaluator": 1,
+    "sign_master": 1
+   }
+  ],
+  "failures": []
+ },
+ "j2_root": {
+  "cases": 24,
+  "failures": [],
+  "note": "root of linear j=2 bracket == T_n(lam) and exact zero of the independent evaluator"
+ },
+ "boundary_j_eq_n_extrapolation": {
+  "total": 96,
+  "agree": 96,
+  "mismatches": [],
+  "note": "outside the paper's claimed domain (paper stops at j=n-1); critic's derivation predicts the formula extends to j=n; informational only, excluded from exit code"
+ },
+ "meta": {
+  "git": "761f6e8",
+  "runtime_s": 1.3,
+  "command": "python projects/qg-bootstrap/lab/attack_master.py",
+  "falsified": false,
+  "falsifications": []
+ }
+}
