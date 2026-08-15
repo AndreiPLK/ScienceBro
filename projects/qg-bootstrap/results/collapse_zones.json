@@ -1,0 +1,800 @@
+{
+ "rows": [
+  {
+   "n": 20,
+   "lam": "1",
+   "D_crit": 73.18,
+   "zones": {
+    "2": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -20,
+       132
+      ]
+     ]
+    },
+    "3": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -28,
+       -10
+      ]
+     ]
+    },
+    "4": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -33,
+       -19
+      ],
+      [
+       0,
+       132
+      ]
+     ]
+    },
+    "5": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -36,
+       -25
+      ],
+      [
+       -9,
+       7
+      ]
+     ]
+    },
+    "6": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -38,
+       -29
+      ],
+      [
+       -14,
+       -2
+      ],
+      [
+       16,
+       132
+      ]
+     ]
+    },
+    "7": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -40,
+       -34
+      ],
+      [
+       -18,
+       -8
+      ],
+      [
+       7,
+       22
+      ]
+     ]
+    },
+    "8": {
+     "bands": 4,
+     "expected_bands": 4,
+     "offsets_from_Dcrit": [
+      [
+       -40,
+       -39
+      ],
+      [
+       -20,
+       -14
+      ],
+      [
+       1,
+       13
+      ],
+      [
+       29,
+       132
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "n": 30,
+   "lam": "2",
+   "D_crit": 105.56,
+   "zones": {
+    "2": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -21,
+       164
+      ]
+     ]
+    },
+    "3": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -31,
+       -9
+      ]
+     ]
+    },
+    "4": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -37,
+       -19
+      ],
+      [
+       3,
+       164
+      ]
+     ]
+    },
+    "5": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -42,
+       -27
+      ],
+      [
+       -8,
+       11
+      ]
+     ]
+    },
+    "6": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -45,
+       -32
+      ],
+      [
+       -16,
+       0
+      ],
+      [
+       21,
+       164
+      ]
+     ]
+    },
+    "7": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -48,
+       -37
+      ],
+      [
+       -21,
+       -8
+      ],
+      [
+       9,
+       28
+      ]
+     ]
+    },
+    "8": {
+     "bands": 4,
+     "expected_bands": 4,
+     "offsets_from_Dcrit": [
+      [
+       -50,
+       -41
+      ],
+      [
+       -26,
+       -14
+      ],
+      [
+       2,
+       16
+      ],
+      [
+       36,
+       164
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "n": 40,
+   "lam": "5",
+   "D_crit": 165.95,
+   "zones": {
+    "2": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -22,
+       224
+      ]
+     ]
+    },
+    "3": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -33,
+       -10
+      ]
+     ]
+    },
+    "4": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -40,
+       -22
+      ],
+      [
+       3,
+       224
+      ]
+     ]
+    },
+    "5": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -45,
+       -30
+      ],
+      [
+       -10,
+       12
+      ]
+     ]
+    },
+    "6": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -48,
+       -37
+      ],
+      [
+       -19,
+       -1
+      ],
+      [
+       22,
+       224
+      ]
+     ]
+    },
+    "7": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -51,
+       -43
+      ],
+      [
+       -25,
+       -10
+      ],
+      [
+       9,
+       29
+      ]
+     ]
+    },
+    "8": {
+     "bands": 4,
+     "expected_bands": 4,
+     "offsets_from_Dcrit": [
+      [
+       -51,
+       -49
+      ],
+      [
+       -31,
+       -18
+      ],
+      [
+       -1,
+       16
+      ],
+      [
+       39,
+       224
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "n": 50,
+   "lam": "5",
+   "D_crit": 184.26,
+   "zones": {
+    "2": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -21,
+       243
+      ]
+     ]
+    },
+    "3": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -34,
+       -6
+      ]
+     ]
+    },
+    "4": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -42,
+       -20
+      ],
+      [
+       8,
+       243
+      ]
+     ]
+    },
+    "5": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -48,
+       -29
+      ],
+      [
+       -7,
+       18
+      ]
+     ]
+    },
+    "6": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -53,
+       -37
+      ],
+      [
+       -17,
+       3
+      ],
+      [
+       29,
+       243
+      ]
+     ]
+    },
+    "7": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -57,
+       -43
+      ],
+      [
+       -24,
+       -7
+      ],
+      [
+       14,
+       37
+      ]
+     ]
+    },
+    "8": {
+     "bands": 4,
+     "expected_bands": 4,
+     "offsets_from_Dcrit": [
+      [
+       -61,
+       -48
+      ],
+      [
+       -31,
+       -15
+      ],
+      [
+       4,
+       22
+      ],
+      [
+       47,
+       243
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "n": 60,
+   "lam": "8",
+   "D_crit": 244.53,
+   "zones": {
+    "2": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -23,
+       303
+      ]
+     ]
+    },
+    "3": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -36,
+       -8
+      ]
+     ]
+    },
+    "4": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -45,
+       -22
+      ],
+      [
+       7,
+       303
+      ]
+     ]
+    },
+    "5": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -51,
+       -33
+      ],
+      [
+       -9,
+       17
+      ]
+     ]
+    },
+    "6": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -56,
+       -41
+      ],
+      [
+       -20,
+       1
+      ],
+      [
+       29,
+       303
+      ]
+     ]
+    },
+    "7": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -59,
+       -47
+      ],
+      [
+       -28,
+       -10
+      ],
+      [
+       13,
+       37
+      ]
+     ]
+    },
+    "8": {
+     "bands": 4,
+     "expected_bands": 4,
+     "offsets_from_Dcrit": [
+      [
+       -62,
+       -54
+      ],
+      [
+       -35,
+       -19
+      ],
+      [
+       1,
+       21
+      ],
+      [
+       48,
+       303
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "n": 80,
+   "lam": "10",
+   "D_crit": 309.22,
+   "zones": {
+    "2": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -22,
+       368
+      ]
+     ]
+    },
+    "3": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -37,
+       -4
+      ]
+     ]
+    },
+    "4": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -48,
+       -21
+      ],
+      [
+       12,
+       368
+      ]
+     ]
+    },
+    "5": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -56,
+       -33
+      ],
+      [
+       -6,
+       24
+      ]
+     ]
+    },
+    "6": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -62,
+       -42
+      ],
+      [
+       -18,
+       6
+      ],
+      [
+       37,
+       368
+      ]
+     ]
+    },
+    "7": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -67,
+       -50
+      ],
+      [
+       -28,
+       -7
+      ],
+      [
+       18,
+       47
+      ]
+     ]
+    },
+    "8": {
+     "bands": 4,
+     "expected_bands": 4,
+     "offsets_from_Dcrit": [
+      [
+       -71,
+       -57
+      ],
+      [
+       -37,
+       -17
+      ],
+      [
+       5,
+       28
+      ],
+      [
+       58,
+       368
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "n": 100,
+   "lam": "12",
+   "D_crit": 374.12,
+   "zones": {
+    "2": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -21,
+       433
+      ]
+     ]
+    },
+    "3": {
+     "bands": 1,
+     "expected_bands": 1,
+     "offsets_from_Dcrit": [
+      [
+       -39,
+       -2
+      ]
+     ]
+    },
+    "4": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -52,
+       -21
+      ],
+      [
+       16,
+       433
+      ]
+     ]
+    },
+    "5": {
+     "bands": 2,
+     "expected_bands": 2,
+     "offsets_from_Dcrit": [
+      [
+       -61,
+       -34
+      ],
+      [
+       -4,
+       29
+      ]
+     ]
+    },
+    "6": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -68,
+       -45
+      ],
+      [
+       -18,
+       9
+      ],
+      [
+       43,
+       433
+      ]
+     ]
+    },
+    "7": {
+     "bands": 3,
+     "expected_bands": 3,
+     "offsets_from_Dcrit": [
+      [
+       -75,
+       -54
+      ],
+      [
+       -29,
+       -5
+      ],
+      [
+       23,
+       54
+      ]
+     ]
+    },
+    "8": {
+     "bands": 4,
+     "expected_bands": 4,
+     "offsets_from_Dcrit": [
+      [
+       -80,
+       -61
+      ],
+      [
+       -39,
+       -17
+      ],
+      [
+       8,
+       33
+      ],
+      [
+       66,
+       433
+      ]
+     ]
+    }
+   }
+  }
+ ],
+ "jmax": 8,
+ "prediction": "B_j ~ term0*(1-X)^{j-1}, X=6rho^2/(delta+4); zones cluster near D_crit, floor(j/2) bands",
+ "command": "python lab/collapse_zones.py",
+ "git": "c06b779",
+ "runtime_s": 0.9
+}
