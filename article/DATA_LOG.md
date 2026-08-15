@@ -700,3 +700,10 @@ old entries; append corrections as new entries.
   independently; tail lemmas rebuilt from scratch. Artifact attack_blade.json.
 - Paper 4 placeholders filled with the honest review story (gap found,
   fixed, re-verified). Ready for release-review.
+
+## 2026-08-16 — Paper 4 published to GitHub + site; Zenodo = founder click
+- All release blockers closed incl. honest margin numbers (inf ~2.15 as
+  lam->0, not attained; 2.17 was a grid-edge artifact) and 4/3-vs-sqrt(5/3)
+  attribution. Both provers re-run on clean HEAD with metadata.
+- github.com/AndreiPLK/qg-blade-theorem live; portfolio one-pager + card
+  live (hero: the tangent fleet; the caught-bug story told openly).
