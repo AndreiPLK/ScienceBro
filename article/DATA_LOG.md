@@ -625,3 +625,11 @@ old entries; append corrections as new entries.
   wording tempered (finite ranges, l>=2, formula-dependency stated).
 - Paper recompiled (4 pages). Remaining before publication: release-review,
   package, founder's go.
+
+## 2026-08-15 — Paper 3 published to GitHub + site; Zenodo = founder click
+- All 7 release blockers + 8 warnings closed; master_checks.py PASS
+  (22/22 symbolic, 15/15 monomials, 702/702 signs); window_vs_shore.py and
+  fig_knives.py persisted; figure regenerated with fresh battery count.
+- github.com/AndreiPLK/qg-master-formula live (main); portfolio one-pager
+  + index card live. Awaiting founder Zenodo toggle -> v1.0.0 -> DOI ->
+  final PDF -> letter 3.
