@@ -36,3 +36,11 @@
 ## Night batch 2026-08-15 21:59
 - 21:59:50 queue loaded: 3 tasks
 - 21:59:50 START knife5-belowdiag-factored
+- 22:48:35 DONE  knife5-belowdiag-factored: knife5 far-below factored: exit 0: y-coefficients: 5
+  c0: OK (2847s)
+  c1: OK (2904s)
+  c2: OK (2918s)
+  c3: OK (2923s)
+  c4: OK (2923s)
+FAR-BELOW(j=5) CLOSED
+

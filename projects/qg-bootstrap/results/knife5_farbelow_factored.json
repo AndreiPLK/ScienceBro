@@ -1,0 +1,7 @@
+{
+ "j": 5,
+ "far_below_factored": true,
+ "command": "python lab/knife5_farbelow_factored.py",
+ "git": "9315f69",
+ "runtime_s": 2923.4
+}
