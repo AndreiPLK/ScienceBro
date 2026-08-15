@@ -5,3 +5,4 @@
 - 09:33:46 DONE  2n8-hunt: 2n-8 hunt: 0 alarms over 34 lambdas
 - 09:33:46 START lowspin-stress
 - 09:33:49 DONE  lowspin-stress: low-spin stress: 0 alarms in 7 checks (depth 20, all even l)
+- 09:33:49 START d4-deep120

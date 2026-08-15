@@ -1,1 +1,7 @@
-[]
+{
+ "alarms": [],
+ "n_lambdas": 34,
+ "n_range": "4..14",
+ "window": "[minT-3, minT] even D",
+ "git": "69fe1b8"
+}
