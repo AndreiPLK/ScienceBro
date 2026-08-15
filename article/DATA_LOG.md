@@ -744,3 +744,11 @@ old entries; append corrections as new entries.
   level. Caveat logged: the asymptotic critical line is quantitatively far
   from exact T_n at moderate m (checked: n=8, lam=5: 152.8 vs exact 94) -
   the collapse is a tail tool, not a substitute for certificates.
+
+## 2026-08-16 — Publication strategy v2 (founder decision)
+- No more mini-papers: full rigor per result (freeze, artifacts, critic,
+  batteries) but output = research note + site news/media only. One FLAGSHIP
+  paper when the grand theorem lands (integrating shore + master + blades +
+  collapse). The scientist decides and announces when a result is
+  paper-worthy. Paper 5 stays as research note collapse-lemma.md; its critic
+  round continues as an internal gate.
