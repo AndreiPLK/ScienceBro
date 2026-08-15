@@ -4537,5 +4537,5 @@
  ],
  "negative_control_ok": true,
  "verdict": "NO COUNTEREXAMPLE; tail certificates independently rebuilt; all branch cells (incl. blade_proof.py's coverage-gap cells) independently re-certified",
- "runtime_s": 31.2
+ "runtime_s": 33.3
 }
