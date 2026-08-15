@@ -605,3 +605,10 @@ old entries; append corrections as new entries.
   overdetermination at j=5; 702/702 sign grid vs exact evaluator INCLUDING
   blind j=6. Note: research/master-formula.md.
 - Next: (a) all-j window-vs-shore scan (completeness); (b) paper 3 draft.
+
+## 2026-08-15 — COMPLETENESS BATTERY VIA MASTER FORMULA: 1,538,164 / 0
+- Every knife j=3..n-1, n<=40, every even D inside the conjectured-alive
+  region, lam 0.05..50: ZERO alarms. The j=2 envelope min_n T_n is the
+  boundary as far as every trajectory constraint can see.
+  Artifact: master_completeness_scan.json (160s runtime).
+- Paper 3 drafting starts now.

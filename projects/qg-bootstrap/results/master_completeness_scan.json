@@ -1,0 +1,9 @@
+{
+ "checks": 1538164,
+ "alarms": [],
+ "nmax": 40,
+ "region": "even D <= floor(min_n T_n), all j=3..n-1",
+ "command": "python lab/master_completeness_scan.py",
+ "git": "9cba4a4",
+ "runtime_s": 158.6
+}
