@@ -44,3 +44,4 @@
   c4: OK (2923s)
 FAR-BELOW(j=5) CLOSED
 
+- 22:48:35 START knife6-shallow

@@ -881,3 +881,8 @@ old entries; append corrections as new entries.
 - KNIFE_J=6 shallow: 1591/1591 cells, 43 branches, 369 s, zero failures.
   Shallow now certified for knives j=3..6. Knife 7 at branch 24/45 and
   climbing; knife 5 far-below factoring (night batch).
+
+## 2026-08-17 (ночь) — Knife 7 shallow certified
+- KNIFE_J=7 shallow: 1548/1548 cells, 43 branches, 729 s, zero failures.
+  Shallow certified for knives j=3..7. Knife 6 tails running; knife 5
+  far-below factoring (night batch).
