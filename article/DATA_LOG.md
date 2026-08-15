@@ -583,3 +583,15 @@ old entries; append corrections as new entries.
   string by only ~3-10% in these low-energy moments - the dial exists and is
   monotone (distinguishable in principle), but the family is low-energy
   QUASI-STRING-LIKE. Artifact: eft_map_d4.json.
+
+## 2026-08-15 — MASTER STRUCTURE of all knives (j = 2..5 verified)
+- Every knife l = 2n-2j has the LADDER form:
+    B_j = sum_{i=0}^{j-1} (-1)^i a_i(n,j) s^{2i} PROD_{k=i}^{j-2}(D + 4n-4j-1 + 2k)
+  (s = lam+n-1; ladder of D-shifts step 2, top factor always D+4n-2j-5).
+- Overdetermination test at j=5, n=6: 16 monomial coefficients vs 5 ladder
+  dof - ALL 16 match exactly (a = 4096, 15360, 23760, 16800, 4725).
+- j=2 (T_n law) and j=3 (Bhat law) are the ladder's first two rungs:
+  j=3 exact relations R=8mA, W=A(16m^2-1), V=P(4m+1) are ladder identities.
+- Remaining open piece: closed form of a_i(n,j) (generating coefficients).
+  Data in hand: j=2 all n (exact), j=3 n=4..9 (closed form known), j=4
+  n=5..10 (bg finishing), j=5 n=6. Next: fit/derive a_i(n,j).
