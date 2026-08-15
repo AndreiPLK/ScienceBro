@@ -1,0 +1,151 @@
+{
+ "5": {
+  "numerator_factored": "-3*(D - 3)*(D - 2)*(lam + 4)**2*(15*D**3 - 59*D**2*lam**2 - 472*D**2*lam - 719*D**2 + 75*D*lam**4 + 1200*D*lam**3 + 6492*D*lam**2 + 13536*D*lam + 8937*D - 35*lam**6 - 840*lam**5 - 7875*lam**4 - 36400*lam**3 - 86065*lam**2 - 97160*lam - 40425)",
+  "denominator_factored": "64*(D - 1)*(D + 1)*(D + 3)*(D + 5)*(D + 7)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "6": {
+  "numerator_factored": "-5*D*(D - 3)*(D - 2)*(lam + 5)**4*(256*D**3 - 792*D**2*lam**2 - 7920*D**2*lam - 12888*D**2 + 840*D*lam**4 + 16800*D*lam**3 + 110160*D*lam**2 + 261600*D*lam + 190184*D - 315*lam**6 - 9450*lam**5 - 108885*lam**4 - 602700*lam**3 - 1645533*lam**2 - 2070330*lam - 929667)",
+  "denominator_factored": "512*(D + 1)*(D + 3)*(D + 5)*(D + 7)*(D + 9)*(D + 11)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "7": {
+  "numerator_factored": "-D*(D - 3)*(D - 2)*(D + 2)*(lam + 6)**6*(4645*D**3 - 12201*D**2*lam**2 - 146412*D**2*lam - 258081*D**2 + 11025*D*lam**4 + 264600*D*lam**3 + 2039772*D*lam**2 + 5426064*D*lam + 4326227*D - 3465*lam**6 - 124740*lam**5 - 1705725*lam**4 - 10999800*lam**3 - 34017795*lam**2 - 47329380*lam - 23024535)",
+  "denominator_factored": "1024*(D + 3)*(D + 5)*(D + 7)*(D + 9)*(D + 11)*(D + 13)*(D + 15)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "8": {
+  "numerator_factored": "-D*(D - 3)*(D - 2)*(D + 2)*(D + 4)*(lam + 7)**8*(92416*D**3 - 211680*D**2*lam**2 - 2963520*D**2*lam - 5659104*D**2 + 166320*D*lam**4 + 4656960*D*lam**3 + 41277600*D*lam**2 + 121504320*D*lam + 105685808*D - 45045*lam**6 - 1891890*lam**5 - 29947995*lam**4 - 220526460*lam**3 - 761604795*lam**2 - 1164015090*lam - 614650965)",
+  "denominator_factored": "16384*(D + 5)*(D + 7)*(D + 9)*(D + 11)*(D + 13)*(D + 15)*(D + 17)*(D + 19)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "9": {
+  "numerator_factored": "-D*(D - 3)*(D - 2)*(D + 2)*(D + 4)*(D + 6)*(lam + 8)**10*(44683*D**3 - 90783*D**2*lam**2 - 1452528*D**2*lam - 2995083*D**2 + 63063*D*lam**4 + 2018016*D*lam**3 + 20221740*D*lam**2 + 65241792*D*lam + 61597997*D - 15015*lam**6 - 720720*lam**5 - 12963951*lam**4 - 107339232*lam**3 - 409397373*lam**2 - 683120592*lam - 391281261)",
+  "denominator_factored": "8192*(D + 7)*(D + 9)*(D + 11)*(D + 13)*(D + 15)*(D + 17)*(D + 19)*(D + 21)*(D + 23)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "10": {
+  "numerator_factored": "-D*(D - 3)*(D - 2)*(D + 2)*(D + 4)*(D + 6)*(D + 8)*(lam + 9)**12*(288320*D**3 - 526344*D**2*lam**2 - 9474192*D**2*lam - 21009864*D**2 + 327600*D*lam**4 + 11793600*D*lam**3 + 131843712*D*lam**2 + 462623616*D*lam + 471869392*D - 69615*lam**6 - 3759210*lam**5 - 75737025*lam**4 - 696559500*lam**3 - 2907675225*lam**2 - 5266653210*lam - 3264598215)",
+  "denominator_factored": "65536*(D + 9)*(D + 11)*(D + 13)*(D + 15)*(D + 17)*(D + 19)*(D + 21)*(D + 23)*(D + 25)*(D + 27)",
+  "spot": [
+   {
+    "lam": "1",
+    "D": 26,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "2",
+    "D": 30,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   },
+   {
+    "lam": "1/2",
+    "D": 14,
+    "sign_exact": 1,
+    "sign_bracket": 1
+   }
+  ]
+ },
+ "_meta": {
+  "command": "python lab/t2n6_bracket.py",
+  "git": "07f80bf",
+  "runtime_s": 2437.4
+ }
+}

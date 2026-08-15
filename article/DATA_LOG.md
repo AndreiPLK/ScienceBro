@@ -595,3 +595,13 @@ old entries; append corrections as new entries.
 - Remaining open piece: closed form of a_i(n,j) (generating coefficients).
   Data in hand: j=2 all n (exact), j=3 n=4..9 (closed form known), j=4
   n=5..10 (bg finishing), j=5 n=6. Next: fit/derive a_i(n,j).
+
+## 2026-08-15 — MASTER FORMULA derived and verified (candidate paper 3 core)
+- Derived (not fitted): residue roots + exact monomial-Gegenbauer integral
+  I(l+2u,l)/I(l,l) = (l+2u)!/(l! u! 4^u (alpha+l+1)_u) + Pochhammer clearing
+  => sign a_{n,2n-2j} = (-1)^{j-1} sign SUM_i (-1)^i E_{2(j-1-i)}(n)
+  (2n-2j+2i)!/(i!2^i) s^{2i} PROD_{r=i}^{j-2}(D+4n-4j-1+2r).
+- Verified: 21/21 symbolic bracket matches (j=2..5); 16-monomial
+  overdetermination at j=5; 702/702 sign grid vs exact evaluator INCLUDING
+  blind j=6. Note: research/master-formula.md.
+- Next: (a) all-j window-vs-shore scan (completeness); (b) paper 3 draft.
