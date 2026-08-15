@@ -612,3 +612,16 @@ old entries; append corrections as new entries.
   boundary as far as every trajectory constraint can see.
   Artifact: master_completeness_scan.json (160s runtime).
 - Paper 3 drafting starts now.
+
+## 2026-08-15 — Paper 3 review round 1 closed
+- Critic (independent, from-scratch evaluator, no lab imports): integral
+  identity CORRECT (mechanical interpolation proof, 3465 checks); master
+  formula CORRECT (re-derived by hand end-to-end); his attack script executed
+  by lab: EXIT 0, 4060/4060 signs incl. odd D, non-integer D (7/2, 53/7),
+  lam 0.01/100, n=15; j=2 roots = exact amplitude zeros 24/24.
+- Defects fixed: (1) sign typo in generating identity (tex); (2) float
+  region boundary in completeness scan -> exact rational floor; (3) scan
+  extended to ALL integer D: now 3,053,832 checks, 0 alarms; (4) abstract
+  wording tempered (finite ranges, l>=2, formula-dependency stated).
+- Paper recompiled (4 pages). Remaining before publication: release-review,
+  package, founder's go.

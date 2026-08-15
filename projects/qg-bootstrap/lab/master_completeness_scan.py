@@ -60,9 +60,10 @@ def master_sign(n: int, j: int, lamv: F, Dv: int) -> int:
     return (B > 0) - (B < 0)
 
 
-def min_T(lamf: float) -> float:
-    return min((3 * (2 * n - 3) / (n * (n - 2)))
-               * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
+def min_T_exact(lam: F) -> F:
+    """min_n T_n как точная дробь (критик: float-граница зоны недопустима)."""
+    return min(F(3 * (2 * n - 3), n * (n - 2))
+               * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
                for n in range(3, 400))
 
 
@@ -73,8 +74,10 @@ def main() -> int:
     alarms = []
     checks = 0
     for lam in lams:
-        Dtop = int(min_T(float(lam)))
-        for Dv in range(4, Dtop + 1, 2):
+        mt = min_T_exact(lam)
+        Dtop = int(mt) if mt.denominator > 1 else int(mt)  # точный floor
+        Dtop = mt.numerator // mt.denominator
+        for Dv in range(4, Dtop + 1):  # критик: и чётные, и нечётные D
             for n in range(4, NMAX + 1):
                 for j in range(3, n):
                     if 2 * n - 2 * j < 0:
@@ -88,7 +91,7 @@ def main() -> int:
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
     out = {"checks": checks, "alarms": alarms, "nmax": NMAX,
-           "region": "even D <= floor(min_n T_n), all j=3..n-1",
+           "region": "ALL integer D (even+odd) <= exact floor(min_n T_n), all j=3..n-1",
            "command": "python lab/master_completeness_scan.py", "git": git,
            "runtime_s": round(time.time() - t0, 1)}
     (RES / "master_completeness_scan.json").write_text(
