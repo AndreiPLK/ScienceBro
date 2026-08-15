@@ -329,8 +329,48 @@ def main() -> int:
                    [(a1, m1, a2, m2), (a1, m1, m2, b2),
                     (m1, b1, a2, m2), (m1, b1, m2, b2)])
 
-    gotA = deep_cell3((K + 4) * sig, sig, sp.Integer(0), sp.Integer(1),
-                      sp.Integer(0), sp.Integer(1), 3, "deep_below_diag")
+    # ---- v4 для below-diagonal: разложение по y (D = T_cap - y):
+    #      положительность всех коэффициентов по y <=> P>0 на ВСЕЙ полуоси D<=T_cap
+    yv = sp.Symbol('y', nonnegative=True)
+
+    def deep_cell4(vsub, extra_var, a1, b1, depth, tag):
+        tL = a1 + (b1 - a1) * thL
+        lam_c = (K + 45 + tL) * r3 / 3
+        kk_c = K + 47
+        Tk_c = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
+                * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+        P = P_sym(lam_c, Tk_c - yv, 41 + vsub)
+        P = sp.expand(sp.fraction(sp.together(P))[0])
+        ycoeffs = [sp.expand(c) for c in sp.Poly(P, yv).all_coeffs()[::-1]]
+        allok = True
+        for ci, e in enumerate(ycoeffs):
+            # Бернштейн по thL, затем позитивность по (extra, K)
+            for b_ in bern1(e, thL):
+                if extra_var is sig:
+                    okc = all(poly_K_nonneg(b2c) for b2c in bern1(b_, sig))
+                else:
+                    Pp = sp.Poly(sp.expand(b_), K, vpp)
+                    okc = all(
+                        (cc >= 0) if not cc.has(r3) else (
+                            cc.coeff(r3, 0) >= 0 and cc.coeff(r3, 1) >= 0)
+                        for _, cc in Pp.terms())
+                if not okc:
+                    allok = False
+                    break
+            if not allok:
+                break
+        log.append({"cell": tag, "range": [str(a1), str(b1)],
+                    "ok": bool(allok)})
+        if allok:
+            return True
+        if depth == 0:
+            return False
+        mid = (a1 + b1) / 2
+        return (deep_cell4(vsub, extra_var, a1, mid, depth - 1, tag) and
+                deep_cell4(vsub, extra_var, mid, b1, depth - 1, tag))
+
+    gotA = deep_cell4((K + 4) * sig, sig, sp.Integer(0), sp.Integer(1),
+                      6, "deep_below_diag_v4")
     print(f"deep-tail below-diagonal: {'OK' if gotA else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)
     gotB = deep_cell3(K + 4 + vpp, vpp, sp.Integer(0), sp.Integer(1),
