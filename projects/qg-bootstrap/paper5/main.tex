@@ -21,11 +21,12 @@ $\delta=D/m$), the master-formula bracket of \emph{every} trajectory
 constraint collapses to a perfect power of the first:
 $B_j/\mathrm{term}_0\to(1-X)^{j-1}$ with $X=6\rho^2/(\delta+4)$. All knives
 share one critical surface --- the first knife's line $u=6\rho^2m$ --- whose
-$(j{-}1)$-fold degenerate root splits at subleading order into exactly
-$\lfloor j/2\rfloor$ thin negativity bands; even knives otherwise kill only
-on the already-dead side. Exact-arithmetic verification: for $j\le8$ and
-levels up to $n=100$, every band count and every clustering offset matches
-the prediction with zero deviations. Minimizing the collapse surface over
+$(j{-}1)$-fold degenerate root splits at subleading order into thin
+negativity bands --- $(j{-}1)/2$ for odd $j$, $(j{-}2)/2$ plus the first
+knife's own semi-infinite dead side for even $j$ --- within the window belt
+$\rho<\sqrt{5/3}$. Exact-arithmetic verification: for $j\le8$ and levels up
+to $n=100$ inside the belt, every band count matches the prediction with
+zero deviations. Minimizing the collapse surface over
 levels reproduces $\rho^*=1+1/\sqrt3$ and the envelope asymptote
 $(12+4\sqrt3)\lambda$: the exact tangency of our blade theorem is the
 $j{=}3$ shadow of this universal structure. The collapse organizes the
@@ -47,7 +48,7 @@ $s=\rho m$, $D=\delta m$, $m\to\infty$,
 \end{equation}
 with the rate $O_j(1/m)$ for the absolute deviation; the relative rate
 degrades where the limit is exponentially small, and at $X{=}1$ the
-deviation improves to $O(m^{-\lceil(j-1)/2ceil})$ (finite-difference
+deviation improves to $O(m^{-\lceil(j-1)/2\rceil})$ (finite-difference
 cancellation), which is precisely what the $\sqrt m$ band splitting
 requires.
 \end{theorem}
@@ -90,8 +91,8 @@ $j$: bands plus the half-line on the far side, which coincides with the
 first knife's own dead side).
 
 \textbf{The tangency explained.} Minimizing $6\rho^2m-4m$ over the level at
-fixed $\lambda$ gives $12\rho-6\rho^2\cdot\rho^{-1}\cdot\ldots$ --- the
-stationary ratio $\rho^*=1+1/\sqrt3$ and the envelope asymptote
+fixed $\lambda$ gives the stationarity condition $12\rho-6\rho^2-4=0$,
+hence the ratio $\rho^*=1+1/\sqrt3$ and the envelope asymptote
 $D=(12+4\sqrt3)\lambda$ of \cite{shore}. The exact tangency that made the
 blade theorem \cite{blades} delicate is thus the $j{=}3$ instance of a
 universal fact: \emph{every} knife's asymptotic cone is tangent to the

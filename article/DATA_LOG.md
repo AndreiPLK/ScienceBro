@@ -758,3 +758,14 @@ old entries; append corrections as new entries.
   every integer D inside the conjectured-allowed region, lam 0.05..200:
   ZERO alarms (results/completeness_deep_n80.json). The conjecture's total
   battery now exceeds 25M exact verdicts.
+
+## 2026-08-16 — Documentооборот запущен; первый кейс — фантом
+- docs/ERRATA.md создан (правило основателя: любая ошибка в опубликованном
+  исправляется везде с формальной записью).
+- ERR-0001 (окно 30.3 в paper 3) оказался ФАНТОМОМ: published v1.0.1 уже
+  содержала 30.4 (W2 закрыт до публикации). Ошибочный erratum-релиз v1.0.2
+  отозван немедленно. Урок в реестре: проверяй published-артефакт, не память.
+- Попутно: paper5-нота — все правки критика внесены (E1-E6, скоуп пояса,
+  rate rescoped, замыкающая лемма); батарея критика attack_collapse
+  исполнена (прямое подтверждение центрального предела; два F5-флага о
+  скорости учтены в формулировке).
