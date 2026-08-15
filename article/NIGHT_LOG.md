@@ -16,3 +16,8 @@
 - 13:25:11 START j6-brackets
 - 13:27:41 DONE  j6-brackets: j=6 brackets extracted for n=7..9
 - 13:27:41 night batch finished
+
+## Night batch 2026-08-15 17:02
+- 17:02:48 queue loaded: 4 tasks
+- 17:02:48 START knife4-open-region
+- 17:02:57 DONE  knife4-open-region: knife4 open region: 250283 checks, 0 alarms
