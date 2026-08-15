@@ -21,15 +21,18 @@ $j{=}3$ trajectory constraint --- the ``second knife'', whose negativity
 windows are the blades of our master-formula paper --- never cuts into the
 region allowed by the near-leading envelope $\min_k T_k(\lambda)$: for every
 level $n$ and every $\lambda>0$, the window of $a_{n,2n-6}$, when it exists,
-lies strictly above the shore. The proof is a family of several hundred
-positive-coefficient certificates in exact arithmetic: explicit envelope
+lies strictly above the shore. The proof is a family of $1{,}047$
+exact-arithmetic cells --- univariate root-isolation no-window checks plus
+positive-coefficient certificates: explicit envelope
 branches for $\lambda\le26$, and four lemmas for the deep-water tail ---
 including the fact that makes the theorem delicate and true at once: the
 asymptotic cone of the blades is \emph{exactly tangent} to the shore
 asymptote $D=(12+4\sqrt3)\lambda$ (the tangency discriminant vanishes
 identically at slope ratio $\rho=1+1/\sqrt3$), while windows only exist up to
-$\rho=\sqrt{5/3}$, strictly inside. The closest approach in all of parameter
-space is $2.17$ dimensions, at $\lambda\approx0.05$. This upgrades the
+$\rho=\sqrt{5/3}$, strictly inside. In exact scans the margin between blades
+and shore is smallest at small $\lambda$ (level $6$), decreasing toward
+$\approx2.15$ dimensions as $\lambda\to0$ without being attained. This
+upgrades the
 $j{=}3$ sector of our completeness conjecture from a $3$-million-point
 battery to a theorem.
 \end{abstract}
@@ -65,8 +68,8 @@ isolation) \emph{or} both $\widehat B_n(T_k)>0$ and the vertex condition
 $G_ms^2>(T_k+4m)\,2\alpha_m$ (which together place $T_k$ strictly left of
 the window). Branches $k=3,\dots,45$ with rational breakpoints cover
 $(0,\,26.1]$; small $m$ are handled per-level (univariately), the $m$-tail
-by positive-coefficient certificates. The zone of closest approach
-($2.17$ dimensions at $\lambda=0.05$, level $6$) lies in the $k{=}3$ branch,
+by positive-coefficient certificates. The zone of closest approach (margins
+$\approx2.15$--$2.2$ dimensions at small $\lambda$, level $6$) lies in the $k{=}3$ branch,
 where the certificates are one substitution deep.
 
 \textbf{Deep water ($\lambda\ge26$): four lemmas.}
@@ -97,8 +100,9 @@ scaling limit $m\to\infty$ with $\rho=s/m$ fixed, the window's lower edge and
 the shore asymptote compare through the quadratic
 $6\rho^2-(12+4\sqrt3)\rho+(8+4\sqrt3)$, whose discriminant is
 \emph{identically zero}: the blade cone is exactly tangent to the shore
-asymptote, at $\rho^*=1+1/\sqrt3$. The theorem survives because windows only
-exist for $\rho\le\sqrt{5/3}<\rho^*$ (Lemma~\ref{lem:L2}): the fleet sails
+asymptote, at $\rho^*=1+1/\sqrt3$. The theorem survives because windows are
+confined to $\rho\le\tfrac43+O(1/m)$ (Lemma~\ref{lem:L2}; the true asymptotic
+tip ratio is $\sqrt{5/3}\approx1.291$), strictly inside $\rho^*$: the fleet sails
 parallel to the shore, tangent to it at infinity, but its ships are
 confined strictly inside the wake (Fig.~\ref{fig:tangent}). A naive global
 certificate must fail (the margin degenerates along $\rho^*$); the
@@ -111,8 +115,9 @@ containment lemma is what makes the proof possible.
 per unit of level, $\rho=s/m$). The blade cone $6\rho^2$ (pink) touches the
 shore line $(12+4\sqrt3)\rho-(8+4\sqrt3)$ (cyan) at exactly one point,
 $\rho^*=1+1/\sqrt3$: the discriminant vanishes identically. Windows exist
-only in the shaded zone $\rho\le\sqrt{5/3}$, strictly left of the tangency
---- which is precisely why the theorem holds.}
+only in the shaded zone (asymptotic tip ratio $\sqrt{5/3}$; Lemma~2 proves
+the rational bound $\rho\le\tfrac43$), strictly left of the tangency ---
+which is precisely why the theorem holds.}
 \label{fig:tangent}
 \end{figure}
 
@@ -122,16 +127,20 @@ only in the shaded zone $\rho\le\sqrt{5/3}$, strictly left of the tangency
 \caption{The theorem, drawn. Blades: negativity windows of the second knife
 (levels $6,8,11$), every curve exact; cyan: the shore; diamond: the string
 at $D=23$. This paper proves no blade of any level, at any $\lambda$, ever
-reaches the shore --- closest approach $2.17$ dimensions.}
+reaches the shore; in exact scans the margins bottom out near $2.15$
+dimensions as $\lambda\to0$.}
 \label{fig:knives}
 \end{figure}
 
 \section{Verification}
 Beyond the certificates themselves (each is a finite list of nonnegative
 rationals, re-checkable by inspection), the theorem was stress-tested:
-$60{,}000$ random points across all regimes --- shallow water, deep water to
-$\lambda=1500$, levels to $n=5000$, and the tangency direction --- found
-minimum margin $2.18$ dimensions and no counterexample; the deep scans of
+$60{,}000$ seeded random points across all regimes --- shallow water, deep
+water to $\lambda=1500$, levels to $n=5000$, and the tangency direction ---
+found minimum margin $2.18$ dimensions and no counterexample (a persisted
+battery); the adversarial reviewer's exact scans push to the $\lambda\to0$
+edge, where the margin decreases through $2.157$ (at $\lambda=0.02$) toward
+$\approx2.147$ without being attained; the deep scans of
 \cite{master} ($3{,}053{,}832$ points) are all implied by and consistent
 with the theorem. Finally, the proof went through an independent adversarial review. The
 reviewer's logic audit confirmed every implication in the chain (branch
@@ -150,8 +159,8 @@ branch junctions and in deep water: no counterexample (exit $0$).
 The completeness conjecture of \cite{shore} asserted that the near-leading
 envelope is the true boundary of the family. For the second knife this is
 now a theorem; for the higher knives ($j\ge4$) the master formula
-\cite{master} gives the same ladder structure, the same asymptotic cone, and
-a $3$-million-point clean battery --- the natural next step is to lift the
+\cite{master} gives the same ladder structure, a $3$-million-point clean
+battery, and conjecturally the same asymptotic cone --- the natural next step is to lift the
 present certificate architecture to general $j$, for which
 Lemma~\ref{lem:L2}'s containment and the exact tangency appear to be the
 only two facts that need generalizing. String uniqueness within this family
@@ -159,7 +168,7 @@ would then rest, at every trajectory order, on proofs rather than scans.
 
 \section*{Explain it to anyone}
 Picture the coastline from our earlier papers: the shore where theories of
-gravity die. Above it float blades --- extra danger zones we discovered with
+gravity die. Above it float blades --- extra danger zones we found with
 the master formula. We had checked three million points and none of the
 blades ever touched the shore. But checking is not knowing. This paper is
 the proof: no blade, of any size, anywhere along the infinite coast, ever
