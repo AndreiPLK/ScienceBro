@@ -26,5 +26,28 @@
   "1000": 52.954623
  },
  "asymptote_slope": 18.928203230275507,
- "onset_T3_at_0": "9"
+ "onset_T3_at_0": "9",
+ "doomed_executions": [
+  {
+   "lam": "3/2",
+   "D": 32,
+   "predicted_kill_n": 4,
+   "sign_before": "+",
+   "sign_at": "-",
+   "confirmed": true
+  },
+  {
+   "lam": "2",
+   "D": 40,
+   "predicted_kill_n": 4,
+   "sign_before": "+",
+   "sign_at": "-",
+   "confirmed": true
+  }
+ ],
+ "standing_batteries": {
+  "hunt_2n6": "0 alarms (persisted, git-stamped)",
+  "hunt_2n8": "0 alarms over 34 lambdas",
+  "lowspin_stress": "0 alarms depth 20"
+ }
 }
