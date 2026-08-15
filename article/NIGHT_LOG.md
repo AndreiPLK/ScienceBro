@@ -59,3 +59,14 @@ SHALLOW CERTIFIED (cells 1591)
 - 00:54:22 FAIL  knife6-tails: subprocess.TimeoutExpired: Command '['C:\\Users\\user\\ScienceBro\\.venv\\Scripts\\python.exe', '-u', 'C:\\Users\\user\\ScienceBro\\projects\\qg-bootstrap\\lab\\knife_tail_deep.py']' timed out after 7200 seconds
 - 00:54:23 night batch finished
 - 01:04:12 FAIL  knife4-far-below-variants: subprocess.TimeoutExpired: Command '['C:\\Users\\user\\ScienceBro\\.venv\\Scripts\\python.exe', '-u', 'C:\\Users\\user\\ScienceBro\\projects\\qg-bootstrap\\lab\\knife_belowdiag_shift.py']' timed out after 10800 seconds
+- 01:04:13 START knife4-belowdiag-shift
+- 01:44:24 DONE  knife4-belowdiag-shift: belowdiag-shift exit 1: (ii) band K>=6: OK (340s)
+(iii) K=0: OK (354s)
+(iii) K=1: OK (367s)
+(iii) K=2: OK (379s)
+(iii) K=3: OK (392s)
+(iii) K=4: OK (404s)
+(iii) K=5: OK (417s)
+(iv) far below: FAIL (2405s)
+INCOMPLETE
+
