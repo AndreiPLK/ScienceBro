@@ -778,3 +778,12 @@ old entries; append corrections as new entries.
   escapes upward, linear in m vs bounded T_k - certificate stage designed)
   and deep water (reuse j-free L1 + direct region certificates). Then j=5,6...
   and the fixed-spin regime for the j-tail of the grand theorem.
+
+## 2026-08-16 — Knife 5 shallow certified; Bernstein trick added to the conveyor
+- KNIFE_J=5 shallow: 1634/1634 cells, 43 branches, 209 s, zero failures.
+  Shallow now certified for knives j=3,4,5.
+- Incident: first j=4 tail/deep attempt hung >15 min on a 3-var symbolic
+  expansion (killed per compute-runner rules). Fix: BERNSTEIN-IN-D
+  decomposition - the bracket is degree j-1 in D, so interval positivity
+  reduces to j Bernstein coefficients, each with ONE variable fewer.
+  Reusable for the whole conveyor. Rerun in progress.

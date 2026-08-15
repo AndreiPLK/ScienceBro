@@ -1,0 +1,9 @@
+{
+ "j": 5,
+ "ok_so_far": true,
+ "scope": "shallow branches k=3..45, m=3..40 (m-tail and deep water: next stage)",
+ "cells": 1634,
+ "command": "KNIFE_J=5 python lab/knife_proof.py",
+ "git": "219b8f4",
+ "runtime_s": 209.2
+}
