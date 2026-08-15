@@ -133,7 +133,18 @@ $60{,}000$ random points across all regimes --- shallow water, deep water to
 $\lambda=1500$, levels to $n=5000$, and the tangency direction --- found
 minimum margin $2.18$ dimensions and no counterexample; the deep scans of
 \cite{master} ($3{,}053{,}832$ points) are all implied by and consistent
-with the theorem. [ADVERSARIAL-REVIEW-PLACEHOLDER]
+with the theorem. Finally, the proof went through an independent adversarial review. The
+reviewer's logic audit confirmed every implication in the chain (branch
+junctions, strictness, vertex logic including degenerate discriminants, the
+squaring step of Lemma~\ref{lem:L2}, the floor bookkeeping of
+Lemma~\ref{lem:L1}) and found exactly one defect: a coverage gap in the
+prover's escalation loop, which left $740$ $(k,m)$ cells uncertified while
+reporting success. The gap was fixed, the full prover re-run (all cells now
+individually logged), and the reviewer's own battery --- an independent
+exact evaluator sharing no code with the prover --- re-certified every
+branch cell including the formerly uncovered ones, rebuilt all four tail
+lemmas from scratch over $\mathbb{Q}(\sqrt3)$, and ran exact scans at the
+branch junctions and in deep water: no counterexample (exit $0$).
 
 \section{Discussion}
 The completeness conjecture of \cite{shore} asserted that the near-leading
@@ -166,7 +177,10 @@ This research was conducted by the author working with an AI research
 assistant (Claude, Anthropic). Two earlier prover architectures failed
 honestly (a symbolic-branch drift and a missing no-window case) and are
 recorded in the public log; the final architecture was adversarially
-reviewed. [DISCLOSURE-REVIEW-PLACEHOLDER]
+reviewed. The review's key catch --- a prover that reported ``all certified'' while
+$740$ cells were silently skipped --- is preserved in the public log as a
+lesson: an exit code proves what a script checked, not what it covered;
+coverage is now auditable cell-by-cell from the released artifact.
 
 \begin{thebibliography}{9}
 \bibitem{CHR2024b} C.~Cheung, A.~Hillman and G.~N.~Remmen,

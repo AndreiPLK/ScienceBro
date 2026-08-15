@@ -693,3 +693,10 @@ old entries; append corrections as new entries.
 - Lesson: 'exit 0' proves what the script CHECKED, not what it COVERED;
   coverage must be auditable from the artifact (per-cell log now includes
   every m).
+
+## 2026-08-16 — BLADE THEOREM ESTABLISHED (both gates passed)
+- Critic battery (attack_blade_theorem.py, independent evaluator): exit 0,
+  NO COUNTEREXAMPLE; all branch cells incl. the 740 gap cells re-certified
+  independently; tail lemmas rebuilt from scratch. Artifact attack_blade.json.
+- Paper 4 placeholders filled with the honest review story (gap found,
+  fixed, re-verified). Ready for release-review.

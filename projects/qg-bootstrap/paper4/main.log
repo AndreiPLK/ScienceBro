@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.8.14)  15 AUG 2026 14:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.8.14)  15 AUG 2026 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -433,7 +433,7 @@ Here is how much of TeX's memory you used:
  39103 multiletter control sequences out of 15000+600000
  640215 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,568b,562s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,568b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\user\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0
 600.pk> <C:\Users\user\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 tcrm0800.pk><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
@@ -457,9 +457,9 @@ KTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/user/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/user/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/user/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (4 pages, 1954784 bytes).
+Output written on main.pdf (4 pages, 1955907 bytes).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
+ 176 PDF objects out of 1000 (max. 8388607)
  22 named destinations out of 1000 (max. 500000)
  43 words of extra memory for PDF output out of 10000 (max. 10000000)
 
