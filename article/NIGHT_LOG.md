@@ -22,3 +22,4 @@
 - 17:02:48 START knife4-open-region
 - 17:02:57 DONE  knife4-open-region: knife4 open region: 250283 checks, 0 alarms
 - 17:02:58 START completeness-deep-n80
+- 18:10:59 DONE  completeness-deep-n80: deep completeness n<=80: 25002978 checks, 0 alarms
