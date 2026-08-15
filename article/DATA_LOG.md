@@ -797,3 +797,15 @@ old entries; append corrections as new entries.
   in (v, K) is blind along diagonals.
 - v3 (running): split v relative to the diagonal: below (v=(K+4)sigma,
   Bernstein in sigma, root isolation in K) and above (v=K+4+v'').
+
+## 2026-08-16/17 — Knife-4: proven everywhere EXCEPT one region (honest map)
+- v3 diagonal split verdict: above-diagonal (m >= optimal band) CERTIFIED;
+  below-diagonal FAIL after 1936 s of subdivision. Combined with earlier
+  stages, knife-4 is now PROVEN on: all lam <= 26.1 (all levels); deep water
+  fixed levels m <= 40; deep water m above the optimal diagonal. OPEN: deep
+  water, 41 <= m below the optimal band (m ~< K+49), lam >= 26 - margins
+  there are O(1) against O(500) scales (0.04% relative), the cubic analogue
+  of the blade theorem's core. Next tool: a cubic root-separation lemma
+  (D < r1 characterization), not more subdivision.
+- Night queue: exact battery over the open region (knife 4, levels below
+  optimal, lam 26..300, D <= envelope) + j=5 tail stages.

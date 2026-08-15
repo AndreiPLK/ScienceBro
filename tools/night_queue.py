@@ -83,7 +83,31 @@ def task_j6_brackets():
     return f"j=6 brackets extracted for n=7..9"
 
 
+def task_knife4_open_region():
+    """Точная батарея открытого региона ножа 4: глубоководье ниже оптимали."""
+    from master_completeness_scan import master_sign, min_T_exact, ensure_E
+    ensure_E(320)
+    alarms = []
+    checks = 0
+    for lam_i in list(range(26, 101, 2)) + [120, 150, 200, 250, 300]:
+        lam = F(lam_i)
+        mt = min_T_exact(lam)
+        Dtop = mt.numerator // mt.denominator
+        m_opt = int(1.733 * lam_i) + 5
+        for n in range(44, min(m_opt + 6, 320)):
+            for Dv in range(max(4, Dtop - 60), Dtop + 1):
+                checks += 1
+                if master_sign(n, 4, lam, Dv) < 0:
+                    alarms.append({"lam": str(lam), "D": Dv, "n": n})
+    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                         capture_output=True, text=True).stdout.strip()
+    json.dump({"checks": checks, "alarms": alarms, "git": git},
+              open(RES / "knife4_open_region.json", "w"))
+    return f"knife4 open region: {checks} checks, {len(alarms)} alarms"
+
+
 TASKS = [
+    ("knife4-open-region", task_knife4_open_region),
     ("completeness-deep-n80", task_completeness_deep),
     ("closest-approach-exact", task_closest_approach_exact),
     ("j6-brackets", task_j6_brackets),
