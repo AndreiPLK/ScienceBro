@@ -1,5 +1,7 @@
 # A Master Positivity Formula for the CHR Graviton Family
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21947272.svg)](https://doi.org/10.5281/zenodo.21947272)
+
 **Paper:** `paper/main.pdf` (LaTeX source and figure alongside).
 Companion works: [The Island Has Edges](https://doi.org/10.5281/zenodo.21934462)
 (open string), [The Shore of Closed-String Gravity](https://doi.org/10.5281/zenodo.21944818)

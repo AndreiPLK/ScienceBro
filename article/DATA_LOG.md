@@ -633,3 +633,11 @@ old entries; append corrections as new entries.
 - github.com/AndreiPLK/qg-master-formula live (main); portfolio one-pager
   + index card live. Awaiting founder Zenodo toggle -> v1.0.0 -> DOI ->
   final PDF -> letter 3.
+
+## 2026-08-15 — PAPER 3 PUBLISHED: DOI 10.5281/zenodo.21947272
+- Founder toggled Zenodo -> release v1.0.0 -> DOI minted -> final PDF (DOI in
+  footnote + Reproducibility, W5 abstract fix) -> repo v1.0.1 -> site updated
+  with DOI button. Final QC circle: 4 PDF pages eyeballed, package
+  master_checks re-run in place (PASS), site 200, repo PDF 200.
+- THREE papers published in the program, all with DOI. Letter 3 next
+  (founder send).

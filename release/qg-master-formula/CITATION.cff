@@ -8,6 +8,7 @@ authors:
 version: "1.0.0"
 date-released: "2026-08-15"
 license: MIT
+doi: 10.5281/zenodo.21947272
 repository-code: "https://github.com/AndreiPLK/qg-master-formula"
 keywords:
   - S-matrix bootstrap

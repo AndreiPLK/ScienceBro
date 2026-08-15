@@ -124,8 +124,8 @@
  },
  "_meta": {
   "command": "python lab/master_checks.py",
-  "git": "c019b2f",
+  "git": "1601060",
   "symbolic_matches": 22,
-  "runtime_s": 2.2
+  "runtime_s": 2.1
  }
 }
