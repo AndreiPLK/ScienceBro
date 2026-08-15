@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>body{margin:0;background:radial-gradient(ellipse at 42% 6%,#1a1a3a 0%,#0a0a18 48%,#050510 82%);font-family:Consolas,monospace}
+.panel{margin:14px;padding:10px;border:1px solid rgba(5,217,232,.3);border-radius:12px}
+h1{color:#eafdff;font-size:20px;margin:8px 14px 2px;letter-spacing:.09em;text-shadow:0 0 16px #05d9e8}
+.sub{color:#7f93bb;font-size:11.5px;margin:0 14px 6px}</style></head><body>
+<div class="panel"><h1>THE LAMBDA DIAL &mdash; low-energy fingerprints of the survivors</h1>
+<p class="sub">D=4: every candidate survives, but their low-energy moments differ &middot; r_k = c_k(&lambda;)/c_k(string) &middot; the string is the tick at 1.0 &middot; exploratory</p>
+<div id="p" style="width:1100px;height:640px"></div></div>
+<script>
+Plotly.newPlot('p',[
+ {x:[0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 1.0, 1.1, 1.5, 2.0, 3.0, 5.0, 10.0, 20.0],y:[0.9650096401084058, 0.9673939952992343, 0.9710171230689604, 0.9796973543852403, 0.9884171096049537, 0.9963703506204986, 1.0, 1.0034003691021143, 1.0149440671879235, 1.0257470258428618, 1.0399604604798334, 1.0547296541383095, 1.0684297153567635, 1.0762991606820524],mode:'lines+markers',name:'r3 (zeta5-moment)',line:{color:'#3fe7f5',width:3},marker:{size:7}},
+ {x:[0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 1.0, 1.1, 1.5, 2.0, 3.0, 5.0, 10.0, 20.0],y:[0.9917244458627514, 0.991794824168796, 0.9920385029543606, 0.9932704548418763, 0.9954663732939089, 0.9983703003236389, 1.0, 1.0017083745338258, 1.0089014241592213, 1.0177584431564564, 1.0329602619098301, 1.0536821538603323, 1.078168121737491, 1.09486804767291],mode:'lines+markers',name:'r5 (zeta7-moment)',line:{color:'#ff5f95',width:3},marker:{size:7}},
+ {x:[1],y:[1],mode:'markers+text',text:['THE STRING'],textposition:'bottom center',
+  textfont:{color:'#f9f871',size:14},marker:{color:'#ffffff',size:11,symbol:'diamond',line:{color:'#f9f871',width:3}},showlegend:false}
+],{paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(6,6,14,0.3)',
+ xaxis:{title:'lambda (log scale)',type:'log',color:'#7f93bb',gridcolor:'rgba(45,45,80,.35)'},
+ yaxis:{title:'moment ratio vs the string',color:'#7f93bb',gridcolor:'rgba(45,45,80,.35)'},
+ legend:{font:{color:'#7f93bb'},bgcolor:'rgba(7,7,15,.5)',x:0.02,y:0.98},
+ margin:{t:10,b:60,l:70,r:20}},{displayModeBar:false});
+</script></body></html>
