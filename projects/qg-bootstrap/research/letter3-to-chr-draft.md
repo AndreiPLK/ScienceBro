@@ -1,5 +1,7 @@
 # Letter 3 to Cheung / Hillman / Remmen — same thread, send only by founder
 
+**STATUS: NOT SENT — founder decided 2026-08-15: two letters in one day is enough; the DOI trail speaks for itself.**
+
 **Rules:** no em-dashes, plain professional English, short, no asks.
 
 ---

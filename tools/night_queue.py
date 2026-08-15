@@ -1,13 +1,13 @@
-"""Очередь ночного батча (15->16.08): каждая задача — функция, возвращающая
-однострочную сводку. Наука статьи №2: добить гипотезу полноты со всех сторон.
+"""Очередь ночного батча (15->16.08, вечерняя): дожать проект 4.
+d4-deep120 из утреннего батча продолжает считать отдельным процессом.
 """
 
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from fractions import Fraction as F
-from math import comb
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,96 +16,74 @@ RES = ROOT / "projects" / "qg-bootstrap" / "results"
 sys.path.insert(0, str(LAB))
 
 
-def _minT(lamf: float) -> float:
-    return min((3 * (2 * n - 3) / (n * (n - 2))) * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
-               for n in range(3, 400))
-
-
-def task_2n8_hunt():
-    """2n-8 траектория у границы модели: режет ли глубже."""
-    from grav_full_body import gegen_coeffs, mono_int  # reuse exact helpers
-    def a_l(n, l, lam, D):
-        mu = (n + lam - 1) / lam
-        A = lam * mu / 2
-        poly = [F(1)]
-        for k in range(1, n):
-            b = (1 + lam) / 2 + (k - 1) - A
-            new = [F(0)] * (len(poly) + 1)
-            for i, c in enumerate(poly):
-                new[i] += c * b
-                new[i + 1] += c * A
-            poly = new
-        P = [F(0)] * (2 * len(poly) - 1)
-        for i, a_ in enumerate(poly):
-            for j, b_ in enumerate(poly):
-                P[i + j] += a_ * b_
-        mW = (D - 4) // 2
-        w = [F(0)] * (2 * mW + 1)
-        for j in range(mW + 1):
-            w[2 * j] = F((-1) ** j * comb(mW, j))
-        Pw = [F(0)] * (len(P) + len(w) - 1)
-        for i, c in enumerate(P):
-            if c == 0:
-                continue
-            for jw, cw in enumerate(w):
-                if cw:
-                    Pw[i + jw] += c * cw
-        cl = gegen_coeffs(l, D - 3)
-        b = F(0)
-        for i, ci in enumerate(cl):
-            if ci == 0:
-                continue
-            for k2, ck in enumerate(Pw):
-                if ck:
-                    b += ci * ck * mono_int(i + k2)
-        return b
-    alarms = []
-    lams = [F(i, 10) for i in range(1, 31)] + [F(4), F(5), F(7), F(10)]
-    for lam in lams:
-        Dtop = int(_minT(float(lam)))
-        for D in range(max(4, Dtop - 3), Dtop + 1):
-            if D % 2:
-                continue
-            for n in range(5, 15):
-                if a_l(n, 2 * n - 8, lam, D) < 0:
-                    alarms.append({"lam": str(lam), "D": D, "n": n})
-                    break
-    json.dump(alarms, open(RES / "hunt_2n8.json", "w"))
-    return f"2n-8 hunt: {len(alarms)} alarms over {len(lams)} lambdas"
-
-
-def task_lowspin_stress():
-    """Низкие спины l=0..6 при больших D у границы: не режут ли глубже модели."""
-    from grav_full_body import first_negative
+def task_completeness_deep():
+    """Скан полноты глубже: n<=80, lam до 200, все целые D под берегом."""
+    from master_completeness_scan import master_sign, min_T_exact
+    lams = ([F(i, 10) for i in range(1, 31)] +
+            [F(4), F(5), F(7), F(10), F(20), F(50), F(100), F(200)])
     alarms = []
     checks = 0
-    for lam in (F(1), F(3, 2), F(2), F(3), F(5), F(8)):
-        Dtop = int(_minT(float(lam)))
-        for D in range(max(4, Dtop - 2), Dtop + 1):
-            if D % 2:
-                continue
-            checks += 1
-            fn = first_negative(lam, D, 20)
-            if fn is not None:
-                alarms.append({"lam": str(lam), "D": D, "first_neg": fn})
-    json.dump(alarms, open(RES / "lowspin_stress.json", "w"))
-    return f"low-spin stress: {len(alarms)} alarms in {checks} checks (depth 20, all even l)"
+    for lam in lams:
+        mt = min_T_exact(lam)
+        Dtop = mt.numerator // mt.denominator
+        for Dv in range(4, Dtop + 1):
+            for n in range(4, 81):
+                for j in range(3, n):
+                    checks += 1
+                    if master_sign(n, j, lam, Dv) < 0:
+                        alarms.append({"lam": str(lam), "D": Dv, "n": n, "j": j})
+    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                         capture_output=True, text=True).stdout.strip()
+    json.dump({"checks": checks, "alarms": alarms, "nmax": 80,
+               "lam_max": "200", "git": git},
+              open(RES / "completeness_deep_n80.json", "w"))
+    return f"deep completeness n<=80: {checks} checks, {len(alarms)} alarms"
 
 
-def task_deep_d4():
-    """Наш мир D=4: сверхглубокий скан до n=120 на 8 лямбдах (вечная жизнь?)."""
-    from grav_full_body import first_negative
-    rows = []
-    for lam in (F(1, 100), F(1, 10), F(1, 2), F(1), F(3, 2), F(3), F(10), F(100)):
-        fn = first_negative(lam, 4, 120)
-        rows.append({"lam": str(lam), "first_neg": fn})
-    json.dump(rows, open(RES / "d4_deep120.json", "w"))
-    alive = sum(1 for r in rows if r["first_neg"] is None)
-    return f"D=4 deep-120: {alive}/8 alive"
+def task_closest_approach_exact():
+    """Ближайший подход окна к берегу (lam~0.05, n=6): точная арифметика."""
+    from master_checks import master_sign
+    alarms = []
+    checks = 0
+    for num in range(1, 41):        # lam = num/100: 0.01..0.40
+        lam = F(num, 100)
+        for Dv in range(4, 40):
+            for n in range(4, 30):
+                for j in (3, 4, 5):
+                    if j >= n:
+                        continue
+                    # только точки ПОД берегом (точная проверка)
+                    from master_completeness_scan import min_T_exact
+                    if Dv > min_T_exact(lam):
+                        continue
+                    checks += 1
+                    if master_sign(n, j, lam, Dv) < 0:
+                        alarms.append({"lam": str(lam), "D": Dv, "n": n, "j": j})
+    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                         capture_output=True, text=True).stdout.strip()
+    json.dump({"checks": checks, "alarms": alarms, "git": git},
+              open(RES / "closest_approach_exact.json", "w"))
+    return f"closest-approach exact: {checks} checks, {len(alarms)} alarms"
+
+
+def task_j6_brackets():
+    """Символьные скобки пятого ножа (j=6) для архива: n=7..9."""
+    import os
+    os.environ["TJ_J"] = "6"
+    import importlib
+    import tj_bracket
+    importlib.reload(tj_bracket)
+    out = {}
+    for n in (7, 8, 9):
+        fac, den = tj_bracket.bracket_for(n)
+        out[str(n)] = {"numerator_factored": str(fac),
+                       "denominator_factored": str(den)}
+    json.dump(out, open(RES / "T2n12_brackets.json", "w"), indent=1)
+    return f"j=6 brackets extracted for n=7..9"
 
 
 TASKS = [
-    ("2n8-hunt", task_2n8_hunt),
-    ("lowspin-stress", task_lowspin_stress),
-    ("d4-deep120", task_deep_d4),
+    ("completeness-deep-n80", task_completeness_deep),
+    ("closest-approach-exact", task_closest_approach_exact),
+    ("j6-brackets", task_j6_brackets),
 ]
