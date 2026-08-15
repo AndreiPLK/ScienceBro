@@ -11,3 +11,5 @@
 - 13:21:18 queue loaded: 3 tasks
 - 13:21:18 START completeness-deep-n80
 - 13:21:18 FAIL  completeness-deep-n80: KeyError: 41
+- 13:21:18 START closest-approach-exact
+- 13:25:11 DONE  closest-approach-exact: closest-approach exact: 24375 checks, 0 alarms
