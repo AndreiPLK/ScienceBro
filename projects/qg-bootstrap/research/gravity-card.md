@@ -250,3 +250,9 @@ stress at large D.
   zeta(5) structure of Virasoro-Shapiro to stated precision.
 - Negative control: r_k(1) = 1 identically by construction.
 - Status: EXPLORATORY (first map; no claim promotion from this slice alone).
+
+## Slice 11 (2026-08-15/16): BLADE THEOREM (paper 4 core)
+- Proven: j=3 windows never dip below the shore for all lam <= 26.1, all n
+  (blade_proof.py, ALL CERTIFIED, exit 0); plus for lam >= 26 levels n <= 81
+  have no window (78 certificates). Open: single deep-water cell
+  (n >= 82, lam > 26); regime-split certificates next.

@@ -641,3 +641,20 @@ old entries; append corrections as new entries.
   master_checks re-run in place (PASS), site 200, repo PDF 200.
 - THREE papers published in the program, all with DOI. Letter 3 next
   (founder send).
+
+## 2026-08-15/16 — BLADE THEOREM: proof 95% closed (paper 4 core)
+- THEOREM (proven, certificates in results/blade_proof.json, exit 0):
+  for ALL lambda <= 26.1 and ALL levels n, the j=3 negativity window lies
+  strictly above the shore min_k T_k. Architecture: branches k=3..45;
+  per-cell semantics (no-window via disc root isolation) OR (B(T_k)>0 AND
+  vertex condition), all in exact arithmetic. The closest-approach zone
+  (margin 2.17 dims at lam=0.05) is INSIDE the proven region.
+- LEMMA (proven): for lam >= 26 no level n <= 81 has any window at all
+  (78 univariate certificates, k-free).
+- OPEN CELL (last): n >= 82 AND lam > 26 (deep water). Polya diverges due to
+  branch drift at infinity; needs tip/off-tip regime split. Battery coverage
+  meanwhile: scans to lam=1000, margins >= 336 dims there.
+- v1/v2 prover lessons: (1) fixed-width symbolic-k branches drift from the
+  argmin (linear in k) - certify explicit branches instead; (2) cell logic
+  must include the no-window alternative; (3) head-pipe on a background run
+  kills the process before it writes artifacts - log to file.
