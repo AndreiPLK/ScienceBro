@@ -348,7 +348,7 @@ def main() -> int:
         kk_c = K + 47
         Tk_c = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
                 * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
-        P = P_sym(lam_c, Tk_c - yv, 41 + vsub)
+        P = P_sym(lam_c.subs(K, K + 8) if "Ktail" in tag else lam_c, (Tk_c.subs(K, K + 8) if "Ktail" in tag else Tk_c) - yv, 41 + vsub)
         P = sp.expand(sp.fraction(sp.together(P))[0])
         ycoeffs = [sp.expand(c) for c in sp.Poly(P, yv).all_coeffs()[::-1]]
         allok = True
@@ -378,8 +378,60 @@ def main() -> int:
         return (deep_cell4(vsub, extra_var, a1, mid, depth - 1, tag) and
                 deep_cell4(vsub, extra_var, mid, b1, depth - 1, tag))
 
-    gotA = deep_cell4((K + 4) * sig, sig, sp.Integer(0), sp.Integer(1),
-                      6, "deep_below_diag_v4")
+    # v5: K-расщепление: K=0..7 явно (2-вар), хвост K>=8 отдельно
+    gotA = True
+    for K0 in range(0, 8):
+        got_k = deep_cell4((K + 4) * sig, sig, sp.Integer(0), sp.Integer(1),
+                           6, f"bd_K{K0}")
+        # deep_cell4 использует символ K; для явного K0 подменяем через
+        # обёртку: временно замкнём K значением
+        # (реализация: подстановка в poly_K_nonneg через глобальный сдвиг)
+        gotA = gotA and got_k
+        break  # placeholder — см. ниже честную реализацию
+    # честная реализация: K-подстановка внутри отдельной функции
+    def deep_cell4_atK(K0, a1, b1, depth, tag):
+        tL = a1 + (b1 - a1) * thL
+        lam_c = (sp.Integer(K0) + 45 + tL) * r3 / 3
+        kk_c = sp.Integer(K0) + 47
+        Tk_c = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
+                * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+        P = P_sym(lam_c, Tk_c - yv, 41 + (sp.Integer(K0) + 4) * sig)
+        P = sp.expand(sp.fraction(sp.together(P))[0])
+        ycoeffs = [sp.expand(c2) for c2 in sp.Poly(P, yv).all_coeffs()[::-1]]
+        allok = True
+        for e in ycoeffs:
+            for b_ in bern1(e, thL):
+                sok = all(
+                    (cc >= 0) if not cc.has(r3) else (
+                        cc.coeff(r3, 0) >= 0 and cc.coeff(r3, 1) >= 0)
+                    for b2c in bern1(b_, sig)
+                    for _, cc in sp.Poly(sp.expand(b2c), sig).terms())
+                if not sok:
+                    allok = False
+                    break
+            if not allok:
+                break
+        log.append({"cell": tag, "range": [str(a1), str(b1)], "ok": bool(allok)})
+        if allok:
+            return True
+        if depth == 0:
+            return False
+        mid = (a1 + b1) / 2
+        return (deep_cell4_atK(K0, a1, mid, depth - 1, tag) and
+                deep_cell4_atK(K0, mid, b1, depth - 1, tag))
+
+    gotA = True
+    for K0 in range(0, 8):
+        gk = deep_cell4_atK(K0, sp.Integer(0), sp.Integer(1), 6, f"bd_K{K0}")
+        print(f"  below-diag K={K0}: {'OK' if gk else 'FAIL'}"
+              f" ({time.time()-t0:.0f}s)", flush=True)
+        gotA &= gk
+    # хвост K >= 8
+    gk = deep_cell4((K + 8 + 4) * sig, sig, sp.Integer(0), sp.Integer(1),
+                    6, "bd_Ktail")
+    print(f"  below-diag K>=8: {'OK' if gk else 'FAIL'}"
+          f" ({time.time()-t0:.0f}s)", flush=True)
+    gotA &= gk
     print(f"deep-tail below-diagonal: {'OK' if gotA else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)
     gotB = True if STAGE == "belowdiag" else deep_cell3(

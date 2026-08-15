@@ -822,3 +822,14 @@ old entries; append corrections as new entries.
   P(T_cap - y) covers the whole half-line D <= T_cap - the universal
   deep-water tool for every knife degree.
 - j=5 tails running in parallel (E-interpolation range bug fixed).
+
+## 2026-08-17 — Knife-4 endgame: v5 recon + plan handed to the night
+- v5 (K-split): FAIL uniformly across K=0..7 => the tight sliver is at the
+  diagonal FROM BELOW, not at branch edges. Key asset: the INTERVAL 2D
+  Bernstein method (deep_cell3) PASSED above the diagonal including the
+  optimal band itself (the tightest zone, margin 5.0) - so the fix is to
+  SHIFT the cut down (v >= K-6 by the working interval method; v <= K-6 by
+  Descartes-at-cap where margins are fat). Night task queued; morning
+  session implements if night placeholder does not.
+- j=5 tails: shallow-tail 43/43 OK + deep-fixed OK (72 s) - awaiting
+  diagonal verdicts.

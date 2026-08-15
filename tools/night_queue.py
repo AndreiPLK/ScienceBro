@@ -106,7 +106,22 @@ def task_knife4_open_region():
     return f"knife4 open region: {checks} checks, {len(alarms)} alarms"
 
 
+def task_knife4_belowdiag_shift():
+    """Диагональ снизу: сдвиг разреза вниз (v >= K-6 интервальным методом,
+    который прошёл выше диагонали) + явные K=0..5."""
+    import os
+    os.environ["KNIFE_J"] = "4"
+    os.environ["KNIFE_STAGE"] = "belowdiag_shift"
+    os.environ["BERN_ELEV"] = "8"
+    r = subprocess.run([sys.executable, "-u",
+                        str(LAB / "knife_belowdiag_shift.py")],
+                       capture_output=True, text=True, timeout=14400)
+    tail = (r.stdout or "")[-300:]
+    return f"belowdiag-shift exit {r.returncode}: {tail}"
+
+
 TASKS = [
+    ("knife4-belowdiag-shift", task_knife4_belowdiag_shift),
     ("knife4-open-region", task_knife4_open_region),
     ("completeness-deep-n80", task_completeness_deep),
     ("closest-approach-exact", task_closest_approach_exact),
