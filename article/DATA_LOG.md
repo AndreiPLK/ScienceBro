@@ -769,3 +769,12 @@ old entries; append corrections as new entries.
   rate rescoped, замыкающая лемма); батарея критика attack_collapse
   исполнена (прямое подтверждение центрального предела; два F5-флага о
   скорости учтены в формулировке).
+
+## 2026-08-16 — KNIFE 4 SHALLOW CERTIFIED: the general-j architecture works
+- knife_proof.py (interval positivity, no window bookkeeping): j=4, branches
+  k=3..45 (lam <= 26.1), m=2..40: ALL 1677 cells certified, 0 failures,
+  130 s. The per-knife theorem conveyor is OPEN.
+- Remaining for the j=4 theorem: shallow m-tail (m>=41; negativity provably
+  escapes upward, linear in m vs bounded T_k - certificate stage designed)
+  and deep water (reuse j-free L1 + direct region certificates). Then j=5,6...
+  and the fixed-spin regime for the j-tail of the grand theorem.
