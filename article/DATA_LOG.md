@@ -536,3 +536,10 @@ old entries; append corrections as new entries.
   public repo (v1.0.1), the site one-pager (DOI button), package README badge,
   CITATION.cff. Letter 2 draft ready (same thread, no-ask tone), awaiting
   founder Send.
+
+## 2026-08-15 — Letter 2 sent by founder
+- Reply in the same CHR thread, no-ask tone, no em-dashes (new standing rule:
+  no AI-sounding style in letters). Contents: T_n law, D>=9 onset explained,
+  shore through VS at D=23, asymptote, repo + DOI. EV-CORR-0003.
+- Paper 2 pipeline CLOSED end to end: science -> review -> package -> GitHub
+  -> site -> Zenodo -> DOI -> final PDF -> letter. Same-day publication.
