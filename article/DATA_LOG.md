@@ -975,3 +975,16 @@ old entries; append corrections as new entries.
 - Fixed-spin regime (l=0,2,4,6 diagonals, n<=120, boundary-hugging exact
   grid incl. D within 1e-6 of T_hat): NO violations. The grand-theorem
   claim survives its most dangerous regime. results/keystone_hunt.json.
+
+## 2026-08-17 — Keystone: two simple lemmas FALSIFIED (preserved), binomial insight
+- FALSIFIED (grid level): (a) uniform alternating dominance |t_{i+1}/t_i|<=q<1
+  fails at shore-bottom D=4 large lam (ratio up to 6767); (b) V-shape
+  (monotone ratios) fails at 360/360 points; pure two-regime A/B does not
+  cover (worst gap 51). Failure signature: ratio profile matches BINOMIAL
+  weights C(j-1,i) — nonmonotonicity is exactly binomial.
+- INSIGHT: the right lemma is about NORMALIZED X: rho_i = t_{i+1}(i+1) /
+  (t_i (j-1-i)) ~ X uniform; belt: X<=Xmax<1 => P >= t0(1-Xmax)^{j-1}.
+  Outside belt a separate argument is needed (as in per-knife proofs).
+- Today's conveyor extended: belowdiag+farbelow for knives 6-7 queued
+  (queue 2 after tail re-runs) => four COMPLETE knife theorems (4,5,6,7)
+  targeted today; infinite-j remains the keystone (research continues).
