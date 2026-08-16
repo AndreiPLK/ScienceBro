@@ -3,7 +3,7 @@
  "cells": 7,
  "elev": 0,
  "strict_positive": true,
- "j": 8,
+ "j": 9,
  "pieces": {
   "band": true,
   "K0": true,
@@ -15,12 +15,12 @@
  },
  "engine": "belowdiag2-flint",
  "env": {
-  "KNIFE_J": 8,
+  "KNIFE_J": 9,
   "PIECES": "band,k0",
   "BERN_ELEV": 0
  },
  "scope_note": "pieces field lists exactly what was run; far-below covered by knife{J}_farbelow_factored.json",
- "command": "KNIFE_J=8 python lab/knife_belowdiag2.py",
+ "command": "KNIFE_J=9 python lab/knife_belowdiag2.py",
  "git": "c77475ef5a82",
  "git_full": "c77475ef5a826d0ca54b2ef2bc30a56784cdf270",
  "dirty": true,
@@ -31,5 +31,5 @@
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 27.1
+ "runtime_s": 61.2
 }

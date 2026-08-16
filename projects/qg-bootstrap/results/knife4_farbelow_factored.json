@@ -1,8 +1,44 @@
 {
  "j": 4,
  "far_below_factored": true,
+ "scope": "far-below of deep water: m = 41+v (v>=0), K = v+K3+6 (=> v <= K-6), lam = (K+51+thL)*sqrt3/3 with thL in [0,1], D <= T_cap (whole ray via y-expansion, y>=0)",
+ "y_coefficients": 4,
+ "per_coefficient": {
+  "c0": {
+   "monomials": 784,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c1": {
+   "monomials": 532,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c2": {
+   "monomials": 297,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c3": {
+   "monomials": 91,
+   "negative": 0,
+   "strict_const_term": true
+  }
+ },
+ "monomials": 2933,
+ "strict_positive": true,
+ "method": "manifest positivity (no factorization needed)",
  "engine": "farbelow2-flint-build",
  "command": "KNIFE_J=4 python lab/knife_farbelow2.py",
- "git": "6006e49",
- "runtime_s": 13.7
+ "git": "c77475ef5a82",
+ "git_full": "c77475ef5a826d0ca54b2ef2bc30a56784cdf270",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/knife_farbelow2.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 0.3
 }

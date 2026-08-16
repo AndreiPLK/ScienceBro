@@ -1,8 +1,59 @@
 {
  "j": 7,
  "far_below_factored": true,
+ "scope": "far-below of deep water: m = 41+v (v>=0), K = v+K3+6 (=> v <= K-6), lam = (K+51+thL)*sqrt3/3 with thL in [0,1], D <= T_cap (whole ray via y-expansion, y>=0)",
+ "y_coefficients": 7,
+ "per_coefficient": {
+  "c0": {
+   "monomials": 5335,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c1": {
+   "monomials": 4389,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c2": {
+   "monomials": 3482,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c3": {
+   "monomials": 2611,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c4": {
+   "monomials": 1792,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c5": {
+   "monomials": 1026,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c6": {
+   "monomials": 325,
+   "negative": 0,
+   "strict_const_term": true
+  }
+ },
+ "monomials": 34867,
+ "strict_positive": true,
+ "method": "manifest positivity (no factorization needed)",
  "engine": "farbelow2-flint-build",
  "command": "KNIFE_J=7 python lab/knife_farbelow2.py",
- "git": "624b0f8",
- "runtime_s": 1316.2
+ "git": "c77475ef5a82",
+ "git_full": "c77475ef5a826d0ca54b2ef2bc30a56784cdf270",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/knife_farbelow2.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 7.2
 }

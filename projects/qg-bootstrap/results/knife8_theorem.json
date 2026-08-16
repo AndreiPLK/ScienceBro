@@ -1,0 +1,17 @@
+{
+ "theorem": "Knife 8: windows of knife j=8 never cut below the shore",
+ "status": "COMPLETE pending adversarial review",
+ "engine": "prover v2 (flint) throughout",
+ "regions": {
+  "shallow_fixed_m": "knife_proof2_j8.json",
+  "shallow_tail_and_deep": "knife_tail2_j8.json",
+  "belowdiag_band_K0": "knife8_belowdiag_shift.json",
+  "far_below": "knife8_farbelow_factored.json"
+ },
+ "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0; m >= max(1, j-2) (n >= j+1, spin l >= 2); deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal",
+ "numeric": {
+  "batteries": "25M deep sweep covers j=8 cells, 0 alarms"
+ },
+ "strictness": "strict positivity P>0 certified in tails/belowdiag stages",
+ "review": "fleet review 2 architecture applies (same engine, same certificates)"
+}

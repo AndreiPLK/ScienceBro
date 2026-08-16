@@ -153,58 +153,94 @@ def main() -> int:
             d[store][(e[THL], e[V], e[K3])] = cval
     print(f"[farbelow2 j={J}] y-coefficients: {len(ycoeffs)}", flush=True)
 
-    # каждый y-коэффициент -> sympy -> factor -> знаки (как v1)
-    thL_s, v_s, K3_s = sp.symbols('thL v K3', nonnegative=True)
-    r3_s = sp.sqrt(3)
-
-    def to_sympy(d):
-        terms = []
-        for (i1, i2, i3), cval in d['a'].items():
-            terms.append(sp.Rational(int(cval.p), int(cval.q))
-                         * thL_s**i1 * v_s**i2 * K3_s**i3)
-        for (i1, i2, i3), cval in d['b'].items():
-            terms.append(sp.Rational(int(cval.p), int(cval.q)) * r3_s
-                         * thL_s**i1 * v_s**i2 * K3_s**i3)
-        return sp.Add(*terms)
-
-    def sign_q3(cc):
-        a = cc.coeff(r3_s, 0)
-        b = cc.coeff(r3_s, 1)
-        if a >= 0 and b >= 0:
-            return 1 if (a > 0 or b > 0) else 0
-        if a <= 0 and b <= 0:
-            return -1
-        if a >= 0:
-            return 1 if a**2 > 3*b**2 else (-1 if a**2 < 3*b**2 else 0)
-        return -1 if a**2 > 3*b**2 else (1 if a**2 < 3*b**2 else 0)
-
-    def factor_all_positive(expr, name):
-        factors = sp.factor_list(sp.factor(expr))
-        content = sp.expand(factors[0])
-        cs = sign_q3(content) if content.has(r3_s) else (
-            1 if content > 0 else (-1 if content < 0 else 0))
-        total_neg = 0
-        for f, ex in factors[1]:
-            P = sp.Poly(sp.expand(f), thL_s, v_s, K3_s)
-            neg = sum(1 for _, cc in P.terms()
-                      if (sign_q3(sp.expand(cc)) if cc.has(r3_s)
-                          else (1 if cc > 0 else -1)) < 0)
-            if neg == len(P.terms()):
-                total_neg += ex
-            elif neg > 0:
-                print(f"  {name}: MIXED ({neg}/{len(P.terms())})", flush=True)
-                return False
-        ok = cs * (-1) ** total_neg > 0
-        print(f"  {name}: {'OK' if ok else 'BAD'} "
-              f"({time.time()-t0:.0f}s)", flush=True)
-        return ok
-
+    # ПРЯМАЯ ПРОВЕРКА (открытие 2026-08-17): факторизация НЕ НУЖНА —
+    # в этой параметризации все коэффициенты N неотрицательны сами по себе
+    # (манифестная положительность, как в мелководье). sp.factor был
+    # узким местом (часы для j>=8); прямая проверка — секунды.
+    from prover2_core import sign_q3 as _sq3
     allok = True
     per_coeff = {}
+    strict_all = True
     for k2 in sorted(ycoeffs):
-        res = factor_all_positive(to_sympy(ycoeffs[k2]), f"c{k2}")
-        per_coeff[f"c{k2}"] = bool(res)
-        allok &= res
+        d = ycoeffs[k2]
+        keys = set(d['a']) | set(d['b'])
+        neg = [e for e in keys
+               if _sq3(d['a'].get(e, fmpq(0)), d['b'].get(e, fmpq(0))) < 0]
+        zero_key = (0, 0, 0)
+        strict = _sq3(d['a'].get(zero_key, fmpq(0)),
+                      d['b'].get(zero_key, fmpq(0))) > 0
+        per_coeff[f"c{k2}"] = {"monomials": len(keys), "negative": len(neg),
+                               "strict_const_term": bool(strict)}
+        strict_all &= strict
+        allok &= (len(neg) == 0)
+        print(f"  c{k2}: {len(keys)} мономов, отрицательных {len(neg)} "
+              f"({time.time()-t0:.0f}s)", flush=True)
+    if not allok:
+        # FALLBACK (быстрый): подъём степени Бернштейна по оси thL часто
+        # убирает редкие отрицательные мономы (их 11 из 1752 при j=9).
+        # thL живёт на [0,1], v и K3 — на ортанте: делаем Бернштейн по thL.
+        from knife_tail2 import bern_axis_pair, collect_pairs
+        print("  fallback: Bernstein elevation in thL...", flush=True)
+        allok = True
+        for k2 in sorted(ycoeffs):
+            d = ycoeffs[k2]
+            if per_coeff[f"c{k2}"]["negative"] == 0:
+                continue
+            A = {e: cv for e, cv in d['a'].items()}
+            B2 = {e: cv for e, cv in d['b'].items()}
+            fixed = False
+            for elev in (0, 2, 4, 8):
+                AA, BB = bern_axis_pair(A, B2, 0, elev)
+                neg = [e for e in set(AA) | set(BB)
+                       if _sq3(AA.get(e, fmpq(0)), BB.get(e, fmpq(0))) < 0]
+                if not neg:
+                    per_coeff[f"c{k2}"]["fixed_by_bernstein_elev"] = elev
+                    per_coeff[f"c{k2}"]["negative"] = 0
+                    fixed = True
+                    print(f"    c{k2}: closed by Bernstein elev={elev} "
+                          f"({time.time()-t0:.0f}s)", flush=True)
+                    break
+            if not fixed:
+                # FALLBACK 2: бисекция по thL (thL = a + (b-a)*thL' на [0,1])
+                # Подстановка линейна => пересобираем коэффициенты по
+                # биномиальной формуле; проверяем каждую подобласть.
+                def shift_axis(A_, B_, a, b, axis=0):
+                    """thL -> a + (b-a)*x, x in [0,1]; коэффициенты заново."""
+                    from prover2_core import binom
+                    outA, outB = {}, {}
+                    for src, dst in ((A_, outA), (B_, outB)):
+                        for e, cv in src.items():
+                            d0 = e[axis]
+                            for i in range(d0 + 1):
+                                coef = (binom(d0, i) * (b - a) ** i
+                                        * a ** (d0 - i))
+                                key = e[:axis] + (i,) + e[axis + 1:]
+                                dst[key] = dst.get(key, fmpq(0)) + cv * coef
+                    return outA, outB
+
+                def region_ok(a, b, depth):
+                    AA, BB = shift_axis(A, B2, a, b)
+                    neg = [e for e in set(AA) | set(BB)
+                           if _sq3(AA.get(e, fmpq(0)),
+                                   BB.get(e, fmpq(0))) < 0]
+                    if not neg:
+                        return True
+                    if depth == 0:
+                        return False
+                    mid = (a + b) / 2
+                    return (region_ok(a, mid, depth - 1)
+                            and region_ok(mid, b, depth - 1))
+
+                if region_ok(fmpq(0), fmpq(1), 6):
+                    per_coeff[f"c{k2}"]["fixed_by_bisection"] = True
+                    per_coeff[f"c{k2}"]["negative"] = 0
+                    print(f"    c{k2}: closed by thL-bisection "
+                          f"({time.time()-t0:.0f}s)", flush=True)
+                else:
+                    per_coeff[f"c{k2}"]["fallback"] = "still negative"
+                    allok = False
+                    print(f"    c{k2}: NOT closed (elev+bisection)",
+                          flush=True)
 
     prov = stamp()
     json.dump({"j": J, "far_below_factored": bool(allok),
@@ -215,7 +251,8 @@ def main() -> int:
                "y_coefficients": len(ycoeffs),
                "per_coefficient": per_coeff,
                "monomials": len(B.a.c) + len(B.b.c),
-               "strict": True,
+               "strict_positive": bool(strict_all),
+               "method": "manifest positivity (no factorization needed)",
                "engine": "farbelow2-flint-build",
                "command": f"KNIFE_J={J} python lab/knife_farbelow2.py",
                **prov, "runtime_s": round(time.time() - t0, 1)},
