@@ -22,8 +22,17 @@ def _sh(args):
 
 def stamp(extra=None):
     head = _sh(["git", "rev-parse", "HEAD"])
-    dirty_files = [ln for ln in _sh(["git", "status", "--porcelain"]).splitlines()
-                   if ln.strip()]
+    # Грязным считается только КОД: сами артефакты (results/) неизбежно
+    # меняются этим же прогоном и не должны помечать провенанс грязным.
+    CODE = ("lab/", "tools/", "sciencebro/", "tests/", "validation/",
+            "pyproject.toml", "uv.lock")
+    dirty_files = []
+    for ln in _sh(["git", "status", "--porcelain"]).splitlines():
+        path = ln[3:].strip().strip('"')
+        if "/results/" in path or path.endswith("_theorem.json"):
+            continue
+        if any(seg in path for seg in CODE):
+            dirty_files.append(path)
     try:
         import flint
         fv = getattr(flint, "__version__", "unknown")
@@ -33,6 +42,7 @@ def stamp(extra=None):
         "git": head[:12],
         "git_full": head,
         "dirty": bool(dirty_files),
+        "dirty_code_files": dirty_files[:20],
         "dirty_count": len(dirty_files),
         "python": sys.version.split()[0],
         "flint": fv,

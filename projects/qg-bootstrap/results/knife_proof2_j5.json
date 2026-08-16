@@ -5,6 +5,12 @@
  "scope": "shallow branches k=3..45, m=3..40; k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3] incl. lam<1/1000 (ERR-0002 repair)",
  "cells": 1634,
  "command": "KNIFE_J=5 python lab/knife_proof2.py",
- "git": "a3d3a0e",
- "runtime_s": 7.9
+ "git": "72dcc10140b0",
+ "git_full": "72dcc10140b0af3e9cc2864261d5b275bfeeeb1c",
+ "dirty": true,
+ "dirty_count": 3,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 5.5
 }
