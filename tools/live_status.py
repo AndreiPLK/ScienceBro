@@ -201,27 +201,43 @@ def now_story():
 
 
 
-def road_html(conv, key, asm, eta):
-    """Дорога до финала: 3 отрезка, светящаяся точка на активном."""
-    segs = [
-        ("НОЖИ 4-7", "сегодня-завтра", conv, 30, "#ff2a6d", "#0aa3c2"),
-        ("ЗАМКОВЫЙ КАМЕНЬ", "2-7 дней", key, 48, "#7a3fd0", "#f9f871"),
-        ("СБОРКА + ФЛАГМАН", "2-3 дня", asm, 22, "#0aa3c2", "#3fe7f5"),
+def road_html(knives, key, asm, eta):
+    """Карта уровней как в игре: ноды-кружки с кольцом прогресса."""
+    nodes = [
+        ("🔪", "Нож 2", 100, ""), ("🔪", "Нож 3", 100, ""),
+        ("🔪", "Нож 4", knives[4], ""),
+        ("🔪", "Нож 5", knives[5], ""),
+        ("🔪", "Нож 6", knives[6], ""),
+        ("🔪", "Нож 7", knives[7], ""),
+        ("🗿", "ЗАМКОВЫЙ КАМЕНЬ", key, "2-7 дн"),
+        ("🏁", "ФЛАГМАН", asm, "2-3 дн"),
     ]
-    active = 0 if conv < 100 else (1 if key < 100 else 2)
-    out = "<div class='roadwrap'><div class='road'>"
-    for i, (name, days, pct, w, c1, c2) in enumerate(segs):
-        dot = (f"<div class='dot' style='left:{max(2, pct)}%'></div>"
-               if i == active else "")
-        out += f"""<div class='seg' style='width:{w}%'>
-<div class='seglbl'>{name}<span class='t'> · {days}</span></div>
-<div class='segbar'><div class='segfill' style='width:{pct}%;
-background:linear-gradient(90deg,{c1},{c2})'></div>{dot}
-<span class='segpct'>{pct}%</span></div></div>"""
-    out += ("<div class='flag'>🏁<div class='flaglbl'>ГЛАВНАЯ<br>ТЕОРЕМА</div>"
-            "</div></div>"
-            f"<div class='t' style='margin-top:6px'>⏱ {eta['total']} · "
-            f"замер {eta['updated']} · точка = мы здесь</div></div>")
+    active_set = False
+    out = "<div class='quest'><div class='qrow'>"
+    for i, (ico, name, pct, days) in enumerate(nodes):
+        if i > 0:
+            lcls = "qlink done" if nodes[i-1][2] >= 100 else "qlink"
+            out += f"<div class='{lcls}'></div>"
+        if pct >= 100:
+            cls, badge = "qnode done", "✔"
+        elif not active_set:
+            cls, badge = "qnode active", f"{pct}%"
+            active_set = True
+        else:
+            cls, badge = "qnode locked", "🔒"
+        deg = round(pct * 3.6)
+        extra = f"<br><span class='qdays'>{days}</span>" if days else ""
+        style = (f"background:conic-gradient(#3fe7f5 {deg}deg,"
+                 f"#241a38 {deg}deg)")
+        out += (f"<div class='qcell'><div class='{cls}' style='{style}'>"
+                f"<div class='qin'>{ico}</div></div>"
+                f"<div class='qname'>{name}</div>"
+                f"<div class='qpct'>{badge}{extra}</div></div>")
+    out += ("</div>"
+            f"<div class='t' style='margin-top:10px;text-align:center'>"
+            f"⏱ {eta['total']} · замер {eta['updated']} · "
+            "✔ = уровень пройден, пульс = играем сейчас, "
+            "🔒 = откроется дальше</div></div>")
     return out
 
 
@@ -254,7 +270,7 @@ def render():
     zpct, ztext = z3_progress()
     kpct0, _ks0 = keystone_progress()
     conv_pct = round(sum(done_knives[j] for j in (4, 5, 6, 7)) / 4)
-    road = road_html(conv_pct, kpct0, 0, eta)
+    road = road_html(done_knives, kpct0, 0, eta)
     kpct, ksteps = keystone_progress()
     ksteps_html = "".join(
         f"<li class='{'on' if ok else 'off'}'>{'✔' if ok else '·'} "
@@ -301,6 +317,25 @@ li{{font-size:13px;margin:4px 0}} li.on{{color:#3fe7f5}} li.off{{color:#8f8ba0}}
 table{{border-collapse:collapse;width:100%}}
 td{{border-bottom:1px solid #241a38;padding:4px 8px;font-size:12px}}
 .mono{{font-family:Consolas,monospace;color:#c9c5da;font-size:11px}}
+.quest{{background:#140d24;border:1px solid #3fe7f5;border-radius:14px;
+padding:18px 12px}}
+.qrow{{display:flex;align-items:flex-start;justify-content:center}}
+.qcell{{text-align:center;width:96px}}
+.qnode{{width:64px;height:64px;border-radius:50%;margin:0 auto;
+display:flex;align-items:center;justify-content:center;padding:4px}}
+.qin{{width:52px;height:52px;border-radius:50%;background:#0b0714;
+display:flex;align-items:center;justify-content:center;font-size:24px}}
+.qnode.done{{box-shadow:0 0 12px #3fe7f5}}
+.qnode.active{{box-shadow:0 0 18px #f9f871;animation:pulse 1.2s infinite}}
+.qnode.locked{{opacity:.45;filter:grayscale(.6)}}
+.qlink{{flex:1;height:5px;background:#241a38;border-radius:3px;margin-top:30px;
+min-width:14px;max-width:56px}}
+.qlink.done{{background:linear-gradient(90deg,#0aa3c2,#3fe7f5);
+box-shadow:0 0 8px #0aa3c2}}
+.qname{{font-size:11px;color:#9ff5ff;margin-top:6px;line-height:1.2}}
+.qpct{{font-size:13px;color:#f9f871;margin-top:2px}}
+.qdays{{font-size:10px;color:#8f8ba0}}
+@keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.5}}}}
 .big .bar{{height:30px}} .big .pct{{top:5px;font-size:15px}}
 </style></head><body>
 <h1>🔴 ScienceBro — живой статус</h1>

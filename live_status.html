@@ -25,10 +25,29 @@ li{font-size:13px;margin:4px 0} li.on{color:#3fe7f5} li.off{color:#8f8ba0}
 table{border-collapse:collapse;width:100%}
 td{border-bottom:1px solid #241a38;padding:4px 8px;font-size:12px}
 .mono{font-family:Consolas,monospace;color:#c9c5da;font-size:11px}
+.quest{background:#140d24;border:1px solid #3fe7f5;border-radius:14px;
+padding:18px 12px}
+.qrow{display:flex;align-items:flex-start;justify-content:center}
+.qcell{text-align:center;width:96px}
+.qnode{width:64px;height:64px;border-radius:50%;margin:0 auto;
+display:flex;align-items:center;justify-content:center;padding:4px}
+.qin{width:52px;height:52px;border-radius:50%;background:#0b0714;
+display:flex;align-items:center;justify-content:center;font-size:24px}
+.qnode.done{box-shadow:0 0 12px #3fe7f5}
+.qnode.active{box-shadow:0 0 18px #f9f871;animation:pulse 1.2s infinite}
+.qnode.locked{opacity:.45;filter:grayscale(.6)}
+.qlink{flex:1;height:5px;background:#241a38;border-radius:3px;margin-top:30px;
+min-width:14px;max-width:56px}
+.qlink.done{background:linear-gradient(90deg,#0aa3c2,#3fe7f5);
+box-shadow:0 0 8px #0aa3c2}
+.qname{font-size:11px;color:#9ff5ff;margin-top:6px;line-height:1.2}
+.qpct{font-size:13px;color:#f9f871;margin-top:2px}
+.qdays{font-size:10px;color:#8f8ba0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .big .bar{height:30px} .big .pct{top:5px;font-size:15px}
 </style></head><body>
 <h1>🔴 ScienceBro — живой статус</h1>
-<div class='t'>Обновлено 19:08:46 16.08.2026 · страница сама обновляется каждые 30 с ·
+<div class='t'>Обновлено 19:13:03 16.08.2026 · страница сама обновляется каждые 30 с ·
 все цифры считаются из реальных файлов результатов, не руками</div>
 
 <div class='card' style='border-color:#f9f871'>
@@ -37,19 +56,7 @@ td{border-bottom:1px solid #241a38;padding:4px 8px;font-size:12px}
 дорешивает кусок и записывает файл-доказательство — обычно раз в 30-60 минут.
 Если долго тихо — значит идёт длинный кусок, это нормально.</div></div>
 
-<div class='roadwrap'><div class='road'><div class='seg' style='width:30%'>
-<div class='seglbl'>НОЖИ 4-7<span class='t'> · сегодня-завтра</span></div>
-<div class='segbar'><div class='segfill' style='width:40%;
-background:linear-gradient(90deg,#ff2a6d,#0aa3c2)'></div><div class='dot' style='left:40%'></div>
-<span class='segpct'>40%</span></div></div><div class='seg' style='width:48%'>
-<div class='seglbl'>ЗАМКОВЫЙ КАМЕНЬ<span class='t'> · 2-7 дней</span></div>
-<div class='segbar'><div class='segfill' style='width:67%;
-background:linear-gradient(90deg,#7a3fd0,#f9f871)'></div>
-<span class='segpct'>67%</span></div></div><div class='seg' style='width:22%'>
-<div class='seglbl'>СБОРКА + ФЛАГМАН<span class='t'> · 2-3 дня</span></div>
-<div class='segbar'><div class='segfill' style='width:0%;
-background:linear-gradient(90deg,#0aa3c2,#3fe7f5)'></div>
-<span class='segpct'>0%</span></div></div><div class='flag'>🏁<div class='flaglbl'>ГЛАВНАЯ<br>ТЕОРЕМА</div></div></div><div class='t' style='margin-top:6px'>⏱ до полного финала (главная теорема + флагман): оптимистично 5-6 дней, реалистично до 2 недель · замер 19:06 16.08 · точка = мы здесь</div></div>
+<div class='quest'><div class='qrow'><div class='qcell'><div class='qnode done' style='background:conic-gradient(#3fe7f5 360deg,#241a38 360deg)'><div class='qin'>🔪</div></div><div class='qname'>Нож 2</div><div class='qpct'>✔</div></div><div class='qlink done'></div><div class='qcell'><div class='qnode done' style='background:conic-gradient(#3fe7f5 360deg,#241a38 360deg)'><div class='qin'>🔪</div></div><div class='qname'>Нож 3</div><div class='qpct'>✔</div></div><div class='qlink done'></div><div class='qcell'><div class='qnode active' style='background:conic-gradient(#3fe7f5 162deg,#241a38 162deg)'><div class='qin'>🔪</div></div><div class='qname'>Нож 4</div><div class='qpct'>45%</div></div><div class='qlink'></div><div class='qcell'><div class='qnode locked' style='background:conic-gradient(#3fe7f5 234deg,#241a38 234deg)'><div class='qin'>🔪</div></div><div class='qname'>Нож 5</div><div class='qpct'>🔒</div></div><div class='qlink'></div><div class='qcell'><div class='qnode locked' style='background:conic-gradient(#3fe7f5 90deg,#241a38 90deg)'><div class='qin'>🔪</div></div><div class='qname'>Нож 6</div><div class='qpct'>🔒</div></div><div class='qlink'></div><div class='qcell'><div class='qnode locked' style='background:conic-gradient(#3fe7f5 90deg,#241a38 90deg)'><div class='qin'>🔪</div></div><div class='qname'>Нож 7</div><div class='qpct'>🔒</div></div><div class='qlink'></div><div class='qcell'><div class='qnode locked' style='background:conic-gradient(#3fe7f5 241deg,#241a38 241deg)'><div class='qin'>🗿</div></div><div class='qname'>ЗАМКОВЫЙ КАМЕНЬ</div><div class='qpct'>🔒<br><span class='qdays'>2-7 дн</span></div></div><div class='qlink'></div><div class='qcell'><div class='qnode locked' style='background:conic-gradient(#3fe7f5 0deg,#241a38 0deg)'><div class='qin'>🏁</div></div><div class='qname'>ФЛАГМАН</div><div class='qpct'>🔒<br><span class='qdays'>2-3 дн</span></div></div></div><div class='t' style='margin-top:10px;text-align:center'>⏱ до полного финала (главная теорема + флагман): оптимистично 5-6 дней, реалистично до 2 недель · замер 19:06 16.08 · ✔ = уровень пройден, пульс = играем сейчас, 🔒 = откроется дальше</div></div>
 
 <h2>ГЛАВНАЯ ТЕОРЕМА <span class='t'>— «ни один нож не режет ниже берега,
 все ножи сразу». Прогресс = 60% ступени (ножи) + 40% замковый камень</span></h2>
@@ -78,5 +85,5 @@ background:linear-gradient(90deg,#0aa3c2,#3fe7f5)'></div>
 
 <h2>Пульс машины <span class='t'>(🟢 живой лог · 🟡 долгий счёт · ⚪ молчит
 или закончил)</span></h2>
-<table><tr><td>⚪ tail_rerun_j6</td><td class='mono'>deep-fixed m&lt;41: OK (212s)</td><td class='t'>561 мин</td></tr><tr><td>🟢 farbelow_j6</td><td class='mono'></td><td class='t'>10 мин</td></tr><tr><td>⚪ z3_retry_j4</td><td class='mono'>RETRY: 24/35 confirmed, 0 alarms, 11 still unknown</td><td class='t'>129 мин</td></tr><tr><td>⚪ keystone_hunt</td><td class='mono'>NO VIOLATIONS in 109980 checks</td><td class='t'>506 мин</td></tr></table>
+<table><tr><td>⚪ tail_rerun_j6</td><td class='mono'>deep-fixed m&lt;41: OK (212s)</td><td class='t'>566 мин</td></tr><tr><td>🟢 farbelow_j6</td><td class='mono'></td><td class='t'>15 мин</td></tr><tr><td>⚪ z3_retry_j4</td><td class='mono'>RETRY: 24/35 confirmed, 0 alarms, 11 still unknown</td><td class='t'>133 мин</td></tr><tr><td>⚪ keystone_hunt</td><td class='mono'>NO VIOLATIONS in 109980 checks</td><td class='t'>510 мин</td></tr></table>
 </body></html>
