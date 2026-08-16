@@ -2,9 +2,9 @@
  "j": 5,
  "ok_so_far": true,
  "engine": "prover2-flint",
- "scope": "shallow branches k=3..45, m=3..40",
+ "scope": "shallow branches k=3..45, m=3..40; k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3] incl. lam<1/1000 (ERR-0002 repair)",
  "cells": 1634,
  "command": "KNIFE_J=5 python lab/knife_proof2.py",
- "git": "f0ca1ad",
- "runtime_s": 5.7
+ "git": "a3d3a0e",
+ "runtime_s": 7.9
 }

@@ -26,7 +26,8 @@ import sympy as sp
 
 RES = Path(__file__).resolve().parents[1] / "results"
 LAB = Path(__file__).resolve().parent
-J = 4
+J = int(os.environ.get("KNIFE_J", "4"))
+PIECES = os.environ.get("PIECES", "band,k0,far").split(",")
 ELEV = int(os.environ.get("BERN_ELEV", "6"))
 m, v = sp.symbols('m v', nonnegative=True)
 K2 = sp.Symbol('K2', nonnegative=True)
@@ -163,6 +164,7 @@ def main() -> int:
     t0 = time.time()
     log = []
     ok = True
+    pieces_run = {}
 
     # (ii) band: K = 6 + K2, v = K2 + 10*sigma  (v in [K-6, K+4])
     def build_band(a, b):
@@ -175,9 +177,13 @@ def main() -> int:
         P = P_sym(lam_c, D_c, 41 + K2 + 10 * sig)
         return sp.expand(sp.fraction(sp.together(P))[0])
 
-    got = bisect(build_band, sp.Integer(0), sp.Integer(1), 5, True,
-                 "band_K6plus", log)
-    ok &= got
+    if "band" in PIECES:
+        got = bisect(build_band, sp.Integer(0), sp.Integer(1), 5, True,
+                     "band_K6plus", log)
+        ok &= got
+        pieces_run["band"] = bool(got)
+    else:
+        got = None
     print(f"(ii) band K>=6: {'OK' if got else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)
 
@@ -193,9 +199,12 @@ def main() -> int:
             P = P_sym(lam_c, D_c, 41 + (K0 + 4) * sig)
             return sp.expand(sp.fraction(sp.together(P))[0])
 
+        if "k0" not in PIECES:
+            continue
         got = bisect(build_k0, sp.Integer(0), sp.Integer(1), 5, False,
                      f"K{K0}", log)
         ok &= got
+        pieces_run[f"K{K0}"] = bool(got)
         print(f"(iii) K={K0}: {'OK' if got else 'FAIL'}"
               f" ({time.time()-t0:.0f}s)", flush=True)
 
@@ -236,6 +245,8 @@ def main() -> int:
         return bisect_far(a, mid, depth - 1) and bisect_far(mid, b, depth - 1)
 
     MODE = os.environ.get("FAR_MODE", "orthant")
+    if "far" not in PIECES:
+        MODE = "skip"
     if MODE == "compact4d":
         w1 = sp.Symbol('w1', nonnegative=True)
         w2 = sp.Symbol('w2', nonnegative=True)
@@ -272,18 +283,29 @@ def main() -> int:
             return bisect_c(a, mid, depth-1) and bisect_c(mid, b, depth-1)
 
         got = bisect_c(sp.Integer(0), sp.Integer(1), 4)
+    elif MODE == "skip":
+        got = None
     else:
         got = bisect_far(sp.Integer(0), sp.Integer(1), 5)
-    ok &= got
+    if got is not None:
+        ok &= got
+        pieces_run["far"] = bool(got)
     print(f"(iv) far below: {'OK' if got else 'FAIL'}"
           f" ({time.time()-t0:.0f}s)", flush=True)
 
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
     out = {"all_certified": bool(ok), "cells": len(log), "elev": ELEV,
-           "command": "python lab/knife_belowdiag_shift.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "knife4_belowdiag_shift.json").write_text(
+           "j": J, "pieces": pieces_run,
+           "env": {"KNIFE_J": J, "PIECES": ",".join(PIECES),
+                   "FAR_MODE": os.environ.get("FAR_MODE", "orthant"),
+                   "BERN_ELEV": ELEV},
+           "scope_note": "pieces field lists exactly what was run and its "
+                         "verdict; all_certified covers ONLY those pieces",
+           "command": f"KNIFE_J={J} PIECES={','.join(PIECES)} python "
+                      "lab/knife_belowdiag_shift.py",
+           "git": git, "runtime_s": round(time.time() - t0, 1)}
+    (RES / f"knife{J}_belowdiag_shift.json").write_text(
         json.dumps(out, indent=1), encoding="utf-8")
     print(("BELOW-DIAGONAL CLOSED" if ok else "INCOMPLETE"), flush=True)
     return 0 if ok else 1

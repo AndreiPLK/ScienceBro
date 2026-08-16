@@ -87,13 +87,25 @@ def Bj_coeffs(j, mv):
     return {k: v for k, v in coeffs.items() if v != 0}
 
 
-def cell_certify(coeffs, j, kk, a, b):
-    """All coefficients of N(u, w) nonnegative? Exact, denominator-free."""
+def cell_certify(coeffs, j, kk, a, b, onto_zero=False):
+    """All coefficients of N(u, w) nonnegative? Exact, denominator-free.
+
+    onto_zero (k=3 head branch, blade-proof substitution): (a, b) is a
+    t-interval in [0, 1] and lam = (2/3)(1 - t), t = a + (b-a)w/(1+w);
+    numerator of lam is (2/3)((1-a) + (1-b)w) — nonnegative coefficients,
+    and the cell covers lam in ((2/3)(1-b), (2/3)(1-a)], so the union over
+    the bisection tree is ONTO (0, 2/3] including arbitrarily small lam.
+    Fixes the (0, 1/1000) strip the fleet review found uncovered (ERR-0002).
+    """
     a = fmpq(a.numerator, a.denominator)
-    slope = fmpq(b.numerator, b.denominator) - a
+    b = fmpq(b.numerator, b.denominator)
     onepw = QPoly(2, {(0, 0): fmpq(1), (0, 1): fmpq(1)})
     onepu = QPoly(2, {(0, 0): fmpq(1), (1, 0): fmpq(1)})
-    numlam = QPoly(2, {(0, 0): a, (0, 1): a + slope})
+    if onto_zero:
+        c = fmpq(2, 3)
+        numlam = QPoly(2, {(0, 0): c * (1 - a), (0, 1): c * (1 - b)})
+    else:
+        numlam = QPoly(2, {(0, 0): a, (0, 1): b})
     r = fmpq(3 * (2 * kk - 3), kk * (kk - 2))
     onepw2 = onepw * onepw
     tk_num = r * (numlam * numlam + (2 * kk - 2) * (numlam * onepw)
@@ -125,9 +137,10 @@ def cell_certify(coeffs, j, kk, a, b):
     return all(v >= 0 for v in N.c.values())
 
 
-def cell_shallow(coeffs, j, kk, mu_lo, mu_hi, depth, log, tag):
+def cell_shallow(coeffs, j, kk, mu_lo, mu_hi, depth, log, tag,
+                 onto_zero=False):
     def try_cell(a, b, d):
-        okc = cell_certify(coeffs, j, kk, a, b)
+        okc = cell_certify(coeffs, j, kk, a, b, onto_zero)
         log.append({"cell": tag, "ok": bool(okc)})
         if okc:
             return True
@@ -150,8 +163,10 @@ def main() -> int:
     bj_cache = {mv: Bj_coeffs(J, mv)
                 for mv in range(j_min_m(J), MFIX + 1)}
     for kk in range(3, 46):
+        onto = kk == 3
         if kk == 3:
-            mu_lo, mu_hi = Fraction(1, 1000), Fraction(2, 3)
+            # blade substitution lam=(2/3)(1-t), t in [0,1]: ONTO (0, 2/3]
+            mu_lo, mu_hi = Fraction(0), Fraction(1)
         else:
             mu_lo = Fraction(3, 5) * (kk - Fraction(5, 2))
             mu_hi = Fraction(3, 5) * (kk - Fraction(3, 2))
@@ -160,7 +175,7 @@ def main() -> int:
         branch_ok = True
         for mv in range(j_min_m(J), MFIX + 1):
             got = cell_shallow(bj_cache[mv], J, kk, mu_lo, mu_hi, 4, log,
-                               f"j{J}_k{kk}_m{mv}")
+                               f"j{J}_k{kk}_m{mv}", onto_zero=onto)
             branch_ok &= got
             if not got:
                 print(f"  FAIL j={J} k={kk} m={mv}", flush=True)
@@ -170,7 +185,9 @@ def main() -> int:
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
     out = {"j": J, "ok_so_far": bool(ok), "engine": "prover2-flint",
-           "scope": f"shallow branches k=3..45, m={j_min_m(J)}..{MFIX}",
+           "scope": f"shallow branches k=3..45, m={j_min_m(J)}..{MFIX}; "
+                    "k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3]"
+                    " incl. lam<1/1000 (ERR-0002 repair)",
            "cells": len(log),
            "command": f"KNIFE_J={J} python lab/knife_proof2.py",
            "git": git, "runtime_s": round(time.time() - t0, 1)}
