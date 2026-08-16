@@ -22,8 +22,8 @@ xs, ys, zs, cols, sizes = [], [], [], [], []
 dx, dy, dz = [], [], []
 for i in range(2600):
     lam = Fraction(random.randint(1, 4500), 100)
-    D = Fraction(random.randint(3, 60))
     Th = T_hat(lam)
+    D = Fraction(random.randint(3, max(4, int(float(Th) * 1.6))))
     margin = float((Th - D) / Th)
     x, y = float(lam), float(D)
     if margin >= 0:  # выживший мир — звезда
@@ -48,7 +48,7 @@ fig.add_trace(go.Scatter3d(x=xs, y=ys, z=zs, mode="markers",
                            showlegend=False))
 # струна D=23, lam=1 — маяк
 fig.add_trace(go.Scatter3d(x=[1], y=[23], z=[0.35], mode="markers+text",
-                           marker=dict(size=13, color="#f9f871",
+                           marker=dict(size=9, color="#f9f871",
                                        symbol="diamond"),
                            text=["  THE STRING — on the very edge"],
                            textfont=dict(color="#f9f871", size=15),
@@ -56,10 +56,7 @@ fig.add_trace(go.Scatter3d(x=[1], y=[23], z=[0.35], mode="markers+text",
 fig.update_layout(
     template="plotly_dark", paper_bgcolor="#05030c",
     title=dict(text="THE GALAXY OF SURVIVING UNIVERSES<br>"
-                    "<sup>every star = a possible theory of gravity that passes"
-                    " the shore law we PROVED; height & glow = safety margin; "
-                    "red embers below = impossible worlds; the yellow diamond"
-                    " = string theory, living exactly on the edge</sup>",
+                    "<sup>every star = a theory of gravity that passes our PROVEN shore law;<br>glow = safety margin; red embers = impossible worlds; diamond = the string, exactly on the edge</sup>",
                font=dict(color="#e8e6f0", size=21), x=0.03),
     scene=dict(
         xaxis=dict(title="which theory (lambda)", color="#5c5870",
@@ -68,8 +65,8 @@ fig.update_layout(
                    gridcolor="#150e24", showbackground=False),
         zaxis=dict(title="", color="#5c5870", gridcolor="#150e24",
                    showbackground=False, showticklabels=False),
-        camera=dict(eye=dict(x=1.6, y=-1.7, z=0.5),
-                    center=dict(x=0, y=0, z=-0.1)),
+        camera=dict(eye=dict(x=1.05, y=-1.25, z=0.35),
+                    center=dict(x=0, y=0, z=-0.05)),
     ),
     width=1600, height=1000, margin=dict(l=10, r=10, t=100, b=10))
 
