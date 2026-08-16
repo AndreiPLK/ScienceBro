@@ -1037,3 +1037,12 @@ NEW TOOL they add that we lack: SUM RULES (eq. 26) from equating two
 expansions of the residue — candidate source of the j->j+1 recursion with
 explicit kernel (what our probes hunted blindly). Next shortest experiment:
 derive CHR sum rules numerically, then in closed form.
+
+## 2026-08-16 — CHR SUM RULES VERIFIED (keystone milestone)
+- Rigatos-Wang eq.(26)-type sum rules derived for CHR and verified to 1e-41
+  at (n,lam,D) = (5,2,10), (6,0.5,8), (7,12,23): sum_l c_l T_{l,m} = Zhat_m
+  with Zhat = elementary symmetric of DOUBLED Pochhammer roots (our E-hats),
+  T from Gegenbauer expansion at angle x = 1 + 2t/mu. All knives at level n
+  now sit in ONE linear system with harmonic-number data — the doorway to a
+  closed single-sum formula and the j->j+1 relation. Next: invert T (their
+  eq. 25/27 analog) in closed form for CHR.
