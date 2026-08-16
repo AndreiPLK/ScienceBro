@@ -1,0 +1,83 @@
+{
+ "j": 12,
+ "far_below_factored": false,
+ "scope": "far-below of deep water: m = 41+v (v>=0), K = v+K3+6 (=> v <= K-6), lam = (K+51+thL)*sqrt3/3 with thL in [0,1], D <= T_cap (whole ray via y-expansion, y>=0)",
+ "y_coefficients": 12,
+ "per_coefficient": {
+  "c0": {
+   "monomials": 30406,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c1": {
+   "monomials": 27350,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c2": {
+   "monomials": 24339,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c3": {
+   "monomials": 21401,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c4": {
+   "monomials": 18525,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c5": {
+   "monomials": 15735,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c6": {
+   "monomials": 13024,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c7": {
+   "monomials": 10412,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c8": {
+   "monomials": 7896,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c9": {
+   "monomials": 5492,
+   "negative": 0,
+   "strict_const_term": true
+  },
+  "c10": {
+   "monomials": 3201,
+   "negative": 71,
+   "strict_const_term": false,
+   "fallback": "still negative"
+  },
+  "c11": {
+   "monomials": 1035,
+   "negative": 0,
+   "strict_const_term": true
+  }
+ },
+ "monomials": 340731,
+ "strict_positive": false,
+ "method": "manifest positivity (no factorization needed)",
+ "engine": "farbelow2-flint-build",
+ "command": "KNIFE_J=12 python lab/knife_farbelow2.py",
+ "git": "6233579c7f3e",
+ "git_full": "6233579c7f3e78493484b324fa1c3cd6627c1160",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 374.0
+}
