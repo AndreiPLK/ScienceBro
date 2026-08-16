@@ -892,3 +892,12 @@ old entries; append corrections as new entries.
   manifestly positive after exact factorization over Q(sqrt3); runtime 2923 s.
   Knife-5 theorem now COMPLETE (pending adversarial review), same architecture
   as knife 4. Consolidated: results/knife5_theorem.json.
+
+## 2026-08-17 (ночь) — PROVER V2 (flint engine): 28-57x speedup, validated
+- lab/prover2_core.py + lab/knife_proof2.py: exact fmpq arithmetic (flint),
+  B_j built once per m, denominators cleared analytically (p+2q<=2(j-1)).
+- Validation contract passed: shallow j=4..7 reproduce v1 cell-by-cell —
+  identical verdicts AND cell counts (1677/1634/1591/1548).
+  Runtimes: 130.6->2.3 s (57x), 209->5.7 s, 350->12.4 s, 729->24 s.
+- Memory: MB instead of GB. New standing rule: machine never loaded to 99%.
+- v2 immediately deployed: shallow j=8..12 running.
