@@ -1022,3 +1022,18 @@ old entries; append corrections as new entries.
   partial waves of a squared product of linear factors — the AEHM
   closed-string triple-contour machinery applies. Step B (derive the
   contour rep for CHR with lam parameter) is now the active front.
+
+## 2026-08-16 — Accelerator verdict: harmonic-numbers method TRANSFERS to CHR
+Read Rigatos-Wang 2401.13031 (pp. 1-6). Three structural matches:
+1. Their residue = product of linear factors in t (eq. 20); ours = SQUARED
+   product (Pochhammer^2) — same class, doubled roots.
+2. Their key identity (eq. 21): coefficients of the t-expansion are multiple
+   harmonic numbers = elementary symmetric functions of the roots. Ours are
+   EXACTLY that already: E-hat from prod(1+(n-2k)z)^2 (paper 3).
+3. Their trajectory-wise analysis (eqs. 29-32): k-th trajectory below leading
+   = explicit combination of <=k+1 harmonic numbers, analyzed FOR ALL N at
+   once. Our knives ARE those trajectories (a_{n,2n-2j}).
+NEW TOOL they add that we lack: SUM RULES (eq. 26) from equating two
+expansions of the residue — candidate source of the j->j+1 recursion with
+explicit kernel (what our probes hunted blindly). Next shortest experiment:
+derive CHR sum rules numerically, then in closed form.
