@@ -1066,3 +1066,12 @@ derive CHR sum rules numerically, then in closed form.
   covered by dedicated belowdiag_shift + farbelow artifacts (no overlap
   gaps: band[K-6,K+4] + K0..5 + far v<=K-6 + above-diag = full quadrant).
 - Remaining for four complete theorems: belowdiag j6/j7 (v1 queue running).
+
+## 2026-08-16 (ночь) — Keystone: T-inverse structure found
+- Universal T^{-1} rows for CHR are strictly ALTERNATING (+-+-...) with
+  smooth weight ratios (hypergeometric-looking). Hence c_{n,l} =
+  alternating functional of elementary symmetric functions of POSITIVE
+  (doubled) Pochhammer roots. Positivity for ALL n at fixed l becomes a
+  real-rootedness statement — the classical total-positivity door.
+  Next: closed form of weights w_{l,m} (ratio fit), then the n->n+1
+  3-term recursion e_m(S+{r,r}) = e_m + 2r e_{m-1} + r^2 e_{m-2}.
