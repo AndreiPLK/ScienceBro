@@ -28,7 +28,7 @@ SITE = SCRATCH / "site"
 RESULTS = ROOT / "projects" / "qg-bootstrap" / "results"
 OUT_LOCAL = ROOT / "live_status.html"
 CYCLE = 120
-PUSH_EVERY = 5
+PUSH_EVERY = 2
 
 LOGS = ["tail_rerun_j6", "tail_rerun_j7", "tail_rerun_j4", "tail_rerun_j5",
         "belowdiag_j6", "belowdiag_j7", "farbelow_j6", "farbelow_j7",
