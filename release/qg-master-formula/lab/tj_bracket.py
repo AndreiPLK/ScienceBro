@@ -22,6 +22,8 @@ from pathlib import Path
 import sympy as sp
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from grav_full_body import gegen_coeffs as gegen_exact  # noqa: E402
+from grav_full_body import mono_int  # noqa: E402
 from hunt_2n8 import a_l  # noqa: E402  (exact evaluator, any l)
 
 RES = Path(__file__).resolve().parents[1] / "results"
@@ -69,7 +71,6 @@ def weight_ratio(k: int):
 
 
 import os
-
 J = int(os.environ.get("TJ_J", "4"))
 
 

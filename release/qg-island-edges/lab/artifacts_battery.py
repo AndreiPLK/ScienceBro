@@ -11,11 +11,12 @@ from __future__ import annotations
 import json
 import sys
 from fractions import Fraction as F
-from math import comb
+from math import comb, log
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from repro_r4_positivity_spot import a_route1  # noqa: E402
+from fig1_island_map import point_allowed  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 OUT = {}

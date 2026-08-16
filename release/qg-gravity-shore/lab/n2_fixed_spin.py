@@ -53,7 +53,7 @@ def main() -> int:
                 a = a_route1(n, l, r, w, F(0))
                 vals.append({"n": n, "sign": (1 if a > 0 else (0 if a == 0 else -1)),
                              "log10": None if a == 0 else float(
-                                 len(str(abs(a.numerator))) - len(str(a.denominator))
+                                 (len(str(abs(a.numerator))) - len(str(a.denominator)))
                              )})
             rec["tail"][str(l)] = vals
             neg = [v["n"] for v in vals if v["sign"] < 0]

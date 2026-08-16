@@ -107,7 +107,6 @@ def main() -> int:
     # --- (1c) j=5, n=6: extract HERE (persist) and match
     os.environ["TJ_J"] = "5"
     import importlib
-
     import tj_bracket
     importlib.reload(tj_bracket)
     fac, den = tj_bracket.bracket_for(6)

@@ -6,6 +6,8 @@ at rho* = 1+1/sqrt3, and the window-existence zone rho <= sqrt(5/3).
 Render: headless Chrome at 2x + LANCZOS downscale (see lab/fig_knives.py).
 """
 
+from math import sqrt
+import json
 from pathlib import Path
 
 VIS = Path(__file__).resolve().parents[3] / "article" / "visuals"

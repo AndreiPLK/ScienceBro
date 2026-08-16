@@ -48,7 +48,7 @@ import subprocess
 import sys
 import time
 from fractions import Fraction as F
-from functools import cache
+from functools import lru_cache
 from math import factorial
 from pathlib import Path
 
@@ -66,7 +66,7 @@ def poch(a, k):
     return p
 
 
-@cache
+@lru_cache(maxsize=None)
 def gegen(l, alpha):
     """Coefficients (index = power of x) of Gegenbauer C_l^{(alpha)} via the
     standard recurrence m C_m = 2(m-1+alpha) x C_{m-1} - (m-2+2alpha) C_{m-2}."""
@@ -85,7 +85,7 @@ def gegen(l, alpha):
     return cur
 
 
-@cache
+@lru_cache(maxsize=None)
 def jnorm(k, alpha):
     """int_{-1}^1 x^k (1-x^2)^{alpha-1/2} dx / int_{-1}^1 (1-x^2)^{alpha-1/2} dx
     = (1/2)_m / (alpha+1)_m for k=2m (Beta-function ratio), 0 for odd k.
@@ -96,7 +96,7 @@ def jnorm(k, alpha):
     return poch(F(1, 2), m) / poch(alpha + 1, m)
 
 
-@cache
+@lru_cache(maxsize=None)
 def residue_sq(n, s):
     """Coefficients of Q(x)^2 with Q = prod_{k=1}^{n-1} (s x + 2k - n).
     Equals the CHR level-n residue R(n, t(x)) up to a strictly positive
@@ -136,7 +136,7 @@ def pw_value(n, l, lam, D):
     return val
 
 
-@cache
+@lru_cache(maxsize=None)
 def ehat(n):
     """E_{2t}(n) = |e_{2t}| of the doubled multiset {n-2k : k=1..n-1}
     (generating polynomial prod_k (1 + (n-2k) z)^2); index = t.

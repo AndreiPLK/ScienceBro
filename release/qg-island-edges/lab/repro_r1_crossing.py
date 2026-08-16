@@ -18,11 +18,11 @@ Every check prints PASS/FAIL; exit code 1 on any FAIL. Pure symbols — no float
 
 from __future__ import annotations
 
-import os
 import sys
 
 import sympy as sp
 
+import os
 N = int(os.environ.get("R1_N", "7"))
 
 

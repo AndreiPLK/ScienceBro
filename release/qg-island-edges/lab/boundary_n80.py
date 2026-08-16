@@ -14,6 +14,7 @@ from fractions import Fraction as F
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from fig1_island_map import point_allowed  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 
