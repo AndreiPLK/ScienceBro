@@ -307,7 +307,6 @@ def render():
 
     zpct, ztext = z3_progress()
     kpct0, _ks0 = keystone_progress()
-    conv_pct = round(sum(done_knives[j] for j in (4, 5, 6, 7)) / 4)
     road = road_html(done_knives, kpct0, 0, eta)
     kpct, ksteps = keystone_progress()
     ksteps_html = "".join(
