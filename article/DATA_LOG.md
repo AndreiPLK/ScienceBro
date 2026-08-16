@@ -1014,3 +1014,11 @@ old entries; append corrections as new entries.
   0 alarms; 11 cells remain unknown after 600 s + 4-way splitting (recorded
   honestly; certificates for them stand on prover v1+v2 agreement).
 - Repair batch relaunched at full priority (8 tasks, fast wins first).
+
+## 2026-08-16 — Keystone Step A validated: residue-bridge holds
+- Gegenbauer quadrature of the CHR squared-Pochhammer residue (50-digit
+  mpmath, t = mu(n)(x-1)/2) matches the master-formula bracket sign at all
+  5 cross-check points (n=5..8, lam=0.5..12, D=8..20). Our knives ARE
+  partial waves of a squared product of linear factors — the AEHM
+  closed-string triple-contour machinery applies. Step B (derive the
+  contour rep for CHR with lam parameter) is now the active front.
