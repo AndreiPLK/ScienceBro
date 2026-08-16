@@ -2,6 +2,7 @@
  "all_certified": true,
  "cells": 7,
  "elev": 0,
+ "strict_positive": true,
  "j": 5,
  "pieces": {
   "band": true,
@@ -20,8 +21,8 @@
  },
  "scope_note": "pieces field lists exactly what was run; far-below covered by knife{J}_farbelow_factored.json",
  "command": "KNIFE_J=5 python lab/knife_belowdiag2.py",
- "git": "b2b99ddf176d",
- "git_full": "b2b99ddf176db243f50ce44c591b8432ae249810",
+ "git": "8599c7b0523e",
+ "git_full": "8599c7b0523e58d02a438411d8ff37687d13256b",
  "dirty": false,
  "dirty_code_files": [],
  "dirty_count": 0,

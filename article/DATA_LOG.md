@@ -1085,3 +1085,36 @@ derive CHR sum rules numerically, then in closed form.
 - v1 queue retired (v1 remains as cross-check twin only).
 - Knives proven: 2,3 (published) + 4,5,6,7 (tonight). Next: fleet review
   round 2, then the keystone (uniform j).
+
+## 2026-08-17 (ночь) — FLEET REVIEW 2: math SOUND, artifact layer repaired (S1-S8)
+- Verdict: zero counterexamples in 6 attack zones; two independent
+  re-derivations (from-scratch sympy master formula; Gegenbauer projection
+  1200/1200 sign agreement) + ~93k exact in-region evaluations, 27k of them
+  within 1e-9 of D=T_hat. Sign flips ABOVE T_hat confirmed => statement tight.
+- Repairs landed: S1 truthful coverage (m>=max(1,j-2), l>=2); S2 provenance
+  stamp with CODE-only dirty flag + full re-run at clean HEAD; S3 gate
+  hardened (j-match, work counters, nested verdicts, partial-run env, dirty,
+  prose regions); S4 STRICT positivity implemented and CERTIFIED (every
+  Bernstein block has a strictly positive constant term => P > 0 on the
+  CLOSED region, not merely >= 0) for j=4..7 in tails and belowdiag;
+  S5/S6 unsound latent branches deleted; S7 J-consistency assert; S8
+  far-below artifacts now carry scope/per-coefficient/monomial counts.
+
+## 360-ANALYSIS of the strictness finding (founder's law 3.1)
+1. INSIDE: strict P>0 everywhere including the closed shore boundary is
+   NOT in conflict with the blade theorem's exact tangency: tangency there
+   is of the WINDOW EDGE to the shore (discriminant zero at rho*), not a
+   zero of the bracket P. Two different objects — worth one sentence in the
+   flagship to prevent a referee confusing them.
+2. NEIGHBOURING AMPLITUDES: Veneziano/type-I partial waves VANISH whenever
+   n+j is even (parity zeros, AEHM eq. after 3.9; Mansfield table 1). Our
+   CHR brackets have NO such zeros — strict positivity holds across the
+   whole ladder. Structural difference: the CHR residue is a SQUARE of a
+   Pochhammer ratio (no parity cancellation), whereas Veneziano's residue
+   has alternating-parity structure. => the square is what buys strictness.
+3. ADJACENT MATH: strictly positive Bernstein blocks = the polynomial lies
+   in the INTERIOR of the Bernstein cone on that box. For families indexed
+   by n this is the setting of total positivity / Polya-type theorems: a
+   uniform interior margin is exactly what an induction in j would need.
+   => concrete keystone lead: quantify the interior margin as a function of
+   (j, n) and prove it does not degrade — a quantitative strictness lemma.
