@@ -290,8 +290,8 @@ def main() -> int:
     if got is not None:
         ok &= got
         pieces_run["far"] = bool(got)
-    print(f"(iv) far below: {'OK' if got else 'FAIL'}"
-          f" ({time.time()-t0:.0f}s)", flush=True)
+    lbl = 'SKIPPED' if got is None else ('OK' if got else 'FAIL')
+    print(f"(iv) far below: {lbl} ({time.time()-t0:.0f}s)", flush=True)
 
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()

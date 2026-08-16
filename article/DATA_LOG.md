@@ -954,3 +954,10 @@ old entries; append corrections as new entries.
   point, ratio P_{n+1}/P_n in [740, 1.3e6] — bounded well away from zero.
   H_rec (positive-kernel recursion along fixed-spin diagonal) strongly
   supported numerically. Artifact: results/keystone_ratio_probe.json.
+
+## 2026-08-17 — KNIFE-5 FATAL GAP CLOSED: below-diagonal band + K0..K5
+- KNIFE_J=5 PIECES=band,k0 knife_belowdiag_shift.py: ALL CERTIFIED
+  (band K>=6 + explicit K0..5; 1913 s; artifact knife5_belowdiag_shift.json
+  with honest per-piece verdicts). Combined with knife5_farbelow_factored
+  (v<=K-6) and above-diagonal (tail rerun queued), the deep-water quadrant
+  for j=5 is now fully covered by passing artifacts.

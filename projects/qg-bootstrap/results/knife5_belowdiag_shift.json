@@ -1,0 +1,25 @@
+{
+ "all_certified": true,
+ "cells": 7,
+ "elev": 6,
+ "j": 5,
+ "pieces": {
+  "band": true,
+  "K0": true,
+  "K1": true,
+  "K2": true,
+  "K3": true,
+  "K4": true,
+  "K5": true
+ },
+ "env": {
+  "KNIFE_J": 5,
+  "PIECES": "band,k0",
+  "FAR_MODE": "orthant",
+  "BERN_ELEV": 6
+ },
+ "scope_note": "pieces field lists exactly what was run and its verdict; all_certified covers ONLY those pieces",
+ "command": "KNIFE_J=5 PIECES=band,k0 python lab/knife_belowdiag_shift.py",
+ "git": "73cf6ab",
+ "runtime_s": 1912.8
+}
