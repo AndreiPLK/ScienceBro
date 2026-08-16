@@ -937,3 +937,11 @@ old entries; append corrections as new entries.
   an artifact; truth/novelty status taxonomy; honest time estimation).
 - Repairs running: shallow j=5..12 re-run with onto-zero lambda coverage;
   knife5 belowdiag band+K0 queued behind knife6 tail (machine-load rule).
+
+## 2026-08-17 — Z3 independent judge, knife 4 shallow: 1642/1677 confirmed
+- Foreign engine (Z3 nlsat) independently re-proved 1642 of 1677 shallow
+  cells (unsat), ZERO alarms, 35 unknown (120 s timeout) — retry with 600 s
+  + interval splitting running. Keystone prior art captured: Mansfield
+  2502.20372 (Veneziano positivity ALL levels D<=10), Rigatos-Wang
+  2401.13031 (harmonic-number manifest positivity), Eberhardt-Mizera
+  2201.11575 (uniform-in-level asymptotics).
