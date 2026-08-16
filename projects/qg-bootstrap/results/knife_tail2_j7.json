@@ -1,0 +1,21 @@
+{
+ "j": 7,
+ "all_certified": true,
+ "cells": 80,
+ "engine": "tail2-flint",
+ "stage_verdicts": {
+  "shallow_tail": true,
+  "deep_fixed": true,
+  "deep_tail_below_diag": "covered by belowdiag_shift + farbelow artifacts",
+  "deep_tail_above_diag": true
+ },
+ "n_failed": 0,
+ "failed_cells": [],
+ "env": {
+  "KNIFE_STAGE": "all",
+  "BERN_ELEV": 0
+ },
+ "command": "KNIFE_J=7 python lab/knife_tail2.py",
+ "git": "fc102bb",
+ "runtime_s": 11.6
+}

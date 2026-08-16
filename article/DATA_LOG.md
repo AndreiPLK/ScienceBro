@@ -1059,3 +1059,10 @@ derive CHR sum rules numerically, then in closed form.
   j=6 (438s), j=7 (1316s) — all honest artifacts, engine recorded.
 - Queue 3 running: belowdiag j6/j7 (v1, ~30-60 min each) then honest tail
   re-runs j4/5/6/7. Then: reconsolidation of theorems 4-7 through the gate.
+
+## 2026-08-16 (ночь) — TAILS PORTED TO V2: all four knives certified in SECONDS
+- lab/knife_tail2.py (flint): shallow-tail + deep-fixed + above-diagonal
+  for j=4/5/6/7 ALL CERTIFIED, ~1-2 s each (v1: hours). Below-diagonal is
+  covered by dedicated belowdiag_shift + farbelow artifacts (no overlap
+  gaps: band[K-6,K+4] + K0..5 + far v<=K-6 + above-diag = full quadrant).
+- Remaining for four complete theorems: belowdiag j6/j7 (v1 queue running).
