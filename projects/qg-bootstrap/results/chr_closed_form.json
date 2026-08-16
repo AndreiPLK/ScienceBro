@@ -1,0 +1,26 @@
+{
+ "identity": "P_j = c0 * sum_t (-1)^t E_2t (1-j)_t (1-R)_t / ((1-n)_t (3/2-n)_t s^{2t})",
+ "definitions": {
+  "s": "lam + n - 1",
+  "c": "4n - 4j - 1",
+  "R": "(D + c)/2 + j - 1",
+  "c0": "(2n-2)!/((j-1)! 2^{j-1}) * s^{2(j-1)} > 0"
+ },
+ "exact_checks": 4320,
+ "mismatches": [],
+ "verified": true,
+ "significance": "terminating hypergeometric structure; all j-dependence sits in (1-j)_t and the positive prefactor c0 \u2014 the keystone's j-shift is now explicit",
+ "prior_art": "analogue of Rigatos-Wang 2401.13031 eq.(27)-(28) for the Coon family; new for CHR with lam",
+ "command": "python lab/chr_closed_form.py",
+ "git": "f05146136e86",
+ "git_full": "f05146136e868eed68689b7de951575f4fdab78d",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/chr_closed_form.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 8.8
+}

@@ -1118,3 +1118,18 @@ derive CHR sum rules numerically, then in closed form.
    uniform interior margin is exactly what an induction in j would need.
    => concrete keystone lead: quantify the interior margin as a function of
    (j, n) and prove it does not degrade — a quantitative strictness lemma.
+
+## 2026-08-17 (ночь) — *** CHR CLOSED FORM VERIFIED (4320 exact checks) ***
+   P_j = c0 * SUM_t (-1)^t E_2t(n) (1-j)_t (1-R)_t / ((1-n)_t (3/2-n)_t s^2t)
+   s = lam+n-1, c = 4n-4j-1, R = (D+c)/2+j-1, c0 = (2n-2)!/((j-1)!2^{j-1}) s^{2(j-1)} > 0.
+- 4320/4320 exact rational agreements with the master formula, j=2..25,
+  n up to j+25, lam from 0.01 to 150, D from the shore to 3x beyond it.
+  Artifact: results/chr_closed_form.json, script lab/chr_closed_form.py.
+- WHY IT MATTERS: (a) the sum TERMINATES via (1-j)_t => classical
+  terminating-hypergeometric machinery (Saalschutz/Whipple/Gasper) applies;
+  (b) ALL j-dependence is now explicit — (1-j)_t and the positive c0 — so
+  the j -> j+1 step of the keystone is a Pochhammer shift, not a mystery.
+- Falsified on the way (signatures kept): MOMENT hypothesis (c_t are NOT a
+  Stieltjes moment sequence — Hankel minors negative at every tested point);
+  LEIBNIZ hypothesis (term ratios exceed 1 in 26516/91728 belt samples,
+  max 57 at large lam near the cap) — so no naive alternating-series bound.
