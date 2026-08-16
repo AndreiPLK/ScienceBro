@@ -177,6 +177,16 @@ def q3_pointwise_ok(a_dict, b_dict):
     return True
 
 
+def block_strict(a_dict, b_dict):
+    """S4: блок Бернштейна (как полином от остаточных переменных с
+    неотрицательными коэффициентами) строго положителен на [0,inf)^d
+    <=> его свободный член строго положителен. Если это выполнено для
+    ВСЕХ блоков, то P > 0 на всём замкнутом множестве (сумма базиса
+    Бернштейна = 1, значит в каждой точке активен хотя бы один блок)."""
+    zero = tuple([0] * len(next(iter(set(a_dict) | set(b_dict)), (0,))))
+    return sign_q3(a_dict.get(zero, fmpq(0)), b_dict.get(zero, fmpq(0))) > 0
+
+
 def q3_strict(a_dict, b_dict):
     """S4: есть ли СТРОГО положительный коэффициент (=> P > 0 на ортанте
     вместе с неотрицательностью остальных)."""
@@ -221,13 +231,17 @@ def main() -> int:
             A, B = bern_axis_pair(A, B, 0, ELEV)
             A, B = bern_axis_pair(A, B, 1, ELEV)
             good = True
+            strict = True
             for kl, (ad, bd) in collect_pairs(A, B, (0, 1)).items():
                 assert not bd, "sqrt3 in shallow?"
                 cf = {e[0]: cv for e, cv in ad.items()}
                 if not univar_nonneg(cf):
                     good = False
                     break
-            log.append({"cell": tag, "ok": bool(good)})
+                if cf.get(0, fmpq(0)) <= 0:
+                    strict = False
+            log.append({"cell": tag, "ok": bool(good),
+                        "strict": bool(strict)})
             if good:
                 return True
             if depth == 0:
@@ -265,11 +279,15 @@ def main() -> int:
                         Q3Poly.const(NV, mv))
             A, B = bern_axis_pair(P.a.c, P.b.c, 1, ELEV)
             good = True
+            strict = True
             for kl, (ad, bd) in collect_pairs(A, B, (1,)).items():
                 if not q3_pointwise_ok(ad, bd):
                     good = False
                     break
-            log.append({"cell": f"deep_m{mv}", "ok": bool(good)})
+                if not block_strict(ad, bd):
+                    strict = False
+            log.append({"cell": f"deep_m{mv}", "ok": bool(good),
+                        "strict": bool(strict)})
             deep_fixed_ok &= good
             if not good:
                 print(f"  deep FAIL m={mv}", flush=True)
@@ -282,6 +300,8 @@ def main() -> int:
     # vars: 0=thL, 1=v, 2=K (или vpp), 3=y
     NV = 4
     thL, vv, KK, yv = (Q3Poly.var(NV, i) for i in range(4))
+
+    strict_flag = [True]
 
     def deep_pieces(K_expr, vsub, tag, a1, b1, depth, y_mode, extra):
         """y_mode: True => D = Tk - y (вся полуось); False => D-интервал."""
@@ -313,9 +333,12 @@ def main() -> int:
             assert extra == "orthant", f"unsupported extra={extra}"
             if not q3_pointwise_ok(ad, bd):
                 good = False
+            elif not block_strict(ad, bd):
+                strict_flag[0] = False
             if not good:
                 break
-        log.append({"cell": tag, "ok": bool(good)})
+        log.append({"cell": tag, "ok": bool(good),
+                    "strict": bool(strict_flag[0])})
         if good:
             return True
         if depth == 0:
@@ -341,6 +364,7 @@ def main() -> int:
 
     prov = stamp()
     failed = [c for c in log if not c.get("ok", True)]
+    nonstrict = [c for c in log if c.get("strict") is False]
     out = {"j": J, "all_certified": bool(ok), "cells": len(log),
            "engine": "tail2-flint",
            "stage_verdicts": {"shallow_tail": bool(stail_ok),
@@ -348,6 +372,12 @@ def main() -> int:
                               "deep_tail_below_diag": "covered by belowdiag_shift + farbelow artifacts",
                               "deep_tail_above_diag": bool(gotB)},
            "n_failed": len(failed), "failed_cells": failed[:50],
+           "strict_positive": len(nonstrict) == 0,
+           "n_nonstrict_cells": len(nonstrict),
+           "nonstrict_cells": [c["cell"] for c in nonstrict][:20],
+           "strict_note": ("strict_positive=true means every Bernstein block "
+                           "has a strictly positive constant term => P > 0 "
+                           "on the CLOSED region, not merely P >= 0"),
            "env": {"KNIFE_STAGE": STAGE, "BERN_ELEV": ELEV},
            "command": f"KNIFE_J={J} python lab/knife_tail2.py",
            **prov, "runtime_s": round(time.time() - t0, 1)}

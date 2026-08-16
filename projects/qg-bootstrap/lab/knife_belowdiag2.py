@@ -56,21 +56,24 @@ def cert(P, has_K, tag, log, t0, strict_needed=True,
         if not (univar_nonneg(afl) and univar_nonneg(bfl)):
             log.append({"cell": tag, "ok": False})
             return False
-        if strict_needed and not (any(cv > 0 for cv in afl.values())
-                                  or any(cv > 0 for cv in bfl.values())):
+        # S4: строгость = положительный свободный член (по остаточной оси)
+        from prover2_core import sign_q3 as _sq3
+        if strict_needed and _sq3(afl.get(0, fmpq(0)),
+                                  bfl.get(0, fmpq(0))) <= 0:
             strict_ok[0] = False
     log.append({"cell": tag, "ok": True, "strict": bool(strict_ok[0])})
     return True
 
 
-def bisect(builder, a, b, depth, has_K, tag, log, t0):
-    if cert(builder(a, b), has_K, tag, log, t0):
+def bisect(builder, a, b, depth, has_K, tag, log, t0, strict_ok=None):
+    if cert(builder(a, b), has_K, tag, log, t0, True, strict_ok):
         return True
     if depth == 0:
         return False
     mid = (a + b) / 2
-    return (bisect(builder, a, mid, depth - 1, has_K, tag, log, t0)
-            and bisect(builder, mid, b, depth - 1, has_K, tag, log, t0))
+    return (bisect(builder, a, mid, depth - 1, has_K, tag, log, t0, strict_ok)
+            and bisect(builder, mid, b, depth - 1, has_K, tag, log, t0,
+                       strict_ok))
 
 
 def main() -> int:
@@ -78,6 +81,7 @@ def main() -> int:
     log = []
     ok = True
     pieces = {}
+    strict_ok = [True]
 
     def build(K_expr, vsub, a, b):
         aq = fmpq(a.numerator, a.denominator)
@@ -95,7 +99,8 @@ def main() -> int:
 
     # (ii) band: K=6+K2 (K_expr=K2), v = K2 + 10*sigma
     got = bisect(lambda a, b: build(K2, K2 + 10 * sig, a, b),
-                 Fraction(0), Fraction(1), 5, True, "band_K6plus", log, t0)
+                 Fraction(0), Fraction(1), 5, True, "band_K6plus", log, t0,
+                 strict_ok)
     ok &= got
     pieces["band"] = bool(got)
     print(f"(ii) band K>=6: {'OK' if got else 'FAIL'}"
@@ -107,7 +112,8 @@ def main() -> int:
     for K0 in range(0, 6):
         got = bisect(lambda a, b, K0=K0: build(Q3Poly.const(NV, K0 - 6),
                                                (K0 + 4) * sig, a, b),
-                     Fraction(0), Fraction(1), 5, False, f"K{K0}", log, t0)
+                     Fraction(0), Fraction(1), 5, False, f"K{K0}", log, t0,
+                     strict_ok)
         ok &= got
         pieces[f"K{K0}"] = bool(got)
         print(f"(iii) K={K0}: {'OK' if got else 'FAIL'}"
@@ -115,6 +121,7 @@ def main() -> int:
 
     prov = stamp()
     out = {"all_certified": bool(ok), "cells": len(log), "elev": ELEV,
+           "strict_positive": bool(strict_ok[0]),
            "j": J, "pieces": pieces, "engine": "belowdiag2-flint",
            "env": {"KNIFE_J": J, "PIECES": "band,k0", "BERN_ELEV": ELEV},
            "scope_note": "pieces field lists exactly what was run; far-below "

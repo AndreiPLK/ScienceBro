@@ -11,17 +11,24 @@
  },
  "n_failed": 0,
  "failed_cells": [],
+ "strict_positive": true,
+ "n_nonstrict_cells": 0,
+ "nonstrict_cells": [],
+ "strict_note": "strict_positive=true means every Bernstein block has a strictly positive constant term => P > 0 on the CLOSED region, not merely P >= 0",
  "env": {
   "KNIFE_STAGE": "all",
   "BERN_ELEV": 0
  },
  "command": "KNIFE_J=4 python lab/knife_tail2.py",
- "git": "72dcc10140b0",
- "git_full": "72dcc10140b0af3e9cc2864261d5b275bfeeeb1c",
+ "git": "b2b99ddf176d",
+ "git_full": "b2b99ddf176db243f50ce44c591b8432ae249810",
  "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/knife_tail2.py"
+ ],
  "dirty_count": 1,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 0.5
+ "runtime_s": 1.6
 }
