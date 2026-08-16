@@ -999,3 +999,12 @@ old entries; append corrections as new entries.
   before proofs). Strongest remaining: Eberhardt-Mizera-style uniform
   large-n asymptotics at fixed spin (2201.11575, full text on disk)
   + machine conveyor for all finite j (automated per-j certificates).
+
+## 2026-08-16 — Keystone route update (AEHM read, pp. 15-23)
+- AEHM honestly failed to rigorize fixed-spin (their 4.3.1) — confirms the
+  keystone is field-hard; Mansfield route (induction) is the rigorous one.
+- STRUCTURAL FIND: CHR residue = SQUARE of a product of linear factors in t
+  (Pochhammer^2) = exactly AEHM closed-string structure => their
+  triple-contour machinery (3.23-3.24, App. C) is the direct template for
+  a CHR contour representation with lam as a parameter. Route A/B/C frozen
+  in research/keystone-plan.md.
