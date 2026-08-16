@@ -1046,3 +1046,9 @@ derive CHR sum rules numerically, then in closed form.
   now sit in ONE linear system with harmonic-number data — the doorway to a
   closed single-sum formula and the j->j+1 relation. Next: invert T (their
   eq. 25/27 analog) in closed form for CHR.
+
+## 2026-08-16 — v2 PORT of farbelow: 11-35x, knife-6 far-below CLOSED
+- lab/knife_farbelow2.py: N built in flint (uniform den^(J-1) clearing,
+  contract bug caught by validation and fixed). Verdicts match v1:
+  j=4 CLOSED 14s (v1 152s), j=5 CLOSED 83s (v1 2923s, 35x).
+  j=6 FAR-BELOW CLOSED (first ever, ~8 min vs hours on sympy).

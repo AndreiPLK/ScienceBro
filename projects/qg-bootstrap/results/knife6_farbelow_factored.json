@@ -1,8 +1,8 @@
 {
- "j": 4,
+ "j": 6,
  "far_below_factored": true,
  "engine": "farbelow2-flint-build",
- "command": "KNIFE_J=4 python lab/knife_farbelow2.py",
+ "command": "KNIFE_J=6 python lab/knife_farbelow2.py",
  "git": "6006e49",
- "runtime_s": 13.7
+ "runtime_s": 431.4
 }
