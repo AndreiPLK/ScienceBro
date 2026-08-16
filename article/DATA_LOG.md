@@ -988,3 +988,14 @@ old entries; append corrections as new entries.
 - Today's conveyor extended: belowdiag+farbelow for knives 6-7 queued
   (queue 2 after tail re-runs) => four COMPLETE knife theorems (4,5,6,7)
   targeted today; infinite-j remains the keystone (research continues).
+
+## 2026-08-16 — Keystone: candidates 3 and 4 falsified (fast kills)
+- H-mono (S monotone in each rho): FALSIFIED 1855/4000 random tests.
+- H-X (normalized rho < 1 in inner belt): FALSIFIED, rho up to 22.9 at
+  small lam / large n fixed spin (top-dominated zone).
+- Product-form conjecture (fixed spin P factors into (lam+2k-1)(lam+2n-2k-1)):
+  FALSIFIED — sp.factor: P irreducible for n=5..8, l=2.
+- Score: 4 approaches killed in hours (protocol working: counterexamples
+  before proofs). Strongest remaining: Eberhardt-Mizera-style uniform
+  large-n asymptotics at fixed spin (2201.11575, full text on disk)
+  + machine conveyor for all finite j (automated per-j certificates).
