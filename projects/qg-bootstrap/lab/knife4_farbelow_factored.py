@@ -121,7 +121,7 @@ def main() -> int:
                "command": "python lab/knife4_farbelow_factored.py",
                "git": git, "runtime_s": round(time.time() - t0, 1)},
               open(RES / "knife4_farbelow_factored.json", "w"), indent=1)
-    print("FAR-BELOW(j={}) ".format(J) if False else f"FAR-BELOW(j={J}) " + ("CLOSED" if allok else "OPEN"), flush=True)
+    print(f"FAR-BELOW(j={J}) " if False else f"FAR-BELOW(j={J}) " + ("CLOSED" if allok else "OPEN"), flush=True)
     return 0 if allok else 1
 
 

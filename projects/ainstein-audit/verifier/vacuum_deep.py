@@ -88,7 +88,7 @@ def main() -> int:
             cache = {tuple(np.round(p, 12)): values[k]
                      for k, p in enumerate(stencil4)}
 
-            def g(x: np.ndarray) -> np.ndarray:
+            def g(x: np.ndarray, cache: dict = cache) -> np.ndarray:
                 return cache[tuple(np.round(x, 12))]
 
             for x in chunk:

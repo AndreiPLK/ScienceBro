@@ -17,9 +17,10 @@ from fractions import Fraction as F
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import os
+
 from repro_r4_positivity_spot import a_route1  # validated two-route in iteration 2
 
-import os
 NMAX = int(os.environ.get("NMAX", "10"))
 GRID = [F(i, 10) for i in range(-18, 19)]  # -1.8 .. 1.8 step 0.1
 OUT_DIR = Path(__file__).resolve().parents[1] / "results"

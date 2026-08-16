@@ -53,7 +53,7 @@ packages = ["sciencebro"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-extend-exclude = ["projects/*/upstream/checkout"]
+extend-exclude = ["projects/*/upstream/checkout", "release"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B"]
@@ -67,3 +67,8 @@ check_untyped_defs = true
 [tool.pytest.ini_options]
 testpaths = ["tests", "projects/ainstein-audit/verifier"]
 addopts = "-q"
+
+[tool.ruff.lint.per-file-ignores]
+"projects/*/lab/*" = ["E501", "E741", "N806", "N803", "F841", "B007", "B023", "B905", "E402"]
+"tools/*" = ["E501"]
+"projects/*/validation/*" = ["E501", "F841", "B007", "B905", "E741"]

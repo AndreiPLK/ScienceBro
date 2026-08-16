@@ -10,11 +10,11 @@ REQUIRED FIX before promotion.
 """
 from __future__ import annotations
 
+import os
 import random
 import sys
 from fractions import Fraction as F
 
-import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from repro_r4_positivity_spot import a_route1, a_route2, fact, poch  # noqa: E402
 

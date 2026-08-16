@@ -27,14 +27,14 @@ from __future__ import annotations
 
 import sys
 from fractions import Fraction as F
-from functools import lru_cache
+from functools import cache
 
 D = 4  # spacetime dimension for the spot check
 
 
 # ---------------- route 1: Eq. (A6) exact ----------------
 
-@lru_cache(maxsize=None)
+@cache
 def stirling1_unsigned(n: int, k: int) -> int:
     if n == 0 and k == 0:
         return 1
@@ -43,7 +43,7 @@ def stirling1_unsigned(n: int, k: int) -> int:
     return stirling1_unsigned(n - 1, k - 1) + (n - 1) * stirling1_unsigned(n - 1, k)
 
 
-@lru_cache(maxsize=None)
+@cache
 def fact(n: int) -> int:
     return 1 if n <= 0 else n * fact(n - 1)
 

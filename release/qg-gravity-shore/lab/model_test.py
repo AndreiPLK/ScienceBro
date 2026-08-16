@@ -6,9 +6,13 @@ alive(lam, D) <=> D <= min_n T_n(lam). Compare against exact full-spin scans
   model-alive / scan-dead  -> ANOTHER KNIFE EXISTS (model incomplete!) - alarm.
 """
 from __future__ import annotations
-import json, sys, time
+
+import json
+import sys
+import time
 from fractions import Fraction as F
 from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from grav_full_body import first_negative
 

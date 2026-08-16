@@ -51,6 +51,7 @@ class SourceRef(BaseModel):
     type: Literal[
         "arxiv-paper", "journal-paper", "preprint", "code-repository",
         "dataset", "documentation", "webpage", "book",
+        "author-correspondence",  # приватная переписка с автором (EV-CORR-*)
     ]
     identifier: str  # DOI, arXiv ID, URL, or repo@commit
     url: str | None = None

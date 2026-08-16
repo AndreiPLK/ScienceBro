@@ -22,9 +22,9 @@ q-clock (task item 4, CHR Eq. 16 at r=w=0):
   t = [n]_q (x-1)/2
 """
 
-from fractions import Fraction as F
 import random
 import sys
+from fractions import Fraction as F
 
 # ----------------------------------------------------------------------
 # polynomial helpers: a polynomial is a list of Fractions, index = power of x

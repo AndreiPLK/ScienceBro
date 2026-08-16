@@ -3,12 +3,17 @@ Persisted lab version of the 2026-08-15 inline hunt (same logic, same output).
 Run: .venv/Scripts/python.exe -u projects/qg-bootstrap/lab/hunt_2n6.py
 Output: results/hunt_2n6.json (list of alarms; empty = clean)."""
 from __future__ import annotations
-import json, sys, time
+
+import json
+import sys
+import time
 from fractions import Fraction as F
 from math import comb
 from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from grav_full_body import gegen_coeffs, mono_int
+
 RES = Path(__file__).resolve().parents[1] / "results"
 
 def a_l(n, l, lam, D):
