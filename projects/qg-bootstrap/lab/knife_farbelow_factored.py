@@ -49,7 +49,9 @@ def E_poly_m(t):
     return poly
 
 
+print(f"[farbelow j={J}] building E-polynomials...", flush=True)
 EPOLY = {t: E_poly_m(t) for t in range(J)}
+print(f"[farbelow j={J}] E done; building P (long, silent)...", flush=True)
 
 
 def P_sym(lam_expr, D_expr, m_expr):
@@ -122,7 +124,7 @@ def main() -> int:
                "command": f"KNIFE_J={J} python lab/knife_farbelow_factored.py",
                "git": git, "runtime_s": round(time.time() - t0, 1)},
               open(RES / f"knife{J}_farbelow_factored.json", "w"), indent=1)
-    print("FAR-BELOW(j=5) " + ("CLOSED" if allok else "OPEN"), flush=True)
+    print(f"FAR-BELOW(j={J}) " + ("CLOSED" if allok else "OPEN"), flush=True)
     return 0 if allok else 1
 
 
