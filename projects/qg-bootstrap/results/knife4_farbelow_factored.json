@@ -1,7 +1,7 @@
 {
- "far_below_descartes_factored": true,
- "method": "factor each y-coefficient of P(T_cap - y); all factors manifestly positive in Q(sqrt3)",
- "command": "lab notebook run (to be scripted)",
- "git": "0191b35",
- "runtime_s": 172.2
+ "j": 4,
+ "far_below_factored": true,
+ "command": "python lab/knife4_farbelow_factored.py",
+ "git": "8110a2d",
+ "runtime_s": 152.2
 }

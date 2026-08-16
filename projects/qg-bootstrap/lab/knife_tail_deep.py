@@ -175,9 +175,13 @@ def main() -> int:
 
     STAGE = os.environ.get("KNIFE_STAGE", "all")
     # ---- SHALLOW-TAIL: m = 41+v ----
+    stail_ok = True
     for kk in ([] if STAGE == "belowdiag" else range(3, 46)):
+        onto = kk == 3
         if kk == 3:
-            mu_lo, mu_hi = sp.Rational(1, 1000), sp.Rational(2, 3)
+            # blade-подстановка lam=(2/3)(1-t): ONTO (0, 2/3], включая
+            # lam < 1/1000 (ремонт ERR-0002); (a,b) — интервал по t
+            mu_lo, mu_hi = sp.Integer(0), sp.Integer(1)
         else:
             mu_lo = sp.Rational(3, 5) * (kk - sp.Rational(5, 2))
             mu_hi = sp.Rational(3, 5) * (kk - sp.Rational(3, 2))
@@ -186,8 +190,11 @@ def main() -> int:
 
         tau, th = sp.symbols('tau theta', nonnegative=True)
 
-        def build(a, b, kk=kk):
-            lam_e = a + (b - a) * tau                  # полиномиально!
+        def build(a, b, kk=kk, onto=onto):
+            if onto:
+                lam_e = sp.Rational(2, 3) * (1 - a - (b - a) * tau)
+            else:
+                lam_e = a + (b - a) * tau              # полиномиально!
             Tk = (sp.Rational(3 * (2 * kk - 3), kk * (kk - 2))
                   * (lam_e ** 2 + (2 * kk - 2) * lam_e + 1) + 2 * kk)
             D_e = 4 + (Tk - 4) * th                    # полиномиально!
@@ -196,6 +203,7 @@ def main() -> int:
 
         got = bisect_t(build, mu_lo, mu_hi, 5, f"stail_k{kk}", log)
         ok &= got
+        stail_ok &= got
         print(f"shallow-tail k={kk}: {'OK' if got else 'FAIL'}"
               f" ({time.time()-t0:.0f}s)", flush=True)
 
@@ -446,9 +454,25 @@ def main() -> int:
 
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
+    failed_cells = [c for c in log if not c.get("ok", True)]
     out = {"j": J, "all_certified": bool(ok), "cells": len(log),
-           "stages": "shallow-tail(m>=41) + deep-fixed + deep-tail",
-           "command": f"KNIFE_J={J} python lab/knife_tail_deep.py",
+           "stage_verdicts": {
+               "shallow_tail": (None if STAGE == "belowdiag"
+                                else bool(stail_ok)),
+               "deep_fixed": (None if STAGE == "belowdiag"
+                              else bool(deep_fixed_ok)),
+               "deep_tail_below_diag": bool(gotA),
+               "deep_tail_above_diag": (None if STAGE == "belowdiag"
+                                        else bool(gotB)),
+           },
+           "failed_cells": failed_cells[:50],
+           "n_failed": len(failed_cells),
+           "env": {"KNIFE_STAGE": STAGE,
+                   "BERN_ELEV": os.environ.get("BERN_ELEV", "0")},
+           "scope_note": "stage_verdicts null = stage NOT RUN in this "
+                         "invocation; all_certified covers only stages run",
+           "command": f"KNIFE_J={J} KNIFE_STAGE={STAGE} "
+                      "python lab/knife_tail_deep.py",
            "git": git, "runtime_s": round(time.time() - t0, 1)}
     (RES / f"knife_tail_deep_j{J}.json").write_text(
         json.dumps(out, indent=1), encoding="utf-8")
