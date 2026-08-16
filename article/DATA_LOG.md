@@ -1172,3 +1172,19 @@ derive CHR sum rules numerically, then in closed form.
 - Preserved failure signatures: MOMENT, LEIBNIZ, high-spin ABEL induction
   (1.46% violations on the large grid), Bernstein elevation, thL-bisection,
   compactification. Six honest negatives — each narrows the keystone.
+
+## 2026-08-17 (night) — CARD A1 PILOT: positivity alone does NOT pin the string
+- Perturbing the SQUARED-residue roots away from the Pochhammer values
+  (r_k -> r_k(1+eps_k), |eps| up to 0.1) at n=9, lam=1, D=10: 120/120
+  perturbations keep every knife j<=6 positive (control eps=0 passes too).
+- Reading: positivity is an OPEN condition — at a single level it cannot
+  select a functional form. What actually rigidifies the CHR family is
+  CROSSING SYMMETRY tying the residues of DIFFERENT levels together.
+- Consequence for card A1 (recorded in research/NEXT_GOAL.md): the
+  deterministic falsifier MUST impose crossing across levels, not just
+  positivity at one level. Rewritten evaluator: perturb the generating
+  data (spectrum + a global root rule), then check crossing exactly and
+  positivity for n <= 20 — only then is a survivor meaningful.
+- Value of the pilot: it kills a naive version of the search before it eats
+  a week of compute, and it sharpens the North Star question: the string
+  rigidity we are chasing lives in CROSSING x POSITIVITY, not positivity.
