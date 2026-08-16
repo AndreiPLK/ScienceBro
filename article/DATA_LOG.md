@@ -926,3 +926,14 @@ old entries; append corrections as new entries.
   repair plan: lam-strip patch + belowdiag generalization to j=5 + artifact
   writer fix + full re-runs with per-stage artifacts. Full report:
   results/adversarial_review_knife45.json. Failures stay visible.
+
+## 2026-08-17 (ночь) — Charter deltas + repairs in flight
+- Anchor papers verified via arXiv API: 2406.02665 (our frozen anchor),
+  2512.17828 (Regge trajectories for UV completions of graviton scattering
+  from polynomial bounds), 2606.09980 (Where is tree-level heterotic string
+  theory?) — the two new ones queued for full-text evidence records.
+- python-fxint: zero occurrences in repo (nothing to fix).
+- .claude/skills/research-iteration/SKILL.md created (iteration must end in
+  an artifact; truth/novelty status taxonomy; honest time estimation).
+- Repairs running: shallow j=5..12 re-run with onto-zero lambda coverage;
+  knife5 belowdiag band+K0 queued behind knife6 tail (machine-load rule).
