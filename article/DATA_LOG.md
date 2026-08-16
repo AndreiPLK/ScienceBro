@@ -970,3 +970,8 @@ old entries; append corrections as new entries.
   positivity). Proof route: collapse form P = term0*(1-X)^{j-1}*(1+err) with
   bounded err — connects keystone to the Binomial Collapse note (article 5).
   Artifact: results/keystone_kernel_probe.json.
+
+## 2026-08-17 — Keystone hunt complete: 109,980 exact checks, 0 violations
+- Fixed-spin regime (l=0,2,4,6 diagonals, n<=120, boundary-hugging exact
+  grid incl. D within 1e-6 of T_hat): NO violations. The grand-theorem
+  claim survives its most dangerous regime. results/keystone_hunt.json.
