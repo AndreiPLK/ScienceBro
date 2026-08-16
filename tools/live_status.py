@@ -160,8 +160,78 @@ def keystone_progress():
     return pct, steps
 
 
+
+TASK_HUMAN = {
+    "farbelow-j6": ("дно ножа 6", "проверяем самое глубокое дно: раскладываем формулу на множители и доказываем, что каждый положителен"),
+    "farbelow-j7": ("дно ножа 7", "тот же приём победителя для седьмого ножа"),
+    "belowdiag-j6": ("полоса ножа 6", "узкая полоса у диагонали — самое капризное место, режем на ячейки и сертифицируем каждую"),
+    "belowdiag-j7": ("полоса ножа 7", "та же полоса для седьмого ножа"),
+    "tails-j4": ("хвосты ножа 4", "перепроверяем длинные хвосты честно, с записью каждого этапа"),
+    "tails-j5": ("хвосты ножа 5", "перепроверяем длинные хвосты честно"),
+    "tails-j6": ("хвосты ножа 6", "самая долгая часть — глубоководные хвосты"),
+    "tails-j7": ("хвосты ножа 7", "самая долгая часть — глубоководные хвосты"),
+}
+
+
+def now_story():
+    """Человеческий рассказ: что машина делает прямо сейчас (из NIGHT_LOG)."""
+    p = ROOT / "article" / "NIGHT_LOG.md"
+    try:
+        lines = p.read_text(encoding="utf-8", errors="replace").splitlines()
+    except Exception:
+        return "", ""
+    starts = [ln for ln in lines if " START " in ln]
+    dones = [ln for ln in lines if " DONE " in ln]
+    if not starts:
+        return "", ""
+    cur = starts[-1].split(" START ")[-1].strip()
+    started_hm = starts[-1].split(" START ")[0].replace("-", "").strip()
+    name, expl = TASK_HUMAN.get(cur, (cur, ""))
+    total = 8
+    done_n = len([d for d in dones if any(t in d for t in TASK_HUMAN)])
+    story = (f"Машина считает: <b>{name}</b> (задача {min(done_n+1,total)} из "
+             f"{total}, старт {started_hm}). {expl}.")
+    nxt = ""
+    keys = list(TASK_HUMAN)
+    if cur in keys:
+        after = [TASK_HUMAN[k][0] for k in keys[keys.index(cur)+1:][:2]]
+        if after:
+            nxt = "Дальше в очереди: " + ", ".join(after) + "."
+    return story, nxt
+
+
+
+def road_html(conv, key, asm, eta):
+    """Дорога до финала: 3 отрезка, светящаяся точка на активном."""
+    segs = [
+        ("НОЖИ 4-7", "сегодня-завтра", conv, 30, "#ff2a6d", "#0aa3c2"),
+        ("ЗАМКОВЫЙ КАМЕНЬ", "2-7 дней", key, 48, "#7a3fd0", "#f9f871"),
+        ("СБОРКА + ФЛАГМАН", "2-3 дня", asm, 22, "#0aa3c2", "#3fe7f5"),
+    ]
+    active = 0 if conv < 100 else (1 if key < 100 else 2)
+    out = "<div class='roadwrap'><div class='road'>"
+    for i, (name, days, pct, w, c1, c2) in enumerate(segs):
+        dot = (f"<div class='dot' style='left:{max(2, pct)}%'></div>"
+               if i == active else "")
+        out += f"""<div class='seg' style='width:{w}%'>
+<div class='seglbl'>{name}<span class='t'> · {days}</span></div>
+<div class='segbar'><div class='segfill' style='width:{pct}%;
+background:linear-gradient(90deg,{c1},{c2})'></div>{dot}
+<span class='segpct'>{pct}%</span></div></div>"""
+    out += ("<div class='flag'>🏁<div class='flaglbl'>ГЛАВНАЯ<br>ТЕОРЕМА</div>"
+            "</div></div>"
+            f"<div class='t' style='margin-top:6px'>⏱ {eta['total']} · "
+            f"замер {eta['updated']} · точка = мы здесь</div></div>")
+    return out
+
+
 def render():
     now = datetime.datetime.now().strftime("%H:%M:%S %d.%m.%Y")
+    story, nxt = now_story()
+    try:
+        eta = json.loads((ROOT / 'tools' / 'eta.json').read_text(encoding='utf-8'))
+    except Exception:
+        eta = {'updated': '-', 'conveyor': '-', 'keystone': '-', 'total': '-'}
     procs = processes()
     running = " ".join(procs)
     hints = ""
@@ -182,6 +252,9 @@ def render():
 {bar(pct)}<div class='chips'>{stage_chips(stages, hints)}</div></div>"""
 
     zpct, ztext = z3_progress()
+    kpct0, _ks0 = keystone_progress()
+    conv_pct = round(sum(done_knives[j] for j in (4, 5, 6, 7)) / 4)
+    road = road_html(conv_pct, kpct0, 0, eta)
     kpct, ksteps = keystone_progress()
     ksteps_html = "".join(
         f"<li class='{'on' if ok else 'off'}'>{'✔' if ok else '·'} "
@@ -233,6 +306,14 @@ td{{border-bottom:1px solid #241a38;padding:4px 8px;font-size:12px}}
 <h1>🔴 ScienceBro — живой статус</h1>
 <div class='t'>Обновлено {now} · страница сама обновляется каждые 30 с ·
 все цифры считаются из реальных файлов результатов, не руками</div>
+
+<div class='card' style='border-color:#f9f871'>
+<div style='font-size:15px'>🛠 {story}</div>
+<div class='t' style='margin-top:4px'>{nxt} Проценты двигаются, когда машина
+дорешивает кусок и записывает файл-доказательство — обычно раз в 30-60 минут.
+Если долго тихо — значит идёт длинный кусок, это нормально.</div></div>
+
+{road}
 
 <h2>ГЛАВНАЯ ТЕОРЕМА <span class='t'>— «ни один нож не режет ниже берега,
 все ножи сразу». Прогресс = 60% ступени (ножи) + 40% замковый камень</span></h2>
