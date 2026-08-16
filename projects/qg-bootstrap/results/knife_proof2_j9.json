@@ -1,0 +1,10 @@
+{
+ "j": 9,
+ "ok_so_far": true,
+ "engine": "prover2-flint",
+ "scope": "shallow branches k=3..45, m=7..40",
+ "cells": 1462,
+ "command": "KNIFE_J=9 python lab/knife_proof2.py",
+ "git": "f769011",
+ "runtime_s": 78.0
+}
