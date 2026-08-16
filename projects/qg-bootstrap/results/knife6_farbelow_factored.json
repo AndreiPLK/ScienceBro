@@ -40,13 +40,11 @@
  "method": "manifest positivity (no factorization needed)",
  "engine": "farbelow2-flint-build",
  "command": "KNIFE_J=6 python lab/knife_farbelow2.py",
- "git": "c77475ef5a82",
- "git_full": "c77475ef5a826d0ca54b2ef2bc30a56784cdf270",
- "dirty": true,
- "dirty_code_files": [
-  "projects/qg-bootstrap/lab/knife_farbelow2.py"
- ],
- "dirty_count": 1,
+ "git": "a9966b2f1815",
+ "git_full": "a9966b2f1815c6dae26fa35f2eb92c51a4bbf57b",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",

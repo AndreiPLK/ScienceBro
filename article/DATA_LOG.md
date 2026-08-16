@@ -1133,3 +1133,29 @@ derive CHR sum rules numerically, then in closed form.
   Stieltjes moment sequence — Hankel minors negative at every tested point);
   LEIBNIZ hypothesis (term ratios exceed 1 in 26516/91728 belt samples,
   max 57 at large lam near the cap) — so no naive alternating-series bound.
+
+## 2026-08-17 (night) — FIVE COMPLETE KNIFE THEOREMS (4,5,6,7,8), gate green
+- Knife 8 fully certified on v2 and consolidated; ALL artifacts re-run at a
+  CLEAN commit (the hardened gate rejected the dirty-tree ones — it works).
+- SECOND MANIFESTNESS DISCOVERY: far-below needs NO factorization — in the
+  (thL, v, K3, y) chart every coefficient of N is already nonnegative for
+  j=4..8 (hours -> seconds). sp.factor was the last sympy bottleneck; the
+  prover is now flint end-to-end.
+- HONEST LIMIT: manifestness BREAKS at j=9 — coefficient c7 has 11 negative
+  monomials of 1752. Bernstein elevation (2/4/8) and thL-bisection (depth 6)
+  both FAIL => real structure, not a chart artifact. Factorization fallback
+  queued. A precise, reproducible boundary of the phenomenon.
+
+## 360-ANALYSIS: manifest positivity and where it ends
+1. INSIDE: manifestness holds in BOTH charts for j<=8; monomial count is
+   FULL (j(2j-1) in shallow — zero cancellations). At j=9 exactly one
+   coefficient (c7, second-highest y-power) breaks. Testable prediction:
+   the fragile index tracks the top y-powers, not the bulk.
+2. NEIGHBOURS: Mansfield had to "add a clever zero" precisely because
+   Laurent coefficients went negative in D=10; our c7 is the same species
+   in a different chart. His cure (null term + induction) is the next tool.
+3. ADJACENT MATH: positivity on a region WITHOUT a nonnegative-coefficient
+   representation is exactly the Polya/Bernstein gap. Degree elevation is
+   guaranteed only for compact regions — ours is unbounded in (v, K3),
+   which explains the failure. Correct tools: Handelman/Positivstellensatz
+   with the region's own constraints, or a chart compactifying v and K3.

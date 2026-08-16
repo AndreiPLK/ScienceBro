@@ -20,8 +20,8 @@
   "BERN_ELEV": 0
  },
  "command": "KNIFE_J=5 python lab/knife_tail2.py",
- "git": "8599c7b0523e",
- "git_full": "8599c7b0523e58d02a438411d8ff37687d13256b",
+ "git": "a9966b2f1815",
+ "git_full": "a9966b2f1815c6dae26fa35f2eb92c51a4bbf57b",
  "dirty": false,
  "dirty_code_files": [],
  "dirty_count": 0,
