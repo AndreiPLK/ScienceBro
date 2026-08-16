@@ -88,6 +88,42 @@ def datalog_tail(n=14):
     return heads[-n:][::-1]
 
 
+
+STAGE_LOGS = {
+    4: [("tail_rerun_j4", "хвосты+глубина", 35)],
+    5: [("tail_rerun_j5", "хвосты+глубина", 35)],
+    6: [("farbelow_j6", "далёкое дно", 20), ("belowdiag_j6", "полоса у диагонали", 20),
+        ("tail_rerun_j6", "хвосты+глубина", 35)],
+    7: [("farbelow_j7", "далёкое дно", 20), ("belowdiag_j7", "полоса у диагонали", 20),
+        ("tail_rerun_j7", "хвосты+глубина", 35)],
+}
+
+
+def live_stage_bonus(j):
+    """Ползущий прогресс АКТИВНОЙ стадии из её лога (только видимый, не артефакт)."""
+    bonus = 0.0
+    for logname, _label, weight in STAGE_LOGS.get(j, []):
+        p = SCRATCH / f"{logname}.log"
+        if not p.exists() or p.stat().st_size == 0:
+            continue
+        try:
+            txt = p.read_text(encoding="utf-8", errors="replace")
+        except Exception:
+            continue
+        if "ALL CERTIFIED" in txt or "CLOSED" in txt or "BELOW-DIAGONAL" in txt:
+            continue  # готовое посчитает артефакт
+        oks = txt.count(": OK")
+        if "tail" in logname:
+            frac = min(0.95, oks / 50.0)
+        elif "belowdiag" in logname:
+            frac = min(0.95, oks / 7.0)
+        else:  # farbelow: E->P->c0..cJ-1
+            frac = 0.05 if "building" in txt else 0.0
+            frac += min(0.9, 0.15 * txt.count(": OK"))
+        bonus += weight * frac
+    return round(bonus)
+
+
 def knife_progress(j):
     """(percent, stages list) из реальных артефактов."""
     stages = []
@@ -109,6 +145,7 @@ def knife_progress(j):
         stages.append((label, ok))
         if ok:
             pct += w
+    pct = min(99, pct + live_stage_bonus(j)) if pct < 100 else pct
     return pct, stages
 
 
@@ -203,12 +240,13 @@ def now_story():
 
 def road_html(knives, key, asm, eta):
     """Карта уровней как в игре: ноды-кружки с кольцом прогресса."""
+    nd = eta.get("node_days", {})
     nodes = [
         ("🔪", "Нож 2", 100, ""), ("🔪", "Нож 3", 100, ""),
-        ("🔪", "Нож 4", knives[4], ""),
-        ("🔪", "Нож 5", knives[5], ""),
-        ("🔪", "Нож 6", knives[6], ""),
-        ("🔪", "Нож 7", knives[7], ""),
+        ("🔪", "Нож 4", knives[4], nd.get("4", "")),
+        ("🔪", "Нож 5", knives[5], nd.get("5", "")),
+        ("🔪", "Нож 6", knives[6], nd.get("6", "")),
+        ("🔪", "Нож 7", knives[7], nd.get("7", "")),
         ("🗿", "ЗАМКОВЫЙ КАМЕНЬ", key, "2-7 дн"),
         ("🏁", "ФЛАГМАН", asm, "2-3 дн"),
     ]
