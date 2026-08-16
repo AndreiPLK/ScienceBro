@@ -886,3 +886,9 @@ old entries; append corrections as new entries.
 - KNIFE_J=7 shallow: 1548/1548 cells, 43 branches, 729 s, zero failures.
   Shallow certified for knives j=3..7. Knife 6 tails running; knife 5
   far-below factoring (night batch).
+
+## 2026-08-17 (ночь) — KNIFE 5 FAR-BELOW CLOSED => knife-5 theorem complete
+- knife5_farbelow_factored.json: far_below_factored = true, 5/5 y-coefficients
+  manifestly positive after exact factorization over Q(sqrt3); runtime 2923 s.
+  Knife-5 theorem now COMPLETE (pending adversarial review), same architecture
+  as knife 4. Consolidated: results/knife5_theorem.json.
