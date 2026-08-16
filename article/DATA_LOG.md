@@ -1159,3 +1159,16 @@ derive CHR sum rules numerically, then in closed form.
    guaranteed only for compact regions — ours is unbounded in (v, K3),
    which explains the failure. Correct tools: Handelman/Positivstellensatz
    with the region's own constraints, or a chart compactifying v and K3.
+
+## 2026-08-17 (night) — j=9 far-below: method boundary CONFIRMED (negative result)
+- Compactification (v=V/(1-V), K3=W/(1-W)) + Bernstein elevation on the
+  resulting compact chart: negatives GROW with elevation (11 -> 15 -> 45 ->
+  134). Conclusion: the y-coefficient criterion ("every coefficient of the
+  D = T_cap - y expansion is nonnegative") is SUFFICIENT, not necessary,
+  and it genuinely stops being satisfied at j=9. Not a bug, a boundary.
+- Consequence for the pipeline: knives j>=9 need a different far-below
+  certificate (interval Bernstein in D on [4, T_cap] as in v1 belowdiag,
+  or Handelman with the region's constraints), NOT the y-expansion.
+- Preserved failure signatures: MOMENT, LEIBNIZ, high-spin ABEL induction
+  (1.46% violations on the large grid), Bernstein elevation, thL-bisection,
+  compactification. Six honest negatives — each narrows the keystone.
