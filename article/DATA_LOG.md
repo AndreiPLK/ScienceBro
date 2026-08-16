@@ -1008,3 +1008,9 @@ old entries; append corrections as new entries.
   triple-contour machinery (3.23-3.24, App. C) is the direct template for
   a CHR contour representation with lam as a parameter. Route A/B/C frozen
   in research/keystone-plan.md.
+
+## 2026-08-16 — Z3 retry done: 24/35 hard cells confirmed
+- Foreign-engine total for knife-4 shallow: 1666/1677 cells unsat-confirmed,
+  0 alarms; 11 cells remain unknown after 600 s + 4-way splitting (recorded
+  honestly; certificates for them stand on prover v1+v2 agreement).
+- Repair batch relaunched at full priority (8 tasks, fast wins first).
