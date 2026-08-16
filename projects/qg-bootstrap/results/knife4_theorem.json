@@ -1,6 +1,6 @@
 {
  "theorem": "KNIFE-4: a_{n,2n-8} >= 0 everywhere in D <= min_k T_k(lam), all n, all lam>0",
- "status": "COMPLETE pending adversarial review",
+ "status": "DOWNGRADED 2026-08-17: INCOMPLETE \u2014 adversarial fleet review found gaps",
  "regions": {
   "1_shallow_fixed": "knife_proof_j4.json: 1677/1677 cells (branches k=3..45, m=2..40)",
   "2_shallow_tail": "knife_tail_deep (double Bernstein): 43/43 branches, m>=41",
@@ -34,5 +34,7 @@
    "mtime": "2026-08-15T21:58"
   }
  },
- "git": "de03b34"
+ "git": "de03b34",
+ "downgrade_reason": "artifact chain incomplete: cited artifacts record all_certified:false; far-below script missing; lam<1/1000 strip uncovered",
+ "review_artifact": "adversarial_review_knife45.json"
 }

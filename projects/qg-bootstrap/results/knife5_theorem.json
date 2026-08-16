@@ -1,11 +1,13 @@
 {
  "theorem": "Knife 5 (j=5 windows never cut below the shore)",
- "status": "COMPLETE pending adversarial review",
+ "status": "DOWNGRADED 2026-08-17: INCOMPLETE \u2014 adversarial fleet review found gaps",
  "regions": {
   "shallow_branches": "knife_proof_j5.json (1634/1634)",
   "tails_and_deep": "knife_tail_deep_j5.json",
   "far_below_factored": "knife5_farbelow_factored.json (5/5 coefficients, 2923 s)"
  },
  "method_far_below": "factor-then-certify over Q(sqrt3)",
- "batteries": "25,002,978 numeric checks n<=80, 0 alarms"
+ "batteries": "25,002,978 numeric checks n<=80, 0 alarms",
+ "downgrade_reason": "FATAL gap: below-diagonal band {m>=41, K-6<v<K+4} has NO certificate (belowdiag_shift never generalized to j=5); plus lam<1/1000 strip; artifact chain incomplete",
+ "review_artifact": "adversarial_review_knife45.json"
 }

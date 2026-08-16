@@ -1,0 +1,178 @@
+{
+ "confirmed_findings": [
+  {
+   "zone": "master-formula-fidelity",
+   "title": "KNIFE_STAGE=belowdiag can write a full-theorem artifact from a partial run",
+   "file": "projects/qg-bootstrap/lab/knife_tail_deep.py",
+   "location": "lines 176, 178, 206, 437, 449-452",
+   "severity": "serious",
+   "claim": "With KNIFE_STAGE=belowdiag the script skips the shallow-tail loop (line 178) and the deep-fixed loop (line 206) and force-sets the above-diagonal result gotB=True without running it (line 437), yet the artifact it writes still records stages as 'shallow-tail(m>=41) + deep-fixed + deep-tail' and a command string 'KNIFE_J={J} python lab/knife_tail_deep.py' that omits KNIFE_STAGE (lines 449-452). A belowdiag-only run whose bd_* cells certify would emit all_certified:true, indistinguishable from a full run except by cell count. Same class of hazard in knife_belowdiag_shift.py: FAR_MODE is not recorded in the artifact (lines 283-285), and FAR_MODE=compact4d only covers v,K3 <= 40000 (vv = 40*w1/(1 - w1 + 1/1000) at w1=1, lines 244-248), not the unbounded far-below region the docstring claims.",
+   "evidence": "Code reading of the cited lines. STAGE gates two of three stages to empty loops; gotB = True if STAGE == 'belowdiag' else deep_cell3(...); the out dict (lines 449-452) contains no STAGE field. Experiment contract requires every run to record its exact command; here the recorded command would rerun a different (full) computation.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "master-formula-fidelity",
+   "title": "Per-stage results not persisted; existing artifacts record all_certified:false while theorem files claim COMPLETE",
+   "file": "projects/qg-bootstrap/lab/knife_tail_deep.py",
+   "location": "lines 449-454 (and knife_belowdiag_shift.py lines 283-287)",
+   "severity": "serious",
+   "claim": "The in-memory per-cell 'log' list is never written into the JSON artifact, so a run records only a single all_certified boolean. The artifacts on disk \u2014 results/knife_tail_deep_j4.json (all_certified:false, 70 cells), results/knife_tail_deep_j5.json (all_certified:false, 241 cells), results/knife4_belowdiag_shift.json (all_certified:false, elev=8, rerun 2026-08-16 01:44) \u2014 all record FALSE, yet results/knife4_theorem.json cites them for regions 2-6 and results/knife5_theorem.json cites knife_tail_deep_j5.json for 'tails_and_deep', both marked 'COMPLETE pending adversarial review'. Which stage failed inside each false run is unrecoverable from artifacts. In particular, for j=5 the diagonal band v in [K-6, K+4] and explicit K0=0..5 have NO passing artifact anywhere: there is no j=5 analogue of knife_belowdiag_shift, and knife5_farbelow_factored.json covers only the far-below region v <= K-6 (K = v + K3 + 6 forces v <= K-6, knife5_farbelow_factored.py line 106).",
+   "evidence": "Artifact contents read directly: knife_tail_deep_j4.json {'all_certified': false}, knife_tail_deep_j5.json {'all_certified': false}, knife4_belowdiag_shift.json {'all_certified': false}; knife4_theorem.json regions 5-6 point at knife4_belowdiag_shift with status_raw 'see artifact'; knife5_theorem.json lists only shallow_branches + tails_and_deep + far_below_factored. Project rule: statuses come from artifacts only; here the machine-checkable chain contradicts the COMPLETE claim.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "shallow-certificate-logic",
+   "title": "Shallow branches start at lam=1/1000: strip lam in (0, 1/1000) proven by no stage for j>=4",
+   "file": "projects/qg-bootstrap/lab/knife_proof.py",
+   "location": "knife_proof.py:154 (also knife_proof2.py:154, knife_tail_deep.py:180); contrast blade_proof.py:148; over-claim at knife_tail_deep.py:15-17",
+   "severity": "serious",
+   "claim": "Branch k=3 covers lam in [1/1000, 2/3) in all shallow stages (fixed-m v1/v2 and the m>=41 shallow-tail), and the deep stages only reach down to lam >= 45/sqrt(3) ~ 25.98, so the open strip 0 < lam < 1/1000 (all m, all D in [4, T_hat(lam)]) is certified by NO stage for any knife j>=4. The theorem is claimed for every lambda>0 (blade_proof.py docstring; knife_tail_deep.py:16-17 states exit 0 = 'the full knife-j theorem ... everywhere in D <= min_k T_k(lam)'), so the combined-artifact claim is unproven on that strip. This is a regression versus the j=3 blade proof, whose k=3 branch used lam=(2/3)(1-t), t=w/(1+w), which is onto (0, 2/3] including arbitrarily small lam.",
+   "evidence": "knife_proof.py:154 / knife_proof2.py:154 / knife_tail_deep.py:180 all set mu_lo = 1/1000 for k=3, and lam = mu_lo + (mu_hi-mu_lo)w/(1+w) with w in [0,inf) only reaches lam >= 1/1000. blade_proof.py:148 instead substitutes lam = (2/3)(1 - t) covering (0, 2/3]. Deep stages: knife_tail_deep.py:204 uses lam = 26+x; deep-tail (lines 230, 306) uses lam = (K+45+tL)*sqrt3/3 >= 25.98. Exact-rational spot sweep of the strip (j=4..7, m in {j-2,...,200}, lam in {1e-6,...,999e-6}, D across [4, T_3(lam)]) found no nonpositive P_j (minimum ~1.7e5 at j=4, m=2), so this is a coverage gap, patchable with the blade-style substitution, not a counterexample.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "tail-deep-stages",
+   "title": "Knife-5 below-diagonal band has no certificate anywhere, yet knife5_theorem.json declares COMPLETE",
+   "file": "projects/qg-bootstrap/results/knife5_theorem.json",
+   "location": "knife5_theorem.json regions block; knife_tail_deep.py lines 423-434 (failed stage); knife5_farbelow_factored.py lines 105-110; knife_belowdiag_shift.py line 29",
+   "severity": "fatal",
+   "claim": "For j=5, the deep-water below-diagonal band {m>=41, K-6 < v < K+4} (a ~10-level-wide sliver along the optimal diagonal, lam >= ~26) is not covered by any passing certificate, so the knife-5 theorem status 'COMPLETE pending adversarial review' is unproven for that region.",
+   "evidence": "knife_tail_deep_j5.json records all_certified: false, and article/DATA_LOG.md (2026-08-17, 'Knife-5 tails verdict') states explicitly: 'below-diagonal FAIL - the same single structural blind spot as j=4'. The j=4 fix had three pieces (band v in [K-6,K+4], explicit K0=0..5, far-below v<=K-6), but the band/K0 script knife_belowdiag_shift.py is hard-coded J = 4 (line 29) and was never generalized; the only j=5 patch artifact, knife5_farbelow_factored.json, uses Kc = v + K3 (+6) (knife5_farbelow_factored.py lines 105-107), i.e. it covers only v <= K-6. Above-diagonal (deep_cell3) covers v >= K+4. The open band in between is exactly the region where per-coefficient certificates were diagnosed as structurally blind (third-order cancellation, DATA_LOG '\u0418\u0421\u0422\u0418\u041d\u041d\u042b\u0419 \u0414\u0418\u0410\u0413\u041d\u041e\u0417 far-below'), so this is not a formality: repeated certificate attempts on this sliver FAILED, and no artifact in results/ covers it for j=5.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "tail-deep-stages",
+   "title": "No passing artifact exists for shallow-tail / deep-fixed / above-diagonal (j=4 and j=5): every committed knife_tail_deep_j{4,5}.json says all_certified: false, and per-cell results are discarded",
+   "file": "projects/qg-bootstrap/results/knife_tail_deep_j4.json",
+   "location": "knife_tail_deep_j4.json and _j5.json ('all_certified': false); knife_tail_deep.py lines 449-454 (artifact writer); knife4_theorem.json regions 2-6",
+   "severity": "serious",
+   "claim": "knife4_theorem.json cites knife_tail_deep_j4.json as proof of regions 2-4 ('shallow_tail 43/43', deep-fixed, above-diagonal) and knife4_belowdiag_shift.json for regions 5-6, but every version of both artifacts ever committed records all_certified: false, and the artifact stores only len(log), discarding the per-cell ok/bad flags \u2014 so under the lab's own proof-gate rule (deterministic gates from artifacts only) 5 of the 7 knife-4 regions and all knife-5 tail/deep regions have no artifact-backed pass.",
+   "evidence": "git history of knife_tail_deep_j4.json across commits adf5540, 9d39f94, b040bb5, e1faf16, cd21545: all five versions say \"all_certified\": false (cells = 264, 207, 207, 7, 70). The current j5 artifact: all_certified false, cells 241. knife4_belowdiag_shift.json: all_certified false (its piece (iv) failed; pieces (ii)/(iii) passes are not distinguishable). The 'pass' status of the passing stages exists only in console prints and DATA_LOG narrative ('j=5: shallow-tail 43/43 OK, deep-fixed OK, ABOVE-diagonal OK (9827 s)'), which per .claude/rules (proof-gate pattern, 'a run completing without an exception is NOT scientific validation') is not evidence. Fix is cheap: per-stage artifacts with per-cell ok flags, rerun on the prover2 flint engine.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "tail-deep-stages",
+   "title": "KNIFE_STAGE=belowdiag silently forges a full-run artifact: above-diagonal is set OK without running, and the env vars are not recorded",
+   "file": "projects/qg-bootstrap/lab/knife_tail_deep.py",
+   "location": "lines 176-178, 206, 437 (gotB = True if STAGE == 'belowdiag'), 449-452 (out dict)",
+   "severity": "serious",
+   "claim": "With KNIFE_STAGE=belowdiag the script skips shallow-tail (line 178) and deep-fixed (line 206) and sets the above-diagonal verdict to True without executing it (line 437), yet still writes stages: 'shallow-tail(m>=41) + deep-fixed + deep-tail' and a command string omitting KNIFE_STAGE and BERN_ELEV \u2014 so a partial targeted run that happened to exit 0 would produce an artifact indistinguishable from a certified full theorem run.",
+   "evidence": "Line 437: gotB = True if STAGE == \"belowdiag\" else deep_cell3(...), then line 440 prints 'deep-tail above-diagonal: OK' for a stage that never ran. Line 451: \"command\": f\"KNIFE_J={J} python lab/knife_tail_deep.py\" records neither env var. This mode was actually used (DATA_LOG 2026-08-17: 'targeted stage flag (KNIFE_STAGE=belowdiag)'), and the committed artifacts with cells=7 and cells=70 are such partial runs wearing the full-run 'stages' label. Only the accident that the targeted stage FAILED (all_certified false) prevented a forged full-theorem artifact.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "tail-deep-stages",
+   "title": "lam in (0, 1/1000) is claimed ('all lam>0') but covered by no stage in any prover",
+   "file": "projects/qg-bootstrap/lab/knife_tail_deep.py",
+   "location": "line 180 (mu_lo = Rational(1,1000)); same window in knife_proof.py line 154; claim in knife4_theorem.json 'all lam>0'",
+   "severity": "serious",
+   "claim": "The shallow-tail k=3 branch starts at lam = 1/1000 and the deep stages start at lam = 45/sqrt(3) \u2248 25.98, so the strip lam in (0, 0.001) \u2014 where the allowed region is non-empty (T_hat(lam) -> T_3(0) = 3(0+0+1)+6 = 9 > 4, so D in [4, ~9] exists) \u2014 carries no certificate for any m, while knife4_theorem.json asserts the theorem for 'all n, all lam>0'.",
+   "evidence": "knife_tail_deep.py line 180: mu_lo, mu_hi = sp.Rational(1, 1000), sp.Rational(2, 3) for kk == 3; no other branch reaches below it (branch k lower edges are 3/5(k-5/2) >= 2/3 for k>=4; deep stages require lam >= 45/sqrt3). Stage-1 knife_proof.py uses the identical 1/1000 cutoff (line 154), so the gap is not closed elsewhere; the only coverage of small lam is the numeric open-region battery (knife4_open_region.json, 250283 checks), which is not a certificate. Likely patchable (e.g. lam = t/1000 substitution keeps everything polynomial), but as written the claimed domain is not fully certified.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "farbelow-factor-certify",
+   "title": "Knife-4 theorem cites a failing artifact for regions 5 and 6 (below-diagonal band + K0..5)",
+   "file": "projects/qg-bootstrap/results/knife4_theorem.json",
+   "location": "keys regions.5_diag_band, regions.6_first_branches, artifact_status.'belowdiag band + explicit K0..5' (status_raw: 'see artifact')",
+   "severity": "serious",
+   "claim": "The theorem-complete verdict for regions 5 and 6 rests on knife4_belowdiag_shift.json, whose only machine-readable status flag is \"all_certified\": false; the script (lab/knife_belowdiag_shift.py) collects a per-cell log (lines 141/148/225/228) but serializes only its length (line 283, \"cells\": 13), so the fact that pieces (ii) band and (iii) K0=0..5 passed exists ONLY in commit message 1f7c1ce, not in any artifact. The recorded command also omits BERN_ELEV=8 (artifact says elev 8, script default is 6), so the run is not reproducible as recorded. This violates the project's own evidence/experiment contract; fix = rerun (ii)+(iii) with (iv) disabled, or persist per-piece booleans, then repoint knife4_theorem.json.",
+   "evidence": "results/knife4_belowdiag_shift.json = {\"all_certified\": false, \"cells\": 13, \"elev\": 8, \"command\": \"python lab/knife_belowdiag_shift.py\", \"git\": \"2a32a9d\", \"runtime_s\": 2405.2}; git log shows commit 1f7c1ce '[night-batch] ... belowdiag-shift exit 1: (ii) band K>=6: OK ... (iii) K=0..5: OK ... (iv) far below: FAIL (2405s) INCOMPLETE' and commit 2a32a9d records a 10800s subprocess.TimeoutExpired for the same script. I verified the (ii)/(iii) mathematics is not in doubt (see other findings), but the artifact chain for regions 5/6 is broken by the repo's own rules.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "region-tiling-completeness",
+   "title": "Knife-5 deep-water below-diagonal band has no certificate; theorem declared COMPLETE anyway",
+   "file": "projects/qg-bootstrap/results/knife5_theorem.json",
+   "location": "regions.tails_and_deep (line 6) citing knife_tail_deep_j5.json which records all_certified:false; article/DATA_LOG.md 2026-08-17 'Knife-5 tails verdict' lines 844-849: 'below-diagonal FAIL'",
+   "severity": "fatal",
+   "claim": "The j=5 theorem's certified regions do not cover the deep-water below-diagonal band. knife_tail_deep_j5.json failed exactly on below-diagonal (bd_K0..7 + bd_Ktail). The j=4 patch that closed this band (knife_belowdiag_shift.py: band v in [K-6,K+4] plus explicit K0=0..5) was never run for j=5 \u2014 the script hardcodes J=4 at line 29 and no knife5_belowdiag artifact exists in results/. knife5_farbelow_factored.py covers only v <= K-6 (K = v+K3+6). Uncovered set: m >= 41, lam > 26.1, v = m-41 in (max(0, sqrt3*lam-51), max(4, sqrt3*lam-42)) \u2014 a nonempty band roughly 9 units of m wide at every deep lam, plus the entire below-diagonal v in [0, sqrt3*lam-42) for lam in (26.1, 51/sqrt3 ~ 29.44) where far-below is empty. Concrete witnesses inside the claimed domain with no covering artifact: (lam=28, n=44, D=100) and (lam=30, n=48, D=550).",
+   "evidence": "knife_tail_deep_j5.json: {\"all_certified\": false}; DATA_LOG.md line 845-846: 'j=5: shallow-tail 43/43 OK, deep-fixed OK, ABOVE-diagonal OK (9827 s), below-diagonal FAIL'; knife_belowdiag_shift.py line 29: 'J = 4' (no KNIFE_J env support); glob of results/ shows only knife4_belowdiag_shift.json, no j=5 twin; knife5_farbelow_factored.py line 5-6 scope 'far-below region (v free, K = v + K3 + 6)' i.e. v <= K-6 only. Exact-rational spot check (399 points across the band, D up to T_hat) found P_5 > 0 everywhere, so this is an unproven region, not a counterexample.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "region-tiling-completeness",
+   "title": "lam in (0, 1/1000) uncovered by every j=4/j=5 artifact while both theorems claim all lam > 0",
+   "file": "projects/qg-bootstrap/lab/knife_proof.py",
+   "location": "line 154 (mu_lo = Rational(1,1000) for branch k=3); same constant in knife_tail_deep.py line 180",
+   "severity": "serious",
+   "claim": "Both shallow stages start branch k=3 at lam = 1/1000 (and the w/(1+w) substitution covers [mu_lo, mu_hi) only), while all deep stages require lam >= 26. So the sliver lam in (0, 1/1000), all m, D in [4, T_hat(lam)] is inside the claimed domain ('all lam>0' in knife4_theorem.json line 2) but outside every certificate. The domain is nonempty there: T_hat(1/2000) = T_3(1/2000) ~ 9.006 > 4. This is a regression versus the j=3 blade proof, whose k=3 branch covers (0, 2/3] via lam = (2/3)(1-t), t in [0,1] (blade_proof.py line 148). Witness: (lam=1/2000, n=7, D=9) for j=4 and j=5.",
+   "evidence": "knife_proof.py line 154: 'mu_lo, mu_hi = sp.Rational(1, 1000), sp.Rational(2, 3)'; knife_tail_deep.py line 180 identical; blade_proof.py line 148 covers lam down to 0 for j=3; knife4_theorem.json line 2 claims 'all n, all lam>0'. Exact-rational check at lam=1/2000, m=2..150, 21 D-values across [4, T_hat]: P_4 and P_5 all positive \u2014 gap is coverage, not falsity.",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "artifact-honesty",
+   "title": "Knife-5 theorem claims COMPLETE with the below-diagonal band uncertified",
+   "file": "projects/qg-bootstrap/results/knife5_theorem.json",
+   "location": "\"status\": \"COMPLETE pending adversarial review\" (line 3) and \"regions\" (lines 4-8)",
+   "severity": "fatal",
+   "claim": "The j=5 deep-water below-diagonal band v in (K-6, K+4] (m>=41, lam>=~26) has no positivity certificate in any artifact, so the theorem-complete claim is unproven for that region. The cited knife_tail_deep_j5.json records all_certified:false; the only patch, knife5_farbelow_factored.json, covers only v<=K-6 because lab/knife5_farbelow_factored.py line 105 sets Kc=v+K3 with m=41+v, forcing v<=K-6 identically. The knife-4 analog needed two more certified stages (band K>=6 and explicit K=0..5 in knife4_belowdiag_shift.json), but lab/knife_belowdiag_shift.py line 29 hardcodes J=4 and its output filename is knife4-only; no j=5 band run exists in results/ or anywhere in git history.",
+   "evidence": "article/DATA_LOG.md entry committed in 9f64299 states: 'j=5: shallow-tail 43/43 OK, deep-fixed OK, ABOVE-diagonal OK (9827 s), below-diagonal FAIL - the same single structural blind spot as j=4' and prescribes 'the shift assault + whatever cracks the far-below piece' to close it. Only the far-below piece was ever run for j=5 (night-batch commit c1446da, exit 0). The completion commit f0ca1ad then declared 'KNIFE 5 THEOREM COMPLETE: far-below closed' without the shift-assault stages. results/ contains no knife5_belowdiag artifact (verified by directory listing and git log --all).",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "artifact-honesty",
+   "title": "Knife-4 far-below closure has no script: 'command': 'lab notebook run (to be scripted)'",
+   "file": "projects/qg-bootstrap/results/knife4_farbelow_factored.json",
+   "location": "\"command\" field (line 4), \"git\": \"0191b35\" (line 5)",
+   "severity": "serious",
+   "claim": "Region 7 of the knife-4 theorem rests on an artifact whose recorded command is 'lab notebook run (to be scripted)'; lab/knife4_farbelow_factored.py does not exist (only the j=5 script does; confirmed by glob and repo-wide grep), and the recorded commit 0191b35 changed only article/DATA_LOG.md, so the run is not reproducible from the artifact.",
+   "evidence": "I reproduced the computation adversarially (scratchpad script adapting lab/knife5_farbelow_factored.py with J=4, repo venv): all 4 y-coefficients of P_4(T_cap - y) factor manifestly positive over Q(sqrt3) in ~153 s, with exactly the structure claimed in DATA_LOG (c0 = two linear cube factors x deg-15 factor with 574 all-positive terms; c2 contains an all-negative deg-8 factor at odd multiplicity compensated by content sign). So the mathematical claim verifies, but the artifact fails the reproducibility contract; the fix is to commit the script (verified working copy left in the session scratchpad and flagged as a spinoff task).",
+   "confirmed": true,
+   "votes_against": 0
+  },
+  {
+   "zone": "artifact-honesty",
+   "title": "Knife-4 theorem regions 2-6 cite artifacts whose verdict fields say false; per-cell logs discarded",
+   "file": "projects/qg-bootstrap/results/knife4_theorem.json",
+   "location": "\"regions\" 2-6 (lines 6-10) and \"artifact_status\" entries with \"status_raw\": \"see artifact\" (lines 21-30)",
+   "severity": "serious",
+   "claim": "knife_tail_deep_j4.json (regions 2-4) and knife4_belowdiag_shift.json (regions 5-6) both record all_certified:false, and neither contains per-stage or per-cell results: lab/knife_tail_deep.py line 449 and lab/knife_belowdiag_shift.py line 283 write only len(log), discarding the log list. The evidence that regions 2-6 individually passed exists only in stdout captured in commit-message subject lines (1f7c1ce: '(ii) band K>=6: OK ... (iv) far below: FAIL') and DATA_LOG prose. Re-running the recorded commands at HEAD exits 1, and knife_tail_deep.py has been modified since the j=4 run (its artifact git is 7f94f06; v4/v5 stages were added later in e1faf16/cd21545), so the artifact cannot be regenerated by the recorded command.",
+   "evidence": "results/knife_tail_deep_j4.json: {\"all_certified\": false, \"cells\": 70}; results/knife4_belowdiag_shift.json: {\"all_certified\": false, \"cells\": 13}. The theorem's 'see artifact' indirection resolves to a false flag with no per-stage breakdown, so the 7-region verdict table is not verifiable from artifacts alone \u2014 it depends on trusting commit-message text.",
+   "confirmed": true,
+   "votes_against": 0
+  }
+ ],
+ "zone_verdicts": [
+  {
+   "zone": "master-formula-fidelity",
+   "verdict": "SUSPECT"
+  },
+  {
+   "zone": "shallow-certificate-logic",
+   "verdict": "SUSPECT"
+  },
+  {
+   "zone": "tail-deep-stages",
+   "verdict": "BROKEN"
+  },
+  {
+   "zone": "farbelow-factor-certify",
+   "verdict": "SUSPECT"
+  },
+  {
+   "zone": "region-tiling-completeness",
+   "verdict": "BROKEN"
+  },
+  {
+   "zone": "artifact-honesty",
+   "verdict": "BROKEN"
+  },
+  {
+   "zone": "numeric-anchor",
+   "verdict": "SOUND"
+  }
+ ],
+ "report_markdown": "# Adversarial Review Verdict: Knife-4 and Knife-5 Theorems\n\n## 1) Overall verdicts\n\n**Knife 4: HOLDS WITH PATCHES NEEDED.**\nThe mathematics survived every attack: master-formula fidelity, denominator clearing, Bernstein/degree-elevation logic, deep caps, seam geometry, and the far-below factorization were all independently verified, and an exact-rational 42,240-point adversarial anchor (zero lab code imported) found no violation while confirming 566 genuine negatives above the envelope. But the theorem **as stated** (\"all n, all lam>0\") is unproven on the strip lam in (0, 1/1000), and the artifact chain backing 6 of 7 regions is broken by the lab's own proof-gate rules (failing verdict flags, discarded per-cell logs, one unscripted notebook run). Nothing is wrong; several things are unproven-as-recorded.\n\n**Knife 5: BROKEN.**\n`results/knife5_theorem.json` declares \"COMPLETE pending adversarial review\" while the deep-water below-diagonal band \u2014 m >= 41, v = m-41 in roughly (sqrt3*lam-51, sqrt3*lam-42), lam > ~26, plus the whole below-diagonal for lam in (26.1, ~29.44) where far-below is empty \u2014 has **no certificate anywhere in the repo or git history**. This is not an artifact-hygiene quibble: the tail-deep run FAILED exactly there (`knife_tail_deep_j5.json` all_certified:false; DATA_LOG 2026-08-17: \"below-diagonal FAIL\"), the patch script that closed the same band for j=4 hardcodes `J = 4` and was never ported, and the only j=5 patch (`knife5_farbelow_factored`) structurally covers only v <= K-6. Three independent zones confirmed this fatally. The theorem is likely *true* (399-point exact band sweep plus a 38,400-point anchor found P_5 > 0 everywhere), but the claimed *proof* does not exist for that region. The COMPLETE status violates the lab's claim gates and must be retracted until the band is certified.\n\n## 2) Confirmed findings, ranked by severity\n\n### FATAL\n\n**F1. Knife-5 below-diagonal deep-water band uncertified; theorem declared COMPLETE anyway.** *(confirmed independently by tail-deep-stages, region-tiling-completeness, artifact-honesty; corroborated by master-formula-fidelity)*\n- `results/knife5_theorem.json` (status line 3, regions block) cites `results/knife_tail_deep_j5.json`, which records `all_certified: false` \u2014 the failure being precisely the below-diagonal stages (bd_K0..7 + bd_Ktail).\n- `lab/knife_belowdiag_shift.py:29` hardcodes `J = 4`; no j=5 band/K0 artifact exists in `results/` or anywhere in `git log --all`.\n- `lab/knife5_farbelow_factored.py:105-107` sets Kc = v + K3 (+6), forcing v <= K-6 identically \u2014 it cannot cover the band by construction.\n- Concrete witnesses inside the claimed domain with no covering artifact: (lam=28, n=44, D=100) and (lam=30, n=48, D=550).\n- Completion commit f0ca1ad declared the theorem complete on the strength of the far-below piece alone, contradicting the lab's own prescription in `article/DATA_LOG.md` (\"the shift assault + whatever cracks the far-below piece\").\n\n### SERIOUS\n\n**F2. lam in (0, 1/1000) covered by no stage for j >= 4, while both theorem files claim all lam > 0.** *(confirmed by shallow-certificate-logic and region-tiling-completeness)*\n- `lab/knife_proof.py:154`, `lab/knife_proof2.py:154`, `lab/knife_tail_deep.py:180` all set mu_lo = 1/1000 for branch k=3; the w/(1+w) substitution never reaches below it; deep stages need lam >= 45/sqrt3 ~ 25.98.\n- The domain there is nonempty (T_hat(1/2000) ~ 9.006 > 4). Witness with no certificate: (lam=1/2000, n=7, D=9), both knives.\n- This is a regression versus j=3: `lab/blade_proof.py:148` uses lam = (2/3)(1-t), covering (0, 2/3]. Exact-rational sweeps found no counterexample on the strip; the patch is the blade-style substitution.\n\n**F3. KNIFE_STAGE=belowdiag can forge a full-theorem artifact.** *(confirmed by master-formula-fidelity and tail-deep-stages)*\n- `lab/knife_tail_deep.py:176-178, 206` skip shallow-tail and deep-fixed under the flag; line 437 sets `gotB = True` \u2014 the above-diagonal stage is marked OK **without running** \u2014 and line 440 prints \"deep-tail above-diagonal: OK\" for a stage that never executed.\n- The artifact (lines 449-452) still records stages as \"shallow-tail(m>=41) + deep-fixed + deep-tail\" and a command omitting KNIFE_STAGE and BERN_ELEV. The committed cells=7 and cells=70 artifacts are exactly such partial runs wearing the full-run label; only the accident that the targeted stage failed prevented a forged full-theorem pass.\n- Same class in `lab/knife_belowdiag_shift.py:283-285`: FAR_MODE unrecorded, and FAR_MODE=compact4d covers only v,K3 <= 40000, not the unbounded region the docstring claims.\n\n**F4. No passing artifact exists for any tail/deep stage; per-cell logs are discarded; theorem files cite failing artifacts as COMPLETE support.** *(confirmed by four zones)*\n- `lab/knife_tail_deep.py:449-454` and `lab/knife_belowdiag_shift.py:283` serialize only `len(log)`, discarding per-cell ok/bad flags.\n- Every committed version of `results/knife_tail_deep_j4.json` (commits adf5540, 9d39f94, b040bb5, e1faf16, cd21545) and the current `_j5.json` and `knife4_belowdiag_shift.json` record `all_certified: false`.\n- Yet `results/knife4_theorem.json` cites them for regions 2-6 and `knife5_theorem.json` for tails_and_deep. Under the proof-gate pattern (\"a run completing without an exception is NOT scientific validation\" \u2014 and here the runs didn't even exit 0), the passes exist only in commit-message subject lines (1f7c1ce) and DATA_LOG prose. The recorded commands also cannot regenerate the artifacts: `knife_tail_deep.py` was modified after the j=4 run (artifact git 7f94f06 predates the v4/v5 stage additions), and knife4_belowdiag_shift's command omits BERN_ELEV=8.\n\n**F5. Knife-4 region 7 (far-below closure) has no script.** *(confirmed by artifact-honesty; the mathematical-gap reading was refuted \u2014 see section 3)*\n- `results/knife4_farbelow_factored.json` records `\"command\": \"lab notebook run (to be scripted)\"`; `lab/knife4_farbelow_factored.py` does not exist; the recorded commit 0191b35 changed only `article/DATA_LOG.md`.\n- The reviewer reproduced the closure from scratch (J=4 adaptation of the j=5 script, repo venv, ~153 s): all 4 y-coefficients certify with exactly the claimed factor structure. So the result is real; the provenance is not. A working script copy was left in the review session scratchpad and flagged as a spinoff task.\n\n## 3) Refuted on review\n\n- **Master formula / bracket infidelity** \u2014 refuted: Bj matches an independent exact Gegenbauer-projection evaluator in 596 cases (34 genuinely negative, so non-vacuous), plus 80,640 exact anchor points with 0 violations and 566+99 true negatives above the envelope.\n- **Knife-4 far-below closure mathematically doubtful** \u2014 refuted: independently re-derived and re-run from scratch; it certifies with the claimed cube factorization (provenance defect stands as F5).\n- **Denominator clearing / branch-cap / Bernstein / deep-cap / sign_q3 errors** \u2014 refuted: N = P*(1+w)^(2j-2)(1+u)^(j-1) is an exact identity; T_k >= T_hat is conservative; Bernstein conversion, degree elevation, root isolation over Q(sqrt3), and the (12+4sqrt3)(26+x) cap all verified exact and conservative.\n- **Tiling seam gaps in the certified deep geometry** \u2014 refuted: K/v seams, the 2/3 and k=4..45 branch seams, 26/26.1 and 40/41 overlaps all abut or overlap exactly (the *j=5 band hole* is a missing run, F1, not a seam error).\n\n## 4) Minor hygiene items\n\n- Certificates prove P_j >= 0; docstrings and stage claims say strict P_j > 0 on closed intervals (cell boundaries get only >= 0; an identically-zero polynomial would certify vacuously).\n- `j_min_m` skips n=3 (m=0) for j=2, contradicting its own derivation comment.\n- Executed placeholder loop pollutes the cell log with duplicate bd_K0 entries; dead `deep_cell` v2; duplicated coefficient extraction in `bern1`.\n- \"Drift-free argmin\" branch justification is numerically false (argmin of T_k is ~floor(sqrt3*lam), not floor+2) \u2014 harmless in the certified direction, wrong as stated.\n- Pieces (ii)/(iii) of belowdiag_shift certify D in [4, T_cap] while the theorem artifact says \"everywhere in D <= min_k T_k\".\n- `knife4_open_region.json` numeric battery has no command and no standing generator script.\n\n## 5) Exact next actions\n\n1. **Immediately downgrade `results/knife5_theorem.json`** from \"COMPLETE pending adversarial review\" to INCOMPLETE, with the uncovered band stated explicitly. This is a claim-gate violation as it stands; do this before anything else and before any public statement about knife 5.\n2. **Close the j=5 band**: generalize `lab/knife_belowdiag_shift.py` to read `KNIFE_J` (remove the line-29 hardcode and the j=4-only output filename), run band v in [K-6, K+4] plus explicit K0=0..5 for j=5 on the prover-v2 flint engine, and commit a passing artifact (`knife5_belowdiag_shift.json` with per-piece booleans).\n3. **Close the lam sliver**: replace the k=3 lower cutoff mu_lo=1/1000 with the blade-style substitution lam = (2/3)(1-t) (as in `blade_proof.py:148`) in `knife_proof.py`, `knife_proof2.py`, `knife_tail_deep.py`; rerun the k=3 branch for j=4 and j=5. Numeric sweeps predict this certifies cleanly.\n4. **Fix the artifact writer before any rerun**: record KNIFE_STAGE, BERN_ELEV, FAR_MODE in the out dict; serialize the per-cell/per-stage ok flags, not `len(log)`; delete the `gotB = True if STAGE == \"belowdiag\"` line \u2014 a stage that did not run must never be recorded as passed.\n5. **Rerun `knife_tail_deep.py` in full for j=4 and j=5** (all stages, on the fixed writer, flint engine) until artifacts with `all_certified: true` and per-stage breakdowns exist; the current all-false artifacts are unusable as evidence.\n6. **Script the knife-4 far-below closure**: commit the working reproduction (left in the review scratchpad) as `lab/knife4_farbelow_factored.py`, rerun, and replace the placeholder command in `results/knife4_farbelow_factored.json`. Also add the missing BERN_ELEV=8 to the belowdiag_shift command, or better, let point 4 make it automatic.\n7. **Repoint both theorem JSONs** so every region cites an artifact whose own machine-readable flag is a pass; the region table must be derivable from artifact flags alone, with zero reliance on commit messages or DATA_LOG narrative.\n8. Sweep the hygiene list in section 4 (strict-vs-nonstrict wording, dead code, argmin comment, open-region battery script) in one cleanup commit.\n\nBottom line: the certificate mathematics of both knives is in good shape \u2014 every direct attack on the formulas, substitutions, and certificates failed, and an independent exact anchor at 80,640 points found nothing. What is broken is the proof *ledger*: knife 5 claims a completed theorem with a known-failed region papered over, and knife 4's evidence chain contradicts the lab's own gating rules. Fix the ledger and run the two missing computations; do not publish either theorem until then."
+}

@@ -909,3 +909,20 @@ old entries; append corrections as new entries.
   0.0s — foreign-engine confirmation path opened for the validator role.
 - docs/LINKS_DIGEST.md: 22 links verified (GitHub API), 3 adopted, 1 adopting.
 - Adversarial workflow-critic (diamond) launched on knife-4/5 theorems.
+
+## 2026-08-17 (ночь) — ADVERSARIAL FLEET VERDICT: theorems 4-5 DOWNGRADED
+- Fleet (36 agents, 7 zones x fresh-context skeptics, 2 refuters per finding):
+  13 confirmed findings, 3 FATAL-class on knife 5. Zone verdicts: numeric
+  anchor SOUND (4000+ adversarial points, zero violations of the CLAIM);
+  tail-deep-stages / region-tiling / artifact-honesty BROKEN (proof chain).
+- Key gaps: (1) knife-5 below-diagonal band {m>=41, K-6<v<K+4} has NO
+  certificate (shift script was hard-coded J=4); (2) lam in (0,1/1000) strip
+  covered by no stage for j>=4 (k=3 branch starts at 1/1000; blade j=3 used
+  the onto substitution); (3) knife_tail_deep artifacts record only a global
+  all_certified=false, per-stage results discarded; STAGE/FAR_MODE env not
+  recorded — partial run can masquerade as full; (4) knife-4 far-below has
+  no script (command: "to be scripted").
+- ACTIONS: statuses downgraded in knife{4,5}_theorem.json (this commit);
+  repair plan: lam-strip patch + belowdiag generalization to j=5 + artifact
+  writer fix + full re-runs with per-stage artifacts. Full report:
+  results/adversarial_review_knife45.json. Failures stay visible.

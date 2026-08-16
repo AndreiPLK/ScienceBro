@@ -13,3 +13,13 @@
   остаётся, версия с ошибкой сохраняется в истории (честная наука).
 - Внутренние (неопубликованные) правки нот/черновиков в реестр не входят —
   они живут в DATA_LOG и git-истории.
+
+## ERR-0002 (2026-08-17): knife-4/5 theorems prematurely marked COMPLETE
+- What: results/knife{4,5}_theorem.json claimed "COMPLETE pending adversarial
+  review" while cited artifacts recorded all_certified:false, knife-5 below-
+  diagonal band had no certificate at all, and lam<1/1000 was uncovered.
+- Caught by: our own adversarial fleet review (36 agents), same night.
+- Fix: statuses downgraded immediately (commit with this entry); repair plan
+  in DATA_LOG; re-promotion only after passing per-stage artifacts exist.
+- Lesson: consolidation JSONs are claims too — they go through the same gate:
+  no COMPLETE without every cited artifact recording a PASS.
