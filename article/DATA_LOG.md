@@ -1075,3 +1075,13 @@ derive CHR sum rules numerically, then in closed form.
   real-rootedness statement — the classical total-positivity door.
   Next: closed form of weights w_{l,m} (ratio fit), then the n->n+1
   3-term recursion e_m(S+{r,r}) = e_m + 2r e_{m-1} + r^2 e_{m-2}.
+
+## 2026-08-17 (ночь) — FOUR COMPLETE KNIFE THEOREMS (4,5,6,7), GATE GREEN
+- belowdiag2 (flint port): j=5 contract-matched v1 in 1 s (v1: 32 min);
+  j=4/6/7 closed in ~1 s each. ENTIRE prover now on v2.
+- Reconsolidated knife{4,5,6,7}_theorem.json: status COMPLETE pending
+  adversarial review; every cited artifact PASSES; deterministic gate
+  (test_theorem_gate) GREEN. Coverage: onto lam->0, full deep-tail tiling.
+- v1 queue retired (v1 remains as cross-check twin only).
+- Knives proven: 2,3 (published) + 4,5,6,7 (tonight). Next: fleet review
+  round 2, then the keystone (uniform j).

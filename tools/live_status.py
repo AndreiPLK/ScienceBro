@@ -130,7 +130,7 @@ def knife_progress(j):
     pct = 0
     checks = [
         (f"knife_proof2_j{j}.json", "ok_so_far", 25, "мелководье"),
-        (f"knife_tail_deep_j{j}.json", "all_certified", 35, "хвосты+глубина"),
+        (f"knife_tail2_j{j}.json", "all_certified", 35, "хвосты+глубина"),
         (f"knife{j}_belowdiag_shift.json", "all_certified", 20, "полоса у диагонали"),
         (f"knife{j}_farbelow_factored.json", "far_below_factored", 20, "далёкое дно"),
     ]

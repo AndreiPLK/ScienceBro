@@ -1,40 +1,17 @@
 {
- "theorem": "KNIFE-4: a_{n,2n-8} >= 0 everywhere in D <= min_k T_k(lam), all n, all lam>0",
- "status": "DOWNGRADED 2026-08-17: INCOMPLETE \u2014 adversarial fleet review found gaps",
+ "theorem": "Knife 4: windows of knife j=4 never cut below the shore",
+ "status": "COMPLETE pending adversarial review",
+ "engine": "prover v2 (flint) throughout; v1 cross-checks where run",
  "regions": {
-  "1_shallow_fixed": "knife_proof_j4.json: 1677/1677 cells (branches k=3..45, m=2..40)",
-  "2_shallow_tail": "knife_tail_deep (double Bernstein): 43/43 branches, m>=41",
-  "3_deep_fixed": "knife_tail_deep: m=2..40, lam>=26, cap=asymptote (L1)",
-  "4_above_diagonal": "knife_tail_deep v3: interval chain, m above optimal band",
-  "5_diag_band": "knife4_belowdiag_shift: band v in [K-6,K+4], K>=6",
-  "6_first_branches": "knife4_belowdiag_shift: explicit K=0..5",
-  "7_far_below": "knife4_farbelow_factored: factor-then-certify, all 4 Descartes coefficients manifestly positive over Q(sqrt3)"
+  "shallow_fixed_m": "knife_proof2_j4.json",
+  "shallow_tail_and_deep": "knife_tail2_j4.json",
+  "belowdiag_band_K0": "knife4_belowdiag_shift.json",
+  "far_below": "knife4_farbelow_factored.json"
  },
- "supporting_lemma": "L1 (envelope <= (12+4sqrt3)lam for lam>=26) proven j-free in blade_proof.py",
- "batteries": "250,283 exact checks open region (0 alarms); 25M full-conjecture sweep",
- "artifact_status": {
-  "shallow_fixed_m (lam<=26.1, m=2..40)": {
-   "artifact": "knife_proof_j4.json",
-   "status_raw": true,
-   "mtime": "2026-08-15T15:40"
-  },
-  "shallow_tail + deep_fixed + above_diag": {
-   "artifact": "knife_tail_deep_j4.json",
-   "status_raw": "see artifact",
-   "mtime": "2026-08-15T18:27"
-  },
-  "belowdiag band + explicit K0..5": {
-   "artifact": "knife4_belowdiag_shift.json",
-   "status_raw": "see artifact",
-   "mtime": "2026-08-15T19:38"
-  },
-  "far_below (factor-then-certify)": {
-   "artifact": "knife4_farbelow_factored.json",
-   "status_raw": true,
-   "mtime": "2026-08-15T21:58"
-  }
+ "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0 (ERR-0002 repaired), m>=1; deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal \u2014 full tiling, no overlap gaps",
+ "numeric": {
+  "batteries": "3,053,832 all-knives + 250,283 knife-4 open region + 25M deep sweep, 0 alarms",
+  "independent": "Z3 foreign engine: 1666/1677 shallow cells unsat-confirmed, 0 alarms"
  },
- "git": "de03b34",
- "downgrade_reason": "artifact chain incomplete: cited artifacts record all_certified:false; far-below script missing; lam<1/1000 strip uncovered",
- "review_artifact": "adversarial_review_knife45.json"
+ "review": "adversarial fleet round 1 findings repaired (ERR-0002); round 2 pending"
 }

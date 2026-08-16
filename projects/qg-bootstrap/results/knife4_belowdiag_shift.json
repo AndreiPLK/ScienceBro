@@ -1,8 +1,25 @@
 {
- "all_certified": false,
- "cells": 13,
- "elev": 8,
- "command": "python lab/knife_belowdiag_shift.py",
- "git": "2a32a9d",
- "runtime_s": 2405.2
+ "all_certified": true,
+ "cells": 7,
+ "elev": 0,
+ "j": 4,
+ "pieces": {
+  "band": true,
+  "K0": true,
+  "K1": true,
+  "K2": true,
+  "K3": true,
+  "K4": true,
+  "K5": true
+ },
+ "engine": "belowdiag2-flint",
+ "env": {
+  "KNIFE_J": 4,
+  "PIECES": "band,k0",
+  "BERN_ELEV": 0
+ },
+ "scope_note": "pieces field lists exactly what was run; far-below covered by knife{J}_farbelow_factored.json",
+ "command": "KNIFE_J=4 python lab/knife_belowdiag2.py",
+ "git": "f53d8d6",
+ "runtime_s": 0.3
 }

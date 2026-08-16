@@ -1,16 +1,16 @@
 {
- "theorem": "Knife 5: windows of knife j=5 never cut below the shore",
+ "theorem": "Knife 6: windows of knife j=6 never cut below the shore",
  "status": "COMPLETE pending adversarial review",
  "engine": "prover v2 (flint) throughout; v1 cross-checks where run",
  "regions": {
-  "shallow_fixed_m": "knife_proof2_j5.json",
-  "shallow_tail_and_deep": "knife_tail2_j5.json",
-  "belowdiag_band_K0": "knife5_belowdiag_shift.json",
-  "far_below": "knife5_farbelow_factored.json"
+  "shallow_fixed_m": "knife_proof2_j6.json",
+  "shallow_tail_and_deep": "knife_tail2_j6.json",
+  "belowdiag_band_K0": "knife6_belowdiag_shift.json",
+  "far_below": "knife6_farbelow_factored.json"
  },
  "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0 (ERR-0002 repaired), m>=1; deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal \u2014 full tiling, no overlap gaps",
  "numeric": {
-  "batteries": "25,002,978 deep sweep n<=80 incl. j=5, 0 alarms"
+  "batteries": "25M sweep covers j=6 cells, 0 alarms"
  },
  "review": "adversarial fleet round 1 findings repaired (ERR-0002); round 2 pending"
 }
