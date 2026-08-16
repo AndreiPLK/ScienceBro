@@ -76,3 +76,5 @@ INCOMPLETE
 - 02:47:50 DONE  completeness-deep-n80: deep completeness n<=80: 25002978 checks, 0 alarms
 - 02:47:50 START closest-approach-exact
 - 02:51:01 DONE  closest-approach-exact: closest-approach exact: 24375 checks, 0 alarms
+- 02:51:01 START j6-brackets
+- 02:52:57 DONE  j6-brackets: j=6 brackets extracted for n=7..9
