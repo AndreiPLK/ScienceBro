@@ -1208,3 +1208,23 @@ derive CHR sum rules numerically, then in closed form.
      such families are exactly where Gasper-type positivity theorems live.
      => NEXT SHORTEST EXPERIMENT: substitute the AP closed form for e_i into
      the closed form of P_j and look for a Gasper-summable structure.
+
+## 2026-08-17 (night) — *** SQUARE IDENTITY *** (second structural result)
+   sum_t (-1)^t E_{2t}(n) x^t = [ prod_{a in S_n} (1 - a^2 x) ]^2 = G_n(x)^2
+   where S_n = {n-2k > 0} — verified symbolically for n=7,10 (exact).
+- WHY: the CHR root multiset {n-2k} is SYMMETRIC (contains +-a in pairs),
+  so the doubled-root generating function collapses to a perfect square.
+  The alternating E-sum is therefore NONNEGATIVE FOR EVERY x — the sign
+  problem in the master formula is entirely carried by the WEIGHTS A_t.
+- Consequence: P_j = c0 * L[G_n^2] where L is the linear functional with
+  L[x^t] = A_t. Positivity of P_j is now the single statement
+  "L is nonnegative ON THIS ONE SQUARE" — not on all squares.
+- FALSIFIED (8th negative, exact Bareiss determinants, not floats): A_t is
+  NOT a moment sequence — Hankel minors of order 2 are negative at 42/42
+  tested parameter points. Reason found: A_t is log-CONCAVE (ratios
+  A_t/A_{t-1} decrease), while moment sequences must be log-convex.
+  => No positive measure exists; the "integrate G^2 against dmu" route is
+  closed for good. The remaining route is the ORTHOGONAL-POLYNOMIAL one:
+  expand G_n^2 in the basis where L is diagonal (L's own orthogonal
+  polynomials) — the expansion coefficients are then explicit and their
+  signs decide the theorem. NEXT SHORTEST EXPERIMENT for the next session.
