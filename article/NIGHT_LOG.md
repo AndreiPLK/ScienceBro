@@ -79,3 +79,7 @@ INCOMPLETE
 - 02:51:01 START j6-brackets
 - 02:52:57 DONE  j6-brackets: j=6 brackets extracted for n=7..9
 - 02:52:57 night batch finished
+
+## Night batch 2026-08-16 13:14
+- 13:14:33 queue loaded: 8 tasks
+- 13:14:33 START tails-j6
