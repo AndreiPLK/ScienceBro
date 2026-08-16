@@ -945,3 +945,12 @@ old entries; append corrections as new entries.
   2502.20372 (Veneziano positivity ALL levels D<=10), Rigatos-Wang
   2401.13031 (harmonic-number manifest positivity), Eberhardt-Mizera
   2201.11575 (uniform-in-level asymptotics).
+
+## 2026-08-17 — Keystone step 2: Mansfield architecture mapped + first probe
+- Mansfield 2502.20372 read (pp. 1-8): uniform-in-j via convolution recursion
+  Q^{j+1}=Q^j+Q^j*G with positive Gregory kernel + finite exceptional set.
+  Transfer plan frozen in research/keystone-plan.md (H_rec hypothesis).
+- First probe (exact, 972 ratios, l=2,4,6, n=6..40, belt grid): P>0 at every
+  point, ratio P_{n+1}/P_n in [740, 1.3e6] — bounded well away from zero.
+  H_rec (positive-kernel recursion along fixed-spin diagonal) strongly
+  supported numerically. Artifact: results/keystone_ratio_probe.json.

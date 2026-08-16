@@ -1,0 +1,22 @@
+{
+ "hypothesis": "H_rec (research/keystone-plan.md)",
+ "nonpositive_P_points": [],
+ "ratio_stats": {
+  "2": {
+   "count": 324,
+   "min": 998.8106317605425,
+   "max": 1260522.1473496312
+  },
+  "4": {
+   "count": 324,
+   "min": 893.8815362148897,
+   "max": 1230441.4415813216
+  },
+  "6": {
+   "count": 324,
+   "min": 740.6870366063497,
+   "max": 1200175.9848116199
+  }
+ },
+ "runtime_s": 1.8
+}
