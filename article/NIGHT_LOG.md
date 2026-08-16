@@ -74,3 +74,5 @@ INCOMPLETE
 - 01:44:33 DONE  knife4-open-region: knife4 open region: 250283 checks, 0 alarms
 - 01:44:33 START completeness-deep-n80
 - 02:47:50 DONE  completeness-deep-n80: deep completeness n<=80: 25002978 checks, 0 alarms
+- 02:47:50 START closest-approach-exact
+- 02:51:01 DONE  closest-approach-exact: closest-approach exact: 24375 checks, 0 alarms
