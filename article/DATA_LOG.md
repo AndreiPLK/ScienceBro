@@ -1052,3 +1052,10 @@ derive CHR sum rules numerically, then in closed form.
   contract bug caught by validation and fixed). Verdicts match v1:
   j=4 CLOSED 14s (v1 152s), j=5 CLOSED 83s (v1 2923s, 35x).
   j=6 FAR-BELOW CLOSED (first ever, ~8 min vs hours on sympy).
+
+## 2026-08-16 (вечер) — FAR-BELOW CLOSED FOR ALL FOUR KNIVES (4,5,6,7)
+- knife7_farbelow_factored.json: CLOSED, 7/7 coefficients, 1316 s on the
+  flint build (v2 port). Far-below now closed j=4 (14s), j=5 (83s),
+  j=6 (438s), j=7 (1316s) — all honest artifacts, engine recorded.
+- Queue 3 running: belowdiag j6/j7 (v1, ~30-60 min each) then honest tail
+  re-runs j4/5/6/7. Then: reconsolidation of theorems 4-7 through the gate.
