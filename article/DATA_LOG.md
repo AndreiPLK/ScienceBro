@@ -1188,3 +1188,23 @@ derive CHR sum rules numerically, then in closed form.
 - Value of the pilot: it kills a naive version of the search before it eats
   a week of compute, and it sharpens the North Star question: the string
   rigidity we are chasing lives in CROSSING x POSITIVITY, not positivity.
+
+## 2026-08-17 (night) — QUADRATIC-FORM hypothesis FALSIFIED (7th negative)
+- Since the residue is a SQUARE, E_2t = sum_i e_i e_{2t-i} (convolution), so
+  P_j = c0 * e^T M e with M block-Hankel from B_m = (-1)^m A_m. If M were
+  PSD, positivity would hold for ARBITRARY root sets. It is NOT: 779/912
+  parameter points have a negative eigenvalue (min -7.8e-5).
+- 360-ANALYSIS of this negative (it is informative, not just a dead end):
+  1. INSIDE: positivity is therefore NOT a formal consequence of "residue =
+     square". It genuinely uses WHICH roots CHR has — the arithmetic
+     progression r_k = ((1+lam)/2 + k)/lam. Any proof MUST use the
+     progression; generic-square arguments cannot work. This kills a whole
+     class of attempted proofs at once (valuable pruning).
+  2. NEIGHBOURS: same lesson explains why Veneziano proofs (Mansfield,
+     AEHM) all lean on the explicit Gamma/Pochhammer structure rather than
+     on abstract positivity of squares.
+  3. ADJACENT MATH: elementary symmetric functions of an ARITHMETIC
+     PROGRESSION have closed forms via Stirling numbers / q-binomials, and
+     such families are exactly where Gasper-type positivity theorems live.
+     => NEXT SHORTEST EXPERIMENT: substitute the AP closed form for e_i into
+     the closed form of P_j and look for a Gasper-summable structure.
