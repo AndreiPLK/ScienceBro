@@ -8,7 +8,7 @@
   "belowdiag_band_K0": "knife4_belowdiag_shift.json",
   "far_below": "knife4_farbelow_factored.json"
  },
- "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0 (ERR-0002 repaired), m>=1; deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal \u2014 full tiling, no overlap gaps",
+ "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0 (ERR-0002 repaired), m >= max(1, j-2) (i.e. n >= j+1, spin l = 2n-2j >= 2 — the knife is defined only there); deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal — full tiling, no overlap gaps",
  "numeric": {
   "batteries": "3,053,832 all-knives + 250,283 knife-4 open region + 25M deep sweep, 0 alarms",
   "independent": "Z3 foreign engine: 1666/1677 shallow cells unsat-confirmed, 0 alarms"

@@ -24,12 +24,17 @@ from pathlib import Path
 from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from provenance import stamp  # noqa: E402
 from prover2_core import Q3Poly  # noqa: E402
 from knife_tail2 import (build_P, bern_axis_pair, collect_pairs,  # noqa: E402
                          univar_nonneg)
 
 RES = Path(__file__).resolve().parents[1] / "results"
 J = int(os.environ.get("KNIFE_J", "6"))
+import knife_tail2 as _kt2
+assert _kt2.J == J, (
+    f"J mismatch: belowdiag2 J={J} but knife_tail2.build_P uses J={_kt2.J}; "
+    "set KNIFE_J for both")
 ELEV = int(os.environ.get("BERN_ELEV", "0"))
 
 # vars: 0=thL, 1=th, 2=sigma, 3=K2
@@ -37,26 +42,24 @@ NV = 4
 thL, th, sig, K2 = (Q3Poly.var(NV, i) for i in range(4))
 
 
-def cert(P, has_K, tag, log, t0):
+def cert(P, has_K, tag, log, t0, strict_needed=True,
+         strict_ok=None):
+    if strict_ok is None:
+        strict_ok = [True]
     A, B = bern_axis_pair(P.a.c, P.b.c, 0, ELEV)   # thL
     A, B = bern_axis_pair(A, B, 1, ELEV)           # th
     A, B = bern_axis_pair(A, B, 2, ELEV)           # sigma
     for kl, (ad, bd) in collect_pairs(A, B, (0, 1, 2)).items():
         afl = {e[0]: cv for e, cv in ad.items()}
         bfl = {e[0]: cv for e, cv in bd.items()}
-        if has_K:
-            if not (univar_nonneg(afl) and univar_nonneg(bfl)):
-                log.append({"cell": tag, "ok": False})
-                return False
-        else:
-            c0 = afl.get(0, fmpq(0)) if afl else fmpq(0)
-            b0 = bfl.get(0, fmpq(0)) if bfl else fmpq(0)
-            from prover2_core import sign_q3
-            if sign_q3(c0, b0) < 0 or len(afl) > 1 or len(bfl) > 1:
-                if not (univar_nonneg(afl) and univar_nonneg(bfl)):
-                    log.append({"cell": tag, "ok": False})
-                    return False
-    log.append({"cell": tag, "ok": True})
+        # S5-fix: единая проверка для обеих веток; спецслучай удалён
+        if not (univar_nonneg(afl) and univar_nonneg(bfl)):
+            log.append({"cell": tag, "ok": False})
+            return False
+        if strict_needed and not (any(cv > 0 for cv in afl.values())
+                                  or any(cv > 0 for cv in bfl.values())):
+            strict_ok[0] = False
+    log.append({"cell": tag, "ok": True, "strict": bool(strict_ok[0])})
     return True
 
 
@@ -110,15 +113,14 @@ def main() -> int:
         print(f"(iii) K={K0}: {'OK' if got else 'FAIL'}"
               f" ({time.time()-t0:.0f}s)", flush=True)
 
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
+    prov = stamp()
     out = {"all_certified": bool(ok), "cells": len(log), "elev": ELEV,
            "j": J, "pieces": pieces, "engine": "belowdiag2-flint",
            "env": {"KNIFE_J": J, "PIECES": "band,k0", "BERN_ELEV": ELEV},
            "scope_note": "pieces field lists exactly what was run; far-below "
                          "covered by knife{J}_farbelow_factored.json",
            "command": f"KNIFE_J={J} python lab/knife_belowdiag2.py",
-           "git": git, "runtime_s": round(time.time() - t0, 1)}
+           **prov, "runtime_s": round(time.time() - t0, 1)}
     (RES / f"knife{J}_belowdiag_shift.json").write_text(
         json.dumps(out, indent=1), encoding="utf-8")
     print(("BELOW-DIAGONAL CLOSED" if ok else "INCOMPLETE"), flush=True)

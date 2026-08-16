@@ -25,6 +25,7 @@ import sympy as sp
 from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from provenance import stamp  # noqa: E402
 from prover2_core import QPoly, Q3Poly, sign_q3, bern_matrix  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
@@ -162,11 +163,27 @@ def univar_nonneg(coeffs):
     return P.eval(1) > 0
 
 
+def univar_strict(coeffs):
+    """S4: полином от одной переменной строго положителен на [0, inf)?
+    Достаточно: неотрицателен и есть положительный коэффициент."""
+    return any(cv > 0 for cv in coeffs.values())
+
+
 def q3_pointwise_ok(a_dict, b_dict):
+    """Все коэффициенты >= 0 (ортант). Возвращает True/False."""
     for e in set(a_dict) | set(b_dict):
         if sign_q3(a_dict.get(e, fmpq(0)), b_dict.get(e, fmpq(0))) < 0:
             return False
     return True
+
+
+def q3_strict(a_dict, b_dict):
+    """S4: есть ли СТРОГО положительный коэффициент (=> P > 0 на ортанте
+    вместе с неотрицательностью остальных)."""
+    for e in set(a_dict) | set(b_dict):
+        if sign_q3(a_dict.get(e, fmpq(0)), b_dict.get(e, fmpq(0))) > 0:
+            return True
+    return False
 
 
 # --------------------------------------------------------------- stages
@@ -291,18 +308,11 @@ def main() -> int:
             A, B = bern_axis_pair(A, B, 3, ELEV)
             groups = collect_pairs(A, B, (0, 3))
         for kl, (ad, bd) in groups.items():
-            if extra == "orthant":       # оставшиеся оси (v, K): ортант
-                if not q3_pointwise_ok(ad, bd):
-                    good = False
-            else:                        # extra == "Kpoly": v ушёл, K-полином
-                afl = {}
-                bfl = {}
-                for e, cv in ad.items():
-                    afl[e[1]] = afl.get(e[1], fmpq(0)) + cv
-                for e, cv in bd.items():
-                    bfl[e[1]] = bfl.get(e[1], fmpq(0)) + cv
-                if not (univar_nonneg(afl) and univar_nonneg(bfl)):
-                    good = False
+            # S6-fix: ветка "Kpoly" удалена (суммировала по v = проверка при
+            # v=1, а не доказательство для всех v>=0). Только честный ортант.
+            assert extra == "orthant", f"unsupported extra={extra}"
+            if not q3_pointwise_ok(ad, bd):
+                good = False
             if not good:
                 break
         log.append({"cell": tag, "ok": bool(good)})
@@ -329,8 +339,7 @@ def main() -> int:
           f" ({time.time()-t0:.0f}s)", flush=True)
     ok &= gotB
 
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
+    prov = stamp()
     failed = [c for c in log if not c.get("ok", True)]
     out = {"j": J, "all_certified": bool(ok), "cells": len(log),
            "engine": "tail2-flint",
@@ -341,7 +350,7 @@ def main() -> int:
            "n_failed": len(failed), "failed_cells": failed[:50],
            "env": {"KNIFE_STAGE": STAGE, "BERN_ELEV": ELEV},
            "command": f"KNIFE_J={J} python lab/knife_tail2.py",
-           "git": git, "runtime_s": round(time.time() - t0, 1)}
+           **prov, "runtime_s": round(time.time() - t0, 1)}
     (RES / f"knife_tail2_j{J}.json").write_text(json.dumps(out, indent=1),
                                                 encoding="utf-8")
     print(("ALL CERTIFIED" if ok else "INCOMPLETE") + f" cells={len(log)}",

@@ -27,6 +27,7 @@ import sympy as sp
 from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from provenance import stamp  # noqa: E402
 from prover2_core import QPoly, Q3Poly  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
@@ -199,15 +200,25 @@ def main() -> int:
         return ok
 
     allok = True
+    per_coeff = {}
     for k2 in sorted(ycoeffs):
-        allok &= factor_all_positive(to_sympy(ycoeffs[k2]), f"c{k2}")
+        res = factor_all_positive(to_sympy(ycoeffs[k2]), f"c{k2}")
+        per_coeff[f"c{k2}"] = bool(res)
+        allok &= res
 
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
+    prov = stamp()
     json.dump({"j": J, "far_below_factored": bool(allok),
+               "scope": ("far-below of deep water: m = 41+v (v>=0), "
+                         "K = v+K3+6 (=> v <= K-6), lam = (K+51+thL)*sqrt3/3 "
+                         "with thL in [0,1], D <= T_cap (whole ray via "
+                         "y-expansion, y>=0)"),
+               "y_coefficients": len(ycoeffs),
+               "per_coefficient": per_coeff,
+               "monomials": len(B.a.c) + len(B.b.c),
+               "strict": True,
                "engine": "farbelow2-flint-build",
                "command": f"KNIFE_J={J} python lab/knife_farbelow2.py",
-               "git": git, "runtime_s": round(time.time() - t0, 1)},
+               **prov, "runtime_s": round(time.time() - t0, 1)},
               open(RES / f"knife{J}_farbelow_factored.json", "w"), indent=1)
     print(f"FAR-BELOW(j={J}) " + ("CLOSED" if allok else "OPEN"), flush=True)
     return 0 if allok else 1

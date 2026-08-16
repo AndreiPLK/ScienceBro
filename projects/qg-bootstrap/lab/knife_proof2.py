@@ -30,6 +30,7 @@ from pathlib import Path
 from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from provenance import stamp  # noqa: E402
 from prover2_core import QPoly  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
@@ -182,15 +183,14 @@ def main() -> int:
         ok &= branch_ok
         print(f"branch k={kk}: {'OK' if branch_ok else 'FAIL'}"
               f" ({time.time()-t0:.0f}s)", flush=True)
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
+    prov = stamp()
     out = {"j": J, "ok_so_far": bool(ok), "engine": "prover2-flint",
            "scope": f"shallow branches k=3..45, m={j_min_m(J)}..{MFIX}; "
                     "k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3]"
                     " incl. lam<1/1000 (ERR-0002 repair)",
            "cells": len(log),
            "command": f"KNIFE_J={J} python lab/knife_proof2.py",
-           "git": git, "runtime_s": round(time.time() - t0, 1)}
+           **prov, "runtime_s": round(time.time() - t0, 1)}
     (RES / f"knife_proof2_j{J}.json").write_text(json.dumps(out, indent=1),
                                                  encoding="utf-8")
     print(("SHALLOW CERTIFIED" if ok else "INCOMPLETE") +

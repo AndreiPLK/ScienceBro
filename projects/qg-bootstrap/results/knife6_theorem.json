@@ -8,7 +8,7 @@
   "belowdiag_band_K0": "knife6_belowdiag_shift.json",
   "far_below": "knife6_farbelow_factored.json"
  },
- "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0 (ERR-0002 repaired), m>=1; deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal \u2014 full tiling, no overlap gaps",
+ "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0 (ERR-0002 repaired), m >= max(1, j-2) (i.e. n >= j+1, spin l = 2n-2j >= 2 — the knife is defined only there); deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal — full tiling, no overlap gaps",
  "numeric": {
   "batteries": "25M sweep covers j=6 cells, 0 alarms"
  },
