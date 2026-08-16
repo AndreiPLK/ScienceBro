@@ -901,3 +901,11 @@ old entries; append corrections as new entries.
   Runtimes: 130.6->2.3 s (57x), 209->5.7 s, 350->12.4 s, 729->24 s.
 - Memory: MB instead of GB. New standing rule: machine never loaded to 99%.
 - v2 immediately deployed: shallow j=8..12 running.
+
+## 2026-08-17 (ночь) — Shallow certified to j=12; Z3 pilot; tools digest
+- Prover2 shallow: knives 8-12 ALL CERTIFIED (1505/1462/1419/1376/1333 cells).
+  Shallow stage now proven for j=3..12.
+- Z3 pilot: independent SMT check of a certified cell (j=4,k=3,m=2): unsat in
+  0.0s — foreign-engine confirmation path opened for the validator role.
+- docs/LINKS_DIGEST.md: 22 links verified (GitHub API), 3 adopted, 1 adopting.
+- Adversarial workflow-critic (diamond) launched on knife-4/5 theorems.
