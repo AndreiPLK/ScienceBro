@@ -961,3 +961,12 @@ old entries; append corrections as new entries.
   with honest per-piece verdicts). Combined with knife5_farbelow_factored
   (v<=K-6) and above-diagonal (tail rerun queued), the deep-water quadrant
   for j=5 is now fully covered by passing artifacts.
+
+## 2026-08-17 — Keystone probe 2: kernel with constant works
+- Exact K0 (ratio of i=0 master-formula terms) is too big alone: R<0 at ~35%%
+  of belt points, BUT the ratio P_{n+1}/(K0 P_n) >= 0.295 EVERYWHERE on the
+  grid (936 exact checks, worst at l=6 n=6 lam=12 D~=T_hat). Refined H_rec:
+  P_{n+1} >= c*K0*P_n with c=1/4 — enough for induction (any c>0 propagates
+  positivity). Proof route: collapse form P = term0*(1-X)^{j-1}*(1+err) with
+  bounded err — connects keystone to the Binomial Collapse note (article 5).
+  Artifact: results/keystone_kernel_probe.json.
