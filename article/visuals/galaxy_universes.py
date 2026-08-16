@@ -5,17 +5,16 @@ It shines as a star iff D <= T_hat(lam) (the proven shore law, paper 2);
 brightness/height = safety margin. Dead theories = faint red embers below.
 """
 
+import random
 import sys
 from fractions import Fraction
 from pathlib import Path
-import math
-import random
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]
                        / "projects" / "qg-bootstrap" / "lab"))
 import plotly.graph_objects as go  # noqa: E402
-from PIL import Image  # noqa: E402
 from keystone_hunt import T_hat  # noqa: E402
+from PIL import Image  # noqa: E402
 
 random.seed(4)
 xs, ys, zs, cols, sizes = [], [], [], [], []

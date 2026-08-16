@@ -71,4 +71,5 @@ addopts = "-q"
 [tool.ruff.lint.per-file-ignores]
 "projects/*/lab/*" = ["E501", "E741", "N806", "N803", "F841", "B007", "B023", "B905", "E402"]
 "tools/*" = ["E501"]
+"article/visuals/*" = ["E501", "E741", "E702", "B007", "F401", "I001", "E402"]
 "projects/*/validation/*" = ["E501", "F841", "B007", "B905", "E741"]

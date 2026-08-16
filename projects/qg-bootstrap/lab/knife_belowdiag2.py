@@ -15,7 +15,6 @@ from __future__ import annotations
 
 import json
 import os
-import subprocess
 import sys
 import time
 from fractions import Fraction
@@ -24,14 +23,14 @@ from pathlib import Path
 from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from knife_tail2 import bern_axis_pair, build_P, collect_pairs, univar_nonneg  # noqa: E402
 from provenance import stamp  # noqa: E402
 from prover2_core import Q3Poly  # noqa: E402
-from knife_tail2 import (build_P, bern_axis_pair, collect_pairs,  # noqa: E402
-                         univar_nonneg)
 
 RES = Path(__file__).resolve().parents[1] / "results"
 J = int(os.environ.get("KNIFE_J", "6"))
 import knife_tail2 as _kt2
+
 assert _kt2.J == J, (
     f"J mismatch: belowdiag2 J={J} but knife_tail2.build_P uses J={_kt2.J}; "
     "set KNIFE_J for both")

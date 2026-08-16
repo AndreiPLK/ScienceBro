@@ -34,9 +34,9 @@ from math import factorial
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from provenance import stamp  # noqa: E402
-from knife_proof2 import Bj_coeffs, e_doubled_int  # noqa: E402
 from keystone_hunt import T_hat, eval_P  # noqa: E402
+from knife_proof2 import Bj_coeffs, e_doubled_int  # noqa: E402
+from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 

@@ -15,7 +15,6 @@ from __future__ import annotations
 import json
 import math
 import os
-import subprocess
 import sys
 import time
 from fractions import Fraction
@@ -26,7 +25,7 @@ from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from provenance import stamp  # noqa: E402
-from prover2_core import QPoly, Q3Poly, sign_q3, bern_matrix  # noqa: E402
+from prover2_core import Q3Poly, QPoly, bern_matrix, sign_q3  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 J = int(os.environ.get("KNIFE_J", "4"))

@@ -5,13 +5,21 @@
  "scope": "shallow branches k=3..45, m=3..40; k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3] incl. lam<1/1000 (ERR-0002 repair)",
  "cells": 1634,
  "command": "KNIFE_J=5 python lab/knife_proof2.py",
- "git": "a9966b2f1815",
- "git_full": "a9966b2f1815c6dae26fa35f2eb92c51a4bbf57b",
- "dirty": false,
- "dirty_code_files": [],
- "dirty_count": 0,
+ "git": "669a24b6e8f5",
+ "git_full": "669a24b6e8f56bed5c2f8b8f85b36bb130603f01",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/chr_closed_form.py",
+  "projects/qg-bootstrap/lab/knife_belowdiag2.py",
+  "projects/qg-bootstrap/lab/knife_farbelow2.py",
+  "projects/qg-bootstrap/lab/knife_farbelow_factored.py",
+  "projects/qg-bootstrap/lab/knife_proof2.py",
+  "projects/qg-bootstrap/lab/knife_tail2.py",
+  "pyproject.toml"
+ ],
+ "dirty_count": 7,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 5.5
+ "runtime_s": 5.4
 }

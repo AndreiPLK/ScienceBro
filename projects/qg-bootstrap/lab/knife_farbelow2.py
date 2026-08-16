@@ -18,7 +18,6 @@ from __future__ import annotations
 
 import json
 import os
-import subprocess
 import sys
 import time
 from pathlib import Path
@@ -28,7 +27,7 @@ from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from provenance import stamp  # noqa: E402
-from prover2_core import QPoly, Q3Poly  # noqa: E402
+from prover2_core import Q3Poly, QPoly  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 J = int(os.environ.get("KNIFE_J", "5"))
@@ -179,7 +178,7 @@ def main() -> int:
         # FALLBACK (быстрый): подъём степени Бернштейна по оси thL часто
         # убирает редкие отрицательные мономы (их 11 из 1752 при j=9).
         # thL живёт на [0,1], v и K3 — на ортанте: делаем Бернштейн по thL.
-        from knife_tail2 import bern_axis_pair, collect_pairs
+        from knife_tail2 import bern_axis_pair
         print("  fallback: Bernstein elevation in thL...", flush=True)
         allok = True
         for k2 in sorted(ycoeffs):

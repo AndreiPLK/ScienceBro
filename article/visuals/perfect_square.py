@@ -13,8 +13,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]
                        / "projects" / "qg-bootstrap" / "lab"))
 import numpy as np  # noqa: E402
 import plotly.graph_objects as go  # noqa: E402
-from PIL import Image  # noqa: E402
 from knife_proof2 import e_doubled_int  # noqa: E402
+from PIL import Image  # noqa: E402
 
 ns = list(range(5, 19))
 xs = np.linspace(0, 0.06, 220)

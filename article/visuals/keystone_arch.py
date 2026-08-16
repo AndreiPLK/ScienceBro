@@ -13,11 +13,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]
                        / "projects" / "qg-bootstrap" / "lab"))
-from fractions import Fraction  # noqa: E402
 import plotly.graph_objects as go  # noqa: E402
-from PIL import Image  # noqa: E402
-from knife_proof2 import Bj_coeffs, e_doubled_int  # noqa: E402
 from keystone_hunt import T_hat, eval_P  # noqa: E402
+from knife_proof2 import Bj_coeffs, e_doubled_int  # noqa: E402
+from PIL import Image  # noqa: E402
 
 
 def fr(q):

@@ -14,8 +14,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]
                        / "projects" / "qg-bootstrap" / "lab"))
 import numpy as np  # noqa: E402
 import plotly.graph_objects as go  # noqa: E402
-from PIL import Image  # noqa: E402
 from knife_proof2 import Bj_coeffs  # noqa: E402
+from PIL import Image  # noqa: E402
 
 
 def T_n(n, lam):
