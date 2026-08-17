@@ -1360,3 +1360,32 @@ derive CHR sum rules numerically, then in closed form.
   (4) finite set of small j closed by the machine (already done for j<=12).
   This is the same skeleton Mansfield used for Veneziano; ours now has
   measured constants to check every step against.
+
+## 2026-08-17 (canyon) — *** CONTOUR REPRESENTATION FOR CHR OBTAINED ***
+Verified numerically to 1e-13 (j = 5..10):
+
+    P_j / c0 = (1/2pi) * INTEGRAL_0^{2pi} G_n(x)^2 * Psi_j(1/x) dtheta,
+    x = r e^{i theta},  any r inside the first singularity,
+    G_n(x) = prod_{a in S_n} (1 - a^2 x),   S_n = { n - 2k > 0 },
+    Psi_j(y) = SUM_{t=0}^{j-1} A_t y^t,
+    A_t = (1-j)_t (1-R)_t / ( (1-n)_t (3/2-n)_t s^{2t} )  > 0.
+
+KEY SIMPLIFICATION found on the way: since [x^t] G^2 = (-1)^t E_{2t}, the
+alternating signs CANCEL against the master formula's signs. The bracket is
+therefore a pairing of POSITIVE weights A_t with the (sign-alternating)
+Taylor coefficients of a perfect square — not an alternating sum of positive
+terms. That is a structurally different and much friendlier statement.
+
+Why this matters: this is the CHR analogue of the AEHM/Mansfield contour
+representation (arXiv:2201.11575 eq. 2.10-2.11, arXiv:2502.20372 eq. 2.11).
+Both existing proofs of all-level positivity (Veneziano, D<=6 and D<=10) work
+by manipulating exactly such a contour integrand into a manifestly positive
+form. We now have the same handle for the graviton family with lambda.
+
+Immediate next steps inside the canyon:
+  (a) deform the contour to the saddle at t*/j ~ 0.42 (equivalently a specific
+      |x| in the integrand) and extract the leading asymptotics with an
+      explicit positive constant;
+  (b) attempt Mansfield's trick: add a term with vanishing residue that
+      cancels the negative Laurent coefficients of the integrand;
+  (c) both are now concrete manipulations of one explicit integral.
