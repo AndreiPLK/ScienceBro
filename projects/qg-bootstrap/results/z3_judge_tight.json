@@ -1,0 +1,1507 @@
+{
+ "role": "foreign-engine confirmation of the tightest zone of the programme (branch k=44..46, lam about 26, levels 38..52, even knives, margin about one percent)",
+ "why_here": "smallest measured margin in the whole project; also the zone our own earlier tools covered worst (old hunt swept only spins 0,2,4,6; this zone has spin about 80, and n=44 sits past the old m<=40 cut-off)",
+ "claim_restated": "exists lam in branch, D in [4, T_k(lam)] with P_j <= 0 ?  unsat means no violation in the whole continuous cell",
+ "independence": "imports only exact integer coefficients of B_j; no certificate logic of ours is shared",
+ "cells": 135,
+ "alarms": [],
+ "unknown_count": 45,
+ "all_unsat": false,
+ "rows": [
+  {
+   "j": 4,
+   "n": 38,
+   "spin": 68,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 38,
+   "spin": 68,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 38,
+   "spin": 68,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 39,
+   "spin": 70,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 39,
+   "spin": 70,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 39,
+   "spin": 70,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 40,
+   "spin": 72,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 40,
+   "spin": 72,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 40,
+   "spin": 72,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 41,
+   "spin": 74,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 41,
+   "spin": 74,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 41,
+   "spin": 74,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 42,
+   "spin": 76,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 42,
+   "spin": 76,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 42,
+   "spin": 76,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 43,
+   "spin": 78,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 43,
+   "spin": 78,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 43,
+   "spin": 78,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 44,
+   "spin": 80,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 44,
+   "spin": 80,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 44,
+   "spin": 80,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 45,
+   "spin": 82,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 45,
+   "spin": 82,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 45,
+   "spin": 82,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 46,
+   "spin": 84,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 46,
+   "spin": 84,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 46,
+   "spin": 84,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 47,
+   "spin": 86,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 47,
+   "spin": 86,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 47,
+   "spin": 86,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 48,
+   "spin": 88,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 48,
+   "spin": 88,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 48,
+   "spin": 88,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 49,
+   "spin": 90,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 49,
+   "spin": 90,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 49,
+   "spin": 90,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 50,
+   "spin": 92,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 50,
+   "spin": 92,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 50,
+   "spin": 92,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 51,
+   "spin": 94,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 51,
+   "spin": 94,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 51,
+   "spin": 94,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 52,
+   "spin": 96,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 52,
+   "spin": 96,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 4,
+   "n": 52,
+   "spin": 96,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 38,
+   "spin": 64,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 38,
+   "spin": 64,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 38,
+   "spin": 64,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 39,
+   "spin": 66,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 39,
+   "spin": 66,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 39,
+   "spin": 66,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 40,
+   "spin": 68,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 40,
+   "spin": 68,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 40,
+   "spin": 68,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 41,
+   "spin": 70,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 41,
+   "spin": 70,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 41,
+   "spin": 70,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 42,
+   "spin": 72,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 42,
+   "spin": 72,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 42,
+   "spin": 72,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 43,
+   "spin": 74,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 43,
+   "spin": 74,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 43,
+   "spin": 74,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 44,
+   "spin": 76,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 44,
+   "spin": 76,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 44,
+   "spin": 76,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 45,
+   "spin": 78,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 45,
+   "spin": 78,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 45,
+   "spin": 78,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 46,
+   "spin": 80,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 46,
+   "spin": 80,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 46,
+   "spin": 80,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 47,
+   "spin": 82,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 47,
+   "spin": 82,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 47,
+   "spin": 82,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 48,
+   "spin": 84,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 48,
+   "spin": 84,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 48,
+   "spin": 84,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 49,
+   "spin": 86,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 49,
+   "spin": 86,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 49,
+   "spin": 86,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 50,
+   "spin": 88,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 50,
+   "spin": 88,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 50,
+   "spin": 88,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 51,
+   "spin": 90,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 51,
+   "spin": 90,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 51,
+   "spin": 90,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 52,
+   "spin": 92,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 52,
+   "spin": 92,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 6,
+   "n": 52,
+   "spin": 92,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unsat"
+  },
+  {
+   "j": 8,
+   "n": 38,
+   "spin": 60,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 38,
+   "spin": 60,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 38,
+   "spin": 60,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 39,
+   "spin": 62,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 39,
+   "spin": 62,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 39,
+   "spin": 62,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 40,
+   "spin": 64,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 40,
+   "spin": 64,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 40,
+   "spin": 64,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 41,
+   "spin": 66,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 41,
+   "spin": 66,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 41,
+   "spin": 66,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 42,
+   "spin": 68,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 42,
+   "spin": 68,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 42,
+   "spin": 68,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 43,
+   "spin": 70,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 43,
+   "spin": 70,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 43,
+   "spin": 70,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 44,
+   "spin": 72,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 44,
+   "spin": 72,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 44,
+   "spin": 72,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 45,
+   "spin": 74,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 45,
+   "spin": 74,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 45,
+   "spin": 74,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 46,
+   "spin": 76,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 46,
+   "spin": 76,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 46,
+   "spin": 76,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 47,
+   "spin": 78,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 47,
+   "spin": 78,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 47,
+   "spin": 78,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 48,
+   "spin": 80,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 48,
+   "spin": 80,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 48,
+   "spin": 80,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 49,
+   "spin": 82,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 49,
+   "spin": 82,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 49,
+   "spin": 82,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 50,
+   "spin": 84,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 50,
+   "spin": 84,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 50,
+   "spin": 84,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 51,
+   "spin": 86,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 51,
+   "spin": 86,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 51,
+   "spin": 86,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 52,
+   "spin": 88,
+   "k": 44,
+   "lam_range": [
+    "249/10",
+    "51/2"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 52,
+   "spin": 88,
+   "k": 45,
+   "lam_range": [
+    "51/2",
+    "261/10"
+   ],
+   "verdict": "unknown"
+  },
+  {
+   "j": 8,
+   "n": 52,
+   "spin": 88,
+   "k": 46,
+   "lam_range": [
+    "261/10",
+    "267/10"
+   ],
+   "verdict": "unknown"
+  }
+ ],
+ "command": "python lab/z3_judge_tight.py",
+ "git": "15a4f7c75e69",
+ "git_full": "15a4f7c75e691aaa080e046d2befeb8897cd68e2",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 8288.1
+}

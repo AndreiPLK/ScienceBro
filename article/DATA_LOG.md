@@ -2285,3 +2285,39 @@ proposes to use, so that plan is standard machinery rather than an invention;
 and their Prop. 1.5 shows how hard sharp positivity statements get even for
 d = 4, 6, 8 (they needed extensive computer algebra), which is a fair warning
 about the difficulty of the remaining strip problem.
+
+## 2026-08-17 16:57 -- Strip certificate on ALL branches, and a correction to my own claim
+
+**Result.** With the fast engine (native flint mpoly) the strip certificate now
+closes 774 of 774 cells: j = 2..10, BOTH parities, and ALL shore branches
+k = 3..45, i.e. every lam up to about 26.1 -- in 15 seconds where the old engine
+needed hours. A larger run (j to 30) is under way.
+
+**Correction to something I said an hour ago.** When the fast engine first
+reported failures on far branches, I concluded it was "a real limit of the
+method" and wrote that down. That was WRONG, and the way I checked it was
+faulty: I compared the fast and slow engines on the same call
+(cert_ok(build_N(...))), they agreed, and I took the agreement as evidence
+about the method. It was only evidence that both engines computed the same
+polynomial -- which they did.
+
+The actual cause was my own porting bug: the TAIL + BASE structure was lost in
+the port. Manifest positivity does not hold from the lowest level (the
+D-threshold has an interior minimum in n, recorded earlier today), so the run
+must search for the smallest shift M giving a manifest tail and leave the
+finitely many levels below as the base. The slow engine did that; the fast one
+did not. Restored, and the failures vanished entirely.
+
+**Lesson, recorded.** When a faster reimplementation disagrees with the older
+run, the first hypothesis is a porting bug, not a discovery about the
+mathematics -- and a cross-check must exercise the FULL pipeline, not the one
+function I happen to suspect. I had the discipline right this morning for the
+far-below port (where the validation contract caught a non-uniform clearing)
+and dropped it here.
+
+Net position on coverage after this block:
+  * lam: all branches k <= 45 (lam up to ~26.1), symbolically, on the strip;
+  * n: all levels, via tail + base with the join condition checked;
+  * D: the whole stretch below the shore, by the classical descent lemma;
+  * j: finite -- 2..10 confirmed, larger run in progress. Still the only gap,
+    together with lam beyond the last branch.

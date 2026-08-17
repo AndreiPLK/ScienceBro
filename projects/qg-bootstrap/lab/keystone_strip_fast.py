@@ -113,6 +113,74 @@ def cert_ok(N) -> bool:
     return bool(cs) and all(c >= 0 for c in cs) and any(c > 0 for c in cs)
 
 
+def build_N_sub(j: int, parity: int, k: int, n0: int, a: Fraction, b: Fraction):
+    """Same construction, but on a SUB-INTERVAL [a, b] of the lam branch.
+
+    Manifest positivity is not enough on far branches: measured, the plain
+    certificate passes up to about branch k = 20 (lam ~ 11-15) and fails
+    beyond, which matches the margin law -- the relative margin thins like
+    1/lam. The repair is the standard one from the knife theorems: split the
+    branch and certify the pieces.
+    """
+    onepw = ONE + W
+    onepv = ONE + V
+    onepv2 = onepv * onepv
+    s_num = lin_n(a - 1, Fraction(1), n0) + lin_n(b - 1, Fraction(1), n0) * V
+    lam_num = CTX.from_dict({(0, 0, 0): q(a), (0, 1, 0): q(b)})
+    r = Fraction(3 * (2 * k - 3), k * (k - 2))
+    t_num = (q(r) * (lam_num * lam_num + (2 * k - 2) * (lam_num * onepv)
+                     + onepv2) + q(Fraction(2 * k)) * onepv2)
+    s_pows = {0: ONE}
+    for d in range(1, 2 * (j - 1) + 1):
+        s_pows[d] = s_pows[d - 1] * s_num
+    w_pows = {0: ONE}
+    for d in range(1, j):
+        w_pows[d] = w_pows[d - 1] * onepw
+    N = CTX.from_dict({})
+    for t in range(j):
+        m = j - 1 - t
+        e_coeffs = slow.E2t_in_n(t, parity)
+        base = CTX.from_dict({(0, 0, 0): q(Fraction(n0)),
+                              (0, 0, 1): q(Fraction(2))})
+        e_pow = {0: ONE}
+        for d in range(1, len(e_coeffs)):
+            e_pow[d] = e_pow[d - 1] * base
+        e_pol = CTX.from_dict({})
+        for d, c in enumerate(e_coeffs):
+            if c:
+                e_pol += q(c) * e_pow[d]
+        term = q(Fraction((-1) ** t)) * e_pol
+        for i in range(1, t + 1):
+            term = q(Fraction(j - i)) * term
+        for i in range(t + 1, j):
+            term = term * lin_n(Fraction(-i), Fraction(1), n0)
+        term = term * s_pows[2 * (j - 1 - t)]
+        for i in range(m):
+            term = term * lin_n(Fraction(1, 2) - j + i, Fraction(1), n0)
+        for i in range(m, j - 1):
+            bse = lin_n(Fraction(-1) - j + i, Fraction(1), n0)
+            term = term * ((q(Fraction(1, 2)) * t_num + bse * onepv2) * onepw
+                           + W * onepv2)
+        term = term * w_pows[j - 1 - t]
+        N += term
+    return N
+
+
+def certify_branch(j: int, parity: int, k: int, n0: int, a: Fraction,
+                   b: Fraction, depth: int = 0, max_depth: int = 7):
+    """Certify the branch, splitting the lam interval where needed."""
+    if cert_ok(build_N_sub(j, parity, k, n0, a, b)):
+        return True, depth
+    if depth >= max_depth:
+        return False, depth
+    mid = (a + b) / 2
+    ok1, d1 = certify_branch(j, parity, k, n0, a, mid, depth + 1, max_depth)
+    if not ok1:
+        return False, d1
+    ok2, d2 = certify_branch(j, parity, k, n0, mid, b, depth + 1, max_depth)
+    return ok2, max(d1, d2)
+
+
 def main() -> int:
     t0 = time.time()
     # ---- validation against the reference engine, before any verdict ----
@@ -171,18 +239,42 @@ def main() -> int:
         )
 
     # ---- the actual run ------------------------------------------------
+    # TAIL + BASE, restored: it was lost in the port, which is exactly why the
+    # first fast run reported failures the slow engine never had. Manifest
+    # positivity need not hold from the LOWEST level, so find the smallest
+    # shift M giving a manifest tail n >= n0 + 2M; the finitely many levels
+    # below it are the base, already certified by step 1 (n <= j + 20). Where
+    # no tail is found, fall back to splitting the lam interval.
+    STEP1_N_MAX = 20
     cells = certified = 0
     failures = []
+    depth_hist: dict[int, int] = {}
+    shift_hist: dict[int, int] = {}
     for j in range(J_MIN, J_MAX + 1):
         for parity in (0, 1):
             n0 = max(4, j + 1)
             n0 += (n0 % 2) ^ parity
             for k in range(3, K_MAX + 1):
+                a, b = slow.branch_range(k)
                 cells += 1
-                if cert_ok(build_N(j, parity, k, n0)):
+                M = None
+                for cand in range(0, 40):
+                    if cert_ok(build_N(j, parity, k, n0 + 2 * cand)):
+                        M = cand
+                        break
+                if M is not None and not [
+                    x for x in range(n0, n0 + 2 * M, 2) if x > j + STEP1_N_MAX
+                ]:
                     certified += 1
+                    shift_hist[M] = shift_hist.get(M, 0) + 1
+                    continue
+                ok, d = certify_branch(j, parity, k, n0, a, b)
+                if ok:
+                    certified += 1
+                    depth_hist[d] = depth_hist.get(d, 0) + 1
                 elif len(failures) < 20:
-                    failures.append({"j": j, "parity": parity, "k": k})
+                    failures.append({"j": j, "parity": parity, "k": k,
+                                     "tail_shift": M, "split_depth": d})
         print(
             f"  j={j}: cells {cells}, certified {certified}, "
             f"failures {len(failures)} ({time.time() - t0:.0f}s)",

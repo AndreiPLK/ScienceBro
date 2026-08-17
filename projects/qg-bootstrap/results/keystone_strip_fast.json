@@ -5,39 +5,37 @@
  "benchmark": [
   {
    "j": 6,
-   "fast_s": 0.015,
-   "qpoly_s": 0.0952,
-   "speedup": 6.3
+   "fast_s": 0.0207,
+   "qpoly_s": 0.0976,
+   "speedup": 4.7
   },
   {
    "j": 8,
-   "fast_s": 0.06,
-   "qpoly_s": 0.3946,
-   "speedup": 6.6
+   "fast_s": 0.07,
+   "qpoly_s": 0.4555,
+   "speedup": 6.5
   }
  ],
  "coverage": {
-  "j": "2..8",
-  "branches": "3..12",
+  "j": "2..10",
+  "branches": "3..45",
   "n": "all levels of the stated parity",
   "D": "the width-2 strip below the shore"
  },
- "cells": 140,
- "certified": 140,
+ "cells": 774,
+ "certified": 774,
  "all_certified": true,
  "failures": [],
- "command": "KSF_JMAX=8 python lab/keystone_strip_fast.py",
- "git": "a3a92b9fa1c2",
- "git_full": "a3a92b9fa1c2ce62a65a26316a399a3d2c402d4f",
+ "command": "KSF_JMAX=10 python lab/keystone_strip_fast.py",
+ "git": "15a4f7c75e69",
+ "git_full": "15a4f7c75e691aaa080e046d2befeb8897cd68e2",
  "dirty": true,
  "dirty_code_files": [
-  "projects/qg-bootstrap/lab/keystone_strip_symbolic.py",
-  "projects/qg-bootstrap/lab/keystone_symbolic_n.py",
   "projects/qg-bootstrap/lab/keystone_strip_fast.py"
  ],
- "dirty_count": 3,
+ "dirty_count": 1,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 1.5
+ "runtime_s": 15.0
 }
