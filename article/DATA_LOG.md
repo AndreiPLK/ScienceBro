@@ -1312,3 +1312,23 @@ derive CHR sum rules numerically, then in closed form.
          instead of generic bounds. THIS is the keystone's real content.
 - This reframing is why 14 generic attempts failed: they all tried to beat a
   regime where the margin is 2e-4 with tools that need a finite margin.
+
+## 2026-08-17 (day, close) — canyon located; one numeric alarm raised and cleared
+- Golden-section search for lam_crit(j) (artifact results/keystone_lamcrit.json):
+  the canyon floor sits at lam_crit ≈ 10.7 (j=8) rising to ≈ 18.8 (j=16),
+  with the minimum margin shrinking monotonically: 4.9e-3 -> 3.4e-4.
+  The ratio lam_crit/j is NOT constant (1.34 -> 1.17 -> then falls), so the
+  suggested identification with rho* = 1+1/sqrt(3) is NOT supported by this
+  measurement. Recorded as such: the link stays a hypothesis, downgraded.
+- ALARM AND RESOLUTION (protocol: never leave a negative unexplained): at
+  j=24 the quadrature reported a NEGATIVE margin (-0.17). Direct exact check
+  of P_j by the master formula at 15 belt points (j=24, n=32, lam 7..30):
+  ALL POSITIVE. So the negative margin is a NUMERICAL artifact — Hankel
+  systems of order K=12 are catastrophically ill-conditioned in float.
+  Consequence for the method: the margin map is trustworthy only up to about
+  j <= 16 in floating point; beyond that it needs exact rational quadrature.
+  Logged as a tool limitation, not a mathematical one.
+- Day's net: the keystone is now localised (a canyon whose floor we can
+  compute), the two structural results stand, and 14+ approaches are
+  documented as dead ends with signatures. The remaining task is an exact
+  argument inside the canyon.
