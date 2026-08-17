@@ -1,10 +1,10 @@
 {
- "j": 11,
+ "j": 13,
  "ok_so_far": true,
  "engine": "prover2-flint",
- "scope": "shallow branches k=3..45, m=9..40; k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3] incl. lam<1/1000 (ERR-0002 repair)",
- "cells": 1376,
- "command": "KNIFE_J=11 python lab/knife_proof2.py",
+ "scope": "shallow branches k=3..45, m=11..40; k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3] incl. lam<1/1000 (ERR-0002 repair)",
+ "cells": 1290,
+ "command": "KNIFE_J=13 python lab/knife_proof2.py",
  "git": "3895cf5e5c5f",
  "git_full": "3895cf5e5c5fedca4a38ee2c34693a74e1466724",
  "dirty": false,
@@ -13,5 +13,5 @@
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 221.4
+ "runtime_s": 477.3
 }
