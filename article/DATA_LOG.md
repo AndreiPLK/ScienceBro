@@ -2235,3 +2235,53 @@ to the Schoenberg framing but not to the lemma itself. Cost: nothing published,
 because the check happened the same day. Rule for next time: any statement I am
 about to call a result gets a prior-art search in the same hour, not the next
 morning.
+
+## 2026-08-17 15:58 -- Polya-on-the-sphere does not apply (negative #28), but the sign
+## pattern of the residue explains why a shore exists at all
+
+Read Beatson, zu Castell, Xu, "A Polya criterion for (strict) positive
+definiteness on the sphere", arXiv:1110.2437, in full text (pages 1-5).
+
+**Negative #28.** Their Polya-type criterion (their Thm 1.3) requires
+supp(g) contained in [0, pi) -- the function must VANISH near theta = pi -- plus
+convexity of a signed derivative. Our residue is a polynomial that vanishes
+nowhere on the interval, so the criterion does not apply, and no amount of
+rescaling fixes a support condition. Dead end, recorded.
+
+**But their Thm 1.2 (Schoenberg) is directly useful.** f(cos.) is positive
+definite on ALL spheres iff its expansion in POWERS of cos(theta) has
+nonnegative coefficients. Since our shore exists -- positivity fails above some
+dimension -- some coefficient of the residue in powers of cos(theta) must be
+negative. Measured, and the pattern is perfectly clean:
+
+    n = 4 : 0 0 + 0 - 0 +
+    n = 5 : + 0 - 0 + 0 - 0 +
+    n = 6 : 0 0 + 0 - 0 + 0 - 0 +
+    n = 7 : + 0 - 0 + 0 - 0 + 0 - 0 +
+    n = 8 : 0 0 + 0 - 0 + 0 - 0 + 0 - 0 +
+
+Only every second power appears, and the signs STRICTLY ALTERNATE. The pattern
+is identical for lam = 1, 3 and 26 -- it does not depend on lam at all.
+
+**Why, structurally.** Strict alternation of a polynomial in y = cos^2(theta)
+means (Descartes) that all of its roots in y are real and positive. That is
+exactly our square identity seen from the other side: the residue is
+prod_a (1 - a^2 y)^2 up to a positive factor, so its roots in y are the
+squared inverse spectral values, all real and positive.
+
+So the chain is now complete as an explanation:
+  * residue = a polynomial in cos^2 with all roots real and positive
+    => its coefficients in powers of cos strictly alternate
+    => by Schoenberg's Thm 1.2 it is NOT positive definite on all spheres
+    => there is a largest dimension where positivity survives: THE SHORE.
+The existence of the shore is therefore forced by the root structure of the
+spectrum, with no input from string physics. The shore's VALUE still needs the
+full computation -- this explains existence, not location.
+
+Two useful pieces of prior art for the writeup, both now read rather than
+skimmed: their eq. (2.1) is exactly the projection form b_n =
+int f(x) C_n^lambda(x) w_lambda(x) dx that research/closing-the-last-infinity.md
+proposes to use, so that plan is standard machinery rather than an invention;
+and their Prop. 1.5 shows how hard sharp positivity statements get even for
+d = 4, 6, 8 (they needed extensive computer algebra), which is a fair warning
+about the difficulty of the remaining strip problem.
