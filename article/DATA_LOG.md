@@ -521,7 +521,8 @@ old entries; append corrections as new entries.
 ## 2026-08-15 — Paper 2 goes public: package, GitHub, site
 - Paper 2 final: 6 pages, max visuals per the new explain-to-everyone law
   (Fig 3 = 3D cliff of survival, new "Explain it to anyone" section,
-  Fig 4 = companion ship's bow as fun). Lost ef repaired (CR byte).
+  Fig 4 = companion ship's bow as fun). Lost 
+ef repaired (CR byte).
 - B6 closed: generators written for grav_zoomout (v2 matches original 330/330),
   hunt_2n8 (0 alarms, 680 checks, now with metadata), lowspin_stress (0 alarms).
 - Package release/qg-gravity-shore assembled per release-review manifest;
@@ -1296,11 +1297,13 @@ derive CHR sum rules numerically, then in closed form.
     * lam >= 100    : margin ~ 1 (trivial)
   The critical zone MOVES with j: lam_crit ≈ 1.7 j (7 at j=6, 14 at j=10,
   30 at j=18).
-- KEY LINK: our published blade theorem found an EXACT TANGENCY at
-  rho* = 1 + 1/sqrt(3) ≈ 1.577 in the variable rho = lam/k. The critical
-  zone of the grand theorem sits at the SAME place. So the grand theorem's
-  hard core is not a new phenomenon — it is the tangency we already analysed
-  and beat once (for j=3), now appearing for all j.
+- CANDIDATE LINK (honest status: SUGGESTIVE, not established): our published
+  blade theorem found an EXACT TANGENCY at rho* = 1 + 1/sqrt(3) ≈ 1.577 in
+  rho = lam/k. The measured critical ratio lam_crit/j averages 1.27 (spread
+  1.0-1.67) on a coarse lam grid, i.e. the SAME ORDER but not yet matched.
+  Refining the grid to locate lam_crit(j) precisely is a cheap next test; if
+  it converges to rho*, the grand theorem''s hard core is exactly the
+  tangency we already beat for j=3.
 - STRATEGY that follows (three regimes, only one is hard):
     (i) lam small: crude majorant suffices (margin >= 0.13 everywhere tested);
     (ii) lam large: margin -> 1, trivial;
