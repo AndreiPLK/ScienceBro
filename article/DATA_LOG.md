@@ -2479,3 +2479,57 @@ eight new attempts: it pointed at the one line we owned and never finished. And
 the reason we abandoned it was a bug we never diagnosed -- I wrote "Stokes
 topology is the obstacle" in the morning on the strength of a number that was
 simply wrong.
+
+## 2026-08-17 18:09 -- WHERE THE ASYMPTOTIC ROUTE ACTUALLY ENDS (measured, not guessed)
+
+Pushed the saddle route to its limit with certified roots
+(fmpq_poly.complex_roots) and ball arithmetic. Result: it works in a WINDOW of
+knife indices and fails beyond it, for a reason that is now measured rather
+than suspected.
+
+**Where it works.** Relative error of the saddle sum against the exact
+coefficient, times j:
+
+    j       6      8      10     12     14     16
+    err*j   2.50   2.44   2.40   2.37   2.35   2.52
+
+so the leading-order error obeys err = C/j with C = 2.4 to within a few
+percent, and the standard 1/N correction brings the error down to ~1.2% at
+j = 14. In this window the asymptotics is genuinely good.
+
+**Where it ends, and why.** From j = 20 the naive sum diverges from the truth
+(error 1.8 at j=20, 48 at j=24). This is NOT precision loss: dps = 300 and
+dps = 2000 give bit-identical numbers. The cause is visible in the size of the
+individual contributions relative to the answer:
+
+    j                                   12      16      20      24
+    largest single saddle / true       1.20    1.14    2.90    54.9
+
+At large j each individual saddle contributes tens of times MORE than the
+final answer, which exists only through precise mutual cancellation. A sum of
+leading-order terms cannot survive that -- the leading orders cancel and the
+answer lives in what is left.
+
+**So my morning intuition was right in substance and wrong in scale.** I did
+write "the cancellation between saddles is the obstacle" -- and then produced
+10^254 from a coding bug, which discredited the whole line for eight hours.
+Both halves of that were errors: the bug, and then abandoning a correct
+diagnosis because the number attached to it was wrong.
+
+**What this means for the theorem, precisely.** Three regimes:
+  * j small (2..20 so far): machine certificates, exact, done;
+  * j moderate (6..16): saddle asymptotics accurate to ~1%, matching the margin
+    we need -- but this window overlaps the certified range, so it adds
+    confidence, not coverage;
+  * j large (>= 20): the answer is an exponentially small remainder after
+    cancellation of much larger terms. Leading-order asymptotics is structurally
+    inadequate here.
+
+**The technique the last regime requires,** named honestly: this is the setting
+of RESURGENCE / trans-series (Ecalle, Berry-Howls, Delabaere-Pham) -- asymptotic
+analysis where the answer sits below the size of individual contributions and
+one must track exponentially small corrections across Stokes lines. That is a
+specialised body of technique, and I cannot construct a rigorous uniform bound
+with it inside this programme's current means. Stating that plainly is the
+endpoint the founder asked for: not "more iterations needed", but "this
+specific method is required, and here is exactly why".
