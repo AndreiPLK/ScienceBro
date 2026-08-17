@@ -1803,3 +1803,66 @@ Next: build that three-variable certificate in (w, v, n), carrying the
 uniform-clearing discipline into three variables. If the clearing is not
 uniform the far-below sign bug comes straight back, so the validation
 contract goes in first.
+
+## 2026-08-17 13:52 -- STEP 2 (level n) CLOSED; the last infinity is j, and it splits by parity
+
+**Step 2 done for j = 3..8 (extending).** results/keystone_symbolic_n.json:
+216 of 216 cells certified, branches k = 3..20, both parities. A cell now
+means: ALL levels n of that parity (infinitely many), the WHOLE continuum of
+lam on that branch, and EVERY D from 4 up to the shore. Three of the four
+parameters are now carried symbolically.
+
+Construction: n = n0 + 2 mu with mu >= 0, on top of the step-1 maps for lam
+and D. Facts A and B (keystone_npoly.json) are what make it legal. Uniform
+clearing spelled out in the module docstring, and the VALIDATION CONTRACT
+runs before any verdict: the sign of the three-variable polynomial must
+match the exact rational bracket at interior points. It does.
+
+**Structure of the certificate: TAIL + BASE.** Manifest positivity cannot
+start at the first level, because the D-threshold has an INTERIOR minimum in
+n, so positivity in n is not monotone. So for each (j, parity, branch) we
+find the smallest shift M with a manifestly positive tail n >= n0 + 2M (one
+certificate, infinitely many levels), and the finitely many levels below it
+form the base, already certified cell by cell by step 1. Measured shifts are
+small, M = 0..4. The join condition (every base level must lie inside step
+1's coverage, n <= j+20) is CHECKED, not assumed: a cell that fails it is
+reported as a failure.
+
+**The last infinity is j, and the data splits it cleanly by PARITY.**
+Minimum of D-threshold/shore over n and lam, per knife:
+
+    j = 3, 5, 7, ..., 25 (ODD):  no threshold anywhere in the sweep
+                                 -- positive for every D tested
+    j = 4  -> 1.010030   (n = 44, lam = 26)
+    j = 6  -> 1.020237     j = 8  -> 1.030848
+    j = 10 -> 1.042520     j = 12 -> 1.057350
+    j = 14 -> 1.079265     j = 16 -> 1.107950
+    j = 18 -> 1.140049     j = 20 -> 1.159676
+    j = 22 -> 1.209487     j = 24 -> 1.227631
+
+Two structural statements come out of this. First, ODD knives never cut at
+all: at large D the sign is that of the leading term, which carries
+(-1)^(j-1) = +1 for odd j, so no threshold can exist. Second, for EVEN
+knives the margin is MONOTONE INCREASING in j over the whole tested range,
+so the danger lives at SMALL EVEN j -- the tightest cell in the entire
+project is j = 4, lam = 26, n = 44, spin 80, margin one percent. Every
+dangerous cell sits at lam = 26, the seam of branch k = 45.
+
+**Negative #22 (recorded).** Positivity of odd knives is NOT manifest on the
+ray: substituting Q = Q_low + z, the z-coefficients of J are not all
+nonnegative in any of 140 cells tested, for j = 3..15. So even where no
+threshold exists, positivity comes from cancellation rather than from
+term-by-term dominance -- the same lesson as negatives #19 and #21. Harmless
+for the programme, because the working certificate lives on the SEGMENT
+[Q_low, Q_shore], not on the ray.
+
+**Honest status of the grand theorem now.**
+  lam  -- closed symbolically, branches k <= 45, i.e. lam up to about 26.1
+  D    -- closed on the whole stretch below the shore
+  n    -- closed symbolically (tail + base)
+  j    -- closed only FINITELY (certificates through j = 8, extending; the
+          twelve earlier knife theorems reach j = 13). For unbounded j what
+          exists is a strong, exactly measured REGULARITY (odd knives never
+          cut; even-knife margin monotone in j), not a proof.
+Still outside coverage and named: lam above the last branch, which needs a
+tail argument as in the knife theorems.
