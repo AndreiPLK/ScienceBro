@@ -1286,3 +1286,26 @@ derive CHR sum rules numerically, then in closed form.
   Concrete next experiment: compute nu explicitly (it is a finite discrete
   measure — the moments terminate) and check the weighted inequality
   sum_k nu_k Phi(v_k) > 0 term by term. Finite, exact, decidable.
+
+## 2026-08-17 (day) — *** THE CRITICAL ZONE = THE OLD TANGENCY *** (strategy)
+- Built the MARGIN MAP: margin(j, lam) = 1 - |dip|/plateau over the reduced
+  one-variable inequality (artifact results/keystone_margin_map.json).
+  Structure found:
+    * lam <= 2      : margin 0.15-0.25 (comfortable)
+    * lam ~ 4..50   : margin collapses to 2e-4 — the CRITICAL ZONE
+    * lam >= 100    : margin ~ 1 (trivial)
+  The critical zone MOVES with j: lam_crit ≈ 1.7 j (7 at j=6, 14 at j=10,
+  30 at j=18).
+- KEY LINK: our published blade theorem found an EXACT TANGENCY at
+  rho* = 1 + 1/sqrt(3) ≈ 1.577 in the variable rho = lam/k. The critical
+  zone of the grand theorem sits at the SAME place. So the grand theorem's
+  hard core is not a new phenomenon — it is the tangency we already analysed
+  and beat once (for j=3), now appearing for all j.
+- STRATEGY that follows (three regimes, only one is hard):
+    (i) lam small: crude majorant suffices (margin >= 0.13 everywhere tested);
+    (ii) lam large: margin -> 1, trivial;
+    (iii) lam ~ rho* k: the tangency regime — reuse the exact machinery from
+         the blade theorem (discriminant identity at rho*, window confinement)
+         instead of generic bounds. THIS is the keystone's real content.
+- This reframing is why 14 generic attempts failed: they all tried to beat a
+  regime where the margin is 2e-4 with tools that need a finite margin.
