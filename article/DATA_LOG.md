@@ -2022,3 +2022,39 @@ zone of the whole project -- branch k = 44..46 (lam about 26), levels 38..52,
 even knives, where the margin is one percent and where our own earlier tools
 were weakest. So far j = 4 and j = 6 are fully unsat (135 continuous cells,
 zero alarms, zero unknowns).
+
+## 2026-08-17 14:31 -- Negative #25: the naive dimension-walk test, and what the real one needs
+
+First attempt at the Schoenberg direction. Reasoning: with mu = alpha + 1 the
+Gegenbauer connection coefficient (alpha - mu)_k = (-1)_k vanishes for k >= 2,
+so the relation between dimensions D and D+2 must be TWO-TERM. I tested
+
+        P_j(D) = A P_j(D+2) + B P_{j+1}(D+2)
+
+with A, B fixed per (n, j, lam): solve from two values of D, predict a third.
+It fails in all 18 cells, with enormous residuals.
+
+The test was badly posed and I should have seen it before running: in the
+connection formula the coefficients depend on the Gegenbauer index alpha =
+(D-3)/2, hence on D itself. So D-independent A, B were never going to work,
+and conversely a version with free D-dependent coefficients is vacuous -- one
+equation, two unknowns, always solvable.
+
+What the real test needs, written down so the next attempt is not blind:
+  1. the explicit connection coefficients c_0(l, alpha), c_1(l, alpha) from
+     C_l^(alpha) = c_0 C_l^(alpha+1) + c_1 C_{l-2}^(alpha+1);
+  2. our normalisation of the partial waves relative to the standard
+     Gegenbauer basis -- P_j is the master-formula bracket, not a bare
+     Schoenberg coefficient, and the normalisation is D-dependent;
+  3. then the relation b_m^(alpha+1) = c_0(m) b_m^(alpha) + c_1(m+2)
+     b_{m+2}^(alpha) becomes a PREDICTION with no free parameters, and it
+     either holds exactly in rational arithmetic or it does not.
+
+Note the direction of the walk: it expresses the coefficients at D+2 through
+those at D, i.e. it moves toward HIGHER dimension, which is the direction in
+which positivity is LOST. If the relation holds with signs of a definite
+pattern, it would give exactly the kind of statement we want -- positivity at
+D controlling positivity at D+2 -- uniformly in j.
+
+Status: the direction survives (it was never tested here), the naive
+shortcut is dead, and the honest next step is spelled out above.
