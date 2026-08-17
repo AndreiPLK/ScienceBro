@@ -1,0 +1,27 @@
+{
+ "purpose": "counterexample hunt at HIGH SPIN, where the margin is actually smallest -- the earlier hunt only looked at spins 0,2,4,6 and was blind here",
+ "frozen_criteria": "violation = exact rational (j,n,lam,D) with 4 <= D < T_hat(lam) and P_j <= 0, computed by the ORIGINAL master formula (not the Beta reduction)",
+ "shore": "corrected per ERR-0003 (lam-adaptive k window)",
+ "grid": {
+  "j": "2..12",
+  "n": "up to j+59 step 3",
+  "spins_reached": "up to ~118",
+  "lam": "129 points, packed around the seam at 26 and every branch seam k=3..60",
+  "D": "boundary-hugging ladder, closest approach 1 - 10^-6 of the way to the shore"
+ },
+ "exact_checks": 227040,
+ "violations": [],
+ "clean": true,
+ "command": "python lab/keystone_hunt_highspin.py",
+ "git": "301505c408cf",
+ "git_full": "301505c408cf682f0af44aa602e6829fdd13d68d",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_hunt_highspin.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 40.1
+}

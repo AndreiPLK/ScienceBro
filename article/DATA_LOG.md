@@ -1638,3 +1638,76 @@ All five regenerated from a clean tree (dirty = false), commit f0d8d86.
 data for the tightest measured case (knife j=4, level n=14, lam = 7): the
 shape is fixed, the dimension only slides the spotlight, and the verdict
 flips at D = 139.7 while the shore sits at D = 131.1.
+
+## 2026-08-17 13:33 -- Symbolic lam closed for j>=3; low spin dominance FAILS here; ERR-0003
+
+**Step 1 of the keystone plan is done for j >= 3.** lam is now carried
+SYMBOLICALLY through the interval certificate, so each cell covers a whole
+continuum of lam rather than a point. Construction: on shore branch k, both
+ranges are mapped to the closed first orthant by lam = (a+bv)/(1+v) and
+Q = Q_low + Delta(lam) w/(1+w), with UNIFORM clearing -- every term carries
+exactly (1+v)^(2(j-1)) and (1+w)^(j-1), the discipline the far-below port
+taught us. Result (results/keystone_symbolic.json): every cell certified
+for j >= 3, zero failures, all at bisection depth 0.
+
+**j = 2 is excluded on purpose, with a reason.** At j = 2 the fleet is
+EXACTLY tangent to the shore, so J acquires a double root and a
+nonnegative-coefficient certificate cannot exist there: a polynomial that
+is nonnegative on a ray need not have nonnegative coefficients, e.g.
+(v-1)^2. Measured: 22 failing cells, all with j = 2, none with j >= 3.
+j = 2 is already proven separately (the first knife theorem, which needed
+sqrt-3 arithmetic precisely because of this tangency).
+
+**Prior art checked in FULL TEXT, not from abstracts.** Bo Wang,
+Positivity of the Hypergeometric Coon Amplitude (arXiv:2403.00906, JHEP),
+proves manifest positivity using HARMONIC NUMBERS as a basis plus contour
+integrals and stationary-point estimates, coefficient by coefficient, for
+d = 4 and d = 6 (his eqs. 4.5-4.12). He states plainly that a statement of
+manifest unitarity below the critical dimension of the (super)string was
+still missing. Our route is different and complementary: a rational
+Beta/moment reduction plus a machine-checked Polya certificate uniform in
+j. Also relevant: On unitarity of the hypergeometric amplitude
+(arXiv:2409.09561, JHEP 02 (2025) 145), partial coverage of the parameter
+space.
+
+**NEW FINDING -- low spin dominance does NOT hold for the CHR family.**
+Wang hypothesises partial-wave low spin dominance: that unitarity bounds
+are controlled by the low-spin coefficients (numerical support at m^2 = 0,
+his fig. 1). We tested the analogous statement here, exactly:
+results/keystone_lowspin.json. Over 36 (j, lam) cells, the level n that
+minimises the D-threshold NEVER sits at spin l <= 2, not once. The
+minimisers sit at spins 10 to 86. The tightest cell in the sweep is
+
+        j = 4, lam = 26, n = 44  ->  spin l = 80,
+        threshold D* = 494.84  vs shore = 489.93,  ratio 1.0100 ,
+
+so the knives come within ONE PERCENT of the shore, and they do it at high
+spin. Artifact check performed: the minimiser is interior and stable when
+the n-window is widened from 20 to 45, 90 and 150 (n* stays put), so this
+is not a truncation artifact -- the same check that killed two earlier
+candidate findings today.
+
+**METHODOLOGICAL DEFECT, now repaired.** Our own earlier counterexample
+hunt (lab/keystone_hunt.py) swept only spins l in 0, 2, 4, 6 -- it
+implicitly assumed low spin dominance, and was therefore blind exactly
+where the margin is 1 percent. Repaired by lab/keystone_hunt_highspin.py,
+which hunts at high spin with the corrected shore and a boundary-hugging
+D-ladder approaching to 1 part in 10^6: 227,040 exact rational checks by
+the ORIGINAL master formula, so a bug in the Beta reduction cannot hide a
+violation. ZERO violations. results/keystone_hunt_highspin.json.
+
+**ERR-0003 filed (docs/ERRATA.md).** The shore itself was computed with a
+hard-coded cap k <= 60, which overestimates it for large lam (1.47x at
+lam = 150, 5.96x at lam = 1000) because the minimising k grows like
+sqrt(3)*lam. Found by chasing an apparent counterexample at j = 4, n = 94,
+lam = 150 where both the master formula and the reduction agreed P_j < 0 at
+D = 0.85 of the shore; with the CORRECT shore that point is above the
+shore, so there is no counterexample -- the shore was the bug. Published
+work is not affected (release scripts scan wide ranges and the papers
+define the shore with no cap); the regression was in new code only, and the
+older release code was already more careful. All keystone artifacts
+regenerated with the fix, and the certificate came out cleaner than before.
+
+Status after this block: step 1 (symbolic lam) DONE for j >= 3; step 2
+(unbounded n and j) still open -- that remains the only creative gap.
+Commit 301505c.

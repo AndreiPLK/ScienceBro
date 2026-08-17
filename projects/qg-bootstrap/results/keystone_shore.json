@@ -270,7 +270,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 2087.3780172413794,
+   "Q_shore": 1418.4057133843125,
    "margin_vs_shore": null
   },
   {
@@ -286,7 +286,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 56441.94698275862,
+   "Q_shore": 9462.872856232229,
    "margin_vs_shore": null
   },
   {
@@ -462,7 +462,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 2089.3780172413794,
+   "Q_shore": 1420.4057133843125,
    "margin_vs_shore": null
   },
   {
@@ -478,7 +478,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 56443.94698275862,
+   "Q_shore": 9464.872856232229,
    "margin_vs_shore": null
   },
   {
@@ -654,7 +654,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 2091.3780172413794,
+   "Q_shore": 1422.4057133843125,
    "margin_vs_shore": null
   },
   {
@@ -670,7 +670,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 56445.94698275862,
+   "Q_shore": 9466.872856232229,
    "margin_vs_shore": null
   },
   {
@@ -846,7 +846,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 2093.3780172413794,
+   "Q_shore": 1424.4057133843125,
    "margin_vs_shore": null
   },
   {
@@ -862,7 +862,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 56447.94698275862,
+   "Q_shore": 9468.872856232229,
    "margin_vs_shore": null
   },
   {
@@ -1038,7 +1038,7 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 2095.3780172413794,
+   "Q_shore": 1426.4057133843125,
    "margin_vs_shore": null
   },
   {
@@ -1054,18 +1054,18 @@
    },
    "sign_changes_J": 1,
    "threshold": "None",
-   "Q_shore": 56449.94698275862,
+   "Q_shore": 9470.872856232229,
    "margin_vs_shore": null
   }
  ],
  "command": "python lab/keystone_shore.py",
- "git": "f0d8d86d427b",
- "git_full": "f0d8d86d427b45f6cc31b7cc300ff1dc61d84d17",
+ "git": "301505c408cf",
+ "git_full": "301505c408cf682f0af44aa602e6829fdd13d68d",
  "dirty": false,
  "dirty_code_files": [],
  "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 72.4
+ "runtime_s": 76.3
 }

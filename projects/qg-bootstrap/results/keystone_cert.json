@@ -27,19 +27,18 @@
  "certified": 5616,
  "all_certified": true,
  "bisection_depth_histogram": {
-  "0": 5595,
-  "1": 21
+  "0": 5616
  },
  "failures": [],
  "max_depth_allowed": 6,
  "command": "python lab/keystone_cert.py",
- "git": "f0d8d86d427b",
- "git_full": "f0d8d86d427b45f6cc31b7cc300ff1dc61d84d17",
+ "git": "301505c408cf",
+ "git_full": "301505c408cf682f0af44aa602e6829fdd13d68d",
  "dirty": false,
  "dirty_code_files": [],
  "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 80.9
+ "runtime_s": 89.0
 }

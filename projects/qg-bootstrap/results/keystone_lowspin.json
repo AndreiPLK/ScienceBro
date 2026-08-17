@@ -362,15 +362,13 @@
   }
  ],
  "command": "python lab/keystone_lowspin.py",
- "git": "630ae37e1628",
- "git_full": "630ae37e162887941199c5a561c85e9271923cba",
- "dirty": true,
- "dirty_code_files": [
-  "projects/qg-bootstrap/lab/keystone_lowspin.py"
- ],
- "dirty_count": 1,
+ "git": "301505c408cf",
+ "git_full": "301505c408cf682f0af44aa602e6829fdd13d68d",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 6.5
+ "runtime_s": 6.8
 }
