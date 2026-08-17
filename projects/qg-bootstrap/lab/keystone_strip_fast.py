@@ -128,8 +128,10 @@ def build_N_sub(j: int, parity: int, k: int, n0: int, a: Fraction, b: Fraction):
     s_num = lin_n(a - 1, Fraction(1), n0) + lin_n(b - 1, Fraction(1), n0) * V
     lam_num = CTX.from_dict({(0, 0, 0): q(a), (0, 1, 0): q(b)})
     r = Fraction(3 * (2 * k - 3), k * (k - 2))
-    t_num = (q(r) * (lam_num * lam_num + (2 * k - 2) * (lam_num * onepv)
-                     + onepv2) + q(Fraction(2 * k)) * onepv2)
+    t_num = (
+        q(r) * (lam_num * lam_num + (2 * k - 2) * (lam_num * onepv) + onepv2)
+        + q(Fraction(2 * k)) * onepv2
+    )
     s_pows = {0: ONE}
     for d in range(1, 2 * (j - 1) + 1):
         s_pows[d] = s_pows[d - 1] * s_num
@@ -140,8 +142,7 @@ def build_N_sub(j: int, parity: int, k: int, n0: int, a: Fraction, b: Fraction):
     for t in range(j):
         m = j - 1 - t
         e_coeffs = slow.E2t_in_n(t, parity)
-        base = CTX.from_dict({(0, 0, 0): q(Fraction(n0)),
-                              (0, 0, 1): q(Fraction(2))})
+        base = CTX.from_dict({(0, 0, 0): q(Fraction(n0)), (0, 0, 1): q(Fraction(2))})
         e_pow = {0: ONE}
         for d in range(1, len(e_coeffs)):
             e_pow[d] = e_pow[d - 1] * base
@@ -159,15 +160,22 @@ def build_N_sub(j: int, parity: int, k: int, n0: int, a: Fraction, b: Fraction):
             term = term * lin_n(Fraction(1, 2) - j + i, Fraction(1), n0)
         for i in range(m, j - 1):
             bse = lin_n(Fraction(-1) - j + i, Fraction(1), n0)
-            term = term * ((q(Fraction(1, 2)) * t_num + bse * onepv2) * onepw
-                           + W * onepv2)
+            term = term * ((q(Fraction(1, 2)) * t_num + bse * onepv2) * onepw + W * onepv2)
         term = term * w_pows[j - 1 - t]
         N += term
     return N
 
 
-def certify_branch(j: int, parity: int, k: int, n0: int, a: Fraction,
-                   b: Fraction, depth: int = 0, max_depth: int = 7):
+def certify_branch(
+    j: int,
+    parity: int,
+    k: int,
+    n0: int,
+    a: Fraction,
+    b: Fraction,
+    depth: int = 0,
+    max_depth: int = 7,
+):
     """Certify the branch, splitting the lam interval where needed."""
     if cert_ok(build_N_sub(j, parity, k, n0, a, b)):
         return True, depth
@@ -273,8 +281,9 @@ def main() -> int:
                     certified += 1
                     depth_hist[d] = depth_hist.get(d, 0) + 1
                 elif len(failures) < 20:
-                    failures.append({"j": j, "parity": parity, "k": k,
-                                     "tail_shift": M, "split_depth": d})
+                    failures.append(
+                        {"j": j, "parity": parity, "k": k, "tail_shift": M, "split_depth": d}
+                    )
         print(
             f"  j={j}: cells {cells}, certified {certified}, "
             f"failures {len(failures)} ({time.time() - t0:.0f}s)",
