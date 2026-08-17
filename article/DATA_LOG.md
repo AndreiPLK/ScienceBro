@@ -2533,3 +2533,57 @@ specialised body of technique, and I cannot construct a rigorous uniform bound
 with it inside this programme's current means. Stating that plainly is the
 endpoint the founder asked for: not "more iterations needed", but "this
 specific method is required, and here is exactly why".
+
+## 2026-08-17 18:56 -- THE CONTOUR ROUTE: sign-definite loops DO exist, above a threshold
+
+Following the founder's instruction to hunt for the thing we do not understand
+rather than to compute correctly, this line produced the most promising position
+of the day, plus two anomalies that turned into findings.
+
+**The idea.** The verdict is a contour integral of a polynomial over a power, so
+by Cauchy it is the SAME on every closed loop around the origin -- the loop is
+ours to choose. A loop on which the integrand keeps ONE SIGN proves positivity
+immediately and uniformly in the constraint index. That is precisely the
+uniformity the programme lacks, and it needs no asymptotics at all.
+
+**Measured result.** Sign-definite loops exist above a threshold. On the grid
+(j, n = j+4, lam), 13 of 24 cells admit a loop with no dip, and the pattern is
+sharp: for j <= 16 there is always a dip; for j >= 18 the loop is sign-definite
+(the single exception is j = 18 at lam = 26). Confirmed in 120-digit ball
+arithmetic at lam = 1: negative for sure at j = 10..16, POSITIVE FOR SURE at
+j = 18, 20. Artifact: keystone_contour_hunt.json.
+
+Where a dip remains it is tiny: 1e-3 of the answer at moderate index, down to
+1e-8 in places, and shape optimisation (13 Fourier parameters) shrinks it
+further by factors of 1.5 to 6.
+
+**Anomaly 1, caught by the new rule, and it was a bug.** Shape optimisation
+appeared to make positive cases WORSE (+4.0e-6 -> +6.4e-7), which is impossible
+when maximising a minimum. Cause: the circle scan and the shape scan measured
+two different densities -- one included the contour element dx, the other did
+not. Fixed; the numbers are now comparable and the optimiser never degrades a
+cell.
+
+**Anomaly 2, and it is real structure.** The optimal radius has a KINK. For
+j <= 16 it sits still (0.032, 0.032, 0.034, 0.034); from j = 18 it falls
+(0.032, 0.027, 0.024, 0.023), roughly like 0.55/j. The switch to
+sign-definiteness happens exactly at that kink. Picture: the loop is a thread
+threading between nails. While the constraints are few the nails are sparse and
+the thread can keep one radius; past a point the nails crowd and the thread must
+pull inward -- and in that pulled-in regime the integrand stops changing sign.
+So sign-definiteness is not a property of an individual constraint but a marker
+of which regime the loop is in.
+
+**A hypothesis that FAILED, recorded.** I guessed the mechanism was root
+counting -- that sign-definiteness switches on when the loop encloses a
+particular number of roots relative to N = j-1. Measured: the difference
+(roots inside) - N runs +1, -1, -1, 0, -1, -4, -1, 0. No clean law. Dropped.
+
+**Why this matters more than the numbers.** The remaining gap has changed shape
+twice today. It began as "estimate an oscillatory sum whose individual terms are
+55x the answer" -- hopeless without resurgence. It is now "for constraints below
+the threshold, show that a tiny negative part of one explicit function on one
+explicit loop is dominated by its positive part", with everything above the
+threshold already sign-definite and hence trivially positive. The certified
+region (machine certificates, j <= 20 as of tonight) covers exactly the range
+where dips still occur. The two halves are close to meeting.

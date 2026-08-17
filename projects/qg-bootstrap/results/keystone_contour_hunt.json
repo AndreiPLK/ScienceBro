@@ -1,0 +1,238 @@
+{
+ "idea": "the integral is the same on every loop around the origin, so choose a loop where the integrand is one-signed; positivity then holds immediately and uniformly in the constraint index",
+ "why_it_matters": "this is the only route found that gives uniformity for free, i.e. without asymptotics or remainder bounds",
+ "cells": 24,
+ "sign_definite_cells": 13,
+ "status": "PROMISING OPEN ROUTE, not a result. Circles alone are not enough: dips persist on most of the grid, though they are tiny (1e-3 down to 1e-8 relative to the answer). Shape optimisation shrinks them 1.5x-6x without eliminating them.",
+ "what_it_achieved": "reshaped the remaining gap from 'estimate an oscillatory sum whose individual terms are 55x the answer' into 'show a small negative part of one explicit function on one explicit loop is dominated by its positive part'",
+ "rows": [
+  {
+   "j": 10,
+   "n": 14,
+   "lam": "1",
+   "best_radius": 0.03237016607365406,
+   "min_over_circles": -0.00018796999203849485,
+   "min_after_shape_optimisation": -0.00015823235693356654,
+   "sign_definite": false
+  },
+  {
+   "j": 10,
+   "n": 14,
+   "lam": "3",
+   "best_radius": 0.03237016607365406,
+   "min_over_circles": -0.00040868794460187906,
+   "min_after_shape_optimisation": -0.0003299668185198048,
+   "sign_definite": false
+  },
+  {
+   "j": 10,
+   "n": 14,
+   "lam": "26",
+   "best_radius": 0.016386747191146384,
+   "min_over_circles": -8.335278800280126e-08,
+   "min_after_shape_optimisation": 8.622377068403177e-10,
+   "sign_definite": true
+  },
+  {
+   "j": 12,
+   "n": 16,
+   "lam": "1",
+   "best_radius": 0.03237016607365406,
+   "min_over_circles": -0.00037808225849447785,
+   "min_after_shape_optimisation": -0.00032154639372451146,
+   "sign_definite": false
+  },
+  {
+   "j": 12,
+   "n": 16,
+   "lam": "3",
+   "best_radius": 0.03237016607365406,
+   "min_over_circles": -0.00029756648265410926,
+   "min_after_shape_optimisation": -0.0002598198078491536,
+   "sign_definite": false
+  },
+  {
+   "j": 12,
+   "n": 16,
+   "lam": "26",
+   "best_radius": 0.016386747191146384,
+   "min_over_circles": -1.9671923790656765e-07,
+   "min_after_shape_optimisation": -9.452548736064797e-08,
+   "sign_definite": false
+  },
+  {
+   "j": 14,
+   "n": 18,
+   "lam": "1",
+   "best_radius": 0.034259625296083146,
+   "min_over_circles": -0.0002467918331057277,
+   "min_after_shape_optimisation": -0.0002151219959527826,
+   "sign_definite": false
+  },
+  {
+   "j": 14,
+   "n": 18,
+   "lam": "3",
+   "best_radius": 0.03237016607365406,
+   "min_over_circles": -9.864334645361474e-05,
+   "min_after_shape_optimisation": -3.893042577746527e-05,
+   "sign_definite": false
+  },
+  {
+   "j": 14,
+   "n": 18,
+   "lam": "26",
+   "best_radius": 0.015482998526695423,
+   "min_over_circles": -2.186092332739047e-07,
+   "min_after_shape_optimisation": -1.8402466340123708e-07,
+   "sign_definite": false
+  },
+  {
+   "j": 16,
+   "n": 20,
+   "lam": "1",
+   "best_radius": 0.034259625296083146,
+   "min_over_circles": -6.0688749118961937e-05,
+   "min_after_shape_optimisation": -2.3915387731649163e-05,
+   "sign_definite": false
+  },
+  {
+   "j": 16,
+   "n": 20,
+   "lam": "3",
+   "best_radius": 0.03237016607365406,
+   "min_over_circles": 8.910868231208523e-07,
+   "min_after_shape_optimisation": 9.003019449162288e-07,
+   "sign_definite": true
+  },
+  {
+   "j": 16,
+   "n": 20,
+   "lam": "26",
+   "best_radius": 0.016386747191146384,
+   "min_over_circles": -1.451501923508025e-07,
+   "min_after_shape_optimisation": -1.344292612653039e-07,
+   "sign_definite": false
+  },
+  {
+   "j": 18,
+   "n": 22,
+   "lam": "1",
+   "best_radius": 0.03237016607365406,
+   "min_over_circles": 6.41551506503727e-07,
+   "min_after_shape_optimisation": 6.432411659753193e-07,
+   "sign_definite": true
+  },
+  {
+   "j": 18,
+   "n": 22,
+   "lam": "3",
+   "best_radius": 0.027304352625525167,
+   "min_over_circles": 3.0275795265675703e-07,
+   "min_after_shape_optimisation": 3.0320441656500893e-07,
+   "sign_definite": true
+  },
+  {
+   "j": 18,
+   "n": 22,
+   "lam": "26",
+   "best_radius": 0.016386747191146384,
+   "min_over_circles": -5.546760207868799e-08,
+   "min_after_shape_optimisation": -2.667612709998519e-08,
+   "sign_definite": false
+  },
+  {
+   "j": 20,
+   "n": 24,
+   "lam": "1",
+   "best_radius": 0.027304352625525167,
+   "min_over_circles": 2.2596169146656214e-07,
+   "min_after_shape_optimisation": 2.259629393269596e-07,
+   "sign_definite": true
+  },
+  {
+   "j": 20,
+   "n": 24,
+   "lam": "3",
+   "best_radius": 0.024375667755043816,
+   "min_over_circles": 1.0331134383496501e-07,
+   "min_after_shape_optimisation": 1.0712136722646718e-07,
+   "sign_definite": true
+  },
+  {
+   "j": 20,
+   "n": 24,
+   "lam": "26",
+   "best_radius": 0.016386747191146384,
+   "min_over_circles": 7.570967189913695e-11,
+   "min_after_shape_optimisation": 8.104910264212192e-11,
+   "sign_definite": true
+  },
+  {
+   "j": 22,
+   "n": 26,
+   "lam": "1",
+   "best_radius": 0.024375667755043816,
+   "min_over_circles": 7.844545719300738e-08,
+   "min_after_shape_optimisation": 8.252203144979905e-08,
+   "sign_definite": true
+  },
+  {
+   "j": 22,
+   "n": 26,
+   "lam": "3",
+   "best_radius": 0.02303132058706996,
+   "min_over_circles": 2.606998979890525e-08,
+   "min_after_shape_optimisation": 3.655177985003653e-08,
+   "sign_definite": true
+  },
+  {
+   "j": 22,
+   "n": 26,
+   "lam": "26",
+   "best_radius": 0.015482998526695423,
+   "min_over_circles": 2.1742408453209787e-11,
+   "min_after_shape_optimisation": 2.767485862466516e-11,
+   "sign_definite": true
+  },
+  {
+   "j": 24,
+   "n": 28,
+   "lam": "1",
+   "best_radius": 0.02303132058706996,
+   "min_over_circles": 1.969151695826556e-08,
+   "min_after_shape_optimisation": 2.6553339125069052e-08,
+   "sign_definite": true
+  },
+  {
+   "j": 24,
+   "n": 28,
+   "lam": "3",
+   "best_radius": 0.02176111576982885,
+   "min_over_circles": 3.0113251981274954e-09,
+   "min_after_shape_optimisation": 8.546331110925908e-09,
+   "sign_definite": true
+  },
+  {
+   "j": 24,
+   "n": 28,
+   "lam": "26",
+   "best_radius": 0.013822280759212907,
+   "min_over_circles": 9.34577284632751e-12,
+   "min_after_shape_optimisation": 1.0082149092672384e-11,
+   "sign_definite": true
+  }
+ ],
+ "command": "python lab/keystone_contour_hunt.py",
+ "git": "0a4c9c25b7ea",
+ "git_full": "0a4c9c25b7eaad1070a7faaaade953890d7c5063",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_contour_hunt.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 295.4
+}
