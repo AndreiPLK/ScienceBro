@@ -1,0 +1,174 @@
+{
+ "purpose": "show that n can be carried symbolically at fixed j, which is what step 2 of the keystone needs",
+ "fact_A": {
+  "statement": "for fixed t and fixed parity of n, E_2t(n) is a polynomial in n",
+  "method": "fit on the first points, PREDICT the rest",
+  "rows": [
+   {
+    "E_2t": 2,
+    "parity": "even",
+    "fitted_on": 7,
+    "degree": 3,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 2,
+    "parity": "odd",
+    "fitted_on": 7,
+    "degree": 3,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 4,
+    "parity": "even",
+    "fitted_on": 10,
+    "degree": 6,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 4,
+    "parity": "odd",
+    "fitted_on": 10,
+    "degree": 6,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 6,
+    "parity": "even",
+    "fitted_on": 13,
+    "degree": 9,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 6,
+    "parity": "odd",
+    "fitted_on": 13,
+    "degree": 9,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 8,
+    "parity": "even",
+    "fitted_on": 16,
+    "degree": 12,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 8,
+    "parity": "odd",
+    "fitted_on": 16,
+    "degree": 12,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 10,
+    "parity": "even",
+    "fitted_on": 19,
+    "degree": 15,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 10,
+    "parity": "odd",
+    "fitted_on": 19,
+    "degree": 15,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 12,
+    "parity": "even",
+    "fitted_on": 22,
+    "degree": 18,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 12,
+    "parity": "odd",
+    "fitted_on": 22,
+    "degree": 18,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 14,
+    "parity": "even",
+    "fitted_on": 25,
+    "degree": 21,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 14,
+    "parity": "odd",
+    "fitted_on": 25,
+    "degree": 21,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 16,
+    "parity": "even",
+    "fitted_on": 28,
+    "degree": 24,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   },
+   {
+    "E_2t": 16,
+    "parity": "odd",
+    "fitted_on": 28,
+    "degree": 24,
+    "held_out_points": 8,
+    "predicted_all_held_out": true,
+    "failures": []
+   }
+  ],
+  "verified": true
+ },
+ "fact_B": {
+  "statement": "Q_n(t)/Q_n(0) = prod_{i=1..t} (j-i)/(n-i) -- the factorial growth is an overall positive constant, the t-dependence is rational in n of degree t",
+  "checks": 900,
+  "failures": [],
+  "verified": true
+ },
+ "consequence": "at fixed j and parity, the bracket is a polynomial in (n, lam, D) after uniform clearing, so the Polya certificate can cover ALL n at once and j becomes the single remaining unbounded index",
+ "not_done_yet": "the three-variable certificate itself; it must carry the uniform-clearing discipline into (w, v, n) or the same sign bug as the far-below port will reappear",
+ "command": "python lab/keystone_npoly.py",
+ "git": "82adc1da196d",
+ "git_full": "82adc1da196d6d48d373e9ccc384fc595a59b7f5",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_npoly.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 0.3
+}
