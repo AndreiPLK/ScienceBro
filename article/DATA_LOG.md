@@ -1921,3 +1921,31 @@ cell with D* - T_hat < 2.39 (j-2) - 0.05 at lam >= 100 refutes it.
 
 Also in this block: the symbolic-n certificate (step 2) has reached j = 13 --
 396 cells, zero failures.
+
+## 2026-08-17 14:12 -- Negative #23: the margin law does NOT come from the first two terms
+
+Attempt: derive the constant C = 2.398 analytically. Scale analysis
+suggested that at large lam the expansion parameter is small, so the
+threshold should be fixed by the balance of the t = 0 and t = 1 terms alone.
+Solving term0 + term1 = 0 for D and comparing with the exact threshold:
+
+    j = 4, lam = 100:  exact D* - shore = +4.797,  two-term = -1708.94
+    j = 4, lam = 250:  exact D* - shore = +4.796,  two-term = -4295.07
+    j = 6, 8:          the two-term equation has no root in the bracket
+
+Off by a factor of -356 and -896, and structurally absent for j >= 6. Dead.
+
+Why my scale analysis was wrong, recorded so I do not repeat it: I estimated
+E_2t(n) as (n^2)^t times a mild factor, but E_2t carries a binomial
+C(K, t) with K ~ n/2 ~ sqrt(3) lam / 2, which is LARGE. The true expansion
+parameter is therefore O(1), not O(j/lam), and every term in the sum
+contributes comparably. Same lesson as negatives #19 and #21: in this
+problem positivity and thresholds alike are produced by cancellation across
+the whole alternating sum, never by a few leading terms.
+
+Consequence for the programme: the constant in the margin law cannot be
+extracted cheaply. Getting it needs the asymptotics of the FULL terminating
+sum -- which is the saddle/Abel-Plana route where the Stokes topology was
+the obstacle. The margin law therefore stays exactly where it was recorded:
+a measured regularity with an explicit falsifier, not a theorem, and the
+closed form 12/5 stays a guess.
