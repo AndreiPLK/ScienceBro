@@ -1408,3 +1408,20 @@ Immediate next steps inside the canyon:
   the CONTOUR REPRESENTATION (verified 1e-13), and the checkerboard structure
   of the obstruction. The keystone is now a concrete manipulation of one
   explicit integral rather than a search for a strategy.
+
+## 2026-08-17 (canyon, 19:45) — SADDLE = THE LARGEST DOUBLE ROOT
+- Optimising the contour radius (minimax of |coef * r^k|) cuts the oscillation
+  of the integrand from 10^21 down to 10^6 (j=8), 10^27 -> 10^7.6 (j=10),
+  10^33 -> 10^8.6 (j=12).
+- The optimal radius is r* = 3.2e-3 ... 5.6e-3, which equals 1 / a_max^2 with
+  a_max = n-2 EXACTLY (1/16^2 = 3.9e-3, 1/18^2 = 3.1e-3). So the saddle sits
+  precisely at the LARGEST DOUBLE ROOT of G^2 — the outermost zero of the
+  perfect square.
+- Interpretation: the asymptotics of the bracket are governed by the local
+  behaviour of the integrand at that double zero. This is the concrete local
+  model to expand: G^2 vanishes quadratically there while Psi(1/x) is large,
+  and their product's residue is what survives.
+- Residual oscillation at the saddle still grows like ~0.6 orders per +2 in j,
+  i.e. exactly the q^{j/2} law of the margin. Conclusion: no numeric or
+  majorant method can win; the cancellation must be done ANALYTICALLY at the
+  double zero. That is now the single remaining technical task.
