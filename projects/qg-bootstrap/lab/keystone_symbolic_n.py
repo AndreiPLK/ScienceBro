@@ -81,8 +81,14 @@ def one3() -> QPoly:
     return QPoly.const(3, 1)
 
 
+_E2T_CACHE: dict[tuple[int, int], list[Fraction]] = {}
+
+
 def E2t_in_n(t: int, parity: int) -> list[Fraction]:
     """E_2t(n) as a polynomial in n for the given parity (Fact A)."""
+    key = (t, parity)
+    if key in _E2T_CACHE:            # interpolation is expensive; do it ONCE
+        return _E2T_CACHE[key]
     start = 2 * t + 4
     start += (start % 2) ^ parity
     fit_k = 3 * t + 5
@@ -93,6 +99,7 @@ def E2t_in_n(t: int, parity: int) -> list[Fraction]:
         if peval(pol, n) != y:
             raise AssertionError(f"E_2{2*t} not polynomial in n "
                                  f"(parity {parity})")
+    _E2T_CACHE[key] = pol
     return pol
 
 

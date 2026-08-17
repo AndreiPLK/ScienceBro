@@ -2181,3 +2181,57 @@ descent lemma, which is the only tool so far that acted uniformly in the spin.
 
 Meanwhile the strip certificate itself keeps closing: j = 13 done, 946 cells,
 zero failures.
+
+## 2026-08-17 15:40 -- PRIOR ART CORRECTION: the descent lemma is CLASSICAL, not ours
+
+Searched the literature on the founder's instruction to look around. Result:
+the lemma I proved and called "the result of the shift" is a known theorem.
+
+**What the literature says.** Matheron (1965) introduced the operators MONTEE
+and DESCENTE, which move positive definite functions between dimensions; the
+sphere versions are standard, and the direction is stated plainly: the montee
+operator "maps (strictly) positive definite functions for S^{d+2} to (strictly)
+positive definite functions for S^d", and walks go in steps of +-2, exactly as
+our relation does. References: "Dimension walks on hyperspheres", Comput. Appl.
+Math. 41 (2022), doi:10.1007/s40314-022-01912-4; Gneiting, "From Fourier to
+Gegenbauer: Dimension walks on spheres", arXiv:1303.6856; "Dimension hopping
+and families of strictly positive definite zonal basis functions on spheres",
+J. Approx. Theory (2017), doi:10.1016/j.jat.2017.03.002.
+
+**So the status changes.** What I derived this afternoon is a rediscovery. I
+found it independently, from the Gegenbauer connection formula, and verified it
+exactly -- but the priority is not ours and the statement must never be
+presented as new. Corrected in DATA_LOG, HANDOFF, research/keystone-plan.md
+and article/SHIFT_REPORT_2026-08-17.md.
+
+**What remains genuinely ours, as far as this search shows.**
+  1. The explicit two-term form for the CHR graviton family, with the signs
+     c0 > 0, c1 < 0 verified exactly (120+120 cells), which is what makes the
+     induction constructive in our concrete setting.
+  2. The APPLICATION: reducing the critical-dimension question for scattering
+     amplitudes to a strip of width 2. Searches for "dimension walk" or
+     "montee" together with partial-wave unitarity, S-matrix bootstrap or
+     amplitude positivity returned NOTHING -- the amplitude literature does
+     not appear to use this apparatus at all. Cross-searches for Schoenberg
+     positive-definiteness applied to string partial waves likewise returned
+     nothing.
+  3. The identification of the shore as the critical dimension of Schoenberg's
+     nesting, which explains why a shore must exist without any string physics.
+
+If that holds up under closer reading, the contribution is a TRANSFER of a
+classical tool from approximation theory and geostatistics into the amplitude
+bootstrap -- which is a perfectly respectable contribution, but a different
+claim from "we proved a new lemma", and it must be written that way.
+
+**New tool spotted for the open problem.** "A Polya criterion for (strict)
+positive definiteness on the sphere" (arXiv:1110.2437) gives Polya-type
+sufficient conditions directly on the sphere. Our remaining task is exactly a
+positivity statement on the strip, and our certificate is already Polya-type,
+so this is the first thing to read next shift.
+
+**Lesson recorded.** I should have run this search BEFORE calling the lemma the
+result of the day -- the 360 rule exists precisely for this, and I applied it
+to the Schoenberg framing but not to the lemma itself. Cost: nothing published,
+because the check happened the same day. Rule for next time: any statement I am
+about to call a result gets a prior-art search in the same hour, not the next
+morning.

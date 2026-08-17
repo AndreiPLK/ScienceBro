@@ -10,8 +10,8 @@ in HANDOFF.md; plan in research/keystone-plan.md.
    Consequence: the previously open Stokes-topology problem is GONE -- signs
    now come out without any asymptotics.
 
-2. **THE DESCENT LEMMA, PROVED**: positivity at D+2 implies positivity at D,
-   uniformly in the spin. forward_relation_exact=120/120, inverse_reconstruction_exact=120/120, all_verified=True
+2. **THE DESCENT LEMMA** (proved here, but CLASSICAL -- see the correction
+   below): positivity at D+2 implies positivity at D, uniformly in the spin. forward_relation_exact=120/120, inverse_reconstruction_exact=120/120, all_verified=True
    Consequence: the theorem collapsed from a region of width ~19 lam to a
    STRIP OF WIDTH 2 below the shore. Everything below is free, for all knives
    at once.
@@ -41,7 +41,19 @@ in HANDOFF.md; plan in research/keystone-plan.md.
 No claim of the grand theorem. Three proved lemmas plus certificates that are
 finite in j.
 
-## WHERE I WAS WRONG TODAY (five entries, all logged)
+## PRIOR-ART CORRECTION (same day)
+
+The descent lemma is NOT new. Matheron's montee/descente operators and the
+sphere "dimension walks" (steps of +-2) are classical: doi:10.1007/
+s40314-022-01912-4, arXiv:1303.6856, doi:10.1016/j.jat.2017.03.002. I
+rediscovered it independently and verified it exactly, but priority is not
+ours and it will never be presented as new. What appears to remain ours: the
+explicit two-term form with verified signs for the CHR family, the transfer of
+this apparatus into the amplitude bootstrap (searches found no prior use
+there), and the identification of the shore as the critical dimension of
+Schoenberg's nesting.
+
+## WHERE I WAS WRONG TODAY (six entries, all logged)
 
 * **ERR-0003**: the shore itself was computed with a hard-coded cap k <= 60,
   overestimating it by 1.47x at lam = 150 and 5.96x at lam = 1000. It
