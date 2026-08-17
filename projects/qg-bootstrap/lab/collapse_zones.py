@@ -40,10 +40,10 @@ def knife_sign(n, j, lam, Dv, e):
     s = lam + n - 1
     B = F(0)
     for i in range(j):
-        w = F(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2 ** i)
+        w = F(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2**i)
         tail = F(1)
         for k in range(i, j - 1):
-            tail *= (Dv + c + 2 * k)
+            tail *= Dv + c + 2 * k
         B += (-1) ** i * e[j - 1 - i] * w * s ** (2 * i) * tail
     if j % 2 == 0:
         B = -B
@@ -53,18 +53,23 @@ def knife_sign(n, j, lam, Dv, e):
 def main() -> int:
     t0 = time.time()
     rows = []
-    for (n, lam) in [(20, F(1)), (30, F(2)), (40, F(5)), (50, F(5)),
-                     (60, F(8)), (80, F(10)), (100, F(12))]:
+    for n, lam in [
+        (20, F(1)),
+        (30, F(2)),
+        (40, F(5)),
+        (50, F(5)),
+        (60, F(8)),
+        (80, F(10)),
+        (100, F(12)),
+    ]:
         m = n - 3
         s = lam + n - 1
         Dcrit = float(6 * s * s / m - 4 * m)
         e = e_doubled(n)
         Dmax = int(Dcrit * 2) + 60
-        entry = {"n": n, "lam": str(lam), "D_crit": round(Dcrit, 2),
-                 "zones": {}}
+        entry = {"n": n, "lam": str(lam), "D_crit": round(Dcrit, 2), "zones": {}}
         for j in range(2, min(JMAX, n - 1) + 1):
-            neg = [Dv for Dv in range(4, Dmax)
-                   if knife_sign(n, j, lam, Dv, e) < 0]
+            neg = [Dv for Dv in range(4, Dmax) if knife_sign(n, j, lam, Dv, e) < 0]
             runs = []
             if neg:
                 start = prev = neg[0]
@@ -78,19 +83,23 @@ def main() -> int:
             entry["zones"][str(j)] = {
                 "bands": len(runs),
                 "expected_bands": j // 2,
-                "offsets_from_Dcrit": [[round(a - Dcrit), round(b - Dcrit)]
-                                       for a, b in runs]}
+                "offsets_from_Dcrit": [[round(a - Dcrit), round(b - Dcrit)] for a, b in runs],
+            }
         rows.append(entry)
-        print(f"n={n} lam={lam} done ({time.time()-t0:.0f}s)", flush=True)
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"rows": rows, "jmax": JMAX,
-           "prediction": "B_j ~ term0*(1-X)^{j-1}, X=6rho^2/(delta+4); "
-                         "zones cluster near D_crit, floor(j/2) bands",
-           "command": "python lab/collapse_zones.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "collapse_zones.json").write_text(json.dumps(out, indent=1),
-                                             encoding="utf-8")
+        print(f"n={n} lam={lam} done ({time.time() - t0:.0f}s)", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "rows": rows,
+        "jmax": JMAX,
+        "prediction": "B_j ~ term0*(1-X)^{j-1}, X=6rho^2/(delta+4); "
+        "zones cluster near D_crit, floor(j/2) bands",
+        "command": "python lab/collapse_zones.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "collapse_zones.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     # проверка предсказания о числе полос (последняя полоса j чётного —
     # полубесконечная зона, тоже считается)
     bad = []

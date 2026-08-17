@@ -56,10 +56,16 @@ def test_g04_contradiction_stays_visible():
         id="EV-A",
         source={"type": "arxiv-paper", "identifier": "arXiv:2607.05489"},
         access={"full_text": True, "acquired_at": date(2026, 8, 11)},
-        paraphrase="p", support="contradicting",
+        paraphrase="p",
+        support="contradicting",
     )
-    claim = Claim(id="CL-Y", statement="s", state=ClaimState.source_supported,
-                  evidence_ids=["EV-A"], contradicting_evidence_ids=["EV-A"])
+    claim = Claim(
+        id="CL-Y",
+        statement="s",
+        state=ClaimState.source_supported,
+        evidence_ids=["EV-A"],
+        contradicting_evidence_ids=["EV-A"],
+    )
     audit = audit_evidence([claim], [ev])
     assert any("contradicting" in w for w in audit.warnings)
 

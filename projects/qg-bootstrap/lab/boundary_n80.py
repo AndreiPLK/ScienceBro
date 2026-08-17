@@ -25,7 +25,7 @@ def main() -> int:
     all_pts = {(F(r["r"]), F(r["w"])) for r in d["rows"]}
 
     boundary = []
-    for (r, w) in allowed:
+    for r, w in allowed:
         for dr, dw in ((step, 0), (-step, 0), (0, step), (0, -step)):
             nb = (r + dr, w + dw)
             if nb not in allowed and (nb in all_pts):
@@ -35,9 +35,10 @@ def main() -> int:
 
     fell = []
     from repro_r4_positivity_spot import a_route1
+
     for i, (r, w) in enumerate(sorted(boundary), 1):
         bad = None
-        for n in range(41, 81):   # cells already passed n<=40: check only new levels
+        for n in range(41, 81):  # cells already passed n<=40: check only new levels
             for ell in range(0, n + 1):
                 if a_route1(n, ell, r, w, F(0)) < 0:
                     bad = (n, ell)
@@ -46,12 +47,12 @@ def main() -> int:
                 break
         if bad:
             fell.append({"r": str(r), "w": str(w), "first_negative": bad})
-        print(f"[{i}/{len(boundary)}] r={r} w={w}: {'FELL ' + str(bad) if bad else 'holds'}",
-              flush=True)
-    out = {"boundary_cells": len(boundary), "fell_at_N80": fell,
-           "stable": not fell}
-    (RES / "boundary_N80_mu0.json").write_text(json.dumps(out, indent=2),
-                                               encoding="utf-8")
+        print(
+            f"[{i}/{len(boundary)}] r={r} w={w}: {'FELL ' + str(bad) if bad else 'holds'}",
+            flush=True,
+        )
+    out = {"boundary_cells": len(boundary), "fell_at_N80": fell, "stable": not fell}
+    (RES / "boundary_N80_mu0.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(f"fell at N=80: {len(fell)}")
     for f_ in fell:
         print("  ", f_)

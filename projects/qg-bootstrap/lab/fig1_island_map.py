@@ -54,16 +54,23 @@ def main() -> int:
         for w in GRID:
             ok, first_neg = point_allowed(r, w, mu0)
             allowed_count += ok
-            rows.append({"r": str(r), "w": str(w), "allowed": ok,
-                         "first_negative": first_neg})
+            rows.append({"r": str(r), "w": str(w), "allowed": ok, "first_negative": first_neg})
     OUT_DIR.mkdir(exist_ok=True)
     out = OUT_DIR / f"fig1_map_mu{mu0.numerator}_{mu0.denominator}_N{NMAX}.json"
-    out.write_text(json.dumps({
-        "nmax": NMAX, "D": 4, "mu0": str(mu0),
-        "grid": [str(g) for g in GRID],
-        "allowed_count": allowed_count, "total": len(rows),
-        "rows": rows,
-    }), encoding="utf-8")
+    out.write_text(
+        json.dumps(
+            {
+                "nmax": NMAX,
+                "D": 4,
+                "mu0": str(mu0),
+                "grid": [str(g) for g in GRID],
+                "allowed_count": allowed_count,
+                "total": len(rows),
+                "rows": rows,
+            }
+        ),
+        encoding="utf-8",
+    )
     print(f"mu0={mu0}: {allowed_count}/{len(rows)} grid points allowed (n<={NMAX}, exact)")
     return 0
 

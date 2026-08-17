@@ -2,6 +2,7 @@
 Persisted lab version of the 2026-08-15 inline hunt (same logic, same output).
 Run: .venv/Scripts/python.exe -u projects/qg-bootstrap/lab/hunt_2n6.py
 Output: results/hunt_2n6.json (list of alarms; empty = clean)."""
+
 from __future__ import annotations
 
 import json
@@ -15,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from grav_full_body import gegen_coeffs, mono_int
 
 RES = Path(__file__).resolve().parents[1] / "results"
+
 
 def a_l(n, l, lam, D):
     mu = (n + lam - 1) / lam
@@ -52,14 +54,20 @@ def a_l(n, l, lam, D):
                 b += ci * ck * mono_int(i + k2)
     return b
 
+
 def minT(lamf):
-    return min((3 * (2 * n - 3) / (n * (n - 2))) * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
-               for n in range(3, 300))
+    return min(
+        (3 * (2 * n - 3) / (n * (n - 2))) * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
+        for n in range(3, 300)
+    )
+
 
 def main():
     import subprocess
-    commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                            capture_output=True, text=True).stdout.strip()
+
+    commit = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
     alarms = []
     lams = [F(i, 10) for i in range(1, 31)] + [F(4), F(5), F(7), F(10)]
     t0 = time.time()
@@ -72,12 +80,18 @@ def main():
                 if a_l(n, 2 * n - 6, lam, D) < 0:
                     alarms.append({"lam": str(lam), "D": D, "n": n})
                     break
-        print(f"lam={lam} ok ({time.time()-t0:.0f}s)", flush=True)
-    out = {"alarms": alarms, "n_lambdas": len(lams), "n_range": "4..14",
-           "window": "[minT-3, minT] even D", "git": commit}
+        print(f"lam={lam} ok ({time.time() - t0:.0f}s)", flush=True)
+    out = {
+        "alarms": alarms,
+        "n_lambdas": len(lams),
+        "n_range": "4..14",
+        "window": "[minT-3, minT] even D",
+        "git": commit,
+    }
     (RES / "hunt_2n6.json").write_text(json.dumps(out, indent=1))
     print(f"DONE: {len(alarms)} alarms")
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -79,8 +79,10 @@ def evaluate(model_path: str, points: list[np.ndarray], perturb: bool = False) -
     kre = np.array(k_rel)
     return {
         "n_points": len(points),
-        "ricci_median": float(np.median(arr)), "ricci_p95": float(np.percentile(arr, 95)),
-        "ricci_p99": float(np.percentile(arr, 99)), "ricci_max": float(arr.max()),
+        "ricci_median": float(np.median(arr)),
+        "ricci_p95": float(np.percentile(arr, 95)),
+        "ricci_p99": float(np.percentile(arr, 99)),
+        "ricci_max": float(arr.max()),
         "kretschmann_rel_median": float(np.median(kre)),
         "kretschmann_rel_p95": float(np.percentile(kre, 95)),
         "kretschmann_rel_max": float(kre.max()),
@@ -94,6 +96,7 @@ def main() -> int:
     run_dir = sys.argv[1]
     model = str(PROJ / "upstream" / "checkout" / "runs" / run_dir / "final_model.keras")
     import hashlib
+
     sha = hashlib.sha256(Path(model).read_bytes()).hexdigest()
     pts = hidden_points()
     results = {
@@ -107,9 +110,33 @@ def main() -> int:
         "negative_control_perturbed": evaluate(model, pts, perturb=True),
     }
     OUT.write_text(json.dumps(results, indent=2), encoding="utf-8")
-    print(json.dumps({k: v for k, v in results.items() if k not in ("trained", "negative_control_perturbed")}, indent=2))
-    print("trained:", json.dumps({k: v for k, v in results["trained"].items() if k != "per_point_ricci_max"}, indent=2))
-    print("control:", json.dumps({k: v for k, v in results["negative_control_perturbed"].items() if k != "per_point_ricci_max"}, indent=2))
+    print(
+        json.dumps(
+            {
+                k: v
+                for k, v in results.items()
+                if k not in ("trained", "negative_control_perturbed")
+            },
+            indent=2,
+        )
+    )
+    print(
+        "trained:",
+        json.dumps(
+            {k: v for k, v in results["trained"].items() if k != "per_point_ricci_max"}, indent=2
+        ),
+    )
+    print(
+        "control:",
+        json.dumps(
+            {
+                k: v
+                for k, v in results["negative_control_perturbed"].items()
+                if k != "per_point_ricci_max"
+            },
+            indent=2,
+        ),
+    )
     return 0
 
 

@@ -20,7 +20,7 @@ from pathlib import Path
 RES = Path(__file__).resolve().parents[1] / "results"
 NMAX = int(os.environ.get("NMAX", "14"))
 
-LAMS = [F(i, 20) for i in range(1, 41)]          # 0.05 .. 2.00
+LAMS = [F(i, 20) for i in range(1, 41)]  # 0.05 .. 2.00
 DS = list(range(4, 31, 2))
 
 
@@ -92,13 +92,12 @@ def main() -> int:
         alive = 0
         for lam in LAMS:
             fn = first_negative(lam, D, NMAX)
-            rows.append({"lambda": str(lam), "D": D, "allowed": fn is None,
-                         "first_negative": fn})
+            rows.append({"lambda": str(lam), "D": D, "allowed": fn is None, "first_negative": fn})
             alive += fn is None
-        print(f"D={D}: {alive}/{len(LAMS)} alive ({time.time()-t0:.0f}s)",
-              flush=True)
+        print(f"D={D}: {alive}/{len(LAMS)} alive ({time.time() - t0:.0f}s)", flush=True)
     (RES / "grav_full_body.json").write_text(
-        json.dumps({"nmax": NMAX, "rows": rows}, indent=None), encoding="utf-8")
+        json.dumps({"nmax": NMAX, "rows": rows}, indent=None), encoding="utf-8"
+    )
     print("written grav_full_body.json", flush=True)
     return 0
 

@@ -34,6 +34,7 @@ D = 4  # spacetime dimension for the spot check
 
 # ---------------- route 1: Eq. (A6) exact ----------------
 
+
 @cache
 def stirling1_unsigned(n: int, k: int) -> int:
     if n == 0 and k == 0:
@@ -51,7 +52,7 @@ def fact(n: int) -> int:
 def poch(a: F, n: int) -> F:
     out = F(1)
     for k in range(n):
-        out *= (a + k)
+        out *= a + k
     return out
 
 
@@ -98,6 +99,7 @@ def a_route1(n: int, ell: int, r: F, w: F, mu0: F) -> F:
 
 # ---------------- route 2: residue + exact Legendre decomposition ----------------
 
+
 def legendre_poly_coeffs(ell: int) -> list[F]:
     """Coefficients (in x) of Legendre P_ell, exact, via Bonnet recurrence."""
     p0, p1 = [F(1)], [F(0), F(1)]
@@ -129,15 +131,24 @@ def a_route2(n: int, ell: int, r: F, w: F, mu0: F) -> F:
     #        = [(2+r+t')_{n-1}] * (1+r+t'+w)(1+n+r+w) / [(2+r)_n (1+r+w)]
     # (cancel the (1+r+t') factor exactly: (1+r+t')_n = (1+r+t')*(2+r+t')_{n-1})
     import sympy as sp
+
     tp = sp.Symbol("tp")
     poly = sp.prod([(2 + r + tp + k) for k in range(n - 1)]) if n > 1 else 1
-    poly = sp.expand(poly * (1 + r + tp + w) * (1 + n + r + w)
-                     / (poch(F(2) + r, n) * (1 + r + w)))
+    poly = sp.expand(poly * (1 + r + tp + w) * (1 + n + r + w) / (poch(F(2) + r, n) * (1 + r + w)))
     # substitution t' = -(n - 3*mu0)*(1-x)/2 - mu0
     x = sp.Symbol("x")
-    poly_x = sp.expand(poly.subs(tp, sp.Rational(-(n - 3 * mu0), 2) * (1 - x) - mu0)) \
-        if isinstance(mu0, int) or mu0.denominator == 1 else \
-        sp.expand(poly.subs(tp, (sp.Rational(-1, 2) * (n - 3 * sp.Rational(mu0.numerator, mu0.denominator))) * (1 - x) - sp.Rational(mu0.numerator, mu0.denominator)))
+    poly_x = (
+        sp.expand(poly.subs(tp, sp.Rational(-(n - 3 * mu0), 2) * (1 - x) - mu0))
+        if isinstance(mu0, int) or mu0.denominator == 1
+        else sp.expand(
+            poly.subs(
+                tp,
+                (sp.Rational(-1, 2) * (n - 3 * sp.Rational(mu0.numerator, mu0.denominator)))
+                * (1 - x)
+                - sp.Rational(mu0.numerator, mu0.denominator),
+            )
+        )
+    )
     coeffs = sp.Poly(poly_x, x).all_coeffs()[::-1]  # ascending powers
     coeffs = [F(sp.Rational(c).p, sp.Rational(c).q) for c in coeffs]
     # exact Legendre projection: b_l = (2l+1)/2 * Int P_l(x) * poly(x) dx
@@ -150,6 +161,7 @@ def a_route2(n: int, ell: int, r: F, w: F, mu0: F) -> F:
 
 
 # ---------------- spot checks ----------------
+
 
 def run_point(r: F, w: F, mu0: F, nmax: int, label: str) -> tuple[bool, list]:
     neg = []

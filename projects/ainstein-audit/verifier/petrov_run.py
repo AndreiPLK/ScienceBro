@@ -35,7 +35,11 @@ OUT = PROJ / "results" / "processed" / "petrov_diagnostics.json"
 H = 3e-3
 
 MODELS = {
-    "nn_schwarzschild_baseline": PROJ / "results" / "raw" / "schwarzschild-4d-final-2026-08-12" / "final_model.keras",
+    "nn_schwarzschild_baseline": PROJ
+    / "results"
+    / "raw"
+    / "schwarzschild-4d-final-2026-08-12"
+    / "final_model.keras",
     "candidate_seed123": PROJ / "results" / "raw" / "petrovI-bh-run1" / "final_model.keras",
     "candidate_seed124": PROJ / "results" / "raw" / "petrovI-bh-run2" / "final_model.keras",
 }
@@ -79,30 +83,36 @@ def evaluate_model(path: Path) -> list[dict]:
     for x in POINTS:
         try:
             inv = petrov_invariants(g, x, h=H)
-            rows.append({
-                "point": [float(v) for v in x],
-                "S_real": float(np.real(inv["S"])),
-                "S_imag": float(np.imag(inv["S"])),
-                "abs_S_minus_1": inv["abs_S_minus_1"],
-                "abs_I": float(abs(inv["I"])),
-                "abs_J": float(abs(inv["J"])),
-                "weyl_scale": inv["weyl_scale"],
-            })
+            rows.append(
+                {
+                    "point": [float(v) for v in x],
+                    "S_real": float(np.real(inv["S"])),
+                    "S_imag": float(np.imag(inv["S"])),
+                    "abs_S_minus_1": inv["abs_S_minus_1"],
+                    "abs_I": float(abs(inv["I"])),
+                    "abs_J": float(abs(inv["J"])),
+                    "weyl_scale": inv["weyl_scale"],
+                }
+            )
         except Exception as exc:  # keep failures visible, never silently skip
             rows.append({"point": [float(v) for v in x], "error": str(exc)[:200]})
     return rows
 
 
 def main() -> int:
-    results: dict = {"date": "2026-08-12", "h": H,
-                     "definition": "S = 27 J^2 / (4 I^3); S = 1 <=> algebraically special",
-                     "known_answer": {}}
+    results: dict = {
+        "date": "2026-08-12",
+        "h": H,
+        "definition": "S = 27 J^2 / (4 I^3); S = 1 <=> algebraically special",
+        "known_answer": {},
+    }
 
     # per-point known answer on the analytic metric (Schwarzschild coords)
     for r in (8.0, 12.0):
         inv = petrov_invariants(schwarzschild, np.array([0.0, r, 1.1, 0.3]), h=H)
         results["known_answer"][f"analytic_schwarzschild_r{r:.0f}"] = {
-            "S_real": float(np.real(inv["S"])), "abs_S_minus_1": inv["abs_S_minus_1"],
+            "S_real": float(np.real(inv["S"])),
+            "abs_S_minus_1": inv["abs_S_minus_1"],
         }
 
     for name, path in MODELS.items():
@@ -110,6 +120,7 @@ def main() -> int:
             results[name] = {"status": "checkpoint missing"}
             continue
         import hashlib
+
         results[name] = {
             "model_sha256": hashlib.sha256(path.read_bytes()).hexdigest()[:32],
             "rows": evaluate_model(path),

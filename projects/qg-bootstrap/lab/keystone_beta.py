@@ -57,7 +57,7 @@ def Qpoly_val(j: int, n: int, t: int) -> int:
     """Q(t) = prod_{i=j}^{n-1} (i - t), exact integer."""
     v = 1
     for i in range(j, n):
-        v *= (i - t)
+        v *= i - t
     return v
 
 
@@ -86,16 +86,16 @@ def J_exact(j: int, n: int, lam: Fraction, D: Fraction) -> Fraction:
     (n, lam).  sign I = sign J because every cleared factor is positive.
     """
     coeffs = Hhat_coeffs(j, n, lam)
-    p = Fraction(2 * (n - j) - 1, 2)           # n - j - 1/2
+    p = Fraction(2 * (n - j) - 1, 2)  # n - j - 1/2
     Q = Fraction(D, 2) + n - j - 2
     tot = Fraction(0)
-    for t, ct in enumerate(coeffs):            # power u^{j-1-t}
+    for t, ct in enumerate(coeffs):  # power u^{j-1-t}
         m = j - 1 - t
         term = ct
-        for i in range(m):                     # numerator of the Beta ratio
-            term *= (p + 1 + i)
-        for i in range(m, j - 1):              # cleared denominator factors
-            term *= (p + Q + 2 + i)
+        for i in range(m):  # numerator of the Beta ratio
+            term *= p + 1 + i
+        for i in range(m, j - 1):  # cleared denominator factors
+            term *= p + Q + 2 + i
         tot += term
     return tot
 
@@ -109,9 +109,9 @@ def J_poly_in_Q(j: int, n: int, lam: Fraction) -> list[Fraction]:
         m = j - 1 - t
         term = ct
         for i in range(m):
-            term *= (p + 1 + i)
-        cur = [term]                            # polynomial in Q
-        for i in range(m, j - 1):               # multiply by (Q + p + 2 + i)
+            term *= p + 1 + i
+        cur = [term]  # polynomial in Q
+        for i in range(m, j - 1):  # multiply by (Q + p + 2 + i)
             shift = p + 2 + i
             new = [Fraction(0)] * (len(cur) + 1)
             for d, cd in enumerate(cur):
@@ -135,78 +135,89 @@ def main() -> int:
     checks, mism, rows = 0, [], []
     for j in range(2, 22):
         for n in range(j + 1, j + 20, 3):
-            for lam in (Fraction(1, 100), Fraction(1, 2), Fraction(3),
-                        Fraction(26)):
+            for lam in (Fraction(1, 100), Fraction(1, 2), Fraction(3), Fraction(26)):
                 Th = T_hat(lam)
                 s = Fraction(lam) + n - 1
-                for f in (Fraction(0), Fraction(1, 2), Fraction(1),
-                          Fraction(3)):
+                for f in (Fraction(0), Fraction(1, 2), Fraction(1), Fraction(3)):
                     D = 4 + (Th - 4) * f
                     # --- exact algebra check: closed form == Q-form -------
                     e = e_doubled_int(n)
                     R = (D + Fraction(4 * n - 4 * j - 1)) / 2 + j - 1
-                    c0 = (Fraction(factorial(2 * n - 2),
-                                   factorial(j - 1) * 2 ** (j - 1))
-                          * s ** (2 * (j - 1)))
+                    c0 = Fraction(factorial(2 * n - 2), factorial(j - 1) * 2 ** (j - 1)) * s ** (
+                        2 * (j - 1)
+                    )
                     tot = Fraction(0)
                     for t in range(j):
-                        m2 = (poch(1 - R, t)
-                              / (poch(Fraction(3, 2) - n, t) * s ** (2 * t)))
-                        tot += ((-1) ** t * Fraction(e[t])
-                                * Qpoly_val(j, n, t) * m2)
-                    qform = c0 * Fraction(factorial(j - 1),
-                                          factorial(n - 1)) * tot
+                        m2 = poch(1 - R, t) / (poch(Fraction(3, 2) - n, t) * s ** (2 * t))
+                        tot += (-1) ** t * Fraction(e[t]) * Qpoly_val(j, n, t) * m2
+                    qform = c0 * Fraction(factorial(j - 1), factorial(n - 1)) * tot
                     ref = P_closed(j, n, lam, D)
                     checks += 1
                     if qform != ref:
-                        mism.append({"kind": "Q-form", "j": j, "n": n,
-                                     "lam": str(lam), "f": str(f)})
+                        mism.append(
+                            {"kind": "Q-form", "j": j, "n": n, "lam": str(lam), "f": str(f)}
+                        )
                     # --- integral representation: EXACT sign must agree ---
                     Jv = J_exact(j, n, lam, D)
                     checks += 1
                     if (Jv > 0) != (ref > 0):
-                        mism.append({"kind": "sign", "j": j, "n": n,
-                                     "lam": str(lam), "f": str(f),
-                                     "J_pos": Jv > 0, "P_pos": ref > 0})
+                        mism.append(
+                            {
+                                "kind": "sign",
+                                "j": j,
+                                "n": n,
+                                "lam": str(lam),
+                                "f": str(f),
+                                "J_pos": Jv > 0,
+                                "P_pos": ref > 0,
+                            }
+                        )
                     # J evaluated from its Q-polynomial must match J_exact
                     Qv = Fraction(D, 2) + n - j - 2
                     pol = J_poly_in_Q(j, n, lam)
-                    val = sum(c * Qv ** d for d, c in enumerate(pol))
+                    val = sum(c * Qv**d for d, c in enumerate(pol))
                     checks += 1
                     if val != Jv:
-                        mism.append({"kind": "Qpoly", "j": j, "n": n,
-                                     "lam": str(lam), "f": str(f)})
+                        mism.append({"kind": "Qpoly", "j": j, "n": n, "lam": str(lam), "f": str(f)})
                     if f in (Fraction(0), Fraction(1)):
-                        rows.append({
-                            "j": j, "n": n, "lam": str(lam), "f": str(f),
-                            "P_pos": ref > 0, "J_pos": Jv > 0,
-                            "sign_changes_Hhat":
-                                sign_changes(Hhat_coeffs(j, n, lam)),
-                            "sign_changes_J_in_Q":
-                                sign_changes(list(reversed(pol)))})
-        print(f"  j={j} done ({time.time()-t0:.0f}s), "
-              f"mismatches so far {len(mism)}", flush=True)
+                        rows.append(
+                            {
+                                "j": j,
+                                "n": n,
+                                "lam": str(lam),
+                                "f": str(f),
+                                "P_pos": ref > 0,
+                                "J_pos": Jv > 0,
+                                "sign_changes_Hhat": sign_changes(Hhat_coeffs(j, n, lam)),
+                                "sign_changes_J_in_Q": sign_changes(list(reversed(pol))),
+                            }
+                        )
+        print(f"  j={j} done ({time.time() - t0:.0f}s), mismatches so far {len(mism)}", flush=True)
 
     sc = sorted({r["sign_changes_Hhat"] for r in rows})
-    out = {"claim": "sign P_j = sign of a single Beta-weighted integral of a"
-                    " D-FREE polynomial Hhat of degree j-1",
-           "formula": {"I": "int_0^1 Hhat(u) u^p (1-u)^Q du",
-                       "Hhat": "sum_t (-1)^t E_2t(n) Q(t) s^{-2t} u^{j-1-t}",
-                       "Q_of_t": "prod_{i=j}^{n-1} (i-t)",
-                       "p": "n - j - 1/2  (D-free)",
-                       "Q_exp": "D/2 + n - j - 2  (only D-dependence)"},
-           "exact_checks": checks, "mismatches": mism,
-           "verified": not mism,
-           "sign_changes_observed": sc,
-           "rows": rows[:80],
-           "command": "python lab/keystone_beta.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_beta.json").write_text(json.dumps(out, indent=1),
-                                            encoding="utf-8")
+    out = {
+        "claim": "sign P_j = sign of a single Beta-weighted integral of a"
+        " D-FREE polynomial Hhat of degree j-1",
+        "formula": {
+            "I": "int_0^1 Hhat(u) u^p (1-u)^Q du",
+            "Hhat": "sum_t (-1)^t E_2t(n) Q(t) s^{-2t} u^{j-1-t}",
+            "Q_of_t": "prod_{i=j}^{n-1} (i-t)",
+            "p": "n - j - 1/2  (D-free)",
+            "Q_exp": "D/2 + n - j - 2  (only D-dependence)",
+        },
+        "exact_checks": checks,
+        "mismatches": mism,
+        "verified": not mism,
+        "sign_changes_observed": sc,
+        "rows": rows[:80],
+        "command": "python lab/keystone_beta.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_beta.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print(f"checks {checks}, mismatches {len(mism)}", flush=True)
     print(f"sign changes of Hhat observed: {sc}", flush=True)
-    print("BETA REPRESENTATION " + ("VERIFIED" if not mism else "FAILED"),
-          flush=True)
+    print("BETA REPRESENTATION " + ("VERIFIED" if not mism else "FAILED"), flush=True)
     return 0 if not mism else 1
 
 

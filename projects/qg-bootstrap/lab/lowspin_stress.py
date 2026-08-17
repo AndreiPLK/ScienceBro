@@ -26,9 +26,10 @@ RES = Path(__file__).resolve().parents[1] / "results"
 
 
 def min_T(lamf: float) -> float:
-    return min((3 * (2 * n - 3) / (n * (n - 2)))
-               * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
-               for n in range(3, 400))
+    return min(
+        (3 * (2 * n - 3) / (n * (n - 2))) * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
+        for n in range(3, 400)
+    )
 
 
 def main() -> int:
@@ -44,16 +45,25 @@ def main() -> int:
             fn = first_negative(lam, D, 20)
             if fn is not None:
                 alarms.append({"lam": str(lam), "D": D, "first_neg": fn})
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"alarms": alarms, "lambdas": ["1", "3/2", "2", "3", "5", "8"],
-           "depth": 20, "window": "[minT-2, minT] even D", "checks": checks,
-           "command": "python lab/lowspin_stress.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "lowspin_stress.json").write_text(json.dumps(out, indent=1),
-                                             encoding="utf-8")
-    print(f"low-spin stress: {len(alarms)} alarms in {checks} checks"
-          f" (depth 20, all even l), {time.time()-t0:.1f}s", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "alarms": alarms,
+        "lambdas": ["1", "3/2", "2", "3", "5", "8"],
+        "depth": 20,
+        "window": "[minT-2, minT] even D",
+        "checks": checks,
+        "command": "python lab/lowspin_stress.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "lowspin_stress.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"low-spin stress: {len(alarms)} alarms in {checks} checks"
+        f" (depth 20, all even l), {time.time() - t0:.1f}s",
+        flush=True,
+    )
     return 0
 
 

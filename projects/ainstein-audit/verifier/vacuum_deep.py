@@ -79,14 +79,13 @@ def main() -> int:
         residuals: list[float] = []
         sig_flags: list[bool] = []
         for i in range(0, len(pts), CHUNK):
-            chunk = pts[i:i + CHUNK]
+            chunk = pts[i : i + CHUNK]
             # same primitives as candidate_stress.ricci_stats (H == bs.H frozen)
             ka.SNAPSHOT = str(ckpt)
             stencil4 = ka.stencil_for(chunk)
             pts5 = np.hstack([stencil4, np.zeros((len(stencil4), 1))])
             values = ka.export(pts5, analytic=False)
-            cache = {tuple(np.round(p, 12)): values[k]
-                     for k, p in enumerate(stencil4)}
+            cache = {tuple(np.round(p, 12)): values[k] for k, p in enumerate(stencil4)}
 
             def g(x: np.ndarray, cache: dict = cache) -> np.ndarray:
                 return cache[tuple(np.round(x, 12))]
@@ -98,27 +97,42 @@ def main() -> int:
                 sig_flags.append(bool(np.linalg.det(gm) < 0 and (eig < 0).sum() == 1))
             done = min(i + CHUNK, len(pts))
             part = float(np.median(residuals))
-            print(f"seed {seed}: {done}/{len(pts)} pts, running median "
-                  f"{part:.4f}, {time.time()-t0:.0f}s", flush=True)
+            print(
+                f"seed {seed}: {done}/{len(pts)} pts, running median "
+                f"{part:.4f}, {time.time() - t0:.0f}s",
+                flush=True,
+            )
         arr = np.array(residuals)
-        med, p95, mx = (float(np.median(arr)), float(np.percentile(arr, 95)),
-                        float(arr.max()))
+        med, p95, mx = (float(np.median(arr)), float(np.percentile(arr, 95)), float(arr.max()))
         sig = float(np.mean(sig_flags))
-        row = {"seed": seed, "model_sha256": sha[:16], "hidden_seed": hidden_seed,
-               "n_points": N_POINTS,
-               "median": med, "p95": p95, "max": mx, "signature_ok_fraction": sig,
-               "pass_frozen": bool(med <= MEDIAN_LIMIT and p95 <= P95_LIMIT),
-               "runtime_s": round(time.time() - t0, 1)}
+        row = {
+            "seed": seed,
+            "model_sha256": sha[:16],
+            "hidden_seed": hidden_seed,
+            "n_points": N_POINTS,
+            "median": med,
+            "p95": p95,
+            "max": mx,
+            "signature_ok_fraction": sig,
+            "pass_frozen": bool(med <= MEDIAN_LIMIT and p95 <= P95_LIMIT),
+            "runtime_s": round(time.time() - t0, 1),
+        }
         rows.append(row)
-        print(f"seed {seed}: median={med:.4f} p95={p95:.4f} max={mx:.3g} "
-              f"{'PASS' if row['pass_frozen'] else 'FAIL'} "
-              f"({row['runtime_s']}s)", flush=True)
+        print(
+            f"seed {seed}: median={med:.4f} p95={p95:.4f} max={mx:.3g} "
+            f"{'PASS' if row['pass_frozen'] else 'FAIL'} "
+            f"({row['runtime_s']}s)",
+            flush=True,
+        )
 
-    out = {"date": "2026-08-13", "n_points": N_POINTS,
-           "frozen_limits": {"median": MEDIAN_LIMIT, "p95": P95_LIMIT},
-           "context": "author-response upgrade: Dr. Hirst noted 24 pts too few; "
-                      "paper standard is 2000",
-           "rows": rows}
+    out = {
+        "date": "2026-08-13",
+        "n_points": N_POINTS,
+        "frozen_limits": {"median": MEDIAN_LIMIT, "p95": P95_LIMIT},
+        "context": "author-response upgrade: Dr. Hirst noted 24 pts too few; "
+        "paper standard is 2000",
+        "rows": rows,
+    }
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out_path = OUT_DIR / f"vacuum_deep_N{N_POINTS}.json"
     out_path.write_text(json.dumps(out, indent=2), encoding="utf-8")

@@ -75,6 +75,7 @@ def append_jsonl_model(path: Path, obj: BaseModel) -> None:
 
 # ------------------------------------------------------------ project-level API
 
+
 class ProjectStore:
     def __init__(self, paths: RepoPaths, project_id: str) -> None:
         self.paths = paths
@@ -110,10 +111,7 @@ class ProjectStore:
     def _load_dir(self, directory: Path, model: type[T]) -> list[T]:
         if not directory.is_dir():
             return []
-        return [
-            load_yaml_model(p, model)
-            for p in sorted(directory.glob("*.yaml"))
-        ]
+        return [load_yaml_model(p, model) for p in sorted(directory.glob("*.yaml"))]
 
     def hypotheses(self) -> list[Hypothesis]:
         return self._load_dir(self.paths.hypotheses_dir(self.project_id), Hypothesis)

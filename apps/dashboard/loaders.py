@@ -92,8 +92,10 @@ def topics() -> tuple[list[Topic], list[str]]:
 def git_info() -> dict[str, str]:
     root = paths().root
     out = {}
-    for key, args in [("commit", ["rev-parse", "--short", "HEAD"]),
-                      ("last_commit_time", ["log", "-1", "--format=%ci"])]:
+    for key, args in [
+        ("commit", ["rev-parse", "--short", "HEAD"]),
+        ("last_commit_time", ["log", "-1", "--format=%ci"]),
+    ]:
         try:
             r = subprocess.run(["git", *args], cwd=root, capture_output=True, text=True, timeout=10)
             out[key] = r.stdout.strip() if r.returncode == 0 else "n/a"

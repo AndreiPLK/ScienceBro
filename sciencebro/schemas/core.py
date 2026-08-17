@@ -16,6 +16,7 @@ from pydantic import BaseModel, Field, field_validator
 
 # ---------------------------------------------------------------- project
 
+
 class ComputeBudget(BaseModel):
     device: str = "auto"
     max_single_run_hours: float = 12
@@ -27,8 +28,15 @@ class Project(BaseModel):
     title: str
     domain: str
     stage: Literal[
-        "intake", "research", "evidence", "hypothesis", "implementation",
-        "experiment", "validation", "claim-promotion", "release",
+        "intake",
+        "research",
+        "evidence",
+        "hypothesis",
+        "implementation",
+        "experiment",
+        "validation",
+        "claim-promotion",
+        "release",
     ] = "intake"
     owner: str
     primary_question: str
@@ -47,10 +55,17 @@ class Project(BaseModel):
 
 # ---------------------------------------------------------------- evidence
 
+
 class SourceRef(BaseModel):
     type: Literal[
-        "arxiv-paper", "journal-paper", "preprint", "code-repository",
-        "dataset", "documentation", "webpage", "book",
+        "arxiv-paper",
+        "journal-paper",
+        "preprint",
+        "code-repository",
+        "dataset",
+        "documentation",
+        "webpage",
+        "book",
         "author-correspondence",  # приватная переписка с автором (EV-CORR-*)
     ]
     identifier: str  # DOI, arXiv ID, URL, or repo@commit
@@ -96,6 +111,7 @@ class EvidenceRecord(BaseModel):
 
 # ---------------------------------------------------------------- claims
 
+
 class ClaimState(StrEnum):
     speculative = "speculative"
     source_supported = "source-supported"
@@ -120,6 +136,7 @@ class Claim(BaseModel):
 
 # ---------------------------------------------------------------- hypotheses
 
+
 class Hypothesis(BaseModel):
     id: str
     statement: str
@@ -132,6 +149,7 @@ class Hypothesis(BaseModel):
 
 
 # ---------------------------------------------------------------- experiments
+
 
 class Experiment(BaseModel):
     id: str
@@ -167,6 +185,7 @@ class Experiment(BaseModel):
 
 # ---------------------------------------------------------------- validation
 
+
 class ValidationDecision(StrEnum):
     pending = "pending"
     passed = "pass"
@@ -179,7 +198,9 @@ class ValidationResult(BaseModel):
     experiment_id: str
     validator: str
     independence_level: Literal[
-        "separate-formulation", "separate-implementation", "shared-dependency-documented",
+        "separate-formulation",
+        "separate-implementation",
+        "shared-dependency-documented",
     ]
     checks: dict[str, str] = Field(default_factory=dict)
     decision: ValidationDecision = ValidationDecision.pending
@@ -222,9 +243,7 @@ def allowed_claim_promotion(
 
     if target in _ORDER and claim.state in _ORDER:
         if _ORDER.index(target) - _ORDER.index(claim.state) > 1:
-            blockers.append(
-                f"cannot skip states: {claim.state.value} -> {target.value}"
-            )
+            blockers.append(f"cannot skip states: {claim.state.value} -> {target.value}")
 
     if target in _ORDER and _ORDER.index(target) >= _ORDER.index(ClaimState.source_supported):
         if not linked:
@@ -232,12 +251,20 @@ def allowed_claim_promotion(
         elif all(e.access.abstract_only for e in linked):
             blockers.append("all linked evidence is abstract_only (§6 rule 4)")
 
-    if target in (ClaimState.experimentally_supported, ClaimState.independently_validated, ClaimState.release_ready):
+    if target in (
+        ClaimState.experimentally_supported,
+        ClaimState.independently_validated,
+        ClaimState.release_ready,
+    ):
         if not claim.experiment_ids:
             blockers.append("no linked experiment")
 
     if target in (ClaimState.independently_validated, ClaimState.release_ready):
-        passed = [v for v in validations if v.id in claim.validation_ids and v.decision == ValidationDecision.passed]
+        passed = [
+            v
+            for v in validations
+            if v.id in claim.validation_ids and v.decision == ValidationDecision.passed
+        ]
         if not passed:
             blockers.append("no passing independent validation")
 

@@ -74,7 +74,7 @@ def trapping_diagnostics(g: MetricFunction, x: np.ndarray, h: float = 3e-3) -> d
     xi = float(grad @ hinv @ grad)
 
     # future-directed null directions of the block: h_ab l^a l^b = 0, l^T > 0
-    a_, b_, c_ = hh[1, 1], 2.0 * hh[0, 1], hh[0, 0]      # for l = (1, s)
+    a_, b_, c_ = hh[1, 1], 2.0 * hh[0, 1], hh[0, 0]  # for l = (1, s)
     disc = b_**2 - 4.0 * a_ * c_
     if disc < 0:
         raise ValueError("no real null directions in the block")

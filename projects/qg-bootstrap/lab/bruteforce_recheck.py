@@ -27,10 +27,9 @@ def blade(n: int, lam: float):
     m = n - 3
     s = lam + n - 1
     G = 2 * (m + 1) * (m + 3) / (3 * (2 * m + 3))
-    al = ((m + 3) * (5 * m ** 3 + 21 * m ** 2 + 19 * m + 15)
-          / (45 * (2 * m + 1) * (2 * m + 3)))
+    al = (m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15) / (45 * (2 * m + 1) * (2 * m + 3))
     b = 2 * al + G * s * s
-    disc = b * b - 4 * al * s ** 4
+    disc = b * b - 4 * al * s**4
     if disc <= 0:
         return None
     r = sqrt(disc)
@@ -38,9 +37,10 @@ def blade(n: int, lam: float):
 
 
 def min_T(lam: float, kmax: int) -> float:
-    return min(3 * (2 * k - 3) / (k * (k - 2))
-               * (lam * lam + (2 * k - 2) * lam + 1) + 2 * k
-               for k in range(3, kmax))
+    return min(
+        3 * (2 * k - 3) / (k * (k - 2)) * (lam * lam + (2 * k - 2) * lam + 1) + 2 * k
+        for k in range(3, kmax)
+    )
 
 
 def main() -> int:
@@ -69,18 +69,22 @@ def main() -> int:
         if margin < worst:
             worst = margin
             worst_at = (n, round(lam, 4))
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"seed": SEED, "points": checked, "with_windows": windows,
-           "min_margin_dims": round(worst, 4),
-           "min_margin_at": {"n": worst_at[0], "lam": worst_at[1]},
-           "counterexamples": 0 if worst > 0 else "SEE min_margin",
-           "command": "python lab/bruteforce_recheck.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "bruteforce_recheck.json").write_text(json.dumps(out, indent=1),
-                                                 encoding="utf-8")
-    print(f"{checked} points, {windows} windows, min margin {worst:.4f}"
-          f" at {worst_at}", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "seed": SEED,
+        "points": checked,
+        "with_windows": windows,
+        "min_margin_dims": round(worst, 4),
+        "min_margin_at": {"n": worst_at[0], "lam": worst_at[1]},
+        "counterexamples": 0 if worst > 0 else "SEE min_margin",
+        "command": "python lab/bruteforce_recheck.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "bruteforce_recheck.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(f"{checked} points, {windows} windows, min margin {worst:.4f} at {worst_at}", flush=True)
     return 0 if worst > 0 else 1
 
 

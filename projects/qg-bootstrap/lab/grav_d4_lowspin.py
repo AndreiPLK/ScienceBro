@@ -21,8 +21,21 @@ RES = Path(__file__).resolve().parents[1] / "results"
 NMAX = int(os.environ.get("NMAX", "40"))
 LMAX = 8
 
-LAMBDAS = [F(1, 100), F(1, 10), F(1, 4), F(1, 2), F(3, 4), F(9, 10),
-           F(1), F(11, 10), F(3, 2), F(2), F(4), F(10), F(100)]
+LAMBDAS = [
+    F(1, 100),
+    F(1, 10),
+    F(1, 4),
+    F(1, 2),
+    F(3, 4),
+    F(9, 10),
+    F(1),
+    F(11, 10),
+    F(3, 2),
+    F(2),
+    F(4),
+    F(10),
+    F(100),
+]
 
 
 def legendre_coeffs(l):
@@ -81,12 +94,13 @@ def main() -> int:
     t0 = time.time()
     for lam in LAMBDAS:
         fn = scan_lambda(lam, NMAX)
-        out.append({"lambda": str(lam), "first_negative_low_spin": fn,
-                    "nmax": NMAX, "lmax": LMAX})
-        print(f"lambda={lam}: {fn if fn else f'clean (l<={LMAX}, n<={NMAX})'} "
-              f"({time.time()-t0:.0f}s)", flush=True)
-    (RES / "grav_d4_lowspin.json").write_text(json.dumps(out, indent=1),
-                                              encoding="utf-8")
+        out.append({"lambda": str(lam), "first_negative_low_spin": fn, "nmax": NMAX, "lmax": LMAX})
+        print(
+            f"lambda={lam}: {fn if fn else f'clean (l<={LMAX}, n<={NMAX})'} "
+            f"({time.time() - t0:.0f}s)",
+            flush=True,
+        )
+    (RES / "grav_d4_lowspin.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("written grav_d4_lowspin.json", flush=True)
     return 0
 

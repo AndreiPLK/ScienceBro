@@ -23,7 +23,9 @@ from sciencebro.schemas import ClaimState, allowed_claim_promotion
 from sciencebro.status import compute_status
 from sciencebro.store import ProjectStore, StoreError, save_yaml_model
 
-app = typer.Typer(help="ScienceBro: local-first computational research workbench.", no_args_is_help=True)
+app = typer.Typer(
+    help="ScienceBro: local-first computational research workbench.", no_args_is_help=True
+)
 topic_app = typer.Typer(help="Research topic registry.", no_args_is_help=True)
 project_app = typer.Typer(help="Project operations.", no_args_is_help=True)
 evidence_app = typer.Typer(help="Evidence operations.", no_args_is_help=True)
@@ -46,6 +48,7 @@ def _paths() -> RepoPaths:
 
 # ---------------------------------------------------------------- doctor
 
+
 @app.command()
 def doctor(as_json: bool = typer.Option(False, "--json", help="JSON output for CI")) -> None:
     """Diagnose the environment. Fails (exit 1) when a required check fails."""
@@ -58,7 +61,11 @@ def doctor(as_json: bool = typer.Option(False, "--json", help="JSON output for C
         table.add_column("status")
         table.add_column("detail")
         for c in rep.checks:
-            mark = "[green]ok[/green]" if c.ok else ("[red]FAIL[/red]" if c.required else "[yellow]missing[/yellow]")
+            mark = (
+                "[green]ok[/green]"
+                if c.ok
+                else ("[red]FAIL[/red]" if c.required else "[yellow]missing[/yellow]")
+            )
             table.add_row(c.name, mark, c.detail)
         console.print(table)
         if not rep.ok:
@@ -69,6 +76,7 @@ def doctor(as_json: bool = typer.Option(False, "--json", help="JSON output for C
 
 
 # ---------------------------------------------------------------- topics
+
 
 @topic_app.command("list")
 def topic_list() -> None:
@@ -96,6 +104,7 @@ def topic_show(topic_id: str) -> None:
 
 
 # ---------------------------------------------------------------- project
+
 
 @project_app.command("status")
 def project_status(
@@ -141,6 +150,7 @@ def project_list() -> None:
 
 # ---------------------------------------------------------------- evidence
 
+
 @evidence_app.command("audit")
 def evidence_audit(project_id: str) -> None:
     """Audit evidence/claims consistency. Non-zero exit when rules are violated."""
@@ -160,6 +170,7 @@ def evidence_audit(project_id: str) -> None:
 
 
 # ---------------------------------------------------------------- hypotheses
+
 
 @hypothesis_app.command("list")
 def hypothesis_list(project_id: str) -> None:
@@ -190,6 +201,7 @@ def hypothesis_freeze(project_id: str, hypothesis_id: str) -> None:
 
 # ---------------------------------------------------------------- claims
 
+
 @claim_app.command("list")
 def claim_list(project_id: str) -> None:
     """List claims with states and blockers."""
@@ -213,10 +225,20 @@ def claim_list(project_id: str) -> None:
         # next target = the state after the current one in canonical order
         values = [s.value for s in order]
         idx = values.index(c.state.value) if c.state.value in values else -1
-        target = order[idx + 1] if 0 <= idx < len(order) - 1 else order[0] if idx == -1 else ClaimState.release_ready
+        target = (
+            order[idx + 1]
+            if 0 <= idx < len(order) - 1
+            else order[0]
+            if idx == -1
+            else ClaimState.release_ready
+        )
         blockers = allowed_claim_promotion(c, target, evidence, validations)
-        table.add_row(c.id, c.state.value, ",".join(c.evidence_ids) or "-",
-                      f"→{target.value}: " + ("; ".join(blockers) if blockers else "none"))
+        table.add_row(
+            c.id,
+            c.state.value,
+            ",".join(c.evidence_ids) or "-",
+            f"→{target.value}: " + ("; ".join(blockers) if blockers else "none"),
+        )
     console.print(table)
 
 
@@ -232,7 +254,9 @@ def claim_promote(project_id: str, claim_id: str, target_state: str) -> None:
     try:
         target = ClaimState(target_state)
     except ValueError:
-        console.print(f"[red]invalid state {target_state}; allowed: {[s.value for s in ClaimState]}[/red]")
+        console.print(
+            f"[red]invalid state {target_state}; allowed: {[s.value for s in ClaimState]}[/red]"
+        )
         raise typer.Exit(1) from None
     blockers = allowed_claim_promotion(claim, target, store.evidence(), store.validations())
     if blockers:
@@ -247,6 +271,7 @@ def claim_promote(project_id: str, claim_id: str, target_state: str) -> None:
 
 
 # ---------------------------------------------------------------- release
+
 
 @release_app.command("check")
 def release_check(project_id: str) -> None:
@@ -292,10 +317,15 @@ app.add_typer(proof_app, name="proof")
 def _print_gate(gate) -> None:  # type: ignore[no-untyped-def]
     color = {"VERIFIED": "green", "FAILED": "red"}.get(gate.status, "yellow")
     label = " (ENGINEERING)" if gate.label == "ENGINEERING" else ""
-    console.print(f"[bold]{gate.stage_id}: {gate.title}[/bold] — [{color}]{gate.status}[/{color}]{label}")
+    console.print(
+        f"[bold]{gate.stage_id}: {gate.title}[/bold] — [{color}]{gate.status}[/{color}]{label}"
+    )
     for r in gate.requirements:
-        mark = {"pass": "[green]PASS[/green]", "fail": "[red]FAIL[/red]",
-                "missing": "[yellow]MISSING[/yellow]"}[r.status]
+        mark = {
+            "pass": "[green]PASS[/green]",
+            "fail": "[red]FAIL[/red]",
+            "missing": "[yellow]MISSING[/yellow]",
+        }[r.status]
         console.print(f"  {mark} {r.description}" + (f" — {r.measured}" if r.measured else ""))
 
 
@@ -363,6 +393,7 @@ def proof_verify_integrity(proof_pack: str) -> None:
 
 
 # ---------------------------------------------------------------- check / dashboard
+
 
 @app.command()
 def check() -> None:

@@ -72,6 +72,4 @@ class RepoPaths:
     def list_projects(self) -> list[str]:
         if not self.projects.is_dir():
             return []
-        return sorted(
-            p.name for p in self.projects.iterdir() if (p / "project.yaml").exists()
-        )
+        return sorted(p.name for p in self.projects.iterdir() if (p / "project.yaml").exists())

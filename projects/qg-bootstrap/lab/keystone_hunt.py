@@ -36,8 +36,7 @@ SPINS = [0, 2, 4, 6]
 
 
 def T_k(k, lam):
-    return (Fraction(3 * (2 * k - 3), k * (k - 2))
-            * (lam * lam + (2 * k - 2) * lam + 1) + 2 * k)
+    return Fraction(3 * (2 * k - 3), k * (k - 2)) * (lam * lam + (2 * k - 2) * lam + 1) + 2 * k
 
 
 def T_hat(lam):
@@ -62,9 +61,9 @@ def lam_grid():
     for base in range(1, 46):  # branch seams and midpoints
         pts.add(Fraction(3, 5) * (base - Fraction(5, 2)))
         pts.add(Fraction(3, 5) * base - Fraction(9, 10))
-    pts |= {Fraction(1, 10**k) for k in range(1, 7)}          # tiny lam
+    pts |= {Fraction(1, 10**k) for k in range(1, 7)}  # tiny lam
     pts |= {Fraction(26) + Fraction(i, 7) for i in range(-3, 8)}  # deep seam
-    pts |= {Fraction(i, 3) for i in range(1, 130)}            # dense sweep
+    pts |= {Fraction(i, 3) for i in range(1, 130)}  # dense sweep
     return sorted(p for p in pts if p > 0)
 
 
@@ -93,32 +92,42 @@ def main() -> int:
                 Th = T_hat(lam)
                 if Th <= 4:
                     continue
-                Ds = [Fraction(4), (Fraction(4) + Th) / 2,
-                      Th - (Th - 4) / 1000, Th - (Th - 4) / 10**6, Th]
+                Ds = [
+                    Fraction(4),
+                    (Fraction(4) + Th) / 2,
+                    Th - (Th - 4) / 1000,
+                    Th - (Th - 4) / 10**6,
+                    Th,
+                ]
                 for D in Ds:
                     val = eval_P(coeffs, lam, D)
                     checks += 1
                     if val < 0:
-                        violations.append({"l": l, "n": n, "j": j,
-                                           "lam": str(lam), "D": str(D),
-                                           "P": str(val)})
-                        print(f"VIOLATION l={l} n={n} lam={lam} D={D}",
-                              flush=True)
-        print(f"spin l={l}: done ({checks} checks, {time.time()-t0:.0f}s)",
-              flush=True)
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"regime": "fixed spin l=2n-2j, boundary-hugging exact grid",
-           "frozen_criterion": "violation iff P_j<0 exact, 4<=D<=T_hat(lam)",
-           "nmax": NMAX, "spins": SPINS, "checks": checks,
-           "violations": violations,
-           "command": f"NMAX={NMAX} python lab/keystone_hunt.py",
-           "git": git, "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_hunt.json").write_text(json.dumps(out, indent=1),
-                                            encoding="utf-8")
-    print(("NO VIOLATIONS" if not violations else
-           f"{len(violations)} VIOLATIONS") + f" in {checks} checks",
-          flush=True)
+                        violations.append(
+                            {"l": l, "n": n, "j": j, "lam": str(lam), "D": str(D), "P": str(val)}
+                        )
+                        print(f"VIOLATION l={l} n={n} lam={lam} D={D}", flush=True)
+        print(f"spin l={l}: done ({checks} checks, {time.time() - t0:.0f}s)", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "regime": "fixed spin l=2n-2j, boundary-hugging exact grid",
+        "frozen_criterion": "violation iff P_j<0 exact, 4<=D<=T_hat(lam)",
+        "nmax": NMAX,
+        "spins": SPINS,
+        "checks": checks,
+        "violations": violations,
+        "command": f"NMAX={NMAX} python lab/keystone_hunt.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_hunt.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        ("NO VIOLATIONS" if not violations else f"{len(violations)} VIOLATIONS")
+        + f" in {checks} checks",
+        flush=True,
+    )
     return 0 if not violations else 1
 
 

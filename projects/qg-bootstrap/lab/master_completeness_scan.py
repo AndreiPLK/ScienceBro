@@ -41,6 +41,8 @@ def ensure_E(nmax):
     for n in range(3, nmax + 1):
         if n not in E:
             E[n] = e_doubled(n)
+
+
 W = {}
 
 
@@ -54,11 +56,10 @@ def master_sign(n: int, j: int, lamv: F, Dv: int) -> int:
     for i in range(j):
         key = (n, j, i)
         if key not in W:
-            W[key] = F(factorial(2 * n - 2 * j + 2 * i),
-                       factorial(i) * 2 ** i)
+            W[key] = F(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2**i)
         tail = 1
         for k in range(i, j - 1):
-            tail *= (Dv + c + 2 * k)
+            tail *= Dv + c + 2 * k
         B += (-1) ** i * e[j - 1 - i] * W[key] * spow * tail
         spow *= s2
     if j % 2 == 0:
@@ -68,15 +69,15 @@ def master_sign(n: int, j: int, lamv: F, Dv: int) -> int:
 
 def min_T_exact(lam: F) -> F:
     """min_n T_n как точная дробь (критик: float-граница зоны недопустима)."""
-    return min(F(3 * (2 * n - 3), n * (n - 2))
-               * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
-               for n in range(3, 400))
+    return min(
+        F(3 * (2 * n - 3), n * (n - 2)) * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
+        for n in range(3, 400)
+    )
 
 
 def main() -> int:
     t0 = time.time()
-    lams = ([F(i, 20) for i in range(1, 61)] +
-            [F(4), F(5), F(7), F(10), F(15), F(20), F(30), F(50)])
+    lams = [F(i, 20) for i in range(1, 61)] + [F(4), F(5), F(7), F(10), F(15), F(20), F(30), F(50)]
     alarms = []
     checks = 0
     for lam in lams:
@@ -90,18 +91,24 @@ def main() -> int:
                         continue
                     checks += 1
                     if master_sign(n, j, lam, Dv) < 0:
-                        alarms.append({"lam": str(lam), "D": Dv,
-                                       "n": n, "j": j})
-        print(f"lam={lam}: cum checks {checks}, alarms {len(alarms)}"
-              f" ({time.time()-t0:.0f}s)", flush=True)
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"checks": checks, "alarms": alarms, "nmax": NMAX,
-           "region": "ALL integer D (even+odd) <= exact floor(min_n T_n), all j=3..n-1",
-           "command": "python lab/master_completeness_scan.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "master_completeness_scan.json").write_text(
-        json.dumps(out, indent=1), encoding="utf-8")
+                        alarms.append({"lam": str(lam), "D": Dv, "n": n, "j": j})
+        print(
+            f"lam={lam}: cum checks {checks}, alarms {len(alarms)} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "checks": checks,
+        "alarms": alarms,
+        "nmax": NMAX,
+        "region": "ALL integer D (even+odd) <= exact floor(min_n T_n), all j=3..n-1",
+        "command": "python lab/master_completeness_scan.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "master_completeness_scan.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print(f"TOTAL {checks} checks, {len(alarms)} alarms", flush=True)
     return 0
 

@@ -74,8 +74,7 @@ def main() -> int:
         for lam_i in (100, 175, 250):
             lam = Fraction(lam_i)
             shore = T_hat(lam)
-            k = min(range(3, int(3 * lam_i) + 61),
-                    key=lambda kk: T_k(kk, lam))
+            k = min(range(3, int(3 * lam_i) + 61), key=lambda kk: T_k(kk, lam))
             best = None
             for n in range(max(4, k - 8), k + 8):
                 thr = threshold_D(j, n, lam)
@@ -87,56 +86,66 @@ def main() -> int:
                 continue
             thr, n_star = best
             gap = float(thr - shore)
-            rows.append({"j": j, "lam": lam_i, "k": k, "n_star": n_star,
-                         "n_star_minus_k": n_star - k,
-                         "shore": float(shore),
-                         "D_threshold": float(thr),
-                         "absolute_margin": gap,
-                         "margin_over_j_minus_2": gap / (j - 2)})
-            print(f"  j={j} lam={lam_i}: gap={gap:.5f}, "
-                  f"gap/(j-2)={gap/(j-2):.6f} ({time.time()-t0:.0f}s)",
-                  flush=True)
+            rows.append(
+                {
+                    "j": j,
+                    "lam": lam_i,
+                    "k": k,
+                    "n_star": n_star,
+                    "n_star_minus_k": n_star - k,
+                    "shore": float(shore),
+                    "D_threshold": float(thr),
+                    "absolute_margin": gap,
+                    "margin_over_j_minus_2": gap / (j - 2),
+                }
+            )
+            print(
+                f"  j={j} lam={lam_i}: gap={gap:.5f}, "
+                f"gap/(j-2)={gap / (j - 2):.6f} ({time.time() - t0:.0f}s)",
+                flush=True,
+            )
 
     consts = [r["margin_over_j_minus_2"] for r in rows]
-    shore_slopes = {str(x): float(T_hat(Fraction(x))) / x
-                    for x in (100, 250, 500, 1000)}
-    out = {"proved_fact": {
-               "statement": "leading coefficient of J in Q has sign"
-                            " (-1)^(j-1); odd knives cannot develop a"
-                            " threshold at large D, even knives must",
-               "proof_sketch": "only t = j-1 contributes to Q^(j-1); its"
-                               " coefficient is (-1)^(j-1) E_{2(j-1)}(n)"
-                               " Q_n(j-1) times a positive product",
-               "checks": sign_checks, "failures": sign_bad,
-               "verified": not sign_bad},
-           "measured_law": {
-               "statement": "D*(j, lam) - T_hat(lam) -> C (j - 2) as lam"
-                            " grows",
-               "C_estimates": consts,
-               "C_mean": sum(consts) / len(consts) if consts else None,
-               "C_spread": (max(consts) - min(consts)) if consts else None,
-               "closed_form_guess": "12/5 = 2.4, within the residual drift of"
-                                    " the shore asymptotics; NOT identified",
-               "ratio_form": "D*/T_hat - 1 ~ (j-2) c0 / (2 lam), c0 = 0.2534",
-               "tightest_level": "n* = k(lam) - 1 for lam >~ 14, i.e. the"
-                                 " tightest knife sits on the trajectory that"
-                                 " defines the shore",
-               "status": "REGULARITY, measured not proved",
-               "falsifier": "any cell with D* - T_hat < 2.39 (j-2) - 0.05 at"
-                            " lam >= 100 refutes it"},
-           "shore_asymptotics": {
-               "limit_slope": "12 + 4 sqrt 3 = 18.928203",
-               "measured_T_hat_over_lam": shore_slopes},
-           "rows": rows,
-           "command": "python lab/keystone_margin_law.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_margin_law.json").write_text(json.dumps(out, indent=1),
-                                                  encoding="utf-8")
-    print(f"sign fact: {sign_checks} checks, {len(sign_bad)} failures",
-          flush=True)
+    shore_slopes = {str(x): float(T_hat(Fraction(x))) / x for x in (100, 250, 500, 1000)}
+    out = {
+        "proved_fact": {
+            "statement": "leading coefficient of J in Q has sign"
+            " (-1)^(j-1); odd knives cannot develop a"
+            " threshold at large D, even knives must",
+            "proof_sketch": "only t = j-1 contributes to Q^(j-1); its"
+            " coefficient is (-1)^(j-1) E_{2(j-1)}(n)"
+            " Q_n(j-1) times a positive product",
+            "checks": sign_checks,
+            "failures": sign_bad,
+            "verified": not sign_bad,
+        },
+        "measured_law": {
+            "statement": "D*(j, lam) - T_hat(lam) -> C (j - 2) as lam grows",
+            "C_estimates": consts,
+            "C_mean": sum(consts) / len(consts) if consts else None,
+            "C_spread": (max(consts) - min(consts)) if consts else None,
+            "closed_form_guess": "12/5 = 2.4, within the residual drift of"
+            " the shore asymptotics; NOT identified",
+            "ratio_form": "D*/T_hat - 1 ~ (j-2) c0 / (2 lam), c0 = 0.2534",
+            "tightest_level": "n* = k(lam) - 1 for lam >~ 14, i.e. the"
+            " tightest knife sits on the trajectory that"
+            " defines the shore",
+            "status": "REGULARITY, measured not proved",
+            "falsifier": "any cell with D* - T_hat < 2.39 (j-2) - 0.05 at lam >= 100 refutes it",
+        },
+        "shore_asymptotics": {
+            "limit_slope": "12 + 4 sqrt 3 = 18.928203",
+            "measured_T_hat_over_lam": shore_slopes,
+        },
+        "rows": rows,
+        "command": "python lab/keystone_margin_law.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_margin_law.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(f"sign fact: {sign_checks} checks, {len(sign_bad)} failures", flush=True)
     if consts:
-        print(f"margin law: C in [{min(consts):.6f}, {max(consts):.6f}]",
-              flush=True)
+        print(f"margin law: C in [{min(consts):.6f}, {max(consts):.6f}]", flush=True)
     return 0 if not sign_bad else 1
 
 

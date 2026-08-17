@@ -121,6 +121,7 @@ class QPoly:
         if not self.c:
             return self
         from math import lcm
+
         L = 1
         for v in self.c.values():
             L = lcm(L, int(v.q))
@@ -171,8 +172,7 @@ class Q3Poly:
     def __mul__(self, o):
         if isinstance(o, (int, fmpq)):
             return Q3Poly(self.a * o, self.b * o)
-        return Q3Poly(self.a * o.a + THREE * (self.b * o.b),
-                      self.a * o.b + self.b * o.a)
+        return Q3Poly(self.a * o.a + THREE * (self.b * o.b), self.a * o.b + self.b * o.a)
 
     __rmul__ = __mul__
 
@@ -207,8 +207,7 @@ def sign_q3(a, b):
 
 def _bern_matrix(d):
     """Lower-triangular M[i][q] = C(i,q)/C(d,q); b = M c (per variable)."""
-    return [[binom(i, q) / binom(d, q) for q in range(i + 1)]
-            for i in range(d + 1)]
+    return [[binom(i, q) / binom(d, q) for q in range(i + 1)] for i in range(d + 1)]
 
 
 _BM_CACHE = {}
@@ -227,7 +226,7 @@ def _bern_axis(coeffs, axis, deg):
     M = bern_matrix(deg)
     fibers = {}
     for e, val in coeffs.items():
-        key = e[:axis] + e[axis + 1:]
+        key = e[:axis] + e[axis + 1 :]
         fibers.setdefault(key, {})[e[axis]] = val
     out = {}
     for key, fib in fibers.items():
@@ -252,8 +251,7 @@ def bernstein_certify(p3, elev=0):
     nv = p3.nv
     A, B = dict(p3.a.c), dict(p3.b.c)
     for axis in range(nv):
-        d = max(max((e[axis] for e in A), default=0),
-                max((e[axis] for e in B), default=0)) + elev
+        d = max(max((e[axis] for e in A), default=0), max((e[axis] for e in B), default=0)) + elev
         A = _bern_axis(A, axis, d)
         B = _bern_axis(B, axis, d)
     ok = True
@@ -276,6 +274,7 @@ def orthant_certify(p3):
 def from_sympy(expr, gens):
     """Convert an expanded sympy expression to Q3Poly (gens -> var order)."""
     import sympy as sp
+
     r3 = sp.sqrt(3)
     e2 = sp.expand(expr)
     a_part = e2.coeff(r3, 0)
@@ -288,9 +287,9 @@ def from_sympy(expr, gens):
         P = sp.Poly(part, *gens)
         c = {}
         for mon, cc in P.terms():
-            c[tuple(mon)] = fmpq(int(sp.nsimplify(cc).p),
-                                 int(sp.nsimplify(cc).q)) \
-                if cc.is_Rational else None
+            c[tuple(mon)] = (
+                fmpq(int(sp.nsimplify(cc).p), int(sp.nsimplify(cc).q)) if cc.is_Rational else None
+            )
             if c[tuple(mon)] is None:
                 raise ValueError(f"non-rational coeff {cc}")
         return QPoly(nv, c)

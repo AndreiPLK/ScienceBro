@@ -52,10 +52,12 @@ def main() -> int:
             fm = parse_frontmatter(text)
             name = fm.get("name") or md.parent.name
             skills[name] = {
-                "path": md, "desc": fm.get("description", ""),
-                "body": text, "age_days":
-                    (time.time() - md.stat().st_mtime) / 86400,
-                "refs_out": set(), "refs_in": set(),
+                "path": md,
+                "desc": fm.get("description", ""),
+                "body": text,
+                "age_days": (time.time() - md.stat().st_mtime) / 86400,
+                "refs_out": set(),
+                "refs_in": set(),
             }
 
     mem_text = ""
@@ -82,13 +84,11 @@ def main() -> int:
             weak.append(name)
 
     lines += [f"Skills scanned: {len(skills)}", ""]
-    lines += ["## Orphans (no memory pointer, no skill links — invisible "
-              "at recall time)", ""]
+    lines += ["## Orphans (no memory pointer, no skill links — invisible at recall time)", ""]
     lines += [f"- {n}" for n in orphans] or ["- none"]
     lines += ["", f"## Stale (> {STALE_DAYS} days untouched)", ""]
     lines += [f"- {n}" for n in stale] or ["- none"]
-    lines += ["", "## Weak descriptions (< 40 chars — recall depends on "
-              "these)", ""]
+    lines += ["", "## Weak descriptions (< 40 chars — recall depends on these)", ""]
     lines += [f"- {n}" for n in weak] or ["- none"]
     lines += ["", "## Link graph", ""]
     for name, s in sorted(skills.items()):

@@ -39,9 +39,20 @@ from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 
-LAMS = (Fraction(1, 1000), Fraction(1, 100), Fraction(1, 10), Fraction(1, 3),
-        Fraction(1, 2), Fraction(1), Fraction(2), Fraction(3), Fraction(7),
-        Fraction(26), Fraction(150), Fraction(1000))
+LAMS = (
+    Fraction(1, 1000),
+    Fraction(1, 100),
+    Fraction(1, 10),
+    Fraction(1, 3),
+    Fraction(1, 2),
+    Fraction(1),
+    Fraction(2),
+    Fraction(3),
+    Fraction(7),
+    Fraction(26),
+    Fraction(150),
+    Fraction(1000),
+)
 
 
 def trim(p: list[Fraction]) -> list[Fraction]:
@@ -104,15 +115,14 @@ def sign_var(chain, x: Fraction) -> int:
     return sum(1 for a, b in zip(sg, sg[1:]) if a != b)
 
 
-def roots_in_open_interval(p: list[Fraction], a: Fraction,
-                           b: Fraction) -> int:
+def roots_in_open_interval(p: list[Fraction], a: Fraction, b: Fraction) -> int:
     """Number of DISTINCT real roots of p in (a, b) via Sturm."""
     p = trim(p[:])
     if len(p) <= 1:
         return 0
     g = p
     d = deriv(p)
-    while d:                                  # strip repeated factors
+    while d:  # strip repeated factors
         r = prem(g, d)
         if not r:
             g = d
@@ -133,43 +143,45 @@ def main() -> int:
             for lam in LAMS:
                 if T_hat(lam) <= 4:
                     continue
-                desc = Hhat_coeffs(j, n, lam)     # descending u^{j-1}..u^0
-                asc = list(reversed(desc))        # ascending for Sturm
+                desc = Hhat_coeffs(j, n, lam)  # descending u^{j-1}..u^0
+                asc = list(reversed(desc))  # ascending for Sturm
                 r = roots_in_open_interval(asc, Fraction(0), Fraction(1))
                 counts[r] = counts.get(r, 0) + 1
                 cells += 1
                 if r > 1 and len(worst) < 20:
-                    worst.append({"j": j, "n": n, "lam": str(lam),
-                                  "roots_in_0_1": r})
-        print(f"  j={j}: cells {cells}, root-count histogram "
-              f"{dict(sorted(counts.items()))} ({time.time()-t0:.0f}s)",
-              flush=True)
+                    worst.append({"j": j, "n": n, "lam": str(lam), "roots_in_0_1": r})
+        print(
+            f"  j={j}: cells {cells}, root-count histogram "
+            f"{dict(sorted(counts.items()))} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
 
-    out = {"question": "how many sign changes does the D-free polynomial"
-                       " Hhat have on (0,1)?",
-           "why_it_matters": "the Beta kernel (1-u)^Q is a Laplace kernel"
-                             " after v=-log(1-u), hence strictly totally"
-                             " positive; Karlin's variation-diminishing"
-                             " property bounds the number of sign changes of"
-                             " I(Q) in Q by the number of sign changes of"
-                             " Hhat in u. One sign change => a single"
-                             " positivity interval in D => the theorem"
-                             " reduces to J(Q_shore) >= 0.",
-           "method": "exact Sturm chain in Fraction arithmetic",
-           "cells": cells,
-           "root_count_histogram": {str(k): v
-                                    for k, v in sorted(counts.items())},
-           "at_most_one_sign_change": set(counts) <= {0, 1},
-           "cells_with_more_than_one": worst,
-           "command": "python lab/keystone_sturm.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_sturm.json").write_text(json.dumps(out, indent=1),
-                                             encoding="utf-8")
-    print(f"cells {cells}; histogram {dict(sorted(counts.items()))}",
-          flush=True)
-    print("SINGLE SIGN CHANGE " + ("CONFIRMED" if set(counts) <= {0, 1}
-                                   else "NOT universal (see artifact)"),
-          flush=True)
+    out = {
+        "question": "how many sign changes does the D-free polynomial Hhat have on (0,1)?",
+        "why_it_matters": "the Beta kernel (1-u)^Q is a Laplace kernel"
+        " after v=-log(1-u), hence strictly totally"
+        " positive; Karlin's variation-diminishing"
+        " property bounds the number of sign changes of"
+        " I(Q) in Q by the number of sign changes of"
+        " Hhat in u. One sign change => a single"
+        " positivity interval in D => the theorem"
+        " reduces to J(Q_shore) >= 0.",
+        "method": "exact Sturm chain in Fraction arithmetic",
+        "cells": cells,
+        "root_count_histogram": {str(k): v for k, v in sorted(counts.items())},
+        "at_most_one_sign_change": set(counts) <= {0, 1},
+        "cells_with_more_than_one": worst,
+        "command": "python lab/keystone_sturm.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_sturm.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(f"cells {cells}; histogram {dict(sorted(counts.items()))}", flush=True)
+    print(
+        "SINGLE SIGN CHANGE "
+        + ("CONFIRMED" if set(counts) <= {0, 1} else "NOT universal (see artifact)"),
+        flush=True,
+    )
     return 0 if set(counts) <= {0, 1} else 1
 
 

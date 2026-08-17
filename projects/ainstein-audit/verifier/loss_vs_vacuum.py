@@ -42,11 +42,12 @@ def main() -> int:
         "final_losses": {str(k): v for k, v in FINAL_LOSS.items()},
         "vacuum_medians": {str(r["seed"]): r["vacuum"]["median"] for r in rows},
         "speciality_index_relative_std_percent": round(
-            float(np.std(s_mid) / np.mean(s_mid) * 100), 3),
+            float(np.std(s_mid) / np.mean(s_mid) * 100), 3
+        ),
         "caveat": "n = 5. A rank correlation of this magnitude at n = 5 sits at the edge of "
-                  "significance, so this is reported as suggestive and not as an established "
-                  "relationship. It is stated because it is cheap for anyone to test with more "
-                  "seeds and because it is the failure mode an external instrument exists to catch.",
+        "significance, so this is reported as suggestive and not as an established "
+        "relationship. It is stated because it is cheap for anyone to test with more "
+        "seeds and because it is the failure mode an external instrument exists to catch.",
     }
     OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps(out, indent=2))

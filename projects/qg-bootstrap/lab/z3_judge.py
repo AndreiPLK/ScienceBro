@@ -35,14 +35,17 @@ TIMEOUT_MS = int(os.environ.get("Z3_TIMEOUT_MS", "120000"))
 
 def judge_cell(coeffs, kk, mu_lo, mu_hi):
     lam, D = Reals("lam D")
-    P = sum(c * lam ** p * D ** q for (p, q), c in coeffs.items())
-    Tk = (Q(3 * (2 * kk - 3), kk * (kk - 2))
-          * (lam ** 2 + (2 * kk - 2) * lam + 1) + 2 * kk)
+    P = sum(c * lam**p * D**q for (p, q), c in coeffs.items())
+    Tk = Q(3 * (2 * kk - 3), kk * (kk - 2)) * (lam**2 + (2 * kk - 2) * lam + 1) + 2 * kk
     s = Solver()
     s.set("timeout", TIMEOUT_MS)
-    s.add(lam >= Q(mu_lo.numerator, mu_lo.denominator),
-          lam <= Q(mu_hi.numerator, mu_hi.denominator),
-          D >= 4, D <= Tk, P <= 0)
+    s.add(
+        lam >= Q(mu_lo.numerator, mu_lo.denominator),
+        lam <= Q(mu_hi.numerator, mu_hi.denominator),
+        D >= 4,
+        D <= Tk,
+        P <= 0,
+    )
     r = s.check()
     if r == unsat:
         return "unsat", None
@@ -72,20 +75,29 @@ def main() -> int:
                 print(f"  ALARM j={J} k={kk} m={mv}: {model}", flush=True)
             elif verdict == "unknown":
                 unknowns.append({"k": kk, "m": mv})
-        print(f"branch k={kk}: judged ({time.time()-t0:.0f}s)", flush=True)
+        print(f"branch k={kk}: judged ({time.time() - t0:.0f}s)", flush=True)
     ok = not alarms and not unknowns
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"j": J, "independent_engine": "z3 nlsat",
-           "all_unsat": bool(ok), "cells": cells,
-           "alarms": alarms, "unknowns": unknowns,
-           "command": f"KNIFE_J={J} python lab/z3_judge.py",
-           "git": git, "runtime_s": round(time.time() - t0, 1)}
-    (RES / f"z3_judge_j{J}.json").write_text(json.dumps(out, indent=1),
-                                             encoding="utf-8")
-    print(("Z3 JUDGE: ALL CONFIRMED" if ok else "Z3 JUDGE: ISSUES")
-          + f" (cells {cells}, alarms {len(alarms)},"
-          f" unknown {len(unknowns)})", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "j": J,
+        "independent_engine": "z3 nlsat",
+        "all_unsat": bool(ok),
+        "cells": cells,
+        "alarms": alarms,
+        "unknowns": unknowns,
+        "command": f"KNIFE_J={J} python lab/z3_judge.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / f"z3_judge_j{J}.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        ("Z3 JUDGE: ALL CONFIRMED" if ok else "Z3 JUDGE: ISSUES")
+        + f" (cells {cells}, alarms {len(alarms)},"
+        f" unknown {len(unknowns)})",
+        flush=True,
+    )
     return 0 if ok else 1
 
 

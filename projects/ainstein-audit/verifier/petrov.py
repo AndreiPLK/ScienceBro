@@ -41,7 +41,7 @@ from verifier.geometry import (
 def weyl_tensor(g: MetricFunction, x: np.ndarray, h: float = 3e-3) -> np.ndarray:
     """Fully covariant Weyl tensor C_abcd (4D)."""
     gx = g(x)
-    r_up = riemann_tensor(g, x, h)              # R^a_bcd
+    r_up = riemann_tensor(g, x, h)  # R^a_bcd
     r_low = np.einsum("ae,ebcd->abcd", gx, r_up)  # R_abcd
     ric = ricci_tensor(g, x, h)
     rs = ricci_scalar(g, x, h)
@@ -51,9 +51,7 @@ def weyl_tensor(g: MetricFunction, x: np.ndarray, h: float = 3e-3) -> np.ndarray
         - np.einsum("ac,bd->abcd", gx, ric)
         - np.einsum("bd,ac->abcd", gx, ric)
     )
-    scal = (rs / 6.0) * (
-        np.einsum("ac,bd->abcd", gx, gx) - np.einsum("ad,bc->abcd", gx, gx)
-    )
+    scal = (rs / 6.0) * (np.einsum("ac,bd->abcd", gx, gx) - np.einsum("ad,bc->abcd", gx, gx))
     return r_low + term + scal
 
 
@@ -64,7 +62,7 @@ def orthonormal_tetrad(gx: np.ndarray) -> np.ndarray:
     eigenvalue direction becomes the timelike leg.
     """
     vals, vecs = np.linalg.eigh(gx)
-    order = np.argsort(vals)          # most negative first
+    order = np.argsort(vals)  # most negative first
     vals, vecs = vals[order], vecs[:, order]
     if vals[0] >= 0 or np.any(vals[1:] <= 0):
         raise ValueError(f"not a Lorentzian metric: eigenvalues {vals}")

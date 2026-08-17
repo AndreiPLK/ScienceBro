@@ -29,12 +29,19 @@ def main() -> int:
     ap.add_argument("--model", required=True)
     ap.add_argument("--points", required=True)
     ap.add_argument("--out", required=True)
-    ap.add_argument("--euclidean-out", dest="euclidean_out", default=None,
-                    help="also save the Euclideanised metric (lorentzian=False Cholesky)")
-    ap.add_argument("--analytic", action="store_true",
-                    help="ignore --model weights; export the upstream ANALYTIC Schwarzschild "
-                         "metric (geometry.AnalyticMetric_R2S2, m=1) at the same (T,X,q1,q2) "
-                         "coordinates — used to validate the 4D verifier route")
+    ap.add_argument(
+        "--euclidean-out",
+        dest="euclidean_out",
+        default=None,
+        help="also save the Euclideanised metric (lorentzian=False Cholesky)",
+    )
+    ap.add_argument(
+        "--analytic",
+        action="store_true",
+        help="ignore --model weights; export the upstream ANALYTIC Schwarzschild "
+        "metric (geometry.AnalyticMetric_R2S2, m=1) at the same (T,X,q1,q2) "
+        "coordinates — used to validate the 4D verifier route",
+    )
     args = ap.parse_args()
 
     sys.path.insert(0, str(Path.cwd()))  # upstream checkout root
@@ -82,8 +89,8 @@ def main() -> int:
 
         q4 = tf.constant(pts[:, :4], dtype=tf.float64)
         patch_idx = tf.cast(tf.constant(pts[:, 4]), tf.int32)
-        g5 = cholesky_from_vec(vec, lorentzian=lorentzian)          # (N,5,5)
-        jac = embedding_jacobian_stereo(q4, patch_idx)              # (N,5,4)
+        g5 = cholesky_from_vec(vec, lorentzian=lorentzian)  # (N,5,5)
+        jac = embedding_jacobian_stereo(q4, patch_idx)  # (N,5,4)
         g = tf.einsum("sAB,sAm,sBn->smn", g5, jac, jac).numpy().astype(np.float64)
     else:
         # Direct local models: output is the Cholesky vector of the metric itself.

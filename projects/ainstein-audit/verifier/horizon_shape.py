@@ -31,11 +31,13 @@ H = 3e-3
 Q = (0.1, 0.1)
 SLICES = [0.10, 0.20, 0.30, 0.40, 0.50]
 X_LO, X_HI = 0.06, 0.74
-ROUNDS = 7          # 0.68 / 2^7 ~ 0.005 in X
+ROUNDS = 7  # 0.68 / 2^7 ~ 0.005 in X
 
 MODELS = {
     "analytic": None,
-    "nn_schwarzschild_baseline": str(PROJ / "results" / "raw" / "schwarzschild-4d-final-2026-08-12" / "final_model.keras"),
+    "nn_schwarzschild_baseline": str(
+        PROJ / "results" / "raw" / "schwarzschild-4d-final-2026-08-12" / "final_model.keras"
+    ),
     "candidate_seed124": str(PROJ / "results" / "raw" / "petrovI-bh-run2" / "final_model.keras"),
     "candidate_seed123": str(PROJ / "results" / "raw" / "petrovI-bh-run1" / "final_model.keras"),
 }
@@ -101,15 +103,27 @@ def horizon_for(model: str | None) -> dict:
             rows.append({"T": t, "status": "no sign change in the sampled range"})
             continue
         x_h = 0.5 * (lo[t] + hi[t])
-        rows.append({"T": t, "X_horizon": x_h, "uncertainty": 0.5 * (hi[t] - lo[t]),
-                     "X_analytic_expectation": t, "delta_from_analytic": x_h - t})
+        rows.append(
+            {
+                "T": t,
+                "X_horizon": x_h,
+                "uncertainty": 0.5 * (hi[t] - lo[t]),
+                "X_analytic_expectation": t,
+                "delta_from_analytic": x_h - t,
+            }
+        )
     return {"slices": rows}
 
 
 def main() -> int:
-    results: dict = {"date": "2026-08-12", "q": Q, "h": H, "bisection_rounds": ROUNDS,
-                     "note": "Analytic Schwarzschild horizon in these coordinates is X = |T|; "
-                             "delta_from_analytic is the measured departure from that line."}
+    results: dict = {
+        "date": "2026-08-12",
+        "q": Q,
+        "h": H,
+        "bisection_rounds": ROUNDS,
+        "note": "Analytic Schwarzschild horizon in these coordinates is X = |T|; "
+        "delta_from_analytic is the measured departure from that line.",
+    }
     for name, model in MODELS.items():
         if model is not None and not Path(model).exists():
             results[name] = {"status": "checkpoint missing"}
@@ -118,9 +132,11 @@ def main() -> int:
         results[name] = horizon_for(model)
         for r in results[name]["slices"]:
             if "X_horizon" in r:
-                print(f"   T={r['T']:.2f}  X_h={r['X_horizon']:.3f} +-{r['uncertainty']:.3f}"
-                      f"  (analytic {r['X_analytic_expectation']:.2f}, "
-                      f"delta {r['delta_from_analytic']:+.3f})")
+                print(
+                    f"   T={r['T']:.2f}  X_h={r['X_horizon']:.3f} +-{r['uncertainty']:.3f}"
+                    f"  (analytic {r['X_analytic_expectation']:.2f}, "
+                    f"delta {r['delta_from_analytic']:+.3f})"
+                )
             else:
                 print(f"   T={r['T']:.2f}  {r['status']}")
     OUT.write_text(json.dumps(results, indent=2), encoding="utf-8")

@@ -29,8 +29,7 @@ def bhat(n: int, lamv: F, Dv: int) -> F:
     s = lamv + n - 1
     u = F(Dv + 4 * m + 1)
     G = F(2 * (m + 1) * (m + 3), 3 * (2 * m + 3))
-    alpha = F((m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15),
-              45 * (2 * m + 1) * (2 * m + 3))
+    alpha = F((m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15), 45 * (2 * m + 1) * (2 * m + 3))
     return alpha * u * (u - 2) - G * u * s**2 + s**4
 
 
@@ -40,8 +39,20 @@ def sgn(x) -> int:
 
 def main() -> int:
     t0 = time.time()
-    lams = [F(1, 10), F(1, 4), F(1, 2), F(3, 4), F(1), F(3, 2), F(2),
-            F(3), F(5), F(7), F(10), F(20)]
+    lams = [
+        F(1, 10),
+        F(1, 4),
+        F(1, 2),
+        F(3, 4),
+        F(1),
+        F(3, 2),
+        F(2),
+        F(3),
+        F(5),
+        F(7),
+        F(10),
+        F(20),
+    ]
     mism = []
     checks = 0
     for n in range(4, 13):
@@ -51,18 +62,21 @@ def main() -> int:
                 se = sgn(a_l(n, 2 * n - 6, lamv, Dv))
                 sb = sgn(bhat(n, lamv, Dv))
                 if se != sb:
-                    mism.append({"n": n, "lam": str(lamv), "D": Dv,
-                                 "exact": se, "law": sb})
-        print(f"n={n} done ({time.time()-t0:.0f}s, mismatches so far:"
-              f" {len(mism)})", flush=True)
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"checks": checks, "mismatches": mism,
-           "fitted_on": "n=4..9", "blind_levels": "n=10..12",
-           "command": "python lab/t2n6_law_check.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "t2n6_law_check.json").write_text(json.dumps(out, indent=1),
-                                             encoding="utf-8")
+                    mism.append({"n": n, "lam": str(lamv), "D": Dv, "exact": se, "law": sb})
+        print(f"n={n} done ({time.time() - t0:.0f}s, mismatches so far: {len(mism)})", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "checks": checks,
+        "mismatches": mism,
+        "fitted_on": "n=4..9",
+        "blind_levels": "n=10..12",
+        "command": "python lab/t2n6_law_check.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "t2n6_law_check.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print(f"TOTAL: {checks} checks, {len(mism)} mismatches", flush=True)
     return 1 if mism else 0
 

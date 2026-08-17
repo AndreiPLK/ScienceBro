@@ -18,7 +18,6 @@ import numpy as np
 MetricFunction = Callable[[np.ndarray], np.ndarray]
 
 
-
 def _d1(g: MetricFunction, x: np.ndarray, h: float) -> np.ndarray:
     """First derivatives d_c g_ab, shape (c, a, b), 4th-order central differences."""
     n = len(x)
@@ -26,9 +25,7 @@ def _d1(g: MetricFunction, x: np.ndarray, h: float) -> np.ndarray:
     for c in range(n):
         e = np.zeros(n)
         e[c] = h
-        out[c] = (
-            -g(x + 2 * e) + 8 * g(x + e) - 8 * g(x - e) + g(x - 2 * e)
-        ) / (12 * h)
+        out[c] = (-g(x + 2 * e) + 8 * g(x + e) - 8 * g(x - e) + g(x - 2 * e)) / (12 * h)
     return out
 
 
@@ -82,7 +79,7 @@ def kretschmann_scalar(g: MetricFunction, x: np.ndarray, h: float = 3e-3) -> flo
     gx = g(x)
     ginv = np.linalg.inv(gx)
     r_up = riemann_tensor(g, x, h)  # R^a_{bcd}
-    r_low = np.einsum("ae,ebcd->abcd", gx, r_up)          # R_abcd
+    r_low = np.einsum("ae,ebcd->abcd", gx, r_up)  # R_abcd
     r_upup = np.einsum("bf,cg,dh,afgh->abcd", ginv, ginv, ginv, r_up)  # R^{abcd}
     return float(np.einsum("abcd,abcd->", r_low, r_upup))
 

@@ -21,19 +21,19 @@ RES = Path(__file__).resolve().parents[1] / "results"
 
 
 def min_T(lam: float) -> float:
-    return min((3 * (2 * n - 3) / (n * (n - 2)))
-               * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
-               for n in range(3, 400))
+    return min(
+        (3 * (2 * n - 3) / (n * (n - 2))) * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
+        for n in range(3, 400)
+    )
 
 
 def window(n: int, lam: float):
     m = n - 3
     s = lam + n - 1
     G = 2 * (m + 1) * (m + 3) / (3 * (2 * m + 3))
-    al = ((m + 3) * (5 * m ** 3 + 21 * m ** 2 + 19 * m + 15)
-          / (45 * (2 * m + 1) * (2 * m + 3)))
+    al = (m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15) / (45 * (2 * m + 1) * (2 * m + 3))
     b = 2 * al + G * s * s
-    disc = b * b - 4 * al * s ** 4
+    disc = b * b - 4 * al * s**4
     if disc <= 0:
         return None
     r = sqrt(disc)
@@ -61,9 +61,9 @@ def main() -> int:
     tail_lams = [200, 500, 1000]
     for lam in tail_lams:
         env = min(
-            (3 * (2 * n - 3) / (n * (n - 2)))
-            * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
-            for n in range(3, int(4 * lam)))
+            (3 * (2 * n - 3) / (n * (n - 2))) * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
+            for n in range(3, int(4 * lam))
+        )
         for n in range(4, int(4 * lam)):
             w = window(n, lam)
             if w is None:
@@ -73,25 +73,35 @@ def main() -> int:
                 tail_worst = (margin, lam, n)
             if margin < 0 and w[1] > 3:
                 dips.append({"lam": lam, "n": n, "window": w, "env": env})
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
     out = {
         "dips_below_shore": dips,
-        "dense_grid": {"lams": "0.05..20 step 0.05 + {25,30,40,50,75,100}",
-                       "n_range": "4..300",
-                       "worst_margin": round(worst[0], 4),
-                       "worst_at": {"lam": worst[1], "n": worst[2]}},
-        "tail": {"lams": tail_lams, "n_range": "4..4*lam",
-                 "worst_margin": round(tail_worst[0], 3),
-                 "worst_at": {"lam": tail_worst[1], "n": tail_worst[2]}},
+        "dense_grid": {
+            "lams": "0.05..20 step 0.05 + {25,30,40,50,75,100}",
+            "n_range": "4..300",
+            "worst_margin": round(worst[0], 4),
+            "worst_at": {"lam": worst[1], "n": worst[2]},
+        },
+        "tail": {
+            "lams": tail_lams,
+            "n_range": "4..4*lam",
+            "worst_margin": round(tail_worst[0], 3),
+            "worst_at": {"lam": tail_worst[1], "n": tail_worst[2]},
+        },
         "arithmetic": "float64 scan; any negative margin would trigger exact "
-                      "re-verification (none found)",
-        "command": "python lab/window_vs_shore.py", "git": git,
-        "runtime_s": round(time.time() - t0, 1)}
-    (RES / "t2n6_window_vs_shore.json").write_text(json.dumps(out, indent=1),
-                                                   encoding="utf-8")
-    print(f"dips: {len(dips)}; dense worst {worst[:3]};"
-          f" tail worst {tail_worst[:3]} ({time.time()-t0:.0f}s)", flush=True)
+        "re-verification (none found)",
+        "command": "python lab/window_vs_shore.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "t2n6_window_vs_shore.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"dips: {len(dips)}; dense worst {worst[:3]};"
+        f" tail worst {tail_worst[:3]} ({time.time() - t0:.0f}s)",
+        flush=True,
+    )
     return 1 if dips else 0
 
 

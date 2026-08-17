@@ -14,8 +14,9 @@ from ruamel.yaml import YAML
 
 def remote_head(url: str, ref: str = "HEAD") -> str | None:
     try:
-        r = subprocess.run(["git", "ls-remote", url, ref],
-                           capture_output=True, text=True, timeout=30)
+        r = subprocess.run(
+            ["git", "ls-remote", url, ref], capture_output=True, text=True, timeout=30
+        )
         return r.stdout.split()[0] if r.returncode == 0 and r.stdout else None
     except Exception:
         return None
@@ -35,8 +36,10 @@ def main() -> int:
             print(f"ok {up['name']}: {pinned[:8]}")
         else:
             drift += 1
-            print(f"!! {up['name']}: pinned {pinned[:8]} but remote {ref} is {head[:8]} "
-                  f"(update manually + record reason in docs/DECISIONS.md)")
+            print(
+                f"!! {up['name']}: pinned {pinned[:8]} but remote {ref} is {head[:8]} "
+                f"(update manually + record reason in docs/DECISIONS.md)"
+            )
     return 0 if drift == 0 else 2
 
 

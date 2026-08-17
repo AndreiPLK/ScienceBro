@@ -63,11 +63,14 @@ def main() -> int:
         r = float(np.max(np.abs(ricci_tensor(g, p, h=H))))
         region = "interior" if abs(np.cos(2 * p[0]) / np.cos(2 * p[1])) < 1.0 else "exterior"
         rows.append({"T": float(p[0]), "X": float(p[1]), "max_abs_ricci": r, "region": region})
-    OUT.write_text(json.dumps({"model": str(MODEL), "h": H, "q": Q, "rows": rows},
-                              indent=2), encoding="utf-8")
-    print(f"points={len(rows)} "
-          f"exterior_median={np.median([r['max_abs_ricci'] for r in rows if r['region']=='exterior']):.3f} "
-          f"interior_median={np.median([r['max_abs_ricci'] for r in rows if r['region']=='interior']):.3f}")
+    OUT.write_text(
+        json.dumps({"model": str(MODEL), "h": H, "q": Q, "rows": rows}, indent=2), encoding="utf-8"
+    )
+    print(
+        f"points={len(rows)} "
+        f"exterior_median={np.median([r['max_abs_ricci'] for r in rows if r['region'] == 'exterior']):.3f} "
+        f"interior_median={np.median([r['max_abs_ricci'] for r in rows if r['region'] == 'interior']):.3f}"
+    )
     return 0
 
 

@@ -29,12 +29,12 @@ LAB = Path(__file__).resolve().parent
 J = int(os.environ.get("KNIFE_J", "4"))
 PIECES = os.environ.get("PIECES", "band,k0,far").split(",")
 ELEV = int(os.environ.get("BERN_ELEV", "6"))
-m, v = sp.symbols('m v', nonnegative=True)
-K2 = sp.Symbol('K2', nonnegative=True)
-sig = sp.Symbol('sigma', nonnegative=True)
-thL = sp.Symbol('thL', nonnegative=True)
-th = sp.Symbol('theta', nonnegative=True)
-yv = sp.Symbol('y', nonnegative=True)
+m, v = sp.symbols("m v", nonnegative=True)
+K2 = sp.Symbol("K2", nonnegative=True)
+sig = sp.Symbol("sigma", nonnegative=True)
+thL = sp.Symbol("thL", nonnegative=True)
+th = sp.Symbol("theta", nonnegative=True)
+yv = sp.Symbol("y", nonnegative=True)
 r3 = sp.sqrt(3)
 
 
@@ -55,8 +55,8 @@ def E_poly_m(t: int):
     deg = 3 * t
     lo = max(1, t - 1)
     pts = [(mm, e_doubled_int(mm + 3)[t]) for mm in range(lo, lo + deg + 4)]
-    poly = sp.expand(sp.interpolate(pts[:deg + 1], m))
-    for mm, val in pts[deg + 1:]:
+    poly = sp.expand(sp.interpolate(pts[: deg + 1], m))
+    for mm, val in pts[deg + 1 :]:
         assert poly.subs(m, mm) == val
     return poly
 
@@ -71,7 +71,7 @@ def P_sym(lam_expr, D_expr, m_expr):
     B = sp.Integer(0)
     for i in range(J):
         poch = sp.prod(2 * n - 2 * J + q for q in range(1, 2 * i + 1))
-        wgt = poch / (sp.factorial(i) * 2 ** i)
+        wgt = poch / (sp.factorial(i) * 2**i)
         tail = sp.prod(D_expr + c + 2 * k for k in range(i, J - 1))
         Et = EPOLY[J - 1 - i].subs(m, m_expr)
         B += (-1) ** i * Et * wgt * s ** (2 * i) * tail
@@ -82,12 +82,10 @@ def bern1(expr, var, extra=0):
     pp = sp.Poly(sp.expand(expr), var)
     d0 = pp.degree()
     d = d0 + extra
-    cs = [pp.coeff_monomial(var ** q) if q <= d0 else sp.Integer(0)
-          for q in range(d + 1)]
+    cs = [pp.coeff_monomial(var**q) if q <= d0 else sp.Integer(0) for q in range(d + 1)]
     out = []
     for i2 in range(d + 1):
-        b = sum(sp.binomial(i2, q) / sp.binomial(d, q) * cs[q]
-                for q in range(min(i2, d0) + 1))
+        b = sum(sp.binomial(i2, q) / sp.binomial(d, q) * cs[q] for q in range(min(i2, d0) + 1))
         out.append(sp.expand(b))
     return out
 
@@ -108,15 +106,16 @@ def q3_parts_nonneg(cc):
         if a >= 0 and b >= 0:
             return True
         if a >= 0 and b < 0:
-            return bool(a ** 2 >= 3 * b ** 2)
+            return bool(a**2 >= 3 * b**2)
         if a < 0 and b >= 0:
-            return bool(3 * b ** 2 >= a ** 2)
+            return bool(3 * b**2 >= a**2)
         return False
     return None
 
 
 def polyK_nonneg(c):
     """положительность на K2 >= 0: раздельно для рациональной и sqrt3-части"""
+
     def okpoly(e):
         e = sp.expand(e)
         if not e.free_symbols:
@@ -127,6 +126,7 @@ def polyK_nonneg(c):
         if P.LC() < 0:
             return False
         return not [r for r in P.real_roots() if r >= 0]
+
     if c.has(r3):
         return okpoly(c.coeff(r3, 0)) and okpoly(c.coeff(r3, 1))
     return okpoly(c)
@@ -156,8 +156,9 @@ def bisect(builder, a, b, depth, has_K, tag, log):
     if depth == 0:
         return False
     mid = (a + b) / 2
-    return (bisect(builder, a, mid, depth - 1, has_K, tag, log) and
-            bisect(builder, mid, b, depth - 1, has_K, tag, log))
+    return bisect(builder, a, mid, depth - 1, has_K, tag, log) and bisect(
+        builder, mid, b, depth - 1, has_K, tag, log
+    )
 
 
 def main() -> int:
@@ -171,56 +172,59 @@ def main() -> int:
         tL = a + (b - a) * thL
         lam_c = (K2 + 6 + 45 + tL) * r3 / 3
         kk_c = K2 + 6 + 47
-        Tk = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
-              * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+        Tk = (
+            3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2)) * (lam_c**2 + (2 * kk_c - 2) * lam_c + 1)
+            + 2 * kk_c
+        )
         D_c = 4 + (Tk - 4) * th
         P = P_sym(lam_c, D_c, 41 + K2 + 10 * sig)
         return sp.expand(sp.fraction(sp.together(P))[0])
 
     if "band" in PIECES:
-        got = bisect(build_band, sp.Integer(0), sp.Integer(1), 5, True,
-                     "band_K6plus", log)
+        got = bisect(build_band, sp.Integer(0), sp.Integer(1), 5, True, "band_K6plus", log)
         ok &= got
         pieces_run["band"] = bool(got)
     else:
         got = None
-    print(f"(ii) band K>=6: {'OK' if got else 'FAIL'}"
-          f" ({time.time()-t0:.0f}s)", flush=True)
+    print(f"(ii) band K>=6: {'OK' if got else 'FAIL'} ({time.time() - t0:.0f}s)", flush=True)
 
     # (iii) explicit K0 = 0..5: v = (K0+4)*sigma
     for K0 in range(0, 6):
+
         def build_k0(a, b, K0=K0):
             tL = a + (b - a) * thL
             lam_c = (sp.Integer(K0) + 45 + tL) * r3 / 3
             kk_c = sp.Integer(K0) + 47
-            Tk = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
-                  * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+            Tk = (
+                3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2)) * (lam_c**2 + (2 * kk_c - 2) * lam_c + 1)
+                + 2 * kk_c
+            )
             D_c = 4 + (Tk - 4) * th
             P = P_sym(lam_c, D_c, 41 + (K0 + 4) * sig)
             return sp.expand(sp.fraction(sp.together(P))[0])
 
         if "k0" not in PIECES:
             continue
-        got = bisect(build_k0, sp.Integer(0), sp.Integer(1), 5, False,
-                     f"K{K0}", log)
+        got = bisect(build_k0, sp.Integer(0), sp.Integer(1), 5, False, f"K{K0}", log)
         ok &= got
         pieces_run[f"K{K0}"] = bool(got)
-        print(f"(iii) K={K0}: {'OK' if got else 'FAIL'}"
-              f" ({time.time()-t0:.0f}s)", flush=True)
+        print(f"(iii) K={K0}: {'OK' if got else 'FAIL'} ({time.time() - t0:.0f}s)", flush=True)
 
     # (iv) far below: K = 6 + K2, v = K2*sigma (v in [0, K-6]),
     #      Декарт у мыса: коэффициенты по y
     # (iv-v2) far below: v свободен, K2 = v + K3 (гарантирует v <= K-6),
     #          обе переменные по ортанту — как в победившем above-diagonal
-    K3 = sp.Symbol('K3', nonnegative=True)
+    K3 = sp.Symbol("K3", nonnegative=True)
 
     def build_far(a, b):
         tL = a + (b - a) * thL
         Kc = v + K3
         lam_c = (Kc + 6 + 45 + tL) * r3 / 3
         kk_c = Kc + 6 + 47
-        Tk = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
-              * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+        Tk = (
+            3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2)) * (lam_c**2 + (2 * kk_c - 2) * lam_c + 1)
+            + 2 * kk_c
+        )
         D_c = 4 + (Tk - 4) * th
         P = P_sym(lam_c, D_c, 41 + v)
         return sp.expand(sp.fraction(sp.together(P))[0])
@@ -248,8 +252,8 @@ def main() -> int:
     if "far" not in PIECES:
         MODE = "skip"
     if MODE == "compact4d":
-        w1 = sp.Symbol('w1', nonnegative=True)
-        w2 = sp.Symbol('w2', nonnegative=True)
+        w1 = sp.Symbol("w1", nonnegative=True)
+        w2 = sp.Symbol("w2", nonnegative=True)
 
         def build_far_c(a, b):
             tL = a + (b - a) * thL
@@ -258,8 +262,10 @@ def main() -> int:
             Kc = vv + KK3
             lam_c = (Kc + 6 + 45 + tL) * r3 / 3
             kk_c = Kc + 6 + 47
-            Tk = (3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2))
-                  * (lam_c ** 2 + (2 * kk_c - 2) * lam_c + 1) + 2 * kk_c)
+            Tk = (
+                3 * (2 * kk_c - 3) / (kk_c * (kk_c - 2)) * (lam_c**2 + (2 * kk_c - 2) * lam_c + 1)
+                + 2 * kk_c
+            )
             D_c = 4 + (Tk - 4) * th
             P = P_sym(lam_c, D_c, 41 + vv)
             return sp.expand(sp.fraction(sp.together(P))[0])
@@ -280,7 +286,7 @@ def main() -> int:
             if depth == 0:
                 return False
             mid = (a + b) / 2
-            return bisect_c(a, mid, depth-1) and bisect_c(mid, b, depth-1)
+            return bisect_c(a, mid, depth - 1) and bisect_c(mid, b, depth - 1)
 
         got = bisect_c(sp.Integer(0), sp.Integer(1), 4)
     elif MODE == "skip":
@@ -290,23 +296,31 @@ def main() -> int:
     if got is not None:
         ok &= got
         pieces_run["far"] = bool(got)
-    lbl = 'SKIPPED' if got is None else ('OK' if got else 'FAIL')
-    print(f"(iv) far below: {lbl} ({time.time()-t0:.0f}s)", flush=True)
+    lbl = "SKIPPED" if got is None else ("OK" if got else "FAIL")
+    print(f"(iv) far below: {lbl} ({time.time() - t0:.0f}s)", flush=True)
 
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"all_certified": bool(ok), "cells": len(log), "elev": ELEV,
-           "j": J, "pieces": pieces_run,
-           "env": {"KNIFE_J": J, "PIECES": ",".join(PIECES),
-                   "FAR_MODE": os.environ.get("FAR_MODE", "orthant"),
-                   "BERN_ELEV": ELEV},
-           "scope_note": "pieces field lists exactly what was run and its "
-                         "verdict; all_certified covers ONLY those pieces",
-           "command": f"KNIFE_J={J} PIECES={','.join(PIECES)} python "
-                      "lab/knife_belowdiag_shift.py",
-           "git": git, "runtime_s": round(time.time() - t0, 1)}
-    (RES / f"knife{J}_belowdiag_shift.json").write_text(
-        json.dumps(out, indent=1), encoding="utf-8")
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "all_certified": bool(ok),
+        "cells": len(log),
+        "elev": ELEV,
+        "j": J,
+        "pieces": pieces_run,
+        "env": {
+            "KNIFE_J": J,
+            "PIECES": ",".join(PIECES),
+            "FAR_MODE": os.environ.get("FAR_MODE", "orthant"),
+            "BERN_ELEV": ELEV,
+        },
+        "scope_note": "pieces field lists exactly what was run and its "
+        "verdict; all_certified covers ONLY those pieces",
+        "command": f"KNIFE_J={J} PIECES={','.join(PIECES)} python lab/knife_belowdiag_shift.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / f"knife{J}_belowdiag_shift.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print(("BELOW-DIAGONAL CLOSED" if ok else "INCOMPLETE"), flush=True)
     return 0 if ok else 1
 

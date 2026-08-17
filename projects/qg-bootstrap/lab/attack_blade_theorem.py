@@ -33,6 +33,7 @@ of blade_proof.py + results/blade_proof.json is reported regardless of exit.
 Usage:
   C:\\Users\\user\\ScienceBro\\.venv\\Scripts\\python.exe lab/attack_blade_theorem.py [--fast]
 """
+
 from __future__ import annotations
 
 import json
@@ -53,11 +54,11 @@ OUT = RES / "attack_blade.json"
 
 FAST = "--fast" in sys.argv
 
-lamS = sp.Symbol('lam', nonnegative=True)
-mS = sp.Symbol('m', nonnegative=True)
-v = sp.Symbol('v', nonnegative=True)
-w = sp.Symbol('w', nonnegative=True)
-z = sp.Symbol('z', nonnegative=True)
+lamS = sp.Symbol("lam", nonnegative=True)
+mS = sp.Symbol("m", nonnegative=True)
+v = sp.Symbol("v", nonnegative=True)
+w = sp.Symbol("w", nonnegative=True)
+z = sp.Symbol("z", nonnegative=True)
 r3 = sp.sqrt(3)
 SQ3 = math.sqrt(3.0)
 
@@ -65,18 +66,18 @@ T0_START = time.time()
 
 
 def log_print(msg):
-    print(f"[{time.time()-T0_START:7.1f}s] {msg}", flush=True)
+    print(f"[{time.time() - T0_START:7.1f}s] {msg}", flush=True)
 
 
 # ===================== exact (Fraction) bracket & envelope =====================
+
 
 def G_fr(m: int) -> Fr:
     return Fr(2 * (m + 1) * (m + 3), 3 * (2 * m + 3))
 
 
 def al_fr(m: int) -> Fr:
-    return Fr((m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15),
-              45 * (2 * m + 1) * (2 * m + 3))
+    return Fr((m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15), 45 * (2 * m + 1) * (2 * m + 3))
 
 
 def Tk_fr(k: int, lam: Fr) -> Fr:
@@ -133,7 +134,7 @@ def check_exact(m: int, lam: Fr):
     T = Tmin_cached(lam)
     u = T + 4 * m + 1
     B = al * u * (u - 2) - G * u * s2 + s2 * s2
-    vertex_ok = G * s2 >= (u - 1) * 2 * al          # u <= vertex
+    vertex_ok = G * s2 >= (u - 1) * 2 * al  # u <= vertex
     holds = (B >= 0) and vertex_ok
     try:
         um = (float(2 * al + G * s2) - math.sqrt(float(disc))) / (2 * float(al))
@@ -149,7 +150,7 @@ def margin_precise(m: int, lam: Fr) -> float:
     al = sp.Rational(al_fr(m).numerator, al_fr(m).denominator)
     lamQ = sp.Rational(lam.numerator, lam.denominator)
     s2 = (lamQ + m + 2) ** 2
-    disc = (2 * al + G * s2) ** 2 - 4 * al * s2 ** 2
+    disc = (2 * al + G * s2) ** 2 - 4 * al * s2**2
     T = Tmin_cached(lam)
     u = sp.Rational(T.numerator, T.denominator) + 4 * m + 1
     um = ((2 * al + G * s2) - sp.sqrt(disc)) / (2 * al)
@@ -158,11 +159,13 @@ def margin_precise(m: int, lam: Fr) -> float:
 
 # ============================ float twin (scans) ==============================
 
+
 def Tmin_float(lam: float) -> float:
     kc = int(SQ3 * lam) + 2
     ks = set(range(3, 12)) | set(range(max(3, kc - 4), kc + 6))
-    return min(3.0 * (2 * k - 3) / (k * (k - 2)) * (lam * lam + (2 * k - 2) * lam + 1) + 2 * k
-               for k in ks)
+    return min(
+        3.0 * (2 * k - 3) / (k * (k - 2)) * (lam * lam + (2 * k - 2) * lam + 1) + 2 * k for k in ks
+    )
 
 
 def check_float(m: float, lam: float):
@@ -184,7 +187,7 @@ def window_tip_float(m: float):
     G = 2.0 * (m + 1) * (m + 3) / (3 * (2 * m + 3))
     al = (m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15) / (45.0 * (2 * m + 1) * (2 * m + 3))
     beta = 4 * al - G * G
-    if beta <= 0:                                   # would contradict our beta>0 proof
+    if beta <= 0:  # would contradict our beta>0 proof
         raise AssertionError(f"beta<=0 at m={m}")
     s2max = 2 * al * (G + 2 * math.sqrt(al)) / beta
     tip = math.sqrt(s2max) - m - 2
@@ -192,6 +195,7 @@ def window_tip_float(m: float):
 
 
 # ==================== exact univariate positivity machinery ====================
+
 
 def rational_between(a, b) -> sp.Rational:
     """Exact rational strictly between a < b (Rational or CRootOf)."""
@@ -229,7 +233,7 @@ def poly_nonneg_on(P: sp.Poly, lo: sp.Rational, hi):
     if hi is None:
         last = pts[-1]
         upper = sp.Integer(int(sp.floor(last)) + 1) if pts[1:] else lo + 1
-        pts = pts + [upper, None]                    # unbounded tail gap sample
+        pts = pts + [upper, None]  # unbounded tail gap sample
         # sample beyond the last root decides the sign on (last, +oo)
         if P.eval(upper) <= 0 and bool(upper > last):
             return False
@@ -258,12 +262,12 @@ def poly_pos_on_lopen(P: sp.Poly, lo: sp.Rational, hi: sp.Rational):
 
 # ===================== per-cell exact decision procedure ======================
 
+
 def cell_polys(k: int, m: int):
     """d(lam), B(lam), V(lam) at fixed integer (k, m): rational-coeff polys.
     B is Bhat evaluated at u = T_k+4m+1; V>0 <=> that u is left of the vertex."""
     G = sp.Rational(2 * (m + 1) * (m + 3), 3 * (2 * m + 3))
-    al = sp.Rational((m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15),
-                     45 * (2 * m + 1) * (2 * m + 3))
+    al = sp.Rational((m + 3) * (5 * m**3 + 21 * m**2 + 19 * m + 15), 45 * (2 * m + 1) * (2 * m + 3))
     s = lamS + m + 2
     Tk = sp.Rational(3 * (2 * k - 3), k * (k - 2)) * (lamS**2 + (2 * k - 2) * lamS + 1) + 2 * k
     u = Tk + 4 * m + 1
@@ -317,6 +321,7 @@ def decide_cell(k: int, m: int, lo: sp.Rational, hi: sp.Rational, log: list):
 
 # ================== 2-var Polya-type certificates (tails, k3) ==================
 
+
 def _den_positive_on_orthant(den, gens):
     """Denominator positivity check (closes the fraction()[0] sign risk that
     blade_proof.py never verifies): all coeffs >= 0 and den(0)>0 => den>0 for
@@ -367,8 +372,9 @@ def polya2(num_ml, m0: int, lo, hi, a, b, depth, log, tag):
         log.append({"cell": tag, "t": [str(a), str(b)], "cert": "FAILED"})
         return False
     mid = (a + b) / 2
-    return (polya2(num_ml, m0, lo, hi, a, mid, depth - 1, log, tag) and
-            polya2(num_ml, m0, lo, hi, mid, b, depth - 1, log, tag))
+    return polya2(num_ml, m0, lo, hi, a, mid, depth - 1, log, tag) and polya2(
+        num_ml, m0, lo, hi, mid, b, depth - 1, log, tag
+    )
 
 
 def branch_BV_syms(k: int):
@@ -409,12 +415,14 @@ def tail_certificate(k: int, m0: int, lo, hi, log):
         if not poly_nonneg_on(Pm, sp.Integer(0), None):
             okE = False
     ok = bool(okB and okV and okE)
-    log.append({"cell": f"k{k}_tail_m{m0}", "cert": "OK" if ok else "FAILED",
-                "endpoint_exact": bool(okE)})
+    log.append(
+        {"cell": f"k{k}_tail_m{m0}", "cert": "OK" if ok else "FAILED", "endpoint_exact": bool(okE)}
+    )
     return ok
 
 
 # ===================== sqrt(3) certificates (L1, L3 rebuild) ==================
+
 
 def split_sqrt3(e):
     en = e.subs(r3, -r3)
@@ -452,6 +460,7 @@ def cert_sqrt3(e, gens, tag, log):
 
 # =============================== main parts ===================================
 
+
 def part_coverage_gap(results):
     """Static audit finding: parse blade_proof.json, list branch cells that no
     certificate covers (the range(m_start-1, m_start) escalation bug at
@@ -475,14 +484,16 @@ def part_coverage_gap(results):
     n_gap = sum(len(g) for g in gaps.values())
     results["coverage_gap"] = {
         "bug": "lab/blade_proof.py line 175: on tail escalation from M to M+6 "
-               "only m0=M+5 is backfilled; m0=M..M+4 are never certified while "
-               "the tail certificate that failed at M only starts at M+6",
+        "only m0=M+5 is backfilled; m0=M..M+4 are never certified while "
+        "the tail certificate that failed at M only starts at M+6",
         "uncovered_cells": {str(k): g for k, g in gaps.items()},
         "n_uncovered": n_gap,
         "m_start": {str(k): ms for k, ms in sorted(mstart.items())},
     }
-    log_print(f"coverage gap: {n_gap} uncovered (k,m) cells across "
-              f"{len(gaps)} branches (e.g. k=7 misses m=4..8)")
+    log_print(
+        f"coverage gap: {n_gap} uncovered (k,m) cells across "
+        f"{len(gaps)} branches (e.g. k=7 misses m=4..8)"
+    )
     return mstart, gaps
 
 
@@ -507,15 +518,18 @@ def part_certificates(results):
     G = 2 * (mS + 1) * (mS + 3) / (3 * (2 * mS + 3))
     al = (mS + 3) * (5 * mS**3 + 21 * mS**2 + 19 * mS + 15) / (45 * (2 * mS + 1) * (2 * mS + 3))
     beta = 4 * al - G**2
-    beta_fact = 8 * (mS + 3) * (mS**3 + 3 * mS**2 + 11 * mS + 15) / (45 * (2 * mS + 1) * (2 * mS + 3)**2)
+    beta_fact = (
+        8 * (mS + 3) * (mS**3 + 3 * mS**2 + 11 * mS + 15) / (45 * (2 * mS + 1) * (2 * mS + 3) ** 2)
+    )
     okb = sp.simplify(beta - beta_fact) == 0
     log.append({"cell": "beta_identity_and_positivity", "ok": bool(okb)})
     ok_all &= okb
-    log_print(f"beta = 8(m+3)(m^3+3m^2+11m+15)/(45(2m+1)(2m+3)^2) identity: {okb} "
-              "=> beta>0 for all m>=0")
+    log_print(
+        f"beta = 8(m+3)(m^3+3m^2+11m+15)/(45(2m+1)(2m+3)^2) identity: {okb} => beta>0 for all m>=0"
+    )
 
     # --- L2: RHS := (16/9)(m+3)^2 beta - 2 al G >= 0 and RHS^2 >= 16 al^3 for m>=79
-    RHS = sp.Rational(16, 9) * (mS + 3)**2 * beta - 2 * al * G
+    RHS = sp.Rational(16, 9) * (mS + 3) ** 2 * beta - 2 * al * G
     e1, okd1 = numerator_checked(RHS.subs(mS, v + 79), (v,), "L2_e1", log)
     e2, okd2 = numerator_checked((RHS**2 - 16 * al**3).subs(mS, v + 79), (v,), "L2_e2", log)
     ok1 = okd1 and all(c >= 0 for _, c in sp.Poly(e1, v).terms())
@@ -525,7 +539,7 @@ def part_certificates(results):
     for msamp in (79, 200):
         Gq, alq = G_fr(msamp), al_fr(msamp)
         betaq = 4 * alq - Gq * Gq
-        rhs = Fr(16, 9) * (msamp + 3)**2 * betaq - 2 * alq * Gq
+        rhs = Fr(16, 9) * (msamp + 3) ** 2 * betaq - 2 * alq * Gq
         assert rhs >= 0 and rhs * rhs >= 16 * alq**3, f"L2 numeric spot fail m={msamp}"
     log.append({"cell": "L2_rebuild", "ok": okL2})
     ok_all &= okL2
@@ -534,13 +548,15 @@ def part_certificates(results):
     # --- L1: (12+4sqrt3)*lam - T_{K+2} >= 0 for K>=45, theta in [0,1),
     # lam=(K+theta)/sqrt3.  Built WITHOUT symbolic division (no cancel risk):
     # 3*k(k-2)*[(12+4r3)lam - T_k] = 3(12+4r3)lam k(k-2) - 9(2k-3)(lam^2+(2k-2)lam+1) - 6k^2(k-2)
-    K, th = sp.symbols('K theta', nonnegative=True)
+    K, th = sp.symbols("K theta", nonnegative=True)
     lamK = (K + th) * r3 / 3
     kk = K + 2
-    E1 = sp.expand(3 * (12 + 4 * r3) * lamK * kk * (kk - 2)
-                   - 9 * (2 * kk - 3) * (lamK**2 + (2 * kk - 2) * lamK + 1)
-                   - 6 * kk**2 * (kk - 2))
-    E1 = sp.expand(E1.subs(K, v + 45).subs(th, w / (1 + w)) * (1 + w)**2)
+    E1 = sp.expand(
+        3 * (12 + 4 * r3) * lamK * kk * (kk - 2)
+        - 9 * (2 * kk - 3) * (lamK**2 + (2 * kk - 2) * lamK + 1)
+        - 6 * kk**2 * (kk - 2)
+    )
+    E1 = sp.expand(E1.subs(K, v + 45).subs(th, w / (1 + w)) * (1 + w) ** 2)
     E1n, okdL1 = numerator_checked(E1, (v, w), "L1_den", log)
     okL1 = okdL1 and cert_sqrt3(E1n, (v, w), "L1_rebuild", log)
     # float spot checks incl. tightness (the asymptote is exactly the large-lam envelope)
@@ -556,7 +572,11 @@ def part_certificates(results):
     lamdeep = 26 + z * (v + 7) / 3
     sdeep = lamdeep + mdeep + 2
     Gd = 2 * (mdeep + 1) * (mdeep + 3) / (3 * (2 * mdeep + 3))
-    ald = (mdeep + 3) * (5 * mdeep**3 + 21 * mdeep**2 + 19 * mdeep + 15) / (45 * (2 * mdeep + 1) * (2 * mdeep + 3))
+    ald = (
+        (mdeep + 3)
+        * (5 * mdeep**3 + 21 * mdeep**2 + 19 * mdeep + 15)
+        / (45 * (2 * mdeep + 1) * (2 * mdeep + 3))
+    )
     uA = (12 + 4 * r3) * lamdeep + 4 * mdeep + 1
     Bd = ald * uA * (uA - 2) - Gd * uA * sdeep**2 + sdeep**4
     Vd = Gd * sdeep**2 - (uA - 1) * 2 * ald
@@ -567,7 +587,7 @@ def part_certificates(results):
             okL3 = False
             continue
         degz = sp.degree(num, z)
-        f = sp.expand(num.subs(z, w / (1 + w)) * (1 + w)**degz)
+        f = sp.expand(num.subs(z, w / (1 + w)) * (1 + w) ** degz)
         fn, okd2b = numerator_checked(f, (v, w), f"{nm}_den2", log)
         okL3 &= okd2b and cert_sqrt3(fn, (v, w), f"{nm}_rebuild", log)
     okL3 = bool(okL3)
@@ -575,13 +595,13 @@ def part_certificates(results):
     log_print(f"L3 rebuild (deep water B&V at the asymptote): {okL3}")
 
     # --- T0: m=1..78 -> no window for lam >= 26 (exact univariate, rebuilt)
-    x = sp.Symbol('x', nonnegative=True)
+    x = sp.Symbol("x", nonnegative=True)
     t0fails = []
     for mm in range(1, 79):
         Gq = sp.Rational(G_fr(mm).numerator, G_fr(mm).denominator)
         alq = sp.Rational(al_fr(mm).numerator, al_fr(mm).denominator)
         s = 26 + x + mm + 2
-        nd = sp.expand(-((2 * alq + Gq * s**2)**2 - 4 * alq * s**4))
+        nd = sp.expand(-((2 * alq + Gq * s**2) ** 2 - 4 * alq * s**4))
         if not poly_nonneg_on(sp.Poly(nd, x), sp.Integer(0), None):
             t0fails.append(mm)
     okT0 = not t0fails
@@ -611,10 +631,16 @@ def part_certificates(results):
     ok_all &= ok3
     log_print(f"k=3 branch rebuild (lam in (0,2/3]): {ok3}")
 
-    results["certificates"] = {"log": log, "L1": bool(okL1), "L2": bool(okL2),
-                               "L3": bool(okL3), "T0": bool(okT0), "k3": ok3,
-                               "beta_positive_all_m": bool(okb),
-                               "all_ok": bool(ok_all)}
+    results["certificates"] = {
+        "log": log,
+        "L1": bool(okL1),
+        "L2": bool(okL2),
+        "L3": bool(okL3),
+        "T0": bool(okT0),
+        "k3": ok3,
+        "beta_positive_all_m": bool(okb),
+        "all_ok": bool(ok_all),
+    }
     return ok_all
 
 
@@ -626,8 +652,15 @@ class MarginTracker:
         if margin is None:
             return
         rel = margin / max(1.0, abs(margin) + 1.0) if False else margin
-        self.items.append({"part": part, "m": int(m), "lam": str(lam),
-                           "margin_D": float(margin), "exact": bool(exact)})
+        self.items.append(
+            {
+                "part": part,
+                "m": int(m),
+                "lam": str(lam),
+                "margin_D": float(margin),
+                "exact": bool(exact),
+            }
+        )
 
     def worst(self, n=20):
         return sorted(self.items, key=lambda r: r["margin_D"])[:n]
@@ -639,9 +672,12 @@ def part_exact_scans(results, margins, counterexamples):
     checks = 0
     windows = 0
     # junction grids
-    lam_j = ([Fr(i, 300) for i in range(181, 226, 5 if FAST else 1)] + [Fr(2, 3)] +
-             [Fr(i, 100) for i in range(2540, 2621, 4 if FAST else 1)] +
-             [Fr(26), Fr(261, 10)])
+    lam_j = (
+        [Fr(i, 300) for i in range(181, 226, 5 if FAST else 1)]
+        + [Fr(2, 3)]
+        + [Fr(i, 100) for i in range(2540, 2621, 4 if FAST else 1)]
+        + [Fr(26), Fr(261, 10)]
+    )
     m_j = list(range(1, 121, 3 if FAST else 1)) + [150, 200, 300, 500, 1000]
     # closest-approach grids
     lam_c = [Fr(i, 1000) for i in range(20, 101, 4 if FAST else 1)]
@@ -655,17 +691,18 @@ def part_exact_scans(results, margins, counterexamples):
                 if win:
                     margins.add(tagp, m, lam, marg, exact=True)
                 if viol:
-                    counterexamples.append({"part": tagp, "m": m, "lam": str(lam),
-                                            "margin": marg})
-        log_print(f"exact scan '{tagp}' done ({checks} checks so far, "
-                  f"{windows} windows, {len(counterexamples)} violations)")
+                    counterexamples.append({"part": tagp, "m": m, "lam": str(lam), "margin": marg})
+        log_print(
+            f"exact scan '{tagp}' done ({checks} checks so far, "
+            f"{windows} windows, {len(counterexamples)} violations)"
+        )
     results["exact_scans"] = {"checks": checks, "windows": windows}
 
 
 def part_float_scans(results, margins, counterexamples):
     """Float reconnaissance with exact rational recheck of every suspect:
     window tips (disc ~ 0), large-m tangency direction, deep water."""
-    suspects: list = []          # (margin, m, lam_float, part)
+    suspects: list = []  # (margin, m, lam_float, part)
     n_float = 0
 
     def scan_point(part, m, lam):
@@ -687,7 +724,7 @@ def part_float_scans(results, margins, counterexamples):
     log_print(f"float scan 'tips' done ({n_float} points)")
 
     # D: large-m: full strip up to the tip + the s/m ~ 1+1/sqrt3 direction
-    for m in ([1000, 10000] if FAST else [500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]):
+    for m in [1000, 10000] if FAST else [500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]:
         tip = window_tip_float(m)
         if tip is None:
             continue
@@ -700,8 +737,9 @@ def part_float_scans(results, margins, counterexamples):
         # (s/(m+3) -> sqrt(5/3) < 4/3 < 1+1/sqrt3 at the tip); verify no window:
         lam_h = m / SQ3 - 2
         if lam_h > 0:
-            assert check_float(float(m), lam_h) is None, \
+            assert check_float(float(m), lam_h) is None, (
                 f"unexpected window at hinted tangency m={m}"
+            )
     log_print(f"float scan 'large_m' done ({n_float} points)")
 
     # E: deep water lam in [26, 2000], n up to 6*lam
@@ -716,8 +754,9 @@ def part_float_scans(results, margins, counterexamples):
             scan_point("deep", m, lam)
         # T0 cross-check: no window for m<=78 at lam>=26
         for m in range(1, 79, 7):
-            assert check_float(float(m), lam) is None, \
+            assert check_float(float(m), lam) is None, (
                 f"float window at m={m}, lam={lam} contradicts T0"
+            )
     log_print(f"float scan 'deep' done ({n_float} points total)")
 
     # exact recheck of the worst suspects (rationalized lambda)
@@ -741,10 +780,14 @@ def part_float_scans(results, margins, counterexamples):
             mp = margin_precise(m, lamQ)
             margins.add(part + "_exact", m, lamQ, mp, exact=True)
         if viol:
-            counterexamples.append({"part": part + "_exact", "m": m,
-                                    "lam": str(lamQ), "margin": marg_ex})
-    results["float_scans"] = {"points": n_float, "suspects_rechecked": len(picked),
-                              "float_min_margin": suspects[0][0] if suspects else None}
+            counterexamples.append(
+                {"part": part + "_exact", "m": m, "lam": str(lamQ), "margin": marg_ex}
+            )
+    results["float_scans"] = {
+        "points": n_float,
+        "suspects_rechecked": len(picked),
+        "float_min_margin": suspects[0][0] if suspects else None,
+    }
     log_print(f"exact recheck of {len(picked)} float suspects done")
 
 
@@ -769,17 +812,19 @@ def part_recertify(results, mstart, gaps, counterexamples):
                     lamQ = Fr((lo + i * step).p, (lo + i * step).q)
                     violp, winp, margp = check_exact(m, lamQ)
                     if violp:
-                        counterexamples.append({"part": "recert_probe", "m": m,
-                                                "lam": str(lamQ), "margin": margp})
+                        counterexamples.append(
+                            {"part": "recert_probe", "m": m, "lam": str(lamQ), "margin": margp}
+                        )
                 ok_all = False
         okT = tail_certificate(k, ms, lo, hi, log)
         if not okT:
             open_cells.append({"k": k, "tail_m_start": ms})
             ok_all = False
-        log_print(f"re-certify branch k={k}: cells m<{ms} "
-                  f"{'OK' if ok_all or not open_cells else '...'} tail={'OK' if okT else 'FAIL'}")
-    results["recertification"] = {"all_ok": bool(ok_all), "open_cells": open_cells,
-                                  "log": log}
+        log_print(
+            f"re-certify branch k={k}: cells m<{ms} "
+            f"{'OK' if ok_all or not open_cells else '...'} tail={'OK' if okT else 'FAIL'}"
+        )
+    results["recertification"] = {"all_ok": bool(ok_all), "open_cells": open_cells, "log": log}
     return ok_all
 
 
@@ -802,19 +847,23 @@ def part_negative_control(results):
         s2 = (lam + m + 2) ** 2
         # rational point inside the window: floor of the vertex (disc>0 => Bhat(vertex)<0)
         u_vertex = 1 + G * s2 / (2 * al)
-        u_mid = u_vertex                     # exact rational, strictly inside
+        u_mid = u_vertex  # exact rational, strictly inside
         B = al * u_mid * (u_mid - 2) - G * u_mid * s2 + s2 * s2
         fired = B < 0
-    results["negative_control"] = {"window_point": [found[0], str(found[1])] if found else None,
-                                   "detector_fires_inside_window": bool(fired)}
+    results["negative_control"] = {
+        "window_point": [found[0], str(found[1])] if found else None,
+        "detector_fires_inside_window": bool(fired),
+    }
     log_print(f"negative control (detector fires inside a real window): {fired}")
     return bool(fired)
 
 
 def main() -> int:
-    results: dict = {"tool": "lab/attack_blade_theorem.py",
-                     "independent_of": "lab/blade_proof.py (no import; formulas rebuilt)",
-                     "fast_mode": FAST}
+    results: dict = {
+        "tool": "lab/attack_blade_theorem.py",
+        "independent_of": "lab/blade_proof.py (no import; formulas rebuilt)",
+        "fast_mode": FAST,
+    }
     margins = MarginTracker()
     counterexamples: list = []
 
@@ -832,9 +881,11 @@ def main() -> int:
         verdict = "THEOREM COUNTEREXAMPLE FOUND"
         code = 2
     elif certs_ok and recert_ok and control_ok:
-        verdict = ("NO COUNTEREXAMPLE; tail certificates independently rebuilt; "
-                   "all branch cells (incl. blade_proof.py's coverage-gap cells) "
-                   "independently re-certified")
+        verdict = (
+            "NO COUNTEREXAMPLE; tail certificates independently rebuilt; "
+            "all branch cells (incl. blade_proof.py's coverage-gap cells) "
+            "independently re-certified"
+        )
         code = 0
     else:
         verdict = "NO COUNTEREXAMPLE FOUND, BUT RE-CERTIFICATION INCOMPLETE (proof open somewhere)"
@@ -842,10 +893,13 @@ def main() -> int:
     results["verdict"] = verdict
     results["runtime_s"] = round(time.time() - T0_START, 1)
     import subprocess as _sp
+
     results["_meta"] = {
         "command": "python lab/attack_blade_theorem.py",
-        "git": _sp.run(["git", "rev-parse", "--short", "HEAD"],
-                       capture_output=True, text=True).stdout.strip()}
+        "git": _sp.run(
+            ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+        ).stdout.strip(),
+    }
     OUT.write_text(json.dumps(results, indent=1), encoding="utf-8")
     log_print(f"VERDICT: {verdict} (exit {code}); artifact {OUT}")
     return code

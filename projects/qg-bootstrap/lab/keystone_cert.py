@@ -51,14 +51,24 @@ from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 
-LAMS = (Fraction(1, 1000), Fraction(1, 100), Fraction(1, 10), Fraction(1, 3),
-        Fraction(1, 2), Fraction(1), Fraction(2), Fraction(3), Fraction(7),
-        Fraction(26), Fraction(150), Fraction(1000))
+LAMS = (
+    Fraction(1, 1000),
+    Fraction(1, 100),
+    Fraction(1, 10),
+    Fraction(1, 3),
+    Fraction(1, 2),
+    Fraction(1),
+    Fraction(2),
+    Fraction(3),
+    Fraction(7),
+    Fraction(26),
+    Fraction(150),
+    Fraction(1000),
+)
 MAX_DEPTH = 6
 
 
-def affine_then_mobius(poly: list[Fraction], a: Fraction,
-                       b: Fraction) -> list[Fraction]:
+def affine_then_mobius(poly: list[Fraction], a: Fraction, b: Fraction) -> list[Fraction]:
     """Coefficients (ascending in w) of (1+w)^m * poly(a + (b-a) w/(1+w)).
 
     Nonnegative coefficients  <=>  poly has no root on [a, b) and is
@@ -68,7 +78,7 @@ def affine_then_mobius(poly: list[Fraction], a: Fraction,
     d = b - a
     # poly(a + d*w/(1+w)) * (1+w)^m = sum_k c_k (d w)^k (1+w)^{m-k}
     # after re-expanding poly around a first:
-    shifted = [Fraction(0)] * (m + 1)          # poly(a + x) in powers of x
+    shifted = [Fraction(0)] * (m + 1)  # poly(a + x) in powers of x
     for i, ci in enumerate(poly):
         if not ci:
             continue
@@ -78,14 +88,13 @@ def affine_then_mobius(poly: list[Fraction], a: Fraction,
     for k, ck in enumerate(shifted):
         if not ck:
             continue
-        term = ck * d ** k
-        for r in range(m - k + 1):             # (1+w)^{m-k}
+        term = ck * d**k
+        for r in range(m - k + 1):  # (1+w)^{m-k}
             out[k + r] += term * comb(m - k, r)
     return out
 
 
-def certify(poly: list[Fraction], a: Fraction, b: Fraction,
-            depth: int = 0) -> tuple[bool, int]:
+def certify(poly: list[Fraction], a: Fraction, b: Fraction, depth: int = 0) -> tuple[bool, int]:
     """Nonnegative-coefficient certificate on [a, b], with bisection."""
     co = affine_then_mobius(poly, a, b)
     if all(c >= 0 for c in co) and any(c > 0 for c in co):
@@ -112,7 +121,7 @@ def main() -> int:
                 if Th <= 4:
                     continue
                 poly = J_poly_in_Q(j, n, lam)
-                q_low = Fraction(n - j)                     # D = 4
+                q_low = Fraction(n - j)  # D = 4
                 q_shore = Fraction(Th, 2) + n - j - 2
                 if q_shore <= q_low:
                     continue
@@ -122,38 +131,43 @@ def main() -> int:
                     certified += 1
                     depth_hist[d] = depth_hist.get(d, 0) + 1
                 elif len(failures) < 25:
-                    failures.append({"j": j, "n": n, "lam": str(lam),
-                                     "depth_reached": d})
-        print(f"  j={j}: cells {cells}, certified {certified}, "
-              f"failures {len(failures)}, depth histogram "
-              f"{dict(sorted(depth_hist.items()))} ({time.time()-t0:.0f}s)",
-              flush=True)
+                    failures.append({"j": j, "n": n, "lam": str(lam), "depth_reached": d})
+        print(
+            f"  j={j}: cells {cells}, certified {certified}, "
+            f"failures {len(failures)}, depth histogram "
+            f"{dict(sorted(depth_hist.items()))} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
 
-    out = {"claim": "J(Q) > 0 for every Q in [Q_low, Q_shore], i.e. every"
-                    " knife stays positive everywhere strictly below the"
-                    " shore -- certified, not sampled",
-           "certificate": "nonnegative coefficients after Q = Q_low +"
-                          " (Q_shore-Q_low) w/(1+w) and clearing (1+w)^{j-1};"
-                          " bisection of the stretch where needed",
-           "stretch": {"Q_low": "n - j  (this is D = 4)",
-                       "Q_shore": "T_hat(lam)/2 + n - j - 2"},
-           "grid": {"j": "2..40", "n": "max(4,j+1)..+24 step 2",
-                    "lam": [str(x) for x in LAMS]},
-           "cells": cells, "certified": certified,
-           "all_certified": certified == cells,
-           "bisection_depth_histogram": {str(k): v for k, v
-                                         in sorted(depth_hist.items())},
-           "failures": failures,
-           "max_depth_allowed": MAX_DEPTH,
-           "command": "python lab/keystone_cert.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_cert.json").write_text(json.dumps(out, indent=1),
-                                            encoding="utf-8")
-    print(f"cells {cells}, certified {certified}, "
-          f"depths {dict(sorted(depth_hist.items()))}", flush=True)
-    print("KEYSTONE CERTIFICATE " + ("HOLDS on the whole grid"
-                                     if certified == cells else
-                                     "INCOMPLETE (see artifact)"), flush=True)
+    out = {
+        "claim": "J(Q) > 0 for every Q in [Q_low, Q_shore], i.e. every"
+        " knife stays positive everywhere strictly below the"
+        " shore -- certified, not sampled",
+        "certificate": "nonnegative coefficients after Q = Q_low +"
+        " (Q_shore-Q_low) w/(1+w) and clearing (1+w)^{j-1};"
+        " bisection of the stretch where needed",
+        "stretch": {"Q_low": "n - j  (this is D = 4)", "Q_shore": "T_hat(lam)/2 + n - j - 2"},
+        "grid": {"j": "2..40", "n": "max(4,j+1)..+24 step 2", "lam": [str(x) for x in LAMS]},
+        "cells": cells,
+        "certified": certified,
+        "all_certified": certified == cells,
+        "bisection_depth_histogram": {str(k): v for k, v in sorted(depth_hist.items())},
+        "failures": failures,
+        "max_depth_allowed": MAX_DEPTH,
+        "command": "python lab/keystone_cert.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_cert.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"cells {cells}, certified {certified}, depths {dict(sorted(depth_hist.items()))}",
+        flush=True,
+    )
+    print(
+        "KEYSTONE CERTIFICATE "
+        + ("HOLDS on the whole grid" if certified == cells else "INCOMPLETE (see artifact)"),
+        flush=True,
+    )
     return 0 if certified == cells else 1
 
 

@@ -22,9 +22,17 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="sb-selftest-") as td:
         xml_path = Path(td) / "junit.xml"
         r = subprocess.run(
-            [sys.executable, "-m", "pytest", str(PROJ / "verifier"), "-q",
-             f"--junitxml={xml_path}"],
-            capture_output=True, text=True, cwd=PROJ.parents[1],
+            [
+                sys.executable,
+                "-m",
+                "pytest",
+                str(PROJ / "verifier"),
+                "-q",
+                f"--junitxml={xml_path}",
+            ],
+            capture_output=True,
+            text=True,
+            cwd=PROJ.parents[1],
         )
         tests: dict[str, str] = {}
         if xml_path.exists():

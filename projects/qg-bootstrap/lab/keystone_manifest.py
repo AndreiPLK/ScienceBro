@@ -36,9 +36,20 @@ from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 
-LAMS = (Fraction(1, 1000), Fraction(1, 100), Fraction(1, 10), Fraction(1, 3),
-        Fraction(1, 2), Fraction(1), Fraction(2), Fraction(3), Fraction(7),
-        Fraction(26), Fraction(150), Fraction(1000))
+LAMS = (
+    Fraction(1, 1000),
+    Fraction(1, 100),
+    Fraction(1, 10),
+    Fraction(1, 3),
+    Fraction(1, 2),
+    Fraction(1),
+    Fraction(2),
+    Fraction(3),
+    Fraction(7),
+    Fraction(26),
+    Fraction(150),
+    Fraction(1000),
+)
 
 
 def shift_poly(poly: list[Fraction], q0: Fraction) -> list[Fraction]:
@@ -57,7 +68,7 @@ def shift_poly(poly: list[Fraction], q0: Fraction) -> list[Fraction]:
     for d, cd in enumerate(cur):
         if d < len(out):
             out[d] = cd
-        elif cd != 0:                       # degree guard
+        elif cd != 0:  # degree guard
             out.append(cd)
     return cur
 
@@ -79,38 +90,58 @@ def main() -> int:
                 neg = [(d, str(c)) for d, c in enumerate(zc) if c < 0]
                 if neg:
                     if len(failures) < 25:
-                        failures.append({"j": j, "n": n, "lam": str(lam),
-                                         "negative_z_coeffs": neg[:6],
-                                         "n_negative": len(neg),
-                                         "degree": len(zc) - 1})
+                        failures.append(
+                            {
+                                "j": j,
+                                "n": n,
+                                "lam": str(lam),
+                                "negative_z_coeffs": neg[:6],
+                                "n_negative": len(neg),
+                                "degree": len(zc) - 1,
+                            }
+                        )
                 if zc[0] == 0:
                     tangency.append({"j": j, "n": n, "lam": str(lam)})
                 if len(examples) < 12 and j <= 4:
-                    examples.append({"j": j, "n": n, "lam": str(lam),
-                                     "z_coeffs_signs":
-                                         "".join("+" if c > 0 else
-                                                 ("0" if c == 0 else "-")
-                                                 for c in zc)})
-        print(f"  j={j}: cells {cells}, cells with a negative z-coeff "
-              f"{len(failures)} ({time.time()-t0:.0f}s)", flush=True)
+                    examples.append(
+                        {
+                            "j": j,
+                            "n": n,
+                            "lam": str(lam),
+                            "z_coeffs_signs": "".join(
+                                "+" if c > 0 else ("0" if c == 0 else "-") for c in zc
+                            ),
+                        }
+                    )
+        print(
+            f"  j={j}: cells {cells}, cells with a negative z-coeff "
+            f"{len(failures)} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
 
-    out = {"question": "are all coefficients of J(Q_shore - z) in z >= 0?",
-           "meaning": "if yes, positivity below the shore is manifest for"
-                      " every knife at once (Polya-type certificate)",
-           "cells": cells,
-           "manifest_positive_everywhere": not failures,
-           "failure_examples": failures,
-           "tangency_cells_zero_constant_term": tangency[:40],
-           "tangency_count": len(tangency),
-           "sign_pattern_examples": examples,
-           "command": "python lab/keystone_manifest.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_manifest.json").write_text(json.dumps(out, indent=1),
-                                                encoding="utf-8")
-    print(f"cells {cells}; cells with negative z-coefficients "
-          f"{len(failures)}; tangency cells {len(tangency)}", flush=True)
-    print("MANIFEST POSITIVITY " + ("HOLDS" if not failures else
-                                    "FAILS (see artifact)"), flush=True)
+    out = {
+        "question": "are all coefficients of J(Q_shore - z) in z >= 0?",
+        "meaning": "if yes, positivity below the shore is manifest for"
+        " every knife at once (Polya-type certificate)",
+        "cells": cells,
+        "manifest_positive_everywhere": not failures,
+        "failure_examples": failures,
+        "tangency_cells_zero_constant_term": tangency[:40],
+        "tangency_count": len(tangency),
+        "sign_pattern_examples": examples,
+        "command": "python lab/keystone_manifest.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_manifest.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"cells {cells}; cells with negative z-coefficients "
+        f"{len(failures)}; tangency cells {len(tangency)}",
+        flush=True,
+    )
+    print(
+        "MANIFEST POSITIVITY " + ("HOLDS" if not failures else "FAILS (see artifact)"), flush=True
+    )
     return 0 if not failures else 1
 
 

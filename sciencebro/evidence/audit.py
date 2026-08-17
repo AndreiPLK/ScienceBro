@@ -9,7 +9,7 @@ from sciencebro.schemas import Claim, EvidenceRecord
 
 @dataclass
 class EvidenceAudit:
-    findings: list[str] = field(default_factory=list)   # rule violations / blockers
+    findings: list[str] = field(default_factory=list)  # rule violations / blockers
     warnings: list[str] = field(default_factory=list)
 
     @property

@@ -68,9 +68,14 @@ def ricci_stats(model: str, pts: list[np.ndarray], h: float, amp: float = 0.0) -
         eig = np.linalg.eigvalsh(gm)
         sig.append(bool(np.linalg.det(gm) < 0 and (eig < 0).sum() == 1))
     a = np.array(arr)
-    return {"h": h, "median": float(np.median(a)), "p95": float(np.percentile(a, 95)),
-            "p99": float(np.percentile(a, 99)), "max": float(a.max()),
-            "signature_ok_fraction": float(np.mean(sig))}
+    return {
+        "h": h,
+        "median": float(np.median(a)),
+        "p95": float(np.percentile(a, 95)),
+        "p99": float(np.percentile(a, 99)),
+        "max": float(a.max()),
+        "signature_ok_fraction": float(np.mean(sig)),
+    }
 
 
 def _stencil_h(pts: list[np.ndarray], h: float) -> np.ndarray:
@@ -116,8 +121,11 @@ def main() -> int:
     control = ricci_stats(str(MODEL), pts, bs.H, amp=0.5)
     c6 = not (control["median"] <= MEDIAN_LIMIT and control["p95"] <= P95_LIMIT)
 
-    verdict = "PASS" if all([c1, c2, c3, c4, c6]) else (
-        "FAIL" if (c1 and c4 and not (c2 and c3)) else "INCONCLUSIVE")
+    verdict = (
+        "PASS"
+        if all([c1, c2, c3, c4, c6])
+        else ("FAIL" if (c1 and c4 and not (c2 and c3)) else "INCONCLUSIVE")
+    )
 
     results = {
         "date": "2026-08-12",
@@ -125,7 +133,11 @@ def main() -> int:
         "model_sha256": sha,
         "hidden_seed": seed,
         "criteria": {
-            "c1_pipeline_validity": {"pass": bool(c1), "worst_ricci": worst_r, "worst_k_rel": worst_k},
+            "c1_pipeline_validity": {
+                "pass": bool(c1),
+                "worst_ricci": worst_r,
+                "worst_k_rel": worst_k,
+            },
             "c2_vacuum_comparability": {"pass": bool(c2), "limits": [MEDIAN_LIMIT, P95_LIMIT]},
             "c3_signature": {"pass": bool(c3)},
             "c4_convergence": {"pass": bool(c4), "median_spread": c4_spread},
@@ -138,7 +150,7 @@ def main() -> int:
         "frozen_thresholds": "validations/THRESHOLDS_FROZEN.md @ tag thresholds-frozen",
         "verdict_under_frozen_criteria": verdict,
         "note": "PASS here means 'meets the frozen audit criteria relative to the reproduced "
-                "Schwarzschild baseline'; it is NOT a confirmation of a new solution.",
+        "Schwarzschild baseline'; it is NOT a confirmation of a new solution.",
     }
     OUT.write_text(json.dumps(results, indent=2), encoding="utf-8")
     print(json.dumps(results, indent=2))

@@ -29,9 +29,9 @@ from verifier.known_metrics import (  # noqa: E402
 
 # Predeclared tolerances (calibrated on analytic baselines 2026-08-11 at h=3e-3,
 # see CALIBRATION.md; candidates were NOT inspected before fixing these):
-RICCI_VACUUM_TOL = 1e-7          # max |R_ab| for exact vacuum solutions at test points
-KRETSCHMANN_REL_TOL = 1e-7       # relative error vs analytic K = 48 M^2/r^6
-PERTURBED_MIN_RESIDUAL = 1e-5    # negative control must exceed this
+RICCI_VACUUM_TOL = 1e-7  # max |R_ab| for exact vacuum solutions at test points
+KRETSCHMANN_REL_TOL = 1e-7  # relative error vs analytic K = 48 M^2/r^6
+PERTURBED_MIN_RESIDUAL = 1e-5  # negative control must exceed this
 
 TEST_POINTS = [
     np.array([0.0, 6.0, 1.2, 0.7]),

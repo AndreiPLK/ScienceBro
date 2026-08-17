@@ -34,6 +34,7 @@ not the paper's claims):
 Usage:   python lab/attack_collapse.py     (run from projects/qg-bootstrap)
 Exit 0 iff no falsification. Artifact: results/attack_collapse.json
 """
+
 from __future__ import annotations
 
 import json
@@ -51,7 +52,7 @@ RES = ROOT / "results"
 FALS: list[str] = []
 WARN: list[str] = []
 
-SQRT3 = 3 ** 0.5
+SQRT3 = 3**0.5
 TMAX = 10  # highest E index needed: t = j-1 <= 9
 
 
@@ -60,6 +61,7 @@ def sgn(x) -> int:
 
 
 # ---------------- independent E implementation ----------------
+
 
 def squares(n: int) -> list[int]:
     """Multiset {(n-2k)^2 : k=1..n-1}. E_{2t}(n) = e_t(this multiset)."""
@@ -102,6 +104,7 @@ def brute_E2t(n: int, t: int) -> int:
 
 # ---------------- the bracket, from the claim statement ----------------
 
+
 def bracket_terms(n: int, j: int, s, D) -> list:
     """B_j terms: (-1)^i E_{2(j-1-i)} (2n-2j+2i)!/(i! 2^i) s^{2i}
     prod_{r=i}^{j-2} (D + 4n-4j-1 + 2r)."""
@@ -109,7 +112,7 @@ def bracket_terms(n: int, j: int, s, D) -> list:
     c = 4 * n - 4 * j - 1
     terms = []
     for i in range(j):
-        w = F(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2 ** i)
+        w = F(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2**i)
         tail = F(1)
         for r in range(i, j - 1):
             tail *= D + c + 2 * r
@@ -119,10 +122,16 @@ def bracket_terms(n: int, j: int, s, D) -> list:
 
 # ---------------- part 1: the ratio estimate (i) ----------------
 
+
 def part1() -> dict:
-    out: dict = {"brute_check_ok": True, "sigma_identity_ok": True,
-                 "logconcave_violations": [], "mR": {}, "mR_growth": {},
-                 "corr_over_n2": {}}
+    out: dict = {
+        "brute_check_ok": True,
+        "sigma_identity_ok": True,
+        "logconcave_violations": [],
+        "mR": {},
+        "mR_growth": {},
+        "corr_over_n2": {},
+    }
     # definition bridge
     for n in (6, 7, 8, 9):
         e = elem_sym(squares(n))
@@ -140,8 +149,7 @@ def part1() -> dict:
             if e[t] ** 2 < e[t - 1] * e[t + 1]:
                 out["logconcave_violations"].append([n, t])
     if out["logconcave_violations"]:
-        FALS.append("F3 log-concavity violated: "
-                    + str(out["logconcave_violations"][:5]))
+        FALS.append("F3 log-concavity violated: " + str(out["logconcave_violations"][:5]))
     # ratio deviation R(t,m) = E_{2(t-1)}/E_{2t} * Sigma/t - 1; table of m*R
     ms = [20, 40, 80, 160, 320, 640]
     for t in range(2, 10):
@@ -156,12 +164,10 @@ def part1() -> dict:
         growth = row[-1] / row[-2] if row[-2] else float("inf")
         out["mR_growth"][t] = round(growth, 4)
         if growth > 1.3:
-            FALS.append(f"F4 (i) not O(1/m): m*R grows, t={t} "
-                        f"ratio={growth:.3f}")
+            FALS.append(f"F4 (i) not O(1/m): m*R grows, t={t} ratio={growth:.3f}")
         pred = 1.8 * (t - 1)
         if abs(row[-1] / pred - 1) > 0.3:
-            WARN.append(f"W4 m*R vs 1.8(t-1): t={t} m*R={row[-1]:.3f} "
-                        f"pred={pred:.1f}")
+            WARN.append(f"W4 m*R vs 1.8(t-1): t={t} m*R={row[-1]:.3f} pred={pred:.1f}")
     # additive correction: (Sigma - S_t)/n^2 with S_t = t E_{2t}/E_{2(t-1)}.
     # md claims correction O(m); my expansion predicts Theta(m^2), const 0.6(t-1)
     for t in range(2, 7):
@@ -170,7 +176,7 @@ def part1() -> dict:
             n = m + 3
             e = E2(n)
             s_t = F(t * e[t], e[t - 1])
-            row.append(float((e[1] - s_t) / n ** 2))
+            row.append(float((e[1] - s_t) / n**2))
         out["corr_over_n2"][t] = row
     c320, c640 = out["corr_over_n2"][4][1], out["corr_over_n2"][4][2]
     out["md_correction_is_Theta_m2"] = abs(c640 / c320 - 1) < 0.15
@@ -184,8 +190,7 @@ CASES = [
     ("X=1 rho=21/20", F(21, 20), 6 * F(21, 20) ** 2 - 4),
     ("X=1/2 rho=13/10", F(13, 10), 12 * F(13, 10) ** 2 - 4),
     ("generic rho~rho* d=5", F(1577, 1000), F(5)),
-    ("X=1-eps rho~sqrt(5/3)", F(1291, 1000),
-     6 * F(1291, 1000) ** 2 - 4 + F(1, 10)),
+    ("X=1-eps rho~sqrt(5/3)", F(1291, 1000), 6 * F(1291, 1000) ** 2 - 4 + F(1, 10)),
     ("X=1 rho~rho*", F(1577, 1000), 6 * F(1577, 1000) ** 2 - 4),
 ]
 MS2 = [10, 20, 40, 80, 160, 320]
@@ -194,10 +199,16 @@ MS2 = [10, 20, 40, 80, 160, 320]
 def part2() -> dict:
     out: dict = {"m_grid": MS2, "cases": []}
     for name, rho, delta in CASES:
-        x = 6 * rho ** 2 / (delta + 4)
+        x = 6 * rho**2 / (delta + 4)
         generic = abs(1 - x) >= F(1, 10)
-        case: dict = {"name": name, "rho": str(rho), "delta": str(delta),
-                      "X": float(x), "generic": generic, "j": {}}
+        case: dict = {
+            "name": name,
+            "rho": str(rho),
+            "delta": str(delta),
+            "X": float(x),
+            "generic": generic,
+            "j": {},
+        }
         for j in range(2, 9):
             devs = []
             for m in MS2:
@@ -210,8 +221,7 @@ def part2() -> dict:
                 if devs[k] == 0 or devs[k + 1] == 0:
                     orders.append(None)
                 else:
-                    orders.append(
-                        round(log2(abs(float(devs[k] / devs[k + 1]))), 3))
+                    orders.append(round(log2(abs(float(devs[k] / devs[k + 1]))), 3))
             rec: dict = {"dev": fdevs, "orders": orders}
             if abs(devs[-1]) >= abs(devs[-2]):
                 FALS.append(f"F6 no convergence: '{name}' j={j}")
@@ -221,8 +231,7 @@ def part2() -> dict:
             if x == 1:
                 rec["order_pred_X1"] = j // 2
                 if p is None or abs(p - j // 2) > 0.35:
-                    WARN.append(f"W1 X=1 order: '{name}' j={j} p={p} "
-                                f"pred={j // 2}")
+                    WARN.append(f"W1 X=1 order: '{name}' j={j} p={p} pred={j // 2}")
             if not generic and x != 1:
                 lim = float((1 - x) ** (j - 1))
                 rec["dev_over_limit_m320"] = abs(fdevs[-1] / lim)
@@ -232,6 +241,7 @@ def part2() -> dict:
 
 
 # ---------------- part 3: independent zone battery ----------------
+
 
 def zone_scan(n: int, lam: int, jmax: int, dmax: int):
     m = n - 3
@@ -244,8 +254,7 @@ def zone_scan(n: int, lam: int, jmax: int, dmax: int):
         c = 4 * n - 4 * j - 1
         pre = []
         for i in range(j):
-            q, rem = divmod(factorial(2 * n - 2 * j + 2 * i),
-                            factorial(i) * 2 ** i)
+            q, rem = divmod(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2**i)
             assert rem == 0
             pre.append((-1) ** i * e[j - 1 - i] * q * s ** (2 * i))
         signs = []
@@ -308,21 +317,35 @@ def part3() -> dict:
         lab_rows = json.loads(labf.read_text(encoding="utf-8"))["rows"]
     else:
         WARN.append("collapse_zones.json missing; lab reproduction skipped")
-    for n, lam, tag in [(100, 12, "lab-repro"), (120, 15, "extend"),
-                        (150, 20, "extend"), (120, 60, "high-rho-probe")]:
+    for n, lam, tag in [
+        (100, 12, "lab-repro"),
+        (120, 15, "extend"),
+        (150, 20, "extend"),
+        (120, 60, "high-rho-probe"),
+    ]:
         m = n - 3
         s = lam + n - 1
         dcrit = 6 * s * s / m - 4 * m
         dmax = int(3 * dcrit) + 80
         jmax = 10
         zones, schg, signs_all = zone_scan(n, lam, jmax, dmax)
-        cfg = {"n": n, "lam": lam, "tag": tag, "rho": round(s / m, 4),
-               "D_crit": round(dcrit, 2), "D_max": dmax,
-               "sign_changes": schg,
-               "zones": {j: {"bands": len(zones[j]), "expected": j // 2,
-                             "offsets": [[round(a - dcrit), round(b - dcrit)]
-                                         for a, b in zones[j]]}
-                         for j in zones}}
+        cfg = {
+            "n": n,
+            "lam": lam,
+            "tag": tag,
+            "rho": round(s / m, 4),
+            "D_crit": round(dcrit, 2),
+            "D_max": dmax,
+            "sign_changes": schg,
+            "zones": {
+                j: {
+                    "bands": len(zones[j]),
+                    "expected": j // 2,
+                    "offsets": [[round(a - dcrit), round(b - dcrit)] for a, b in zones[j]],
+                }
+                for j in zones
+            },
+        }
         for j in range(2, jmax + 1):
             nb = len(zones[j])
             if nb != j // 2:
@@ -346,8 +369,7 @@ def part3() -> dict:
                 cfg["lab_mismatch"] = detail
                 FALS.append("F7 lab zone battery NOT reproduced at n=100")
             hi = int(dcrit * 2) + 60
-            missed = [j for j in (3, 5, 7)
-                      if any(x < 0 for x in signs_all[j][hi - 4:])]
+            missed = [j for j in (3, 5, 7) if any(x < 0 for x in signs_all[j][hi - 4 :])]
             cfg["lab_truncation_missed_odd_j"] = missed
             if missed:
                 FALS.append(f"F8 lab truncation missed odd-j bands: {missed}")
@@ -356,8 +378,7 @@ def part3() -> dict:
                 if zones[j] and zones[j][-1][1] < dmax - 1:
                     spans[j].append((m, zones[j][-1][1] - zones[j][0][0]))
                 else:
-                    WARN.append(f"span truncated n={n} j={j}; exponent fit "
-                                f"skips this point")
+                    WARN.append(f"span truncated n={n} j={j}; exponent fit skips this point")
         out["configs"].append(cfg)
     expo = {}
     for j in (5, 7):
@@ -370,23 +391,22 @@ def part3() -> dict:
             den = sum((x - xb) ** 2 for x in xs)
             expo[j] = round(num / den, 3)
             if not 0.35 <= expo[j] <= 0.65:
-                WARN.append(f"W3 splitting exponent j={j}: {expo[j]} "
-                            f"(sqrt-m predicts ~0.5)")
+                WARN.append(f"W3 splitting exponent j={j}: {expo[j]} (sqrt-m predicts ~0.5)")
     out["splitting_exponent"] = expo
     return out
 
 
 # ---------------- extras: T_8 and the tangency numbers ----------------
 
+
 def extras() -> dict:
     out: dict = {}
-    out["T8_root_at_94"] = (sum(bracket_terms(8, 2, F(12), F(94))) == 0)
+    out["T8_root_at_94"] = sum(bracket_terms(8, 2, F(12), F(94))) == 0
     if not out["T8_root_at_94"]:
         FALS.append("F10 T_8 != 94 (hand-check in collapse-lemma.md fails)")
-    lam = 10 ** 6
+    lam = 10**6
     m0 = round(SQRT3 * (lam + 2))
-    best = min(range(m0 - 8, m0 + 9),
-               key=lambda mm: F(6 * (lam + mm + 2) ** 2, mm) - 4 * mm)
+    best = min(range(m0 - 8, m0 + 9), key=lambda mm: F(6 * (lam + mm + 2) ** 2, mm) - 4 * mm)
     ratio = (lam + best + 2) / best
     dmin = float(F(6 * (lam + best + 2) ** 2, best) - 4 * best)
     out["rho_star_measured"] = round(ratio, 7)
@@ -402,25 +422,29 @@ def main() -> int:
     t0 = time.time()
     print("part1: ratio estimate (i) ...", flush=True)
     p1 = part1()
-    print(f"part2: convergence to (1-X)^(j-1) ... ({time.time()-t0:.0f}s)",
-          flush=True)
+    print(f"part2: convergence to (1-X)^(j-1) ... ({time.time() - t0:.0f}s)", flush=True)
     p2 = part2()
-    print(f"part3: zone battery j<=10 ... ({time.time()-t0:.0f}s)", flush=True)
+    print(f"part3: zone battery j<=10 ... ({time.time() - t0:.0f}s)", flush=True)
     p3 = part3()
     ex = extras()
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True,
-                         cwd=ROOT).stdout.strip()
-    art = {"date": time.strftime("%Y-%m-%d"), "git": git,
-           "command": "python lab/attack_collapse.py",
-           "gates": "frozen in source docstring before first execution",
-           "part1_ratio_estimate": p1, "part2_convergence": p2,
-           "part3_zones": p3, "extras": ex,
-           "warnings": WARN, "falsifications": FALS,
-           "runtime_s": round(time.time() - t0, 1)}
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=ROOT
+    ).stdout.strip()
+    art = {
+        "date": time.strftime("%Y-%m-%d"),
+        "git": git,
+        "command": "python lab/attack_collapse.py",
+        "gates": "frozen in source docstring before first execution",
+        "part1_ratio_estimate": p1,
+        "part2_convergence": p2,
+        "part3_zones": p3,
+        "extras": ex,
+        "warnings": WARN,
+        "falsifications": FALS,
+        "runtime_s": round(time.time() - t0, 1),
+    }
     RES.mkdir(exist_ok=True)
-    (RES / "attack_collapse.json").write_text(json.dumps(art, indent=1),
-                                              encoding="utf-8")
+    (RES / "attack_collapse.json").write_text(json.dumps(art, indent=1), encoding="utf-8")
     print(f"warnings ({len(WARN)}):")
     for w in WARN:
         print("  W:", w)

@@ -27,9 +27,10 @@ RES = Path(__file__).resolve().parents[1] / "results"
 
 
 def min_T(lamf: float) -> float:
-    return min((3 * (2 * n - 3) / (n * (n - 2)))
-               * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
-               for n in range(3, 400))
+    return min(
+        (3 * (2 * n - 3) / (n * (n - 2))) * (lamf * lamf + (2 * n - 2) * lamf + 1) + 2 * n
+        for n in range(3, 400)
+    )
 
 
 def a_l(n: int, l: int, lam: F, D: int) -> F:
@@ -84,16 +85,25 @@ def main() -> int:
                 if a_l(n, 2 * n - 8, lam, D) < 0:
                     alarms.append({"lam": str(lam), "D": D, "n": n})
                     break
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"alarms": alarms, "n_lambdas": len(lams), "n_range": "5..14",
-           "window": "[minT-3, minT] even D", "checks": checks,
-           "command": "python lab/hunt_2n8.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "hunt_2n8.json").write_text(json.dumps(out, indent=1),
-                                       encoding="utf-8")
-    print(f"2n-8 hunt: {len(alarms)} alarms over {len(lams)} lambdas,"
-          f" {checks} checks, {time.time()-t0:.1f}s", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "alarms": alarms,
+        "n_lambdas": len(lams),
+        "n_range": "5..14",
+        "window": "[minT-3, minT] even D",
+        "checks": checks,
+        "command": "python lab/hunt_2n8.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "hunt_2n8.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"2n-8 hunt: {len(alarms)} alarms over {len(lams)} lambdas,"
+        f" {checks} checks, {time.time() - t0:.1f}s",
+        flush=True,
+    )
     return 0
 
 

@@ -11,8 +11,7 @@ import sys
 from fractions import Fraction
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]
-                       / "projects" / "qg-bootstrap" / "lab"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "projects" / "qg-bootstrap" / "lab"))
 import plotly.graph_objects as go  # noqa: E402
 from keystone_hunt import T_hat, eval_P  # noqa: E402
 from knife_proof2 import Bj_coeffs, e_doubled_int  # noqa: E402
@@ -29,10 +28,10 @@ def term0_ratio(n, l, D):
     c1, c2 = 4 * n - 4 * j1 - 1, 4 * (n + 1) - 4 * j2 - 1
     p1 = Fraction(1)
     for r in range(0, j1 - 1):
-        p1 *= (D + c1 + 2 * r)
+        p1 *= D + c1 + 2 * r
     p2 = Fraction(1)
     for r in range(0, j2 - 1):
-        p2 *= (D + c2 + 2 * r)
+        p2 *= D + c2 + 2 * r
     return Fraction(E2) * p2 / (Fraction(E1) * p1)
 
 
@@ -66,63 +65,117 @@ for n in ns:
     Z.append(row)
     lane.append(best)
 
-x = [float(f) for f in fracs]           # поперёк пояса: 0 = берег D=4, 1 = кромка T_hat
-y = ns                                   # уровень n вдоль диагонали
+x = [float(f) for f in fracs]  # поперёк пояса: 0 = берег D=4, 1 = кромка T_hat
+y = ns  # уровень n вдоль диагонали
 
-COLORS = [[0.0, "#33091d"], [0.25, "#ff2a6d"], [0.5, "#7a3fd0"],
-          [0.75, "#0aa3c2"], [1.0, "#3fe7f5"]]
+COLORS = [
+    [0.0, "#33091d"],
+    [0.25, "#ff2a6d"],
+    [0.5, "#7a3fd0"],
+    [0.75, "#0aa3c2"],
+    [1.0, "#3fe7f5"],
+]
 
 fig = go.Figure()
-fig.add_trace(go.Surface(x=x, y=y, z=Z, colorscale=COLORS, showscale=False,
-                         cmin=0.1, cmax=1.7,
-                         lighting=dict(ambient=0.55, diffuse=0.7,
-                                       specular=0.25, roughness=0.75)))
+fig.add_trace(
+    go.Surface(
+        x=x,
+        y=y,
+        z=Z,
+        colorscale=COLORS,
+        showscale=False,
+        cmin=0.1,
+        cmax=1.7,
+        lighting=dict(ambient=0.55, diffuse=0.7, specular=0.25, roughness=0.75),
+    )
+)
 # пол z=0 — линия коллапса
-fig.add_trace(go.Surface(x=x, y=[ns[0], ns[-1]],
-                         z=[[0, 0] * 1 for _ in range(2)],
-                         surfacecolor=[[0, 0], [0, 0]],
-                         colorscale=[[0, "#2a0a18"], [1, "#2a0a18"]],
-                         opacity=0.75, showscale=False))
+fig.add_trace(
+    go.Surface(
+        x=x,
+        y=[ns[0], ns[-1]],
+        z=[[0, 0] * 1 for _ in range(2)],
+        surfacecolor=[[0, 0], [0, 0]],
+        colorscale=[[0, "#2a0a18"], [1, "#2a0a18"]],
+        opacity=0.75,
+        showscale=False,
+    )
+)
 # жёлтая дорожка худшего запаса
-fig.add_trace(go.Scatter3d(x=[b[1] for b in lane], y=ns,
-                           z=[b[0] + 0.02 for b in lane],
-                           mode="lines", line=dict(color="#f9f871", width=9),
-                           showlegend=False))
+fig.add_trace(
+    go.Scatter3d(
+        x=[b[1] for b in lane],
+        y=ns,
+        z=[b[0] + 0.02 for b in lane],
+        mode="lines",
+        line=dict(color="#f9f871", width=9),
+        showlegend=False,
+    )
+)
 # белый ромб в худшей точке
-fig.add_trace(go.Scatter3d(x=[worst[2]], y=[worst[1]], z=[worst[0] + 0.03],
-                           mode="markers",
-                           marker=dict(size=9, color="white",
-                                       symbol="diamond"),
-                           showlegend=False))
+fig.add_trace(
+    go.Scatter3d(
+        x=[worst[2]],
+        y=[worst[1]],
+        z=[worst[0] + 0.03],
+        mode="markers",
+        marker=dict(size=9, color="white", symbol="diamond"),
+        showlegend=False,
+    )
+)
 ann = [
-    dict(x=0.45, y=22, z=1.55, text="THE KEYSTONE ARCH",
-         font=dict(color="#9ff5ff", size=26), showarrow=False),
-    dict(x=worst[2], y=worst[1] + 7, z=worst[0] + 0.62,
-         text="THE LEDGE: ratio 0.29 — lowest point, still above zero",
-         font=dict(color="#ffe94a", size=15), showarrow=False),
-    dict(x=0.35, y=7, z=0.07, text="ZERO FLOOR = COLLAPSE",
-         font=dict(color="#ff5f95", size=16), showarrow=False),
+    dict(
+        x=0.45,
+        y=22,
+        z=1.55,
+        text="THE KEYSTONE ARCH",
+        font=dict(color="#9ff5ff", size=26),
+        showarrow=False,
+    ),
+    dict(
+        x=worst[2],
+        y=worst[1] + 7,
+        z=worst[0] + 0.62,
+        text="THE LEDGE: ratio 0.29 — lowest point, still above zero",
+        font=dict(color="#ffe94a", size=15),
+        showarrow=False,
+    ),
+    dict(
+        x=0.35,
+        y=7,
+        z=0.07,
+        text="ZERO FLOOR = COLLAPSE",
+        font=dict(color="#ff5f95", size=16),
+        showarrow=False,
+    ),
 ]
 fig.update_layout(
-    template="plotly_dark", paper_bgcolor="#0b0714",
-    title=dict(text="THE KEYSTONE ARCH — one argument for ALL knives<br>"
-                    "<sup>height = safety ratio P(next level)/(kernel x P); "
-                    "floor 0 = collapse; yellow lane = thinnest margin; "
-                    "the arch NEVER touches the floor (worst spin l=6, "
-                    "lam=12, exact data)</sup>",
-               font=dict(color="#e8e6f0", size=20), x=0.03),
-    scene=dict(
-        xaxis=dict(title="across the belt: shore D=4 -> edge T_hat",
-                   color="#8f8ba0", gridcolor="#241a38"),
-        yaxis=dict(title="level n (knife j = n-3 grows with n)",
-                   color="#8f8ba0", gridcolor="#241a38"),
-        zaxis=dict(title="safety ratio", color="#8f8ba0",
-                   gridcolor="#241a38", range=[0, 1.8]),
-        annotations=ann,
-        camera=dict(eye=dict(x=1.55, y=-1.3, z=0.62),
-                    center=dict(x=0, y=0, z=-0.12)),
+    template="plotly_dark",
+    paper_bgcolor="#0b0714",
+    title=dict(
+        text="THE KEYSTONE ARCH — one argument for ALL knives<br>"
+        "<sup>height = safety ratio P(next level)/(kernel x P); "
+        "floor 0 = collapse; yellow lane = thinnest margin; "
+        "the arch NEVER touches the floor (worst spin l=6, "
+        "lam=12, exact data)</sup>",
+        font=dict(color="#e8e6f0", size=20),
+        x=0.03,
     ),
-    width=1600, height=1000, margin=dict(l=10, r=10, t=90, b=10))
+    scene=dict(
+        xaxis=dict(
+            title="across the belt: shore D=4 -> edge T_hat", color="#8f8ba0", gridcolor="#241a38"
+        ),
+        yaxis=dict(
+            title="level n (knife j = n-3 grows with n)", color="#8f8ba0", gridcolor="#241a38"
+        ),
+        zaxis=dict(title="safety ratio", color="#8f8ba0", gridcolor="#241a38", range=[0, 1.8]),
+        annotations=ann,
+        camera=dict(eye=dict(x=1.55, y=-1.3, z=0.62), center=dict(x=0, y=0, z=-0.12)),
+    ),
+    width=1600,
+    height=1000,
+    margin=dict(l=10, r=10, t=90, b=10),
+)
 
 out = Path(__file__).resolve().parent
 fig.write_html(out / "keystone-arch.html", include_plotlyjs="cdn")

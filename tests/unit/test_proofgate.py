@@ -4,9 +4,15 @@ from sciencebro.proofgate import GateResult, Requirement
 
 
 def _gate(reqs):
-    return GateResult(stage_id="stage-x", title="t", label="SCIENTIFIC",
-                      question="q", why_it_matters="w", allowed_public_claim="c",
-                      requirements=reqs)
+    return GateResult(
+        stage_id="stage-x",
+        title="t",
+        label="SCIENTIFIC",
+        question="q",
+        why_it_matters="w",
+        allowed_public_claim="c",
+        requirements=reqs,
+    )
 
 
 def test_all_missing_is_not_started_never_verified():
@@ -41,10 +47,12 @@ def test_attestation_integrity_detects_change(tmp_path):
     art = tmp_path / "data.json"
     art.write_text('{"v": 1}', encoding="utf-8")
     import hashlib
+
     att = tmp_path / "attestation.json"
-    att.write_text(json.dumps({
-        "artifact_hashes": {str(art): hashlib.sha256(art.read_bytes()).hexdigest()}
-    }), encoding="utf-8")
+    att.write_text(
+        json.dumps({"artifact_hashes": {str(art): hashlib.sha256(art.read_bytes()).hexdigest()}}),
+        encoding="utf-8",
+    )
     assert check_attestation_integrity(att) == []
     art.write_text('{"v": 2}', encoding="utf-8")
     problems = check_attestation_integrity(att)

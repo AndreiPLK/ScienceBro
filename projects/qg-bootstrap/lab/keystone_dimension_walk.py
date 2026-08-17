@@ -75,7 +75,7 @@ RES = Path(__file__).resolve().parents[1] / "results"
 def poch(a: F, k: int) -> F:
     p = F(1)
     for i in range(k):
-        p *= (a + i)
+        p *= a + i
     return p
 
 
@@ -83,8 +83,7 @@ def conn(l: int, a: F) -> tuple[F, F]:
     """c0, c1 of C_l^(a) = c0 C_l^(a+1) + c1 C_{l-2}^(a+1)."""
     mu = a + 1
     c0 = poch(a, l) * (l + mu) / (poch(mu + 1, l) * mu)
-    c1 = (F(0) if l < 2 else
-          -poch(a, l - 1) * (l - 2 + mu) / (poch(mu + 1, l - 1) * mu))
+    c1 = F(0) if l < 2 else -poch(a, l - 1) * (l - 2 + mu) / (poch(mu + 1, l - 1) * mu)
     return c0, c1
 
 
@@ -129,36 +128,36 @@ def main() -> int:
                     rec[m] = (b_mu[m] - c1 * tail) / c0m
                 inv_ok += 1 if rec == b_a else 0
 
-    out = {"lemma": "all partial waves positive at D+2 implies all positive"
-                    " at D, uniformly in the spin",
-           "mechanism": "Gegenbauer connection with mu = a+1 truncates after"
-                        " two terms because (a-mu)_k = (-1)_k vanishes for"
-                        " k >= 2; c0 > 0 and c1 < 0 for a > 0, so the inverted"
-                        " relation is a POSITIVE combination and induction"
-                        " runs downward in the spin",
-           "consequence": "for any D in [4, T_hat], k = floor((T_hat-D)/2)"
-                          " applications carry positivity down from the strip"
-                          " (T_hat-2, T_hat]; the grand theorem reduces to"
-                          " that strip of WIDTH 2",
-           "context": "this is the explicit shrinking map behind Schoenberg's"
-                      " nesting of positive-definite classes on spheres; the"
-                      " shore is the critical dimension of the nesting",
-           "forward_relation_exact": f"{fwd_ok}/{fwd_tot}",
-           "inverse_reconstruction_exact": f"{inv_ok}/{inv_tot}",
-           "sign_violations": sign_bad,
-           "all_verified": (fwd_ok == fwd_tot and inv_ok == inv_tot
-                            and not sign_bad),
-           "still_open": "positivity INSIDE the strip (T_hat-2, T_hat], for"
-                         " all spins; that is now the entire remaining task",
-           "command": "python lab/keystone_dimension_walk.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_dimension_walk.json").write_text(
-        json.dumps(out, indent=1), encoding="utf-8")
+    out = {
+        "lemma": "all partial waves positive at D+2 implies all positive"
+        " at D, uniformly in the spin",
+        "mechanism": "Gegenbauer connection with mu = a+1 truncates after"
+        " two terms because (a-mu)_k = (-1)_k vanishes for"
+        " k >= 2; c0 > 0 and c1 < 0 for a > 0, so the inverted"
+        " relation is a POSITIVE combination and induction"
+        " runs downward in the spin",
+        "consequence": "for any D in [4, T_hat], k = floor((T_hat-D)/2)"
+        " applications carry positivity down from the strip"
+        " (T_hat-2, T_hat]; the grand theorem reduces to"
+        " that strip of WIDTH 2",
+        "context": "this is the explicit shrinking map behind Schoenberg's"
+        " nesting of positive-definite classes on spheres; the"
+        " shore is the critical dimension of the nesting",
+        "forward_relation_exact": f"{fwd_ok}/{fwd_tot}",
+        "inverse_reconstruction_exact": f"{inv_ok}/{inv_tot}",
+        "sign_violations": sign_bad,
+        "all_verified": (fwd_ok == fwd_tot and inv_ok == inv_tot and not sign_bad),
+        "still_open": "positivity INSIDE the strip (T_hat-2, T_hat], for"
+        " all spins; that is now the entire remaining task",
+        "command": "python lab/keystone_dimension_walk.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_dimension_walk.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print(f"forward relation exact: {fwd_ok}/{fwd_tot}", flush=True)
     print(f"inverse reconstruction exact: {inv_ok}/{inv_tot}", flush=True)
     print(f"sign violations: {len(sign_bad)}", flush=True)
-    print("DESCENT LEMMA " + ("VERIFIED" if out["all_verified"]
-                              else "FAILED"), flush=True)
+    print("DESCENT LEMMA " + ("VERIFIED" if out["all_verified"] else "FAILED"), flush=True)
     return 0 if out["all_verified"] else 1
 
 

@@ -11,8 +11,11 @@ from sciencebro.store import StoreError, load_yaml_model, save_yaml_model
 
 def test_yaml_roundtrip(tmp_path):
     h = Hypothesis(
-        id="H-1", statement="s", null_hypothesis="n",
-        primary_metric="residual", status="proposed",
+        id="H-1",
+        statement="s",
+        null_hypothesis="n",
+        primary_metric="residual",
+        status="proposed",
     )
     p = tmp_path / "h.yaml"
     save_yaml_model(p, h)
@@ -42,8 +45,9 @@ def _ev(eid):
 
 
 def test_audit_flags_unknown_evidence_and_duplicates():
-    claims = [Claim(id="CL-1", statement="s", state=ClaimState.source_supported,
-                    evidence_ids=["EV-404"])]
+    claims = [
+        Claim(id="CL-1", statement="s", state=ClaimState.source_supported, evidence_ids=["EV-404"])
+    ]
     evidence = [_ev("EV-1"), _ev("EV-1")]
     audit = audit_evidence(claims, evidence)
     assert not audit.ok
@@ -52,7 +56,8 @@ def test_audit_flags_unknown_evidence_and_duplicates():
 
 
 def test_audit_clean():
-    claims = [Claim(id="CL-1", statement="s", state=ClaimState.source_supported,
-                    evidence_ids=["EV-1"])]
+    claims = [
+        Claim(id="CL-1", statement="s", state=ClaimState.source_supported, evidence_ids=["EV-1"])
+    ]
     audit = audit_evidence(claims, [_ev("EV-1")])
     assert audit.ok

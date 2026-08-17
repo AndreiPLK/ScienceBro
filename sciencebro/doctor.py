@@ -46,7 +46,9 @@ def run_doctor() -> DoctorReport:
     rep = DoctorReport()
     py = sys.version.split()[0]
     rep.checks.append(DoctorCheck("python", sys.version_info >= (3, 12), f"{py} (need >=3.12)"))
-    rep.checks.append(DoctorCheck("platform", True, f"{platform.system()} {platform.release()}", required=False))
+    rep.checks.append(
+        DoctorCheck("platform", True, f"{platform.system()} {platform.release()}", required=False)
+    )
 
     for name, cmd, required in [
         ("git", ["git", "--version"], True),
@@ -58,7 +60,9 @@ def run_doctor() -> DoctorReport:
         rep.checks.append(DoctorCheck(name, v is not None, v or "not found", required=required))
 
     gpu = _cmd_version(["nvidia-smi", "--query-gpu=name,memory.total", "--format=csv,noheader"])
-    rep.checks.append(DoctorCheck("gpu", gpu is not None, gpu or "no NVIDIA GPU detected", required=False))
+    rep.checks.append(
+        DoctorCheck("gpu", gpu is not None, gpu or "no NVIDIA GPU detected", required=False)
+    )
 
     for mod in ["pydantic", "typer", "rich", "streamlit", "plotly", "pandas", "numpy"]:
         try:

@@ -59,21 +59,32 @@ def main() -> int:
             alarms.append({"k": kk, "m": mv, "model": model})
         else:
             confirmed.append({"k": kk, "m": mv})
-        print(f"k={kk} m={mv}: "
-              f"{'OK' if {'k': kk, 'm': mv} in confirmed else 'PENDING/ALARM'}"
-              f" ({time.time()-t0:.0f}s)", flush=True)
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"j": J, "retried": len(todo), "confirmed": confirmed,
-           "alarms": alarms, "still_unknown": still,
-           "timeout_ms": int(os.environ.get("Z3_TIMEOUT_MS", "600000")),
-           "command": f"KNIFE_J={J} Z3_TIMEOUT_MS=600000 "
-                      "python lab/z3_judge_retry.py",
-           "git": git, "runtime_s": round(time.time() - t0, 1)}
-    (RES / f"z3_judge_j{J}_retry.json").write_text(json.dumps(out, indent=1),
-                                                   encoding="utf-8")
-    print(f"RETRY: {len(confirmed)}/{len(todo)} confirmed, "
-          f"{len(alarms)} alarms, {len(still)} still unknown", flush=True)
+        print(
+            f"k={kk} m={mv}: "
+            f"{'OK' if {'k': kk, 'm': mv} in confirmed else 'PENDING/ALARM'}"
+            f" ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "j": J,
+        "retried": len(todo),
+        "confirmed": confirmed,
+        "alarms": alarms,
+        "still_unknown": still,
+        "timeout_ms": int(os.environ.get("Z3_TIMEOUT_MS", "600000")),
+        "command": f"KNIFE_J={J} Z3_TIMEOUT_MS=600000 python lab/z3_judge_retry.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / f"z3_judge_j{J}_retry.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"RETRY: {len(confirmed)}/{len(todo)} confirmed, "
+        f"{len(alarms)} alarms, {len(still)} still unknown",
+        flush=True,
+    )
     return 0 if not alarms and not still else 1
 
 

@@ -33,7 +33,7 @@ def truncated_amplitude(s_val, t_is_xi_j: int, c, mu, xi):
     for n in range(j):
         res = c[n]
         for k in range(1, n + 1):
-            res *= (xi[j] - xi[k])
+            res *= xi[j] - xi[k]
         total += res / (mu[n] - s_val)
     return total
 
@@ -121,8 +121,10 @@ def main() -> int:
     for j, eq in xi_constraints:
         val = sp.simplify(eq.subs({xi[k]: xi_rec[k] for k in range(4, N + 1)}))
         ok = val == 0
-        print(f"R1c crossing(3,{j}) vanishes on Eq.(13) recursion: "
-              f"{'PASS' if ok else 'FAIL: ' + str(val)[:120]}")
+        print(
+            f"R1c crossing(3,{j}) vanishes on Eq.(13) recursion: "
+            f"{'PASS' if ok else 'FAIL: ' + str(val)[:120]}"
+        )
         failures += 0 if ok else 1
 
     print(f"\nR1 verdict: {'ALL PASS' if failures == 0 else f'{failures} FAILURES'}")

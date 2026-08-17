@@ -34,7 +34,7 @@ def main() -> int:
     all_pts = {(F(r["r"]), F(r["w"])) for r in d["rows"]}
 
     squares = set()
-    for (r, w) in allowed:
+    for r, w in allowed:
         for dr, dw in ((step, 0), (-step, 0), (0, step), (0, -step)):
             nb = (r + dr, w + dw)
             if nb in all_pts and nb not in allowed:
@@ -63,19 +63,29 @@ def main() -> int:
                 sq_total += 1
                 n_allowed += ok
                 sq_allowed += ok
-                rows.append({"r": str(r), "w": str(w), "allowed": ok,
-                             "first_negative": first_neg})
-        print(f"[{i}/{len(squares)}] square ({r0},{w0}): {sq_allowed}/{sq_total} "
-              f"allowed, {time.time()-t0:.0f}s", flush=True)
+                rows.append({"r": str(r), "w": str(w), "allowed": ok, "first_negative": first_neg})
+        print(
+            f"[{i}/{len(squares)}] square ({r0},{w0}): {sq_allowed}/{sq_total} "
+            f"allowed, {time.time() - t0:.0f}s",
+            flush=True,
+        )
 
     out = RES / f"fine_boundary_mu0_N{NMAX}.json"
-    out.write_text(json.dumps({
-        "nmax": NMAX, "mu0": "0", "fine_step": "1/50",
-        "squares": len(squares), "points": len(rows),
-        "allowed_count": n_allowed, "rows": rows,
-    }), encoding="utf-8")
-    print(f"fine boundary: {n_allowed}/{len(rows)} allowed; written {out}",
-          flush=True)
+    out.write_text(
+        json.dumps(
+            {
+                "nmax": NMAX,
+                "mu0": "0",
+                "fine_step": "1/50",
+                "squares": len(squares),
+                "points": len(rows),
+                "allowed_count": n_allowed,
+                "rows": rows,
+            }
+        ),
+        encoding="utf-8",
+    )
+    print(f"fine boundary: {n_allowed}/{len(rows)} allowed; written {out}", flush=True)
     return 0
 
 

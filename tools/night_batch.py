@@ -34,16 +34,23 @@ def log(msg: str) -> None:
 
 def commit(msg: str) -> None:
     subprocess.run(["git", "add", "-A"], cwd=ROOT, capture_output=True)
-    subprocess.run(["git", "commit", "-q", "-m",
-                    f"[night-batch] {msg}\n\nCo-Authored-By: Claude Fable 5 <noreply@anthropic.com>"],
-                   cwd=ROOT, capture_output=True)
+    subprocess.run(
+        [
+            "git",
+            "commit",
+            "-q",
+            "-m",
+            f"[night-batch] {msg}\n\nCo-Authored-By: Claude Fable 5 <noreply@anthropic.com>",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+    )
 
 
 def main() -> int:
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(f"\n## Night batch {datetime.datetime.now():%Y-%m-%d %H:%M}\n")
-    spec = importlib.util.spec_from_file_location(
-        "night_queue", ROOT / "tools" / "night_queue.py")
+    spec = importlib.util.spec_from_file_location("night_queue", ROOT / "tools" / "night_queue.py")
     q = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(q)
     log(f"queue loaded: {len(q.TASKS)} tasks")

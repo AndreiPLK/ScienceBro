@@ -64,7 +64,7 @@ def first_negative(D, nmax):
         for m, cm in enumerate(sq):
             if cm == 0:
                 continue
-            am = cm * half ** m
+            am = cm * half**m
             for j in range(m + 1):
                 px[j] += am * comb(m, j) * (-1) ** (m - j)
         # fold weight into px once: pxw = px * w
@@ -96,8 +96,7 @@ def main() -> int:
     for D in (12, 14, 16, 18, 20, 22, 24, 26, 28, 30):
         fn = first_negative(D, NMAX)
         out.append({"D": D, "first_negative": fn, "nmax_checked": NMAX})
-        print(f"D={D}: {fn if fn else f'clean to {NMAX}'} ({time.time()-t0:.0f}s)",
-              flush=True)
+        print(f"D={D}: {fn if fn else f'clean to {NMAX}'} ({time.time() - t0:.0f}s)", flush=True)
     (RES / "vs_d_clock.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("written vs_d_clock.json", flush=True)
     return 0

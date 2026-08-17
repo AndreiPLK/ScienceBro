@@ -77,7 +77,7 @@ def pmul(a, b):
 def Qt(j, n, t):
     v = Fraction(1)
     for i in range(j, n):
-        v *= (i - t)
+        v *= i - t
     return v
 
 
@@ -103,8 +103,7 @@ def main() -> int:
     f1_checks, f1_bad = 0, []
     for n in range(3, 60):
         lhs = F(n + 2)
-        rhs = pmul(pmul(F(n), [Fraction(1), Fraction(-n * n)]),
-                   [Fraction(1), Fraction(-n * n)])
+        rhs = pmul(pmul(F(n), [Fraction(1), Fraction(-n * n)]), [Fraction(1), Fraction(-n * n)])
         f1_checks += 1
         if lhs != rhs:
             f1_bad.append(n)
@@ -116,45 +115,51 @@ def main() -> int:
             t_0 = in_theta(fn, lambda t, j=j, n=n: Qt(j, n, t))
             t_1 = shift(in_theta(fn, lambda t, j=j, n=n: Qt(j, n, t + 1)), 1)
             t_2 = shift(in_theta(fn, lambda t, j=j, n=n: Qt(j, n, t + 2)), 2)
-            inner = padd(t_0, [-2 * n * n * c for c in t_1],
-                         [n ** 4 * c for c in t_2])
+            inner = padd(t_0, [-2 * n * n * c for c in t_1], [n**4 * c for c in t_2])
             rhs = in_theta(inner, lambda t, n=n: (n - t) * (n + 1 - t))
             lhs = in_theta(F(n + 2), lambda t, j=j, n=n: Qt(j, n + 2, t))
             f2_checks += 1
             if lhs != rhs:
                 f2_bad.append({"j": j, "n": n})
 
-    out = {"purpose": "exact induction in the level n, needed because the"
-                      " kernel has a number of factors growing with n and so"
-                      " cannot be made symbolic in n",
-           "fact_1": {"statement": "F_{n+2}(y) = F_n(y) * (1 - n^2 y)^2",
-                      "meaning": "each level adds exactly one DOUBLE root at"
-                                 " y = 1/n^2, at the outer edge of the root"
-                                 " set",
-                      "checks": f1_checks, "failures": f1_bad,
-                      "verified": not f1_bad},
-           "fact_2": {"statement": "H_{n+2} = (n-theta)(n+1-theta) ["
-                                   " Q_n(theta)F_n - 2n^2 y Q_n(theta+1)F_n"
-                                   " + n^4 y^2 Q_n(theta+2)F_n ]",
-                      "tool": "Weyl algebra: p(theta) y^m f = y^m p(theta+m) f",
-                      "checks": f2_checks, "failures": f2_bad,
-                      "verified": not f2_bad},
-           "honest_limitation": "the step is exact but NOT sign-preserving on"
-                                " its face: the prefactor (n-t)(n+1-t) is"
-                                " positive on the surviving range t <= j-1 <"
-                                " n, but the bracket carries -2n^2 and +n^4"
-                                " with shifted operators, so positivity does"
-                                " not propagate for free. It gives a closed"
-                                " three-term system in Q_n(theta+sigma)F_n,"
-                                " sigma = 0,1,2 -- the object to attack next",
-           "command": "python lab/keystone_induction.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_induction.json").write_text(json.dumps(out, indent=1),
-                                                 encoding="utf-8")
+    out = {
+        "purpose": "exact induction in the level n, needed because the"
+        " kernel has a number of factors growing with n and so"
+        " cannot be made symbolic in n",
+        "fact_1": {
+            "statement": "F_{n+2}(y) = F_n(y) * (1 - n^2 y)^2",
+            "meaning": "each level adds exactly one DOUBLE root at"
+            " y = 1/n^2, at the outer edge of the root"
+            " set",
+            "checks": f1_checks,
+            "failures": f1_bad,
+            "verified": not f1_bad,
+        },
+        "fact_2": {
+            "statement": "H_{n+2} = (n-theta)(n+1-theta) ["
+            " Q_n(theta)F_n - 2n^2 y Q_n(theta+1)F_n"
+            " + n^4 y^2 Q_n(theta+2)F_n ]",
+            "tool": "Weyl algebra: p(theta) y^m f = y^m p(theta+m) f",
+            "checks": f2_checks,
+            "failures": f2_bad,
+            "verified": not f2_bad,
+        },
+        "honest_limitation": "the step is exact but NOT sign-preserving on"
+        " its face: the prefactor (n-t)(n+1-t) is"
+        " positive on the surviving range t <= j-1 <"
+        " n, but the bracket carries -2n^2 and +n^4"
+        " with shifted operators, so positivity does"
+        " not propagate for free. It gives a closed"
+        " three-term system in Q_n(theta+sigma)F_n,"
+        " sigma = 0,1,2 -- the object to attack next",
+        "command": "python lab/keystone_induction.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_induction.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print(f"fact 1: {f1_checks} checks, {len(f1_bad)} failures", flush=True)
     print(f"fact 2: {f2_checks} checks, {len(f2_bad)} failures", flush=True)
-    print("INDUCTION MACHINERY " + ("VERIFIED" if not (f1_bad or f2_bad)
-                                    else "FAILED"), flush=True)
+    print("INDUCTION MACHINERY " + ("VERIFIED" if not (f1_bad or f2_bad) else "FAILED"), flush=True)
     return 0 if not (f1_bad or f2_bad) else 1
 
 

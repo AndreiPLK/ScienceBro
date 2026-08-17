@@ -62,7 +62,7 @@ def _cache_for(model: str, points: list[np.ndarray], with_petrov: bool):
     seen, stencil = set(), []
     for x in points:
         rec = RecordingMetric(4)
-        for fn in (ricci_tensor, *( (petrov_invariants,) if with_petrov else () )):
+        for fn in (ricci_tensor, *((petrov_invariants,) if with_petrov else ())):
             try:
                 fn(rec, x, h=H)
             except Exception:
@@ -126,12 +126,19 @@ def evaluate_seed(seed: int, run_dir: Path) -> dict:
         "seed": seed,
         "model_sha256": sha[:16],
         "hidden_seed": hidden_seed,
-        "vacuum": {"median": vac["median"], "p95": vac["p95"], "max": vac["max"],
-                   "signature_ok_fraction": vac["signature_ok_fraction"], "pass": bool(leg1)},
-        "petrov": {"S_values": s_vals,
-                   "S_min": min(s_vals) if s_vals else None,
-                   "S_max": max(s_vals) if s_vals else None,
-                   "type_I": bool(leg2)},
+        "vacuum": {
+            "median": vac["median"],
+            "p95": vac["p95"],
+            "max": vac["max"],
+            "signature_ok_fraction": vac["signature_ok_fraction"],
+            "pass": bool(leg1),
+        },
+        "petrov": {
+            "S_values": s_vals,
+            "S_min": min(s_vals) if s_vals else None,
+            "S_max": max(s_vals) if s_vals else None,
+            "type_I": bool(leg2),
+        },
         "trapping": {"future_trapped": trapped, "points": total, "pass": bool(leg3)},
         "all_three": bool(leg1 and leg2 and leg3),
     }
@@ -155,19 +162,21 @@ def main() -> int:
         "n_satisfying_all_three": n_all,
         "rows": rows,
         "note": "Legs: vacuum (frozen criteria), Petrov type I (|S-1| > 1e-3 at every probe), "
-                "trapped region present. All three are explicit training targets upstream.",
+        "trapped region present. All three are explicit training targets upstream.",
     }
     OUT.write_text(json.dumps(result, indent=2), encoding="utf-8")
 
     print("\n| seed | vacuum median | vacuum | S range | type I | trapped pts | all three |")
     print("| --- | --- | --- | --- | --- | --- | --- |")
     for r in rows:
-        print(f"| {r['seed']} | {r['vacuum']['median']:.3f} | "
-              f"{'PASS' if r['vacuum']['pass'] else 'FAIL'} | "
-              f"{r['petrov']['S_min']:.2f}..{r['petrov']['S_max']:.2f} | "
-              f"{'yes' if r['petrov']['type_I'] else 'no'} | "
-              f"{r['trapping']['future_trapped']}/{r['trapping']['points']} | "
-              f"{'YES' if r['all_three'] else 'no'} |")
+        print(
+            f"| {r['seed']} | {r['vacuum']['median']:.3f} | "
+            f"{'PASS' if r['vacuum']['pass'] else 'FAIL'} | "
+            f"{r['petrov']['S_min']:.2f}..{r['petrov']['S_max']:.2f} | "
+            f"{'yes' if r['petrov']['type_I'] else 'no'} | "
+            f"{r['trapping']['future_trapped']}/{r['trapping']['points']} | "
+            f"{'YES' if r['all_three'] else 'no'} |"
+        )
     print(f"\n{n_all} of {len(rows)} seeds satisfy all three legs.")
     _ = bs  # keep the frozen-threshold provenance import explicit
     return 0

@@ -33,7 +33,7 @@ import sympy as sp
 RES = Path(__file__).resolve().parents[1] / "results"
 J = int(os.environ.get("KNIFE_J", "4"))
 
-m, lam, v, w, u, z, x = sp.symbols('m lam v w u z x', nonnegative=True)
+m, lam, v, w, u, z, x = sp.symbols("m lam v w u z x", nonnegative=True)
 r3 = sp.sqrt(3)
 
 
@@ -66,8 +66,8 @@ def E_poly_in_v(t, m0, deg_extra=1):
     for vv in range(deg + 1 + deg_extra + 2):
         n = m0 + vv + 3
         pts.append((vv, e_doubled_int(n)[t]))
-    poly = sp.interpolate(pts[:deg + 1], v)
-    for vv, val in pts[deg + 1:]:
+    poly = sp.interpolate(pts[: deg + 1], v)
+    for vv, val in pts[deg + 1 :]:
         assert sp.expand(poly.subs(v, vv) - val) == 0, f"E interp fail t={t}"
     return sp.expand(poly)
 
@@ -95,9 +95,11 @@ def certify_pos(expr, gens, tag, log):
         if c.has(r3):
             a = c.coeff(r3, 0)
             b = c.coeff(r3, 1)
-            okc = (a >= 0 and b >= 0) or \
-                  (a >= 0 and b < 0 and a**2 >= 3*b**2) or \
-                  (a < 0 and b >= 0 and 3*b**2 >= a**2)
+            okc = (
+                (a >= 0 and b >= 0)
+                or (a >= 0 and b < 0 and a**2 >= 3 * b**2)
+                or (a < 0 and b >= 0 and 3 * b**2 >= a**2)
+            )
         else:
             okc = c >= 0
         if not okc:
@@ -113,9 +115,9 @@ def Bj_fixed_m(j, mv, lam_expr, D_expr):
     s = lam_expr + n - 1
     B = sp.Integer(0)
     for i in range(j):
-        wgt = sp.Integer(factorial(2*n - 2*j + 2*i)) / (factorial(i) * 2**i)
-        tail = sp.prod(D_expr + c + 2*k for k in range(i, j - 1))
-        B += (-1)**i * e[j - 1 - i] * wgt * s**(2*i) * tail
+        wgt = sp.Integer(factorial(2 * n - 2 * j + 2 * i)) / (factorial(i) * 2**i)
+        tail = sp.prod(D_expr + c + 2 * k for k in range(i, j - 1))
+        B += (-1) ** i * e[j - 1 - i] * wgt * s ** (2 * i) * tail
     if j % 2 == 0:
         B = -B
     return B
@@ -124,11 +126,14 @@ def Bj_fixed_m(j, mv, lam_expr, D_expr):
 def cell_shallow(j, mv, kk, mu_lo, mu_hi, depth, log):
     """P_j > 0 на D in [4, T_k(lam)], lam in [mu_lo, mu_hi], m=mv фиксирован.
     t-бисекция; на каждом под-отрезке: 2-вар сертификат (u, w)."""
-    t = sp.Symbol('t', nonnegative=True)
+    t = sp.Symbol("t", nonnegative=True)
 
     def try_cell(a, b, d):
         lam_e = a + (b - a) * (w / (1 + w))
-        Tk = sp.Rational(3*(2*kk-3), kk*(kk-2)) * (lam_e**2 + (2*kk-2)*lam_e + 1) + 2*kk
+        Tk = (
+            sp.Rational(3 * (2 * kk - 3), kk * (kk - 2)) * (lam_e**2 + (2 * kk - 2) * lam_e + 1)
+            + 2 * kk
+        )
         D_e = 4 + (Tk - 4) * (u / (1 + u))
         B = Bj_fixed_m(j, mv, lam_e, D_e)
         if certify_pos(B, (u, w), f"j{j}_k{kk}_m{mv}", log):
@@ -164,20 +169,25 @@ def main() -> int:
             if not got:
                 print(f"  FAIL j={J} k={kk} m={mv}", flush=True)
         ok &= branch_ok
-        print(f"branch k={kk}: {'OK' if branch_ok else 'FAIL'}"
-              f" ({time.time()-t0:.0f}s)", flush=True)
+        print(
+            f"branch k={kk}: {'OK' if branch_ok else 'FAIL'} ({time.time() - t0:.0f}s)", flush=True
+        )
     summary["shallow_mfix"] = MFIX
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"j": J, "ok_so_far": bool(ok), "scope":
-           f"shallow branches k=3..45, m={j_min_m(J)}..{MFIX} (m-tail and"
-           f" deep water: next stage)", "cells": len(log),
-           "command": f"KNIFE_J={J} python lab/knife_proof.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / f"knife_proof_j{J}.json").write_text(json.dumps(out, indent=1),
-                                                encoding="utf-8")
-    print(("SHALLOW CERTIFIED" if ok else "INCOMPLETE") +
-          f" (cells {len(log)})", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "j": J,
+        "ok_so_far": bool(ok),
+        "scope": f"shallow branches k=3..45, m={j_min_m(J)}..{MFIX} (m-tail and"
+        f" deep water: next stage)",
+        "cells": len(log),
+        "command": f"KNIFE_J={J} python lab/knife_proof.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / f"knife_proof_j{J}.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(("SHALLOW CERTIFIED" if ok else "INCOMPLETE") + f" (cells {len(log)})", flush=True)
     return 0 if ok else 1
 
 

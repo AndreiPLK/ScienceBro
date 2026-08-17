@@ -36,7 +36,7 @@ def c_k(lam: F, k: int):
     lamf = float(lam)
     s = 0.0
     comp = 0.0
-    ratio2 = 1.0          # R(n,0), обновляется мультипликативно
+    ratio2 = 1.0  # R(n,0), обновляется мультипликативно
     n = 1
     while True:
         mu = (n + lamf - 1) / lamf
@@ -67,14 +67,26 @@ def main() -> int:
     for k, ref in ((3, ZETA5), (5, ZETA7)):
         val, terms, tail = c_k(F(1), k)
         err = abs(float(val) - ref)
-        gate[f"c{k}(1)"] = {"value": float(val), "zeta_ref": ref,
-                            "abs_err": err, "terms": terms}
+        gate[f"c{k}(1)"] = {"value": float(val), "zeta_ref": ref, "abs_err": err, "terms": terms}
         assert err < 1e-9, f"known-answer gate FAILED for k={k}: err={err}"
-    print("known-answer gate PASSED: c3(1)=zeta(5), c5(1)=zeta(7) to <1e-9",
-          flush=True)
+    print("known-answer gate PASSED: c3(1)=zeta(5), c5(1)=zeta(7) to <1e-9", flush=True)
 
-    lams = [F(1, 10), F(1, 5), F(3, 10), F(1, 2), F(7, 10), F(9, 10),
-            F(1), F(11, 10), F(3, 2), F(2), F(3), F(5), F(10), F(20)]
+    lams = [
+        F(1, 10),
+        F(1, 5),
+        F(3, 10),
+        F(1, 2),
+        F(7, 10),
+        F(9, 10),
+        F(1),
+        F(11, 10),
+        F(3, 2),
+        F(2),
+        F(3),
+        F(5),
+        F(10),
+        F(20),
+    ]
     c1 = {k: c_k(F(1), k)[0] for k in (3, 5)}
     for lam in lams:
         row = {"lambda": str(lam)}
@@ -84,18 +96,25 @@ def main() -> int:
             row[f"r{k}"] = float(val / c1[k])
             row[f"terms_{k}"] = terms
         rows.append(row)
-        print(f"lam={lam}: r3={row['r3']:.6g} r5={row['r5']:.6g} "
-              f"({time.time()-t0:.0f}s)", flush=True)
+        print(
+            f"lam={lam}: r3={row['r3']:.6g} r5={row['r5']:.6g} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
 
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out = {"exploratory": True, "gate": gate, "rows": rows,
-           "definition": "c_k = sum R(n,0)/mu(n)^k; r_k = c_k/c_k(1)",
-           "tol": "1e-10 integral tail bound, Kahan float sums, zeta gate at lam=1",
-           "command": "python lab/eft_map_d4.py", "git": git,
-           "runtime_s": round(time.time() - t0, 1)}
-    (RES / "eft_map_d4.json").write_text(json.dumps(out, indent=1),
-                                         encoding="utf-8")
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out = {
+        "exploratory": True,
+        "gate": gate,
+        "rows": rows,
+        "definition": "c_k = sum R(n,0)/mu(n)^k; r_k = c_k/c_k(1)",
+        "tol": "1e-10 integral tail bound, Kahan float sums, zeta gate at lam=1",
+        "command": "python lab/eft_map_d4.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "eft_map_d4.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("written eft_map_d4.json", flush=True)
     return 0
 

@@ -31,9 +31,13 @@ from verifier.geometry import (  # noqa: E402
 from verifier.interface import CHECKOUT, EXPORTER, UPSTREAM_PY, RecordingMetric  # noqa: E402
 from verifier.penrose import kretschmann_analytic, r_of_TX  # noqa: E402
 
-SNAPSHOT = str(Path(__file__).resolve().parents[1]
-               / "results" / "raw" / "schwarzschild-4d-interim-2026-08-11"
-               / "final_model.keras")
+SNAPSHOT = str(
+    Path(__file__).resolve().parents[1]
+    / "results"
+    / "raw"
+    / "schwarzschild-4d-interim-2026-08-11"
+    / "final_model.keras"
+)
 OUT = Path(__file__).resolve().parents[1] / "results" / "processed" / "known_answer_4d.json"
 
 # Exterior-region base points (T, X, q1, q2); BI: cos2T/cos2X > 1, away from
@@ -53,13 +57,20 @@ def export(points5: np.ndarray, analytic: bool) -> np.ndarray:
     with tempfile.TemporaryDirectory(prefix="sb-ka4d-") as td:
         pin, pout = Path(td) / "p.npy", Path(td) / "g.npy"
         np.save(pin, points5.astype(np.float64))
-        cmd = [str(UPSTREAM_PY), str(EXPORTER), "--model", SNAPSHOT,
-               "--points", str(pin), "--out", str(pout)]
+        cmd = [
+            str(UPSTREAM_PY),
+            str(EXPORTER),
+            "--model",
+            SNAPSHOT,
+            "--points",
+            str(pin),
+            "--out",
+            str(pout),
+        ]
         if analytic:
             cmd.append("--analytic")
         env = dict(os.environ, WANDB_MODE="disabled")
-        r = subprocess.run(cmd, cwd=CHECKOUT, capture_output=True, text=True,
-                           timeout=900, env=env)
+        r = subprocess.run(cmd, cwd=CHECKOUT, capture_output=True, text=True, timeout=900, env=env)
         if r.returncode != 0:
             raise RuntimeError(r.stderr[-1500:])
         return np.load(pout)
@@ -86,8 +97,9 @@ def stencil_for(points: list[np.ndarray]) -> np.ndarray:
 
 def run_route(analytic: bool) -> dict:
     stencil4 = stencil_for(BASE_POINTS)
-    pts = stencil4 if analytic else np.hstack(
-        [stencil4, np.zeros((len(stencil4), 1))])  # patch 0 column for NN
+    pts = (
+        stencil4 if analytic else np.hstack([stencil4, np.zeros((len(stencil4), 1))])
+    )  # patch 0 column for NN
     values = export(pts, analytic)
     cache = {tuple(np.round(p, 12)): values[i] for i, p in enumerate(stencil4)}
 
@@ -99,15 +111,17 @@ def run_route(analytic: bool) -> dict:
         ric = ricci_tensor(g, x, h=H)
         k = kretschmann_scalar(g, x, h=H)
         k_true = kretschmann_analytic(x[0], x[1])
-        rows.append({
-            "point_TXq1q2": [float(v) for v in x],
-            "r_independent": float(r_of_TX(x[0], x[1])),
-            "lorentzian_signature": bool(lorentzian_signature_ok(g, x)),
-            "max_abs_ricci": float(np.max(np.abs(ric))),
-            "kretschmann_fd": float(k),
-            "kretschmann_analytic_48m2_r6": float(k_true),
-            "kretschmann_rel_err": float(abs(k - k_true) / k_true),
-        })
+        rows.append(
+            {
+                "point_TXq1q2": [float(v) for v in x],
+                "r_independent": float(r_of_TX(x[0], x[1])),
+                "lorentzian_signature": bool(lorentzian_signature_ok(g, x)),
+                "max_abs_ricci": float(np.max(np.abs(ric))),
+                "kretschmann_fd": float(k),
+                "kretschmann_analytic_48m2_r6": float(k_true),
+                "kretschmann_rel_err": float(abs(k - k_true) / k_true),
+            }
+        )
     return {"n_stencil_points": int(len(stencil4)), "rows": rows}
 
 

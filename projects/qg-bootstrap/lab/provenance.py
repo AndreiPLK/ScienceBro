@@ -14,8 +14,7 @@ import sys
 
 def _sh(args):
     try:
-        return subprocess.run(args, capture_output=True, text=True,
-                              timeout=30).stdout.strip()
+        return subprocess.run(args, capture_output=True, text=True, timeout=30).stdout.strip()
     except Exception:
         return ""
 
@@ -24,8 +23,7 @@ def stamp(extra=None):
     head = _sh(["git", "rev-parse", "HEAD"])
     # Грязным считается только КОД: сами артефакты (results/) неизбежно
     # меняются этим же прогоном и не должны помечать провенанс грязным.
-    CODE = ("lab/", "tools/", "sciencebro/", "tests/", "validation/",
-            "pyproject.toml", "uv.lock")
+    CODE = ("lab/", "tools/", "sciencebro/", "tests/", "validation/", "pyproject.toml", "uv.lock")
     dirty_files = []
     for ln in _sh(["git", "status", "--porcelain"]).splitlines():
         path = ln[3:].strip().strip('"')
@@ -35,6 +33,7 @@ def stamp(extra=None):
             dirty_files.append(path)
     try:
         import flint
+
         fv = getattr(flint, "__version__", "unknown")
     except Exception:
         fv = "absent"

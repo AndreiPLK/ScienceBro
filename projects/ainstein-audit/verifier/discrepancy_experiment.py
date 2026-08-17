@@ -44,9 +44,23 @@ def export(points: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         np.save(pin, points.astype(np.float64))
         env = dict(os.environ, WANDB_MODE="disabled")
         r = subprocess.run(
-            [str(UPSTREAM_PY), str(EXPORTER), "--model", MODEL, "--points", str(pin),
-             "--out", str(pout), "--euclidean-out", str(peuc)],
-            cwd=CHECKOUT, capture_output=True, text=True, timeout=900, env=env,
+            [
+                str(UPSTREAM_PY),
+                str(EXPORTER),
+                "--model",
+                MODEL,
+                "--points",
+                str(pin),
+                "--out",
+                str(pout),
+                "--euclidean-out",
+                str(peuc),
+            ],
+            cwd=CHECKOUT,
+            capture_output=True,
+            text=True,
+            timeout=900,
+            env=env,
         )
         if r.returncode != 0:
             raise RuntimeError(r.stderr[-1500:])
@@ -56,6 +70,7 @@ def export(points: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
 def make_metric_fn(cache: dict[tuple, np.ndarray]):
     def g(x: np.ndarray) -> np.ndarray:
         return cache[tuple(np.round(x, 12))]
+
     return g
 
 

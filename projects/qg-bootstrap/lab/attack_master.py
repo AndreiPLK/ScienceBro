@@ -168,9 +168,12 @@ def bracket(n, j, lam, D):
     s = F(lam) + n - 1
     tot = F(0)
     for i in range(j):
-        term = (F((-1) ** i) * e[j - 1 - i]
-                * F(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2 ** i)
-                * s ** (2 * i))
+        term = (
+            F((-1) ** i)
+            * e[j - 1 - i]
+            * F(factorial(2 * n - 2 * j + 2 * i), factorial(i) * 2**i)
+            * s ** (2 * i)
+        )
         for r in range(i, j - 1):
             term *= F(D) + 4 * n - 4 * j - 1 + 2 * r
         tot += term
@@ -200,9 +203,11 @@ def j2_root(n, lam):
 
 # ----------------------------------------------------------------------------
 
+
 def part_a_identity(report):
-    alphas = sorted(set([F(k, 7) for k in range(1, 41)]
-                        + [F(1, 100), F(1, 3), F(5, 2), F(100), F(999, 7)]))
+    alphas = sorted(
+        set([F(k, 7) for k in range(1, 41)] + [F(1, 100), F(1, 3), F(5, 2), F(100), F(999, 7)])
+    )
     fails, checks = [], 0
     for l in range(0, 11):
         for u in range(0, 7):
@@ -210,19 +215,20 @@ def part_a_identity(report):
             assert len(alphas) > 2 * l + 2 * u
             for a in alphas:
                 cs = gegen(l, a)
-                iu = sum(ci * jnorm(i + l + 2 * u, a)
-                         for i, ci in enumerate(cs) if ci)
-                i0 = sum(ci * jnorm(i + l, a)
-                         for i, ci in enumerate(cs) if ci)
+                iu = sum(ci * jnorm(i + l + 2 * u, a) for i, ci in enumerate(cs) if ci)
+                i0 = sum(ci * jnorm(i + l, a) for i, ci in enumerate(cs) if ci)
                 assert i0 > 0, ("I(l,l) must be positive", l, str(a))
-                rhs = F(factorial(l + 2 * u),
-                        factorial(l) * factorial(u) * 4 ** u) / poch(a + l + 1, u)
+                rhs = F(factorial(l + 2 * u), factorial(l) * factorial(u) * 4**u) / poch(
+                    a + l + 1, u
+                )
                 checks += 1
                 if iu != i0 * rhs:
                     fails.append({"l": l, "u": u, "alpha": str(a)})
-    report["identity"] = {"checks": checks, "fails": fails,
-                          "note": "per (l,u): equality at > 2l+2u rational "
-                                  "alpha points = rational-function identity"}
+    report["identity"] = {
+        "checks": checks,
+        "fails": fails,
+        "note": "per (l,u): equality at > 2l+2u rational alpha points = rational-function identity",
+    }
     return [f"identity fail {f}" for f in fails]
 
 
@@ -250,8 +256,14 @@ def compare(n, j, lam, D):
 def part_c_sign_grid(report, t0):
     mismatches = []
     total = 0
-    tallies = {"odd_D": [0, 0], "even_D": [0, 0], "noninteger_D": [0, 0],
-               "lam_extreme": [0, 0], "deep_n": [0, 0], "zeros_seen": 0}
+    tallies = {
+        "odd_D": [0, 0],
+        "even_D": [0, 0],
+        "noninteger_D": [0, 0],
+        "lam_extreme": [0, 0],
+        "deep_n": [0, 0],
+        "zeros_seen": 0,
+    }
 
     def record(n, j, lam, D, deep=False):
         nonlocal total
@@ -276,8 +288,16 @@ def part_c_sign_grid(report, t0):
         if sa == 0:
             tallies["zeros_seen"] += 1
         if not ok:
-            mismatches.append({"n": n, "j": j, "lam": str(lam), "D": str(D),
-                               "sign_evaluator": sa, "sign_master": pred})
+            mismatches.append(
+                {
+                    "n": n,
+                    "j": j,
+                    "lam": str(lam),
+                    "D": str(D),
+                    "sign_evaluator": sa,
+                    "sign_master": pred,
+                }
+            )
 
     lams = [F(1, 100), F(1, 4), F(1), F(3), F(7), F(100)]
     ds = [4, 5, 6, 7, 8, 11, 12, 23, 24, 25, 36, 37]
@@ -286,29 +306,29 @@ def part_c_sign_grid(report, t0):
             for lam in lams:
                 for D in ds:
                     record(n, j, lam, D)
-        print(f"  main grid n={n} done, cumulative {total} "
-              f"({time.time() - t0:.0f}s)", flush=True)
+        print(f"  main grid n={n} done, cumulative {total} ({time.time() - t0:.0f}s)", flush=True)
 
     for n, jlist in ((14, [2, 5, 9, 13]), (15, [2, 7, 10, 14])):
         for j in jlist:
             for lam in (F(1, 100), F(1), F(100)):
                 for D in (5, 24, 37):
                     record(n, j, lam, D, deep=True)
-    print(f"  deep n=14,15 done, cumulative {total} "
-          f"({time.time() - t0:.0f}s)", flush=True)
+    print(f"  deep n=14,15 done, cumulative {total} ({time.time() - t0:.0f}s)", flush=True)
 
     for n in (4, 7):
         for j in range(2, n):
             for lam in (F(1), F(3)):
                 for D in (F(7, 2), F(53, 7)):
                     record(n, j, lam, D)
-    print(f"  non-integer D done, cumulative {total} "
-          f"({time.time() - t0:.0f}s)", flush=True)
+    print(f"  non-integer D done, cumulative {total} ({time.time() - t0:.0f}s)", flush=True)
 
-    report["sign_grid"] = {"total": total, "mismatches": mismatches,
-                           "tallies": {k: (v if isinstance(v, int) else
-                                           {"ok": v[0], "n": v[1]})
-                                       for k, v in tallies.items()}}
+    report["sign_grid"] = {
+        "total": total,
+        "mismatches": mismatches,
+        "tallies": {
+            k: (v if isinstance(v, int) else {"ok": v[0], "n": v[1]}) for k, v in tallies.items()
+        },
+    }
     return [f"sign mismatch {m}" for m in mismatches]
 
 
@@ -321,8 +341,7 @@ def part_c2_window(report):
         if sa != pred:
             bad.append(f"window n=7 D={D}: evaluator {sa} vs master {pred}")
         if D in paper_claim and sa != paper_claim[D]:
-            bad.append(f"paper window claim broken at D={D}: got {sa}, "
-                       f"paper says {paper_claim[D]}")
+            bad.append(f"paper window claim broken at D={D}: got {sa}, paper says {paper_claim[D]}")
     report["window_n7_lam1"] = {"rows": rows, "failures": bad}
     return bad
 
@@ -335,19 +354,23 @@ def part_d_root(report):
             cases += 1
             dstar = j2_root(n, lam)
             if dstar != t_published(n, lam):
-                bad.append(f"j2 root != published T_n at n={n}, lam={lam}: "
-                           f"{dstar} vs {t_published(n, lam)}")
+                bad.append(
+                    f"j2 root != published T_n at n={n}, lam={lam}: "
+                    f"{dstar} vs {t_published(n, lam)}"
+                )
             if bracket(n, 2, lam, dstar) != 0:
                 bad.append(f"bracket not zero at its own root, n={n} lam={lam}")
             if dstar > 3:
                 if pw_value(n, 2 * n - 4, lam, dstar) != 0:
-                    bad.append(f"evaluator NOT zero at bracket root: n={n}, "
-                               f"lam={lam}, D*={dstar}")
+                    bad.append(f"evaluator NOT zero at bracket root: n={n}, lam={lam}, D*={dstar}")
             else:
                 bad.append(f"unexpected D* <= 3 at n={n}, lam={lam}")
-    report["j2_root"] = {"cases": cases, "failures": bad,
-                         "note": "root of linear j=2 bracket == T_n(lam) and "
-                                 "exact zero of the independent evaluator"}
+    report["j2_root"] = {
+        "cases": cases,
+        "failures": bad,
+        "note": "root of linear j=2 bracket == T_n(lam) and "
+        "exact zero of the independent evaluator",
+    }
     return bad
 
 
@@ -361,13 +384,17 @@ def part_e_boundary(report):
                 total += 1
                 agree += sa == pred
                 if sa != pred:
-                    rows.append({"n": n, "lam": str(lam), "D": D,
-                                 "sign_evaluator": sa, "sign_master": pred})
+                    rows.append(
+                        {"n": n, "lam": str(lam), "D": D, "sign_evaluator": sa, "sign_master": pred}
+                    )
     report["boundary_j_eq_n_extrapolation"] = {
-        "total": total, "agree": agree, "mismatches": rows,
+        "total": total,
+        "agree": agree,
+        "mismatches": rows,
         "note": "outside the paper's claimed domain (paper stops at j=n-1); "
-                "critic's derivation predicts the formula extends to j=n; "
-                "informational only, excluded from exit code"}
+        "critic's derivation predicts the formula extends to j=n; "
+        "informational only, excluded from exit code",
+    }
 
 
 def main() -> int:
@@ -375,14 +402,13 @@ def main() -> int:
     report = {}
     falsifications = []
 
-    print("A. integral identity (rational-function proof by interpolation)",
-          flush=True)
+    print("A. integral identity (rational-function proof by interpolation)", flush=True)
     falsifications += part_a_identity(report)
-    print(f"   done ({time.time() - t0:.0f}s), fails: "
-          f"{len(report['identity']['fails'])}", flush=True)
+    print(
+        f"   done ({time.time() - t0:.0f}s), fails: {len(report['identity']['fails'])}", flush=True
+    )
 
-    print("B. evaluator controls (known-answer 48/7, negative, zero)",
-          flush=True)
+    print("B. evaluator controls (known-answer 48/7, negative, zero)", flush=True)
     falsifications += part_b_controls(report)
 
     print("C. sign grid master vs independent evaluator", flush=True)
@@ -396,19 +422,23 @@ def main() -> int:
     part_e_boundary(report)
 
     try:
-        git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                             capture_output=True, text=True,
-                             cwd=Path(__file__).resolve().parents[3]
-                             ).stdout.strip()
+        git = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            capture_output=True,
+            text=True,
+            cwd=Path(__file__).resolve().parents[3],
+        ).stdout.strip()
     except Exception:
         git = "unavailable"
-    report["meta"] = {"git": git, "runtime_s": round(time.time() - t0, 1),
-                      "command": "python projects/qg-bootstrap/lab/attack_master.py",
-                      "falsified": bool(falsifications),
-                      "falsifications": falsifications}
+    report["meta"] = {
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+        "command": "python projects/qg-bootstrap/lab/attack_master.py",
+        "falsified": bool(falsifications),
+        "falsifications": falsifications,
+    }
     RES.mkdir(exist_ok=True)
-    (RES / "attack_master.json").write_text(
-        json.dumps(report, indent=1), encoding="utf-8")
+    (RES / "attack_master.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
 
     print()
     if falsifications:
@@ -419,8 +449,10 @@ def main() -> int:
         return 1
     print("NO FALSIFICATION FOUND.")
     print(f"  identity checks: {report['identity']['checks']}")
-    print(f"  sign grid: {report['sign_grid']['total']} comparisons, "
-          f"0 mismatches (tallies: {report['sign_grid']['tallies']})")
+    print(
+        f"  sign grid: {report['sign_grid']['total']} comparisons, "
+        f"0 mismatches (tallies: {report['sign_grid']['tallies']})"
+    )
     print(f"  j=2 root cases: {report['j2_root']['cases']}, all exact zeros")
     be = report["boundary_j_eq_n_extrapolation"]
     print(f"  j=n extrapolation (info): {be['agree']}/{be['total']} agree")

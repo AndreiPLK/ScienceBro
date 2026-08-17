@@ -23,18 +23,18 @@ from repro_r4_positivity_spot import a_route1  # noqa: E402
 RES = Path(__file__).resolve().parents[1] / "results"
 
 POINTS = [
-    ("interior",      F(1, 4), F(1, 4)),
-    ("interior2",     F(1, 2), F(-1, 4)),
-    ("near-edge",     F(-12, 25), F(1, 2)),      # r=-0.48
-    ("on-edge",       F(-1, 2), F(1, 2)),
-    ("near-hyperb",   F(-3, 10), F(-1, 10)),     # близко к 3(1+r)(r+w)+1=0
-    ("w-neg",         F(1, 1), F(-6, 5)),
-    ("far-interior",  F(3, 2), F(-3, 2)),
-    ("veneziano",     F(0), F(0)),
-    ("small-w",       F(0), F(1, 10)),
-    ("neg-r",         F(-2, 5), F(4, 5)),
-    ("EXCLUDED-ctrl", F(-3, 5), F(1, 2)),        # вне острова (контроль)
-    ("EXCLUDED-ctr2", F(-1, 4), F(-2, 5)),       # за гиперболой (контроль)
+    ("interior", F(1, 4), F(1, 4)),
+    ("interior2", F(1, 2), F(-1, 4)),
+    ("near-edge", F(-12, 25), F(1, 2)),  # r=-0.48
+    ("on-edge", F(-1, 2), F(1, 2)),
+    ("near-hyperb", F(-3, 10), F(-1, 10)),  # близко к 3(1+r)(r+w)+1=0
+    ("w-neg", F(1, 1), F(-6, 5)),
+    ("far-interior", F(3, 2), F(-3, 2)),
+    ("veneziano", F(0), F(0)),
+    ("small-w", F(0), F(1, 10)),
+    ("neg-r", F(-2, 5), F(4, 5)),
+    ("EXCLUDED-ctrl", F(-3, 5), F(1, 2)),  # вне острова (контроль)
+    ("EXCLUDED-ctr2", F(-1, 4), F(-2, 5)),  # за гиперболой (контроль)
 ]
 NS = [10, 20, 35, 50, 70, 100]
 LS = [0, 1, 2, 3]
@@ -51,15 +51,22 @@ def main() -> int:
                 if l > n:
                     continue
                 a = a_route1(n, l, r, w, F(0))
-                vals.append({"n": n, "sign": (1 if a > 0 else (0 if a == 0 else -1)),
-                             "log10": None if a == 0 else float(
-                                 len(str(abs(a.numerator))) - len(str(a.denominator))
-                             )})
+                vals.append(
+                    {
+                        "n": n,
+                        "sign": (1 if a > 0 else (0 if a == 0 else -1)),
+                        "log10": None
+                        if a == 0
+                        else float(len(str(abs(a.numerator))) - len(str(a.denominator))),
+                    }
+                )
             rec["tail"][str(l)] = vals
             neg = [v["n"] for v in vals if v["sign"] < 0]
-            print(f"{name} l={l}: signs {[v['sign'] for v in vals]}"
-                  f"{' NEG at n=' + str(neg) if neg else ''}  ({time.time()-t0:.0f}s)",
-                  flush=True)
+            print(
+                f"{name} l={l}: signs {[v['sign'] for v in vals]}"
+                f"{' NEG at n=' + str(neg) if neg else ''}  ({time.time() - t0:.0f}s)",
+                flush=True,
+            )
         out.append(rec)
     (RES / "n2_fixed_spin.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("written n2_fixed_spin.json", flush=True)

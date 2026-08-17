@@ -42,25 +42,29 @@ RES = Path(__file__).resolve().parents[1] / "results"
 TIMEOUT_MS = 180000
 
 # the tight zone: branch k = 45 and its neighbours
-CELLS = [(k, Fraction(3, 5) * (k - Fraction(5, 2)),
-          Fraction(3, 5) * (k - Fraction(3, 2))) for k in (44, 45, 46)]
+CELLS = [
+    (k, Fraction(3, 5) * (k - Fraction(5, 2)), Fraction(3, 5) * (k - Fraction(3, 2)))
+    for k in (44, 45, 46)
+]
 JS = (4, 6, 8)
 LEVELS = range(38, 53)
 
 
 def judge(coeffs, kk, lo: Fraction, hi: Fraction):
     lam, D = Reals("lam D")
-    P = sum(c * lam ** p * D ** q for (p, q), c in coeffs.items())
-    Tk = (Q(3 * (2 * kk - 3), kk * (kk - 2))
-          * (lam ** 2 + (2 * kk - 2) * lam + 1) + 2 * kk)
+    P = sum(c * lam**p * D**q for (p, q), c in coeffs.items())
+    Tk = Q(3 * (2 * kk - 3), kk * (kk - 2)) * (lam**2 + (2 * kk - 2) * lam + 1) + 2 * kk
     s = Solver()
     s.set("timeout", TIMEOUT_MS)
-    s.add(lam >= Q(lo.numerator, lo.denominator),
-          lam <= Q(hi.numerator, hi.denominator),
-          D >= 4, D <= Tk, P <= 0)
+    s.add(
+        lam >= Q(lo.numerator, lo.denominator),
+        lam <= Q(hi.numerator, hi.denominator),
+        D >= 4,
+        D <= Tk,
+        P <= 0,
+    )
     r = s.check()
-    return ("unsat" if r == unsat else
-            "SAT_COUNTEREXAMPLE" if r == sat else "unknown")
+    return "unsat" if r == unsat else "SAT_COUNTEREXAMPLE" if r == sat else "unknown"
 
 
 def main() -> int:
@@ -74,40 +78,55 @@ def main() -> int:
             coeffs = Bj_coeffs(j, mv)
             for kk, lo, hi in CELLS:
                 verdict = judge(coeffs, kk, lo, hi)
-                rows.append({"j": j, "n": n, "spin": 2 * (n - j), "k": kk,
-                             "lam_range": [str(lo), str(hi)],
-                             "verdict": verdict})
+                rows.append(
+                    {
+                        "j": j,
+                        "n": n,
+                        "spin": 2 * (n - j),
+                        "k": kk,
+                        "lam_range": [str(lo), str(hi)],
+                        "verdict": verdict,
+                    }
+                )
                 if verdict == "SAT_COUNTEREXAMPLE":
                     alarms.append(rows[-1])
                 elif verdict == "unknown":
                     unknowns += 1
-        print(f"  j={j}: cells {len(rows)}, alarms {len(alarms)}, "
-              f"unknown {unknowns} ({time.time()-t0:.0f}s)", flush=True)
+        print(
+            f"  j={j}: cells {len(rows)}, alarms {len(alarms)}, "
+            f"unknown {unknowns} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
 
-    out = {"role": "foreign-engine confirmation of the tightest zone of the"
-                   " programme (branch k=44..46, lam about 26, levels 38..52,"
-                   " even knives, margin about one percent)",
-           "why_here": "smallest measured margin in the whole project; also"
-                       " the zone our own earlier tools covered worst (old"
-                       " hunt swept only spins 0,2,4,6; this zone has spin"
-                       " about 80, and n=44 sits past the old m<=40 cut-off)",
-           "claim_restated": "exists lam in branch, D in [4, T_k(lam)] with"
-                             " P_j <= 0 ?  unsat means no violation in the"
-                             " whole continuous cell",
-           "independence": "imports only exact integer coefficients of B_j;"
-                           " no certificate logic of ours is shared",
-           "cells": len(rows), "alarms": alarms, "unknown_count": unknowns,
-           "all_unsat": not alarms and unknowns == 0,
-           "rows": rows,
-           "command": "python lab/z3_judge_tight.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "z3_judge_tight.json").write_text(json.dumps(out, indent=1),
-                                             encoding="utf-8")
-    print(f"cells {len(rows)}, alarms {len(alarms)}, unknown {unknowns}",
-          flush=True)
-    print("FOREIGN JUDGE: " + ("CONFIRMS (all unsat)" if not alarms
-                               and unknowns == 0 else
-                               "SEE ARTIFACT"), flush=True)
+    out = {
+        "role": "foreign-engine confirmation of the tightest zone of the"
+        " programme (branch k=44..46, lam about 26, levels 38..52,"
+        " even knives, margin about one percent)",
+        "why_here": "smallest measured margin in the whole project; also"
+        " the zone our own earlier tools covered worst (old"
+        " hunt swept only spins 0,2,4,6; this zone has spin"
+        " about 80, and n=44 sits past the old m<=40 cut-off)",
+        "claim_restated": "exists lam in branch, D in [4, T_k(lam)] with"
+        " P_j <= 0 ?  unsat means no violation in the"
+        " whole continuous cell",
+        "independence": "imports only exact integer coefficients of B_j;"
+        " no certificate logic of ours is shared",
+        "cells": len(rows),
+        "alarms": alarms,
+        "unknown_count": unknowns,
+        "all_unsat": not alarms and unknowns == 0,
+        "rows": rows,
+        "command": "python lab/z3_judge_tight.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "z3_judge_tight.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(f"cells {len(rows)}, alarms {len(alarms)}, unknown {unknowns}", flush=True)
+    print(
+        "FOREIGN JUDGE: "
+        + ("CONFIRMS (all unsat)" if not alarms and unknowns == 0 else "SEE ARTIFACT"),
+        flush=True,
+    )
     return 1 if alarms else 0
 
 

@@ -27,19 +27,20 @@ KREL_TOL = 1e-7
 
 # ------------------------------------------------------------------ results
 
+
 @dataclass
 class Requirement:
     id: str
     description: str
-    status: str          # "pass" | "fail" | "missing"
-    measured: str = ""   # actual measured value / evidence pointer
+    status: str  # "pass" | "fail" | "missing"
+    measured: str = ""  # actual measured value / evidence pointer
 
 
 @dataclass
 class GateResult:
     stage_id: str
     title: str
-    label: str                      # e.g. "SCIENTIFIC" | "ENGINEERING"
+    label: str  # e.g. "SCIENTIFIC" | "ENGINEERING"
     question: str
     why_it_matters: str
     allowed_public_claim: str
@@ -63,6 +64,7 @@ class GateResult:
 
 # ------------------------------------------------------------------ helpers
 
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -76,14 +78,16 @@ def _load_json(path: Path) -> dict | None:
 
 def _git_commit(root: Path) -> str | None:
     try:
-        r = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
-                           capture_output=True, text=True, timeout=15)
+        r = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True, timeout=15
+        )
         return r.stdout.strip() if r.returncode == 0 else None
     except Exception:
         return None
 
 
 # ------------------------------------------------------------------ stage gates
+
 
 def _stage1(paths: RepoPaths, project_id: str) -> GateResult:
     g = GateResult(
@@ -93,15 +97,16 @@ def _stage1(paths: RepoPaths, project_id: str) -> GateResult:
         question="Does a clean clone reproduce the environment, schemas, tests and provenance tracking?",
         why_it_matters="Without reproducible engineering, no scientific number can be trusted.",
         allowed_public_claim="The ScienceBro research infrastructure is engineering-verified: "
-                             "clean-clone reproduction, locked environment, schema and test suite pass.",
+        "clean-clone reproduction, locked environment, schema and test suite pass.",
     )
     root = paths.root
     proj = paths.project_dir(project_id)
 
     lock = root / "uv.lock"
     if lock.exists():
-        g.requirements.append(Requirement("env-lock", "uv.lock present", "pass",
-                                          _sha256(lock)[:16]))
+        g.requirements.append(
+            Requirement("env-lock", "uv.lock present", "pass", _sha256(lock)[:16])
+        )
         g.artifacts[str(lock)] = _sha256(lock)
     else:
         g.requirements.append(Requirement("env-lock", "uv.lock present", "missing"))
@@ -109,26 +114,44 @@ def _stage1(paths: RepoPaths, project_id: str) -> GateResult:
     cc = proj / "proof" / "stage-01" / "clean-clone-2026-08-11.log"
     if cc.exists():
         ok = "Clean-clone check passed." in cc.read_text(encoding="utf-8", errors="replace")
-        g.requirements.append(Requirement("clean-clone", "clean-clone reproduction log",
-                                          "pass" if ok else "fail", str(cc)))
+        g.requirements.append(
+            Requirement(
+                "clean-clone", "clean-clone reproduction log", "pass" if ok else "fail", str(cc)
+            )
+        )
         g.artifacts[str(cc)] = _sha256(cc)
     else:
         g.requirements.append(Requirement("clean-clone", "clean-clone reproduction log", "missing"))
 
     # unit tests run live (fast, deterministic)
-    r = subprocess.run([sys.executable, "-m", "pytest", "tests/unit", "-q"],
-                       cwd=root, capture_output=True, text=True, timeout=600)
-    g.requirements.append(Requirement(
-        "unit-tests", "schema/gate unit tests pass", "pass" if r.returncode == 0 else "fail",
-        (r.stdout or "").strip().splitlines()[-1] if r.stdout else ""))
+    r = subprocess.run(
+        [sys.executable, "-m", "pytest", "tests/unit", "-q"],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        timeout=600,
+    )
+    g.requirements.append(
+        Requirement(
+            "unit-tests",
+            "schema/gate unit tests pass",
+            "pass" if r.returncode == 0 else "fail",
+            (r.stdout or "").strip().splitlines()[-1] if r.stdout else "",
+        )
+    )
 
     manifest = paths.vendor / "upstream-manifest.yaml"
     if manifest.exists():
-        g.requirements.append(Requirement("provenance", "upstream manifest with pinned commits",
-                                          "pass", str(manifest)))
+        g.requirements.append(
+            Requirement(
+                "provenance", "upstream manifest with pinned commits", "pass", str(manifest)
+            )
+        )
         g.artifacts[str(manifest)] = _sha256(manifest)
     else:
-        g.requirements.append(Requirement("provenance", "upstream manifest with pinned commits", "missing"))
+        g.requirements.append(
+            Requirement("provenance", "upstream manifest with pinned commits", "missing")
+        )
     return g
 
 
@@ -140,7 +163,7 @@ def _stage2(paths: RepoPaths, project_id: str) -> GateResult:
         question="Does the independent verifier reproduce known analytical answers and reject corrupted input?",
         why_it_matters="Every later verdict about AI-found metrics rests on this instrument being calibrated.",
         allowed_public_claim="ScienceBro's independent verifier has passed analytical known-answer "
-                             "tests. Evaluation of neural AInstein candidates is not complete.",
+        "tests. Evaluation of neural AInstein candidates is not complete.",
     )
     proj = paths.project_dir(project_id)
     selftest = _load_json(proj / "results" / "processed" / "verifier_selftest.json")
@@ -148,8 +171,12 @@ def _stage2(paths: RepoPaths, project_id: str) -> GateResult:
     disc = _load_json(proj / "results" / "processed" / "discrepancy_experiment.json")
     calib = _load_json(proj / "results" / "processed" / "calibration_maps.json")
 
-    for p in ["verifier_selftest.json", "known_answer_4d.json",
-              "discrepancy_experiment.json", "calibration_maps.json"]:
+    for p in [
+        "verifier_selftest.json",
+        "known_answer_4d.json",
+        "discrepancy_experiment.json",
+        "calibration_maps.json",
+    ]:
         fp = proj / "results" / "processed" / p
         if fp.exists():
             g.artifacts[str(fp)] = _sha256(fp)
@@ -167,8 +194,11 @@ def _stage2(paths: RepoPaths, project_id: str) -> GateResult:
             g.requirements.append(Requirement(rid, desc, "fail", f"failed: {bad}"))
 
     suite("minkowski", "minkowski", "analytical Minkowski vacuum")
-    suite("schwarzschild_is_vacuum|kretschmann_known_answer", "schwarzschild",
-          "analytical Schwarzschild vacuum + Kretschmann known answer")
+    suite(
+        "schwarzschild_is_vacuum|kretschmann_known_answer",
+        "schwarzschild",
+        "analytical Schwarzschild vacuum + Kretschmann known answer",
+    )
     suite("perturbed", "negative-control", "corrupted metric rejected")
     suite("signature", "signature", "invalid signature rejected")
 
@@ -178,37 +208,60 @@ def _stage2(paths: RepoPaths, project_id: str) -> GateResult:
         if rows:
             worst_r = max(r["max_abs_ricci"] for r in rows)
             worst_k = max(r["kretschmann_rel_err"] for r in rows)
-            ok = worst_r < RICCI_TOL and worst_k < KREL_TOL and all(
-                r["lorentzian_signature"] for r in rows)
-            g.requirements.append(Requirement(
-                "analytic-4d-route", "4D Penrose-route analytic floor within thresholds",
-                "pass" if ok else "fail",
-                f"max|Ricci|={worst_r:.2e} (tol {RICCI_TOL}), K rel err={worst_k:.2e} (tol {KREL_TOL})"))
+            ok = (
+                worst_r < RICCI_TOL
+                and worst_k < KREL_TOL
+                and all(r["lorentzian_signature"] for r in rows)
+            )
+            g.requirements.append(
+                Requirement(
+                    "analytic-4d-route",
+                    "4D Penrose-route analytic floor within thresholds",
+                    "pass" if ok else "fail",
+                    f"max|Ricci|={worst_r:.2e} (tol {RICCI_TOL}), K rel err={worst_k:.2e} (tol {KREL_TOL})",
+                )
+            )
         else:
-            g.requirements.append(Requirement("analytic-4d-route",
-                                              "4D Penrose-route analytic floor", "missing"))
+            g.requirements.append(
+                Requirement("analytic-4d-route", "4D Penrose-route analytic floor", "missing")
+            )
     else:
-        g.requirements.append(Requirement("analytic-4d-route",
-                                          "4D Penrose-route analytic floor", "missing"))
+        g.requirements.append(
+            Requirement("analytic-4d-route", "4D Penrose-route analytic floor", "missing")
+        )
 
     # FD-step convergence on the NN metric
     if disc and "fd_step_sweep" in disc:
         vals = [v["max_abs_ricci"] for v in disc["fd_step_sweep"].values()]
         ratio = max(vals) / min(vals) if min(vals) > 0 else float("inf")
-        g.requirements.append(Requirement(
-            "fd-convergence", "FD-step sweep stable on NN metric",
-            "pass" if ratio < 1.1 else "fail", f"max/min ratio = {ratio:.4f} over {len(vals)} steps"))
+        g.requirements.append(
+            Requirement(
+                "fd-convergence",
+                "FD-step sweep stable on NN metric",
+                "pass" if ratio < 1.1 else "fail",
+                f"max/min ratio = {ratio:.4f} over {len(vals)} steps",
+            )
+        )
     else:
-        g.requirements.append(Requirement("fd-convergence", "FD-step sweep stable on NN metric", "missing"))
+        g.requirements.append(
+            Requirement("fd-convergence", "FD-step sweep stable on NN metric", "missing")
+        )
 
     # precision comparison
     if calib and "float32_vs_float64_median_ratio" in calib:
         r32 = calib["float32_vs_float64_median_ratio"]
-        g.requirements.append(Requirement(
-            "precision", "float32 vs float64 sensitivity measured", "pass",
-            f"float32 inflates median residual {r32:.0f}x -> float64 mandatory"))
+        g.requirements.append(
+            Requirement(
+                "precision",
+                "float32 vs float64 sensitivity measured",
+                "pass",
+                f"float32 inflates median residual {r32:.0f}x -> float64 mandatory",
+            )
+        )
     else:
-        g.requirements.append(Requirement("precision", "float32 vs float64 sensitivity measured", "missing"))
+        g.requirements.append(
+            Requirement("precision", "float32 vs float64 sensitivity measured", "missing")
+        )
 
     # normalization comparison / discrepancy explained
     if disc and "upstream_loss_replica_with_our_ricci" in disc:
@@ -216,22 +269,42 @@ def _stage2(paths: RepoPaths, project_id: str) -> GateResult:
         upstream = disc["upstream_final_loss"]
         factor = max(replica, upstream) / min(replica, upstream)
         ok = factor < 3.0
-        g.requirements.append(Requirement(
-            "normalization", "upstream loss replicated with independent Ricci (factor < 3)",
-            "pass" if ok else "fail",
-            f"replica={replica:.2e} vs upstream={upstream:.2e} (factor {factor:.2f}); "
-            f"sqrt(loss)={disc.get('sqrt_upstream_final_loss', 0):.3e}"))
+        g.requirements.append(
+            Requirement(
+                "normalization",
+                "upstream loss replicated with independent Ricci (factor < 3)",
+                "pass" if ok else "fail",
+                f"replica={replica:.2e} vs upstream={upstream:.2e} (factor {factor:.2f}); "
+                f"sqrt(loss)={disc.get('sqrt_upstream_final_loss', 0):.3e}",
+            )
+        )
     else:
-        g.requirements.append(Requirement(
-            "normalization", "upstream loss replicated with independent Ricci", "missing"))
+        g.requirements.append(
+            Requirement(
+                "normalization", "upstream loss replicated with independent Ricci", "missing"
+            )
+        )
     return g
 
 
-def _stage_placeholder(stage_id: str, title: str, question: str, why: str,
-                       claim: str, reqs: list[tuple[str, str]],
-                       paths: RepoPaths, project_id: str) -> GateResult:
-    g = GateResult(stage_id=stage_id, title=title, label="SCIENTIFIC",
-                   question=question, why_it_matters=why, allowed_public_claim=claim)
+def _stage_placeholder(
+    stage_id: str,
+    title: str,
+    question: str,
+    why: str,
+    claim: str,
+    reqs: list[tuple[str, str]],
+    paths: RepoPaths,
+    project_id: str,
+) -> GateResult:
+    g = GateResult(
+        stage_id=stage_id,
+        title=title,
+        label="SCIENTIFIC",
+        question=question,
+        why_it_matters=why,
+        allowed_public_claim=claim,
+    )
     for rid, desc in reqs:
         g.requirements.append(Requirement(rid, desc, "missing"))
     return g
@@ -239,17 +312,22 @@ def _stage_placeholder(stage_id: str, title: str, question: str, why: str,
 
 def _stage3(paths: RepoPaths, project_id: str) -> GateResult:
     g = _stage_placeholder(
-        "stage-3", "Candidate generation",
+        "stage-3",
+        "Candidate generation",
         "Was a Petrov-I candidate trained under a frozen configuration with holdout points?",
         "Unfrozen configs or leaked holdout points would invalidate the audit.",
         "No candidate has been generated yet.",
-        [("frozen-config", "training config frozen before run"),
-         ("seed", "exact seed recorded"),
-         ("checkpoint-hash", "checkpoint sha256 recorded"),
-         ("training-log", "immutable training log preserved"),
-         ("holdout", "holdout points excluded from training"),
-         ("thresholds-frozen", "validation thresholds frozen before candidate inspection")],
-        paths, project_id)
+        [
+            ("frozen-config", "training config frozen before run"),
+            ("seed", "exact seed recorded"),
+            ("checkpoint-hash", "checkpoint sha256 recorded"),
+            ("training-log", "immutable training log preserved"),
+            ("holdout", "holdout points excluded from training"),
+            ("thresholds-frozen", "validation thresholds frozen before candidate inspection"),
+        ],
+        paths,
+        project_id,
+    )
     proj = paths.project_dir(project_id)
     checks: dict[str, tuple[str, str]] = {}
 
@@ -269,7 +347,9 @@ def _stage3(paths: RepoPaths, project_id: str) -> GateResult:
         epochs = re.findall(r"Epoch (\d+):", text)
         checks["training-log"] = (
             "pass" if done else "missing",
-            f"epoch {epochs[-1] if epochs else 0}/500" + (" complete" if done else " — training in progress"))
+            f"epoch {epochs[-1] if epochs else 0}/500"
+            + (" complete" if done else " — training in progress"),
+        )
 
     ckpt = proj / "results" / "raw" / "petrovI-bh-run1" / "final_model.keras"
     if ckpt.exists():
@@ -278,7 +358,10 @@ def _stage3(paths: RepoPaths, project_id: str) -> GateResult:
 
     stress = proj / "results" / "processed" / "candidate_stress.json"
     if stress.exists():
-        checks["holdout"] = ("pass", "hidden seed derived from checkpoint hash (candidate_stress.json)")
+        checks["holdout"] = (
+            "pass",
+            "hidden seed derived from checkpoint hash (candidate_stress.json)",
+        )
     frozen = proj / "validations" / "THRESHOLDS_FROZEN.md"
     if frozen.exists():
         checks["thresholds-frozen"] = ("pass", "THRESHOLDS_FROZEN.md + git tag thresholds-frozen")
@@ -292,33 +375,48 @@ def _stage3(paths: RepoPaths, project_id: str) -> GateResult:
 
 def _stage4(paths: RepoPaths, project_id: str) -> GateResult:
     g = _stage_placeholder(
-        "stage-4", "Independent candidate stress test",
+        "stage-4",
+        "Independent candidate stress test",
         "Does the candidate survive hidden-point, convergence, signature and boundary checks?",
         "This is the scientific core: independent verification outside the training path.",
         "No candidate has been independently stress-tested yet.",
-        [("hidden-points", "hidden-point residuals measured (median/p95/p99/max)"),
-         ("signature-det", "signature and determinant checks across domain"),
-         ("boundary-maps", "boundary and horizon failure maps"),
-         ("convergence", "precision and convergence tests"),
-         ("negative-controls", "negative controls fail as expected"),
-         ("independence", "independent implementation, no upstream loss imports")],
-        paths, project_id)
+        [
+            ("hidden-points", "hidden-point residuals measured (median/p95/p99/max)"),
+            ("signature-det", "signature and determinant checks across domain"),
+            ("boundary-maps", "boundary and horizon failure maps"),
+            ("convergence", "precision and convergence tests"),
+            ("negative-controls", "negative controls fail as expected"),
+            ("independence", "independent implementation, no upstream loss imports"),
+        ],
+        paths,
+        project_id,
+    )
     proj = paths.project_dir(project_id)
     cs = _load_json(proj / "results" / "processed" / "candidate_stress.json")
     if cs:
         g.artifacts[str(proj / "results" / "processed" / "candidate_stress.json")] = _sha256(
-            proj / "results" / "processed" / "candidate_stress.json")
+            proj / "results" / "processed" / "candidate_stress.json"
+        )
         hs = cs.get("hidden_stats_h3e-3", {})
         crit = cs.get("criteria", {})
         checks = {
-            "hidden-points": ("pass", f"n=24 median {hs.get('median'):.3f} p95 {hs.get('p95'):.3f} "
-                                      f"max {hs.get('max'):.3f} (verdict {cs.get('verdict_under_frozen_criteria')})"),
-            "signature-det": ("pass" if crit.get("c3_signature", {}).get("pass") else "fail",
-                              f"signature ok fraction {hs.get('signature_ok_fraction')}"),
-            "convergence": ("pass" if crit.get("c4_convergence", {}).get("pass") else "fail",
-                            f"median spread {crit.get('c4_convergence', {}).get('median_spread'):.2e}"),
-            "negative-controls": ("pass" if crit.get("c6_negative_control", {}).get("pass") else "fail",
-                                  "amp-0.5 control breaks criteria as expected"),
+            "hidden-points": (
+                "pass",
+                f"n=24 median {hs.get('median'):.3f} p95 {hs.get('p95'):.3f} "
+                f"max {hs.get('max'):.3f} (verdict {cs.get('verdict_under_frozen_criteria')})",
+            ),
+            "signature-det": (
+                "pass" if crit.get("c3_signature", {}).get("pass") else "fail",
+                f"signature ok fraction {hs.get('signature_ok_fraction')}",
+            ),
+            "convergence": (
+                "pass" if crit.get("c4_convergence", {}).get("pass") else "fail",
+                f"median spread {crit.get('c4_convergence', {}).get('median_spread'):.2e}",
+            ),
+            "negative-controls": (
+                "pass" if crit.get("c6_negative_control", {}).get("pass") else "fail",
+                "amp-0.5 control breaks criteria as expected",
+            ),
             "independence": ("pass", "FD verifier, subprocess boundary, no upstream imports"),
         }
         for r in g.requirements:
@@ -329,30 +427,39 @@ def _stage4(paths: RepoPaths, project_id: str) -> GateResult:
         ext = [r["max_abs_ricci"] for r in bm["rows"] if r["region"] == "exterior"]
         interior = [r["max_abs_ricci"] for r in bm["rows"] if r["region"] == "interior"]
         import statistics
+
         for r in g.requirements:
             if r.id == "boundary-maps":
                 r.status = "pass"
-                r.measured = (f"{len(bm['rows'])} grid pts incl. horizon: exterior median "
-                              f"{statistics.median(ext):.3f}, interior {statistics.median(interior):.3f}")
+                r.measured = (
+                    f"{len(bm['rows'])} grid pts incl. horizon: exterior median "
+                    f"{statistics.median(ext):.3f}, interior {statistics.median(interior):.3f}"
+                )
         g.artifacts[str(proj / "results" / "processed" / "boundary_map.json")] = _sha256(
-            proj / "results" / "processed" / "boundary_map.json")
+            proj / "results" / "processed" / "boundary_map.json"
+        )
     return g
 
 
 def _stage5(paths: RepoPaths, project_id: str) -> GateResult:
     g = _stage_placeholder(
-        "stage-5", "Scientific verdict",
+        "stage-5",
+        "Scientific verdict",
         "Is every claim mapped to evidence and independently validated, with exact allowed wording?",
         "The verdict is only as strong as its weakest unsupported claim.",
         "No scientific verdict exists yet. NEEDS EXPERT REVIEW will apply until qualified "
         "external review happens.",
-        [("claim-evidence", "complete claim-to-evidence mapping"),
-         ("independent-validation", "independent validation decision recorded"),
-         ("contradictions", "all contradictions and limitations recorded"),
-         ("wording", "exact allowed public wording fixed"),
-         ("expert-review", "reviewed by a qualified external expert"),
-         ("decision", "PASS / FAIL / INCONCLUSIVE recorded")],
-        paths, project_id)
+        [
+            ("claim-evidence", "complete claim-to-evidence mapping"),
+            ("independent-validation", "independent validation decision recorded"),
+            ("contradictions", "all contradictions and limitations recorded"),
+            ("wording", "exact allowed public wording fixed"),
+            ("expert-review", "reviewed by a qualified external expert"),
+            ("decision", "PASS / FAIL / INCONCLUSIVE recorded"),
+        ],
+        paths,
+        project_id,
+    )
 
     import yaml
 
@@ -366,22 +473,31 @@ def _stage5(paths: RepoPaths, project_id: str) -> GateResult:
     checks: dict[str, tuple[str, str]] = {}
 
     if claims:
-        promoted = [c for c in claims
-                    if c.get("state") in ("experimentally-supported", "independently-validated",
-                                          "release-ready", "refuted")]
-        unmapped = [c["id"] for c in promoted if not c.get("evidence_ids") and not c.get("experiment_ids")]
+        promoted = [
+            c
+            for c in claims
+            if c.get("state")
+            in ("experimentally-supported", "independently-validated", "release-ready", "refuted")
+        ]
+        unmapped = [
+            c["id"] for c in promoted if not c.get("evidence_ids") and not c.get("experiment_ids")
+        ]
         checks["claim-evidence"] = (
             "pass" if promoted and not unmapped else ("fail" if unmapped else "missing"),
             f"{len(promoted)} promoted claims, all mapped to evidence/experiments"
-            if promoted and not unmapped else f"unmapped: {unmapped}")
+            if promoted and not unmapped
+            else f"unmapped: {unmapped}",
+        )
         worded = [c for c in promoted if c.get("allowed_public_wording")]
         checks["wording"] = (
             "pass" if promoted and len(worded) == len(promoted) else "fail",
-            f"{len(worded)}/{len(promoted)} promoted claims carry exact allowed wording")
+            f"{len(worded)}/{len(promoted)} promoted claims carry exact allowed wording",
+        )
         with_blockers = [c for c in promoted if c.get("blockers")]
         checks["contradictions"] = (
             "pass" if with_blockers else "missing",
-            f"{len(with_blockers)} promoted claims record their own limitations openly")
+            f"{len(with_blockers)} promoted claims record their own limitations openly",
+        )
 
     if vals:
         decided = []
@@ -393,11 +509,15 @@ def _stage5(paths: RepoPaths, project_id: str) -> GateResult:
         outcomes = {d.get("id"): d.get("decision") for d in decided if d}
         checks["independent-validation"] = (
             "pass" if outcomes else "missing",
-            ", ".join(f"{k}:{v}" for k, v in sorted(outcomes.items())))
+            ", ".join(f"{k}:{v}" for k, v in sorted(outcomes.items())),
+        )
         checks["decision"] = (
-            "pass" if any(v in ("pass", "fail", "inconclusive") for v in outcomes.values()) else "missing",
+            "pass"
+            if any(v in ("pass", "fail", "inconclusive") for v in outcomes.values())
+            else "missing",
             f"{sum(1 for v in outcomes.values() if v == 'pass')} pass / "
-            f"{sum(1 for v in outcomes.values() if v == 'fail')} fail recorded")
+            f"{sum(1 for v in outcomes.values() if v == 'fail')} fail recorded",
+        )
         for v in vals:
             g.artifacts[str(v)] = _sha256(v)
 
@@ -414,24 +534,31 @@ def _stage5(paths: RepoPaths, project_id: str) -> GateResult:
 
 def _stage6(paths: RepoPaths, project_id: str) -> GateResult:
     g = _stage_placeholder(
-        "stage-6", "Public release",
+        "stage-6",
+        "Public release",
         "Can an independent person reproduce everything from a clean clone with verified citations and licenses?",
         "A release that cannot be reproduced is marketing, not science.",
         "Nothing is released yet.",
-        [("clean-clone", "clean-clone reproduction"),
-         ("ci", "CI pass"),
-         ("citations", "citation verification"),
-         ("licenses", "license audit"),
-         ("proof-packs", "complete proof packs for all stages"),
-         ("ai-disclosure", "AI-use disclosure"),
-         ("release", "GitHub release + Zenodo DOI")],
-        paths, project_id)
+        [
+            ("clean-clone", "clean-clone reproduction"),
+            ("ci", "CI pass"),
+            ("citations", "citation verification"),
+            ("licenses", "license audit"),
+            ("proof-packs", "complete proof packs for all stages"),
+            ("ai-disclosure", "AI-use disclosure"),
+            ("release", "GitHub release + Zenodo DOI"),
+        ],
+        paths,
+        project_id,
+    )
     root = paths.root
     proj = paths.project_dir(project_id)
     checks: dict[str, tuple[str, str]] = {}
 
     cc = proj / "proof" / "stage-01" / "clean-clone-2026-08-11.log"
-    if cc.exists() and "Clean-clone check passed." in cc.read_text(encoding="utf-8", errors="replace"):
+    if cc.exists() and "Clean-clone check passed." in cc.read_text(
+        encoding="utf-8", errors="replace"
+    ):
         checks["clean-clone"] = ("pass", str(cc))
         g.artifacts[str(cc)] = _sha256(cc)
 
@@ -447,24 +574,37 @@ def _stage6(paths: RepoPaths, project_id: str) -> GateResult:
     citation = root / "CITATION.cff"
     corpus = proj / "research" / "corpus.jsonl"
     if citation.exists() and corpus.exists():
-        verified = sum(1 for line in corpus.read_text(encoding="utf-8").splitlines()
-                       if '"content": true' in line.replace(" ", "") or '"content":true' in line.replace(" ", ""))
-        checks["citations"] = ("pass" if verified else "missing",
-                              f"CITATION.cff present, {verified} corpus entries content-verified")
+        verified = sum(
+            1
+            for line in corpus.read_text(encoding="utf-8").splitlines()
+            if '"content": true' in line.replace(" ", "")
+            or '"content":true' in line.replace(" ", "")
+        )
+        checks["citations"] = (
+            "pass" if verified else "missing",
+            f"CITATION.cff present, {verified} corpus entries content-verified",
+        )
         g.artifacts[str(citation)] = _sha256(citation)
 
     manifest = paths.vendor / "upstream-manifest.yaml"
     if manifest.exists():
         text = manifest.read_text(encoding="utf-8")
         documented = "GPL" in text and "license" in text.lower()
-        checks["licenses"] = ("pass" if documented else "fail",
-                              "upstream licenses recorded incl. the GPL-2.0 / MIT conflict"
-                              if documented else "license conflict not documented")
+        checks["licenses"] = (
+            "pass" if documented else "fail",
+            "upstream licenses recorded incl. the GPL-2.0 / MIT conflict"
+            if documented
+            else "license conflict not documented",
+        )
 
     packs = sorted((proj / "proof").glob("stage-*"))
-    complete = [p for p in packs if (p / "README.md").exists() and (p / "attestation.json").exists()]
-    checks["proof-packs"] = ("pass" if len(complete) >= 6 else "missing",
-                             f"{len(complete)} of 6 stages have a full proof pack")
+    complete = [
+        p for p in packs if (p / "README.md").exists() and (p / "attestation.json").exists()
+    ]
+    checks["proof-packs"] = (
+        "pass" if len(complete) >= 6 else "missing",
+        f"{len(complete)} of 6 stages have a full proof pack",
+    )
 
     doi = proj / "release" / "ZENODO_DOI.txt"
     if doi.exists():
@@ -498,6 +638,7 @@ def verify_all(paths: RepoPaths, project_id: str) -> list[GateResult]:
 
 # ------------------------------------------------------------------ attestation / proof pack
 
+
 def write_attestation(paths: RepoPaths, project_id: str, gate: GateResult) -> Path:
     """Write attestation.json for a stage. NOT a certificate of scientific truth:
     it certifies only that the declared tests ran, with these outcomes, against
@@ -508,8 +649,8 @@ def write_attestation(paths: RepoPaths, project_id: str, gate: GateResult) -> Pa
     lock = root / "uv.lock"
     att = {
         "note": "This attestation certifies ONLY that the declared deterministic checks "
-                "ran with the recorded outcomes against unchanged artifacts. It is not "
-                "a certificate of scientific truth.",
+        "ran with the recorded outcomes against unchanged artifacts. It is not "
+        "a certificate of scientific truth.",
         "stage_id": gate.stage_id,
         "title": gate.title,
         "label": gate.label,
@@ -551,8 +692,14 @@ def export_proof_pack(paths: RepoPaths, project_id: str, gate: GateResult) -> Pa
     write_attestation(paths, project_id, gate)
 
     # gate definition
-    ydef = [f"stage_id: {gate.stage_id}", f"title: {gate.title}", f"label: {gate.label}",
-            f"question: {gate.question}", f"status: {gate.status}", "requirements:"]
+    ydef = [
+        f"stage_id: {gate.stage_id}",
+        f"title: {gate.title}",
+        f"label: {gate.label}",
+        f"question: {gate.question}",
+        f"status: {gate.status}",
+        "requirements:",
+    ]
     for r in gate.requirements:
         ydef.append(f"  - id: {r.id}")
         ydef.append(f"    description: {r.description}")
@@ -576,7 +723,9 @@ def export_proof_pack(paths: RepoPaths, project_id: str, gate: GateResult) -> Pa
         "uv run python projects/ainstein-audit/verifier/make_selftest_artifact.py",
         "uv run python projects/ainstein-audit/verifier/known_answer_4d.py",
     ]
-    (pack / "commands.sh").write_text("#!/bin/sh\nset -e\n" + "\n".join(cmds) + "\n", encoding="utf-8")
+    (pack / "commands.sh").write_text(
+        "#!/bin/sh\nset -e\n" + "\n".join(cmds) + "\n", encoding="utf-8"
+    )
     (pack / "commands.ps1").write_text("\n".join(cmds) + "\n", encoding="utf-8")
 
     # checksums
@@ -602,12 +751,16 @@ def export_proof_pack(paths: RepoPaths, project_id: str, gate: GateResult) -> Pa
         limitations.append(lim.read_text(encoding="utf-8"))
     (pack / "limitations.md").write_text("\n".join(limitations), encoding="utf-8")
     (pack / "allowed-public-claim.md").write_text(
-        f"# Allowed public claim at {gate.stage_id}\n\n{gate.allowed_public_claim}\n", encoding="utf-8")
+        f"# Allowed public claim at {gate.stage_id}\n\n{gate.allowed_public_claim}\n",
+        encoding="utf-8",
+    )
     (pack / "independent-validation.md").write_text(
         "# Independence statement\n\nThe verifier package (projects/ainstein-audit/verifier/) "
         "imports no upstream code; exported metric values cross the boundary as plain float64 "
         "arrays via a subprocess in an isolated environment. Verified by inspection of imports "
-        "and by construction of the interface (verifier/interface.py).\n", encoding="utf-8")
+        "and by construction of the interface (verifier/interface.py).\n",
+        encoding="utf-8",
+    )
 
     # README (plain English)
     passed = [r for r in gate.requirements if r.status == "pass"]
@@ -615,7 +768,8 @@ def export_proof_pack(paths: RepoPaths, project_id: str, gate: GateResult) -> Pa
     readme = [
         f"# Proof pack: {gate.title} ({gate.stage_id})",
         "",
-        f"**Status: {gate.status}**" + (" (ENGINEERING, not scientific)" if gate.label == "ENGINEERING" else ""),
+        f"**Status: {gate.status}**"
+        + (" (ENGINEERING, not scientific)" if gate.label == "ENGINEERING" else ""),
         "",
         f"**Question:** {gate.question}",
         "",
@@ -625,7 +779,10 @@ def export_proof_pack(paths: RepoPaths, project_id: str, gate: GateResult) -> Pa
         *[f"- {r.description}: {r.measured or 'pass'}" for r in passed],
         "",
         "## What is not settled",
-        *([f"- {r.description} ({r.status}): {r.measured or ''}" for r in open_reqs] or ["- nothing — all requirements passed"]),
+        *(
+            [f"- {r.description} ({r.status}): {r.measured or ''}" for r in open_reqs]
+            or ["- nothing — all requirements passed"]
+        ),
         "",
         "## How to reproduce",
         "Run `commands.sh` (POSIX) or `commands.ps1` (Windows) from the repository root.",

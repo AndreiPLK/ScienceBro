@@ -39,11 +39,21 @@ from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 
-LAMS = (Fraction(1, 1000), Fraction(1, 100), Fraction(1, 10), Fraction(1, 3),
-        Fraction(1, 2), Fraction(1), Fraction(2), Fraction(3), Fraction(7),
-        Fraction(26), Fraction(150), Fraction(1000))
-FRACS = (Fraction(0), Fraction(1, 2), Fraction(9, 10), Fraction(99, 100),
-         Fraction(1))
+LAMS = (
+    Fraction(1, 1000),
+    Fraction(1, 100),
+    Fraction(1, 10),
+    Fraction(1, 3),
+    Fraction(1, 2),
+    Fraction(1),
+    Fraction(2),
+    Fraction(3),
+    Fraction(7),
+    Fraction(26),
+    Fraction(150),
+    Fraction(1000),
+)
+FRACS = (Fraction(0), Fraction(1, 2), Fraction(9, 10), Fraction(99, 100), Fraction(1))
 
 
 def peval(poly: list[Fraction], x: Fraction) -> Fraction:
@@ -53,14 +63,13 @@ def peval(poly: list[Fraction], x: Fraction) -> Fraction:
     return v
 
 
-def threshold_Q(poly: list[Fraction], q_lo: Fraction, q_hi: Fraction,
-                iters: int = 60):
+def threshold_Q(poly: list[Fraction], q_lo: Fraction, q_hi: Fraction, iters: int = 60):
     """Bisect for the sign change of J on [q_lo, q_hi]; None if no change."""
     a, b = peval(poly, q_lo), peval(poly, q_hi)
     if a <= 0:
         return "already_nonpositive_at_low_end"
     if b > 0:
-        return None                      # positive on the whole stretch
+        return None  # positive on the whole stretch
     lo, hi = q_lo, q_hi
     for _ in range(iters):
         mid = (lo + hi) / 2
@@ -81,55 +90,77 @@ def main() -> int:
                 if Th <= 4:
                     continue
                 poly = J_poly_in_Q(j, n, lam)
-                Q_of = lambda D: Fraction(D, 2) + n - j - 2   # noqa: E731
+                Q_of = lambda D: Fraction(D, 2) + n - j - 2  # noqa: E731
                 signs = {}
                 for f in FRACS:
                     D = 4 + (Th - 4) * f
                     v = peval(poly, Q_of(D))
                     signs[str(f)] = int((v > 0) - (v < 0))
                     if f < 1 and v <= 0:
-                        violations.append({"j": j, "n": n, "lam": str(lam),
-                                           "f": str(f), "sign": signs[str(f)]})
+                        violations.append(
+                            {"j": j, "n": n, "lam": str(lam), "f": str(f), "sign": signs[str(f)]}
+                        )
                 q_shore = Q_of(Th)
                 thr = threshold_Q(poly, Q_of(Fraction(4)), q_shore)
                 margin = None
                 if isinstance(thr, Fraction):
-                    margin = float(thr - q_shore)     # < 0 => cuts below
-                    below_shore.append({"j": j, "n": n, "lam": str(lam),
-                                        "Q_star": float(thr),
-                                        "Q_shore": float(q_shore),
-                                        "margin": margin})
-                rows.append({"j": j, "n": n, "lam": str(lam),
-                             "signs_by_f": signs,
-                             "sign_changes_J": sign_changes(
-                                 list(reversed(poly))),
-                             "threshold": (str(thr) if not isinstance(
-                                 thr, Fraction) else float(thr)),
-                             "Q_shore": float(q_shore),
-                             "margin_vs_shore": margin})
-        print(f"  j={j}: rows {len(rows)}, strict-interior violations "
-              f"{len(violations)} ({time.time()-t0:.0f}s)", flush=True)
+                    margin = float(thr - q_shore)  # < 0 => cuts below
+                    below_shore.append(
+                        {
+                            "j": j,
+                            "n": n,
+                            "lam": str(lam),
+                            "Q_star": float(thr),
+                            "Q_shore": float(q_shore),
+                            "margin": margin,
+                        }
+                    )
+                rows.append(
+                    {
+                        "j": j,
+                        "n": n,
+                        "lam": str(lam),
+                        "signs_by_f": signs,
+                        "sign_changes_J": sign_changes(list(reversed(poly))),
+                        "threshold": (str(thr) if not isinstance(thr, Fraction) else float(thr)),
+                        "Q_shore": float(q_shore),
+                        "margin_vs_shore": margin,
+                    }
+                )
+        print(
+            f"  j={j}: rows {len(rows)}, strict-interior violations "
+            f"{len(violations)} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
 
-    out = {"claim": "P_j > 0 strictly below the shore, for every knife j,"
-                    " every n and every lam -- tested through the exact"
-                    " one-variable polynomial J(Q)",
-           "grid": {"j": "2..40", "n": "max(4,j+1) .. +24 step 2",
-                    "lam": [str(x) for x in LAMS],
-                    "f": [str(x) for x in FRACS]},
-           "cells": len(rows),
-           "strict_interior_violations": violations,
-           "all_positive_strictly_below_shore": not violations,
-           "threshold_inside_shore_cases": below_shore[:40],
-           "threshold_inside_shore_count": len(below_shore),
-           "sign_changes_seen": sorted({r["sign_changes_J"] for r in rows}),
-           "rows": rows[:60],
-           "command": "python lab/keystone_shore.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_shore.json").write_text(json.dumps(out, indent=1),
-                                             encoding="utf-8")
-    print(f"cells {len(rows)}; violations strictly below shore: "
-          f"{len(violations)}; thresholds found inside [4, shore]: "
-          f"{len(below_shore)}", flush=True)
+    out = {
+        "claim": "P_j > 0 strictly below the shore, for every knife j,"
+        " every n and every lam -- tested through the exact"
+        " one-variable polynomial J(Q)",
+        "grid": {
+            "j": "2..40",
+            "n": "max(4,j+1) .. +24 step 2",
+            "lam": [str(x) for x in LAMS],
+            "f": [str(x) for x in FRACS],
+        },
+        "cells": len(rows),
+        "strict_interior_violations": violations,
+        "all_positive_strictly_below_shore": not violations,
+        "threshold_inside_shore_cases": below_shore[:40],
+        "threshold_inside_shore_count": len(below_shore),
+        "sign_changes_seen": sorted({r["sign_changes_J"] for r in rows}),
+        "rows": rows[:60],
+        "command": "python lab/keystone_shore.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_shore.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"cells {len(rows)}; violations strictly below shore: "
+        f"{len(violations)}; thresholds found inside [4, shore]: "
+        f"{len(below_shore)}",
+        flush=True,
+    )
     return 0 if not violations else 1
 
 

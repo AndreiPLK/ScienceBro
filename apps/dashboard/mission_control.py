@@ -18,17 +18,19 @@ from apps.dashboard import loaders
 
 # status → (label, color)
 COLORS = {
-    "VERIFIED": "#2e9e44",      # green — verified results only
-    "IN PROGRESS": "#d99000",   # amber
-    "BLOCKED": "#d99000",       # amber (unresolved, not a failure)
-    "FAILED": "#cc3333",        # red — real failures only
-    "NOT STARTED": "#8a8a8a",   # grey
+    "VERIFIED": "#2e9e44",  # green — verified results only
+    "IN PROGRESS": "#d99000",  # amber
+    "BLOCKED": "#d99000",  # amber (unresolved, not a failure)
+    "FAILED": "#cc3333",  # red — real failures only
+    "NOT STARTED": "#8a8a8a",  # grey
     "UNKNOWN": "#8a8a8a",
 }
 
-MISSION = "Are the AI-discovered black-hole metrics physically real, or are they numerical artifacts?"
+MISSION = (
+    "Are the AI-discovered black-hole metrics physically real, or are they numerical artifacts?"
+)
 
-RICCI_TOL = 1e-7   # matches THRESHOLDS_DRAFT pipeline validity gate
+RICCI_TOL = 1e-7  # matches THRESHOLDS_DRAFT pipeline validity gate
 KREL_TOL = 1e-7
 
 
@@ -54,11 +56,18 @@ def _training_state(proj: Path) -> dict:
     """Parse the newest Schwarzschild training log (real file, no invention)."""
     candidates = sorted(
         (proj / "upstream").glob("baseline_schwarzschild*.log"),
-        key=lambda p: p.stat().st_mtime, reverse=True,
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
     )
     log = candidates[0] if candidates else proj / "upstream" / "baseline_schwarzschild.log"
-    out: dict = {"exists": log.exists(), "epochs": 0, "last_loss": None,
-                 "finished": False, "exit_code": None, "log": str(log)}
+    out: dict = {
+        "exists": log.exists(),
+        "epochs": 0,
+        "last_loss": None,
+        "finished": False,
+        "exit_code": None,
+        "log": str(log),
+    }
     if not log.exists():
         return out
     try:
@@ -76,6 +85,7 @@ def _training_state(proj: Path) -> dict:
     else:
         # no EXIT marker: running only if the log is fresh (written in the last 10 min)
         import time
+
         out["stalled"] = (time.time() - log.stat().st_mtime) > 600
     return out
 
@@ -135,12 +145,12 @@ RU_SHORT = {
 }
 
 STAGE_ICONS = {
-    "stage-1": "&#9881;",   # gear
-    "stage-2": "&#128300;", # microscope
-    "stage-3": "&#129504;", # brain
-    "stage-4": "&#9876;",   # crossed swords
-    "stage-5": "&#9878;",   # scales
-    "stage-6": "&#128640;", # rocket
+    "stage-1": "&#9881;",  # gear
+    "stage-2": "&#128300;",  # microscope
+    "stage-3": "&#129504;",  # brain
+    "stage-4": "&#9876;",  # crossed swords
+    "stage-5": "&#9878;",  # scales
+    "stage-6": "&#128640;",  # rocket
 }
 
 
@@ -171,8 +181,10 @@ def _quest_map_svg(gates: list, current_idx: int) -> str:
         done = gates[i].status == "VERIFIED"
         seg = COLORS["VERIFIED"] if done else "#555"
         dash = "" if done else ' stroke-dasharray="7 7"'
-        parts.append(f'<line x1="{xs[i]+42}" y1="{y}" x2="{xs[i+1]-42}" y2="{y}" '
-                     f'stroke="{seg}" stroke-width="5"{dash}/>')
+        parts.append(
+            f'<line x1="{xs[i] + 42}" y1="{y}" x2="{xs[i + 1] - 42}" y2="{y}" '
+            f'stroke="{seg}" stroke-width="5"{dash}/>'
+        )
     for i, g in enumerate(gates):
         disp = _display_status(g)
         c = COLORS.get(disp, "#8a8a8a")
@@ -180,22 +192,34 @@ def _quest_map_svg(gates: list, current_idx: int) -> str:
         n_pass = sum(1 for r in g.requirements if r.status == "pass")
         n_all = len(g.requirements)
         if i == current_idx:
-            parts.append(f'<circle class="pulse" cx="{x}" cy="{y}" r="50" fill="none" '
-                         f'stroke="{c}"/>')
+            parts.append(
+                f'<circle class="pulse" cx="{x}" cy="{y}" r="50" fill="none" stroke="{c}"/>'
+            )
         fill = c if disp == "VERIFIED" else "none"
         txtc = "#111" if disp == "VERIFIED" else c
-        parts.append(f'<circle cx="{x}" cy="{y}" r="40" fill="{fill}" stroke="{c}" '
-                     f'stroke-width="4"/>')
-        icon = "&#10004;" if disp == "VERIFIED" else ("&#10008;" if disp == "FAILED"
-                 else STAGE_ICONS.get(g.stage_id, "?"))
-        parts.append(f'<text x="{x}" y="{y+10}" text-anchor="middle" class="ico" '
-                     f'fill="{txtc}">{icon}</text>')
-        parts.append(f'<text x="{x}" y="{y-58}" text-anchor="middle" class="lbl">'
-                     f'{RU_SHORT.get(g.stage_id, g.title)}</text>')
-        parts.append(f'<text x="{x}" y="{y+68}" text-anchor="middle" class="st" '
-                     f'fill="{c}">{disp}</text>')
-        parts.append(f'<text x="{x}" y="{y+88}" text-anchor="middle" class="st" '
-                     f'fill="#888">{n_pass}/{n_all}</text>')
+        parts.append(
+            f'<circle cx="{x}" cy="{y}" r="40" fill="{fill}" stroke="{c}" stroke-width="4"/>'
+        )
+        icon = (
+            "&#10004;"
+            if disp == "VERIFIED"
+            else ("&#10008;" if disp == "FAILED" else STAGE_ICONS.get(g.stage_id, "?"))
+        )
+        parts.append(
+            f'<text x="{x}" y="{y + 10}" text-anchor="middle" class="ico" '
+            f'fill="{txtc}">{icon}</text>'
+        )
+        parts.append(
+            f'<text x="{x}" y="{y - 58}" text-anchor="middle" class="lbl">'
+            f"{RU_SHORT.get(g.stage_id, g.title)}</text>"
+        )
+        parts.append(
+            f'<text x="{x}" y="{y + 68}" text-anchor="middle" class="st" fill="{c}">{disp}</text>'
+        )
+        parts.append(
+            f'<text x="{x}" y="{y + 88}" text-anchor="middle" class="st" '
+            f'fill="#888">{n_pass}/{n_all}</text>'
+        )
     parts.append("</svg>")
     return "".join(parts)
 
@@ -218,8 +242,9 @@ def _checks_grid(gate) -> str:  # type: ignore[no-untyped-def]
         mark = {"pass": "&#10004;", "fail": "&#10008;"}.get(r.status, "&#8943;")
         cells.append(
             f'<div style="border:1px solid {c};border-radius:8px;padding:6px 10px;margin:3px;'
-            f'font-size:0.8em;color:{c};white-space:nowrap;">{mark} {r.id}</div>')
-    return ('<div style="display:flex;flex-wrap:wrap;">' + "".join(cells) + "</div>")
+            f'font-size:0.8em;color:{c};white-space:nowrap;">{mark} {r.id}</div>'
+        )
+    return '<div style="display:flex;flex-wrap:wrap;">' + "".join(cells) + "</div>"
 
 
 def _render_gate_details(gate, project_id: str) -> None:  # type: ignore[no-untyped-def]
@@ -231,13 +256,13 @@ def _render_gate_details(gate, project_id: str) -> None:  # type: ignore[no-unty
     if passed:
         st.write("**Passed:** " + "; ".join(r.description for r in passed))
     if open_reqs:
-        st.write("**Unresolved:** " + "; ".join(
-            f"{r.description} ({r.status})" for r in open_reqs))
+        st.write("**Unresolved:** " + "; ".join(f"{r.description} ({r.status})" for r in open_reqs))
     st.write(f"**Allowed public claim:** {gate.allowed_public_claim}")
 
     b1, b2, b3 = st.columns(3)
-    att_path = (loaders.paths().project_dir(project_id) / "proof" / gate.stage_id
-                / "attestation.json")
+    att_path = (
+        loaders.paths().project_dir(project_id) / "proof" / gate.stage_id / "attestation.json"
+    )
     with b1:
         if st.button("View proof", key=f"vp-{gate.stage_id}"):
             if att_path.exists():
@@ -248,17 +273,32 @@ def _render_gate_details(gate, project_id: str) -> None:  # type: ignore[no-unty
         if st.button("Re-run verification", key=f"rv-{gate.stage_id}"):
             import subprocess as sp
             import sys as _sys
-            r = sp.run([_sys.executable, "-m", "sciencebro.cli", "verify-stage",
-                        project_id, gate.stage_id],
-                       capture_output=True, text=True, cwd=loaders.paths().root,
-                       timeout=900)
+
+            r = sp.run(
+                [
+                    _sys.executable,
+                    "-m",
+                    "sciencebro.cli",
+                    "verify-stage",
+                    project_id,
+                    gate.stage_id,
+                ],
+                capture_output=True,
+                text=True,
+                cwd=loaders.paths().root,
+                timeout=900,
+            )
             st.code((r.stdout or "") + (r.stderr or ""), language="text")
             _gates.clear()
     with b3:
         if st.button("Export proof pack", key=f"ep-{gate.stage_id}"):
             from sciencebro.proofgate import export_proof_pack, verify_stage
-            pack = export_proof_pack(loaders.paths(), project_id,
-                                     verify_stage(loaders.paths(), project_id, gate.stage_id))
+
+            pack = export_proof_pack(
+                loaders.paths(),
+                project_id,
+                verify_stage(loaders.paths(), project_id, gate.stage_id),
+            )
             st.success(f"Proof pack: {pack}")
 
 
@@ -278,20 +318,18 @@ def render(project_id: str) -> None:
     selftest, ka4d, disc = ctx["selftest"], ctx["ka4d"], ctx["disc"]
     _ = stages
 
-    current_idx = next(
-        (i for i, g in enumerate(gates) if g.status != "VERIFIED"), len(gates) - 1
-    )
+    current_idx = next((i for i, g in enumerate(gates) if g.status != "VERIFIED"), len(gates) - 1)
     st.markdown("### Roadmap")
     st.markdown(_quest_map_svg(gates, current_idx), unsafe_allow_html=True)
 
     # HUD row — big numbers, minimal text
-    running = (training["exists"] and not training["finished"]
-               and not training.get("stalled"))
+    running = training["exists"] and not training["finished"] and not training.get("stalled")
     if running:
         tr_val = f"epoch {training['epochs']}/500"
         tr_color = COLORS["IN PROGRESS"]
-        tr_sub = (f"loss {training['last_loss']:.1e} · running"
-                  if training["last_loss"] else "running")
+        tr_sub = (
+            f"loss {training['last_loss']:.1e} · running" if training["last_loss"] else "running"
+        )
     elif training["finished"] and training["exit_code"] == 0:
         tr_val, tr_color, tr_sub = "complete", COLORS["VERIFIED"], "500/500"
     else:
@@ -303,16 +341,36 @@ def render(project_id: str) -> None:
     hud = (
         '<div style="display:flex;flex-wrap:wrap;">'
         + _hud_card("Baseline training (NN Schwarzschild)", tr_val, tr_color, tr_sub)
-        + _hud_card("Verifier checks", f"{n2}/{len(gates[1].requirements)}",
-                    COLORS["VERIFIED"] if gates[1].status == "VERIFIED" else COLORS["IN PROGRESS"],
-                    "analytic · controls · precision")
-        + _hud_card("Candidates tested",
-                    str(len(list((_proj_dir(project_id) / "results" / "processed").glob("candidate_stress*.json")))),
-                    COLORS["VERIFIED"] if list((_proj_dir(project_id) / "results" / "processed").glob("candidate_stress*.json")) else "#8a8a8a",
-                    "frozen-criteria evaluations")
-        + _hud_card("Blocker", "1" if blockers else "0",
-                    COLORS["IN PROGRESS"] if blockers else COLORS["VERIFIED"],
-                    (blockers[0][:60] + "…") if blockers else "clear")
+        + _hud_card(
+            "Verifier checks",
+            f"{n2}/{len(gates[1].requirements)}",
+            COLORS["VERIFIED"] if gates[1].status == "VERIFIED" else COLORS["IN PROGRESS"],
+            "analytic · controls · precision",
+        )
+        + _hud_card(
+            "Candidates tested",
+            str(
+                len(
+                    list(
+                        (_proj_dir(project_id) / "results" / "processed").glob(
+                            "candidate_stress*.json"
+                        )
+                    )
+                )
+            ),
+            COLORS["VERIFIED"]
+            if list(
+                (_proj_dir(project_id) / "results" / "processed").glob("candidate_stress*.json")
+            )
+            else "#8a8a8a",
+            "frozen-criteria evaluations",
+        )
+        + _hud_card(
+            "Blocker",
+            "1" if blockers else "0",
+            COLORS["IN PROGRESS"] if blockers else COLORS["VERIFIED"],
+            (blockers[0][:60] + "…") if blockers else "clear",
+        )
         + "</div>"
     )
     st.markdown(hud, unsafe_allow_html=True)
@@ -358,21 +416,30 @@ def render(project_id: str) -> None:
     ca, cb = st.columns(2)
     with ca:
         loss_txt = f"{training['last_loss']:.2e}" if training["last_loss"] else "UNKNOWN"
-        st.metric("Upstream loss (their scale, quadratic)", loss_txt,
-                  help="Contracted squared Ricci with volume weight - the authors own scale")
+        st.metric(
+            "Upstream loss (their scale, quadratic)",
+            loss_txt,
+            help="Contracted squared Ricci with volume weight - the authors own scale",
+        )
     with cb:
         if ka4d:
             nn_rows = ka4d.get("nn_interim", {}).get("rows", [])
             ric = max((r["max_abs_ricci"] for r in nn_rows), default=None)
-            st.metric("Independent Ricci (our scale, linear)",
-                      f"{ric:.2e}" if ric else "UNKNOWN",
-                      help="Max |R_ab| from our finite-difference route")
+            st.metric(
+                "Independent Ricci (our scale, linear)",
+                f"{ric:.2e}" if ric else "UNKNOWN",
+                help="Max |R_ab| from our finite-difference route",
+            )
         else:
             st.metric("Independent Ricci (our scale, linear)", "UNKNOWN")
     comparable = disc is not None
-    _row("Normalization comparability", True if comparable else None,
-         "explained and measured on the 2D model (sqrt(loss) matches our Ricci to 0.7%); 4D after training"
-         if comparable else "not established")
+    _row(
+        "Normalization comparability",
+        True if comparable else None,
+        "explained and measured on the 2D model (sqrt(loss) matches our Ricci to 0.7%); 4D after training"
+        if comparable
+        else "not established",
+    )
 
     claims, _ = loaders.claims(project_id)
     blockers = [b for c in claims for b in c.blockers]
@@ -399,33 +466,43 @@ def render(project_id: str) -> None:
         st.write(f"**Updated:** git {git['commit']} · {git['last_commit_time']}")
         st.write(f"**Verifier self-test:** {when or 'no artifact'}")
     with m2:
-        st.write("**Latest completed experiment:** 4D known-answer pipeline "
-                 "(analytic route, PASS)")
-        running = (f"baseline training (epoch {training['epochs']}/500)"
-                   if training["exists"] and not training["finished"]
-                   and not training.get("stalled") else "none")
+        st.write("**Latest completed experiment:** 4D known-answer pipeline (analytic route, PASS)")
+        running = (
+            f"baseline training (epoch {training['epochs']}/500)"
+            if training["exists"] and not training["finished"] and not training.get("stalled")
+            else "none"
+        )
         st.write(f"**Currently running:** {running}")
     with m3:
-        st.write("**Realistic ETA:** baseline ~13-17 h on CPU; "
-                 "first scientific verdict ~3-7 days (faster on GPU)")
-        st.write("**Decision needed:** reboot Windows to finish WSL2 GPU setup; "
-                 "approve the draft letter to the authors")
+        st.write(
+            "**Realistic ETA:** baseline ~13-17 h on CPU; "
+            "first scientific verdict ~3-7 days (faster on GPU)"
+        )
+        st.write(
+            "**Decision needed:** reboot Windows to finish WSL2 GPU setup; "
+            "approve the draft letter to the authors"
+        )
 
     # 9. technical details, hidden by default
     with st.expander("Technical details (logs, hashes, raw metrics)"):
         proj = _proj_dir(project_id)
         st.write("**Artifacts:**")
-        for rel in ["results/processed/known_answer_4d.json",
-                    "results/processed/discrepancy_experiment.json",
-                    "results/processed/calibration_maps.json",
-                    "results/processed/verifier_selftest.json",
-                    "upstream/baseline_schwarzschild.log"]:
+        for rel in [
+            "results/processed/known_answer_4d.json",
+            "results/processed/discrepancy_experiment.json",
+            "results/processed/calibration_maps.json",
+            "results/processed/verifier_selftest.json",
+            "upstream/baseline_schwarzschild.log",
+        ]:
             p = proj / rel
             st.write(f"- `{rel}` — {'present' if p.exists() else 'MISSING'}")
         if ka4d:
             st.json(ka4d)
         if disc:
             st.json(disc)
-        st.code("uv run pytest projects/ainstein-audit/verifier -q\n"
-                "uv run python projects/ainstein-audit/verifier/known_answer_4d.py\n"
-                "uv run sb project status ainstein-audit", language="bash")
+        st.code(
+            "uv run pytest projects/ainstein-audit/verifier -q\n"
+            "uv run python projects/ainstein-audit/verifier/known_answer_4d.py\n"
+            "uv run sb project status ainstein-audit",
+            language="bash",
+        )

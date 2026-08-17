@@ -29,8 +29,7 @@ lam, D = sp.symbols("lam D", positive=True)
 def q_poly(n: int):
     """Coefficients of Q(x) = prod_k [((n+lam-1)x + (2k-n))/2], symbolic lam."""
     x = sp.symbols("x")
-    Q = sp.expand(sp.prod(((n + lam - 1) * x + (2 * k - n)) / 2
-                          for k in range(1, n)))
+    Q = sp.expand(sp.prod(((n + lam - 1) * x + (2 * k - n)) / 2 for k in range(1, n)))
     return sp.Poly(Q, x).all_coeffs()[::-1]  # ascending
 
 
@@ -59,16 +58,16 @@ def weight_ratio(k: int):
         return sp.Integer(0)
     num = sp.Integer(1)
     for m in range(1, k, 2):
-        num *= m                     # (k-1)!!
+        num *= m  # (k-1)!!
     den = sp.Integer(1)
     for j in range(1, k // 2 + 1):
-        den *= (D - 3 + 2 * j)
+        den *= D - 3 + 2 * j
     return sp.Rational(1) * num / den
 
 
 def bracket_for(n: int):
     l = 2 * n - 6
-    q = q_poly(n)                       # ascending, deg n-1
+    q = q_poly(n)  # ascending, deg n-1
     deg = len(q) - 1
     # Q^2 ascending coefficients
     P = [sp.Integer(0)] * (2 * deg + 1)
@@ -97,30 +96,31 @@ def main() -> int:
     out = {}
     for n in range(4, 10):
         fac, den = bracket_for(n)
-        out[str(n)] = {"numerator_factored": str(fac),
-                       "denominator_factored": str(den)}
-        print(f"n={n} done ({time.time()-t0:.0f}s)", flush=True)
+        out[str(n)] = {"numerator_factored": str(fac), "denominator_factored": str(den)}
+        print(f"n={n} done ({time.time() - t0:.0f}s)", flush=True)
         # spot sign-check vs exact evaluator at 3 points
         import random  # noqa: F401  (not used; deterministic points below)
-        for (lv, Dv) in [(F(1), 26), (F(2), 30), (F(1, 2), 14)]:
+
+        for lv, Dv in [(F(1), 26), (F(2), 30), (F(1, 2), 14)]:
             exact = a_l(n, 2 * n - 6, lv, Dv)
-            sym = fac.subs({lam: sp.Rational(lv.numerator, lv.denominator),
-                            D: Dv})
+            sym = fac.subs({lam: sp.Rational(lv.numerator, lv.denominator), D: Dv})
             s_exact = (exact > 0) - (exact < 0)
             s_sym = int(sp.sign(sym))
             # denominator/positive-factor sign must be accounted: compare only
             # whether the two agree up to a FIXED sign per n
             out[str(n)].setdefault("spot", []).append(
-                {"lam": str(lv), "D": Dv, "sign_exact": s_exact,
-                 "sign_bracket": s_sym})
-            print(f"  spot lam={lv} D={Dv}: exact {s_exact}, bracket {s_sym}",
-                  flush=True)
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip()
-    out["_meta"] = {"command": "python lab/t2n6_bracket.py", "git": git,
-                    "runtime_s": round(time.time() - t0, 1)}
-    (RES / "T2n6_brackets.json").write_text(json.dumps(out, indent=1),
-                                            encoding="utf-8")
+                {"lam": str(lv), "D": Dv, "sign_exact": s_exact, "sign_bracket": s_sym}
+            )
+            print(f"  spot lam={lv} D={Dv}: exact {s_exact}, bracket {s_sym}", flush=True)
+    git = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True
+    ).stdout.strip()
+    out["_meta"] = {
+        "command": "python lab/t2n6_bracket.py",
+        "git": git,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "T2n6_brackets.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("written T2n6_brackets.json", flush=True)
     return 0
 

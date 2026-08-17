@@ -38,8 +38,7 @@ from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 
-LAMS = (Fraction(1, 2), Fraction(1), Fraction(2), Fraction(3), Fraction(7),
-        Fraction(26))
+LAMS = (Fraction(1, 2), Fraction(1), Fraction(2), Fraction(3), Fraction(7), Fraction(26))
 
 
 def peval(p, x: Fraction) -> Fraction:
@@ -49,8 +48,7 @@ def peval(p, x: Fraction) -> Fraction:
     return v
 
 
-def threshold_D(j: int, n: int, lam: Fraction, hi_mult: int = 40,
-                coarse: int = 600):
+def threshold_D(j: int, n: int, lam: Fraction, hi_mult: int = 40, coarse: int = 600):
     """FIRST D >= 4 where J turns non-positive; None if it never does.
 
     TOOL FIX (2026-08-17): the earlier version bisected [4, hi] directly,
@@ -110,42 +108,48 @@ def main() -> int:
             l_star = 2 * n_star - 2 * j
             shore = T_hat(lam)
             spins[l_star] = spins.get(l_star, 0) + 1
-            rows.append({"j": j, "lam": str(lam), "n_star": n_star,
-                         "spin_l_star": l_star,
-                         "D_threshold": float(thr),
-                         "shore": float(shore),
-                         "ratio_threshold_over_shore": float(thr / shore)})
-        print(f"  j={j} done ({time.time()-t0:.0f}s)", flush=True)
+            rows.append(
+                {
+                    "j": j,
+                    "lam": str(lam),
+                    "n_star": n_star,
+                    "spin_l_star": l_star,
+                    "D_threshold": float(thr),
+                    "shore": float(shore),
+                    "ratio_threshold_over_shore": float(thr / shore),
+                }
+            )
+        print(f"  j={j} done ({time.time() - t0:.0f}s)", flush=True)
 
     low = sum(v for k, v in spins.items() if k <= 2)
-    out = {"question": "for fixed (j, lam), which level n minimises the"
-                       " D-threshold, and what spin l = 2n - 2j is that?",
-           "prior_art": "Bo Wang arXiv:2403.00906 hypothesises partial-wave"
-                        " LOW SPIN DOMINANCE for the hypergeometric Coon"
-                        " amplitude (numerical support at m^2 = 0, his fig."
-                        " 1); we test the analogous statement in the CHR"
-                        " graviton family (arXiv:2408.03362)",
-           "method": "exact rational bisection on the smallest root of the"
-                     " univariate J(Q) from keystone_beta.py",
-           "cells": len(rows),
-           "spin_histogram_of_minimisers": {str(k): v for k, v
-                                            in sorted(spins.items())},
-           "fraction_at_low_spin_l_le_2": (low / len(rows)) if rows else None,
-           "low_spin_dominance_holds_here": low == len(rows) if rows else None,
-           "min_ratio_threshold_over_shore":
-               min((r["ratio_threshold_over_shore"] for r in rows),
-                   default=None),
-           "rows": rows,
-           "command": "python lab/keystone_lowspin.py",
-           **stamp(), "runtime_s": round(time.time() - t0, 1)}
-    (RES / "keystone_lowspin.json").write_text(json.dumps(out, indent=1),
-                                               encoding="utf-8")
-    print(f"cells {len(rows)}; spin histogram of minimisers "
-          f"{dict(sorted(spins.items()))}", flush=True)
-    print(f"low spin (l<=2) share: {out['fraction_at_low_spin_l_le_2']}",
-          flush=True)
-    print(f"tightest ratio threshold/shore: "
-          f"{out['min_ratio_threshold_over_shore']}", flush=True)
+    out = {
+        "question": "for fixed (j, lam), which level n minimises the"
+        " D-threshold, and what spin l = 2n - 2j is that?",
+        "prior_art": "Bo Wang arXiv:2403.00906 hypothesises partial-wave"
+        " LOW SPIN DOMINANCE for the hypergeometric Coon"
+        " amplitude (numerical support at m^2 = 0, his fig."
+        " 1); we test the analogous statement in the CHR"
+        " graviton family (arXiv:2408.03362)",
+        "method": "exact rational bisection on the smallest root of the"
+        " univariate J(Q) from keystone_beta.py",
+        "cells": len(rows),
+        "spin_histogram_of_minimisers": {str(k): v for k, v in sorted(spins.items())},
+        "fraction_at_low_spin_l_le_2": (low / len(rows)) if rows else None,
+        "low_spin_dominance_holds_here": low == len(rows) if rows else None,
+        "min_ratio_threshold_over_shore": min(
+            (r["ratio_threshold_over_shore"] for r in rows), default=None
+        ),
+        "rows": rows,
+        "command": "python lab/keystone_lowspin.py",
+        **stamp(),
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / "keystone_lowspin.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(
+        f"cells {len(rows)}; spin histogram of minimisers {dict(sorted(spins.items()))}", flush=True
+    )
+    print(f"low spin (l<=2) share: {out['fraction_at_low_spin_l_le_2']}", flush=True)
+    print(f"tightest ratio threshold/shore: {out['min_ratio_threshold_over_shore']}", flush=True)
     return 0
 
 

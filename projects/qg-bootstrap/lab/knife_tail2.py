@@ -48,16 +48,15 @@ def e_doubled_int(n):
 
 
 def E_poly_coeffs(t):
-    m = sp.Symbol('m')
+    m = sp.Symbol("m")
     deg = 3 * t
     lo = max(1, t - 1)
     pts = [(mm, e_doubled_int(mm + 3)[t]) for mm in range(lo, lo + deg + 4)]
-    poly = sp.expand(sp.interpolate(pts[:deg + 1], m))
-    for mm, val in pts[deg + 1:]:
+    poly = sp.expand(sp.interpolate(pts[: deg + 1], m))
+    for mm, val in pts[deg + 1 :]:
         assert poly.subs(m, mm) == val
     P = sp.Poly(poly, m)
-    return [fmpq(int(sp.Rational(c).p), int(sp.Rational(c).q))
-            for c in P.all_coeffs()[::-1]]
+    return [fmpq(int(sp.Rational(c).p), int(sp.Rational(c).q)) for c in P.all_coeffs()[::-1]]
 
 
 EP = {t: E_poly_coeffs(t) for t in range(J)}
@@ -92,30 +91,30 @@ def build_P(lam, D_num, den, m_expr):
         poch = Q3Poly.const(nv, 1)
         for q in range(1, 2 * i + 1):
             poch = poch * (two_n - 2 * J + q)
-        wgt_den = fmpq(math.factorial(i) * 2 ** i)
+        wgt_den = fmpq(math.factorial(i) * 2**i)
         tail = Q3Poly.const(nv, 1)
         for r in range(i, J - 1):
             tail = tail * (D_num + (c + 2 * r) * den)
         term = E_at(m_expr, J - 1 - i) * poch * s2p[i] * tail * denp[i]
-        term = Q3Poly(term.a * (fmpq(1) / wgt_den),
-                      term.b * (fmpq(1) / wgt_den))
+        term = Q3Poly(term.a * (fmpq(1) / wgt_den), term.b * (fmpq(1) / wgt_den))
         B = B + term if i % 2 == 0 else B - term
     if J % 2 == 0:
-        B = Q3Poly(QPoly(nv, {k: -cv for k, cv in B.a.c.items()}),
-                   QPoly(nv, {k: -cv for k, cv in B.b.c.items()}))
+        B = Q3Poly(
+            QPoly(nv, {k: -cv for k, cv in B.a.c.items()}),
+            QPoly(nv, {k: -cv for k, cv in B.b.c.items()}),
+        )
     return B
 
 
 # ------------------------------------------------- Bernstein (paired A,B)
 def bern_axis_pair(A, B, axis, elev=0):
-    d = max(max((e[axis] for e in A), default=0),
-            max((e[axis] for e in B), default=0)) + elev
+    d = max(max((e[axis] for e in A), default=0), max((e[axis] for e in B), default=0)) + elev
     M = bern_matrix(d)
 
     def transform(C):
         fib = {}
         for e, val in C.items():
-            key = e[:axis] + e[axis + 1:]
+            key = e[:axis] + e[axis + 1 :]
             fib.setdefault(key, {})[e[axis]] = val
         out = {}
         for key, f in fib.items():
@@ -128,6 +127,7 @@ def bern_axis_pair(A, B, axis, elev=0):
                 if sacc != fmpq(0):
                     out[key[:axis] + (i,) + key[axis:]] = sacc
         return out
+
     return transform(A), transform(B)
 
 
@@ -153,9 +153,8 @@ def univar_nonneg(coeffs):
     dmax = max(coeffs)
     if coeffs[dmax] < 0:
         return False
-    x = sp.Symbol('x')
-    e = sp.Add(*[sp.Rational(int(cv.p), int(cv.q)) * x ** d
-                 for d, cv in coeffs.items()])
+    x = sp.Symbol("x")
+    e = sp.Add(*[sp.Rational(int(cv.p), int(cv.q)) * x**d for d, cv in coeffs.items()])
     P = sp.Poly(e, x)
     if [r for r in P.real_roots() if r >= 0]:
         return False
@@ -218,8 +217,7 @@ def main() -> int:
             aq = fmpq(a.numerator, a.denominator)
             bq = fmpq(b.numerator, b.denominator)
             if onto:
-                lam_e = (Q3Poly.const(NV, fmpq(2, 3))
-                         * (1 - aq - (bq - aq) * tau))
+                lam_e = Q3Poly.const(NV, fmpq(2, 3)) * (1 - aq - (bq - aq) * tau)
             else:
                 lam_e = aq + (bq - aq) * tau
             r = fmpq(3 * (2 * kk - 3), kk * (kk - 2))
@@ -239,15 +237,13 @@ def main() -> int:
                     break
                 if cf.get(0, fmpq(0)) <= 0:
                     strict = False
-            log.append({"cell": tag, "ok": bool(good),
-                        "strict": bool(strict)})
+            log.append({"cell": tag, "ok": bool(good), "strict": bool(strict)})
             if good:
                 return True
             if depth == 0:
                 return False
             mid = (a + b) / 2
-            return (cell(kk, a, mid, onto, depth - 1, tag)
-                    and cell(kk, mid, b, onto, depth - 1, tag))
+            return cell(kk, a, mid, onto, depth - 1, tag) and cell(kk, mid, b, onto, depth - 1, tag)
 
         for kk in range(3, 46):
             onto = kk == 3
@@ -261,8 +257,10 @@ def main() -> int:
             got = cell(kk, lo, hi, onto, 5, f"stail_k{kk}")
             ok &= got
             stail_ok &= got
-            print(f"shallow-tail k={kk}: {'OK' if got else 'FAIL'}"
-                  f" ({time.time()-t0:.0f}s)", flush=True)
+            print(
+                f"shallow-tail k={kk}: {'OK' if got else 'FAIL'} ({time.time() - t0:.0f}s)",
+                flush=True,
+            )
 
     # ============ STAGE 2: DEEP-FIXED (m<=40, lam=26+x), Q(sqrt3) =======
     # vars: 0=x, 1=th
@@ -274,8 +272,7 @@ def main() -> int:
         D_hi = (12 + 4 * Q3Poly.const(NV, 0, 1)) * (26 + xq)
         D_e = 4 + (D_hi - 4) * thq
         for mv in range(max(1, J - 2), 41):
-            P = build_P(lam_df, D_e, Q3Poly.const(NV, 1),
-                        Q3Poly.const(NV, mv))
+            P = build_P(lam_df, D_e, Q3Poly.const(NV, 1), Q3Poly.const(NV, mv))
             A, B = bern_axis_pair(P.a.c, P.b.c, 1, ELEV)
             good = True
             strict = True
@@ -285,14 +282,15 @@ def main() -> int:
                     break
                 if not block_strict(ad, bd):
                     strict = False
-            log.append({"cell": f"deep_m{mv}", "ok": bool(good),
-                        "strict": bool(strict)})
+            log.append({"cell": f"deep_m{mv}", "ok": bool(good), "strict": bool(strict)})
             deep_fixed_ok &= good
             if not good:
                 print(f"  deep FAIL m={mv}", flush=True)
         ok &= deep_fixed_ok
-        print(f"deep-fixed m<41: {'OK' if deep_fixed_ok else 'FAIL'}"
-              f" ({time.time()-t0:.0f}s)", flush=True)
+        print(
+            f"deep-fixed m<41: {'OK' if deep_fixed_ok else 'FAIL'} ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
 
     # ============ STAGE 3: DEEP-TAIL (m=41+v, lam >= 26) ================
     # ниже диагонали: y-разложение у мыса (K0=0..7 + K>=8), выше: ортант
@@ -311,8 +309,9 @@ def main() -> int:
         kk_c = K_expr + 47
         den = kk_c * (kk_c - 2)
         lam2 = lam_c * lam_c
-        tk_num = (3 * (2 * kk_c - 3)) * (lam2 + (2 * kk_c - 2) * lam_c + 1) \
-            + (2 * kk_c) * kk_c * (kk_c - 2)
+        tk_num = (3 * (2 * kk_c - 3)) * (lam2 + (2 * kk_c - 2) * lam_c + 1) + (2 * kk_c) * kk_c * (
+            kk_c - 2
+        )
         if y_mode:
             D_num = tk_num - yv * den
         else:
@@ -336,17 +335,15 @@ def main() -> int:
                 strict_flag[0] = False
             if not good:
                 break
-        log.append({"cell": tag, "ok": bool(good),
-                    "strict": bool(strict_flag[0])})
+        log.append({"cell": tag, "ok": bool(good), "strict": bool(strict_flag[0])})
         if good:
             return True
         if depth == 0:
             return False
         mid = (a1 + b1) / 2
-        return (deep_pieces(K_expr, vsub, tag, a1, mid, depth - 1,
-                            y_mode, extra)
-                and deep_pieces(K_expr, vsub, tag, mid, b1, depth - 1,
-                                y_mode, extra))
+        return deep_pieces(K_expr, vsub, tag, a1, mid, depth - 1, y_mode, extra) and deep_pieces(
+            K_expr, vsub, tag, mid, b1, depth - 1, y_mode, extra
+        )
 
     # Ниже диагонали НЕ дублируем: эта область целиком покрыта
     # отдельными PASS-артефактами knife{J}_belowdiag_shift.json
@@ -354,36 +351,50 @@ def main() -> int:
     # tail2 сертифицирует: shallow-tail + deep-fixed + above-diagonal.
     gotA = None
 
-    gotB = deep_pieces(KK, KK + 4 + vv, "deep_above_diag",
-                       Fraction(0), Fraction(1), 3, False, "orthant") \
-        if STAGE != "belowdiag" else True
-    print(f"deep-tail above-diagonal: {'OK' if gotB else 'FAIL'}"
-          f" ({time.time()-t0:.0f}s)", flush=True)
+    gotB = (
+        deep_pieces(
+            KK, KK + 4 + vv, "deep_above_diag", Fraction(0), Fraction(1), 3, False, "orthant"
+        )
+        if STAGE != "belowdiag"
+        else True
+    )
+    print(
+        f"deep-tail above-diagonal: {'OK' if gotB else 'FAIL'} ({time.time() - t0:.0f}s)",
+        flush=True,
+    )
     ok &= gotB
 
     prov = stamp()
     failed = [c for c in log if not c.get("ok", True)]
     nonstrict = [c for c in log if c.get("strict") is False]
-    out = {"j": J, "all_certified": bool(ok), "cells": len(log),
-           "engine": "tail2-flint",
-           "stage_verdicts": {"shallow_tail": bool(stail_ok),
-                              "deep_fixed": bool(deep_fixed_ok),
-                              "deep_tail_below_diag": "covered by belowdiag_shift + farbelow artifacts",
-                              "deep_tail_above_diag": bool(gotB)},
-           "n_failed": len(failed), "failed_cells": failed[:50],
-           "strict_positive": len(nonstrict) == 0,
-           "n_nonstrict_cells": len(nonstrict),
-           "nonstrict_cells": [c["cell"] for c in nonstrict][:20],
-           "strict_note": ("strict_positive=true means every Bernstein block "
-                           "has a strictly positive constant term => P > 0 "
-                           "on the CLOSED region, not merely P >= 0"),
-           "env": {"KNIFE_STAGE": STAGE, "BERN_ELEV": ELEV},
-           "command": f"KNIFE_J={J} python lab/knife_tail2.py",
-           **prov, "runtime_s": round(time.time() - t0, 1)}
-    (RES / f"knife_tail2_j{J}.json").write_text(json.dumps(out, indent=1),
-                                                encoding="utf-8")
-    print(("ALL CERTIFIED" if ok else "INCOMPLETE") + f" cells={len(log)}",
-          flush=True)
+    out = {
+        "j": J,
+        "all_certified": bool(ok),
+        "cells": len(log),
+        "engine": "tail2-flint",
+        "stage_verdicts": {
+            "shallow_tail": bool(stail_ok),
+            "deep_fixed": bool(deep_fixed_ok),
+            "deep_tail_below_diag": "covered by belowdiag_shift + farbelow artifacts",
+            "deep_tail_above_diag": bool(gotB),
+        },
+        "n_failed": len(failed),
+        "failed_cells": failed[:50],
+        "strict_positive": len(nonstrict) == 0,
+        "n_nonstrict_cells": len(nonstrict),
+        "nonstrict_cells": [c["cell"] for c in nonstrict][:20],
+        "strict_note": (
+            "strict_positive=true means every Bernstein block "
+            "has a strictly positive constant term => P > 0 "
+            "on the CLOSED region, not merely P >= 0"
+        ),
+        "env": {"KNIFE_STAGE": STAGE, "BERN_ELEV": ELEV},
+        "command": f"KNIFE_J={J} python lab/knife_tail2.py",
+        **prov,
+        "runtime_s": round(time.time() - t0, 1),
+    }
+    (RES / f"knife_tail2_j{J}.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(("ALL CERTIFIED" if ok else "INCOMPLETE") + f" cells={len(log)}", flush=True)
     return 0 if ok else 1
 
 

@@ -18,8 +18,7 @@ try:
         now = datetime.datetime.now()
         if now.hour >= END_HOUR and now.hour < 22:
             break
-        ctypes.windll.kernel32.SetThreadExecutionState(
-            ES_CONTINUOUS | ES_SYSTEM_REQUIRED)
+        ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)
         time.sleep(50)
 finally:
     ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS)

@@ -16,7 +16,7 @@ ARXIV_ID_RE = re.compile(r"(?:arXiv:)?(\d{4}\.\d{4,5})(v\d+)?$", re.IGNORECASE)
 @dataclass
 class CitationCheck:
     identifier: str
-    status: str          # "verified" | "not-found" | "unverified" | "invalid-id"
+    status: str  # "verified" | "not-found" | "unverified" | "invalid-id"
     title: str | None = None
     detail: str = ""
 

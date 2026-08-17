@@ -67,31 +67,46 @@ def main() -> int:
         "n_grid_points": len(grid),
         "h": H,
         "float64": {
-            "median": float(np.median(a64)), "p95": float(np.percentile(a64, 95)),
-            "p99": float(np.percentile(a64, 99)), "max": float(a64.max()),
+            "median": float(np.median(a64)),
+            "p95": float(np.percentile(a64, 95)),
+            "p99": float(np.percentile(a64, 99)),
+            "max": float(a64.max()),
         },
         "float32_metric_storage": {
-            "median": float(np.median(a32)), "p95": float(np.percentile(a32, 95)),
-            "p99": float(np.percentile(a32, 99)), "max": float(a32.max()),
+            "median": float(np.median(a32)),
+            "p95": float(np.percentile(a32, 95)),
+            "p99": float(np.percentile(a32, 99)),
+            "max": float(a32.max()),
         },
         "float32_vs_float64_median_ratio": float(np.median(a32) / np.median(a64)),
         "conclusion_data": "float32 storage of metric components inflates the FD residual "
-                           "by the measured ratio; see numbers — no narrative here.",
+        "by the measured ratio; see numbers — no narrative here.",
     }
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(stats, indent=2), encoding="utf-8")
 
     import plotly.graph_objects as go
 
-    fig = go.Figure(go.Scatter(
-        x=xs, y=ys, mode="markers",
-        marker={"size": 9, "color": np.log10(a64), "colorscale": "Viridis",
-                "colorbar": {"title": "log10 max|Ricci|"}},
-        text=[f"{v:.2e}" for v in a64],
-    ))
+    fig = go.Figure(
+        go.Scatter(
+            x=xs,
+            y=ys,
+            mode="markers",
+            marker={
+                "size": 9,
+                "color": np.log10(a64),
+                "colorscale": "Viridis",
+                "colorbar": {"title": "log10 max|Ricci|"},
+            },
+            text=[f"{v:.2e}" for v in a64],
+        )
+    )
     fig.update_layout(
         title="Independent FD residual map, smoke model (float64, h=3e-3)",
-        xaxis_title="x1", yaxis_title="x2", width=700, height=650,
+        xaxis_title="x1",
+        yaxis_title="x2",
+        width=700,
+        height=650,
     )
     OUT_FIG.parent.mkdir(parents=True, exist_ok=True)
     fig.write_html(OUT_FIG, include_plotlyjs="cdn")

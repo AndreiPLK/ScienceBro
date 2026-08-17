@@ -70,6 +70,7 @@ def fail(msg: str) -> None:
 # Core objects (independent implementation)
 # ----------------------------------------------------------------------------
 
+
 def T_frac(n: int, lam: F) -> F:
     """Card slice-6 general law, exact Fractions."""
     return F(3 * (2 * n - 3), n * (n - 2)) * (lam * lam + (2 * n - 2) * lam + 1) + 2 * n
@@ -158,6 +159,7 @@ def min_T_over_n(lam: F, dmax: F):
 # A0: kinematic substitution vs paper Eq. (7)
 # ----------------------------------------------------------------------------
 
+
 def attack0():
     rng = random.Random(1)
     bad = []
@@ -175,13 +177,16 @@ def attack0():
     if bad:
         fail(f"A0 kinematics/product form mismatch at {bad}")
     else:
-        note("A0 PASS: t=-mu(n)(1-x)/2 substitution matches paper Eq.(7) "
-             "residues exactly (15 random exact points, n=2..6)")
+        note(
+            "A0 PASS: t=-mu(n)(1-x)/2 substitution matches paper Eq.(7) "
+            "residues exactly (15 random exact points, n=2..6)"
+        )
 
 
 # ----------------------------------------------------------------------------
 # A1: random exact points, bracket vs direct projection
 # ----------------------------------------------------------------------------
+
 
 def attack1(trials=40, seed=20260814):
     rng = random.Random(seed)
@@ -208,13 +213,16 @@ def attack1(trials=40, seed=20260814):
     if bad:
         fail(f"A1 bracket-vs-projection mismatches: {bad}")
     else:
-        note(f"A1 PASS: sign a_(n,2n-4) == sign(T_n - D) at {trials} random exact "
-             "points (odd/fractional D included); leading a_(n,2n-2) > 0 at all")
+        note(
+            f"A1 PASS: sign a_(n,2n-4) == sign(T_n - D) at {trials} random exact "
+            "points (odd/fractional D included); leading a_(n,2n-2) > 0 at all"
+        )
 
 
 # ----------------------------------------------------------------------------
 # A2: odd trajectories vanish identically (symbolic lambda)
 # ----------------------------------------------------------------------------
+
 
 def attack2():
     bad = []
@@ -230,14 +238,17 @@ def attack2():
     if bad:
         fail(f"A2 odd-vanishing / parity failure at n={bad}")
     else:
-        note("A2 PASS: R(n,t(x)) even in x symbolically for n=3..9 "
-             "(t<->u root pairing xi(k)+xi(n-k)=-mu(n)); odd a_(n,l) == 0; "
-             "q_(n-2) == 0 identically (cross-term bookkeeping forced)")
+        note(
+            "A2 PASS: R(n,t(x)) even in x symbolically for n=3..9 "
+            "(t<->u root pairing xi(k)+xi(n-k)=-mu(n)); odd a_(n,l) == 0; "
+            "q_(n-2) == 0 identically (cross-term bookkeeping forced)"
+        )
 
 
 # ----------------------------------------------------------------------------
 # A3: razor zeros at never-tested (lambda, D), solved from DIRECT projection
 # ----------------------------------------------------------------------------
+
 
 def razor(n: int, lam: F, expected):
     target = 2 * n - 4
@@ -263,8 +274,7 @@ def razor(n: int, lam: F, expected):
     num = sp.expand(sp.numer(sp.together(coeff)))
     roots = sp.solve(sp.Eq(num, 0), DD)
     hit = any(sp.simplify(r - expected) == 0 for r in roots)
-    spurious = [r for r in roots
-                if sp.simplify(r - expected) != 0 and r.is_real and r > 3]
+    spurious = [r for r in roots if sp.simplify(r - expected) != 0 and r.is_real and r > 3]
     return hit, roots, spurious
 
 
@@ -296,15 +306,18 @@ def attack3():
         ok = False
         fail(f"A3 sign flip n=6,lam=3: D=56 -> {lo6}, D*=57 -> {at6}, D=58 -> {hi6}")
     if ok:
-        note("A3 PASS: razor zeros at never-tested points confirmed from the "
-             "DIRECT projection with symbolic D: (n=5, lam=7/2) vanishes at "
-             "exactly D*=271/4 (fractional), (n=6, lam=3) at D*=57; exact sign "
-             "flips on both sides; no spurious real roots D>3")
+        note(
+            "A3 PASS: razor zeros at never-tested points confirmed from the "
+            "DIRECT projection with symbolic D: (n=5, lam=7/2) vanishes at "
+            "exactly D*=271/4 (fractional), (n=6, lam=3) at D*=57; exact sign "
+            "flips on both sides; no spurious real roots D>3"
+        )
 
 
 # ----------------------------------------------------------------------------
 # A4: full-(n,l) knife hunt (attacks C4 -- "no other knives")
 # ----------------------------------------------------------------------------
+
 
 def full_scan(lam: F, D: F, nmax: int):
     a = (D - 3) / 2
@@ -325,50 +338,61 @@ def attack4():
     t0 = time.time()
     alive_points = [
         # (lam, D, nmax) -- model says ALIVE (D <= min_n T_n(lam))
-        (F(1, 10), F(10), 30),    # near CHR onset; min T = T_3(0.1) = 10.23
-        (F(1, 20), F(8), 25),     # D < 9: model says nothing bites anywhere
-        (F(10), F(180), 40),      # large-lambda flank; min T ~ 187.5 (n~17)
-        (F(1), F(23), 25),        # VS at its exact cliff: a_{4,4}=0, rest >= 0
-        (F(1, 100), F(4), 30),    # slice-3/D=4 extremal corner, ALL l (re-check)
-        (F(100), F(4), 30),       # slice-3/D=4 other extremal corner, ALL l
+        (F(1, 10), F(10), 30),  # near CHR onset; min T = T_3(0.1) = 10.23
+        (F(1, 20), F(8), 25),  # D < 9: model says nothing bites anywhere
+        (F(10), F(180), 40),  # large-lambda flank; min T ~ 187.5 (n~17)
+        (F(1), F(23), 25),  # VS at its exact cliff: a_{4,4}=0, rest >= 0
+        (F(1, 100), F(4), 30),  # slice-3/D=4 extremal corner, ALL l (re-check)
+        (F(100), F(4), 30),  # slice-3/D=4 other extremal corner, ALL l
     ]
     dead_controls = [
-        (F(1, 20), F(10), 8, (3, 2)),   # model: dead, first knife (3,2)
-        (F(1), F(24), 8, (4, 4)),       # VS dies at D=24 via (4,4)
+        (F(1, 20), F(10), 8, (3, 2)),  # model: dead, first knife (3,2)
+        (F(1), F(24), 8, (4, 4)),  # VS dies at D=24 via (4,4)
     ]
     ok = True
     for lam, D, nmax in alive_points:
         mt, mtn = min_T_over_n(lam, D)
         model_alive = D <= mt
         neg, zeros = full_scan(lam, D, nmax)
-        note(f"A4 point lam={lam} D={D} n<={nmax}: min_n T_n = {mt} (n={mtn}), "
-             f"model={'ALIVE' if model_alive else 'DEAD'}, negatives={len(neg)}, "
-             f"even zeros={zeros[:6]}")
+        note(
+            f"A4 point lam={lam} D={D} n<={nmax}: min_n T_n = {mt} (n={mtn}), "
+            f"model={'ALIVE' if model_alive else 'DEAD'}, negatives={len(neg)}, "
+            f"even zeros={zeros[:6]}"
+        )
         if model_alive and neg:
             ok = False
-            fail(f"A4 KNIFE FOUND: lam={lam}, D={D}: negative a_(n,l) at "
-                 f"{neg[:10]} although D <= min_n T_n={mt} -- C4 falsified")
+            fail(
+                f"A4 KNIFE FOUND: lam={lam}, D={D}: negative a_(n,l) at "
+                f"{neg[:10]} although D <= min_n T_n={mt} -- C4 falsified"
+            )
         if not model_alive:
-            note(f"A4 WARNING: test point lam={lam},D={D} not in model-alive "
-                 "region; recheck point selection")
+            note(
+                f"A4 WARNING: test point lam={lam},D={D} not in model-alive "
+                "region; recheck point selection"
+            )
     for lam, D, nmax, knife in dead_controls:
         neg, _ = full_scan(lam, D, nmax)
         found = [(n, l) for (n, l, _) in neg]
         if knife not in found:
             ok = False
-            fail(f"A4 dead-control lam={lam},D={D}: expected knife {knife}, "
-                 f"negatives found: {found}")
+            fail(
+                f"A4 dead-control lam={lam},D={D}: expected knife {knife}, negatives found: {found}"
+            )
         else:
-            note(f"A4 dead-control PASS: lam={lam}, D={D}: knife {knife} "
-                 f"negative as predicted (all negatives: {found})")
+            note(
+                f"A4 dead-control PASS: lam={lam}, D={D}: knife {knife} "
+                f"negative as predicted (all negatives: {found})"
+            )
     if ok:
-        note(f"A4 PASS (no counterexample found; NOT a proof of C4). "
-             f"runtime {time.time()-t0:.1f}s")
+        note(
+            f"A4 PASS (no counterexample found; NOT a proof of C4). runtime {time.time() - t0:.1f}s"
+        )
 
 
 # ----------------------------------------------------------------------------
 # A5: symbolic re-derivation of the bracket (cross terms) and threshold == T_n
 # ----------------------------------------------------------------------------
+
 
 def attack5():
     bad = []
@@ -409,20 +433,24 @@ def attack5():
                 continue
             ratio = sp.cancel(cf / bnum)
             if not ratio.is_positive:
-                bad.append((n, f"projection/bracket ratio not positive at "
-                               f"lam={lv}, D={Dv}: {ratio}"))
+                bad.append(
+                    (n, f"projection/bracket ratio not positive at lam={lv}, D={Dv}: {ratio}")
+                )
     if bad:
         fail(f"A5 symbolic bookkeeping failures: {bad}")
     else:
-        note("A5 PASS: for n=3..8 (symbolic lambda): q_(n-2)==0, the x^(2n-4) "
-             "coefficient is PURE cross term 2 q_(n-1) q_(n-3) < 0, the bracket "
-             "C + A*rho has its unique D-root exactly at T_n(lambda), and the "
-             "full projection is a positive multiple of the bracket")
+        note(
+            "A5 PASS: for n=3..8 (symbolic lambda): q_(n-2)==0, the x^(2n-4) "
+            "coefficient is PURE cross term 2 q_(n-1) q_(n-3) < 0, the bracket "
+            "C + A*rho has its unique D-root exactly at T_n(lambda), and the "
+            "full projection is a positive multiple of the bracket"
+        )
 
 
 # ----------------------------------------------------------------------------
 # A6: envelope -- magic point, large-D asymptote, D=200 spot
 # ----------------------------------------------------------------------------
+
 
 def lam_root(n: int, Dval) -> float | None:
     """Positive root of T_n(lam)=D, float (exactness only needed at winners)."""
@@ -447,12 +475,13 @@ def attack6():
         ok = False
         fail(f"A6 magic point: T_n(1)<23 at {viol}; equality set {eq} != [4]")
     else:
-        note("A6 PASS: lam_min(23)=1 exact -- T_n(1) >= 23 for n=3..2000 with "
-             "equality only at n=4 (plus analytic: integer min of "
-             "2(n^2+4n-9)/(n-2) sits at n=4)")
+        note(
+            "A6 PASS: lam_min(23)=1 exact -- T_n(1) >= 23 for n=3..2000 with "
+            "equality only at n=4 (plus analytic: integer min of "
+            "2(n^2+4n-9)/(n-2) sits at n=4)"
+        )
     # VS threshold closed form vs T_n(1)
-    bad2 = [n for n in range(3, 200)
-            if T_frac(n, F(1)) != F(2 * (n * n + 4 * n - 9), n - 2)]
+    bad2 = [n for n in range(3, 200) if T_frac(n, F(1)) != F(2 * (n * n + 4 * n - 9), n - 2)]
     if bad2:
         ok = False
         fail(f"A6: T_n(1) != 2(n^2+4n-9)/(n-2) at n={bad2}")
@@ -468,9 +497,11 @@ def attack6():
             if r is not None and r > best_r:
                 best_r, best_n = r, n
         rows.append((Dv, best_n, best_r, Dv / best_r, 3**0.5 * best_r))
-        note(f"A6 envelope D={Dv}: lam_min~{best_r:.5f} (n*={best_n}), "
-             f"D/lam_min={Dv/best_r:.4f} vs 12+4sqrt3={target:.4f}, "
-             f"sqrt3*lam_min={3**0.5*best_r:.2f}")
+        note(
+            f"A6 envelope D={Dv}: lam_min~{best_r:.5f} (n*={best_n}), "
+            f"D/lam_min={Dv / best_r:.4f} vs 12+4sqrt3={target:.4f}, "
+            f"sqrt3*lam_min={3**0.5 * best_r:.2f}"
+        )
     drift = [abs(r[3] - target) for r in rows[-3:]]
     if not all(d < 0.2 for d in drift):
         ok = False
@@ -496,35 +527,43 @@ def attack6():
             break
     if not (c_lo < 0 and clean):
         ok = False
-        fail(f"A6 D=200 spot: below lam_min a_({best_n},{2*best_n-4})={c_lo} "
-             f"(want <0), above lam_min clean={clean} (want True)")
+        fail(
+            f"A6 D=200 spot: below lam_min a_({best_n},{2 * best_n - 4})={c_lo} "
+            f"(want <0), above lam_min clean={clean} (want True)"
+        )
     else:
-        note(f"A6 PASS: D=200 spot: a_({best_n},{2*best_n-4}) < 0 at "
-             f"lam_min-2e-5, trajectory clean for n<=60 at lam_min+2e-5")
+        note(
+            f"A6 PASS: D=200 spot: a_({best_n},{2 * best_n - 4}) < 0 at "
+            f"lam_min-2e-5, trajectory clean for n<=60 at lam_min+2e-5"
+        )
     return ok
 
 
 # ----------------------------------------------------------------------------
 
+
 def main() -> int:
     t0 = time.time()
     note("attack_gravity.py -- adversarial battery vs gravity-card slices 1-6")
-    note(f"sympy {sp.__version__}; seeds fixed; all sign decisions in exact "
-         "arithmetic")
-    for name, fn in [("A0", attack0), ("A1", attack1), ("A2", attack2),
-                     ("A3", attack3), ("A4", attack4), ("A5", attack5),
-                     ("A6", attack6)]:
+    note(f"sympy {sp.__version__}; seeds fixed; all sign decisions in exact arithmetic")
+    for name, fn in [
+        ("A0", attack0),
+        ("A1", attack1),
+        ("A2", attack2),
+        ("A3", attack3),
+        ("A4", attack4),
+        ("A5", attack5),
+        ("A6", attack6),
+    ]:
         try:
             fn()
         except Exception as e:  # report, keep going
             fail(f"{name} crashed: {type(e).__name__}: {e}")
     verdict = "NO FALSIFICATION" if not FAILURES else "FALSIFIED / ERRORS"
-    note(f"TOTAL: {verdict}; failures={len(FAILURES)}; "
-         f"runtime {time.time()-t0:.1f}s")
+    note(f"TOTAL: {verdict}; failures={len(FAILURES)}; runtime {time.time() - t0:.1f}s")
     RES.mkdir(exist_ok=True)
     out = RES / "attack_gravity.json"
-    out.write_text(json.dumps({"verdict": verdict, "failures": FAILURES,
-                               "log": NOTES}, indent=1))
+    out.write_text(json.dumps({"verdict": verdict, "failures": FAILURES, "log": NOTES}, indent=1))
     note(f"artifact: {out}")
     return 0 if not FAILURES else 1
 

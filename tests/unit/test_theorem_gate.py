@@ -18,11 +18,9 @@ import json
 import re
 from pathlib import Path
 
-RESULTS = (Path(__file__).resolve().parents[2] / "projects" / "qg-bootstrap"
-           / "results")
+RESULTS = Path(__file__).resolve().parents[2] / "projects" / "qg-bootstrap" / "results"
 
-PASS_FLAGS = ("all_certified", "far_below_factored",
-              "far_below_interval", "ok_so_far", "all_unsat")
+PASS_FLAGS = ("all_certified", "far_below_factored", "far_below_interval", "ok_so_far", "all_unsat")
 COUNT_FIELDS = ("cells", "y_coefficients")
 ARTIFACT_RE = re.compile(r"^[\w][\w\-]*\.json$")
 COMPLETE_RE = re.compile(r"\bCOMPLETE\b")
@@ -33,7 +31,7 @@ def artifact_problems(path: Path, expect_j: int) -> list[str]:
         return ["missing"]
     try:
         d = json.loads(path.read_text(encoding="utf-8"))
-    except Exception as exc:                       # noqa: BLE001
+    except Exception as exc:  # noqa: BLE001
         return [f"unparsable: {exc}"]
     bad = []
     flag = next((f for f in PASS_FLAGS if f in d), None)
@@ -74,10 +72,8 @@ def test_no_complete_theorem_without_passing_artifacts():
             continue
         for key, val in regions.items():
             if not isinstance(val, str) or not ARTIFACT_RE.match(val):
-                problems.append(f"{tf.name}: region '{key}' is not an "
-                                f"artifact filename ({val!r})")
+                problems.append(f"{tf.name}: region '{key}' is not an artifact filename ({val!r})")
                 continue
             for bad in artifact_problems(RESULTS / val, expect_j):
                 problems.append(f"{tf.name}: {val} -> {bad}")
-    assert not problems, (
-        "THEOREM GATE VIOLATIONS:\n" + "\n".join(problems))
+    assert not problems, "THEOREM GATE VIOLATIONS:\n" + "\n".join(problems)

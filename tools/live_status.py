@@ -21,34 +21,49 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRATCH = Path(r"C:\Users\user\AppData\Local\Temp\claude"
-               r"\C--Users-user-ScienceBro"
-               r"\93847525-923a-41ca-a919-bf7a73c639c3\scratchpad")
+SCRATCH = Path(
+    r"C:\Users\user\AppData\Local\Temp\claude"
+    r"\C--Users-user-ScienceBro"
+    r"\93847525-923a-41ca-a919-bf7a73c639c3\scratchpad"
+)
 SITE = SCRATCH / "site"
 RESULTS = ROOT / "projects" / "qg-bootstrap" / "results"
 OUT_LOCAL = ROOT / "live_status.html"
 CYCLE = 120
 PUSH_EVERY = 2
 
-LOGS = ["tail_rerun_j6", "tail_rerun_j7", "tail_rerun_j4", "tail_rerun_j5",
-        "belowdiag_j6", "belowdiag_j7", "farbelow_j6", "farbelow_j7",
-        "z3_retry_j4", "keystone_hunt"]
+LOGS = [
+    "tail_rerun_j6",
+    "tail_rerun_j7",
+    "tail_rerun_j4",
+    "tail_rerun_j5",
+    "belowdiag_j6",
+    "belowdiag_j7",
+    "farbelow_j6",
+    "farbelow_j7",
+    "z3_retry_j4",
+    "keystone_hunt",
+]
 
 
 def sh(cmd):
     try:
-        return subprocess.run(cmd, capture_output=True, text=True,
-                              timeout=30).stdout.strip()
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=30).stdout.strip()
     except Exception:
         return ""
 
 
 def processes():
-    out = sh(["powershell", "-NoProfile", "-c",
-              "Get-CimInstance Win32_Process -Filter \"Name='python.exe'\""
-              " | Select-Object -Expand CommandLine"])
-    return [line.strip() for line in out.splitlines()
-            if "live_status" not in line and line.strip()]
+    out = sh(
+        [
+            "powershell",
+            "-NoProfile",
+            "-c",
+            "Get-CimInstance Win32_Process -Filter \"Name='python.exe'\""
+            " | Select-Object -Expand CommandLine",
+        ]
+    )
+    return [line.strip() for line in out.splitlines() if "live_status" not in line and line.strip()]
 
 
 def log_tail(name):
@@ -64,16 +79,25 @@ def log_tail(name):
 
 
 def newest_results(k=6):
-    files = sorted(RESULTS.glob("*.json"), key=lambda f: f.stat().st_mtime,
-                   reverse=True)[:k]
+    files = sorted(RESULTS.glob("*.json"), key=lambda f: f.stat().st_mtime, reverse=True)[:k]
     out = []
     for f in files:
         try:
             d = json.loads(f.read_text(encoding="utf-8"))
-            verdict = next((f"{key}={d[key]}" for key in
-                            ("all_certified", "far_below_factored",
-                             "all_unsat", "ok_so_far", "violations")
-                            if key in d), "")
+            verdict = next(
+                (
+                    f"{key}={d[key]}"
+                    for key in (
+                        "all_certified",
+                        "far_below_factored",
+                        "all_unsat",
+                        "ok_so_far",
+                        "violations",
+                    )
+                    if key in d
+                ),
+                "",
+            )
             ts = datetime.datetime.fromtimestamp(f.stat().st_mtime)
             out.append((f.name, str(verdict), ts.strftime("%H:%M")))
         except Exception:
@@ -88,14 +112,19 @@ def datalog_tail(n=14):
     return heads[-n:][::-1]
 
 
-
 STAGE_LOGS = {
     4: [("tail_rerun_j4", "хвосты+глубина", 35)],
     5: [("tail_rerun_j5", "хвосты+глубина", 35)],
-    6: [("farbelow_j6", "далёкое дно", 20), ("belowdiag_j6", "полоса у диагонали", 20),
-        ("tail_rerun_j6", "хвосты+глубина", 35)],
-    7: [("farbelow_j7", "далёкое дно", 20), ("belowdiag_j7", "полоса у диагонали", 20),
-        ("tail_rerun_j7", "хвосты+глубина", 35)],
+    6: [
+        ("farbelow_j6", "далёкое дно", 20),
+        ("belowdiag_j6", "полоса у диагонали", 20),
+        ("tail_rerun_j6", "хвосты+глубина", 35),
+    ],
+    7: [
+        ("farbelow_j7", "далёкое дно", 20),
+        ("belowdiag_j7", "полоса у диагонали", 20),
+        ("tail_rerun_j7", "хвосты+глубина", 35),
+    ],
 }
 
 
@@ -150,16 +179,17 @@ def knife_progress(j):
 
 
 def bar(pct, color1="#ff2a6d", color2="#3fe7f5"):
-    return (f"<div class='bar'><div class='fill' style='width:{pct}%;"
-            f"background:linear-gradient(90deg,{color1},{color2})'></div>"
-            f"<span class='pct'>{pct}%</span></div>")
+    return (
+        f"<div class='bar'><div class='fill' style='width:{pct}%;"
+        f"background:linear-gradient(90deg,{color1},{color2})'></div>"
+        f"<span class='pct'>{pct}%</span></div>"
+    )
 
 
 def stage_chips(stages, running_hint=""):
     out = ""
     for label, ok in stages:
-        cls = "on" if ok else ("run" if running_hint and label in running_hint
-                               else "off")
+        cls = "on" if ok else ("run" if running_hint and label in running_hint else "off")
         mark = "✔" if ok else ("⏳" if cls == "run" else "·")
         out += f"<span class='chip {cls}'>{mark} {label}</span>"
     return out
@@ -174,21 +204,28 @@ def z3_progress():
     extra = 0
     pr = RESULTS / "z3_judge_j4_retry.json"
     if pr.exists():
-        extra = len(json.loads(pr.read_text(encoding="utf-8"))
-                    .get("confirmed", []))
+        extra = len(json.loads(pr.read_text(encoding="utf-8")).get("confirmed", []))
     pct = round(100 * (done + extra) / d["cells"])
-    return pct, (f"{done + extra} из {d['cells']} ячеек подтверждены чужим "
-                 f"движком, тревог: {len(d.get('alarms', []))}")
+    return pct, (
+        f"{done + extra} из {d['cells']} ячеек подтверждены чужим "
+        f"движком, тревог: {len(d.get('alarms', []))}"
+    )
 
 
 def keystone_progress():
     steps = [
-        ("охота на контрпримеры (109 980 проверок, 0 нарушений)",
-         (RESULTS / "keystone_hunt.json").exists()),
-        ("замер отношения уровней (972 проверки, всё > 0)",
-         (RESULTS / "keystone_ratio_probe.json").exists()),
-        ("ядро с константой 0.29 (арка не касается пола)",
-         (RESULTS / "keystone_kernel_probe.json").exists()),
+        (
+            "охота на контрпримеры (109 980 проверок, 0 нарушений)",
+            (RESULTS / "keystone_hunt.json").exists(),
+        ),
+        (
+            "замер отношения уровней (972 проверки, всё > 0)",
+            (RESULTS / "keystone_ratio_probe.json").exists(),
+        ),
+        (
+            "ядро с константой 0.29 (арка не касается пола)",
+            (RESULTS / "keystone_kernel_probe.json").exists(),
+        ),
         ("две простые леммы проверены и отброшены (биномиальный след)", True),
         ("X-лемма в поясе (сертификат)", False),
         ("аргумент вне пояса + сборка", False),
@@ -197,11 +234,16 @@ def keystone_progress():
     return pct, steps
 
 
-
 TASK_HUMAN = {
-    "farbelow-j6": ("дно ножа 6", "проверяем самое глубокое дно: раскладываем формулу на множители и доказываем, что каждый положителен"),
+    "farbelow-j6": (
+        "дно ножа 6",
+        "проверяем самое глубокое дно: раскладываем формулу на множители и доказываем, что каждый положителен",
+    ),
     "farbelow-j7": ("дно ножа 7", "тот же приём победителя для седьмого ножа"),
-    "belowdiag-j6": ("полоса ножа 6", "узкая полоса у диагонали — самое капризное место, режем на ячейки и сертифицируем каждую"),
+    "belowdiag-j6": (
+        "полоса ножа 6",
+        "узкая полоса у диагонали — самое капризное место, режем на ячейки и сертифицируем каждую",
+    ),
     "belowdiag-j7": ("полоса ножа 7", "та же полоса для седьмого ножа"),
     "tails-j4": ("хвосты ножа 4", "перепроверяем длинные хвосты честно, с записью каждого этапа"),
     "tails-j5": ("хвосты ножа 5", "перепроверяем длинные хвосты честно"),
@@ -226,23 +268,25 @@ def now_story():
     name, expl = TASK_HUMAN.get(cur, (cur, ""))
     total = 8
     done_n = len([d for d in dones if any(t in d for t in TASK_HUMAN)])
-    story = (f"Машина считает: <b>{name}</b> (задача {min(done_n+1,total)} из "
-             f"{total}, старт {started_hm}). {expl}.")
+    story = (
+        f"Машина считает: <b>{name}</b> (задача {min(done_n + 1, total)} из "
+        f"{total}, старт {started_hm}). {expl}."
+    )
     nxt = ""
     keys = list(TASK_HUMAN)
     if cur in keys:
-        after = [TASK_HUMAN[k][0] for k in keys[keys.index(cur)+1:][:2]]
+        after = [TASK_HUMAN[k][0] for k in keys[keys.index(cur) + 1 :][:2]]
         if after:
             nxt = "Дальше в очереди: " + ", ".join(after) + "."
     return story, nxt
-
 
 
 def road_html(knives, key, asm, eta):
     """Карта уровней как в игре: ноды-кружки с кольцом прогресса."""
     nd = eta.get("node_days", {})
     nodes = [
-        ("🔪", "Нож 2", 100, ""), ("🔪", "Нож 3", 100, ""),
+        ("🔪", "Нож 2", 100, ""),
+        ("🔪", "Нож 3", 100, ""),
         ("🔪", "Нож 4", knives[4], nd.get("4", "")),
         ("🔪", "Нож 5", knives[5], nd.get("5", "")),
         ("🔪", "Нож 6", knives[6], nd.get("6", "")),
@@ -254,7 +298,7 @@ def road_html(knives, key, asm, eta):
     out = "<div class='quest'><div class='qrow'>"
     for i, (ico, name, pct, days) in enumerate(nodes):
         if i > 0:
-            lcls = "qlink done" if nodes[i-1][2] >= 100 else "qlink"
+            lcls = "qlink done" if nodes[i - 1][2] >= 100 else "qlink"
             out += f"<div class='{lcls}'></div>"
         if pct >= 100:
             cls, badge = "qnode done", "✔"
@@ -265,17 +309,20 @@ def road_html(knives, key, asm, eta):
             cls, badge = "qnode locked", "🔒"
         deg = round(pct * 3.6)
         extra = f"<br><span class='qdays'>{days}</span>" if days else ""
-        style = (f"background:conic-gradient(#3fe7f5 {deg}deg,"
-                 f"#241a38 {deg}deg)")
-        out += (f"<div class='qcell'><div class='{cls}' style='{style}'>"
-                f"<div class='qin'>{ico}</div></div>"
-                f"<div class='qname'>{name}</div>"
-                f"<div class='qpct'>{badge}{extra}</div></div>")
-    out += ("</div>"
-            f"<div class='t' style='margin-top:10px;text-align:center'>"
-            f"⏱ {eta['total']} · замер {eta['updated']} · "
-            "✔ = уровень пройден, пульс = играем сейчас, "
-            "🔒 = откроется дальше</div></div>")
+        style = f"background:conic-gradient(#3fe7f5 {deg}deg,#241a38 {deg}deg)"
+        out += (
+            f"<div class='qcell'><div class='{cls}' style='{style}'>"
+            f"<div class='qin'>{ico}</div></div>"
+            f"<div class='qname'>{name}</div>"
+            f"<div class='qpct'>{badge}{extra}</div></div>"
+        )
+    out += (
+        "</div>"
+        f"<div class='t' style='margin-top:10px;text-align:center'>"
+        f"⏱ {eta['total']} · замер {eta['updated']} · "
+        "✔ = уровень пройден, пульс = играем сейчас, "
+        "🔒 = откроется дальше</div></div>"
+    )
     return out
 
 
@@ -283,9 +330,9 @@ def render():
     now = datetime.datetime.now().strftime("%H:%M:%S %d.%m.%Y")
     story, nxt = now_story()
     try:
-        eta = json.loads((ROOT / 'tools' / 'eta.json').read_text(encoding='utf-8'))
+        eta = json.loads((ROOT / "tools" / "eta.json").read_text(encoding="utf-8"))
     except Exception:
-        eta = {'updated': '-', 'conveyor': '-', 'keystone': '-', 'total': '-'}
+        eta = {"updated": "-", "conveyor": "-", "keystone": "-", "total": "-"}
     procs = processes()
     running = " ".join(procs)
     hints = ""
@@ -310,11 +357,11 @@ def render():
     road = road_html(done_knives, kpct0, 0, eta)
     kpct, ksteps = keystone_progress()
     ksteps_html = "".join(
-        f"<li class='{'on' if ok else 'off'}'>{'✔' if ok else '·'} "
-        f"{html.escape(t)}</li>" for t, ok in ksteps)
+        f"<li class='{'on' if ok else 'off'}'>{'✔' if ok else '·'} {html.escape(t)}</li>"
+        for t, ok in ksteps
+    )
 
-    grand = round((sum(done_knives.values()) / len(done_knives)) * 0.6
-                  + kpct * 0.4)
+    grand = round((sum(done_knives.values()) / len(done_knives)) * 0.6 + kpct * 0.4)
 
     rows_logs = ""
     for name in LOGS:
@@ -323,9 +370,11 @@ def render():
             continue
         last, age = t
         state = "🟢" if age < 20 else ("🟡" if age < 90 else "⚪")
-        rows_logs += (f"<tr><td>{state} {name}</td>"
-                      f"<td class='mono'>{html.escape(last[-100:])}</td>"
-                      f"<td class='t'>{age} мин</td></tr>")
+        rows_logs += (
+            f"<tr><td>{state} {name}</td>"
+            f"<td class='mono'>{html.escape(last[-100:])}</td>"
+            f"<td class='t'>{age} мин</td></tr>"
+        )
 
     return f"""<!doctype html><html><head><meta charset="utf-8">
 <meta http-equiv="refresh" content="30">
@@ -413,16 +462,21 @@ box-shadow:0 0 8px #0aa3c2}}
 def push_site(page):
     try:
         (SITE / "live.html").write_text(page, encoding="utf-8")
-        subprocess.run(["git", "pull", "-q", "origin", "main"], cwd=SITE,
-                       capture_output=True, timeout=60)
-        subprocess.run(["git", "add", "live.html"], cwd=SITE,
-                       capture_output=True, timeout=30)
-        r = subprocess.run(["git", "commit", "-q", "-m", "live status"],
-                           cwd=SITE, capture_output=True, text=True,
-                           timeout=30)
+        subprocess.run(
+            ["git", "pull", "-q", "origin", "main"], cwd=SITE, capture_output=True, timeout=60
+        )
+        subprocess.run(["git", "add", "live.html"], cwd=SITE, capture_output=True, timeout=30)
+        r = subprocess.run(
+            ["git", "commit", "-q", "-m", "live status"],
+            cwd=SITE,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
         if r.returncode == 0:
-            subprocess.run(["git", "push", "-q", "origin", "main"], cwd=SITE,
-                           capture_output=True, timeout=120)
+            subprocess.run(
+                ["git", "push", "-q", "origin", "main"], cwd=SITE, capture_output=True, timeout=120
+            )
     except Exception as e:
         print("push failed:", e, flush=True)
 
@@ -435,8 +489,7 @@ def main():
         OUT_LOCAL.write_text(page, encoding="utf-8")
         if cycle % PUSH_EVERY == 0:
             push_site(page)
-        print(f"cycle {cycle} ok {datetime.datetime.now():%H:%M:%S}",
-              flush=True)
+        print(f"cycle {cycle} ok {datetime.datetime.now():%H:%M:%S}", flush=True)
         if not daemon:
             break
         cycle += 1

@@ -70,9 +70,21 @@ def export_points(model_path: str, points: np.ndarray) -> tuple[np.ndarray, dict
 
         env = dict(os.environ, WANDB_MODE="disabled")
         r = subprocess.run(
-            [str(UPSTREAM_PY), str(EXPORTER), "--model", model_path,
-             "--points", str(pin), "--out", str(pout)],
-            cwd=CHECKOUT, capture_output=True, text=True, timeout=600, env=env,
+            [
+                str(UPSTREAM_PY),
+                str(EXPORTER),
+                "--model",
+                model_path,
+                "--points",
+                str(pin),
+                "--out",
+                str(pout),
+            ],
+            cwd=CHECKOUT,
+            capture_output=True,
+            text=True,
+            timeout=600,
+            env=env,
         )
         if r.returncode != 0:
             raise RuntimeError(f"exporter failed:\n{r.stderr[-2000:]}")

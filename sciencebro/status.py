@@ -74,7 +74,9 @@ def compute_status(paths: RepoPaths, project_id: str) -> ProjectStatus:
     try:
         exps = store.experiments()
         st.experiments = len(exps)
-        st.experiments_frozen = sum(1 for x in exps if x.status in ("frozen", "running", "completed"))
+        st.experiments_frozen = sum(
+            1 for x in exps if x.status in ("frozen", "running", "completed")
+        )
     except StoreError as err:
         st.errors.append(str(err))
 
