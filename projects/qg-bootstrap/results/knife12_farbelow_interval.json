@@ -1,5 +1,5 @@
 {
- "j": 5,
+ "j": 12,
  "far_below_interval": true,
  "cells": 1,
  "strict_positive": true,
@@ -8,7 +8,7 @@
  "elev": 0,
  "depth": 5,
  "failed_cells": [],
- "command": "KNIFE_J=5 python lab/knife_farbelow3.py",
+ "command": "KNIFE_J=12 python lab/knife_farbelow3.py",
  "git": "8624211903ab",
  "git_full": "8624211903abaa8c3ab91571bf57604c99c91cb8",
  "dirty": false,
@@ -17,5 +17,5 @@
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 0.8
+ "runtime_s": 503.4
 }

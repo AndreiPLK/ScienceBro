@@ -20,15 +20,13 @@
   "BERN_ELEV": 0
  },
  "command": "KNIFE_J=9 python lab/knife_tail2.py",
- "git": "c77475ef5a82",
- "git_full": "c77475ef5a826d0ca54b2ef2bc30a56784cdf270",
- "dirty": true,
- "dirty_code_files": [
-  "projects/qg-bootstrap/lab/knife_farbelow2.py"
- ],
- "dirty_count": 1,
+ "git": "8624211903ab",
+ "git_full": "8624211903abaa8c3ab91571bf57604c99c91cb8",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 62.4
+ "runtime_s": 63.0
 }
