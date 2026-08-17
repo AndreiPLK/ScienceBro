@@ -1,0 +1,252 @@
+{
+ "claim": "J(Q) > 0 for EVERY lam on each shore branch and every D from 4 up to the shore -- lam carried symbolically",
+ "certificate": "nonnegative coefficients of the cleared numerator N(w,v) after lam = (a+bv)/(1+v) and Q = Q_low + Delta(lam) w/(1+w)",
+ "uniform_clearing": "every term carries exactly (1+v)^{2(j-1)} and (1+w)^{j-1}",
+ "coverage": {
+  "j": "2..12",
+  "n": "max(4,j+1)..+16 step 2",
+  "branches": "k=3..45, i.e. lam in (0, 26.10]",
+  "NOT covered": "lam above the last branch; needs the tail argument, as in the knife theorems"
+ },
+ "cells": 3784,
+ "certified": 3762,
+ "all_certified": false,
+ "bisection_depth_histogram": {
+  "0": 3762
+ },
+ "failures": [
+  {
+   "j": 2,
+   "n": 4,
+   "k": 5,
+   "lam_range": [
+    "3/2",
+    "21/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "k": 7,
+   "lam_range": [
+    "27/10",
+    "33/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "k": 8,
+   "lam_range": [
+    "33/10",
+    "39/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "k": 9,
+   "lam_range": [
+    "39/10",
+    "9/2"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 8,
+   "k": 9,
+   "lam_range": [
+    "39/10",
+    "9/2"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 8,
+   "k": 10,
+   "lam_range": [
+    "9/2",
+    "51/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 8,
+   "k": 11,
+   "lam_range": [
+    "51/10",
+    "57/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 10,
+   "k": 11,
+   "lam_range": [
+    "51/10",
+    "57/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 10,
+   "k": 12,
+   "lam_range": [
+    "57/10",
+    "63/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 10,
+   "k": 13,
+   "lam_range": [
+    "63/10",
+    "69/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "k": 13,
+   "lam_range": [
+    "63/10",
+    "69/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "k": 14,
+   "lam_range": [
+    "69/10",
+    "15/2"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "k": 15,
+   "lam_range": [
+    "15/2",
+    "81/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 14,
+   "k": 15,
+   "lam_range": [
+    "15/2",
+    "81/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 14,
+   "k": 16,
+   "lam_range": [
+    "81/10",
+    "87/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 14,
+   "k": 17,
+   "lam_range": [
+    "87/10",
+    "93/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 16,
+   "k": 17,
+   "lam_range": [
+    "87/10",
+    "93/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 16,
+   "k": 18,
+   "lam_range": [
+    "93/10",
+    "99/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 16,
+   "k": 19,
+   "lam_range": [
+    "99/10",
+    "21/2"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "k": 19,
+   "lam_range": [
+    "99/10",
+    "21/2"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "k": 20,
+   "lam_range": [
+    "21/2",
+    "111/10"
+   ],
+   "depth_reached": 5
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "k": 21,
+   "lam_range": [
+    "111/10",
+    "117/10"
+   ],
+   "depth_reached": 5
+  }
+ ],
+ "validation": "sign of N matches exact rational J at interior sample points (3 cells x 9 points)",
+ "command": "KJ_MAX=12 python lab/keystone_symbolic.py",
+ "git": "90f01b87b058",
+ "git_full": "90f01b87b05809e138d8fca6773d6c2d03e81fdb",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_symbolic.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 37.8
+}
