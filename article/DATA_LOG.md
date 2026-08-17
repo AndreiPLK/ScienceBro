@@ -1240,3 +1240,24 @@ derive CHR sum rules numerically, then in closed form.
   P_j is equivalent to a WEIGHTED inequality between the c_i^2 of G_n^2 in
   L's orthogonal basis — a finite, explicit inequality for each (j, n).
   The keystone is now: prove that inequality uniformly in j.
+
+## 2026-08-17 (day) — far-below BOUNDARY BROKEN: interval certificate works
+- lab/knife_farbelow3.py: instead of the y-expansion (fails from j=9), map
+  D to a FINITE interval, D = 4 + (T_cap-4)*th, and certify with Bernstein
+  in (thL, th) + orthant in (v, K3). Result: far-below CLOSED for
+  j = 4,5,6,7,8,9,10,11 in 0-222 s each (ONE cell, no bisection needed).
+  => knives 9, 10, 11 now have all four regions; consolidated as COMPLETE.
+- Keystone hypotheses 9 and 10 falsified: (9) L's orthogonal norms have
+  mixed signs (L indefinite) so the orthogonal expansion alone does not
+  decide; (10) the Hankel form H_{pq}=A_{p+q} is NOT always Lorentzian —
+  exact Jacobi-rule signature counts give 1, 2 or 3 negative directions
+  (63/96/73 cases). Two more clean negatives, each with a signature.
+- Structural map of the hard regime (fixed spin, n -> inf): argmax_t |a_t|
+  grows like ~n/4 (3,5,7,11 at n=12,20,30,44) and the tail after the max is
+  1-3 times the max itself. So no crude majorant can work: the theorem
+  needs the exact cancellation, confirming the binomial-collapse picture.
+- NEW LEAD (from the closed form): our G(x) = prod (1 - a^2 x) with a in an
+  arithmetic progression is exactly the argument structure of the RACAH /
+  WILSON polynomial family (quadratic-lattice orthogonal polynomials).
+  If L[G^2] is a connection coefficient in that family, positivity may be a
+  known theorem. Next: literature check on that specific identification.
