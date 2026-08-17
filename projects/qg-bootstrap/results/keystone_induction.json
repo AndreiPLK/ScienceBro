@@ -1,0 +1,30 @@
+{
+ "purpose": "exact induction in the level n, needed because the kernel has a number of factors growing with n and so cannot be made symbolic in n",
+ "fact_1": {
+  "statement": "F_{n+2}(y) = F_n(y) * (1 - n^2 y)^2",
+  "meaning": "each level adds exactly one DOUBLE root at y = 1/n^2, at the outer edge of the root set",
+  "checks": 57,
+  "failures": [],
+  "verified": true
+ },
+ "fact_2": {
+  "statement": "H_{n+2} = (n-theta)(n+1-theta) [ Q_n(theta)F_n - 2n^2 y Q_n(theta+1)F_n + n^4 y^2 Q_n(theta+2)F_n ]",
+  "tool": "Weyl algebra: p(theta) y^m f = y^m p(theta+m) f",
+  "checks": 72,
+  "failures": [],
+  "verified": true
+ },
+ "honest_limitation": "the step is exact but NOT sign-preserving on its face: the prefactor (n-t)(n+1-t) is positive on the surviving range t <= j-1 < n, but the bracket carries -2n^2 and +n^4 with shifted operators, so positivity does not propagate for free. It gives a closed three-term system in Q_n(theta+sigma)F_n, sigma = 0,1,2 -- the object to attack next",
+ "command": "python lab/keystone_induction.py",
+ "git": "5a43e6afc4b3",
+ "git_full": "5a43e6afc4b34523f2c25b5127e78fa3cd10bad3",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_induction.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 0.2
+}

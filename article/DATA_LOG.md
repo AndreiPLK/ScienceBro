@@ -1711,3 +1711,42 @@ regenerated with the fix, and the certificate came out cleaner than before.
 Status after this block: step 1 (symbolic lam) DONE for j >= 3; step 2
 (unbounded n and j) still open -- that remains the only creative gap.
 Commit 301505c.
+
+## 2026-08-17 13:37 -- Step 2 groundwork: an exact induction in the level n
+
+The obstacle for step 2 is structural, not technical: the kernel
+
+    F_n(y) = sum_t (-1)^t E_2t(n) y^t = [ prod_{a in S_n} (1 - a^2 y) ]^2,
+    S_n = { n - 2k > 0 },
+
+has a NUMBER OF FACTORS growing with n, so unlike lam it cannot be carried
+symbolically. Two exact facts replace that (results/keystone_induction.json,
+57 + 72 checks in rational arithmetic, zero failures):
+
+**Fact 1, kernel recursion.** S_{n+2} = S_n union {n}, hence
+
+    F_{n+2}(y) = F_n(y) * (1 - n^2 y)^2 .
+
+Every level adds exactly ONE DOUBLE root, at y = 1/n^2, and it enters at
+the OUTER edge of the root set. That is the same double-root structure that
+made the square identity work, now appearing as a ladder in n.
+
+**Fact 2, operator induction step.** With theta = y d/dy the bracket is
+H_n = Q_n(theta) F_n, Q_n(t) = prod_{i=j}^{n-1}(i-t), and Q_{n+2}(t) =
+Q_n(t)(n-t)(n+1-t). Commuting the operator past the new factor with the
+Weyl relation p(theta) y^m f = y^m p(theta+m) f gives the closed step
+
+    H_{n+2} = (n-theta)(n+1-theta) [ Q_n(theta) F_n
+              - 2n^2 y Q_n(theta+1) F_n + n^4 y^2 Q_n(theta+2) F_n ] .
+
+**Honest limitation, stated before anyone asks.** The step is exact but NOT
+sign-preserving on its face. The prefactor (n-t)(n+1-t) is positive on the
+surviving range (t <= j-1 < n), but the bracket carries -2n^2 and +n^4 with
+shifted operators, so positivity of H_n does not propagate for free. What
+the step gives is a CLOSED three-term system in the shifted family
+Q_n(theta + sigma) F_n for sigma = 0, 1, 2 -- the right object to attack,
+and the next thing I attack.
+
+Also in this block: the symbolic-lam certificate (step 1) has now been
+pushed to j = 19 -- 7310 cells, zero failures, every one at bisection depth
+zero.
