@@ -1389,3 +1389,22 @@ Immediate next steps inside the canyon:
   (b) attempt Mansfield's trick: add a term with vanishing residue that
       cancels the negative Laurent coefficients of the integrand;
   (c) both are now concrete manipulations of one explicit integral.
+
+## 2026-08-17 (canyon, evening) — integrand structure mapped; 15th negative
+- Negative Laurent coefficients of the contour integrand sit on a STRICT
+  CHECKERBOARD: even NEGATIVE powers (-2, -4, -6, ...) and odd POSITIVE
+  powers (1, 3, 5, ...); the x^0 coefficient (= the answer) is positive.
+  Fraction of negative coefficients grows slowly: 0.41 (j=6) -> 0.45 (j=12).
+- FALSIFIED (15th): adjacent pairing (cancel each odd term with its even
+  neighbour) does NOT work — 1-3 pairs out of 3-7 stay negative for every j
+  tested. So a local Leibniz-style pairing cannot close the theorem, in line
+  with the earlier Leibniz failure.
+- What the pairing test DOES tell us: the cancellation is NON-LOCAL — the
+  positive mass that beats a given negative term sits several indices away.
+  That is precisely what Mansfield's "add a vanishing-residue term" trick is
+  for: it redistributes the mass globally inside the contour integral.
+- Progress this session (all recorded, all reproducible): exact margin law
+  (positive, decaying by ~11x per +2 in j), saddle position (t*/j ~ 0.42),
+  the CONTOUR REPRESENTATION (verified 1e-13), and the checkerboard structure
+  of the obstruction. The keystone is now a concrete manipulation of one
+  explicit integral rather than a search for a strategy.
