@@ -1500,3 +1500,14 @@ them was a real-axis estimate, and the answer lives off the real axis.
   G^2(x) Psi(1/x) — solve d/dx log(integrand) = 0 numerically, then deform the
   contour through them. That is precisely the AEHM manoeuvre and it is exact
   for our finite sum.
+
+## 2026-08-18 (canyon, 01:30) — naive saddle summation FAILS (17th negative)
+Summing the two dominant complex saddles with the standard Gaussian formula
+overshoots by 250+ orders of magnitude (10^254 vs the true 6.7e-4). Cause is
+textbook: with several saddles present, only those on the correctly deformed
+steepest-descent path contribute (Stokes phenomenon), and the naive sum adds
+exponentially large non-contributing ones. Recorded as negative #17.
+Correct route: determine the steepest-descent topology (which saddles are
+"active" for our parameter range) before summing — the same care AEHM took
+when deforming to the Hankel contour. This is a well-defined but delicate step
+and is now the single open item of the keystone.
