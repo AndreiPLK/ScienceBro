@@ -1228,3 +1228,15 @@ derive CHR sum rules numerically, then in closed form.
   expand G_n^2 in the basis where L is diagonal (L's own orthogonal
   polynomials) — the expansion coefficients are then explicit and their
   signs decide the theorem. NEXT SHORTEST EXPERIMENT for the next session.
+
+## 2026-08-17 (day) — ORTHOGONAL-POLYNOMIAL route: L is INDEFINITE (9th negative)
+- Gram-Schmidt for the functional L (L[x^t] = A_t) at four representative
+  belt points: the norms L[p_i^2] have signs ++-, ++-+, ++-++, +-+-+- —
+  i.e. L is INDEFINITE (as expected from non-momentness) and the sum
+  L[G^2] = sum c_i^2 L[p_i^2] mixes signs. So the orthogonal expansion does
+  NOT by itself decide positivity: the theorem lives in the interplay of the
+  expansion coefficients c_i of THIS square with the indefinite norms.
+- Sharper consequence (this is progress, not just a dead end): positivity of
+  P_j is equivalent to a WEIGHTED inequality between the c_i^2 of G_n^2 in
+  L's orthogonal basis — a finite, explicit inequality for each (j, n).
+  The keystone is now: prove that inequality uniformly in j.
