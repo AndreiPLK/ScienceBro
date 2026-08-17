@@ -1949,3 +1949,38 @@ sum -- which is the saddle/Abel-Plana route where the Stokes topology was
 the obstacle. The margin law therefore stays exactly where it was recorded:
 a measured regularity with an explicit falsifier, not a theorem, and the
 closed form 12/5 stays a guess.
+
+## 2026-08-17 14:19 -- A TOOL DEFECT found and fixed; negative #24
+
+**Negative #24: the margin is NOT monotone in j pointwise.** I hoped that at
+fixed (n, lam) the margin grows with j, which would reduce the whole theorem
+to the first few knives. It does not: 4 violations out of 12 tested (n, lam)
+pairs. The monotonicity that IS real is only of the MINIMUM over (n, lam),
+not of the value at a fixed cell. So the reduction to small j does not follow
+this way.
+
+**And chasing those violations exposed a defect in my own instrument.**
+threshold_D bisected [4, 40*shore] directly, which is valid only if J has a
+SINGLE sign change there. Fine-grid counting shows J can have 5 or even 9
+sign changes on that stretch: at (j=6, n=44, lam=7) the first flip is at 1.18
+of the shore, while bisection reported 1.69. Any number produced for such a
+cell was simply wrong -- including some of the "violations" of monotonicity I
+had just recorded.
+
+Fixed: a coarse scan now locates the FIRST sign change and bisection refines
+only inside that bracket. The docstring records what went wrong.
+
+**Both earlier conclusions RE-CHECKED after the fix, and both survive.**
+  * The margin law is unchanged: gap/(j-2) = 2.3971 .. 2.4015 over j = 4, 6,
+    8, 10 and lam = 100, 250 -- identical to before, because in the
+    dangerous cells (n near k) J has exactly ONE sign change, where the old
+    bisection was already correct.
+  * Low spin dominance still fails: over 46 (j, lam) cells the minimising
+    spin is never l <= 2; the minimisers run from l = 8 to l = 90.
+
+Why this matters beyond the numbers: the defect only bit in cells where the
+polynomial oscillates several times, and those were never the tight cells.
+But it could have bitten the headline result, and it was found only because
+a monotonicity check produced values that looked implausible. Recording the
+pattern: when a measured quantity jumps around (1.23, 1.69, 1.51, 1.24,
+2.05), suspect the measuring tool before believing the pattern.

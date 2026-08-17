@@ -49,20 +49,40 @@ def peval(p, x: Fraction) -> Fraction:
     return v
 
 
-def threshold_D(j: int, n: int, lam: Fraction, hi_mult: int = 40):
-    """Smallest D >= 4 where J turns non-positive; None if never."""
+def threshold_D(j: int, n: int, lam: Fraction, hi_mult: int = 40,
+                coarse: int = 600):
+    """FIRST D >= 4 where J turns non-positive; None if it never does.
+
+    TOOL FIX (2026-08-17): the earlier version bisected [4, hi] directly,
+    which is only valid when J has a single sign change. Measured: J can
+    have 5 or even 9 sign changes on this stretch (e.g. j=6, n=44, lam=7),
+    and plain bisection then returns a LATER root -- it reported 1.69 of the
+    shore where the first flip is at 1.18. Any conclusion drawn from those
+    numbers was wrong. Now: a coarse scan locates the FIRST sign change, and
+    bisection refines only inside that bracket.
+    """
     pol = J_poly_in_Q(j, n, lam)
     off = Fraction(n - j - 2)
 
     def val(D):
         return peval(pol, Fraction(D, 2) + off)
 
-    lo = Fraction(4)
-    hi = Fraction(hi_mult) * T_hat(lam)
-    if val(lo) <= 0:
-        return lo
-    if val(hi) > 0:
+    lo0 = Fraction(4)
+    hi0 = Fraction(hi_mult) * T_hat(lam)
+    if val(lo0) <= 0:
+        return lo0
+    prev_D, prev_s = lo0, 1
+    bracket = None
+    for i in range(1, coarse + 1):
+        D = lo0 + (hi0 - lo0) * Fraction(i, coarse)
+        s = 1 if val(D) > 0 else -1
+        if s != prev_s:
+            bracket = (prev_D, D)
+            break
+        prev_D, prev_s = D, s
+    if bracket is None:
         return None
+    lo, hi = bracket
     for _ in range(70):
         mid = (lo + hi) / 2
         if val(mid) > 0:
