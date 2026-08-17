@@ -2321,3 +2321,59 @@ Net position on coverage after this block:
   * D: the whole stretch below the shore, by the classical descent lemma;
   * j: finite -- 2..10 confirmed, larger run in progress. Still the only gap,
     together with lam beyond the last branch.
+
+## 2026-08-17 17:21 -- THE LADDER IN THE KNIFE INDEX (new, and it explains the parity)
+
+After six failed attempts on the last gap I stopped trying new tricks and asked
+what the failures had in common. All six tried to TAKE THE SUM APART -- pairs,
+tails, thresholds, external criteria. All died. What had ever worked in this
+programme was of one kind only: tools that keep the whole structure intact, an
+integral representation with a positive measure (the Beta reduction) and an
+operator identity (the dimension walk). So I looked for a third tool of that
+kind rather than a seventh way to split the sum.
+
+**Found, and verified exactly.** The operator weight satisfies
+Q_{j+1}(t) = Q_j(t)/(j-t), and on the summation range j - t >= 1, so 1/(j-t) is
+not merely positive -- it is a MOMENT:
+
+        1/(j - t) = INT_0^1 u^{j-t-1} du .
+
+Hence the step from knife j to knife j+1 is an INTEGRAL OPERATOR WITH A
+POSITIVE KERNEL. And because the weights enter the Beta reduction as
+A_t/s^{2t}, dividing by u^t is the same as replacing s^2 by s^2 u: the
+averaging runs over SMALLER values of the deformation lam.
+
+**The one subtlety, and it is the good part.** At t = j the relation is 0/0
+(Q_j(j) = 0 while Q_{j+1}(j) = (n-1-j)! is not), so the step is not pure
+averaging -- it leaves a BOUNDARY TERM:
+
+    bracket_{j+1} = SUM_{t<j} (-1)^t E_2t Q_j(t)/(j-t) A_t/s^{2t}
+                    + (-1)^j E_2j (n-1-j)! A_j/s^{2j} .
+
+Verified in 228 exact rational checks, zero failures
+(results/keystone_j_ladder.json).
+
+**This EXPLAINS the parity split we measured this morning.** The boundary term
+carries (-1)^j. Measured on the same grid: it enters with a PLUS whenever the
+next knife j+1 is odd, and with a MINUS whenever j+1 is even -- both statements
+hold in every row. So odd knives inherit positivity for free from the averaging
+plus a helping boundary term, while even knives face a negative boundary term,
+which is exactly where a threshold can appear. Earlier today we PROVED the
+parity fact from the leading coefficient; now we also understand its mechanism,
+and the two accounts agree.
+
+**Status.** The identity is proved. What is not proved is the estimate for the
+even case: that the averaged part dominates the negative boundary term. That is
+now ONE explicit comparison of two written-out quantities, and it is needed only
+for even j+1 -- half of the remaining problem, in a form that respects the
+global cancellation instead of fighting it.
+
+**Three ladders now, and they cover the three parameters:**
+  * dimension D: classical montee/descente (Matheron) -- gives everything below
+    the width-2 strip;
+  * level n: F_{n+2} = F_n (1 - n^2 y)^2 -- one new double root per level;
+  * knife index j: this one -- averaging with a positive kernel plus a boundary
+    term whose sign alternates.
+The first two are known mathematics applied to a new object; the third I have
+not found in the literature, and it will get a prior-art search before it is
+called new -- the lesson from this afternoon.

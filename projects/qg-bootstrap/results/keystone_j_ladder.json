@@ -1,0 +1,426 @@
+{
+ "identity": "bracket_{j+1} = SUM_{t<j} (-1)^t E_2t Q_j(t)/(j-t) A_t/s^{2t}  +  (-1)^j E_2j (n-1-j)! A_j/s^{2j}",
+ "mechanism": "Q_{j+1}(t) = Q_j(t)/(j-t) and 1/(j-t) = int_0^1 u^{j-t-1} du, so the step is an integral operator with a POSITIVE kernel (an averaging over smaller lam); at t = j the relation is 0/0 and leaves a boundary term",
+ "why_parity": "the boundary term carries (-1)^j: when the next knife j+1 is ODD it enters with a plus and positivity is inherited; when j+1 is EVEN it enters with a minus, which is exactly where a threshold can appear",
+ "exact_checks": 228,
+ "failures": [],
+ "verified": true,
+ "boundary_helps_odd_next_knife": true,
+ "boundary_hurts_even_next_knife": true,
+ "still_open": "the estimate for the EVEN case: that the averaged part dominates the negative boundary term. One explicit comparison, and only for even j+1 -- half the problem",
+ "relation_to_other_ladders": "third exact ladder of the programme, after the classical montee/descente in D (Matheron) and F_{n+2} = F_n (1-n^2 y)^2 in the level n",
+ "rows": [
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "25",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "25",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "49",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "49",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "100",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "100",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "400",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "6",
+   "s2": "400",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "25",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "25",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "49",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "49",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "100",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "100",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "400",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "23",
+   "s2": "400",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "25",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "25",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": -1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "49",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "49",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "100",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "100",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "400",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 6,
+   "D": "40",
+   "s2": "400",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "25",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "25",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "25",
+   "j": 4,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "25",
+   "j": 5,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "49",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "49",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "49",
+   "j": 4,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": -1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "49",
+   "j": 5,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "100",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "100",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "100",
+   "j": 4,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "100",
+   "j": 5,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "400",
+   "j": 2,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "400",
+   "j": 3,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "400",
+   "j": 4,
+   "next_knife_parity": "odd",
+   "boundary_sign": 1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  },
+  {
+   "n": 8,
+   "D": "6",
+   "s2": "400",
+   "j": 5,
+   "next_knife_parity": "even",
+   "boundary_sign": -1,
+   "averaged_sign": 1,
+   "total_sign": 1
+  }
+ ],
+ "command": "python lab/keystone_j_ladder.py",
+ "git": "6bbdddce3aca",
+ "git_full": "6bbdddce3aca210b80df1907671fe070cbc7bab1",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_j_ladder.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 0.2
+}
