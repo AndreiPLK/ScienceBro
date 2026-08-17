@@ -2058,3 +2058,69 @@ D controlling positivity at D+2 -- uniformly in j.
 
 Status: the direction survives (it was never tested here), the naive
 shortcut is dead, and the honest next step is spelled out above.
+
+## 2026-08-17 14:34 -- THE DESCENT LEMMA: the theorem collapses to a strip of width 2
+
+This is the result of the shift. It is PROVED, not measured, and it is
+uniform in the spin -- the thing every earlier route failed at.
+
+**Statement.** If all partial waves of a level are nonnegative in dimension
+D + 2, then all of them are nonnegative in dimension D.
+
+**Proof, in full.** Partial waves are the coefficients b_l^(a) of the residue
+in the Gegenbauer basis C_l^(a), a = (D-3)/2 (for a > 0 the physical
+D-dimensional Gegenbauer is a positive multiple of C_l^(a), the convention
+already used in paper 2 and in lab/attack_gravity.py). The classical
+connection formula with mu = a+1 has coefficient (a - mu)_k = (-1)_k, which
+VANISHES for k >= 2, so it truncates after two terms:
+
+    C_l^(a) = c0(l,a) C_l^(a+1) + c1(l,a) C_{l-2}^(a+1),
+    c0(l,a) = (a)_l (l+mu) / ((mu+1)_l mu),
+    c1(l,a) = -(a)_{l-1} (l-2+mu) / ((mu+1)_{l-1} mu),  l >= 2.
+
+Expanding one and the same residue in both bases gives the DIMENSION WALK
+
+    b_m^(a+1) = c0(m,a) b_m^(a) + c1(m+2,a) b_{m+2}^(a).            (*)
+
+For a > 0 every Pochhammer is positive, hence c0 > 0 and c1 < 0. Inverting
+(*) downward in the spin,
+
+    b_m^(a) = [ b_m^(a+1) + |c1(m+2,a)| b_{m+2}^(a) ] / c0(m,a),
+
+which is a POSITIVE combination. Induction from the top spin downward gives
+the lemma. QED.
+
+**Verification.** results/keystone_dimension_walk.json: the forward relation
+holds exactly in 120 of 120 cells, the inverse reconstruction reproduces our
+independently computed partial waves exactly in 120 of 120, and the sign
+statement (c0 > 0, c1 < 0) holds in every case. Exact rational arithmetic,
+checked against our own partial-wave solver, which knows nothing about the
+connection formula.
+
+**Consequence -- this is the big one.** For any D in [4, T_hat] set
+k = floor((T_hat - D)/2). Then D + 2k lies in (T_hat - 2, T_hat], and k
+applications of the lemma carry positivity down to D. So the grand theorem
+reduces from a region of width about 19 lam to
+
+        A STRIP OF WIDTH 2 JUST BELOW THE SHORE.
+
+Everything below the strip is free, for every knife at once. No certificate,
+no cell-by-cell work, no bisection.
+
+**Why it also explains the physics.** Schoenberg (1942): positive
+definiteness on a sphere is equivalent to nonnegative Gegenbauer
+coefficients, and the class of such functions SHRINKS as the dimension grows.
+Relation (*) is the explicit shrinking map for our family, and the shore is
+the critical dimension of that nesting. The existence of a shore needs no
+amplitude physics at all -- it is sphere geometry.
+
+**What is still open, stated plainly.** Positivity INSIDE the strip
+(T_hat - 2, T_hat], for all spins. That is now the entire remaining task. It
+is also exactly where the margin law says the action is: the tightest knives
+sit within one percent of the shore, riding the very trajectory that defines
+it.
+
+Note also that this reframes the earlier work rather than discarding it: the
+Beta reduction, the symbolic-lam certificate and the symbolic-n tail+base
+certificate all still apply, and they now only ever need to be run inside a
+width-2 strip instead of the whole stretch.

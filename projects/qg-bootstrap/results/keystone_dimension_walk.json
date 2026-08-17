@@ -1,0 +1,23 @@
+{
+ "lemma": "all partial waves positive at D+2 implies all positive at D, uniformly in the spin",
+ "mechanism": "Gegenbauer connection with mu = a+1 truncates after two terms because (a-mu)_k = (-1)_k vanishes for k >= 2; c0 > 0 and c1 < 0 for a > 0, so the inverted relation is a POSITIVE combination and induction runs downward in the spin",
+ "consequence": "for any D in [4, T_hat], k = floor((T_hat-D)/2) applications carry positivity down from the strip (T_hat-2, T_hat]; the grand theorem reduces to that strip of WIDTH 2",
+ "context": "this is the explicit shrinking map behind Schoenberg's nesting of positive-definite classes on spheres; the shore is the critical dimension of the nesting",
+ "forward_relation_exact": "120/120",
+ "inverse_reconstruction_exact": "120/120",
+ "sign_violations": [],
+ "all_verified": true,
+ "still_open": "positivity INSIDE the strip (T_hat-2, T_hat], for all spins; that is now the entire remaining task",
+ "command": "python lab/keystone_dimension_walk.py",
+ "git": "e19a302fc848",
+ "git_full": "e19a302fc848771a766bb7dbdbfc73427cd0b424",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_dimension_walk.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 0.7
+}
