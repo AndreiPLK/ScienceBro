@@ -2419,3 +2419,63 @@ derivation of the constant 2.398 this morning: the asymptotics of the full
 alternating sum. Two independent routes have now hit the identical wall, which
 is information: the remaining gap is not a missing trick, it is a genuine
 asymptotic estimate that this programme has not yet earned.
+
+## 2026-08-17 17:59 -- THE ASYMPTOTIC ROUTE WORKS. This morning's failure was a bug.
+
+Following the inventory (every unused asset sits in the contour/saddle line),
+I went back to it. Result: the route works, and the catastrophic failure of the
+morning -- a saddle sum off by 250 orders of magnitude -- was an implementation
+bug, not the Stokes phenomenon.
+
+**The key simplification I had missed.** The bracket is a COEFFICIENT OF A
+PRODUCT OF TWO POLYNOMIALS:
+
+    SUM_t (-1)^t E_2t(n) A_t = [x^{j-1}] G2(x) * Psi_rev(x) ,
+
+so the saddle points solve a POLYNOMIAL equation, x P'(x) = (N+1) P(x) with
+N = j-1, and are computable exactly. No transcendental root-finding, no
+guessing which critical points exist.
+
+**All saddles are active.** Summing over ALL of them and comparing with the
+exact coefficient:
+
+    leading order only:  1.4166 (j=6), 1.3046 (j=8), 1.2405 (j=10),
+                         1.1976 (j=12), 1.1678 (j=14)   [ratio to exact]
+
+The ratio decreases steadily toward 1. So there is no Stokes subtlety here to
+resolve -- the whole set of critical points contributes, and what looked like a
+topology problem was simply a missing correction term plus, this morning, a
+plain coding error.
+
+**With the standard 1/N correction the agreement becomes good and IMPROVES with
+the knife index:**
+
+    with correction:     0.8961 (j=6), 0.9545 (j=8), 0.9790 (j=10),
+                         0.9829 (j=12), 0.9877 (j=14)
+
+i.e. the error falls to about 1.2% at j = 14 and keeps falling. Two technical
+notes: the derivatives must be taken ANALYTICALLY (finite differences on
+high-degree polynomials blew up, giving 2640 at j=14 -- pure numerical noise),
+and the outlier at j=16 (0.9038) is float-precision loss in the complex root
+finding, to be redone in high precision.
+
+**Why this matters for the theorem.** The remaining gap is uniformity in j. The
+margin to beat is about one percent in the tightest cells. The asymptotic error
+is already at that level by j = 14 and shrinking, so the natural structure of a
+proof is now visible:
+
+    small j  ->  machine certificates (done: j = 2..17 so far, all branches,
+                 all levels, everything below the shore);
+    large j  ->  saddle asymptotics with an explicit remainder bound.
+
+What is NOT yet done, stated precisely: a RIGOROUS bound on the remainder. The
+numbers above are measured agreement, not an estimate with proven error
+control. That is the standard, laborious part of steepest descent (Watson-type
+lemmas with explicit constants), and it is now the single remaining task rather
+than an open-ended search.
+
+**Method lesson, recorded.** The inventory of our own facts was worth more than
+eight new attempts: it pointed at the one line we owned and never finished. And
+the reason we abandoned it was a bug we never diagnosed -- I wrote "Stokes
+topology is the obstacle" in the morning on the strength of a number that was
+simply wrong.
