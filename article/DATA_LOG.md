@@ -1511,3 +1511,73 @@ Correct route: determine the steepest-descent topology (which saddles are
 "active" for our parameter range) before summing — the same care AEHM took
 when deforming to the Hankel contour. This is a well-defined but delicate step
 and is now the single open item of the keystone.
+
+## 2026-08-17 11:28 — KEYSTONE: the bracket is ONE Beta-weighted integral (D enters only as a weight)
+
+**What was found.** Three exact algebraic steps collapse the whole knife
+problem from a four-dimensional region (j, n, lam, D) to one univariate
+polynomial.
+
+1.  is a POLYNOMIAL in t:
+   , .
+   The truncation of the sum at t = j-1 is therefore not an extra
+   condition: Q vanishes at t = j..n-1, and the squared kernel has degree
+   2*floor((n-1)/2) <= n-1, so every surviving power is automatically
+   below j.
+2.  is a STIELTJES MOMENT SEQUENCE with
+   an explicit Beta density (alpha = R-1 > beta = n-3/2 > 0 throughout the
+   canyon; moments exist for every t <= j-1 because j <= n).
+3. Therefore
+
+       sign P_j(n, lam, D) = sign I(Q),
+       I(Q) = INT_0^1 Hhat(u) u^p (1-u)^Q du,
+       Hhat(u) = SUM_t (-1)^t E_2t(n) Q(t) s^(-2t) u^(j-1-t),
+       p = n - j - 1/2,          Q = D/2 + n - j - 2.
+
+   **Hhat is D-FREE.** The dimension only slides the exponent of (1-u) —
+   it moves where the positive weight sits, nothing else. Large D pushes
+   the weight to u -> 0 (the sign of the lowest coefficient); small D
+   spreads it over (0,1). That is the mechanism of the kill windows,
+   stated without any asymptotics — no saddle points, no Stokes topology.
+
+**Verification (exact, no floating point).** :
+6720 exact rational checks over j = 2..21, n, lam, and D on both sides of
+the shore — zero mismatches, both for the Q-form identity and for the
+sign agreement. Every Beta ratio is rational, so after clearing one
+positive denominator the integral becomes a polynomial J(Q) of degree
+j-1 with rational coefficients in (n, lam) — also verified against the
+direct evaluation.
+
+**The theorem now reads as one inequality.** :
+5616 cells (j = 2..40, 12 values of lam, n up to j+24), exact rational
+bisection for the D-threshold. Result: ZERO cells where the threshold
+falls strictly below the shore. In exactly 3 cells (j=2 with (n,lam) =
+(4,1), (6,3), (12,7)) the threshold sits EXACTLY on the shore — the
+tangency already known from the first knife theorem, now visible as
+J(Q_shore) = 0 with a vanishing constant term.
+
+**Negative #19 (recorded).** Manifest positivity in the depth below the
+shore is FALSE: substituting Q = Q_shore - z, the z-coefficients of J are
+not all nonnegative (first failures at j=3, one negative coefficient at
+z^1). Signature: . This is not fatal —
+below the shore z is bounded by (T_hat-4)/2, so the statement needed is
+positivity on a segment, not on a ray.
+
+**Inconclusive (not a negative).** The Gosper closed-summability test
+timed out (background task, exit 124). Tool limitation, no information
+either way.
+
+**The closing argument now being computed.** Substituting v = -log(1-u)
+turns the kernel into exp(-Q v), a Laplace kernel, which is strictly
+totally positive. Karlin's variation-diminishing property then bounds the
+number of sign changes of I(Q) in Q by the number of sign changes of Hhat
+in u. If Hhat has exactly ONE sign change on (0,1), the positivity region
+in D is a single interval, and the entire "no knife cuts below the shore"
+statement reduces to the single inequality J(Q_shore) >= 0 that the 5616
+cells above already measure.  is counting the sign
+changes exactly by Sturm chains in rational arithmetic (running).
+
+Status: NOT a proof yet. Two artifacts pass, the reduction is exact and
+machine-checked, and the remaining gap is explicit: (a) confirm the single
+sign change of Hhat, (b) prove J(Q_shore) >= 0 as a function of (n, j,
+lam) rather than on a grid.

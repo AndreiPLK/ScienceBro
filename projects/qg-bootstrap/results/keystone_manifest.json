@@ -1,0 +1,443 @@
+{
+ "question": "are all coefficients of J(Q_shore - z) in z >= 0?",
+ "meaning": "if yes, positivity below the shore is manifest for every knife at once (Polya-type certificate)",
+ "cells": 5616,
+ "manifest_positive_everywhere": false,
+ "failure_examples": [
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "1/3",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-54/625"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 3
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "1/2",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-352/2401"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 3
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "1",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-3/16"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 3
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "2",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-472/3125"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 3
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "3",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-7/81"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 3
+  },
+  {
+   "j": 3,
+   "n": 6,
+   "lam": "3",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-111/128"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 3
+  },
+  {
+   "j": 3,
+   "n": 12,
+   "lam": "7",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-1365056/27"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 3
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "1/1000",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-1087491905423622000000/4102147841280240024001"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "1/100",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-1155270020220000/4157825282402401"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "1/10",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-1867246200/4750104241"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "1/3",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-2904336/4826809"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "1/2",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-40568/59049"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "1",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-2073/3125"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "2",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-73/162"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "3",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-33813/117649"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 5,
+   "lam": "7",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-1557261/35431220"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 4,
+   "n": 11,
+   "lam": "7",
+   "negative_z_coeffs": [
+    [
+     2,
+     "-10837078560/24137569"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 4
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "1/1000",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-129522533127431407710392000000/130416812558347919000233346667"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 5
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "1/100",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-1360697556449367920000/1323063084794002334667"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 5
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "1/10",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-20598486903200/15255981523467"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 5
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "1/3",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-2049273/1048576"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 5
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "1/2",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-477363936/214358881"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 5
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "1",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-62063/26244"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 5
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "2",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-1607257184/720600125"
+    ]
+   ],
+   "n_negative": 1,
+   "degree": 5
+  },
+  {
+   "j": 5,
+   "n": 6,
+   "lam": "3",
+   "negative_z_coeffs": [
+    [
+     1,
+     "-4023/2048"
+    ],
+    [
+     3,
+     "-3/2048"
+    ]
+   ],
+   "n_negative": 2,
+   "degree": 5
+  }
+ ],
+ "tangency_cells_zero_constant_term": [
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1"
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "3"
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "7"
+  }
+ ],
+ "tangency_count": 3,
+ "sign_pattern_examples": [
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1/1000",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1/100",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1/10",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1/3",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1/2",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1",
+   "z_coeffs_signs": "0+0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "2",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "3",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "7",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "26",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "150",
+   "z_coeffs_signs": "++0"
+  },
+  {
+   "j": 2,
+   "n": 4,
+   "lam": "1000",
+   "z_coeffs_signs": "++0"
+  }
+ ],
+ "command": "python lab/keystone_manifest.py",
+ "git": "a3afee2994ba",
+ "git_full": "a3afee2994ba75e7331dcfa1c5010fe4ba78ac9c",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_beta.py",
+  "projects/qg-bootstrap/lab/keystone_manifest.py",
+  "projects/qg-bootstrap/lab/keystone_shore.py"
+ ],
+ "dirty_count": 3,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 75.0
+}

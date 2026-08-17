@@ -1,0 +1,849 @@
+{
+ "claim": "sign P_j = sign of a single Beta-weighted integral of a D-FREE polynomial Hhat of degree j-1",
+ "formula": {
+  "I": "int_0^1 Hhat(u) u^p (1-u)^Q du",
+  "Hhat": "sum_t (-1)^t E_2t(n) Q(t) s^{-2t} u^{j-1-t}",
+  "Q_of_t": "prod_{i=j}^{n-1} (i-t)",
+  "p": "n - j - 1/2  (D-free)",
+  "Q_exp": "D/2 + n - j - 2  (only D-dependence)"
+ },
+ "exact_checks": 6720,
+ "mismatches": [],
+ "verified": true,
+ "sign_changes_observed": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "rows": [
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": false,
+   "J_pos": false,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": false,
+   "J_pos": false,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 3,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "3",
+   "f": "1",
+   "P_pos": false,
+   "J_pos": false,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 6,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 2,
+   "n": 21,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 1,
+   "sign_changes_J_in_Q": 1
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 4,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "1/100",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "1/100",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "1/2",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "1/2",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "3",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "3",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "26",
+   "f": "0",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  },
+  {
+   "j": 3,
+   "n": 10,
+   "lam": "26",
+   "f": "1",
+   "P_pos": true,
+   "J_pos": true,
+   "sign_changes_Hhat": 2,
+   "sign_changes_J_in_Q": 2
+  }
+ ],
+ "command": "python lab/keystone_beta.py",
+ "git": "a3afee2994ba",
+ "git_full": "a3afee2994ba75e7331dcfa1c5010fe4ba78ac9c",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_beta.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 9.0
+}
