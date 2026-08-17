@@ -41,7 +41,20 @@ def T_k(k, lam):
 
 
 def T_hat(lam):
-    return min(T_k(k, lam) for k in range(3, 61))
+    """The shore: min over ALL k >= 3, with an lam-adaptive scan window.
+
+    ERR-0003 (found 2026-08-17): this used a hard-coded range(3, 61). For
+    large lam the minimising k grows like sqrt(3)*lam, so the cap silently
+    OVERESTIMATED the shore: 1.06x at lam = 60, 1.47x at lam = 150, 5.96x
+    at lam = 1000. The older release code (release/qg-blade-theorem/lab/
+    bruteforce_recheck.py) already scanned an adaptive window -- the new
+    code was a regression against the old one. Published results were NOT
+    affected (their scripts scan range(3, 400) or range(3, 3000), and the
+    bruteforce recheck used min(4000, 3*lam+50)); the keystone_* artifacts
+    of 2026-08-17 were, and are regenerated.
+    """
+    kmax = max(61, int(3 * lam) + 60)
+    return min(T_k(k, lam) for k in range(3, kmax))
 
 
 def lam_grid():

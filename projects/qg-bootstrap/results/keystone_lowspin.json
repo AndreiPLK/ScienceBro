@@ -1,0 +1,376 @@
+{
+ "question": "for fixed (j, lam), which level n minimises the D-threshold, and what spin l = 2n - 2j is that?",
+ "prior_art": "Bo Wang arXiv:2403.00906 hypothesises partial-wave LOW SPIN DOMINANCE for the hypergeometric Coon amplitude (numerical support at m^2 = 0, his fig. 1); we test the analogous statement in the CHR graviton family (arXiv:2408.03362)",
+ "method": "exact rational bisection on the smallest root of the univariate J(Q) from keystone_beta.py",
+ "cells": 36,
+ "spin_histogram_of_minimisers": {
+  "10": 1,
+  "14": 1,
+  "16": 2,
+  "18": 1,
+  "20": 2,
+  "26": 1,
+  "28": 1,
+  "30": 1,
+  "34": 1,
+  "38": 1,
+  "40": 1,
+  "52": 2,
+  "54": 1,
+  "56": 1,
+  "58": 1,
+  "60": 2,
+  "62": 1,
+  "64": 2,
+  "66": 1,
+  "68": 2,
+  "70": 1,
+  "72": 2,
+  "74": 1,
+  "76": 1,
+  "78": 2,
+  "80": 2,
+  "86": 1
+ },
+ "fraction_at_low_spin_l_le_2": 0.0,
+ "low_spin_dominance_holds_here": false,
+ "min_ratio_threshold_over_shore": 1.0100300296811753,
+ "rows": [
+  {
+   "j": 4,
+   "lam": "1/2",
+   "n_star": 9,
+   "spin_l_star": 10,
+   "D_threshold": 19.724276129737014,
+   "shore": 15.75,
+   "ratio_threshold_over_shore": 1.2523349923642548
+  },
+  {
+   "j": 4,
+   "lam": "1",
+   "n_star": 11,
+   "spin_l_star": 14,
+   "D_threshold": 28.199152949701244,
+   "shore": 23.0,
+   "ratio_threshold_over_shore": 1.2260501282478802
+  },
+  {
+   "j": 4,
+   "lam": "2",
+   "n_star": 14,
+   "spin_l_star": 20,
+   "D_threshold": 46.15227495503856,
+   "shore": 39.4,
+   "ratio_threshold_over_shore": 1.1713775369299126
+  },
+  {
+   "j": 4,
+   "lam": "3",
+   "n_star": 19,
+   "spin_l_star": 30,
+   "D_threshold": 66.85578232277987,
+   "shore": 57.0,
+   "ratio_threshold_over_shore": 1.1729084618031558
+  },
+  {
+   "j": 4,
+   "lam": "7",
+   "n_star": 13,
+   "spin_l_star": 18,
+   "D_threshold": 139.22891801041064,
+   "shore": 131.1,
+   "ratio_threshold_over_shore": 1.0620054768147265
+  },
+  {
+   "j": 4,
+   "lam": "26",
+   "n_star": 44,
+   "spin_l_star": 80,
+   "D_threshold": 494.84424733240274,
+   "shore": 489.93023255813955,
+   "ratio_threshold_over_shore": 1.0100300296811753
+  },
+  {
+   "j": 6,
+   "lam": "1/2",
+   "n_star": 14,
+   "spin_l_star": 16,
+   "D_threshold": 21.762485000537612,
+   "shore": 15.75,
+   "ratio_threshold_over_shore": 1.3817450793992136
+  },
+  {
+   "j": 6,
+   "lam": "1",
+   "n_star": 16,
+   "spin_l_star": 20,
+   "D_threshold": 30.486794824876604,
+   "shore": 23.0,
+   "ratio_threshold_over_shore": 1.3255128184728957
+  },
+  {
+   "j": 6,
+   "lam": "2",
+   "n_star": 20,
+   "spin_l_star": 28,
+   "D_threshold": 49.16530465647351,
+   "shore": 39.4,
+   "ratio_threshold_over_shore": 1.2478503719917133
+  },
+  {
+   "j": 6,
+   "lam": "3",
+   "n_star": 25,
+   "spin_l_star": 38,
+   "D_threshold": 69.48554691405398,
+   "shore": 57.0,
+   "ratio_threshold_over_shore": 1.2190446827027015
+  },
+  {
+   "j": 6,
+   "lam": "7",
+   "n_star": 14,
+   "spin_l_star": 16,
+   "D_threshold": 153.07742813780035,
+   "shore": 131.1,
+   "ratio_threshold_over_shore": 1.1676386585644571
+  },
+  {
+   "j": 6,
+   "lam": "26",
+   "n_star": 42,
+   "spin_l_star": 72,
+   "D_threshold": 499.84513219387463,
+   "shore": 489.93023255813955,
+   "ratio_threshold_over_shore": 1.0202373705006222
+  },
+  {
+   "j": 8,
+   "lam": "1/2",
+   "n_star": 34,
+   "spin_l_star": 52,
+   "D_threshold": 39.42079666015155,
+   "shore": 15.75,
+   "ratio_threshold_over_shore": 2.502907724454067
+  },
+  {
+   "j": 8,
+   "lam": "1",
+   "n_star": 21,
+   "spin_l_star": 26,
+   "D_threshold": 32.262150490412694,
+   "shore": 23.0,
+   "ratio_threshold_over_shore": 1.4027021952353345
+  },
+  {
+   "j": 8,
+   "lam": "2",
+   "n_star": 25,
+   "spin_l_star": 34,
+   "D_threshold": 51.258235929128624,
+   "shore": 39.4,
+   "ratio_threshold_over_shore": 1.300970455054026
+  },
+  {
+   "j": 8,
+   "lam": "3",
+   "n_star": 40,
+   "spin_l_star": 64,
+   "D_threshold": 81.00542309775841,
+   "shore": 57.0,
+   "ratio_threshold_over_shore": 1.4211477736448845
+  },
+  {
+   "j": 8,
+   "lam": "7",
+   "n_star": 38,
+   "spin_l_star": 60,
+   "D_threshold": 159.10530993024,
+   "shore": 131.1,
+   "ratio_threshold_over_shore": 1.2136179247157894
+  },
+  {
+   "j": 8,
+   "lam": "26",
+   "n_star": 41,
+   "spin_l_star": 66,
+   "D_threshold": 505.04340137959366,
+   "shore": 489.93023255813955,
+   "ratio_threshold_over_shore": 1.0308475938350277
+  },
+  {
+   "j": 10,
+   "lam": "1/2",
+   "n_star": 46,
+   "spin_l_star": 72,
+   "D_threshold": 48.68951112315612,
+   "shore": 15.75,
+   "ratio_threshold_over_shore": 3.09139753162896
+  },
+  {
+   "j": 10,
+   "lam": "1",
+   "n_star": 40,
+   "spin_l_star": 60,
+   "D_threshold": 47.84497540171395,
+   "shore": 23.0,
+   "ratio_threshold_over_shore": 2.08021632181365
+  },
+  {
+   "j": 10,
+   "lam": "2",
+   "n_star": 30,
+   "spin_l_star": 40,
+   "D_threshold": 52.98766425121236,
+   "shore": 39.4,
+   "ratio_threshold_over_shore": 1.344864574903867
+  },
+  {
+   "j": 10,
+   "lam": "3",
+   "n_star": 45,
+   "spin_l_star": 70,
+   "D_threshold": 81.65093637495771,
+   "shore": 57.0,
+   "ratio_threshold_over_shore": 1.432472567981714
+  },
+  {
+   "j": 10,
+   "lam": "7",
+   "n_star": 44,
+   "spin_l_star": 68,
+   "D_threshold": 162.1228670904844,
+   "shore": 131.1,
+   "ratio_threshold_over_shore": 1.2366351418038473
+  },
+  {
+   "j": 10,
+   "lam": "26",
+   "n_star": 41,
+   "spin_l_star": 62,
+   "D_threshold": 510.7620555640319,
+   "shore": 489.93023255813955,
+   "ratio_threshold_over_shore": 1.042519978604138
+  },
+  {
+   "j": 12,
+   "lam": "1/2",
+   "n_star": 44,
+   "spin_l_star": 64,
+   "D_threshold": 41.1102186039003,
+   "shore": 15.75,
+   "ratio_threshold_over_shore": 2.610172609771448
+  },
+  {
+   "j": 12,
+   "lam": "1",
+   "n_star": 46,
+   "spin_l_star": 68,
+   "D_threshold": 49.910369036085086,
+   "shore": 23.0,
+   "ratio_threshold_over_shore": 2.1700160450471775
+  },
+  {
+   "j": 12,
+   "lam": "2",
+   "n_star": 49,
+   "spin_l_star": 74,
+   "D_threshold": 66.94320164310435,
+   "shore": 39.4,
+   "ratio_threshold_over_shore": 1.6990660315508717
+  },
+  {
+   "j": 12,
+   "lam": "3",
+   "n_star": 50,
+   "spin_l_star": 76,
+   "D_threshold": 82.55250141906487,
+   "shore": 57.0,
+   "ratio_threshold_over_shore": 1.4482894985800854
+  },
+  {
+   "j": 12,
+   "lam": "7",
+   "n_star": 51,
+   "spin_l_star": 78,
+   "D_threshold": 165.98314000919524,
+   "shore": 131.1,
+   "ratio_threshold_over_shore": 1.2660803967139225
+  },
+  {
+   "j": 12,
+   "lam": "26",
+   "n_star": 41,
+   "spin_l_star": 58,
+   "D_threshold": 518.0278384745353,
+   "shore": 489.93023255813955,
+   "ratio_threshold_over_shore": 1.0573502185600712
+  },
+  {
+   "j": 14,
+   "lam": "1/2",
+   "n_star": 40,
+   "spin_l_star": 52,
+   "D_threshold": 33.12540601908306,
+   "shore": 15.75,
+   "ratio_threshold_over_shore": 2.1032003821640037
+  },
+  {
+   "j": 14,
+   "lam": "1",
+   "n_star": 41,
+   "spin_l_star": 54,
+   "D_threshold": 65.40522903629765,
+   "shore": 23.0,
+   "ratio_threshold_over_shore": 2.843705610273811
+  },
+  {
+   "j": 14,
+   "lam": "2",
+   "n_star": 57,
+   "spin_l_star": 86,
+   "D_threshold": 71.16354958804575,
+   "shore": 39.4,
+   "ratio_threshold_over_shore": 1.8061814616255267
+  },
+  {
+   "j": 14,
+   "lam": "3",
+   "n_star": 54,
+   "spin_l_star": 80,
+   "D_threshold": 82.62408464589994,
+   "shore": 57.0,
+   "ratio_threshold_over_shore": 1.4495453446649114
+  },
+  {
+   "j": 14,
+   "lam": "7",
+   "n_star": 53,
+   "spin_l_star": 78,
+   "D_threshold": 182.82960611434322,
+   "shore": 131.1,
+   "ratio_threshold_over_shore": 1.394581282336714
+  },
+  {
+   "j": 14,
+   "lam": "26",
+   "n_star": 42,
+   "spin_l_star": 56,
+   "D_threshold": 528.7643802360483,
+   "shore": 489.93023255813955,
+   "ratio_threshold_over_shore": 1.0792646485095208
+  }
+ ],
+ "command": "python lab/keystone_lowspin.py",
+ "git": "630ae37e1628",
+ "git_full": "630ae37e162887941199c5a561c85e9271923cba",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_lowspin.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 6.5
+}
