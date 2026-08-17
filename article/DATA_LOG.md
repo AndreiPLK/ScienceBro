@@ -1750,3 +1750,56 @@ and the next thing I attack.
 Also in this block: the symbolic-lam certificate (step 1) has now been
 pushed to j = 19 -- 7310 cells, zero failures, every one at bisection depth
 zero.
+
+## 2026-08-17 13:43 -- Step 1 CLOSED for j=3..20; the road into step 2 is open
+
+**Step 1 finished.** results/keystone_symbolic.json: 7740 cells, ALL
+certified, zero failures, every one at bisection depth zero. Each cell
+covers a whole continuum of lam (a shore branch), not a sample point, for
+j = 3..20 and n up to j+20. j = 2 stays excluded with the stated reason
+(exact tangency; already proven separately with sqrt-3 arithmetic).
+
+**Where the danger actually lives -- a clean structural picture.** In the
+FIXED-SPIN regime (l = 2n - 2j held fixed, n growing) there is no
+D-threshold at all: positivity survives up to 40x the shore for every spin
+and level tested, at the dangerous seam lam = 26. The reason is visible in
+the algebra: at fixed spin the operator weight Q_n(t) has exactly l/2
+factors -- a FIXED number -- and every factor is positive on the summation
+range, the smallest being n-1-(l/2-1)-(j-1) = 1.
+
+So the risk is not at low spin, and not at fixed spin. It sits at SMALL j
+with LARGE n, where the spin grows -- exactly the corner the tightest cell
+lives in (j = 4, lam = 26, n = 44, spin 80, margin one percent). This
+retro-explains why the old low-spin hunt found nothing: there was nothing
+there to find.
+
+**Negative #21 (recorded).** The cheap route to large n is dead: the t = 0
+term does NOT dominate the tail. At lam = 26 with D just below the shore,
+|tail|/head is 2.7 at j = 3, 6.7 at j = 4, 28 at j = 6, and 417 at j = 10.
+Positivity here is produced by CANCELLATION inside the alternating tail, not
+by majorisation -- consistent with everything else in this problem, and it
+means step 2 needs a certificate, not an estimate.
+
+**And the certificate route into step 2 is open (two exact facts).**
+results/keystone_npoly.json:
+
+  FACT A. For fixed t and fixed parity of n, E_2t(n) is a POLYNOMIAL in n.
+  E_2t is the t-th elementary symmetric function of the squares of an
+  arithmetic ladder, so at fixed t it is a fixed-length combination of power
+  sums. Verified in 16 cases by fitting on the first points and PREDICTING
+  the held-out ones -- never by fitting all of them.
+
+  FACT B. Q_n(t)/Q_n(0) = prod_{i=1..t} (j-i)/(n-i). The factorial growth of
+  the weight is an overall POSITIVE constant that divides out of any sign
+  question; the t-dependence is rational in n of degree t. 900 checks, zero
+  failures.
+
+Together: at fixed j and fixed parity, the whole bracket is a polynomial in
+(n, lam, D) after uniform clearing. So n can be carried SYMBOLICALLY exactly
+like lam, and the Polya certificate can in principle cover ALL n at once --
+which would leave j as the single remaining unbounded index.
+
+Next: build that three-variable certificate in (w, v, n), carrying the
+uniform-clearing discipline into three variables. If the clearing is not
+uniform the far-below sign bug comes straight back, so the validation
+contract goes in first.
