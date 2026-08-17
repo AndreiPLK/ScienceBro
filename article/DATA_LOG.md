@@ -1261,3 +1261,28 @@ derive CHR sum rules numerically, then in closed form.
   WILSON polynomial family (quadratic-lattice orthogonal polynomials).
   If L[G^2] is a connection coefficient in that family, positivity may be a
   known theorem. Next: literature check on that specific identification.
+
+## 2026-08-17 (day) — WEIGHT FACTORISATION: the sharpest reduction so far
+- Decomposed the weights: A_t = M1_t * M2_t with
+    M1_t = (j-1)^{(t)} / (n-1)^{(t)} = C(j-1,t)/C(n-1,t)   [falling factorials]
+    M2_t = (R-1)^{(t)} / ((n-3/2)^{(t)} s^{2t})
+- **M2 IS a moment sequence** (exact Hankel minors nonnegative) => M2_t =
+  int v^t dnu(v) with nu >= 0. Therefore
+      P_j ~ int Phi(v) dnu(v),  Phi(v) = sum_t (-1)^t E_2t M1_t v^t
+  — the theorem is reduced to ONE function of ONE variable.
+- **M1 is NOT a moment sequence** (exact minors negative) — that is where the
+  sign problem now lives, and it is a single explicit object: a ratio of
+  binomial coefficients.
+- FALSIFIED (12th, 13th): Phi(v) >= 0 for all v >= 0 is false (309/780);
+  and Phi >= 0 even on the (crudely estimated) support of nu is false —
+  violations appear ONLY at the far edge of the support and are small
+  (worst relative -0.05). So the theorem is true not because Phi is
+  positive, but because nu puts little mass where Phi dips. That is a
+  QUANTITATIVE statement — the first one that is both necessary and
+  sufficient in this chart, and the natural next target.
+- 360-ANALYSIS: this is exactly the structure of Gasper-type positivity
+  proofs for Jacobi/Racah kernels — positivity of an integral whose
+  integrand changes sign, closed by an explicit majorant on the measure.
+  Concrete next experiment: compute nu explicitly (it is a finite discrete
+  measure — the moments terminate) and check the weighted inequality
+  sum_k nu_k Phi(v_k) > 0 term by term. Finite, exact, decidable.
