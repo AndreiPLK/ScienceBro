@@ -1580,3 +1580,61 @@ Status: NOT a proof yet. The reduction is exact and machine-checked, and
 the remaining gap is explicit: (a) confirm the single sign change of Hhat,
 (b) prove J(Q_shore) >= 0 as a function of (n, j, lam) rather than on a
 grid.
+
+## 2026-08-17 11:44 — KEYSTONE CERTIFICATE: J > 0 on the whole stretch below the shore
+
+**Result.** results/keystone_cert.json: 5616 cells (j = 2..40, twelve values
+of lam, n up to j+24), every single one CERTIFIED — and 5595 of them with no
+bisection at all, meaning the certificate is manifest: after the map
+
+        Q = Q_low + (Q_shore - Q_low) * w/(1+w),     w >= 0,
+        Q_low = n - j (this is D = 4),  Q_shore = T_hat(lam)/2 + n - j - 2,
+
+and clearing (1+w)^(j-1), EVERY coefficient of J is nonnegative and the
+constant term is positive. No root for w >= 0, hence J > 0 on the entire
+closed stretch below the shore. This is a Polya-type certificate: finite,
+exact, rational, and free of any asymptotics — no saddle points, no Stokes
+topology, no summation of divergent series.
+
+What that means physically: for each of these cells the knife is PROVEN
+never to cut anywhere below the shore, in one univariate argument that has
+the same shape for every knife j. Twelve knives previously needed twelve
+separate four-dimensional proofs.
+
+**Negative #20 (recorded).** The total-positivity route to uniqueness of
+the threshold is dead. results/keystone_descartes.json: after the Mobius
+map u = w/(1+w) the D-free shape Hhat shows exactly j-1 sign changes for
+every j tested (10620 cells, histogram is a clean diagonal), so all j-1
+roots of Hhat lie inside (0,1). Karlin's variation-diminishing property
+therefore bounds the number of D-thresholds by j-1, not by 1, and cannot
+by itself prove a single positivity interval. The structural fact behind
+the failure is itself worth keeping: Hhat is a hyperbolic polynomial with
+ALL of its roots in the unit interval.
+
+**Tool limitation (not a result).** The Sturm-chain implementation
+(lab/keystone_sturm.py) blew up in rational arithmetic: 28 minutes, zero
+output, killed. Descartes after a Mobius map answered the same question in
+44 seconds. Kept in the tree as a recorded failure.
+
+**What is still missing for the grand theorem.** The certificate is per
+cell, and (n, lam) range over infinitely many values, j over all knives.
+Two honest gaps remain:
+  (a) lam is a continuum — the twelve knife theorems solved exactly this by
+      carrying lam SYMBOLICALLY through the same certificate; the next step
+      is to do that here, where the polynomial is univariate instead of
+      four-dimensional;
+  (b) n and j are unbounded — the coefficients of J are explicit finite
+      sums in E_2t(n), Q(t) and binomials, so the target is nonnegativity
+      of those coefficients as functions of (n, j, lam).
+
+Status: NOT the grand theorem yet. It is a complete reduction plus a
+uniform certificate architecture, with the two remaining gaps named
+precisely. Artifacts: keystone_beta.json (6720 exact checks),
+keystone_shore.json (5616 cells), keystone_cert.json (5616 certified),
+keystone_descartes.json (10620 cells), keystone_manifest.json (negative).
+All five regenerated from a clean tree (dirty = false), commit f0d8d86.
+
+**Visual.** article/visuals/sliding-spotlight.png — the mechanism on exact
+data for the tightest measured case (knife j=4, level n=14, lam = 7): the
+shape is fixed, the dimension only slides the spotlight, and the verdict
+flips at D = 139.7 while the shore sits at D = 131.1.

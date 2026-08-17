@@ -835,15 +835,13 @@
   }
  ],
  "command": "python lab/keystone_beta.py",
- "git": "a3afee2994ba",
- "git_full": "a3afee2994ba75e7331dcfa1c5010fe4ba78ac9c",
- "dirty": true,
- "dirty_code_files": [
-  "projects/qg-bootstrap/lab/keystone_beta.py"
- ],
- "dirty_count": 1,
+ "git": "f0d8d86d427b",
+ "git_full": "f0d8d86d427b45f6cc31b7cc300ff1dc61d84d17",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 9.0
+ "runtime_s": 8.3
 }
