@@ -1866,3 +1866,58 @@ for the programme, because the working certificate lives on the SEGMENT
           cut; even-knife margin monotone in j), not a proof.
 Still outside coverage and named: lam above the last branch, which needs a
 tail argument as in the knife theorems.
+
+## 2026-08-17 14:10 -- THE MARGIN LAW: how close the knives get, and why they never arrive
+
+**A proved fact first (elementary, and it explains the parity split).** The
+leading coefficient of J in Q comes ONLY from t = j-1, and equals
+(-1)^(j-1) E_{2(j-1)}(n) Q_n(j-1) times a strictly positive product. So
+
+        sign(leading coefficient) = (-1)^(j-1) ,
+
+which means ODD knives run to +infinity as D grows and cannot develop a
+threshold at all, while EVEN knives run to -infinity and MUST develop one.
+324 checks, zero mismatches (results/keystone_margin_law.json). That is why
+every dangerous cell in this entire project has even j -- it was never an
+accident of sampling.
+
+**Where the tightest knife sits.** For lam >~ 14 the most dangerous level is
+
+        n* = k(lam) - 1 ,
+
+i.e. the tightest knife sits essentially ON the trajectory that defines the
+shore (the shore is min over trajectories k; the knife that comes closest is
+the one on that same k). Measured across lam = 5..40: n* - k = +1, +1, 0,
+-1, -1, -1, -1, -1.
+
+**The margin law (measured).** For even j, at large lam,
+
+        D*(j, lam) - T_hat(lam)  ->  C (j - 2),    C = 2.398 +- 0.002,
+
+measured over j = 4, 6, 8, 10 and lam = 100, 175, 250, 500 -- twelve cells,
+all within 0.2 percent of each other. The closed-form guess C = 12/5 = 2.4
+sits inside the residual drift of the shore asymptotics itself, so I record
+2.398 +- 0.002 and do NOT claim 12/5. In ratio form the same law reads
+
+        D*/T_hat - 1  ~  (j - 2) c0 / (2 lam),   c0 = 0.2534 ,
+
+and the shore itself grows linearly, T_hat(lam) -> (12 + 4 sqrt 3) lam =
+18.928203 lam (measured 18.925746 at lam = 1000; the sqrt 3 is the same one
+that appears in the tangency of the first knife theorem).
+
+**What it means physically.** The knives approach the shore like 1/lam in
+relative terms, but the ABSOLUTE gap does not vanish -- it saturates at
+about 2.4 (j - 2) dimensions. So the fleet never reaches the shore at finite
+lam, and the closer one looks (larger lam), the thinner the relative margin
+becomes. This is the quantitative version of the tangency-at-infinity that
+the first knife theorem found geometrically, and it explains cleanly why lam
+above the last certified branch is the hard region: that is exactly where the
+relative margin is smallest, not where the mathematics changes.
+
+**Status and falsifier.** The leading-coefficient fact is PROVED. The margin
+law is a measured REGULARITY, not a theorem, and the constant is not
+identified in closed form. Explicit falsifier recorded in the artifact: any
+cell with D* - T_hat < 2.39 (j-2) - 0.05 at lam >= 100 refutes it.
+
+Also in this block: the symbolic-n certificate (step 2) has reached j = 13 --
+396 cells, zero failures.

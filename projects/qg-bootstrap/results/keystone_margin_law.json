@@ -1,0 +1,188 @@
+{
+ "proved_fact": {
+  "statement": "leading coefficient of J in Q has sign (-1)^(j-1); odd knives cannot develop a threshold at large D, even knives must",
+  "proof_sketch": "only t = j-1 contributes to Q^(j-1); its coefficient is (-1)^(j-1) E_{2(j-1)}(n) Q_n(j-1) times a positive product",
+  "checks": 324,
+  "failures": [],
+  "verified": true
+ },
+ "measured_law": {
+  "statement": "D*(j, lam) - T_hat(lam) -> C (j - 2) as lam grows",
+  "C_estimates": [
+   2.3984493274882097,
+   2.3971654785807535,
+   2.3970903377728936,
+   2.3985071454529496,
+   2.3974541633543933,
+   2.3975353840655598,
+   2.3998408480312627,
+   2.3983273192916292,
+   2.3982305279591083,
+   2.4014883173147448,
+   2.3990240294021903,
+   2.3986192291475046
+  ],
+  "C_mean": 2.3984776756551,
+  "C_spread": 0.004397979541851171,
+  "closed_form_guess": "12/5 = 2.4, within the residual drift of the shore asymptotics; NOT identified",
+  "ratio_form": "D*/T_hat - 1 ~ (j-2) c0 / (2 lam), c0 = 0.2534",
+  "tightest_level": "n* = k(lam) - 1 for lam >~ 14, i.e. the tightest knife sits on the trajectory that defines the shore",
+  "status": "REGULARITY, measured not proved",
+  "falsifier": "any cell with D* - T_hat < 2.39 (j-2) - 0.05 at lam >= 100 refutes it"
+ },
+ "shore_asymptotics": {
+  "limit_slope": "12 + 4 sqrt 3 = 18.928203",
+  "measured_T_hat_over_lam": {
+   "100": 18.90421762498732,
+   "250": 18.918452859508204,
+   "500": 18.923301457852194,
+   "1000": 18.925745712464458
+  }
+ },
+ "rows": [
+  {
+   "j": 4,
+   "lam": 100,
+   "k": 173,
+   "n_star": 172,
+   "n_star_minus_k": -1,
+   "shore": 1890.4217624987323,
+   "D_threshold": 1895.2186611537088,
+   "absolute_margin": 4.796898654976419,
+   "margin_over_j_minus_2": 2.3984493274882097
+  },
+  {
+   "j": 4,
+   "lam": 175,
+   "k": 303,
+   "n_star": 301,
+   "n_star_minus_k": -2,
+   "shore": 3310.0090128614193,
+   "D_threshold": 3314.8033438185807,
+   "absolute_margin": 4.794330957161507,
+   "margin_over_j_minus_2": 2.3971654785807535
+  },
+  {
+   "j": 4,
+   "lam": 250,
+   "k": 433,
+   "n_star": 431,
+   "n_star_minus_k": -2,
+   "shore": 4729.613214877051,
+   "D_threshold": 4734.407395552597,
+   "absolute_margin": 4.794180675545787,
+   "margin_over_j_minus_2": 2.3970903377728936
+  },
+  {
+   "j": 6,
+   "lam": 100,
+   "k": 173,
+   "n_star": 170,
+   "n_star_minus_k": -3,
+   "shore": 1890.4217624987323,
+   "D_threshold": 1900.0157910805442,
+   "absolute_margin": 9.594028581811799,
+   "margin_over_j_minus_2": 2.3985071454529496
+  },
+  {
+   "j": 6,
+   "lam": 175,
+   "k": 303,
+   "n_star": 300,
+   "n_star_minus_k": -3,
+   "shore": 3310.0090128614193,
+   "D_threshold": 3319.598829514837,
+   "absolute_margin": 9.589816653417573,
+   "margin_over_j_minus_2": 2.3974541633543933
+  },
+  {
+   "j": 6,
+   "lam": 250,
+   "k": 433,
+   "n_star": 430,
+   "n_star_minus_k": -3,
+   "shore": 4729.613214877051,
+   "D_threshold": 4739.2033564133135,
+   "absolute_margin": 9.590141536262239,
+   "margin_over_j_minus_2": 2.3975353840655598
+  },
+  {
+   "j": 8,
+   "lam": 100,
+   "k": 173,
+   "n_star": 169,
+   "n_star_minus_k": -4,
+   "shore": 1890.4217624987323,
+   "D_threshold": 1904.82080758692,
+   "absolute_margin": 14.399045088187576,
+   "margin_over_j_minus_2": 2.3998408480312627
+  },
+  {
+   "j": 8,
+   "lam": 175,
+   "k": 303,
+   "n_star": 299,
+   "n_star_minus_k": -4,
+   "shore": 3310.0090128614193,
+   "D_threshold": 3324.3989767771686,
+   "absolute_margin": 14.389963915749776,
+   "margin_over_j_minus_2": 2.3983273192916292
+  },
+  {
+   "j": 8,
+   "lam": 250,
+   "k": 433,
+   "n_star": 429,
+   "n_star_minus_k": -4,
+   "shore": 4729.613214877051,
+   "D_threshold": 4744.002598044806,
+   "absolute_margin": 14.38938316775465,
+   "margin_over_j_minus_2": 2.3982305279591083
+  },
+  {
+   "j": 10,
+   "lam": 100,
+   "k": 173,
+   "n_star": 167,
+   "n_star_minus_k": -6,
+   "shore": 1890.4217624987323,
+   "D_threshold": 1909.6336690372502,
+   "absolute_margin": 19.211906538517958,
+   "margin_over_j_minus_2": 2.4014883173147448
+  },
+  {
+   "j": 10,
+   "lam": 175,
+   "k": 303,
+   "n_star": 297,
+   "n_star_minus_k": -6,
+   "shore": 3310.0090128614193,
+   "D_threshold": 3329.2012050966364,
+   "absolute_margin": 19.192192235217522,
+   "margin_over_j_minus_2": 2.3990240294021903
+  },
+  {
+   "j": 10,
+   "lam": 250,
+   "k": 433,
+   "n_star": 427,
+   "n_star_minus_k": -6,
+   "shore": 4729.613214877051,
+   "D_threshold": 4748.802168710232,
+   "absolute_margin": 19.188953833180037,
+   "margin_over_j_minus_2": 2.3986192291475046
+  }
+ ],
+ "command": "python lab/keystone_margin_law.py",
+ "git": "fc0ef2133e2e",
+ "git_full": "fc0ef2133e2ea2cc669230aa322031cf3fc04e42",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/keystone_margin_law.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 13.3
+}
