@@ -2377,3 +2377,45 @@ global cancellation instead of fighting it.
 The first two are known mathematics applied to a new object; the third I have
 not found in the literature, and it will get a prior-art search before it is
 called new -- the lesson from this afternoon.
+
+## 2026-08-17 17:25 -- The j-ladder inequality is TIGHT: it is the theorem, not a step
+
+Measured the tightness of the inequality the j-ladder leaves open -- averaged
+part > |boundary term| for even next knife -- at the dangerous places (D just
+below the shore, n near k(lam)):
+
+    j+1 = 4, n = 44, lam = 26:  ratio 1.2184 at D = 0.50 shore,
+                                ratio 1.0001 at D = 0.99 shore
+    j+1 = 6, n = 41, lam = 26:  1.1063  ->  1.0000
+    j+1 = 8, n = 44, lam = 26:  1.0411  ->  1.0000
+
+So the two quantities become EQUAL at the threshold, by construction: the
+inequality "averaged > |boundary|" is not a weak link that a crude estimate
+could finish -- it is logically equivalent to "we are below the threshold",
+i.e. to the theorem itself.
+
+**Correction to what I said an hour ago.** I called this "one explicit
+comparison, half the problem". That was too optimistic and I should have
+measured the margin BEFORE promising it. The ladder did not simplify the
+problem; it EXPLAINED it. Those are different things, and the difference is
+exactly what the founder was pushing me on -- do not report a reformulation as
+progress toward a proof.
+
+**What the ladder does leave, and it is real:**
+  * the mechanism of the parity split -- why odd knives can never cut and even
+    ones must -- now derived, and agreeing with the independently proved
+    leading-coefficient fact;
+  * the structure "positive-kernel averaging + boundary term", which is the
+    third exact ladder of the programme;
+  * a characterisation of the THRESHOLD as the locus where the averaged part
+    exactly equals the boundary term. That is an equation for the threshold,
+    not an estimate -- possibly more useful than the inequality, since the
+    margin law says that locus sits 2.4(j-2) dimensions above the shore.
+
+**Why I am not going to force this tonight.** Proving positivity below the
+shore from this identity requires comparing two quantities to better than one
+percent, uniformly. That is the same obstacle that killed the analytic
+derivation of the constant 2.398 this morning: the asymptotics of the full
+alternating sum. Two independent routes have now hit the identical wall, which
+is information: the remaining gap is not a missing trick, it is a genuine
+asymptotic estimate that this programme has not yet earned.
