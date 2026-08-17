@@ -1484,3 +1484,19 @@ narrowest formulation of the keystone we have ever had:
       keystone  <=>  positivity of one explicit Abel-Plana prefactor.
 Also: this explains a posteriori why 15 earlier attempts failed — every one of
 them was a real-axis estimate, and the answer lives off the real axis.
+
+## 2026-08-17 (canyon, 23:50) — naive Abel-Plana FAILS (16th negative), but the
+## exponent match stands
+- Applying the standard Abel-Plana formula to the analytic continuation of a_t
+  (via Gamma-ratios, pole-free at integer j) misses the true value by 6 orders
+  of magnitude. Reason understood: Abel-Plana is for INFINITE sums of decaying
+  f; our sum TERMINATES at t=j because of (1-j)_t, and the continuation keeps
+  growing past t=j, so the boundary terms dominate. Recorded as negative #16.
+- What survives: the numerical coincidence exponent = pi * alpha with
+  alpha = 0.380 vs measured saddle 0.40 +- 0.02 is still the best explanation
+  of the exponential law; it just has to be derived from the CONTOUR integral
+  (which is exact for a terminating sum) rather than from Abel-Plana.
+- Next concrete step: find the COMPLEX saddle points of the contour integrand
+  G^2(x) Psi(1/x) — solve d/dx log(integrand) = 0 numerically, then deform the
+  contour through them. That is precisely the AEHM manoeuvre and it is exact
+  for our finite sum.
