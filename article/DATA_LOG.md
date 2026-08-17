@@ -2124,3 +2124,26 @@ Note also that this reframes the earlier work rather than discarding it: the
 Beta reduction, the symbolic-lam certificate and the symbolic-n tail+base
 certificate all still apply, and they now only ever need to be run inside a
 width-2 strip instead of the whole stretch.
+
+## 2026-08-17 14:49 -- Negative #26, and the shore inequality holds everywhere tested
+
+Tried to shrink the strip to a single point: if J were monotone decreasing
+across the strip, then positivity on the whole strip would follow from the
+one inequality J(Q_shore) >= 0, and the theorem would reduce to the shore
+itself.
+
+  * J(Q_shore) >= 0 in ALL 840 cells tested (j = 2..21, many n, six lam) --
+    the shore inequality itself never fails.
+  * Monotonicity FAILS: in 156 of 840 cells the derivative changes sign
+    somewhere inside the strip. Negative #26.
+
+So the reduction to a single point does not go through. It is not needed:
+the Polya certificate on the strip is MANIFEST anyway (depth zero on the
+grid, and the symbolic-in-lam-and-n version is closing branch after branch,
+through j = 10 as of this entry). Monotonicity would have been a shortcut,
+not a requirement.
+
+Worth keeping from this: the shore inequality J(Q_shore) >= 0 is now measured
+across a wide grid with zero failures, and it is exactly the statement that
+the fleet touches but never crosses -- the same tangency the first knife
+theorem proved geometrically for j = 2.
