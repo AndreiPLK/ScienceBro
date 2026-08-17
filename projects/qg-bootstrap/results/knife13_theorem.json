@@ -1,0 +1,13 @@
+{
+ "theorem": "Knife 13: windows never cut below the shore",
+ "status": "COMPLETE pending adversarial review",
+ "engine": "prover v2 (flint)",
+ "regions": {
+  "shallow_fixed_m": "knife_proof2_j13.json",
+  "shallow_tail_and_deep": "knife_tail2_j13.json",
+  "belowdiag_band_K0": "knife13_belowdiag_shift.json",
+  "far_below": "knife13_farbelow_interval.json"
+ },
+ "coverage_note": "onto lam->0; m >= max(1,j-2); deep cap L1; full deep-tail tiling",
+ "far_below_note": "interval-Bernstein certificate (farbelow3)"
+}
