@@ -1984,3 +1984,41 @@ But it could have bitten the headline result, and it was found only because
 a monotonicity check produced values that looked implausible. Recording the
 pattern: when a measured quantity jumps around (1.23, 1.69, 1.51, 1.24,
 2.05), suspect the measuring tool before believing the pattern.
+
+## 2026-08-17 14:29 -- 360-analysis: the knife problem IS a Schoenberg problem
+
+Stepping back from the machinery to look sideways, the question we have been
+grinding on is a classical one in a different field. "Are all partial-wave
+coefficients of the residue nonnegative in D dimensions?" is verbatim
+Schoenberg's 1942 characterisation: an isotropic function on the sphere
+S^(d-1) is POSITIVE DEFINITE iff its Gegenbauer expansion has nonnegative
+coefficients (the d-dimensional Schoenberg coefficients). Our partial waves
+ARE those coefficients and our D is the sphere dimension.
+
+Two things follow, one conceptual and one practical.
+
+Conceptually, it explains why a shore must exist at all: the class of
+positive definite functions on S^(d-1) SHRINKS as d grows, so for a fixed
+residue there is a largest dimension where positivity survives. The shore is
+that critical dimension, and its existence needs no amplitude physics.
+
+Practically, it points at an existing toolkit we were not using: DIMENSION
+WALKS -- montee/descente operators relating Gegenbauer coefficients in
+dimension d and d+2 (Gneiting, arXiv:1303.6856; strictly-PD refinements in
+J. Approx. Theory 2017). Monotonicity classes of the coefficient sequence
+there guarantee positive definiteness in higher dimensions. If our
+coefficient family lands in such a class, the D-dependence might be
+available wholesale AND uniformly in j -- which is exactly the single gap
+left in the keystone.
+
+Written up with a deterministic first test in research/schoenberg-direction.md:
+check exactly whether the descente operator maps our coefficient sequence at
+D to the one we compute directly at D+2. If it does, we inherit the toolkit;
+if not, it is a negative with a signature and gets dropped. Status: a
+DIRECTION with a falsifier, not evidence for anything.
+
+Also in this block: the foreign-engine judge (Z3) is running on the tightest
+zone of the whole project -- branch k = 44..46 (lam about 26), levels 38..52,
+even knives, where the margin is one percent and where our own earlier tools
+were weakest. So far j = 4 and j = 6 are fully unsat (135 continuous cells,
+zero alarms, zero unknowns).
