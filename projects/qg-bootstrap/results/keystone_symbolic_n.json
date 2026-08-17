@@ -8,15 +8,15 @@
  "uniform_clearing": "(1+w)^{j-1} (1+v)^{2(j-1)} prod_{i=1}^{j-1}(n-i) s^{2(j-1)}, each factor strictly positive on the domain",
  "validation": "sign of N matches the exact rational J at interior points (3 cells x 12 points)",
  "coverage": {
-  "j": "3..14",
+  "j": "3..16",
   "branches": "k=3..20",
   "n": "every level of the stated parity, unbounded",
   "NOT covered": "j above the tested range, and lam above the last branch"
  },
  "structure": "TAIL + BASE. The nonnegative-coefficient certificate cannot start at the first level, because the D-threshold has an INTERIOR minimum in n and so positivity in n is not monotone. Instead: for each (j, parity, branch) find the smallest shift M such that the tail n >= n0 + 2M is manifestly positive (one certificate, infinitely many levels), and let the finitely many levels below it be the base, which step 1 already certified cell by cell.",
  "join_condition_checked": "every base level must satisfy n <= j + 20, the coverage of step 1; cells failing this are reported as failures, not silently dropped",
- "cells": 432,
- "certified": 432,
+ "cells": 504,
+ "certified": 504,
  "all_certified": true,
  "max_shift_M": 8,
  "max_tail_start_level": 21,
@@ -749,14 +749,14 @@
   }
  ],
  "failures": [],
- "command": "KSN_JMAX=14 python lab/keystone_symbolic_n.py",
- "git": "9eb112dcfff4",
- "git_full": "9eb112dcfff4cb7a34b952cd94eb9fad09fbee84",
+ "command": "KSN_JMAX=16 python lab/keystone_symbolic_n.py",
+ "git": "9879c50edc3e",
+ "git_full": "9879c50edc3ec492e3741b3e5607d3d91f63c9c9",
  "dirty": false,
  "dirty_code_files": [],
  "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 1404.4
+ "runtime_s": 2904.9
 }

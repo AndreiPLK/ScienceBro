@@ -2147,3 +2147,37 @@ Worth keeping from this: the shore inequality J(Q_shore) >= 0 is now measured
 across a wide grid with zero failures, and it is exactly the statement that
 the fleet touches but never crosses -- the same tangency the first knife
 theorem proved geometrically for j = 2.
+
+## 2026-08-17 15:15 -- Negative #27: no local grouping proves the strip certificate
+
+Step 2, attempt A. On the strip every coefficient of the certificate is
+STRICTLY positive -- not one of them is even zero (135 coefficients at j = 3,
+364 at j = 4, 765 at j = 5, all positive, both parities, several branches).
+That raised the hope that positivity is LOCAL: if each adjacent pair of
+summands were nonnegative by itself, the certificate would hold for every j at
+once, with no induction and no cell-by-cell work.
+
+Tested and dead:
+  * pairs (0,1), (2,3), (4,5), ...: the FIRST pair always fails, later pairs
+    pass -- so grouping from the bottom does not work;
+  * shifted grouping, t = 0 alone then (1,2), (3,4), ...: t = 0 alone is
+    nonnegative, but NO pair passes;
+  * partial sums: from the top they only turn nonnegative near the middle
+    (t = 2 at j = 4, t = 4 at j = 5 and 6).
+
+Conclusion: the cancellation that makes the strip certificate work is GLOBAL
+across the alternating sum, not pairwise and not tail-local. This is now the
+fourth time this problem has said the same thing (negatives #19, #21, #23,
+#27): positivity here never decomposes into positive pieces. Any proof
+uniform in j has to respect that, which rules out the whole family of
+"group the terms cleverly" arguments.
+
+What survives from the attempt, and it is worth keeping: the strip
+coefficients are strictly positive with no zeros at all, which means the
+certificate has margin everywhere rather than sitting on a boundary. The
+remaining routes for j are the two structural ones -- induction using
+Q_{j+1}(t) = Q_j(t)/(j-t), and the dimension-walk apparatus that gave today's
+descent lemma, which is the only tool so far that acted uniformly in the spin.
+
+Meanwhile the strip certificate itself keeps closing: j = 13 done, 946 cells,
+zero failures.
