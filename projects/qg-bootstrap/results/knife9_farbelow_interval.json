@@ -1,0 +1,23 @@
+{
+ "j": 9,
+ "far_below_interval": true,
+ "cells": 1,
+ "strict_positive": true,
+ "method": "interval Bernstein in (thL, th) + orthant in (v, K3)",
+ "scope": "far-below deep water: m=41+v (v>=0), K=v+K3+6 (=> v<=K-6), lam=(K+51+thL)sqrt3/3, D in [4, T_cap]",
+ "elev": 0,
+ "depth": 5,
+ "failed_cells": [],
+ "command": "KNIFE_J=9 python lab/knife_farbelow3.py",
+ "git": "f1ad8fcf698c",
+ "git_full": "f1ad8fcf698c28cae31f9bb21ff46e1c05048d0b",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/knife_farbelow3.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 46.7
+}

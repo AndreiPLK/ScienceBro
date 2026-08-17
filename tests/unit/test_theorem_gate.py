@@ -21,7 +21,8 @@ from pathlib import Path
 RESULTS = (Path(__file__).resolve().parents[2] / "projects" / "qg-bootstrap"
            / "results")
 
-PASS_FLAGS = ("all_certified", "far_below_factored", "ok_so_far", "all_unsat")
+PASS_FLAGS = ("all_certified", "far_below_factored",
+              "far_below_interval", "ok_so_far", "all_unsat")
 COUNT_FIELDS = ("cells", "y_coefficients")
 ARTIFACT_RE = re.compile(r"^[\w][\w\-]*\.json$")
 COMPLETE_RE = re.compile(r"\bCOMPLETE\b")

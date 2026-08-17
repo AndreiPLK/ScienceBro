@@ -1,12 +1,14 @@
 {
- "theorem": "Knife 11: windows never cut below the shore",
- "status": "PARTIAL (3 of 4 regions certified)",
- "engine": "prover v2 (flint)",
+ "theorem": "Knife 11: windows of knife j=11 never cut below the shore",
+ "status": "COMPLETE pending adversarial review",
+ "engine": "prover v2 (flint) throughout",
  "regions": {
   "shallow_fixed_m": "knife_proof2_j11.json",
   "shallow_tail_and_deep": "knife_tail2_j11.json",
-  "belowdiag_band_K0": "knife11_belowdiag_shift.json"
+  "belowdiag_band_K0": "knife11_belowdiag_shift.json",
+  "far_below": "knife11_farbelow_interval.json"
  },
- "open_region": "far_below \u2014 y-expansion criterion fails from j=9 (documented boundary, see DATA_LOG 2026-08-17); needs interval-Bernstein or Handelman certificate",
- "note": "NOT complete \u2014 deliberately not claiming COMPLETE"
+ "coverage_note": "shallow: lam in (0, 26.1] onto incl. lam->0; m >= max(1, j-2) (n >= j+1, spin l >= 2); deep: lam>=26 via L1 cap; deep-tail quadrant = band[K-6,K+4] + K0..5 + far(v<=K-6) + above-diagonal",
+ "far_below_note": "closed by the INTERVAL-Bernstein certificate (farbelow3) \u2014 the y-expansion criterion fails from j=9, this one does not",
+ "review": "fleet review 2 architecture applies; round 3 pending"
 }
