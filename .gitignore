@@ -28,3 +28,8 @@ projects/*/upstream/*.log
 # OS
 Thumbs.db
 .DS_Store
+
+# Чужой код (пинится vendor/upstream-manifest.yaml, не тащим в наш репо)
+projects/*/upstream/checkout/
+# PDF статей: храним локально, в evidence остаются sha256 + метаданные
+projects/*/evidence/papers/*.pdf
