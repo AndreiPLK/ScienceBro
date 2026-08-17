@@ -5,136 +5,37 @@
  "benchmark": [
   {
    "j": 6,
-   "fast_s": 0.015,
-   "qpoly_s": 0.0786,
-   "speedup": 5.2
+   "fast_s": 0.0261,
+   "qpoly_s": 0.14,
+   "speedup": 5.4
   },
   {
    "j": 8,
-   "fast_s": 0.0515,
-   "qpoly_s": 0.39,
-   "speedup": 7.6
+   "fast_s": 0.0843,
+   "qpoly_s": 0.6593,
+   "speedup": 7.8
   }
  ],
  "coverage": {
-  "j": "2..26",
+  "j": "2..20",
   "branches": "3..45",
   "n": "all levels of the stated parity",
   "D": "the width-2 strip below the shore"
  },
- "cells": 2150,
- "certified": 1700,
- "all_certified": false,
- "failures": [
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 14
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 15
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 16
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 17
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 18
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 19
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 20
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 21
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 22
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 23
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 24
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 25
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 26
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 27
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 28
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 29
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 30
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 31
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 32
-  },
-  {
-   "j": 2,
-   "parity": 0,
-   "k": 33
-  }
+ "cells": 1634,
+ "certified": 1634,
+ "all_certified": true,
+ "failures": [],
+ "command": "KSF_JMAX=20 python lab/keystone_strip_fast.py",
+ "git": "9251a54b8b8a",
+ "git_full": "9251a54b8b8a8358d1d5374dc7a849831f949f4f",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/contour_lib.py"
  ],
- "command": "KSF_JMAX=26 python lab/keystone_strip_fast.py",
- "git": "8e825301d4ac",
- "git_full": "8e825301d4ac0a277ff5e215cef6485756eadb98",
- "dirty": false,
- "dirty_code_files": [],
- "dirty_count": 0,
+ "dirty_count": 1,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 5215.1
+ "runtime_s": 939.0
 }
