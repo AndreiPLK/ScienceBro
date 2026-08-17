@@ -1425,3 +1425,20 @@ Immediate next steps inside the canyon:
   i.e. exactly the q^{j/2} law of the margin. Conclusion: no numeric or
   majorant method can win; the cancellation must be done ANALYTICALLY at the
   double zero. That is now the single remaining technical task.
+
+## 2026-08-17 (canyon, 20:30) — the cancellation is localised at theta = pi
+On the saddle circle |x| = x0 = 1/a_max^2 the integrand's maximum sits at
+theta = pi EXACTLY (i.e. at x = -x0, the negative real axis) for every j
+tested (8, 10, 12, 14). Ratio |answer| / max|integrand|:
+    1.44e-06 (j=8), 1.45e-07 (10), 1.67e-08 (12), 2.06e-09 (14)
+— a factor ~10 per +2 in j, matching the measured margin law exactly.
+
+So the whole story is now one localised computation: the bracket equals a
+stationary-phase integral around theta = pi, where G^2(-x0) is a large
+POSITIVE number (product of (1 + a^2 x0)^2) and Psi(-1/x0) oscillates. The
+exponential smallness is the phase cancellation there, nothing else.
+
+Next technical step (fully specified): expand G^2 and Psi around x = -x0,
+apply stationary phase, read off the leading coefficient. If that coefficient
+is positive for all j (it should be, given 40 exact data points), the grand
+theorem follows for large j, with small j already machine-proven (j <= 12).
