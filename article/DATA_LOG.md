@@ -2587,3 +2587,58 @@ explicit loop is dominated by its positive part", with everything above the
 threshold already sign-definite and hence trivially positive. The certified
 region (machine certificates, j <= 20 as of tonight) covers exactly the range
 where dips still occur. The two halves are close to meeting.
+
+## 2026-08-17 21:20 -- THE RIPPLE IS AIRY: block widths scale as 1.37 n^(2/3)
+
+The founder looked at tonight's 3D plot and said it looks like a drop falling on
+water -- ripples spreading from a centre -- and told me to stop treating pictures
+as decoration and read them as data. That reframing produced the finding.
+
+**What was measured.** Along a fixed deformation the loop alternates between
+blocks where it dips and windows where it is sign-definite. Widths of the three
+FULL dip blocks at lam = 1 (from the scan to j = 78): 8, 14, 20 knives, at levels
+n = 14, 32, 58. Dividing by n^(2/3):
+
+    8 / 14^(2/3)  = 1.3772
+    14 / 32^(2/3) = 1.3890
+    20 / 58^(2/3) = 1.3348
+
+A constant to within 4 percent across three independent blocks. So
+
+        block width  =  C n^(2/3),   C = 1.37 +- 0.03 .
+
+**Why the exponent matters.** 2/3 is the AIRY scale -- the universal exponent
+that appears where two saddle points merge (a caustic). Rainbow fringes in optics
+have it, the Airy function's zeros space out with it, and every uniform
+asymptotic treatment of a fold catastrophe produces it. So the ripple is not an
+artefact of our loop: it is the fingerprint of two coalescing saddles, and the
+windows are the intervals between the resulting oscillation's zeros. That also
+explains, at last, why leading-order saddle asymptotics failed at large j -- near
+a caustic the individual contributions blow up while their sum stays small, which
+is exactly the 55x cancellation measured earlier.
+
+**Hypotheses killed on the way to it (all recorded, in one evening):**
+  * quadratic law for the boundaries (2k^2+7k+6 in the spectral count):
+    predicted a dip-free stretch at j = 80..86, measured dip -- 6 misses of 9;
+  * ripple carried by the ARGUMENT of the nearest complex root: 2pi/arg gives
+    38, 26, 146, 118, 102, nothing like the widths 8, 14, 20;
+  * ripple carried by the MODULUS of that root: it falls 200x while the optimal
+    radius barely moves;
+  * interference of the two dominant saddles computed in float: contributions
+    reach 1e109 and the phases become numerical garbage (flagged by the
+    self-check list rather than believed);
+  * width ~ 2 sqrt(n): fits the first block, drifts on the later ones (ratios
+    2.14, 2.47, 2.63), whereas n^(2/3) holds flat.
+
+**What it buys us.** A quantitative law where before there was only "windows
+drift and recur". Two consequences to chase: (a) if the windows are Airy zeros,
+their positions are PREDICTABLE, which turns "certify until the dips stop" into
+"certify the finitely many blocks below a computable index"; (b) uniform Airy
+asymptotics (Chester-Friedman-Ursell) is the standard tool for exactly this
+regime and replaces the naive saddle sum that failed.
+
+Status: a measured scaling law with an explicit constant, three data points, and
+a named mechanism. Not a theorem. The next test is whether the window boundaries
+sit at Airy zeros in the rescaled variable -- the scaled spacings measured so far
+(0.45, 0.12, 0.40, 0.085, 0.43, 0.062) alternate as they should but shrink faster
+than Ai zeros do, so the correspondence is not yet clean.
