@@ -3345,3 +3345,35 @@ tangency is not a knife-edge in rho either.
 That closes the asymptotic question I posed at the start of the night ("does the
 fourth knife survive as lam grows?"). What remains is the finite-lam statement,
 where the margin is 1 + C/n and the exponentially small quantities live.
+
+## 2026-08-18 04:48 -- the second limit closes cleanly; joining it to the certificates does not (yet)
+
+THE OTHER LIMIT. With lam and D held FIXED and n -> infinity, the leading
+coefficient of the knife polynomial is a positive CONSTANT:
+
+    j = 3: 20      j = 4: 280      j = 5: 2800      j = 6: 12320
+
+So every knife is positive at large enough level for any fixed (lam, D). That is
+the tail of the region the finite certificates cannot reach, and it suggests the
+architecture the letter proposed: certificates close n <= n0, asymptotics close
+n > n0.
+
+WHAT DOES NOT WORK YET: the generic Cauchy root bound gives an n0 that is far too
+crude to join the two --
+
+    lam = 1,   D = 11:  n0 = 123      (certificates already reach n = 150, so this one closes)
+    lam = 1,   D = 6:   n0 = 1189
+    lam = 3:            n0 ~ 2e4 to 7e4
+    lam = 7:            n0 ~ 1.7e7
+    lam = 60:           n0 ~ 1.9e13
+
+The reason is structural rather than technical: the coefficients carry powers of
+lam, so a bound that ignores that scaling explodes, while the true threshold sits
+at n of order lam (the scaling limit says the interesting region is n ~ rho lam
+with rho = O(1)). Closing the gap therefore needs a bound written in n/lam, not a
+generic one.
+
+Worth recording that ONE cell does close completely by this route today:
+lam = 1, D = 11, where n0 = 123 and the certificates run to n = 150. That is the
+first (lam, D) for which knife 4 is settled for ALL levels, not just the tested
+ones.
