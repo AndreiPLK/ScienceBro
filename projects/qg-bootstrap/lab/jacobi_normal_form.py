@@ -238,3 +238,148 @@ def self_check_fast(verbose: bool = True) -> int:
     if verbose:
         print(f"  fast vs slow: {checked} exact comparisons, {bad} mismatches")
     return bad
+
+
+def _poch_q(a, k: int):
+    """Rising factorial on flint fmpq."""
+    from flint import fmpq
+
+    v = fmpq(1)
+    for i in range(k):
+        v *= a + fmpq(i)
+    return v
+
+
+def jacobi_coeff_flint(j: int, n: int, lam: F, D: F):
+    """Same number as `jacobi_coeff_fast`, on the flint engine.
+
+    Everything here was written on python Fractions first, which is the slow
+    engine; the founder's standing rule is that once a faster exact engine is
+    available it gets used everywhere. flint's fmpq is the same exact rational
+    arithmetic implemented in C, and the large-n sweeps that timed out on
+    Fractions are the reason this exists.
+
+    Returns fmpq. `self_check_flint` asserts it equals the Fraction path exactly.
+    """
+    from flint import fmpq
+
+    def q(x: F):
+        return fmpq(x.numerator, x.denominator)
+
+    m = n - j
+    a, b = fmpq(-1, 2), q(F(D, 2) - 2)
+    e = e_doubled_int(n)
+    s = q(F(lam) + n - 1)
+    tot = fmpq(0)
+    for t in range(min(len(e), n)):
+        qq = n - 1 - t
+        if qq < m:
+            continue
+        fq = fmpq((-1) ** t) * fmpq(int(e[t])) / s ** (2 * t)
+        if fq == 0:
+            continue
+        den = _poch_q(a + 1, m) * _poch_q(fmpq(-m) - b - a - fmpq(qq) - 1, m)
+        if den == 0:
+            continue
+        mq = (
+            (_poch_q(a + 1, m) / fmpq(_fact(m)))
+            * (_poch_q(a + 1, qq) / _poch_q(a + b + 2, qq))
+            * _poch_q(fmpq(-m) - b, m)
+            * _poch_q(fmpq(-qq), m)
+            / den
+        )
+        tot += fq * mq
+    return tot
+
+
+def self_check_flint(verbose: bool = True) -> int:
+    """flint path must equal the Fraction path EXACTLY, or it is worthless."""
+    from flint import fmpq
+
+    bad = checked = 0
+    for n in range(5, 16):
+        for j in range(2, n + 1):
+            for lam in (F(1, 2), F(1), F(7)):
+                for D in (F(4), F(6), F(11)):
+                    checked += 1
+                    slow = jacobi_coeff_fast(j, n, lam, D)
+                    fast = jacobi_coeff_flint(j, n, lam, D)
+                    if fast != fmpq(slow.numerator, slow.denominator):
+                        bad += 1
+                        if verbose and bad <= 5:
+                            print(f"   MISMATCH j={j} n={n} lam={lam} D={D}")
+    if verbose:
+        print(f"  flint vs Fraction: {checked} exact comparisons, {bad} mismatches")
+    return bad
+
+
+def jacobi_coeff_rec(j: int, n: int, lam: F, D: F):
+    """Same number again, but the moments are stepped RECURSIVELY in q.
+
+    Recomputing Pochhammer symbols for every summand was the real cost, not the
+    arithmetic: for fixed m the ratio of consecutive moments collapses to
+
+        M(q+1,m)/M(q,m) = (alpha+1+q)/(alpha+beta+2+q)
+                          x (q+1)/(q-m+1)
+                          x (A_q+m-1)/(A_q-1),      A_q = -m-beta-alpha-q-1,
+
+    so the whole coefficient costs O(j) multiplications instead of O(j m). On the
+    flint engine. Checked against the Fraction path in `self_check_rec`.
+    """
+    from flint import fmpq
+
+    def q_(x: F):
+        return fmpq(x.numerator, x.denominator)
+
+    m = n - j
+    a, b = fmpq(-1, 2), q_(F(D, 2) - 2)
+    e = e_doubled_int(n)
+    s = q_(F(lam) + n - 1)
+
+    # start at q = m
+    A = fmpq(-m) - b - a - fmpq(m) - 1
+    den = _poch_q(a + 1, m) * _poch_q(A, m)
+    if den == 0:
+        return fmpq(0)
+    M = (
+        (_poch_q(a + 1, m) / fmpq(_fact(m)))
+        * (_poch_q(a + 1, m) / _poch_q(a + b + 2, m))
+        * _poch_q(fmpq(-m) - b, m)
+        * _poch_q(fmpq(-m), m)
+        / den
+    )
+    tot = fmpq(0)
+    for qq in range(m, n):
+        t = n - 1 - qq
+        if 0 <= t < len(e):
+            fq = fmpq((-1) ** t) * fmpq(int(e[t])) / s ** (2 * t)
+            if fq != 0:
+                tot += fq * M
+        # step M from q to q+1
+        Aq = fmpq(-m) - b - a - fmpq(qq) - 1
+        step_den = (a + b + 2 + qq) * fmpq(qq - m + 1) * (Aq - 1)
+        if step_den == 0:
+            break
+        M = M * ((a + 1 + qq) * fmpq(qq + 1) * (Aq + m - 1)) / step_den
+    return tot
+
+
+def self_check_rec(verbose: bool = True) -> int:
+    """The recursive path must equal the Fraction path EXACTLY."""
+    from flint import fmpq
+
+    bad = checked = 0
+    for n in range(5, 16):
+        for j in range(2, n + 1):
+            for lam in (F(1, 2), F(1), F(7)):
+                for D in (F(4), F(6), F(11)):
+                    checked += 1
+                    slow = jacobi_coeff_fast(j, n, lam, D)
+                    rec = jacobi_coeff_rec(j, n, lam, D)
+                    if rec != fmpq(slow.numerator, slow.denominator):
+                        bad += 1
+                        if verbose and bad <= 5:
+                            print(f"   MISMATCH j={j} n={n} lam={lam} D={D}: {rec} vs {slow}")
+    if verbose:
+        print(f"  recursive vs Fraction: {checked} exact comparisons, {bad} mismatches")
+    return bad

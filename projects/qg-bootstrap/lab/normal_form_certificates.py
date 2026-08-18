@@ -7,9 +7,10 @@ independently computed exact value on 4500 cells with zero mismatches) says
                     F(u) = u^eps prod_a (u - (a/s)^2)^2,   m = n - j.
 
 Because j enters ONLY through m, one level n costs one polynomial and n-1
-coefficient evaluations: at n = 60 that is 59 knives in 35 seconds, against
-9941 seconds for the strip-certificate run to reach j = 28. This module turns
-that into a coverage artifact.
+coefficient evaluations. With the moments stepped recursively on the flint engine
+(jacobi_coeff_rec) a whole level of 149 knives costs under a second, against 9941
+seconds for the strip-certificate run to reach j = 28. This module turns that into
+a coverage artifact.
 
 WHAT THIS DOES AND DOES NOT REPLACE. The strip certificates cover RANGES of lam
 and D symbolically; this fixes one (lam, D) per pass. It is therefore extra
@@ -32,7 +33,7 @@ from fractions import Fraction as F
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from jacobi_normal_form import jacobi_moment, sign_of  # noqa: E402
+from jacobi_normal_form import jacobi_coeff_rec  # noqa: E402
 from keystone_hunt import T_hat  # noqa: E402
 from provenance import stamp  # noqa: E402
 
@@ -63,7 +64,8 @@ def main() -> int:
                 t1 = time.time()
                 neg = []
                 for m in range(n - 1):
-                    if sign_of(F(-1) ** m * jacobi_moment(n - m, n, lam, D)) <= 0:
+                    # exact rational sign, recursive moments on the flint engine
+                    if (-1) ** m * jacobi_coeff_rec(n - m, n, lam, D) <= 0:
                         neg.append(m)
                 rows[key] = {
                     "n": n,
