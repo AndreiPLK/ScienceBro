@@ -69,5 +69,61 @@
  "dirty_count": 0,
  "python": "3.12.10",
  "flint": "0.9.0",
- "platform": "Windows-11-10.0.22631-SP0"
+ "platform": "Windows-11-10.0.22631-SP0",
+ "REFINEMENT_same_day": {
+  "what_changed": "the sqrt(N) localisation is a property of the PHYSICAL regime (gamma at or near the shore), not a universal law in gamma. Tested at gamma = 30 with lam = 1/10 -- eight times the shore -- the bad set is a THIRD of the spectrum at N = 1599 and shrinks only like N^-0.37, and max/sqrt(gamma N) drifts 1.90 -> 2.34 -> 2.50 instead of settling. So neither sqrt(N) nor sqrt(gamma N) is the law.",
+  "at_the_shore_which_is_what_matters": {
+   "lam=1/2 (shore 6.3750)": {
+    "max_over_N": [
+     0.2362,
+     0.0964,
+     0.0532
+    ],
+    "max_index": [
+     47,
+     77,
+     85
+    ]
+   },
+   "lam=1 (shore 10.0000)": {
+    "max_over_N": [
+     0.3266,
+     0.1539,
+     0.1007
+    ],
+    "max_index": [
+     65,
+     123,
+     161
+    ]
+   },
+   "lam=2 (shore 18.2000)": {
+    "max_over_N": [
+     0.4673,
+     0.2466,
+     0.1707
+    ],
+    "max_index": [
+     93,
+     197,
+     273
+    ]
+   },
+   "N": [
+    199,
+    799,
+    1599
+   ],
+   "reading": "at the shore the offending set occupies a vanishing fraction of the spectrum in all three families, falling roughly like N^-0.48 .. N^-0.72. The absolute scale is near 4 sqrt(N) and drifting slowly downward."
+  },
+  "honest_status": "the qualitative claim -- the bad set is a vanishing fraction of the spectrum at the shore, so the bulk does not offend -- holds in every physical cell measured. The quantitative claim -- a clean sqrt(N) law with a constant -- does NOT hold once gamma is pushed well above the shore, and is withdrawn.",
+  "git": "0ddfcfd905c8",
+  "git_full": "0ddfcfd905c8d90542c4c6e4a781f1c240f3a94f",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+ }
 }
