@@ -23,7 +23,10 @@
      "hi_open": 0,
      "wedge_proved": true,
      "wedge_boxes": 1,
-     "wedge_open": 0
+     "wedge_open": 0,
+     "small_lam_proved": true,
+     "small_lam_boxes": 3,
+     "small_lam_open": 0
     },
     "odd": {
      "K_deg": 12,
@@ -38,16 +41,19 @@
      "hi_open": 0,
      "wedge_proved": true,
      "wedge_boxes": 1,
-     "wedge_open": 0
+     "wedge_open": 0,
+     "small_lam_proved": true,
+     "small_lam_boxes": 1,
+     "small_lam_open": 0
     }
    },
-   "proved_for_all_c": true,
-   "seconds": 25.8
+   "proved_for_all_lam": true,
+   "seconds": 21.1
   }
  ],
  "command": "python lab/keystone_unglued.py <d> [<d> ...]",
- "git": "df78b023e814",
- "git_full": "df78b023e814d504adf93e16010888cb79eea2f8",
+ "git": "8072b99ce051",
+ "git_full": "8072b99ce051b44df7395816fb6d495c9fc7520a",
  "dirty": true,
  "dirty_code_files": [
   "projects/qg-bootstrap/lab/keystone_unglued.py"

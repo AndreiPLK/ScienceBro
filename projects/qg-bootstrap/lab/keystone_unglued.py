@@ -83,6 +83,11 @@ C_MIN = fmpq(5, 12)
 # meet here, so together they cover all c >= C_MIN.
 C_SPLIT = fmpq(50)
 
+# The fixed integer shore level used on lam <= LAM_MIN, where the window is too
+# short to be guaranteed to contain one. k=3 fails (depth 2 near lam=2.4); k=4
+# is clean on 392 trials across depths 2..10 and all lam in (0, 5/2].
+KS_SMALL = fmpq(4)
+
 
 # --------------------------------------------------------------------------
 # Multivariate polynomial over Q: dict[(e0, e1, ..)] -> fmpq. Same design as
@@ -549,6 +554,55 @@ def build_wedge(parity: str, d: int, e_polys: dict) -> NPoly:
     return total
 
 
+def build_small_lam(parity: str, d: int, e_polys: dict) -> NPoly:
+    """H(K, lam) at D = T_{KS_SMALL}(lam), for the region lam <= LAM_MIN.
+
+    Below lam = 5/2 the window [8/5 lam, 2 lam] is shorter than 1, so step (b)
+    cannot rely on it. But the window was only ever a convenience: T_hat <= T_k
+    holds for EVERY integer k >= 3, so on this region we may simply FIX one
+    integer, provided the knife stays positive there. Measured: k = 4 works at
+    every depth 2..10 and every lam in (0, 5/2] (392 trials, 0 negatives),
+    while k = 3 already fails for depth 2 near lam = 2.4 -- hence 4, not 3.
+
+    Fixing k_s removes the v axis entirely, so this is a 2-variable problem
+    (slot 0 = K, slot 1 = lam; slot 2 unused).
+    """
+    K = NPoly.var(0)
+    lam = NPoly.var(1)
+    one = NPoly.const(1)
+
+    N = K * fmpq(2) if parity == "even" else K * fmpq(2) + one
+    m = N - NPoly.const(d)
+    X = (N + lam) * (N + lam)
+    k_s = NPoly.const(KS_SMALL)
+
+    B = lam * lam + (k_s * fmpq(2) - fmpq(2)) * lam + one
+    kk2 = k_s * (k_s - fmpq(2))
+    Qg = kk2 * fmpq(2)
+    Pg = (
+        (k_s * fmpq(2) - fmpq(3)) * B * fmpq(3)
+        + k_s * k_s * (k_s - fmpq(2)) * fmpq(2)
+        - kk2 * fmpq(3)
+    )
+
+    total = NPoly.const(0)
+    half = NPoly.const(fmpq(1, 2))
+    two_m_Qg = (m * fmpq(2)) * Qg
+    L = [two_m_Qg + Pg + Qg * fmpq(1 + i) for i in range(d)]
+    for k in range(d + 1):
+        j = d - k
+        coeff_N = e_polys[k] * falling_poly(k, j) / poch(fmpq(1), j)
+        cb = lift_N(coeff_N, N) * fmpq((-1) ** k)
+        num = NPoly.const(1)
+        for i in range(j):
+            num = num * (m + half + NPoly.const(i))
+        comp = NPoly.const(1)
+        for i in range(j, d):
+            comp = comp * L[i]
+        total = total + cb * num * comp * (X**j) * (Qg**j)
+    return total
+
+
 def compactify(poly: NPoly, slot: int, x_min) -> NPoly:
     """Map [x_min, infinity) -> [0,1) via x = x_min/(1-t), clearing (1-t)^deg."""
     deg = poly.max_deg(slot)
@@ -621,11 +675,18 @@ def run_depth(d: int) -> dict:
         ok_w, boxes_w, open_w = prove_box(
             Wz, [(fmpq(0), C_MIN), (fmpq(0), fmpq(999, 1000)), (V_LO, V_HI)]
         )
+        # small lam (<= LAM_MIN) at the FIXED shore level KS_SMALL
+        S = build_small_lam(parity, d, e_polys)
+        Sk = compactify(S, 0, 3)
+        ok_s, boxes_s, open_s = prove_box(
+            Sk, [(fmpq(0), fmpq(999, 1000)), (fmpq(0), LAM_MIN), (fmpq(0), fmpq(1))]
+        )
         dt = time.time() - t1
         print(
             f"  [{parity}] lo({float(C_MIN):.4f}<=c<={float(C_SPLIT)})={ok_lo}({boxes_lo}b) "
             f"hi(c>={float(C_SPLIT)})={ok_hi}({boxes_hi}b) "
-            f"wedge(c<{float(C_MIN):.4f})={ok_w}({boxes_w}b)  ({dt:.0f}s)",
+            f"wedge(c<{float(C_MIN):.4f})={ok_w}({boxes_w}b) "
+            f"small(lam<={float(LAM_MIN)})={ok_s}({boxes_s}b)  ({dt:.0f}s)",
             flush=True,
         )
         result["branches"][parity] = {
@@ -642,11 +703,15 @@ def run_depth(d: int) -> dict:
             "wedge_proved": ok_w,
             "wedge_boxes": boxes_w,
             "wedge_open": len(open_w),
+            "small_lam_proved": ok_s,
+            "small_lam_boxes": boxes_s,
+            "small_lam_open": len(open_s),
         }
-    result["proved_for_all_c"] = all(
+    result["proved_for_all_lam"] = all(
         result["branches"][p]["lo_proved"]
         and result["branches"][p]["hi_proved"]
         and result["branches"][p]["wedge_proved"]
+        and result["branches"][p]["small_lam_proved"]
         for p in ("even", "odd")
     )
     result["seconds"] = round(time.time() - t0, 1)
