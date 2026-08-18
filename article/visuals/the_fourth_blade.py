@@ -14,10 +14,12 @@ when
 
         min over n of D*(n, lam)   >   T_hat(lam).
 
-PLOTTED: that minimum against the shore, as a ratio, for both j = 3 (the
-published case, as a control) and j = 4 (new). The ratio stays above 1
-everywhere computed, and falls toward 1 as lam grows -- the same asymptotic
-tangency the published blade theorem has.
+PLOTTED: that minimum against the shore, as a ratio, for j = 3 (the published
+case, used as a control), j = 4 and j = 5. All stay above 1 everywhere computed,
+but they do not behave alike. Knives 3 and 5 level off (about 1.087 and 1.066);
+knife 4 alone keeps descending -- 1.062 at lam = 7, 1.010 at 26, 1.0042 at 60.
+So the fourth knife is the tight constraint at large lam, and this is NOT a trend
+in j: its neighbours on both sides settle and it does not.
 
 The scan range in n must GROW with lam: the minimising level sits near 1.7 lam,
 and an earlier version of this measurement capped n at 120 and produced a
@@ -42,7 +44,7 @@ from knife_closed_form import D as Dsym  # noqa: E402
 from knife_closed_form import knife_polynomial, lam as lamsym, n as nsym  # noqa: E402
 from PIL import Image, ImageChops  # noqa: E402
 
-CACHE = Path("/tmp/fourth_blade.json")
+CACHE = Path("/tmp/fourth_blade345.json")
 LAMS = [F(1, 4), F(1, 2), F(1), F(2), F(3), F(5), F(7), F(10), F(14), F(20), F(26), F(40), F(60)]
 
 
@@ -65,7 +67,7 @@ def gather():
     if CACHE.exists():
         return json.loads(CACHE.read_text(encoding="utf-8"))
     out = {}
-    for j in (3, 4):
+    for j in (3, 4, 5):
         P = knife_polynomial(j)
         series = []
         for lv in LAMS:
@@ -96,6 +98,7 @@ fig = go.Figure()
 for j, col, name in (
     (3, "#c9e86b", "knife 3 — the published blade theorem"),
     (4, "#4df0ff", "knife 4 — this work"),
+    (5, "#ff8fb0", "knife 5 — this work"),
 ):
     s = d[str(j)]
     fig.add_trace(
@@ -130,9 +133,11 @@ fig.update_layout(
         "per knife (zero disagreements) and 1120 cells below the shore (zero "
         "failures).<br>Plotted: the smallest dimension at which the knife "
         "vanishes, divided by the shore. Above 1 means the knife never cuts "
-        "into the allowed region.<br>Both knives stay above 1 and approach it "
-        "as the family parameter grows — the fourth blade is as delicate as "
-        "the published third one.</sup>",
+        "into the allowed region.<br>All three stay above 1, but they do not "
+        "behave alike: knives 3 and 5 level off near 1.087 and 1.066, while "
+        "knife 4 alone keeps descending — 1.0042 by lam = 60.<br>So the FOURTH "
+        "knife is the tight constraint at large lam. It is not a trend in j: "
+        "the neighbours on both sides settle, and this one does not.</sup>",
         font=dict(color="#ede8dc", size=20),
         x=0.02,
         y=0.95,

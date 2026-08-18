@@ -67,6 +67,24 @@ E_POLY = {
         * (35 * n**4 - 154 * n**3 + 172 * n**2 + 292 * n + 120)
         / 5670
     ),
+    4: (
+        n
+        * (n - 1)
+        * (n - 2)
+        * (n - 3)
+        * (n - 4)
+        * (
+            175 * n**7
+            - 2240 * n**6
+            + 10216 * n**5
+            - 16520 * n**4
+            - 11600 * n**3
+            + 41440 * n**2
+            + 68304 * n
+            + 30240
+        )
+        / 340200
+    ),
 }
 
 
@@ -134,7 +152,7 @@ def main() -> int:
     bad_E = check_E_polynomials()
     print(f"  central factorial polynomials: {len(bad_E)} mismatches", flush=True)
     rows = {}
-    for j in (2, 3, 4):
+    for j in (2, 3, 4, 5):
         checked, bad = verify_against_engine(j)
         P = knife_polynomial(j)
         rows[str(j)] = {

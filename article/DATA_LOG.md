@@ -3242,3 +3242,31 @@ Reproducible: lab/knife_closed_form.py (0 disagreements against the exact engine
 on 24 cells per knife, 1120 cells below the shore with 0 failures) and
 article/visuals/the_fourth_blade.py (certified flint roots, n-range reported per
 point so the cap can be audited).
+
+## 2026-08-18 04:26 -- knife 4 is SINGLED OUT, and it is not a trend in j
+
+E_8(n) derived and verified on both parities to n = 54, which unlocks knife 5.
+All of j = 2, 3, 4, 5 now have verified closed forms (24 cells each against the
+exact flint engine, zero disagreements).
+
+min over levels of D*, divided by the shore:
+
+    lam         1/4    1/2      1      2      3      5      7     10     14     20     26     40     60
+    knife 3    1.187  1.170  1.138  1.105  1.088  1.081  1.080  1.081  1.083  1.084  1.086  1.087  1.087
+    knife 4    1.316  1.252  1.220  1.163  1.142  1.117  1.062  1.032  1.0205 1.013  1.010  1.0064 1.0042
+    knife 5    1.385  1.333  1.275  1.212  1.179  1.158  1.112  1.072  1.0665 1.0655 1.0654 1.0653 1.0658
+
+So the earlier reading -- "each further knife is tighter" -- is WRONG, and I am
+glad the fifth was computed before that was written down as a trend. Knives 3 and
+5 level off (near 1.087 and 1.066). Knife 4 alone keeps descending toward 1.
+
+That is a sharper statement than a trend: the family has ONE distinguished tight
+constraint, the fourth trajectory ell = 2n-8, and its neighbours on both sides
+settle away from the shore. Whether knife 4 stays above the shore as lam grows is
+the open question, and it is now a finite algebraic question about one explicit
+polynomial P4 (degree 9 in n, 3 in D, 6 in lam).
+
+The minimising level grows with lam roughly like 1.7 lam for knife 4 (n = 102 at
+lam = 60) and like 3 lam for knife 5 (n = 179 at lam = 60); the scan range is
+tied to lam and reported per point, after an earlier fixed cap at n = 120
+produced a spurious upturn.

@@ -65,8 +65,7 @@ def test_new_lab_modules_use_the_fast_engine():
     assert not offenders, (
         "New computational modules must use the flint engine (see CLAUDE.md, "
         "ЗАКОН БЫСТРОГО ДВИЖКА). Port them, or add '# ENGINE-OK: <reason>' if "
-        "the slow path is genuinely the right choice here:\n  "
-        + "\n  ".join(offenders)
+        "the slow path is genuinely the right choice here:\n  " + "\n  ".join(offenders)
     )
 
 
