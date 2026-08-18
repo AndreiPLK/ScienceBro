@@ -3464,3 +3464,30 @@ in article/visuals/proof-in-3d.png, where brick size IS local difficulty: coarse
 bricks in the open, a fine dust along the shore.
 
 Running: lam <= 120, n <= 1000. Beyond it the two asymptotic statements take over.
+
+## 2026-08-18 10:40 -- E_2t DERIVED, not fitted: the weakest link in the chain is closed
+
+Until now the central factorial polynomials were guessed from data and verified.
+That was the most vulnerable point for publication -- verification is not
+derivation, and it is the first thing a referee would ask about. It is now
+derived from the definition:
+
+1. The generating product is prod_{k=1}^{n-1} (1 + (n-2k) x)^2. The set
+   {n-2k} is symmetric about zero, so in y = x^2 it is prod_{a>0} (1-a^2 y)^2
+   with a = n-2, n-4, ... (verified directly against the integer sequence at
+   n = 7, 8, 11, 12).
+2. The power sums p_r = SUM_a a^{2r} have Faulhaber closed forms, and -- this is
+   the structural point -- the odd-n and even-n formulas are THE SAME polynomial
+   in n (checked for r = 1, 2, 3). That is why E_2t never depended on parity, a
+   fact previously only observed.
+3. Newton's identities turn the p_r into the elementary symmetric functions s_r.
+4. E_2t is then a coefficient of (SUM_r (-1)^r s_r y^r)^2.
+
+Carried out to t = 6, giving E_2, E_4, E_6, E_8, E_10 and the new E_12, each
+verified against the exact integer sequence on both parities for n up to 39:
+ZERO mismatches. E_12 also unlocks knife 7 for the closed form.
+
+Effect on the programme: the chain from the CHR family to the knife condition is
+now a derivation end to end -- Beta reduction, Jacobi normal form (4500 checks),
+Saalschutz moments (432 checks), the moment recursion R_t (verified per knife),
+and now E_2t. Nothing in it is fitted.
