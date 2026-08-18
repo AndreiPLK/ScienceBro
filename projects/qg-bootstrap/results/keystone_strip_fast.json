@@ -5,15 +5,15 @@
  "benchmark": [
   {
    "j": 6,
-   "fast_s": 0.0205,
-   "qpoly_s": 0.0856,
-   "speedup": 4.2
+   "fast_s": 0.0245,
+   "qpoly_s": 0.1357,
+   "speedup": 5.5
   },
   {
    "j": 8,
-   "fast_s": 0.057,
-   "qpoly_s": 0.4378,
-   "speedup": 7.7
+   "fast_s": 0.086,
+   "qpoly_s": 1.2337,
+   "speedup": 14.3
   }
  ],
  "coverage": {
@@ -27,13 +27,21 @@
  "all_certified": true,
  "failures": [],
  "command": "KSF_JMAX=30 python lab/keystone_strip_fast.py",
- "git": "1839a2376230",
- "git_full": "1839a2376230ba31380475347ab5f8ce1cd35c93",
- "dirty": false,
- "dirty_code_files": [],
- "dirty_count": 0,
+ "git": "86e6bb73ad87",
+ "git_full": "86e6bb73ad876b4290f37a9e74c0da38f8ba2239",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/contour_lib.py",
+  "projects/qg-bootstrap/lab/hp_scan.py",
+  "projects/qg-bootstrap/lab/jacobi_normal_form.py",
+  "projects/qg-bootstrap/lab/long_scan.py",
+  "projects/qg-bootstrap/lab/normal_form_certificates.py",
+  "projects/qg-bootstrap/lab/rolling_saddles.py",
+  "projects/qg-bootstrap/lab/step_lemma.py"
+ ],
+ "dirty_count": 7,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 15236.8
+ "runtime_s": 17626.2
 }

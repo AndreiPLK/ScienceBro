@@ -8,18 +8,18 @@
  "uniform_clearing": "(1+w)^{j-1} (1+v)^{2(j-1)} prod_{i=1}^{j-1}(n-i) s^{2(j-1)}, each factor strictly positive on the domain",
  "validation": "sign of N matches the exact rational J at interior points (3 cells x 12 points)",
  "coverage": {
-  "j": "3..8",
-  "branches": "k=3..20",
+  "j": "3..20",
+  "branches": "k=3..45",
   "n": "every level of the stated parity, unbounded",
   "NOT covered": "j above the tested range, and lam above the last branch"
  },
  "structure": "TAIL + BASE. The nonnegative-coefficient certificate cannot start at the first level, because the D-threshold has an INTERIOR minimum in n and so positivity in n is not monotone. Instead: for each (j, parity, branch) find the smallest shift M such that the tail n >= n0 + 2M is manifestly positive (one certificate, infinitely many levels), and let the finitely many levels below it be the base, which step 1 already certified cell by cell.",
  "join_condition_checked": "every base level must satisfy n <= j + 20, the coverage of step 1; cells failing this are reported as failures, not silently dropped",
- "cells": 216,
- "certified": 216,
+ "cells": 1548,
+ "certified": 1548,
  "all_certified": true,
- "max_shift_M": 2,
- "max_tail_start_level": 10,
+ "max_shift_M": 5,
+ "max_tail_start_level": 22,
  "rows": [
   {
    "j": 3,
@@ -184,6 +184,311 @@
   },
   {
    "j": 3,
+   "parity": 0,
+   "k": 21,
+   "n_tail_start": 8,
+   "base_levels": [
+    4,
+    6
+   ],
+   "M": 2
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 22,
+   "n_tail_start": 8,
+   "base_levels": [
+    4,
+    6
+   ],
+   "M": 2
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 23,
+   "n_tail_start": 8,
+   "base_levels": [
+    4,
+    6
+   ],
+   "M": 2
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 24,
+   "n_tail_start": 8,
+   "base_levels": [
+    4,
+    6
+   ],
+   "M": 2
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 25,
+   "n_tail_start": 8,
+   "base_levels": [
+    4,
+    6
+   ],
+   "M": 2
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 26,
+   "n_tail_start": 8,
+   "base_levels": [
+    4,
+    6
+   ],
+   "M": 2
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 27,
+   "n_tail_start": 8,
+   "base_levels": [
+    4,
+    6
+   ],
+   "M": 2
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 28,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 29,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 30,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 31,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 32,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 33,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 34,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 35,
+   "n_tail_start": 10,
+   "base_levels": [
+    4,
+    6,
+    8
+   ],
+   "M": 3
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 36,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 37,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 38,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 39,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 40,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 41,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 42,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 43,
+   "n_tail_start": 12,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10
+   ],
+   "M": 4
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 44,
+   "n_tail_start": 14,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10,
+    12
+   ],
+   "M": 5
+  },
+  {
+   "j": 3,
+   "parity": 0,
+   "k": 45,
+   "n_tail_start": 14,
+   "base_levels": [
+    4,
+    6,
+    8,
+    10,
+    12
+   ],
+   "M": 5
+  },
+  {
+   "j": 3,
    "parity": 1,
    "k": 3,
    "n_tail_start": 5,
@@ -325,226 +630,25 @@
     5
    ],
    "M": 1
-  },
-  {
-   "j": 3,
-   "parity": 1,
-   "k": 20,
-   "n_tail_start": 7,
-   "base_levels": [
-    5
-   ],
-   "M": 1
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 3,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 4,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 5,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 6,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 7,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 8,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 9,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 10,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 11,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 12,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 13,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 14,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 15,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 16,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 17,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 18,
-   "n_tail_start": 6,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 19,
-   "n_tail_start": 8,
-   "base_levels": [
-    6
-   ],
-   "M": 1
-  },
-  {
-   "j": 4,
-   "parity": 0,
-   "k": 20,
-   "n_tail_start": 8,
-   "base_levels": [
-    6
-   ],
-   "M": 1
-  },
-  {
-   "j": 4,
-   "parity": 1,
-   "k": 3,
-   "n_tail_start": 5,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 1,
-   "k": 4,
-   "n_tail_start": 5,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 1,
-   "k": 5,
-   "n_tail_start": 5,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 1,
-   "k": 6,
-   "n_tail_start": 5,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 1,
-   "k": 7,
-   "n_tail_start": 5,
-   "base_levels": [],
-   "M": 0
-  },
-  {
-   "j": 4,
-   "parity": 1,
-   "k": 8,
-   "n_tail_start": 5,
-   "base_levels": [],
-   "M": 0
   }
  ],
  "failures": [],
- "command": "KSN_JMAX=8 python lab/keystone_strip_symbolic.py",
- "git": "a3a92b9fa1c2",
- "git_full": "a3a92b9fa1c2ce62a65a26316a399a3d2c402d4f",
+ "command": "KSN_JMAX=20 python lab/keystone_strip_symbolic.py",
+ "git": "86e6bb73ad87",
+ "git_full": "86e6bb73ad876b4290f37a9e74c0da38f8ba2239",
  "dirty": true,
  "dirty_code_files": [
-  "projects/qg-bootstrap/lab/keystone_strip_symbolic.py",
-  "projects/qg-bootstrap/lab/keystone_symbolic_n.py"
+  "projects/qg-bootstrap/lab/contour_lib.py",
+  "projects/qg-bootstrap/lab/hp_scan.py",
+  "projects/qg-bootstrap/lab/jacobi_normal_form.py",
+  "projects/qg-bootstrap/lab/long_scan.py",
+  "projects/qg-bootstrap/lab/normal_form_certificates.py",
+  "projects/qg-bootstrap/lab/rolling_saddles.py",
+  "projects/qg-bootstrap/lab/step_lemma.py"
  ],
- "dirty_count": 2,
+ "dirty_count": 7,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 27.3
+ "runtime_s": 34165.7
 }

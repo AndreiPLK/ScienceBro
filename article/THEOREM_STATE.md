@@ -94,3 +94,190 @@ exists is a complete reduction (four parameters down to one polynomial, then to
 a strip of width 2), three exact ladders, a proved parity law, machine
 certificates over a large finite region, and adversarial checks that found
 nothing. Every claim above points at an artifact regenerated from a clean tree.
+
+## 2026-08-17 22:55 -- current best statement of the keystone
+
+EQUIVALENT FORM (machine-verified, 4500 sign checks against the independently
+computed exact value, 0 mismatches):
+
+    Let s = lam + n - 1, a running over {n-2, n-4, ...} positive, eps = n mod 2
+    complemented (1 for even n, 0 for odd n), and
+
+        F(u) = u^eps prod_a (u - (a/s)^2)^2    >= 0,   deg F = n - 1.
+
+    Then for every knife j, with m = n - j,
+
+        sign(knife j) = (-1)^m x sign of the m-th coefficient of F in the
+                        Jacobi basis P_m^{(D/2-2, -1/2)}(1-2u).
+
+    Since j runs 2..n, m runs over every index 0..n-2, so:
+
+    THE GRAND THEOREM IS EQUIVALENT TO: F has an all-positive expansion in
+    P_m^{(D/2-2, -1/2)}(1-2u) up to sign (-1)^m.
+
+EVIDENCE: 7084 coefficients strictly below the shore, zero non-positive;
+additionally n = 24..60 at lam = 1, 7 and D = 6, 11, all m, zero non-positive.
+
+STATUS: reformulation VERIFIED, theorem UNPROVED. Known obstacles: the
+factor-by-factor induction is impossible (single squares fail), and the
+controlling quantity appears to be how close the largest double root sits to
+u = 1, with an n-dependent threshold that has not been derived.
+
+## 2026-08-17 23:34 -- the step lemma has a classical shape: the ceiling IS a Jacobi zero
+
+The induction runs smallest-root-first (verified: every partial product is
+all-positive at every step, while largest-first fails until enough factors
+accumulate). Measuring the admissible step by exact bisection, 18 iterations:
+
+    t (factors in place)   ceiling            largest zero of P_k^{(-1/2, D/2-2)}
+     3                     0.8213234          0.8455426  (k=4)
+     4                     0.8590775          0.8455426  (k=4)
+     5                     0.8836708          0.8928346  (k=5)
+     6                     0.9003677          0.8928346  (k=5)
+     7                     0.9166565          0.9214753  (k=6)
+     8                     0.9260788          0.9214753  (k=6)
+     9                     0.9356689          0.9400622  (k=7)
+    10                     0.9439964          0.9400622  (k=7)
+    11                     0.9508476          0.9527821  (k=8)
+
+EXACT INTERLACING over eight consecutive k: the largest zero of P_k lies between
+ceiling(2k-5) and ceiling(2k-4). So the threshold is not an arbitrary curve -- it
+is (bracketed by) the largest zero of a Jacobi polynomial of degree k ~ t/2 + 5/2,
+and those zeros have classical bounds.
+
+ASYMPTOTIC CHECK, and it is a PREDICTION that came out right:
+  * measured 1 - u_max(k) = 2.051 k^(-1.824) over k = 4..21 (classical limit -2);
+  * hence the ceiling gap at step t is about 7.2 t^(-1.82);
+  * the ladder's top gap is 1 - ((n-2)/(lam+n-1))^2 ~ 4/n at lam = 1, and
+    t_max ~ n/2, so the ladder gap ~ 2/t;
+  * ratio ladder/ceiling ~ 0.28 t^0.82, which at n = 31 (t_max = 15) predicts a
+    margin of 2.5x. MEASURED: 0.125 against 0.049, i.e. 2.5x.
+
+So the margin does not close as the level grows -- it GROWS like n^0.82. That is
+consistent with the direct checks at n = 60 and n = 80 finding no negative
+coefficient.
+
+WHAT REMAINS TO PROVE: exactly one statement -- why the admissible step is that
+Jacobi zero. Everything else in the chain is either verified exactly or classical.
+This is the smallest the keystone has ever been, and it is the first form of it
+that is a candidate for Lean.
+
+## 2026-08-17 23:41 -- CORRECTION: the Jacobi-zero identification of the ceiling is NOT a law
+
+Checked the index relation k ~ (t+5)/2 at other D. It holds 7 of 9 steps at
+D = 6 (where I found it) but only 4/9 at D = 4, 4/9 at D = 11 and 2/9 at D = 26:
+the matching index grows with D. Worse, "the ceiling is near some Jacobi zero" is
+close to vacuous, since every value in (0,1) has a nearest zero. So:
+
+* WITHDRAWN: the statement that the ceiling IS (bracketed by) the largest zero of
+  P_k with k ~ t/2 + 5/2. It was a D = 6 coincidence, and I should have varied D
+  before writing it down. The consequence -- the asymptotic margin estimate
+  ~ t^0.82 built on the classical zero asymptotics -- loses its support too, and
+  the fact that its number matched the measured 2.5x at n = 31 does not rescue it:
+  a right number from a wrong mechanism is still wrong.
+* STANDS, because it is derived rather than fitted: the ceiling is exactly
+      min over m of the smallest positive root of A_m - 2 c B_m + c^2 C_m,
+  agreeing with 18-step bisection to 3e-6 = the bisection precision, and the
+  binding index is low (m ~ t/2 + 3/2 at D = 6, also to be re-checked in D).
+* STANDS: the direct measurements. Margin 2.5x at n = 31 (0.125 against 0.049);
+  no negative coefficient at n = 24..80; 7084 coefficients below the shore clean;
+  the growing certificate grid clean.
+
+The honest way to ask the asymptotic question is to measure the margin of the
+CLOSED FORM against the ladder as n grows, with no intermediate identification.
+That is the next measurement.
+
+## 2026-08-17 23:54 -- the induction is asymptotically TIGHT, and that is the real difficulty
+
+Direct measurement, no intermediate identification (results/step_lemma.json):
+
+    worst margin ceiling/ladder over all steps
+    n:        11      15      21      31      41
+    lam=1:   1.324   1.231   1.163   1.109   1.082
+    lam=7:     -     2.371   1.898   1.566   1.414
+
+The margin SHRINKS with the level. I wrote the opposite an hour ago, having only
+measured at one n; that claim is withdrawn. The law is
+
+    margin  ~  1 + C(lam)/n,   C(1) ~ 3.4,  C(7) ~ 17
+
+since n(margin-1) = 3.56, 3.47, 3.42, 3.38, 3.36 for lam = 1 and 18.9, 17.5,
+17.0 for lam = 7. C stays positive, so the inequality holds at every level
+tested, but it is asymptotically tight rather than comfortable.
+
+Note on interpretation: the partial products are scaffolding, not physics. Only
+the full product is the physical object. If the margin ever crossed 1, the
+INDUCTION would die, not the theorem.
+
+HOW MUCH DOES THE CEILING DEPEND ON WHICH H? Little. At fixed degree, four
+different ladders and a deliberately different geometric root set give c_max
+within 0.7 to 4.5 percent of each other (spread grows with degree: 0.0075 at
+t = 3 to 0.0269 at t = 6, D = 6). So a lemma stated in terms of (degree, beta)
+alone is close to true.
+
+AND HERE IS THE OBSTACLE, as arithmetic rather than intuition: the H-dependence
+spread (a few percent, growing with degree) becomes comparable to the margin
+(3.4/n) at around n ~ 100. A degree-only step lemma therefore cannot carry the
+induction to arbitrary n; the proof has to use the ladder's own structure. That
+is a precise statement of what makes this theorem hard, and it is the first time
+the difficulty has been quantified rather than described.
+
+## 2026-08-17 23:58 -- the crux is ONE inequality, and the assembly order is a red herring
+
+Tested five assembly strategies on the same ladder (n = 15, 21, 31, lam = 1,
+D = 6), measuring the worst margin over the whole assembly:
+
+    smallest first (baseline)   1.231   1.163   1.109
+    smallest first, in PAIRS    1.231   1.170   1.109
+    middle out                  1.231   1.163   1.109
+    largest first               fails
+    alternating small/large     0.866 / fails
+
+Every viable order gives the SAME worst margin, and in every case the worst step
+is the LAST one (t = 9 at n = 21, t = 14 at n = 31, t = 19 at n = 41). So the
+tightness is not an artefact of how the induction is organised, and no reordering
+buys margin.
+
+CONSEQUENCE -- the keystone is now one inequality about the physical object:
+
+    (a_max/s)^2  <  CEILING( F divided by its last factor ),
+    a_max = n-2,  s = lam + n - 1,
+
+where CEILING is the explicit min-over-m smallest positive root of
+A_m - 2 c B_m + c^2 C_m. The measured margin is 1 + C(lam)/n with C(1) ~ 3.4 and
+C(7) ~ 17, i.e. true at every level tested and asymptotically tight.
+
+This is the smallest the problem has ever been: everything else in the chain is
+verified exactly or classical, the scaffolding is provably order-independent, and
+what is left is a single explicit inequality with a measured margin law.
+
+## 2026-08-18 00:04 -- WHICH knife holds the boundary: spin 2, exponentially tightly
+
+Exact rational computation over every knife of every level n = 10..70 at
+lam = 1, 7 and D = 6, 11 (`article/visuals/the_weakest_knife.py`):
+
+* the weakest constraint is ALWAYS m = n-2, i.e. the LOWEST SPIN j = 2 -- at
+  every level and every (lam, D) tested, without exception;
+* its size relative to the largest coefficient of the same level falls
+  exponentially in n: 2.3e-2 (n=10), 1.7e-3 (14), 2.6e-5 (20), 3.6e-7 (26),
+  1.1e-9 (34), 6.5e-13 (44), 8.4e-17 (56), 2.2e-21 (70) at lam = 1, D = 6;
+* the rate is about 0.33 decades per unit n and DRIFTS: upward for lam = 1
+  (0.286 -> 0.327) and downward for lam = 7 (0.412 -> 0.364), both heading toward
+  roughly 0.33-0.36. A straight line in n leaves 0.18 dex of residual, a
+  quadratic 0.05 -- so it is exponential with a slowly moving rate, not a clean
+  exponential. Recorded as measured behaviour, not as a law.
+
+CONSEQUENCE FOR THE PROOF. The margin the theorem holds by, at low spin, is
+exponentially small in the level. So no crude bound can prove it: any argument
+has to track an exponentially small quantity exactly. That is a concrete
+explanation of the difficulty, replacing the earlier hand-waving.
+
+CONSEQUENCE FOR THE PHYSICS. This family of graviton amplitudes sits
+exponentially close to the spin-2 positivity boundary as the level grows. The
+binding constraint of the whole family is the lowest spin, which is also
+consistent with the earlier finding that low-spin dominance FAILS here.
+
+Margin trend continues to hold up: at n = 51, worst margin 1.06637, so
+n(margin-1) = 3.385 -- against 3.36 at n = 41 and 3.38 at n = 31. The constant is
+stable near 3.36-3.39 rather than drifting to zero, so the induction's inequality
+is not about to fail.

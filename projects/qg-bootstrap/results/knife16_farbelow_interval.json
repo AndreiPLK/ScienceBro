@@ -1,0 +1,29 @@
+{
+ "j": 16,
+ "far_below_interval": true,
+ "cells": 1,
+ "strict_positive": true,
+ "method": "interval Bernstein in (thL, th) + orthant in (v, K3)",
+ "scope": "far-below deep water: m=41+v (v>=0), K=v+K3+6 (=> v<=K-6), lam=(K+51+thL)sqrt3/3, D in [4, T_cap]",
+ "elev": 0,
+ "depth": 5,
+ "failed_cells": [],
+ "command": "KNIFE_J=16 python lab/knife_farbelow3.py",
+ "git": "86e6bb73ad87",
+ "git_full": "86e6bb73ad876b4290f37a9e74c0da38f8ba2239",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/contour_lib.py",
+  "projects/qg-bootstrap/lab/hp_scan.py",
+  "projects/qg-bootstrap/lab/jacobi_normal_form.py",
+  "projects/qg-bootstrap/lab/long_scan.py",
+  "projects/qg-bootstrap/lab/normal_form_certificates.py",
+  "projects/qg-bootstrap/lab/rolling_saddles.py",
+  "projects/qg-bootstrap/lab/step_lemma.py"
+ ],
+ "dirty_count": 7,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 11632.4
+}

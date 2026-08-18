@@ -1,0 +1,344 @@
+{
+ "claim": "sign I = (-1)^m * sign of the m-th Jacobi coefficient of the nonnegative polynomial F(u) = u^{n-1} G2(1/(s^2 u)), alpha = -1/2, beta = D/2 - 2, m = n - j",
+ "why_it_matters": "F is a polynomial of degree n-1, so orthogonality leaves exactly ONE coefficient: the whole four-parameter positivity question becomes the sign of a single rational number per cell",
+ "checks": 4500,
+ "mismatches": [],
+ "sample_rows": [
+  {
+   "j": 2,
+   "n": 6,
+   "m": 4,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 3,
+   "n": 6,
+   "m": 3,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 6,
+   "n": 6,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 7,
+   "m": 5,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 3,
+   "n": 7,
+   "m": 4,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 7,
+   "n": 7,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 8,
+   "m": 6,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 4,
+   "n": 8,
+   "m": 4,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 8,
+   "n": 8,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 9,
+   "m": 7,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 4,
+   "n": 9,
+   "m": 5,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 9,
+   "n": 9,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 10,
+   "m": 8,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 5,
+   "n": 10,
+   "m": 5,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 10,
+   "n": 10,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 11,
+   "m": 9,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 5,
+   "n": 11,
+   "m": 6,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 11,
+   "n": 11,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 12,
+   "m": 10,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 6,
+   "n": 12,
+   "m": 6,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 12,
+   "n": 12,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 13,
+   "m": 11,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 6,
+   "n": 13,
+   "m": 7,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 13,
+   "n": 13,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 14,
+   "m": 12,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 7,
+   "n": 14,
+   "m": 7,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 14,
+   "n": 14,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 15,
+   "m": 13,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 7,
+   "n": 15,
+   "m": 8,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 15,
+   "n": 15,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 16,
+   "m": 14,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 8,
+   "n": 16,
+   "m": 8,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 16,
+   "n": 16,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 17,
+   "m": 15,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 8,
+   "n": 17,
+   "m": 9,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 17,
+   "n": 17,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 18,
+   "m": 16,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 9,
+   "n": 18,
+   "m": 9,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  },
+  {
+   "j": 18,
+   "n": 18,
+   "m": 0,
+   "sign_jacobi_coefficient": 1,
+   "expected_(-1)^m": 1,
+   "sign_I": 1
+  },
+  {
+   "j": 2,
+   "n": 19,
+   "m": 17,
+   "sign_jacobi_coefficient": -1,
+   "expected_(-1)^m": -1,
+   "sign_I": 1
+  }
+ ],
+ "command": "python lab/jacobi_normal_form.py",
+ "git": "86e6bb73ad87",
+ "git_full": "86e6bb73ad876b4290f37a9e74c0da38f8ba2239",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/contour_lib.py",
+  "projects/qg-bootstrap/lab/hp_scan.py",
+  "projects/qg-bootstrap/lab/jacobi_normal_form.py",
+  "projects/qg-bootstrap/lab/long_scan.py",
+  "projects/qg-bootstrap/lab/rolling_saddles.py"
+ ],
+ "dirty_count": 5,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 80.6
+}

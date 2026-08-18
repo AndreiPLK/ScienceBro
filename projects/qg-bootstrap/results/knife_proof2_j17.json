@@ -1,0 +1,25 @@
+{
+ "j": 17,
+ "ok_so_far": true,
+ "engine": "prover2-flint",
+ "scope": "shallow branches k=3..45, m=15..40; k=3 via blade substitution lam=(2/3)(1-t), ONTO (0,2/3] incl. lam<1/1000 (ERR-0002 repair)",
+ "cells": 1118,
+ "command": "KNIFE_J=17 python lab/knife_proof2.py",
+ "git": "86e6bb73ad87",
+ "git_full": "86e6bb73ad876b4290f37a9e74c0da38f8ba2239",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/contour_lib.py",
+  "projects/qg-bootstrap/lab/hp_scan.py",
+  "projects/qg-bootstrap/lab/jacobi_normal_form.py",
+  "projects/qg-bootstrap/lab/long_scan.py",
+  "projects/qg-bootstrap/lab/normal_form_certificates.py",
+  "projects/qg-bootstrap/lab/rolling_saddles.py",
+  "projects/qg-bootstrap/lab/step_lemma.py"
+ ],
+ "dirty_count": 7,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 1503.5
+}

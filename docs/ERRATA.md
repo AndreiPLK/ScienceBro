@@ -61,3 +61,35 @@ had needed a bisection.
 **Lesson recorded in memory.** Any minimisation over an unbounded index
 must use a window that grows with the parameters, and a minimum attained at
 the edge of a scan window is not a minimum -- it is a bug report.
+
+## ERR-0004 (2026-08-18 00:20) -- spin direction inverted in tonight's "weakest knife" result
+
+WHAT I WROTE. That the weakest constraint is "the LOWEST spin, j = 2", in
+article/DATA_LOG.md, article/visuals/the_weakest_knife.py and the figure
+weakest-knife.png that was sent to the founder.
+
+WHAT IS TRUE. In this programme the trajectory index is ell = 2n - 2j with
+2 <= j <= n-1 (release/qg-master-formula/paper/main.tex, line 23 and 70), so
+j = 2 is the LEADING trajectory ell = 2n-4, the HIGHEST spin of the level, and
+large j is low spin. The weakest knife is therefore the LEADING, highest-spin
+trajectory -- not the lowest.
+
+CONSISTENT WITH. C4 in research/inventory-of-facts.md, "low spin dominance
+FAILS here", which says exactly that the binding constraint is not at low spin.
+I had that fact in the repository and still wrote the opposite.
+
+SECOND CORRECTION IN THE SAME PLACE. I called the identity B(n,lam) = T_n(lam)
+a discovery. It is not: the shore paper DEFINES T_n by
+a_{n,2n-4} >= 0 <=> D <= T_n(lam) (release/qg-gravity-shore/paper/main.tex,
+lines 26 and 55). So what I actually did is REDERIVE the published shore from a
+completely different route (Jacobi normal form + Saalschutz summation) and get it
+exactly. That is an end-to-end validation of tonight's machinery against
+published work, which is worth having, but it is a check and not a new result.
+
+WHAT SURVIVES UNCHANGED. The measurements: the weakest coefficient of each level
+is the one at m = n-2, and it falls exponentially with the level (2.3e-2 at
+n = 10 to 2.2e-21 at n = 70, lam = 1, D = 6). Only the physical NAME of that
+knife was wrong.
+
+WHAT THIS REFRAMES. Since the j = 2 threshold IS the shore, and the j = 3 case is
+the published blade theorem, the genuinely open part of the keystone is j >= 4.

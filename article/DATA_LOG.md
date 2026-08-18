@@ -2642,3 +2642,400 @@ a named mechanism. Not a theorem. The next test is whether the window boundaries
 sit at Airy zeros in the rescaled variable -- the scaled spacings measured so far
 (0.45, 0.12, 0.40, 0.085, 0.43, 0.062) alternate as they should but shrink faster
 than Ai zeros do, so the correspondence is not yet clean.
+
+## 2026-08-17 22:02 -- two arithmetic laws killed, one structural fact found
+
+**Both of tonight's arithmetic readings are dead, killed by my own data.**
+
+1. *Block widths step by 6.* Refuted. The widths 8, 14, 20 were an artefact of
+   scanning only EVEN j. On the full integer grid at lam = 1 the failing blocks
+   are 9..17, 26..42, 47..48, 52..75, 81..113 -- widths 9, 17, 2, 24, 33, with a
+   two-knife block that the even grid could not see at all. The closed form
+   frozen at 21:37 (`results/FROZEN_PREDICTION_blocks.md`, block k spans
+   2k(2k+3)..4k(k+3)) predicted block 4 = 88..112; measured 81..113. The END
+   matched on the even grid and that was luck: the true edge is odd.
+2. *Peak positions follow a power law.* Not established. Valid estimators on the
+   same 10 peaks give exponents 0.76, 0.99, 1.31, 1.40 depending on which
+   subset is used. A single-phase fit over 16 well-separated extrema leaves
+   residuals of 0.83 phase steps, where a genuine single phase would leave well
+   under 0.5, and q = 1/2 versus q = 2/3 cannot be distinguished (R^2 0.9922 vs
+   0.9931). No exponent is claimed.
+
+**What did survive, and it is structural rather than numerological.** Along
+lam = 1, j = 6..131, every sign PROVEN in ball arithmetic (verdict_hp, ball
+radius ~1e-105):
+
+* inside a failing block, log10 of the depth is a STRAIGHT LINE in j -- e.g.
+  j = 88..101 rises from 1e-17.4 to 1e-12.9 at a constant 0.35 per knife;
+* the straight pieces meet at CUSPS where the depth nearly touches zero
+  (1e-21 at j = 118, against a ball radius of 1e-120);
+* cusps and smooth peaks STRICTLY ALTERNATE: 21 extrema in a row,
+  8C 12P 23C 24P 26C 29P 30C 35P 47C 48P 51C 58P 59C 71P 80C 86P 88C 104P
+  118C 125P 129C, no repetition anywhere;
+* the sign flips at some cusps and not others -- j = 88 touches zero and
+  returns on the same side.
+
+That is the behaviour of a quantity whose sign is decided by two competing
+exponential contributions: the cusp is where their magnitudes cross. It makes
+the block boundaries derived objects, not primitive ones -- they are the subset
+of cusps at which the dominant contribution changed sign. Five closely spaced
+extremum pairs (separation 1-2 knives) are at the grid resolution limit and may
+also be the beat of two frequencies rather than one.
+
+**Instrument fixed tonight (this is what made the above possible).** The float
+scan reported dips of -1e-16 for j = 80..92 and exactly 0.0 from j = 94 at
+lam = 1 -- noise, not data. Worse, `best_circle` then picks the radius FROM that
+noise, and a rigorous check at that radius returned -3.75e+12, twelve orders of
+magnitude wrong. Added `density_min_hp`, `best_circle_hp`, `verdict_hp` to
+contour_lib (ball arithmetic from the radius search to the final sign) plus a
+self-test check that the high-precision and float paths agree where float is
+still reliable. Nothing beyond j ~ 78 from any earlier float scan may be used.
+
+Certificates: j = 28 closed, 2322 cells, zero failures. Running to j = 30.
+
+## 2026-08-17 22:44 -- THE JACOBI NORMAL FORM: the grand theorem is one positivity statement
+
+Reformulation, every step exact and machine-checked (lab/jacobi_normal_form.py):
+
+1. Hhat is an m-th derivative, m = n - j. With
+   F(u) = u^{n-1} G2(1/(s^2 u)) = SUM_t (-1)^t E_2t(n) s^{-2t} u^{n-1-t},
+   term-by-term differentiation multiplies term t by (n-1-t)...(n-m-t) =
+   prod_{i=j}^{n-1}(i-t) = Q(t). One line, no numerics.
+2. F is NONNEGATIVE and a genuine polynomial of degree n-1:
+   F = u^eps prod_a (s^2 u - a^2)^2 / s^{4K}, a in {n-2, n-4, ...},
+   eps = 1 for even n and 0 for odd n, K = #a, deg G2 = 2K <= n-1.
+3. Rodrigues: d^m/du^m[u^p (1-u)^Q] = c_m u^alpha (1-u)^beta
+   P_m^{(alpha,beta)}(1-2u) with alpha = p - m = -1/2 and
+   beta = Q - m = D/2 - 2 -- exactly the problem's two exponents.
+4. F has degree n-1, so orthogonality leaves ONE term:
+       sign I = (-1)^m * sign of the m-th Jacobi coefficient of F.
+
+VERIFIED: 4500 exact cells (n = 6..20, all j, five lam, five D), sign from the
+normal form vs sign from keystone_beta.J_exact -- 0 mismatches.
+
+Since j runs 2..n, m = n-j runs over EVERY index 0..n-2. Therefore
+
+    GRAND THEOREM  <=>  below the shore, F has an ALL-POSITIVE expansion in
+                        P_m^{(D/2-2, -1/2)}(2u-1).
+
+VERIFIED: 7084 coefficients strictly below the shore T_hat(lam), ZERO
+non-positive. Above the shore they genuinely turn negative (70 of 637 families
+at D = 26, 60, always at the largest m, i.e. the smallest spin j = 2, 3) --
+which is the shore doing exactly what it is supposed to do.
+
+Why this matters: no contours, no asymptotics, no per-knife work, and the object
+is classical (positive Jacobi expansions, Schoenberg / Askey-Gasper territory).
+
+## Instrument results that led here, and two things I killed on the way
+
+* The argument principle gives a PROVEN necessary condition for the contour
+  route: if the density is >= 0 on |x| = r then P(x)/x^N stays in the right
+  half-plane, so its winding number is 0, so the circle encloses EXACTLY
+  N = j-1 roots of P. Measured: 7 of 7 dip-free knives have exactly N inside.
+* Consequence: the admissible radius lies between the N-th and (N+1)-th root
+  moduli. My old logspace radius scan ignored this and searched the wrong
+  place -- searching the correct window PROVED j = 52, 82, 86 dip-free although
+  they were recorded as dips. Part of the "comb" was my instrument, not physics.
+* When |z_N| = |z_{N+1}| (a conjugate pair at equal modulus) no radius encloses
+  exactly N roots, so NO sign-definite circle exists -- proven impossibility,
+  found at j = 30, 33, 36, 60, 63, 66, 96..105. A deformed loop can separate
+  such a pair, which is why deformation rescued j = 55 and 58.
+* KILLED: the fold-caustic / Airy hypothesis in its stated form. The minimum
+  separation between saddle points falls smoothly and monotonically
+  (2.1e-5 -> 2.3e-6 across j = 44..94) with NO feature at block edges, and the
+  near-pairs sit at |z| ~ 1e-4, far inside the loop. No coalescence, no Airy.
+* KILLED: the conjugate-pair-of-saddles explanation of the oscillation. Its
+  angle is constant to four digits, giving a fixed period of 14.87 knives,
+  while the measured peak spacings GROW: 10, 13, 15, 18, 21.
+
+## 2026-08-17 22:55 -- the normal form is also a FAST certificate, and it survives large n
+
+* CONTROL: rebuilding F from its roots u_a = (a/s)^2, a in {n-2, n-4, ...},
+  reproduces the exact signs in 12 of 12 configurations. The root picture is right.
+* ROBUSTNESS: positivity is not a knife-edge coincidence. Any single root may be
+  moved by +-10 percent, or halved, and every coefficient stays positive. It
+  breaks only when the LARGEST root is pushed toward u = 1, i.e. out of the
+  interval where the Jacobi weight lives.
+* THE CONTROLLING QUANTITY is therefore u_max, the largest double root. Scaling
+  all roots by rho, the break happens at u_max = 0.85..1.03 depending on D and n,
+  and the threshold RISES with n (0.907 at n = 9, 1.027 at n = 18).
+* THE RACE: the real u_max = ((n-2)/(lam+n-1))^2 also rises with n (0.81 at
+  n = 20, 0.90 at n = 40, 0.96 at n = 100). Checked directly: n = 24, 30, 40,
+  50, 60 at lam = 1 and 7, D = 6 and 11 -- ZERO negative coefficients, all m.
+  So the threshold rises faster. No failure found at large level.
+* PRACTICAL CONSEQUENCE: one exact run at n = 60 settles ALL 59 knives of that
+  level in 35 seconds. The strip-certificate run needed 9941 s to reach j = 28.
+  The normal form is not just a reformulation, it is a much cheaper certificate.
+  (Not a replacement: the strip certificates cover RANGES of lam and D
+  symbolically, this fixes one lam and one D per run.)
+* WHAT IS NOT DONE: no proof. The refuted shortcuts are recorded: single factors
+  (u-c)^2 do NOT have positive expansions (18 of 84 coefficients negative), so
+  the Gasper-style factor-by-factor induction cannot work; positivity here is a
+  COLLECTIVE property of the whole root set.
+
+## 2026-08-17 23:34 -- the step lemma has a classical shape: the ceiling IS a Jacobi zero
+
+The induction runs smallest-root-first (verified: every partial product is
+all-positive at every step, while largest-first fails until enough factors
+accumulate). Measuring the admissible step by exact bisection, 18 iterations:
+
+    t (factors in place)   ceiling            largest zero of P_k^{(-1/2, D/2-2)}
+     3                     0.8213234          0.8455426  (k=4)
+     4                     0.8590775          0.8455426  (k=4)
+     5                     0.8836708          0.8928346  (k=5)
+     6                     0.9003677          0.8928346  (k=5)
+     7                     0.9166565          0.9214753  (k=6)
+     8                     0.9260788          0.9214753  (k=6)
+     9                     0.9356689          0.9400622  (k=7)
+    10                     0.9439964          0.9400622  (k=7)
+    11                     0.9508476          0.9527821  (k=8)
+
+EXACT INTERLACING over eight consecutive k: the largest zero of P_k lies between
+ceiling(2k-5) and ceiling(2k-4). So the threshold is not an arbitrary curve -- it
+is (bracketed by) the largest zero of a Jacobi polynomial of degree k ~ t/2 + 5/2,
+and those zeros have classical bounds.
+
+ASYMPTOTIC CHECK, and it is a PREDICTION that came out right:
+  * measured 1 - u_max(k) = 2.051 k^(-1.824) over k = 4..21 (classical limit -2);
+  * hence the ceiling gap at step t is about 7.2 t^(-1.82);
+  * the ladder's top gap is 1 - ((n-2)/(lam+n-1))^2 ~ 4/n at lam = 1, and
+    t_max ~ n/2, so the ladder gap ~ 2/t;
+  * ratio ladder/ceiling ~ 0.28 t^0.82, which at n = 31 (t_max = 15) predicts a
+    margin of 2.5x. MEASURED: 0.125 against 0.049, i.e. 2.5x.
+
+So the margin does not close as the level grows -- it GROWS like n^0.82. That is
+consistent with the direct checks at n = 60 and n = 80 finding no negative
+coefficient.
+
+WHAT REMAINS TO PROVE: exactly one statement -- why the admissible step is that
+Jacobi zero. Everything else in the chain is either verified exactly or classical.
+This is the smallest the keystone has ever been, and it is the first form of it
+that is a candidate for Lean.
+
+## 2026-08-17 23:39 -- the ceiling has an EXACT closed form; one inequality is all that is left
+
+Multiplying an all-positive H by (u-c)^2 changes the m-th bracket to a quadratic
+in c:
+
+    bracket_m(c) = (-1)^m [ A_m - 2 c B_m + c^2 C_m ],
+    A_m = INT H u^2 w P_m,   B_m = INT H u w P_m,   C_m = INT H w P_m,
+
+with w = u^(-1/2)(1-u)^(D/2-2) and P_m = P_m^{(-1/2, D/2-2)}(1-2u). Therefore
+
+    CEILING(H) = min over m of the smallest positive root of that quadratic.
+
+VERIFIED: closed form vs 18-step bisection agrees to 3e-6, which IS the bisection
+precision (2^-18 = 3.8e-6), at every t from 1 to 10. So the ceiling is not an
+empirical curve any more; it is an explicit algebraic quantity.
+
+Two structural facts measured on top of it:
+* the binding index is LOW and grows like m ~ t/2 + 3/2 (measured 2,2,3,3,4,4,4,
+  5,5,6,6 for t = 1..11), not the top index -- the top index gives a critical c
+  above 1 and never binds beyond t = 0;
+* Cauchy-Schwarz explains only the lowest indices. B_m^2 < A_m C_m holds for
+  m <= 1..3 (growing slowly with t) and fails for the rest, so "the signed
+  measure stays positive" is a real but INSUFFICIENT mechanism. Recorded as a
+  partial idea, not as the answer.
+
+WHAT REMAINS, stated exactly: prove c_{t+1} < CEILING(H_t) for the ladder
+c_t = (a_t/s)^2. Supporting evidence that it is true and not marginal: the
+ceiling interlaces with the largest zeros of P_k, k ~ t/2 + 5/2, exactly, over
+eight consecutive k; those zeros satisfy 1 - u_max = 2.051 k^(-1.824)
+(classical limit -2), giving a ceiling gap ~ 7.2 t^(-1.82) against a ladder gap
+~ 2/t, i.e. a margin growing like t^0.82. That prediction was tested: at n = 31
+it gives 2.5x, and the measured margin is 2.5x (0.125 against 0.049).
+
+## 2026-08-17 23:41 -- CORRECTION: the Jacobi-zero identification of the ceiling is NOT a law
+
+Checked the index relation k ~ (t+5)/2 at other D. It holds 7 of 9 steps at
+D = 6 (where I found it) but only 4/9 at D = 4, 4/9 at D = 11 and 2/9 at D = 26:
+the matching index grows with D. Worse, "the ceiling is near some Jacobi zero" is
+close to vacuous, since every value in (0,1) has a nearest zero. So:
+
+* WITHDRAWN: the statement that the ceiling IS (bracketed by) the largest zero of
+  P_k with k ~ t/2 + 5/2. It was a D = 6 coincidence, and I should have varied D
+  before writing it down. The consequence -- the asymptotic margin estimate
+  ~ t^0.82 built on the classical zero asymptotics -- loses its support too, and
+  the fact that its number matched the measured 2.5x at n = 31 does not rescue it:
+  a right number from a wrong mechanism is still wrong.
+* STANDS, because it is derived rather than fitted: the ceiling is exactly
+      min over m of the smallest positive root of A_m - 2 c B_m + c^2 C_m,
+  agreeing with 18-step bisection to 3e-6 = the bisection precision, and the
+  binding index is low (m ~ t/2 + 3/2 at D = 6, also to be re-checked in D).
+* STANDS: the direct measurements. Margin 2.5x at n = 31 (0.125 against 0.049);
+  no negative coefficient at n = 24..80; 7084 coefficients below the shore clean;
+  the growing certificate grid clean.
+
+The honest way to ask the asymptotic question is to measure the margin of the
+CLOSED FORM against the ladder as n grows, with no intermediate identification.
+That is the next measurement.
+
+## 2026-08-17 23:54 -- the induction is asymptotically TIGHT, and that is the real difficulty
+
+Direct measurement, no intermediate identification (results/step_lemma.json):
+
+    worst margin ceiling/ladder over all steps
+    n:        11      15      21      31      41
+    lam=1:   1.324   1.231   1.163   1.109   1.082
+    lam=7:     -     2.371   1.898   1.566   1.414
+
+The margin SHRINKS with the level. I wrote the opposite an hour ago, having only
+measured at one n; that claim is withdrawn. The law is
+
+    margin  ~  1 + C(lam)/n,   C(1) ~ 3.4,  C(7) ~ 17
+
+since n(margin-1) = 3.56, 3.47, 3.42, 3.38, 3.36 for lam = 1 and 18.9, 17.5,
+17.0 for lam = 7. C stays positive, so the inequality holds at every level
+tested, but it is asymptotically tight rather than comfortable.
+
+Note on interpretation: the partial products are scaffolding, not physics. Only
+the full product is the physical object. If the margin ever crossed 1, the
+INDUCTION would die, not the theorem.
+
+HOW MUCH DOES THE CEILING DEPEND ON WHICH H? Little. At fixed degree, four
+different ladders and a deliberately different geometric root set give c_max
+within 0.7 to 4.5 percent of each other (spread grows with degree: 0.0075 at
+t = 3 to 0.0269 at t = 6, D = 6). So a lemma stated in terms of (degree, beta)
+alone is close to true.
+
+AND HERE IS THE OBSTACLE, as arithmetic rather than intuition: the H-dependence
+spread (a few percent, growing with degree) becomes comparable to the margin
+(3.4/n) at around n ~ 100. A degree-only step lemma therefore cannot carry the
+induction to arbitrary n; the proof has to use the ladder's own structure. That
+is a precise statement of what makes this theorem hard, and it is the first time
+the difficulty has been quantified rather than described.
+
+## 2026-08-17 23:58 -- the crux is ONE inequality, and the assembly order is a red herring
+
+Tested five assembly strategies on the same ladder (n = 15, 21, 31, lam = 1,
+D = 6), measuring the worst margin over the whole assembly:
+
+    smallest first (baseline)   1.231   1.163   1.109
+    smallest first, in PAIRS    1.231   1.170   1.109
+    middle out                  1.231   1.163   1.109
+    largest first               fails
+    alternating small/large     0.866 / fails
+
+Every viable order gives the SAME worst margin, and in every case the worst step
+is the LAST one (t = 9 at n = 21, t = 14 at n = 31, t = 19 at n = 41). So the
+tightness is not an artefact of how the induction is organised, and no reordering
+buys margin.
+
+CONSEQUENCE -- the keystone is now one inequality about the physical object:
+
+    (a_max/s)^2  <  CEILING( F divided by its last factor ),
+    a_max = n-2,  s = lam + n - 1,
+
+where CEILING is the explicit min-over-m smallest positive root of
+A_m - 2 c B_m + c^2 C_m. The measured margin is 1 + C(lam)/n with C(1) ~ 3.4 and
+C(7) ~ 17, i.e. true at every level tested and asymptotically tight.
+
+This is the smallest the problem has ever been: everything else in the chain is
+verified exactly or classical, the scaffolding is provably order-independent, and
+what is left is a single explicit inequality with a measured margin law.
+
+## 2026-08-18 00:04 -- WHICH knife holds the boundary: spin 2, exponentially tightly
+
+Exact rational computation over every knife of every level n = 10..70 at
+lam = 1, 7 and D = 6, 11 (`article/visuals/the_weakest_knife.py`):
+
+* the weakest constraint is ALWAYS m = n-2, i.e. j = 2 -- at every level and
+  every (lam, D) tested. CORRECTED (ERR-0004): j = 2 is the LEADING trajectory,
+  ell = 2n-4, the HIGHEST spin of the level, since ell = 2n-2j. I first wrote
+  "lowest spin", which is backwards;
+* its size relative to the largest coefficient of the same level falls
+  exponentially in n: 2.3e-2 (n=10), 1.7e-3 (14), 2.6e-5 (20), 3.6e-7 (26),
+  1.1e-9 (34), 6.5e-13 (44), 8.4e-17 (56), 2.2e-21 (70) at lam = 1, D = 6;
+* the rate is about 0.33 decades per unit n and DRIFTS: upward for lam = 1
+  (0.286 -> 0.327) and downward for lam = 7 (0.412 -> 0.364), both heading toward
+  roughly 0.33-0.36. A straight line in n leaves 0.18 dex of residual, a
+  quadratic 0.05 -- so it is exponential with a slowly moving rate, not a clean
+  exponential. Recorded as measured behaviour, not as a law.
+
+CONSEQUENCE FOR THE PROOF. The margin the theorem holds by, at low spin, is
+exponentially small in the level. So no crude bound can prove it: any argument
+has to track an exponentially small quantity exactly. That is a concrete
+explanation of the difficulty, replacing the earlier hand-waving.
+
+CONSEQUENCE FOR THE PHYSICS. This family sits exponentially close to the
+LEADING-trajectory positivity boundary as the level grows. The binding constraint
+is the highest spin of each level, which is why low-spin dominance FAILS here
+(C4 in research/inventory-of-facts.md).
+
+Margin trend continues to hold up: at n = 51, worst margin 1.06637, so
+n(margin-1) = 3.385 -- against 3.36 at n = 41 and 3.38 at n = 31. The constant is
+stable near 3.36-3.39 rather than drifting to zero, so the induction's inequality
+is not about to fail.
+
+## 2026-08-18 00:21 -- END-TO-END VALIDATION: the new machinery reproduces the published shore
+
+Working out knife j = 2 in the Jacobi normal form gives a two-term expression
+(orthogonality leaves only q = n-2 and q = n-1), and with the Saalschutz closed
+form for the moments (verified: 432 exact checks, 0 mismatches) it collapses to an
+elementary condition. After correcting a hand-simplification slip -- my first
+ratio was off by exactly (2n-3)/(2n-5), caught because the error was independent
+of D, which no genuine D-dependent quantity could be -- the condition is
+
+    knife j=2 holds  <=>  D  <  B(n,lam),
+    B(n,lam) = [2n^3 - 4n^2 + 6n - 9 + 6 lam (2n^2 - 5n + 3)
+                + 3 lam^2 (2n - 3)] / [n (n-2)]
+
+Validated forward before any claim: 621 cells (n = 3..25, six lam, five D
+including D just below the shore) -- predicted sign vs directly computed sign,
+ZERO disagreements.
+
+AND B(n,lam) IS IDENTICALLY T_n(lam), the trajectory law of the published shore
+paper: expanding T_k = 3(2k-3)/(k(k-2)) (lam^2 + (2k-2) lam + 1) + 2k gives the
+same numerator term by term. The shore paper DEFINES T_n by
+a_{n,2n-4} >= 0 <=> D <= T_n(lam), so this is NOT a new theorem -- it is the
+published result rederived from a completely different route (Beta reduction ->
+Jacobi normal form -> Saalschutz), landing exactly on it.
+
+WHY THAT MATTERS ANYWAY: it is the first end-to-end check of tonight's machinery
+against an independently published result, and it passes exactly, on 621 cells
+plus an algebraic identity. Everything downstream of the normal form now rests on
+a chain that has been closed at one end.
+
+REFRAMING OF WHAT IS OPEN. j = 2 is the shore (published). j = 3 is the blade
+theorem (published, release/qg-blade-theorem). So the genuinely open part of the
+keystone is j >= 4, and the normal form now settles all j of a level in one pass.
+
+## 2026-08-18 03:16 -- the binding knife SWITCHES ENDS, and that refines a recorded fact
+
+Instrument first: added `M_closed` (Saalschutz) and `jacobi_coeff_fast` to
+lab/jacobi_normal_form.py. Knife j now costs j terms instead of an m-term sum, so
+a whole level is O(n^2) rather than O(n^3). Verified against the slow path on
+891 exact comparisons, 0 mismatches, 11.8x faster at n = 30. Without it the sweep
+below timed out.
+
+TESTED CLAIM: "within a level the smallest coefficient is always the last one
+(m = n-2, the leading trajectory)". If true, the whole theorem would collapse to
+the already-published shore. It is FALSE as stated: 103 of 1120 configurations
+(levels 5..60, five lam, five D below the shore) have their minimum elsewhere,
+and in every one of those the minimum sits at the OPPOSITE end, m = 0, the lowest
+spin j = n.
+
+So there are two competing candidates for "weakest knife", one at each end of the
+spin spectrum, and which one wins depends on (lam, D):
+
+              D:    3    4    5    6    8   11   16   23   40   60  120
+    lam = 1/4       L    L    L    L    L    L    .    .    .    .    .
+    lam = 2         L    L    L    L    L    L    L    Z    .    .    .
+    lam = 5         L    L    L    L    L    L    L    L    Z    Z    .
+    lam = 14        L    L    L    L    L    L    L    L    L    Z    Z
+    lam = 60        L    L    L    L    L    L    L    L    L    L    L
+    (L = leading trajectory binds, Z = lowest spin binds, . = above the shore)
+
+Mapped properly in article/visuals/which-end-binds.png at n = 12, 24, 40: the
+"lowest spin binds" region is a band hugging the shore, and it NARROWS as the
+level grows.
+
+WHY THIS MATTERS BEYOND THE PROOF. research/inventory-of-facts.md C4 records
+"low spin dominance FAILS here" and uses it as a result contradicting a published
+conjecture. That statement is now refined rather than overturned: it fails in the
+large region where the leading trajectory binds, and it HOLDS in a band next to
+the shore. The published claim should carry that qualifier.
+
+Consequence for the keystone: the theorem does NOT reduce to the shore, because
+the shore is the leading-trajectory condition and the leading trajectory is not
+always the weakest. Both ends have to be controlled.

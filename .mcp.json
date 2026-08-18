@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "inspirehep": {
+      "type": "http",
+      "url": "https://mcp.inspirehep.net/mcp"
+    }
+  }
+}
