@@ -120,13 +120,44 @@ Depths 3 and up: the self-check passes and the small-`lam` piece is proved at
 depths 3, 4, 5; the remaining pieces are still running. Nothing here is claimed
 for them yet.
 
-## What this does NOT yet establish
+## What this does NOT yet establish, and the concrete route to fixing it
 
 Step (c), monotonicity in `D`, is **measured, not proved**. 120 clean
 configurations above `lam = 5/2` is strong evidence and it lines up exactly with
 the independent step-(b) boundary, but it is not a proof, and the argument
-leans on it. Turning it into a certificate is the next necessary piece of work,
-and until then "depth 2 closed" means closed *modulo* a measured monotonicity.
+leans on it. Until it is certified, "depth 2 closed" means closed *modulo* a
+measured monotonicity.
+
+**But the route is now concrete, and it is the same machinery.** Differentiating
+the beta-mean form term by term,
+
+```
+knife ~ sum_j r_j X^j (m+1/2)_j / (g)_j ,        g = 2m + gamma + 1
+d/dgamma [1/(g)_j] = -(1/(g)_j) * psi_j(g),      psi_j(g) = sum_{i<j} 1/(g+i)
+```
+
+so
+
+```
+-d(knife)/dgamma  =  sum_j r_j X^j (m+1/2)_j * psi_j(g) / (g)_j .
+```
+
+This is **the same shape as step (a)** — the same coefficients `r_j`, the same
+Pochhammer denominators — with one extra positive rational weight `psi_j(g)`.
+Clearing `psi_j`'s denominators turns it back into a polynomial positivity
+problem of exactly the kind the Bernstein pipeline already certifies. So step
+(c) is not a different sort of obstacle; it is another instance of the problem
+already solved, and can be closed with the existing tool rather than new theory.
+
+The identity was verified against finite differences (agreement to `1e-9`, the
+finite-difference floor) at depths 2, 3, 4.
+
+One caveat found while checking it, worth recording because it is easy to
+misread: the derivative **does** go negative at `D = 123` for `n = 21`,
+`lam = 5` — but the shore there is `T_hat(5) = 93.7`, so that point is
+**outside** the physical region. Strictly at or below the shore: 0 negatives out
+of 320 configurations across depths 2..5, levels up to 80, and `lam` from 5/2 to
+500. Monotonicity is a statement about the physical region, and only there.
 
 ## Prior art to cite before any preprint
 
