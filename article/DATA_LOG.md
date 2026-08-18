@@ -3607,3 +3607,31 @@ solid empirically (no interior minimum for every n >= 14, log-concave for every
 n >= 24) and unexplained. A self-contained brief for outside help is in
 docs/BRIEF_FOR_OUTSIDE_HELP.md, with all ten dead ends listed so they are not
 retried and five untried directions named.
+
+## 2026-08-18 11:34 -- the asymptotic route needs a real derivation, not a fit
+
+Log-concavity is exactly "r_m = C_m/C_(m-1) is decreasing". The differences of
+r_m are negative everywhere and behave very regularly: about -0.51, -0.18, -0.10,
+-0.069, -0.052 at the head, decaying like 1/m^2, and settling to a nearly
+constant -0.023 in the tail (n = 60, lam = 1, D = 6).
+
+That suggests the shape r_m = a + b/m + c m, which would give log-concavity
+outright, since its derivative -b/m^2 + c is negative identically when b > 0 and
+c < 0. Fitted on the first half and checked on the HELD-OUT second half:
+
+    n = 40, lam = 1 : held-out error 28 percent of scale
+    n = 60, lam = 1 : 33 percent
+    n = 40, lam = 7 : 2.9 percent
+
+So the shape is a decent approximation, better at larger lam, but NOT the true
+form. A fit cannot close this; what is needed is a genuine asymptotic evaluation
+of C_m for large m -- steepest descent on
+C_m proportional to INT F^(m)(u) u^(alpha+m) (1-u)^(beta+m) du, whose weight
+concentrates near u = 1/2 while F^(m) oscillates. That is a well-defined piece of
+work rather than a search, and it is the honest next step on this route.
+
+STATE OF THE LEMMA at the end of the day: empirically solid (no interior minimum
+for every n >= 14, log-concave for every n >= 24, across hundreds of
+configurations), and six mechanisms excluded -- real-rootedness, closed-form
+ratio, log-convexity, total positivity, Stieltjes moments, Newton via F. The
+brief for outside help lists all of them so the search is not repeated.
