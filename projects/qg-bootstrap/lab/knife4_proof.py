@@ -50,7 +50,9 @@ import sympy as sp
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from knife_closed_form import D as Dsym  # noqa: E402
-from knife_closed_form import knife_polynomial, lam as lamsym, n as nsym  # noqa: E402
+from knife_closed_form import knife_polynomial  # noqa: E402
+from knife_closed_form import lam as lamsym
+from knife_closed_form import n as nsym
 from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
@@ -170,7 +172,7 @@ def prove(n_max: float, lam_max: float, max_depth: int = 30):
 def main() -> int:
     t0 = time.time()
     rows = []
-    for n_max, lam_max in ((50, 10), (200, 30)):
+    for n_max, lam_max in ((200, 30), (400, 60), (1000, 120)):
         ok, boxes, open_boxes = prove(n_max, lam_max)
         rows.append(
             {

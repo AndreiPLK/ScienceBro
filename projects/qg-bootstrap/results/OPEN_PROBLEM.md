@@ -135,3 +135,43 @@ the scaling variables.
 Nothing is open at leading order: the even power makes them non-negative for all
 d. What is open is the same subleading question at the curve, where they touch
 zero.
+
+## 2026-08-18 10:11 -- KNIFE 4 PROVED on a compact region (machine proof, not a scan)
+
+Method: exact Bernstein subdivision. On each box the polynomial is re-expanded in
+the Bernstein basis with rational arithmetic; the minimum of those coefficients is
+a rigorous lower bound by the convex-hull property, and a box is accepted only
+when it is strictly positive, otherwise split. Subdivision tightens the bound
+quadratically, so the recursion terminates when the statement is true with margin.
+
+PROVED (no open boxes anywhere):
+
+    lam in [1/10, 1],  4 <= n <= 200,  4 <= D <= shore(lam):     47 boxes
+    lam in [1, 10],    4 <= n <=  50,  4 <= D <= shore(lam):  1 325 boxes
+    lam in [1, 30],    4 <= n <= 200,  4 <= D <= shore(lam): 12 929 boxes
+
+so knife 4 is proved for lam in [1/10, 30], n up to 200, D up to the shore.
+
+The shore bound is exact per box: T_hat <= T_k for every k and each T_k increases
+in lam, so min_k T_k(lam_hi) is a rational majorant valid on the whole box.
+
+TWO WRONG METHODS, recorded rather than deleted:
+* naive per-monomial interval arithmetic -- the dependency problem makes the
+  enclosure useless here (103 monomials, heavy cancellation); it never closed a
+  single region;
+* "all coefficients non-negative after shifting to the corner" -- far too strong
+  a test, it failed even on tiny boxes where the polynomial is obviously positive.
+  The correct crude bound is c_0 plus the sum of negative coefficients; Bernstein
+  is sharper still and closed n in [4,12], D in [4,24], lam in [1,2] in ONE box.
+
+AND ONE WRONG DOMAIN: the first Bernstein run left 739 boxes open, all of them in
+a slab ABOVE the shore (D = 191 at lam = 10, where the shore is 187.5), because I
+had used the crude majorant 18.93 lam + 5. With the exact per-box shore bound the
+same region closes completely. Third time this night that a wrong domain produced
+a fake problem.
+
+WHAT REMAINS for knife 4: lam > 30 and n > 200. Runs are in progress at
+(n <= 400, lam <= 60) and (n <= 1000, lam <= 120); beyond them the two asymptotic
+statements take over (n -> infinity at fixed lam, D has leading coefficient +280;
+lam -> infinity is the scaling form with the tangency approached from the safe
+side). Joining those to the box with explicit thresholds is the last gap.
