@@ -3377,3 +3377,33 @@ Worth recording that ONE cell does close completely by this route today:
 lam = 1, D = 11, where n0 = 123 and the certificates run to n = 150. That is the
 first (lam, D) for which knife 4 is settled for ALL levels, not just the tested
 ones.
+
+## 2026-08-18 04:51 -- the local expansion at the tangency, and a near-miss I caught in time
+
+Writing b for the distance below the critical curve (the bracket equals -b, so
+b > 0 is the allowed side) and expanding knife 4 at rho = sqrt(3):
+
+    P / lam^9 = 105 sqrt(3) b^3
+              + lam^-1 ( 41713.7 b - 2301.4 b^2 - 882 b^3 )
+              + lam^-2 ( 168609 - 273716 b + 19313 b^2 + 1364.9 b^3 )
+              + lam^-3 ( -421487 + 1044960 b - 70541 b^2 - 396 b^3 ) + ...
+
+with the exact coefficients 105 sqrt(3), 18144 + 13608 sqrt(3),
+22896 sqrt(3) + 128952, 555255 - 563922 sqrt(3), and so on.
+
+Two readings, both useful:
+
+* AT the tangency (b = 0) the series starts 168609/lam^2 - 421487/lam^3 + ...,
+  positive as soon as lam exceeds about 2.5 to this order. That is the local
+  statement that the even knife touches the shore from the safe side.
+* MOVING BELOW the curve helps rather than hurts: the leading b-dependence is
+  +41713.7 b / lam, positive.
+
+A NEAR-MISS WORTH RECORDING. Before evaluating, I read the linear-in-b part of
+A_1 by eye, saw its first monomial -504 b rho^6, and started an estimate that
+concluded knife 4 FAILS at b ~ lam^(-1/2) for large lam -- which would have
+contradicted every measurement of the night. Evaluating the whole coefficient at
+rho = sqrt(3) gives 18144 + 13608 sqrt(3) = +41713.7, positive: the other four
+monomials outweigh the first. The rule that saved it is the ordinary one --
+evaluate the sum, never one term of it -- and it is the same rule that caught the
+two off-by-one slips in R_t earlier tonight.
