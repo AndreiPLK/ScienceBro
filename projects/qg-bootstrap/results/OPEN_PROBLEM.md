@@ -230,3 +230,38 @@ now excluded at low order. What is left to try: creative telescoping in the
 variable (t, j) at higher order, a generating function in j, or an argument
 that bounds the whole family by the two extreme knives rather than treating them
 separately.
+
+
+## 2026-08-18 11:08 -- three routes to the UNIFORM theorem tried today, all closed
+
+The founder's instruction was to put the weight on the uniform-in-j statement
+rather than finishing knives one at a time. Three natural handles were tried.
+
+1. HYPERGEOMETRIC IN j. K_j/K_(j-1) is not a rational function of j (no
+   low-degree fit at three different (n, lam, D)). No first-order recursion.
+2. HIGHER-ORDER RECURSION IN j. An honest search (order <= 3, coefficient degree
+   <= 3, fitted on a subset and verified on held-out j) finds nothing. A first
+   attempt appeared to succeed at order 4, but it had 25 unknowns against 21
+   equations -- underdetermined, so the "verification" was on the fitting data
+   itself. Recorded as a near-miss; the tell was coefficients hundreds of digits
+   long.
+3. POLYNOMIALITY IN j ABOVE THE TRUNCATION. The t-sum is cut at min(j-1, K), so
+   above K the knife should be a plain polynomial in j and the whole tail of the
+   family would follow from one polynomial positivity. It fails for a simple
+   reason: K is the DEGREE of G2, which is n-1, not the number of roots (about
+   n/2). "Above the truncation" therefore means j >= n, a single knife. I had
+   conflated the root count with the degree of the square.
+
+WHAT THIS LEAVES. The uniform statement needs an idea that is not a recursion and
+not a term-by-term bound. The candidates that remain untried:
+  * creative telescoping in BOTH indices (t, j) at higher order, with proper
+    software rather than an ansatz;
+  * a generating function in j for the whole family;
+  * bounding the family by its two extreme knives, using that the binding one is
+    always at an end of the spectrum (measured, article/visuals/which-end-binds.png);
+  * a positivity argument for the Jacobi expansion of a product of squares with
+    prescribed root spacing, i.e. attacking the Schoenberg form directly rather
+    than knife by knife.
+
+The last one is the most promising: it is the only formulation in which "all j"
+is a single statement rather than a family of them.
