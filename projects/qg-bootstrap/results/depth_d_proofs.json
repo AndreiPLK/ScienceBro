@@ -1,0 +1,148 @@
+{
+ "claim": "for each fixed depth d, the knife is positive for K>=3 (n>=2d even / n>=2d+1 odd, roughly) and ALL lam>0, via the parity-split half-level-K Bernstein method that closed depth 2 (ERR-0008/9) and depth 3. n below the K>=3 floor is NOT covered by this file -- check separately, same as depth 2's n=3,4,5 and depth 3's n=5,6,7.",
+ "runs": [
+  {
+   "depth": 2,
+   "self_check_trials": 56,
+   "self_check_passed": true,
+   "branches": {
+    "even": {
+     "K_deg": 14,
+     "c_deg": 8,
+     "terms": 84,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 14,
+     "c_deg": 8,
+     "terms": 122,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    }
+   },
+   "proved_for_all_c": true,
+   "seconds": 0.2
+  },
+  {
+   "depth": 3,
+   "self_check_trials": 56,
+   "self_check_passed": true,
+   "branches": {
+    "even": {
+     "K_deg": 21,
+     "c_deg": 12,
+     "terms": 183,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 21,
+     "c_deg": 12,
+     "terms": 267,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    }
+   },
+   "proved_for_all_c": true,
+   "seconds": 0.5
+  },
+  {
+   "depth": 4,
+   "self_check_trials": 56,
+   "self_check_passed": true,
+   "branches": {
+    "even": {
+     "K_deg": 28,
+     "c_deg": 16,
+     "terms": 320,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 28,
+     "c_deg": 16,
+     "terms": 468,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    }
+   },
+   "proved_for_all_c": true,
+   "seconds": 1.4
+  },
+  {
+   "depth": 5,
+   "self_check_trials": 56,
+   "self_check_passed": true,
+   "branches": {
+    "even": {
+     "K_deg": 35,
+     "c_deg": 20,
+     "terms": 495,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 35,
+     "c_deg": 20,
+     "terms": 725,
+     "lo_proved": true,
+     "lo_boxes": 1,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0
+    }
+   },
+   "proved_for_all_c": true,
+   "seconds": 3.4
+  },
+  {
+   "depth": 6,
+   "self_check_passed": false,
+   "mismatches": [
+    "depth=6 even K=8 c=1/100: 1 vs -1",
+    "depth=6 even K=10 c=1/100: 1 vs -1"
+   ]
+  }
+ ],
+ "command": "python lab/depth_d_proof.py <d> [<d> ...]",
+ "git": "dd553c7c2156",
+ "git_full": "dd553c7c2156c4986468dc4ee900a833d7959c35",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/depth_d_proof.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}

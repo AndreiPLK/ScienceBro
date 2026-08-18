@@ -13,6 +13,10 @@ artefacts:
     status: live
   D3_STATUS.md:
     added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  DEPTHS_2_TO_5_PROVED.md:
+    added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
   FROZEN_PREDICTION_blocks.md:
@@ -124,6 +128,10 @@ artefacts:
     status: unreviewed
   depth2_parity_proof.json:
     added: '2026-08-18'
+    note: referenced by a paper, document or lab module
+    status: live
+  depth_d_proofs.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   eft_map_d4.json:
