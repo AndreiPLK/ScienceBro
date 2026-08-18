@@ -32,12 +32,28 @@ The offending set occupies a **vanishing fraction of the spectrum** and sits at
 the **sqrt(N) scale** — which is exactly the scale of your Step A, and nowhere
 near `rho N`.
 
-Caveat, stated because I have twice this week called a drifting ratio a law:
-three other lines (`lam=1/10, gamma=9`; `lam=1, gamma=12`; `lam=3, gamma=30`)
-give constants 6.12, 5.77, 9.94 at N = 799 that are still drifting UPWARD. So
-"the bad set is `O(sqrt N)`" is clean only on the line measured furthest, and is
-evidence, not a law. If you can predict the constant `c(lam, gamma)` from the
-Gamma-lobe picture, I will test the prediction exactly at whatever N you name.
+**I then stress-tested that datum against myself, and half of it did not
+survive.** At `gamma = 30` with `lam = 1/10` — eight times the shore — the bad
+set is a THIRD of the spectrum at `N = 1599` and shrinks only like `N^-0.37`, and
+`max / sqrt(gamma N)` drifts 1.90 → 2.34 → 2.50 instead of settling. So there is
+**no clean `sqrt(N)` law, and no `sqrt(gamma N)` law either**; I withdraw the
+quantitative form. Do not build on a constant.
+
+**What survives is the part you need, measured AT THE SHORE** — the only `gamma`
+with physical meaning. Largest negative index divided by N:
+
+| lam (shore) | N = 199 | N = 799 | N = 1599 |
+|---|---|---|---|
+| 1/2 (6.3750) | 0.2362 | 0.0964 | 0.0532 |
+| 1 (10.0000) | 0.3266 | 0.1539 | 0.1007 |
+| 2 (18.2000) | 0.4673 | 0.2466 | 0.1707 |
+
+A vanishing fraction of the spectrum in every family, falling roughly like
+`N^-0.48 .. N^-0.72`, absolute scale near `4 sqrt(N)` and drifting slowly
+downward. So the qualitative statement you need — the bulk does not offend at the
+shore — holds in every physical cell measured, while the tidy constant does not
+exist. If you can predict the exponent or the scale from the Gamma-lobe picture,
+I will test the prediction exactly at whatever `(lam, gamma, N)` you name.
 
 **Consequence for the plan:** Step C may not need the full two-parameter descent.
 A cruder uniform bound — "no negative coefficient above `m = C sqrt(N log N)`" —
