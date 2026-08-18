@@ -80,3 +80,58 @@ proof must use the ladder's own structure.
     For the ladder roots c_t = (a_t/s)^2 taken in increasing order,
     c_{t+1} < CEILING(H_t) for every t, where H_t is the product of the first t
     factors.
+
+
+---
+
+# Updated state of the problem (2026-08-18 04:49)
+
+The night moved the boundary of what is open. Restating it in the sharpest form
+now available.
+
+## What is settled
+
+* THE EQUIVALENCE. knife j > 0 iff the m-th Jacobi coefficient of an explicit
+  nonnegative polynomial has sign (-1)^m, m = n - j. 4 500 exact checks, zero
+  mismatches.
+* CLOSED FORM PER KNIFE. knife j > 0 iff SUM_t (-1)^t E_2t(n) s^-2t R_t > 0 with
+  R_t elementary and E_2t explicit polynomials (E_2 through E_10 derived and
+  verified on both parities). Checked against the exact engine on 24 cells for
+  each of j = 2..6, zero disagreements.
+* THE SCALING LIMIT, for fixed j: the sum collapses by Newton's binomial to
+  (2rho^2 + 12rho + 6 - d rho)^(j-1) / (6(rho+1)^2)^(j-1). Odd j -> even power,
+  never negative. Even j -> odd power, safe exactly below d = 2rho + 12 + 6/rho,
+  whose minimum is 12 + 4 sqrt(3), the shore asymptote.
+* THE TANGENCY IS SAFE. On the curve the first two orders vanish (A_0 and A_1
+  share the bracket) and A_2 decides; at rho = sqrt(3) it equals
+  22896 sqrt(3) + 128952 > 0 for knife 4 and 1811652480 sqrt(3) + 3362078016 > 0
+  for knife 6.
+* THE OTHER LIMIT. At fixed (lam, D) and n -> infinity the leading coefficient is
+  a positive constant (20, 280, 2800, 12320 for j = 3..6).
+* COVERAGE. Over 115 000 knives certified exactly with zero failures, levels up
+  to n = 150.
+
+## What is open, exactly
+
+Write the knife-4 polynomial in scaling variables:
+
+    P4(rho lam, d lam, lam) = SUM_{k=0}^{9} lam^{9-k} A_k(rho, d)
+
+with all ten A_k explicit. The finite-lam theorem for knife 4 is:
+
+    for every rho > 0 and every d <= 12 + 4 sqrt(3),
+    SUM_k lam^{-k} A_k(rho, d) > 0  for all lam above an explicit lam_0.
+
+Away from the curve A_0 dominates; near it A_0 and A_1 vanish and A_2 > 0 takes
+over. So the proof is a bound on the remaining A_k over a compact region -- a
+concrete finite computation rather than a search for a method.
+
+The generic Cauchy bound is NOT good enough for this (it gives n_0 ~ 1e13 at
+lam = 60, against a true threshold of order lam); the bound has to be written in
+the scaling variables.
+
+## For the odd knives
+
+Nothing is open at leading order: the even power makes them non-negative for all
+d. What is open is the same subleading question at the curve, where they touch
+zero.
