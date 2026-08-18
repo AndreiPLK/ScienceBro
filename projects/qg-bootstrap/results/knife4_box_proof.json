@@ -3,30 +3,37 @@
  "why_the_D_bound_is_legitimate": "T_hat <= T_k for every k and each T_k is increasing in lam, so min_k T_k(lam_hi) is a rigorous rational majorant of the shore on the box",
  "regions": [
   {
-   "n_max": 50,
-   "lam_max": 10,
-   "proved": true,
-   "boxes": 1325,
-   "open": 0
-  },
-  {
    "n_max": 200,
    "lam_max": 30,
    "proved": true,
    "boxes": 12929,
    "open": 0
+  },
+  {
+   "n_max": 400,
+   "lam_max": 60,
+   "proved": true,
+   "boxes": 39970,
+   "open": 0
+  },
+  {
+   "n_max": 1000,
+   "lam_max": 120,
+   "proved": true,
+   "boxes": 128514,
+   "open": 0
   }
  ],
  "command": "python lab/knife4_proof.py",
- "git": "0f44c62ad438",
- "git_full": "0f44c62ad4380d8c2a94e20fb6e6c39b58270583",
+ "git": "5d6528a4e228",
+ "git_full": "5d6528a4e22843fb3e9974ef6ed22891f99913e6",
  "dirty": true,
  "dirty_code_files": [
-  "projects/qg-bootstrap/lab/knife4_proof.py"
+  "projects/qg-bootstrap/lab/saddle_asymptotics.py"
  ],
  "dirty_count": 1,
  "python": "3.12.10",
  "flint": "0.9.0",
  "platform": "Windows-11-10.0.22631-SP0",
- "runtime_s": 492.9
+ "runtime_s": 6949.2
 }

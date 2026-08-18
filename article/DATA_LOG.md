@@ -3635,3 +3635,52 @@ for every n >= 14, log-concave for every n >= 24, across hundreds of
 configurations), and six mechanisms excluded -- real-rootedness, closed-form
 ratio, log-convexity, total positivity, Stieltjes moments, Newton via F. The
 brief for outside help lists all of them so the search is not repeated.
+
+## 2026-08-18 11:44 -- THE SADDLE ROUTE WORKS: the lemma becomes "the saddle moves right"
+
+The steepest-descent analysis was carried out and, unlike the five earlier
+mechanisms, it holds up against exact values.
+
+SETUP. Rodrigues plus Cauchy turn the coefficient into a double integral whose
+exponent is large in both variables (the m! from Rodrigues cancels the m! from
+Cauchy):
+
+    C_m = const * (1/2 pi i) CONTOUR INT F(z) u^(m+alpha) (1-u)^(m+beta)
+                                     / (z-u)^(m+1)  du dz
+    Phi(u,z) = log F(z) + (m+alpha) log u + (m+beta) log(1-u) - (m+1) log(z-u)
+
+Saddle equations:
+
+    1/u - 1/(1-u) + 1/(z-u) = 0
+    L(z) = m/(z-u),      L(z) = F'(z)/F(z) = sum_a 2/(z-r_a) + eps/z
+
+VERIFIED. The saddle is real and moves smoothly; Newton needs continuation in m
+(a cold start converges only near the top of the range). Including the Gaussian
+prefactor 1/sqrt(det Hessian), the predicted log r_m matches the EXACT rational
+value to 0.05 at m = 6 and to 0.0007-0.003 for m >= 18, at n = 40 and 60.
+
+THE REDUCTION. By the envelope theorem d(log C_m)/dm = G(u*,z*) with
+G = log[u(1-u)/(z-u)]. Differentiating the saddle equations and substituting the
+FIRST of them (which says 1/u - 1/(1-u) = -1/(z-u)) collapses almost everything:
+
+    dG/dm = - z' / (z - u)
+
+and z - u > 0 on the whole path. So, since log-concavity is exactly "G
+decreasing":
+
+    LOG-CONCAVITY  <=>  z'(m) > 0,  the saddle point z moves RIGHT as m grows.
+
+Explicitly, differentiating the pair gives
+
+    z' = 1 / [ (z-u) ( L'(z) + m (1 - kappa) / (z-u)^2 ) ],
+    kappa = 1 / [ A (z-u)^2 ],   A = 1/(z-u)^2 - 1/u^2 - 1/(1-u)^2
+
+VERIFIED: this closed formula for z' matches the numerical derivative of the
+saddle path to 3-4 digits, and the identity dG/dm = -z'/(z-u) likewise, at
+n = 40 and 60, lam = 1 and 7. And z' > 0 at every point computed (z runs from
+1.002 to 1.645 at n = 40, from 1.001 to 2.100 at n = 60).
+
+WHAT REMAINS. Prove L'(z) + m(1-kappa)/(z-u)^2 > 0 along the saddle path. L' is
+explicit and negative (a sum of -2/(z-r_a)^2), so the content is that the
+m-term beats it. That is a concrete inequality about an explicit expression --
+the first time this lemma has had that form.
