@@ -1,0 +1,48 @@
+# Artefacts produced before provenance stamping was required. Retrofitting a
+# git hash into them now would be MANUFACTURING provenance, not recording it
+# (docs/SYSTEM_ASSESSMENT_2026-08-18.md, section 5). They are grandfathered.
+# This register may shrink -- never grow: any NEW artefact must call stamp().
+adversarial_review2_knives4_7.json
+adversarial_review_knife45.json
+attack_blade.json
+attack_gravity.json
+attack_master.json
+boundary_N80_mu0.json
+fig1_map_mu-3_5.json
+fig1_map_mu-6_5.json
+fig1_map_mu-9_5.json
+fig1_map_mu0_1.json
+fig1_map_mu0_1_N20.json
+fig1_map_mu0_1_N40.json
+fig1_map_mu3_5.json
+fig1_map_mu6_5.json
+fig1_map_mu9_5.json
+fine_boundary_mu0_N20.json
+fine_boundary_mu0_N20_corrected.json
+grav_full_body.json
+keystone_asymptotics.json
+keystone_exact_margin.json
+keystone_kernel_probe.json
+keystone_lamcrit.json
+keystone_margin_map.json
+keystone_ratio_probe.json
+knife10_theorem.json
+knife11_theorem.json
+knife12_theorem.json
+knife13_theorem.json
+knife4_theorem.json
+knife5_theorem.json
+knife6_theorem.json
+knife7_theorem.json
+knife8_theorem.json
+knife9_theorem.json
+master_checks.json
+model_test.json
+paper2_artifacts.json
+paper_artifacts.json
+T2n10_brackets.json
+T2n12_brackets.json
+T2n6_brackets.json
+T2n6_s_coeffs.json
+T2n8_brackets.json
+wide_certificates.json

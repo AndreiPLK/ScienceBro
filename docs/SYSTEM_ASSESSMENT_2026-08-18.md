@@ -141,9 +141,13 @@ that is not a test is a wish.**
 
 **Proved, machine-checkable:**
 
-* knife 4 is positive on `4 <= n <= 400`, `1/10 <= lam <= 60`, `4 <= D <= shore`
-  by exact Bernstein subdivision (39,970 boxes, 0 open), plus both unbounded
-  tails by Moebius compactification (the n-tail closes in a single box);
+* knife 4 is positive on `4 <= n <= 1000`, `1/10 <= lam <= 120`,
+  `4 <= D <= shore` by exact Bernstein subdivision (128,514 boxes, 0 open, 6949 s
+  -- this run finished while the assessment was being written and supersedes the
+  earlier 400/60 figure). The unbounded tails are NOT closed: the two runs
+  attempting them produced zero output in two hours and were killed, because
+  `lab/knife4_tails.py` hangs in `sympy.simplify` (backlog B6). The earlier
+  single-box closure of the n-tail for `lam <= 30` stands.
 * closed forms per knife verified against the exact engine, j = 2..6;
 * the Jacobi normal form reproduces the independent exact value on 4500 cells,
   0 mismatches; every fast path reproduces the slow one on 891 cells, 0
@@ -173,17 +177,23 @@ under a moving boundary, sample in FRACTIONS of that boundary and include 0.99.
 Ranked by (risk removed) / (hours). I have not executed these -- they change the
 structure of the repository and that is the founder's call.
 
-| # | action | cost | removes |
-|---|---|---|---|
-| 1 | register `qg-bootstrap`: `project.yaml`, evidence records for the published papers, experiment records for the certified runs, and the real claims entered at the state the gate actually allows | ~3 h | F1 -- the whole overclaim surface on the live program |
-| 2 | a test that fails when a NEW module under `lab/` writes to `results/` without calling `stamp()` | ~40 min | F4, permanently |
-| 3 | a `STATUS` line in every result artefact (`live` / `superseded-by` / `dead-end`) plus a test that every JSON has one | ~2 h | F3 -- the sediment |
-| 4 | promote the "fast path must reproduce the slow path" rule from habit to a required `self_check` in any module that produces a number used in a paper | ~2 h | F2, the class that produced the withdrawn claims |
-| 5 | move the nine untouched topics out of the active registry into `docs/BACKLOG.md` | ~15 min | F6 |
+| # | action | cost | removes | state |
+|---|---|---|---|---|
+| 1 | register `qg-bootstrap`: `project.yaml`, evidence records, experiment records, and the real claims entered at the state the gate allows | ~3 h | F1 -- the whole overclaim surface on the live program | BACKLOG B1, trigger: before the next paper goes out |
+| 2 | index every artefact and require provenance on new ones | ~40 min | F4 + F3, permanently | **DONE** -- `results/MANIFEST.yaml`, `tools/results_manifest.py`, `tests/test_results_manifest.py` |
+| 3 | classify the 82 `unreviewed` artefacts | ~2 h | the remaining sediment | BACKLOG B2, on contact |
+| 4 | promote "fast path must reproduce the slow path" from habit to a required `self_check` | ~2 h | F2, the class that produced the withdrawn claims | BACKLOG B3 |
+| 5 | move the nine untouched topics into `docs/BACKLOG.md` | ~15 min | F6 | BACKLOG B4 |
 
-Items 2 and 3 are the ones I would do first if only an hour were available:
-they are cheap and they are tests, and this week has shown twice that only tests
-survive contact with a working night.
+Item 2 was done immediately because it was cheap and because it is a test, and
+this week has shown twice that only tests survive contact with a working night.
+The design point worth keeping: the status of an artefact lives in an index
+BESIDE the results, never inside them -- editing 163 raw files to add a field
+would violate the immutability rule the index exists to serve. My own first plan
+got this wrong.
+
+Everything else is parked in `docs/BACKLOG.md` with an explicit trigger, because
+the North Star caps infrastructure at 20 % of effort and the theorem is open.
 
 ---
 

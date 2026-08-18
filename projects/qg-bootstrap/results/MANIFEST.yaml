@@ -1,0 +1,674 @@
+# Index of result artefacts. The artefacts themselves are immutable
+# (.claude/rules/experiment-contract.md), so their status lives here.
+# Regenerate with: uv run python tools/results_manifest.py
+# Hand-set decisions are preserved; only new files get a default.
+artefacts:
+  FROZEN_PREDICTION_blocks.md:
+    added: '2026-08-18'
+    note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
+      grid. Kept because freezing it first is exactly what made the refutation meaningful.
+    status: retracted
+  OPEN_PROBLEM.md:
+    added: '2026-08-18'
+    note: the standing statement of the open problem plus the list of CLOSED routes; read before any new
+      attempt
+    status: live
+  SCALING_LIMIT_THEOREM.md:
+    added: '2026-08-18'
+    note: the bracket-to-the-power-(j-1) result and the parity mechanism that predicted knife 6 before
+      it was computed
+    status: live
+  T2n10_brackets.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  T2n12_brackets.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  T2n6_brackets.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  T2n6_s_coeffs.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  T2n8_brackets.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  adversarial_review2_knives4_7.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  adversarial_review_knife45.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  attack_blade.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  attack_collapse.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  attack_gravity.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  attack_master.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  blade_proof.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  boundary_N80_mu0.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  bruteforce_recheck.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  chr_closed_form.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  closest_approach_exact.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  collapse_zones.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  completeness_deep_n80.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  eft_map_d4.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu-3_5.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu-6_5.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu-9_5.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu0_1.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu0_1_N20.json:
+    added: '2026-08-13'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  fig1_map_mu0_1_N40.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu3_5.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu6_5.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fig1_map_mu9_5.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fine_boundary_mu0_N20.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  fine_boundary_mu0_N20_corrected.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  grav_d4_lowspin.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  grav_full_body.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  grav_lambda_map.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  grav_zoomout.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  grav_zoomout_v2.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  hunt_2n6.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  hunt_2n8.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  jacobi_normal_form.json:
+    added: '2026-08-18'
+    note: the reformulation the whole program now runs on; 4500 sign checks against the independent exact
+      value, 0 mismatches
+    status: live
+  keystone_asymptotics.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_beta.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_cert.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_contour_hunt.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_descartes.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_dimension_walk.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_exact_margin.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  keystone_hunt.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_hunt_highspin.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_induction.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_j_ladder.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_kernel_probe.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_lamcrit.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_lowspin.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_manifest.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_margin_law.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_margin_map.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_npoly.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_ratio_probe.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_saddles.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_shore.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_strip_fast.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_strip_symbolic.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_symbolic.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_symbolic_n.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  knife10_belowdiag_shift.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife10_farbelow_factored.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife10_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife10_theorem.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife11_belowdiag_shift.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife11_farbelow_factored.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife11_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife11_theorem.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife12_belowdiag_shift.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife12_farbelow_factored.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife12_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife12_theorem.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife13_belowdiag_shift.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife13_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife13_theorem.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife14_belowdiag_shift.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife14_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife15_belowdiag_shift.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife15_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife16_belowdiag_shift.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife16_farbelow_interval.json:
+    added: '2026-08-18'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife17_belowdiag_shift.json:
+    added: '2026-08-18'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife17_farbelow_interval.json:
+    added: '2026-08-18'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife4_belowdiag_shift.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  knife4_box_proof.json:
+    added: '2026-08-18'
+    note: 'knife 4 machine-proved to n <= 1000, lam <= 120 by exact Bernstein subdivision: 128,514 boxes,
+      0 open'
+    status: live
+  knife4_farbelow_factored.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  knife4_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife4_open_region.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife4_theorem.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife5_belowdiag_shift.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  knife5_farbelow_factored.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  knife5_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife5_theorem.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  knife6_belowdiag_shift.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife6_farbelow_factored.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife6_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife6_theorem.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife7_belowdiag_shift.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife7_farbelow_factored.json:
+    added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  knife7_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife7_theorem.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife8_belowdiag_shift.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife8_farbelow_factored.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife8_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife8_theorem.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife9_belowdiag_shift.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife9_farbelow_factored.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife9_farbelow_interval.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife9_theorem.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_closed_form.json:
+    added: '2026-08-18'
+    note: closed forms per knife, verified j = 2..6
+    status: live
+  knife_proof2_j10.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j11.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j12.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j13.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j14.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j15.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j16.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j17.json:
+    added: '2026-08-18'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j18.json:
+    added: '2026-08-18'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j4.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j5.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j6.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j7.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j8.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof2_j9.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof_j4.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof_j5.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof_j6.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_proof_j7.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j10.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j11.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j12.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j13.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j15.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j16.json:
+    added: '2026-08-17'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j17.json:
+    added: '2026-08-18'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j4.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j5.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j6.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j7.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j8.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail2_j9.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail_deep_j4.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  knife_tail_deep_j5.json:
+    added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lowspin_stress.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  master_checks.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  master_completeness_scan.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  model_test.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  n2_fixed_spin.json:
+    added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  normal_form_certificates.json:
+    added: '2026-08-18'
+    note: certificates from the normal-form route
+    status: live
+  paper2_artifacts.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  paper_artifacts.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  step_lemma.json:
+    added: '2026-08-18'
+    note: same step-6 artefact as FROZEN_PREDICTION_blocks.md
+    status: retracted
+  t2n6_law_check.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  t2n6_window_vs_shore.json:
+    added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  vs_d_clock.json:
+    added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  wide_certificates.json:
+    added: '2026-08-18'
+    note: 525,346 coefficients computed exactly, 0 negatives -- the broadest evidence we have
+    status: live
+  z3_judge_j4.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  z3_judge_j4_retry.json:
+    added: '2026-08-16'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  z3_judge_tight.json:
+    added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
