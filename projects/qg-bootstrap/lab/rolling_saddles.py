@@ -35,6 +35,7 @@ the founder's wheel is the mechanism and the block structure is a consequence.
 
 from __future__ import annotations
 
+import cmath
 import json
 import sys
 import time
@@ -93,18 +94,18 @@ def main() -> int:
         t0 = time.time()
         try:
             top = ranked_saddles(j, j + 4, F(1))
-        except Exception as exc:                       # report, never hide
+        except Exception as exc:  # report, never hide
             print(f"  j={j}: FAILED {type(exc).__name__}: {exc}", flush=True)
             continue
-        data[str(j)] = [{"log10_mag": m, "re": z.real, "im": z.imag}
-                        for m, z in top]
+        data[str(j)] = [{"log10_mag": m, "re": z.real, "im": z.imag} for m, z in top]
         OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")
         z0 = top[0][1]
-        conj = (len(top) > 1 and abs(top[1][1] - z0.conjugate())
-                < 1e-12 * max(1.0, abs(z0)))
-        print("  j=%3d  top |x|=%.6f arg=%+.5f  log10mag=%.2f  conjugate pair: %s"
-              "  (%.0fs)" % (j, abs(z0), __import__("cmath").phase(z0),
-                             top[0][0], conj, time.time() - t0), flush=True)
+        conj = len(top) > 1 and abs(top[1][1] - z0.conjugate()) < 1e-12 * max(1.0, abs(z0))
+        print(
+            f"  j={j:3d}  top |x|={abs(z0):.6f} arg={cmath.phase(z0):+.5f}  "
+            f"log10mag={top[0][0]:.2f}  conjugate pair: {conj}  ({time.time() - t0:.0f}s)",
+            flush=True,
+        )
     print("done:", len(data), "->", OUT, flush=True)
     return 0
 

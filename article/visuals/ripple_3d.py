@@ -42,7 +42,7 @@ Z = [[h(d.get(f"{j}_{lam}")) for j in js] for lam in lams]
 # rescaled grid: interpolate each family's row onto a common xi axis
 xi_axis = np.linspace(1.4, 4.2, 60)
 Zs = []
-for row, lam in zip(Z, lams):
+for row, lam in zip(Z, lams, strict=False):
     xi_row = np.array([j / (j + 4) ** (2 / 3) for j in js])
     vals = np.array(row, dtype=float)
     ok = ~np.isnan(vals)

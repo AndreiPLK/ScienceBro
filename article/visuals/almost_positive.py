@@ -38,7 +38,7 @@ fig = make_subplots(
         "zoom on the dip: this is the entire problem",
     ),
 )
-for (j, n, r), col in zip(CASES, COLORS):
+for (j, n, r), col in zip(CASES, COLORS, strict=False):
     P = build_P(j, n, F(1))
     N = j - 1
     true = float(coeff(P, N))

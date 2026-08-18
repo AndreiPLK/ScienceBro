@@ -48,7 +48,7 @@ fig = make_subplots(
 
 palette = ["#4df0ff", "#8ff0ff", "#58d3be", "#c9e86b", "#f9f871", "#ffb35f", "#ff8fb0", "#ff2a6d"]
 
-for row, (lam, col) in enumerate(zip(lams, palette)):
+for row, (lam, col) in enumerate(zip(lams, palette, strict=False)):
     js = sorted(int(k.split("_")[0]) for k in d if k.split("_")[1] == lam)
     seq = [(j, d[f"{j}_{lam}"] >= 0) for j in js]
     bounds = [seq[i][0] for i in range(1, len(seq)) if seq[i][1] != seq[i - 1][1]]

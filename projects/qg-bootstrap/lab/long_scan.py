@@ -49,15 +49,18 @@ def main() -> int:
             t0 = time.time()
             try:
                 r, m = best_circle(j, j + 4, lam)
-            except OverflowError as exc:      # must not happen; report loudly
+            except OverflowError as exc:  # must not happen; report loudly
                 print(f"  j={j} lam={lam}: OVERFLOW {exc}", flush=True)
                 data[key] = None
                 OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")
                 continue
             data[key] = None if m is None else float(m)
             OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")
-            print(f"  j={j} lam={lam}: {'unstable' if m is None else f'{m:+.3e}'}"
-                  f"  ({time.time() - t0:.1f}s)", flush=True)
+            print(
+                f"  j={j} lam={lam}: {'unstable' if m is None else f'{m:+.3e}'}"
+                f"  ({time.time() - t0:.1f}s)",
+                flush=True,
+            )
     print("done:", len(data), "cells ->", OUT, flush=True)
     return 0
 

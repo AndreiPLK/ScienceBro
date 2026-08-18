@@ -121,8 +121,7 @@ def best_circle(j: int, n: int, lam: F, lo: float = -2.9, hi: float = -0.6, coun
     return best_r, best_m
 
 
-def density_deformed(j: int, n: int, lam: F, r: float, eps: float, k: int,
-                     steps: int = 1500):
+def density_deformed(j: int, n: int, lam: F, r: float, eps: float, k: int, steps: int = 1500):
     """Normalised integrand along a DEFORMED loop, not just a circle.
 
     WHY. A dip is a property of the loop I chose, not of the problem. Every
@@ -154,9 +153,17 @@ def density_deformed(j: int, n: int, lam: F, r: float, eps: float, k: int,
     return t, v
 
 
-def best_deformed(j: int, n: int, lam: F, ks=(1, 2, 3, 4),
-                  eps_grid=None, lo: float = -2.9, hi: float = -0.6,
-                  count: int = 60, steps: int = 900):
+def best_deformed(
+    j: int,
+    n: int,
+    lam: F,
+    ks=(1, 2, 3, 4),
+    eps_grid=None,
+    lo: float = -2.9,
+    hi: float = -0.6,
+    count: int = 60,
+    steps: int = 900,
+):
     """Search radius, deformation amplitude and harmonic for a sign-definite loop.
 
     Returns the best (min_value, r, eps, k). A positive min_value means the loop
@@ -169,8 +176,7 @@ def best_deformed(j: int, n: int, lam: F, ks=(1, 2, 3, 4),
     for r in np.logspace(lo, hi, count):
         for k in ks:
             for eps in eps_grid:
-                _, v = density_deformed(j, n, lam, float(r), float(eps),
-                                        int(k), steps=steps)
+                _, v = density_deformed(j, n, lam, float(r), float(eps), int(k), steps=steps)
                 if v is None:
                     continue
                 m = float(v.min())
@@ -216,8 +222,9 @@ def density_min_hp(j: int, n: int, lam: F, r: float, steps: int = 240, dps: int 
     return worst
 
 
-def density_min_deformed_hp(j: int, n: int, lam: F, r: float, eps: float,
-                            k: int, steps: int = 240, dps: int = 60):
+def density_min_deformed_hp(
+    j: int, n: int, lam: F, r: float, eps: float, k: int, steps: int = 240, dps: int = 60
+):
     """Ball-arithmetic minimum along the deformed loop x = r e^{it}(1+eps cos kt).
 
     Needed because the float deformation search cannot be trusted where it
@@ -256,20 +263,37 @@ def density_min_deformed_hp(j: int, n: int, lam: F, r: float, eps: float,
     return worst
 
 
-def verdict_deformed_hp(j: int, n: int, lam: F, r: float, eps: float, k: int,
-                        steps: int = 600, dps: int = 120):
+def verdict_deformed_hp(
+    j: int, n: int, lam: F, r: float, eps: float, k: int, steps: int = 600, dps: int = 120
+):
     """Proven dip / dip_free for one deformed loop."""
     w = density_min_deformed_hp(j, n, lam, r, eps, k, steps=steps, dps=dps)
     if w is None:
         return {"status": "unstable"}
-    status = ("dip" if w.upper() < 0 else
-              "dip_free" if w.lower() > 0 else "undecided")
-    return {"j": j, "n": n, "lam": str(lam), "r": r, "eps": eps, "k": k,
-            "mid": float(w.mid()), "rad": float(w.rad()), "status": status}
+    status = "dip" if w.upper() < 0 else "dip_free" if w.lower() > 0 else "undecided"
+    return {
+        "j": j,
+        "n": n,
+        "lam": str(lam),
+        "r": r,
+        "eps": eps,
+        "k": k,
+        "mid": float(w.mid()),
+        "rad": float(w.rad()),
+        "status": status,
+    }
 
 
-def best_circle_hp(j: int, n: int, lam: F, lo: float = -2.9, hi: float = -0.6,
-                   count: int = 34, steps: int = 240, dps: int = 60):
+def best_circle_hp(
+    j: int,
+    n: int,
+    lam: F,
+    lo: float = -2.9,
+    hi: float = -0.6,
+    count: int = 34,
+    steps: int = 240,
+    dps: int = 60,
+):
     """Radius maximising the minimum, using ball arithmetic throughout.
 
     Returns (radius, arb_min). Use instead of `best_circle` whenever j is large
@@ -299,8 +323,15 @@ def verdict_hp(j: int, n: int, lam: F, steps: int = 600, dps: int = 120):
         status = "dip_free"
     else:
         status = "undecided"
-    return {"j": j, "n": n, "lam": str(lam), "radius": r,
-            "mid": float(w.mid()), "rad": float(w.rad()), "status": status}
+    return {
+        "j": j,
+        "n": n,
+        "lam": str(lam),
+        "radius": r,
+        "mid": float(w.mid()),
+        "rad": float(w.rad()),
+        "status": status,
+    }
 
 
 def rigorous_min(j: int, n: int, lam: F, r: float, steps: int = 1200, dps: int = 200):
@@ -399,8 +430,9 @@ def self_test() -> list[str]:
         if v0 is None or vd is None:
             bad.append(f"deformed/circle comparison unusable at j={j}")
         elif float(np.abs(v0 - vd).max()) > 1e-8 * max(1.0, float(np.abs(v0).max())):
-            bad.append(f"deformed(eps=0) != circle at j={j}: "
-                       f"maxdiff {float(np.abs(v0 - vd).max()):.3e}")
+            bad.append(
+                f"deformed(eps=0) != circle at j={j}: maxdiff {float(np.abs(v0 - vd).max()):.3e}"
+            )
     # 7. the same identity in ball arithmetic: the hp deformed loop at eps = 0
     #    must reproduce the hp circle. This is the check that licenses every
     #    "the deformed loop fixes this knife" statement.
@@ -408,10 +440,8 @@ def self_test() -> list[str]:
     w_d = density_min_deformed_hp(10, 14, F(1), 0.02, 0.0, 2, steps=120, dps=60)
     if w_c is None or w_d is None:
         bad.append("hp deformed/circle comparison unusable")
-    elif not (abs(float(w_c.mid()) - float(w_d.mid()))
-              <= 1e-20 * max(1.0, abs(float(w_c.mid())))):
-        bad.append(f"hp deformed(eps=0) {float(w_d.mid()):.6e} != "
-                   f"hp circle {float(w_c.mid()):.6e}")
+    elif not (abs(float(w_c.mid()) - float(w_d.mid())) <= 1e-20 * max(1.0, abs(float(w_c.mid())))):
+        bad.append(f"hp deformed(eps=0) {float(w_d.mid()):.6e} != hp circle {float(w_c.mid()):.6e}")
     return bad
 
 

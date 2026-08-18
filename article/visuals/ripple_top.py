@@ -18,8 +18,7 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]
-                       / "projects" / "qg-bootstrap" / "lab"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "projects" / "qg-bootstrap" / "lab"))
 import numpy as np  # noqa: E402
 import plotly.graph_objects as go  # noqa: E402
 from PIL import Image, ImageChops  # noqa: E402
@@ -42,39 +41,64 @@ def h(m):
 
 Z = [[h(cells.get((j, lam))) for j in js] for lam in lams]
 
-fig = go.Figure(go.Heatmap(
-    x=js, y=[float(eval(s)) for s in lams], z=Z, zmid=0,
-    colorscale=[[0.0, "#7a1f45"], [0.42, "#ff2a6d"], [0.5, "#241a12"],
-                [0.58, "#12648f"], [1.0, "#7df3ff"]],
-    colorbar=dict(title=dict(text="signed depth<br>(log)",
-                             font=dict(color="#a8a08e", size=11)),
-                  tickfont=dict(color="#a8a08e", size=10), thickness=14,
-                  len=0.8)))
+fig = go.Figure(
+    go.Heatmap(
+        x=js,
+        y=[float(eval(s)) for s in lams],
+        z=Z,
+        zmid=0,
+        colorscale=[
+            [0.0, "#7a1f45"],
+            [0.42, "#ff2a6d"],
+            [0.5, "#241a12"],
+            [0.58, "#12648f"],
+            [1.0, "#7df3ff"],
+        ],
+        colorbar=dict(
+            title=dict(text="signed depth<br>(log)", font=dict(color="#a8a08e", size=11)),
+            tickfont=dict(color="#a8a08e", size=10),
+            thickness=14,
+            len=0.8,
+        ),
+    )
+)
 
 fig.update_layout(
-    template="plotly_dark", paper_bgcolor="#14130f", plot_bgcolor="#14130f",
+    template="plotly_dark",
+    paper_bgcolor="#14130f",
+    plot_bgcolor="#14130f",
     title=dict(
         text="THE RIPPLE FROM ABOVE — 580 exact cells<br><sup>Cyan: one loop "
-             "already proves that constraint positive. Crimson: it does not. "
-             "The bands are not straight columns — the fronts bend as the "
-             "family parameter grows,<br>which is what makes this one "
-             "phenomenon rather than twenty. No fitted curves are drawn: the "
-             "scaling exponent is measured but NOT yet established.</sup>",
-        font=dict(color="#ede8dc", size=20), x=0.02, y=0.95),
-    xaxis=dict(title="j — which knife", color="#a8a08e",
-               gridcolor="#322e26"),
-    yaxis=dict(title="lam — family of theories (log)", type="log",
-               color="#a8a08e", gridcolor="#322e26"),
-    margin=dict(l=80, r=20, t=118, b=70), width=1420, height=700)
+        "already proves that constraint positive. Crimson: it does not. "
+        "The bands are not straight columns — the fronts bend as the "
+        "family parameter grows,<br>which is what makes this one "
+        "phenomenon rather than twenty. No fitted curves are drawn: the "
+        "scaling exponent is measured but NOT yet established.</sup>",
+        font=dict(color="#ede8dc", size=20),
+        x=0.02,
+        y=0.95,
+    ),
+    xaxis=dict(title="j — which knife", color="#a8a08e", gridcolor="#322e26"),
+    yaxis=dict(
+        title="lam — family of theories (log)", type="log", color="#a8a08e", gridcolor="#322e26"
+    ),
+    margin=dict(l=80, r=20, t=118, b=70),
+    width=1420,
+    height=700,
+)
 
 out = Path(__file__).resolve().parent / "ripple-top.png"
 fig.write_image(str(out), scale=2)
 im = Image.open(out).convert("RGB")
 bg = Image.new("RGB", im.size, (20, 19, 15))
-bbox = ImageChops.difference(im, bg).convert("L").point(
-    lambda v: 255 if v > 10 else 0).getbbox()
+bbox = ImageChops.difference(im, bg).convert("L").point(lambda v: 255 if v > 10 else 0).getbbox()
 pad = 12
-im.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad),
-         min(im.width, bbox[2] + pad),
-         min(im.height, bbox[3] + pad))).save(out)
+im.crop(
+    (
+        max(0, bbox[0] - pad),
+        max(0, bbox[1] - pad),
+        min(im.width, bbox[2] + pad),
+        min(im.height, bbox[3] + pad),
+    )
+).save(out)
 print("saved", out, Image.open(out).size, "| cells:", len(cells))

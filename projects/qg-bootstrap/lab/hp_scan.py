@@ -28,8 +28,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from contour_lib import self_test, verdict_hp  # noqa: E402
 
 OUT = Path("/tmp/hp_scan.json")
-JOBS = [(F(1), list(range(76, 125, 2))),      # the predicted block 4 and its gaps
-        (F(7), list(range(8, 125, 2)))]       # independent family, whole range
+JOBS = [
+    (F(1), list(range(76, 125, 2))),  # the predicted block 4 and its gaps
+    (F(7), list(range(8, 125, 2))),
+]  # independent family, whole range
 
 
 def main() -> int:
@@ -48,9 +50,12 @@ def main() -> int:
             v = verdict_hp(j, j + 4, lam)
             data[key] = v
             OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")
-            print("  j=%3d lam=%-3s %-9s mid=%+.3e rad=%.1e  (%.0fs)"
-                  % (j, lam, v["status"], v.get("mid", 0.0),
-                     v.get("rad", 0.0), time.time() - t0), flush=True)
+            print(
+                f"  j={j:3d} lam={str(lam):<3s} {v['status']:<9s} "
+                f"mid={v.get('mid', 0.0):+.3e} rad={v.get('rad', 0.0):.1e} "
+                f" ({time.time() - t0:.0f}s)",
+                flush=True,
+            )
     print("done:", len(data), "cells ->", OUT, flush=True)
     return 0
 

@@ -96,8 +96,7 @@ def jacobi_moment(j: int, n: int, lam: F, D: F) -> F:
     pref = poch(a + 1, m) / F(_fact(m))
     tot = F(0)
     for k in range(m + 1):
-        ck = (poch(F(-m), k) * poch(F(m) + a + b + 1, k)
-              / (poch(a + 1, k) * F(_fact(k))))
+        ck = poch(F(-m), k) * poch(F(m) + a + b + 1, k) / (poch(a + 1, k) * F(_fact(k)))
         if ck == 0:
             continue
         inner = F(0)
@@ -135,26 +134,39 @@ def main() -> int:
                     want = sign_of(J_exact(j, n, lam, D))
                     checks += 1
                     if got != want:
-                        bad.append({"j": j, "n": n, "lam": str(lam),
-                                    "D": str(D), "m": m,
-                                    "normal_form_sign": got,
-                                    "exact_sign": want})
+                        bad.append(
+                            {
+                                "j": j,
+                                "n": n,
+                                "lam": str(lam),
+                                "D": str(D),
+                                "m": m,
+                                "normal_form_sign": got,
+                                "exact_sign": want,
+                            }
+                        )
                     if j in (2, n // 2, n) and lam == F(1) and D == F(6):
-                        rows.append({"j": j, "n": n, "m": m,
-                                     "sign_jacobi_coefficient": sign_of(jm),
-                                     "expected_(-1)^m": (-1) ** m,
-                                     "sign_I": want})
+                        rows.append(
+                            {
+                                "j": j,
+                                "n": n,
+                                "m": m,
+                                "sign_jacobi_coefficient": sign_of(jm),
+                                "expected_(-1)^m": (-1) ** m,
+                                "sign_I": want,
+                            }
+                        )
     print(f"  checks: {checks}, mismatches: {len(bad)}", flush=True)
     for r in bad[:8]:
         print("   MISMATCH", r, flush=True)
     out = {
         "claim": "sign I = (-1)^m * sign of the m-th Jacobi coefficient of the"
-                 " nonnegative polynomial F(u) = u^{n-1} G2(1/(s^2 u)),"
-                 " alpha = -1/2, beta = D/2 - 2, m = n - j",
+        " nonnegative polynomial F(u) = u^{n-1} G2(1/(s^2 u)),"
+        " alpha = -1/2, beta = D/2 - 2, m = n - j",
         "why_it_matters": "F is a polynomial of degree n-1, so orthogonality"
-                          " leaves exactly ONE coefficient: the whole"
-                          " four-parameter positivity question becomes the sign"
-                          " of a single rational number per cell",
+        " leaves exactly ONE coefficient: the whole"
+        " four-parameter positivity question becomes the sign"
+        " of a single rational number per cell",
         "checks": checks,
         "mismatches": bad,
         "sample_rows": rows[:40],
@@ -162,8 +174,7 @@ def main() -> int:
         **stamp(),
         "runtime_s": round(time.time() - t0, 1),
     }
-    (RES / "jacobi_normal_form.json").write_text(
-        json.dumps(out, indent=1), encoding="utf-8")
+    (RES / "jacobi_normal_form.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("written results/jacobi_normal_form.json", flush=True)
     return 1 if bad else 0
 
@@ -185,8 +196,13 @@ def M_closed(q: int, m: int, D: F) -> F:
     den = poch(a + 1, m) * poch(F(-m) - b - a - q - 1, m)
     if den == 0:
         return F(0)
-    return (poch(a + 1, m) / F(_fact(m))) * (poch(a + 1, q) / poch(a + b + 2, q)) \
-        * poch(F(-m) - b, m) * poch(F(-q), m) / den
+    return (
+        (poch(a + 1, m) / F(_fact(m)))
+        * (poch(a + 1, q) / poch(a + b + 2, q))
+        * poch(F(-m) - b, m)
+        * poch(F(-q), m)
+        / den
+    )
 
 
 def jacobi_coeff_fast(j: int, n: int, lam: F, D: F) -> F:

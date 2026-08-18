@@ -59,8 +59,7 @@ def all_positive(poly: list[F], D: F, upto: int | None = None) -> bool:
         pref = poch(a + 1, m) / F(_fact(m))
         tot = F(0)
         for k in range(m + 1):
-            ck = (poch(F(-m), k) * poch(F(m) + a + b + 1, k)
-                  / (poch(a + 1, k) * F(_fact(k))))
+            ck = poch(F(-m), k) * poch(F(m) + a + b + 1, k) / (poch(a + 1, k) * F(_fact(k)))
             if ck == 0:
                 continue
             inner = F(0)
@@ -102,10 +101,10 @@ def ladder(n: int, lam: F, count: int | None = None) -> tuple[list[F], list[F]]:
     """(partial product of the first `count` ladder factors, the ladder roots)."""
     s = F(lam) + n - 1
     aa = sorted([n - 2 * k for k in range(1, n) if n - 2 * k > 0])
-    roots = [F(a * a, 1) / s ** 2 for a in aa]
+    roots = [F(a * a, 1) / s**2 for a in aa]
     eps = 1 if n % 2 == 0 else 0
     p = [F(0)] * eps + [F(1)]
-    for c in roots[:count if count is not None else len(roots)]:
+    for c in roots[: count if count is not None else len(roots)]:
         p = mul_square(p, c)
     return p, roots
 
@@ -115,15 +114,16 @@ def main() -> int:
     out: dict = {"same_degree_different_H": [], "ladder_vs_threshold": []}
 
     # (1) does the threshold depend on WHICH H, at fixed degree and beta?
-    print("(1) same degree, different H -- is c_max a function of degree alone?",
-          flush=True)
+    print("(1) same degree, different H -- is c_max a function of degree alone?", flush=True)
     for t in (2, 3, 4, 5, 6):
         for D in (F(6), F(11)):
             row = {"t": t, "D": str(D), "cases": []}
-            cases = [("ladder n=15 lam=1", ladder(15, F(1), t)[0]),
-                     ("ladder n=21 lam=1", ladder(21, F(1), t)[0]),
-                     ("ladder n=21 lam=7", ladder(21, F(7), t)[0]),
-                     ("ladder n=31 lam=1", ladder(31, F(1), t)[0])]
+            cases = [
+                ("ladder n=15 lam=1", ladder(15, F(1), t)[0]),
+                ("ladder n=21 lam=1", ladder(21, F(1), t)[0]),
+                ("ladder n=21 lam=7", ladder(21, F(7), t)[0]),
+                ("ladder n=31 lam=1", ladder(31, F(1), t)[0]),
+            ]
             # a deliberately different root set of the same size: geometric
             g = [F(1, 3 ** (k + 2)) for k in range(t)]
             p = [F(1)]
@@ -132,19 +132,26 @@ def main() -> int:
             cases.append(("geometric roots", p))
             for name, H in cases:
                 if not all_positive(H, D):
-                    row["cases"].append({"H": name, "c_max": None,
-                                         "note": "H itself not all-positive"})
+                    row["cases"].append(
+                        {"H": name, "c_max": None, "note": "H itself not all-positive"}
+                    )
                     continue
                 cm = c_max(H, D)
-                row["cases"].append({"H": name, "degree": len(H) - 1,
-                                     "c_max": float(cm) if cm else None})
+                row["cases"].append(
+                    {"H": name, "degree": len(H) - 1, "c_max": float(cm) if cm else None}
+                )
             spread = [c["c_max"] for c in row["cases"] if c.get("c_max")]
             row["spread"] = (max(spread) - min(spread)) if len(spread) > 1 else None
             out["same_degree_different_H"].append(row)
-            print("   t=%d D=%-3s  c_max: %s   spread %.4f"
-                  % (t, D, ", ".join("%s=%.4f" % (c["H"].split()[0][:4] + str(
-                      c.get("degree", "")), c["c_max"]) for c in row["cases"]
-                      if c.get("c_max")), row["spread"] or 0.0), flush=True)
+            shown = ", ".join(
+                f"{c['H'].split()[0][:4] + str(c.get('degree', ''))}={c['c_max']:.4f}"
+                for c in row["cases"]
+                if c.get("c_max")
+            )
+            print(
+                f"   t={t} D={str(D):<3s}  c_max: {shown}   spread {row['spread'] or 0.0:.4f}",
+                flush=True,
+            )
 
     # (2) the ladder against its own threshold, for several n
     print(flush=True)
@@ -165,24 +172,32 @@ def main() -> int:
                 H = mul_square(H, c)
             ok = all_positive(H, D)
             out["ladder_vs_threshold"].append(
-                {"n": n, "lam": str(lam), "D": str(D),
-                 "worst_margin_ratio": worst[0] if worst else None,
-                 "at_step": worst[1] if worst else None,
-                 "full_product_all_positive": ok})
-            print("   n=%2d lam=%-2s D=%-3s worst margin %.3fx at step %s   "
-                  "full product all-positive: %s"
-                  % (n, lam, D, worst[0], worst[1], ok), flush=True)
+                {
+                    "n": n,
+                    "lam": str(lam),
+                    "D": str(D),
+                    "worst_margin_ratio": worst[0] if worst else None,
+                    "at_step": worst[1] if worst else None,
+                    "full_product_all_positive": ok,
+                }
+            )
+            print(
+                f"   n={n:2d} lam={str(lam):<2s} D={str(D):<3s} worst margin "
+                f"{worst[0]:.3f}x at step {worst[1]}   full product all-positive: {ok}",
+                flush=True,
+            )
 
-    out.update({
-        "lemma_under_test": "if H is all-positive and c <= c_max(H, beta) then"
-                            " H(u)(u-c)^2 is all-positive; the question is"
-                            " whether c_max depends on H only through its degree",
-        "command": "python lab/step_lemma.py",
-        **stamp(),
-        "runtime_s": round(time.time() - t0, 1),
-    })
-    (RES / "step_lemma.json").write_text(json.dumps(out, indent=1),
-                                         encoding="utf-8")
+    out.update(
+        {
+            "lemma_under_test": "if H is all-positive and c <= c_max(H, beta) then"
+            " H(u)(u-c)^2 is all-positive; the question is"
+            " whether c_max depends on H only through its degree",
+            "command": "python lab/step_lemma.py",
+            **stamp(),
+            "runtime_s": round(time.time() - t0, 1),
+        }
+    )
+    (RES / "step_lemma.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("\nwritten results/step_lemma.json", flush=True)
     return 0
 
