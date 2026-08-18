@@ -125,5 +125,49 @@
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"
+ },
+ "reopening_test": {
+  "question": "the central remaining doubt: once q is clean at the shore above n*(lam), does a coefficient ever go negative again at larger n?",
+  "lam": "1/20",
+  "shore_gamma": "3.30375",
+  "n_star": 516,
+  "checked": [
+   {
+    "n": 600,
+    "multiple_of_n_star": 1.16,
+    "negatives": 0
+   },
+   {
+    "n": 800,
+    "multiple_of_n_star": 1.55,
+    "negatives": 0
+   },
+   {
+    "n": 1100,
+    "multiple_of_n_star": 2.13,
+    "negatives": 0
+   },
+   {
+    "n": 1500,
+    "multiple_of_n_star": 2.91,
+    "negatives": 0
+   },
+   {
+    "n": 1900,
+    "multiple_of_n_star": 3.68,
+    "negatives": 0
+   }
+  ],
+  "also": "lam=1/10 clean at n = 700, 800, 1000, 1200 (n* = 660); lam=1/5 clean at 1400",
+  "status": "evidence, not proof. Exact rational arithmetic, every coefficient of q checked, not a sample. No reopening out to 3.68 times n*.",
+  "what_would_settle_it": "a uniform-in-m argument; the exponent of the bad set was measured per family and is NOT universal (1-alpha = 0.33, 0.45, 0.53, 0.58 at lam = 1/2, 1, 2, 4), so no scaling law is offered here.",
+  "git": "3efae45133a3",
+  "git_full": "3efae45133a36306a9a44161b447d0e6190eeb3e",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
  }
 }
