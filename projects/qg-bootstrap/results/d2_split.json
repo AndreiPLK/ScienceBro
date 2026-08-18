@@ -1,0 +1,32 @@
+{
+ "result": "depth 2 splits into a PROVED half and a remaining half, by an exact discriminant computation",
+ "derived_by_hand_verified_exactly_N_3_to_400": {
+  "E2": "N(N^2-1)(5N^3-9N^2-5N+21)/90",
+  "B^2 - 4 A E2": "-N^2(N^2-1)(N-1)(2N-3)(N^3-3N^2+11N-3)/90",
+  "bracket_positive": "N^3-3N^2+11N-3 > 0 for every N >= 2, so B^2-4AE2 < 0 ALWAYS"
+ },
+ "consequence": "disc(X) = (B^2-4AE2) X^2 + 2 E2 B X + E2^2 is a DOWNWARD parabola in X = (N+lam)^2. Hence for X above a critical value the discriminant is negative, H has no real root, and the depth-2 coefficient is positive for EVERY dimension with no shore condition at all.",
+ "critical_lambda": {
+  "measured": {
+   "N=5": 0.6146,
+   "N=9": 2.5459,
+   "N=20": 6.2706,
+   "N=45": 13.7533,
+   "N=120": 35.6725,
+   "N=400": 117.1888,
+   "N=1500": 437.2943
+  },
+  "closed_form_asymptotic": "lam_crit / N -> sqrt(5/3) - 1 = 0.2909944...",
+  "check": "measured ratios 0.313, 0.283, 0.314, 0.306, 0.297, 0.293, 0.2915 converge to it from above"
+ },
+ "what_remains_for_depth_2": "for lam below the critical value, prove the smaller root of H exceeds gamma_shore. Measured margins there run 1.28 to 476, smallest 1.2812 at N=9, lam=1.",
+ "error_i_caught_in_my_own_work": "an earlier script reported the depth-2 threshold as the LARGER root of H, giving margins of 3 to 18 over the shore. H is convex, so positivity holds below the SMALLER root; the corrected margins are 1.28 upward. The earlier statement that depth 2 has enormous room was wrong in magnitude, though its direction survives.",
+ "git": "d69507fac4d0",
+ "git_full": "d69507fac4d0aa0b247e6d0a24e909f891d37ef5",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}
