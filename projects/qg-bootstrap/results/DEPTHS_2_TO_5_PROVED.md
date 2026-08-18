@@ -91,6 +91,17 @@ math (which the odd branch exercises identically and passes). Compare the
 even and odd branches of build_branch line by line for any place they are
 NOT simply "N = 2K" vs "N = 2K+1" substitutions of the same formula.
 
+One more useful fact ruling out the simplest theory: for depth 6, even
+parity fails in a WINDOW (K=7..11) with BOTH smaller (K<=6) and larger
+(K>=12) values clean. A simple "K too small relative to depth" floor would
+give monotonic failure below some threshold, not a window with clean values
+on both sides. A window shape is more consistent with an algebra bug
+(e.g. a spurious root introduced somewhere in the homogenization that only
+matters in a specific numeric range) than with a genuine domain-validity
+limit. Read `build_branch`'s even/odd branches side by side line by line
+first, before running anything -- the only intended difference is the single
+line `N = K*2` vs `N = K*2+1`; if the bug is there, it is subtle.
+
 
 ## Depth 6 failure window, precisely scoped (final check before deadline)
 
