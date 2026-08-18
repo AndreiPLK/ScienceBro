@@ -55,3 +55,17 @@ Every comparison against the exact engine in this file uses
 `gamma = (D-3)/2` / `D = 2*gamma+3` applied consistently -- the exact
 off-by-a-constant shape that produced ERR-0009's false alarm was checked for
 explicitly before any result here was trusted.
+
+## Small-n (n=5,6,7) closure attempted again, same failure mode found
+
+Second attempt (fixed N, K forced to 3, single-variable-in-c polynomial)
+disagrees with the exact engine at moderate-to-large c for all of n=5,6,7 --
+same symptom as the first attempt earlier tonight. Hypothesis, NOT verified:
+clearing denominators assumes the cleared factors (Qg, den_cleared) stay
+POSITIVE throughout the domain, which held for the parity-split K>=3 case
+(there m=N-d is bounded below by the K>=3 floor) but may FAIL for these small,
+fixed N where m=N-d is very small (1, 2, 3) -- a sign change in a cleared
+denominator factor would flip the polynomial's sign relative to the true
+value without warning. Not confirmed, not fixed. Next session: check the
+sign of every cleared factor (Qg, each den_cleared term) across the tested
+range before trusting any homogenized formula at small N.
