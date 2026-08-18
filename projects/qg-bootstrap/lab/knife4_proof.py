@@ -45,12 +45,12 @@ from __future__ import annotations
 import json
 import sys
 import time
-from fractions import Fraction as F
 from itertools import product
 from math import comb
 from pathlib import Path
 
 import sympy as sp
+from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from knife_closed_form import D as Dsym  # noqa: E402
@@ -62,7 +62,7 @@ from provenance import stamp  # noqa: E402
 RES = Path(__file__).resolve().parents[1] / "results"
 
 
-def shore_upper(lam_hi: F) -> F:
+def shore_upper(lam_hi):
     """Exact rational upper bound for T_hat on a box, using T_hat <= min_k T_k.
 
     T_k(lam) = 3(2k-3)/(k(k-2)) (lam^2 + (2k-2) lam + 1) + 2k is increasing in lam
@@ -74,13 +74,16 @@ def shore_upper(lam_hi: F) -> F:
     best = None
     kmax = max(61, int(3 * float(lam_hi)) + 60)
     for k in range(3, kmax):
-        v = F(3 * (2 * k - 3), k * (k - 2)) * (lam_hi * lam_hi + (2 * k - 2) * lam_hi + 1) + 2 * k
+        v = (
+            fmpq(3 * (2 * k - 3), k * (k - 2)) * (lam_hi * lam_hi + (2 * k - 2) * lam_hi + 1)
+            + 2 * k
+        )
         if best is None or v < best:
             best = v
     return best
 
 
-_CACHE: dict[int, tuple] = {}
+_CACHE: dict = {}
 MD: tuple = ()
 COEFFS: dict = {}
 
@@ -93,7 +96,7 @@ def load_knife(j: int) -> None:
         md = (int(sp.degree(P, nsym)), int(sp.degree(P, Dsym)), int(sp.degree(P, lamsym)))
         poly = sp.Poly(P, nsym, Dsym, lamsym)
         co = {
-            m: F(int(sp.Rational(c).p), int(sp.Rational(c).q))
+            m: fmpq(int(sp.Rational(c).p), int(sp.Rational(c).q))
             for m, c in zip(poly.monoms(), poly.coeffs())
         }
         _CACHE[j] = (md, co)
@@ -108,7 +111,7 @@ def shifted_coeffs(box):
     (n0, n1), (d0, d1), (l0, l1) = box
     m1, m2, m3 = MD
     # expand each variable as v0 + w*s and multiply out, binomially
-    out: dict[tuple[int, int, int], F] = {}
+    out: dict = {}
     wn, wd, wl = n1 - n0, d1 - d0, l1 - l0
     for (a, b, c), coeff in COEFFS.items():
         for i in range(a + 1):
@@ -124,7 +127,7 @@ def shifted_coeffs(box):
                     if ck == 0:
                         continue
                     key = (i, j, k)
-                    out[key] = out.get(key, F(0)) + ck
+                    out[key] = out.get(key, fmpq(0)) + ck
     return out
 
 
@@ -134,15 +137,15 @@ def bernstein_lower(box):
     m1, m2, m3 = MD
     best = None
     for i, j, k in product(range(m1 + 1), range(m2 + 1), range(m3 + 1)):
-        b = F(0)
+        b = fmpq(0)
         for p in range(i + 1):
-            cp = F(comb(i, p), comb(m1, p))
+            cp = fmpq(comb(i, p), comb(m1, p))
             for q in range(j + 1):
-                cq = cp * F(comb(j, q), comb(m2, q))
+                cq = cp * fmpq(comb(j, q), comb(m2, q))
                 for r in range(k + 1):
                     c = a.get((p, q, r))
                     if c:
-                        b += c * cq * F(comb(k, r), comb(m3, r))
+                        b += c * cq * fmpq(comb(k, r), comb(m3, r))
         if best is None or b < best:
             best = b
             if best <= 0:
@@ -151,10 +154,8 @@ def bernstein_lower(box):
 
 
 def prove(n_max: float, lam_max: float, max_depth: int = 30):
-    lam_hi = F(lam_max).limit_denominator(10**6)
-    stack = [
-        ((F(4), F(n_max).limit_denominator(10**6)), (F(4), shore_upper(lam_hi)), (F(1), lam_hi), 0)
-    ]
+    lam_hi = fmpq(int(lam_max))
+    stack = [((fmpq(4), fmpq(int(n_max))), (fmpq(4), shore_upper(lam_hi)), (fmpq(1), lam_hi), 0)]
     boxes = 0
     open_boxes = []
     while stack:
@@ -170,9 +171,9 @@ def prove(n_max: float, lam_max: float, max_depth: int = 30):
             open_boxes.append((nb, db, lb))
             continue
         widths = [
-            (nb[1] - nb[0]) / max(F(1), nb[0]),
-            (db[1] - db[0]) / max(F(1), db[0]),
-            (lb[1] - lb[0]) / max(F(1), lb[0]),
+            (nb[1] - nb[0]) / max(fmpq(1), nb[0]),
+            (db[1] - db[0]) / max(fmpq(1), db[0]),
+            (lb[1] - lb[0]) / max(fmpq(1), lb[0]),
         ]
         k = widths.index(max(widths))
         if k == 0:

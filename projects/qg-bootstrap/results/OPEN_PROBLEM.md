@@ -202,3 +202,31 @@ Effect on the programme: the chain from the CHR family to the knife condition is
 now a derivation end to end -- Beta reduction, Jacobi normal form (4500 checks),
 Saalschutz moments (432 checks), the moment recursion R_t (verified per knife),
 and now E_2t. Nothing in it is fitted.
+
+## 2026-08-18 11:00 -- the uniform-in-j route via a recursion is CLOSED, and a fake fit caught
+
+The founder's point, and he is right: finishing knives one at a time is the trap
+we already named, and the real target is a statement uniform in j. The natural
+handle would be a linear recursion in j -- then positivity for all j follows by
+induction from the first cases. Tested and it does not exist in usable form.
+
+* K_j / K_{j-1} is NOT a rational function of j (no low-degree fit at three
+  different (n, lam, D)), so the sequence is not hypergeometric and there is no
+  first-order recursion.
+* An honest search for sum_r c_r(j) K_{j+r} = 0 with order <= 3 and coefficient
+  degree <= 3, fitted on a subset and VERIFIED ON HELD-OUT j: nothing survives.
+
+NEAR-MISS WORTH RECORDING. The first search reported a recursion of order 4 with
+degree-4 coefficients, "verified on j = 2..21". It was an artefact: 25 unknowns
+against 21 equations, i.e. underdetermined, so the solver fitted all the data and
+the verification was circular. The tell was the size of the coefficients
+(hundreds of digits) -- a structural recursion does not look like that. The fix
+is the standard one and is now the rule: fewer unknowns than fitting equations,
+and always verify on held-out values.
+
+WHERE THAT LEAVES THE UNIFORM PROBLEM. The scaling limit gives the mechanism for
+every j at once, but only at leading order and at fixed j. A recursion in j is
+now excluded at low order. What is left to try: creative telescoping in the
+variable (t, j) at higher order, a generating function in j, or an argument
+that bounds the whole family by the two extreme knives rather than treating them
+separately.
