@@ -102,6 +102,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  d2_sublemma.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   eft_map_d4.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
