@@ -1,4 +1,4 @@
-"""KNIFE 4 ON A COMPACT REGION: a machine proof by exact Bernstein subdivision.
+"""ANY KNIFE ON A COMPACT REGION: a machine proof by exact Bernstein subdivision.
 
 Not a scan. On each box the polynomial is re-expanded in the Bernstein basis with
 EXACT rational arithmetic; the minimum of the Bernstein coefficients is a rigorous
@@ -33,7 +33,11 @@ results/SCALING_LIMIT_THEOREM.md): n -> infinity at fixed (lam, D) has leading
 coefficient +280, and lam -> infinity gives the scaling form with the tangency
 approached from the safe side.
 
-Run: python lab/knife4_proof.py -> results/knife4_box_proof.json
+Usage:
+    python lab/knife4_proof.py                 # the default job list
+    python lab/knife4_proof.py 5:200:30        # knife 5 on n <= 200, lam <= 30
+
+Writes results/knife4_box_proof.json.
 """
 
 from __future__ import annotations
@@ -76,13 +80,27 @@ def shore_upper(lam_hi: F) -> F:
     return best
 
 
-_P = sp.expand(knife_polynomial(4))
-MD = (int(sp.degree(_P, nsym)), int(sp.degree(_P, Dsym)), int(sp.degree(_P, lamsym)))
-_poly = sp.Poly(_P, nsym, Dsym, lamsym)
-COEFFS = {
-    m: F(int(sp.Rational(c).p), int(sp.Rational(c).q))
-    for m, c in zip(_poly.monoms(), _poly.coeffs())
-}
+_CACHE: dict[int, tuple] = {}
+MD: tuple = ()
+COEFFS: dict = {}
+
+
+def load_knife(j: int) -> None:
+    """Select which knife the module proves; the machinery is identical for all j."""
+    global MD, COEFFS
+    if j not in _CACHE:
+        P = sp.expand(knife_polynomial(j))
+        md = (int(sp.degree(P, nsym)), int(sp.degree(P, Dsym)), int(sp.degree(P, lamsym)))
+        poly = sp.Poly(P, nsym, Dsym, lamsym)
+        co = {
+            m: F(int(sp.Rational(c).p), int(sp.Rational(c).q))
+            for m, c in zip(poly.monoms(), poly.coeffs())
+        }
+        _CACHE[j] = (md, co)
+    MD, COEFFS = _CACHE[j]
+
+
+load_knife(4)
 
 
 def shifted_coeffs(box):
@@ -172,10 +190,15 @@ def prove(n_max: float, lam_max: float, max_depth: int = 30):
 def main() -> int:
     t0 = time.time()
     rows = []
-    for n_max, lam_max in ((200, 30), (400, 60), (1000, 120)):
+    jobs = [(4, 200, 30), (5, 200, 30), (6, 200, 30)]
+    if len(sys.argv) > 1:  # e.g.  python knife4_proof.py 5:200:30
+        jobs = [tuple(int(x) for x in a.split(":")) for a in sys.argv[1:]]
+    for j, n_max, lam_max in jobs:
+        load_knife(j)
         ok, boxes, open_boxes = prove(n_max, lam_max)
         rows.append(
             {
+                "knife": j,
                 "n_max": n_max,
                 "lam_max": lam_max,
                 "proved": ok,
@@ -184,7 +207,7 @@ def main() -> int:
             }
         )
         print(
-            f"  n <= {n_max}, lam <= {lam_max}: proved={ok}, boxes={boxes}, "
+            f"  knife {j}: n <= {n_max}, lam <= {lam_max}: proved={ok}, boxes={boxes}, "
             f"open={len(open_boxes)}  ({time.time() - t0:.0f}s)",
             flush=True,
         )
