@@ -1,0 +1,25 @@
+{
+ "claim": "depth-2 coefficient is positive throughout the physical region, for N >= 5 and lam <= 0.3 N, by exact Bernstein subdivision after Moebius compactification of N",
+ "half_A_algebraic": "B^2-4AE2 = -N^2(N^2-1)(N-1)(2N-3)(N^3-3N^2+11N-3)/90 < 0 always, so the discriminant is a downward parabola in X and depth 2 is unconditional for lam >= 0.291 N (asymptotically sqrt(5/3)-1)",
+ "half_B_this_run": {
+  "proved": true,
+  "boxes": 15,
+  "open": 0
+ },
+ "halves_overlap_on": "0.291 N <= lam <= 0.3 N, so together they cover all lam",
+ "why_the_half_level": "the shore is a minimum over levels, so it never exceeds the top-knife condition of level N/2; showing H > 0 there is therefore enough",
+ "leading_coefficient": "5(6c^2-1)^2, a square, positive for c away from 1/sqrt(6)=0.408 and our region stops at 0.3",
+ "not_covered_here": "N = 4 (the denominator vanishes there) and N = 3, both finite cases to be checked directly",
+ "command": "python lab/d2_proof.py",
+ "git": "0947155b25e5",
+ "git_full": "0947155b25e5b41ceba7082102fda86c1ab01cd0",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/d2_proof.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 4.5
+}

@@ -7,6 +7,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  D2_COMPLETE.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   FROZEN_PREDICTION_blocks.md:
     added: '2026-08-18'
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
@@ -100,6 +104,10 @@ artefacts:
     status: live
   completeness_deep_n80.json:
     added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  d2_proof.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   d2_split.json:
