@@ -3587,3 +3587,23 @@ large m plus a finite check for small m.
 Status of the day, stated plainly: the grand theorem was NOT proved. What changed
 is its shape -- from an infinite family with no uniform handle to a single lemma
 with two trivial endpoints, plus a list of mechanisms that are now ruled out.
+
+## 2026-08-18 11:32 -- two more mechanisms for the lemma closed (total positivity, Newton via F)
+
+* KARLIN / TOTAL POSITIVITY. If the kernel (-1)^m P_m^(alpha,beta)(1-2u) were
+  TP2, the basic composition formula would make the Jacobi coefficients of ANY
+  positive measure log-concave. It is not: 37 to 47 percent of the 2x2 minors are
+  negative (51,480 tested at each of D = 6, 11, 23). In hindsight it had to fail,
+  since it would prove far more than is true.
+* STIELTJES MOMENTS. Such sequences are log-CONVEX by Cauchy-Schwarz, the
+  opposite of what we see, so C_m is not one and the Hankel route is closed.
+* NEWTON VIA F. C_m is an integral of F^(m) against a weight concentrating at
+  u = 1/2, and F is real-rooted, so its Taylor coefficients there are log-concave
+  (verified, zero violations). But C_m does not track them: signs agree on only
+  4-9 of 23 indices, because F^(m) oscillates and the integral averages it.
+
+Five mechanisms for the single lemma are now excluded. The lemma itself remains
+solid empirically (no interior minimum for every n >= 14, log-concave for every
+n >= 24) and unexplained. A self-contained brief for outside help is in
+docs/BRIEF_FOR_OUTSIDE_HELP.md, with all ten dead ends listed so they are not
+retried and five untried directions named.

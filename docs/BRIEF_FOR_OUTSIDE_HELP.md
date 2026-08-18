@@ -121,7 +121,15 @@ Each of these was actually run, not just considered.
 8. **`C_m` as a Stieltjes moment sequence.** A Stieltjes moment sequence is
    log-CONVEX by Cauchy-Schwarz, which is the opposite of what we observe, so the
    sequence is not one. Consistent, and it closes the Hankel-determinant route.
-9. **Creative telescoping in the summation index.** The summand involves the
+9. **Newton's inequalities applied to `F` itself.** `C_m` is (up to a positive
+   factor) `INT F^(m)(u) u^{alpha+m}(1-u)^{beta+m} du`, and that weight
+   concentrates near `u = 1/2` as `m` grows, so one hopes `C_m` tracks the Taylor
+   coefficients of `F` at `1/2`. `F` is real-rooted, so those coefficients ARE
+   log-concave (verified, 0 violations, normalised and raw). But the link fails:
+   the signs of `C_m` and of `F^(m)(1/2)` agree on only 4 to 9 of 23 indices,
+   because `F^(m)` oscillates and the integral is an average, not a value.
+   Recorded because it looks promising and is not.
+10. **Creative telescoping in the summation index.** The summand involves the
    central factorial numbers, which are not hypergeometric in their index, so the
    standard algorithm does not apply in that variable.
 
