@@ -3,6 +3,10 @@
 # Regenerate with: uv run python tools/results_manifest.py
 # Hand-set decisions are preserved; only new files get a default.
 artefacts:
+  BOUNDARY_PUSH_2026-08-18.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   FROZEN_PREDICTION_blocks.md:
     added: '2026-08-18'
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
