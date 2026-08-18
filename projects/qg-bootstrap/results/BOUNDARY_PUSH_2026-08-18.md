@@ -94,3 +94,31 @@ target the small-`lam` end directly:
 * or find a weaker sufficient condition than "all coefficients of q are
   non-negative" that is not equivalent to checking `q^2` directly -- every
   version tried today collapsed back into the direct check.
+
+---
+
+## 5. LATER THE SAME DAY: the boundary DID move, and the good set is not a half-plane
+
+Following the small-lam end -- the direction the ratio `gamma*/gamma_shore` was
+improving in (0.550 at n=20 to 0.714 at n=80, at lam = 1/10) -- gives a second
+proved region that I had not looked for, because my first map started at lam = 1.
+
+At lam = 1/10 (shore gamma = 3.6150) the count of negative coefficients at the
+shore FALLS with the level and then vanishes:
+
+| n | 150 | 250 | 400 | 600 | 700 |
+|---|---|---|---|---|---|
+| negatives | 12 | 13 | 12 | 6 | **0** |
+
+Bisected: **n*(1/10) lies in (656, 662]**. At lam = 1/5, n = 900 is dirty and
+n = 1300 is clean. At lam = 1/20, n = 350 and 500 are still dirty.
+
+So the set where the classical argument settles the whole family has TWO
+components -- small n with large lam (`lam >= 4.72 n`), and large n with small
+lam (`n >= n*(lam)`) -- with an unproved band between them. For each fixed lam
+the unproved levels appear to form a FINITE interval.
+
+If that shape holds, then for every lam all but finitely many levels are settled
+by the classical argument, and the finite remainder is the range the machine
+certificates already cover. That would close the theorem. Not proved: the shape
+of the bad set, and that it does not reopen at still larger n.
