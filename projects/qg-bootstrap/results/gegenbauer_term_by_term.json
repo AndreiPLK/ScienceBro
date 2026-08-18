@@ -1,0 +1,131 @@
+{
+ "proved_region": {
+  "statement": "for lam >= lam*(n), every knife of level n is positive at every dimension below the shore, by: F = q^2 with q having equally spaced roots; the classical quadratic transformation identifying the knife with the Gegenbauer coefficient of index 2m; Dougall's non-negative linearization; and DLMF 18.18.16 for the descent",
+  "only_unproved_input": "that q itself has non-negative Gegenbauer coefficients at gamma_shore when lam >= lam*(n) -- MEASURED, not proved",
+  "boundary": [
+   {
+    "n": 5,
+    "lam_star": "24027427/1048576",
+    "ratio": 4.582868003845215
+   },
+   {
+    "n": 8,
+    "lam_star": "19703329/524288",
+    "ratio": 4.69763970375061
+   },
+   {
+    "n": 14,
+    "lam_star": "34062611/524288",
+    "ratio": 4.640662465776716
+   },
+   {
+    "n": 20,
+    "lam_star": "49461841/524288",
+    "ratio": 4.7170487403869625
+   },
+   {
+    "n": 28,
+    "lam_star": "554426791/4194304",
+    "ratio": 4.720915990216391
+   },
+   {
+    "n": 40,
+    "lam_star": "396257443/2097152",
+    "ratio": 4.723756825923919
+   },
+   {
+    "n": 60,
+    "lam_star": "297333761/1048576",
+    "ratio": 4.725992854436239
+   },
+   {
+    "n": 90,
+    "lam_star": "111276593/262144",
+    "ratio": 4.716516833835178
+   },
+   {
+    "n": 130,
+    "lam_star": "2574085803/4194304",
+    "ratio": 4.720845227975111
+   }
+  ],
+  "ratio_note": "lam*/n sits at 4.72 for n >= 20; 3+sqrt(3) = 4.7320508 is close but is NOT claimed as the constant"
+ },
+ "hypothesis": "every (x)_M, M=N..2N, has non-negative even-index Gegenbauer coefficients at gamma = T_hat(lam)/2 - 3/2",
+ "why_it_would_suffice": "(x)_N^2 = sum_j C(N,j)^2 j! (x)_{2N-j} has all weights positive, and F is even so its odd coefficients vanish identically",
+ "verdict": "REFUTED",
+ "rows": [
+  {
+   "n": 5,
+   "lam": "1",
+   "gamma_shore": "10",
+   "even_coeffs": 19,
+   "negatives": 8,
+   "min_even_coeff": "-4798465/585728",
+   "min_at": {
+    "M": 8,
+    "k": 2
+   }
+  },
+  {
+   "n": 6,
+   "lam": "1",
+   "gamma_shore": "10",
+   "even_coeffs": 27,
+   "negatives": 11,
+   "min_even_coeff": "-24306561/133120",
+   "min_at": {
+    "M": 10,
+    "k": 2
+   }
+  },
+  {
+   "n": 8,
+   "lam": "1",
+   "gamma_shore": "10",
+   "even_coeffs": 48,
+   "negatives": 21,
+   "min_even_coeff": "-2920778112/17765",
+   "min_at": {
+    "M": 14,
+    "k": 4
+   }
+  },
+  {
+   "n": 6,
+   "lam": "7",
+   "gamma_shore": "1281/20",
+   "even_coeffs": 27,
+   "negatives": 11,
+   "min_even_coeff": "-32977274195520/348517433969",
+   "min_at": {
+    "M": 9,
+    "k": 0
+   }
+  },
+  {
+   "n": 9,
+   "lam": "3",
+   "gamma_shore": "27",
+   "even_coeffs": 61,
+   "negatives": 28,
+   "min_even_coeff": "-806166138724088531895/31688268709888",
+   "min_at": {
+    "M": 16,
+    "k": 0
+   }
+  }
+ ],
+ "command": "python lab/gegenbauer_flint.py",
+ "git": "33a78b4b0510",
+ "git_full": "33a78b4b0510621d5fc53e660b4643c8acd6bc52",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/gegenbauer_flint.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 10.3
+}

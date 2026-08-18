@@ -138,6 +138,10 @@ artefacts:
     added: '2026-08-13'
     note: referenced by a paper, document or lab module
     status: live
+  gegenbauer_term_by_term.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   grav_d4_lowspin.json:
     added: '2026-08-14'
     note: referenced by a paper, document or lab module
