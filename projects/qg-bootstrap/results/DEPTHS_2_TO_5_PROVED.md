@@ -78,6 +78,19 @@ some intermediate exponent/coefficient to interact with the specific K range
 term-by-term at this exact failing point and compare each partial sum against
 the independent method's.
 
+## Depth 7 scanned too: the pattern is EVEN-PARITY ONLY, growing with depth
+
+Quick scan (K=3..15, c in {1/100,1/10,1/2,1,29/100}): depth 7 has 24
+mismatches, ALL at even parity (N=2K), NONE at odd parity (N=2K+1) -- and
+now failing even at c=1 (moderate, not just tiny c), across a WIDER K range
+than depth 6. Odd parity has never failed in ANY test tonight, across
+depths 2-7. This is the single most useful clue for next session: the bug
+is almost certainly in something specific to the even-parity code path
+(N = K*2) in build_branch, not in e_k(N), not in the shared homogenization
+math (which the odd branch exercises identically and passes). Compare the
+even and odd branches of build_branch line by line for any place they are
+NOT simply "N = 2K" vs "N = 2K+1" substitutions of the same formula.
+
 
 ## Depth 6 failure window, precisely scoped (final check before deadline)
 
