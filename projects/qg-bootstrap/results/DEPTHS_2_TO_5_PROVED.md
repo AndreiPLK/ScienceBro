@@ -56,3 +56,24 @@ Two honest gaps remain, both already flagged rather than hidden:
 1. Small n (below the K>=3 floor) for depths 3, 4, 5 -- evidence only, not
    proof, for depth 3 (n=5,6,7); not even checked yet for depths 4, 5.
 2. Depth 6's self-check failure, cause unknown, not investigated tonight.
+
+## Depth 6 debugging, narrowed but not fixed (added with ~15 min left before deadline)
+
+Triangulated with a THIRD, independent check: `depth3_proof.knife_sign_via_beta_formula`
+(direct evaluation at concrete integer N, not going through the K-parametrized
+BiPoly construction) was run at the exact failing point (K=8, N=16, n=17, j=7,
+c=1/100, gamma=Pg/Qg computed the same way):
+
+  * independent direct formula:  sign = -1
+  * jacobi_coeff_rec (exact):    sign = -1
+  * depth_d_proof.build_branch:  sign = +1   <-- disagrees with BOTH
+
+This means the underlying beta-mean formula is fine (confirmed a third time);
+the bug is specifically in `build_branch`'s BiPoly/K-parametrization or
+homogenization arithmetic for depth 6, isolated to K around 8-10 and very
+small c (fails at c=1/1000, 1/100; passes at c>=1/20). Likely candidate: an
+integer-power or sign error that only manifests once d is large enough for
+some intermediate exponent/coefficient to interact with the specific K range
+-- NOT investigated further tonight. Next session: instrument build_branch
+term-by-term at this exact failing point and compare each partial sum against
+the independent method's.
