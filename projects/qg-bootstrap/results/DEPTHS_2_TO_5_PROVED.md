@@ -1,4 +1,17 @@
-# Depths 2, 3, 4, 5: proved for K>=3, all lam -- by one generic tool
+# Depths proved for K>=3, all lam -- by one generic tool
+
+**UPDATED 2026-08-18 (ERR-0010 / ERR-0011, docs/ERRATA.md): everything below
+this notice describes results from BEFORE tonight's homogenization-bug fix
+and is SUPERSEDED.** `build_branch` had a wrong denominator-clearing formula
+that was invisible for d=2..5 in the ranges then tested (1 box each,
+suspiciously fast) but produced real sign errors at d=6,7. Fixed; self-check
+now spans K up to 300 and c up to 20 (previously K<=15, c<1 -- exactly the
+gap that also let the SAME bug hide, undetected, in the separately-hand-
+derived `depth3_parity_proof.py`, whose own "proved" depth-3 Bernstein
+certificate is now RETRACTED, see `D3_STATUS.md`). Regenerating all depths
+with the fixed, wide-range-verified, and now much faster (de Casteljau
+Bernstein subdivision, not full monomial rebuild per box) implementation;
+final numbers below once that run completes.
 
 `lab/depth_d_proof.py <d1> <d2> ...` -- no per-depth file needed any more.
 

@@ -292,3 +292,123 @@ before trusting the finding -- especially the `D <-> gamma` conversion
 (`D = 2*gamma+3`), which has exactly the kind of `+3`-shaped trap that bit me
 here. A surprising result is more likely to be a bug in new code than a
 40-year-old shore formula being wrong.
+
+## ERR-0010 (2026-08-18): `depth_d_proof.py`'s generic `build_branch` had a wrong
+homogenization -- invisible for d<=5, wrong for d>=6
+
+**What was wrong.** `build_branch(parity, d, e_polys)` clears the denominators
+`(2m+gamma+1)_j` (for `j = 0..d`) to bring all `d+1` terms of the beta-mean sum
+to one common polynomial. With `gamma = Pg/Qg` and `L[i] = two_m_Qg + Pg +
+Qg*(1+i)`, the identity is `(2m+gamma+1)_j = (prod_{i=0}^{j-1} L[i]) / Qg^j`.
+To bring term `j` up to the FULL common denominator `L[0]*...*L[d-1]`, it must
+be multiplied by the factors it is MISSING -- the COMPLEMENT product
+`L[j]*L[j+1]*...*L[d-1]` -- and by `Qg^j` (from clearing its own denominator).
+The committed code instead multiplied by the PREFIX product `L[0]*...*L[j-1]`
+(factors the term already effectively has, not the ones it's missing) and by
+`Qg^(d-j)` (the wrong power). Both are wrong in the same place, and they
+happened to cancel out enough to give the right SIGN for depths 2 through 5 in
+every tested case -- pure luck of small degree, not a validity argument.
+
+**How it was found.** Generic self-check (`self_check`, comparing
+`build_branch`'s sign against `jacobi_coeff_rec`, the exact reference) started
+failing at depth 6 (2/56 mismatches, K=8/10, tiny c) and depth 7 (24/56,
+wider K range, even at c=1) -- see the depth-6/7 debugging trail already
+recorded in `results/DEPTHS_2_TO_5_PROVED.md`. Depths 2-5 showed 0 mismatches
+throughout, which is why the bug shipped quietly in the first generic run.
+Triangulated with a THIRD, independently-coded evaluator
+(`depth3_proof.knife_sign_via_beta_formula`, direct evaluation at concrete
+integer N, no K-parametrization) at the exact failing point (K=8, N=16,
+n=17, j=7, c=1/100): independent method and the exact engine both gave sign
+-1; `build_branch` gave +1. This isolated the bug to `build_branch`'s own
+arithmetic, not the underlying beta-mean formula (confirmed correct a third
+time). A tested hypothesis (denominator sign flip) was checked and REFUTED
+(all cleared factors positive at the failing point). A term-by-term ratio
+comparison (`homog_term / raw_term` for each `j = 0..d` at depth 6, K=9,
+N=18, c=1/100) showed only the `j=0` term had the expected ratio `Qg^d`; every
+other term's ratio was inconsistent -- proof the homogenization formula
+itself was structurally wrong, not a numerical fluke.
+
+**Fixed.** Complement product + `Qg^j` (both shown above), applied in
+`lab/depth_d_proof.py`'s `build_branch`. Verified: the corrected
+`fixed_term/raw_term` ratio is now constant and positive across all `j` at
+the original failing point, and `sign(fixed_tot) == sign(raw_tot)` (both -1,
+matching the exact engine). Re-ran `self_check` for depths 2 through 10 (K in
+3,4,5,6,7,8,9,10,12,15; c in 1/100,1/10,1/2,1,29/100): **0 mismatches for
+every depth**, including the two that previously failed.
+
+**Status of the Bernstein certificates.** Because the OLD, buggy `build_branch`
+was used to produce the depths-2-5 Bernstein certificates recorded in
+`results/DEPTHS_2_TO_5_PROVED.md` (1 box each, suspiciously fast), those
+certificates technically certify the WRONG polynomial, even though the
+self-check now confirms the underlying claim is still true for those depths.
+**They must be regenerated with the corrected `build_branch` before being
+trusted as rigorous positivity proofs** -- the sign-match self-check alone is
+a strong but not sufficient substitute for an actual Bernstein certificate on
+the corrected polynomial. Regeneration in progress; depth 2 done post-fix (45
+even-parity boxes, 59 odd, both `proved=True` -- up from 1 each, i.e. the
+corrected polynomial is genuinely harder to certify, consistent with the fix
+being real). Depths 3+ pending as of this entry.
+
+**NEW RULE, added to `prover-v2` skill:** when homogenizing a sum of terms
+`coeff_j * num_j / (2m+gamma+1)_j` (denominators growing with `j`, one nested
+factor at a time) to one common denominator, the multiplier for term `j` is
+always the COMPLEMENT of what it already has relative to the full product,
+never the prefix. A generic self-check across MANY depths/degrees is what
+caught this -- a single hand-checked depth (as depth2/3's own hand-derived
+closed-form provers did, sidestepping the general loop entirely) would not
+have exercised the bug at all. Always self-check a generic d-parametrized
+construction at several different `d`, not just the smallest one.
+
+## ERR-0011 (2026-08-18): the SAME ERR-0010 bug was already sitting, undetected,
+in the PREVIOUSLY-TRUSTED `depth3_parity_proof.py` -- and its own self-check
+never had a wide enough range to catch it
+
+**What was wrong.** `depth3_parity_proof.py:74` (`term = coeff_bi * num_bi *
+den_cleared * (X**j) * (Qg ** (d - j))`) uses the exact same wrong
+homogenization as ERR-0010: prefix product (`den_cleared`, built as
+`prod_{i=0}^{j-1}(...)`) times `Qg**(d-j)`, instead of the correct complement
+product times `Qg**j`. This is a SEPARATE, independently hand-written file
+(not generated from `depth_d_proof.py`) that shares the same bug because the
+underlying algebra mistake is the same one a human made twice.
+
+**Why its own self-check never caught it.** `main()`'s `trials` (line 124) use
+only `c_num in (1, 5, 10, 20, 29)` with `c_den = 100` -- i.e. `c` from 0.01 to
+0.29, NEVER `c >= 1`. Checked directly against the exact reference
+(`jacobi_coeff_rec`) at `c = 1`, EVERY tested `K` from 15 up to 200 (even
+parity) MISMATCHES: `build_branch` gives `+1`, the true sign is `-1`. This
+means `depth3_parity_proof.py`'s Bernstein certificate -- "0 open boxes,
+proved for K>=3, ALL c>=0" -- certified the WRONG polynomial. It never was a
+proof of the physical depth-3 claim.
+
+**How it was found.** While regenerating depth 2's Bernstein certificate with
+the ERR-0010 fix (using the new, faster de Casteljau `prove_box`, see the
+speed lesson above), a spot check of `depth_d_proof.py`'s own corrected
+`build_branch` at unusually large `K` (300, 1000, c=1 -- far outside any
+self-check ever run before tonight) turned up a genuinely negative value.
+Cross-checked against `jacobi_coeff_rec` directly: the true sign IS negative
+there, so `depth_d_proof.py`'s fixed formula was CORRECT (verified at K up to
+1000, both parities, several c). But the SAME point evaluated through the
+OLDER, previously-"proved" `depth3_parity_proof.py` gave the WRONG (positive)
+sign -- a second, independent confirmation that a bug exists specifically in
+that older file, not in the corrected generic one.
+
+**Status, honestly.** `results/D3_STATUS.md`'s claim "depth 3 is fully proved
+for n>=6 (even) / n>=7 (odd), every lam>0" is **RETRACTED** effective this
+entry. It was never true; the certificate backing it certified a different
+polynomial than the physical claim. The dense-grid "checked but not proved"
+evidence for small n in the same file is unaffected (it goes through
+`jacobi_coeff_rec` directly, not through the buggy `build_branch`). The
+CORRECT depth-3 result, once re-certified, will come from `depth_d_proof.py`
+(the generic, ERR-0010-fixed, wide-range-verified implementation) -- see the
+in-progress Bernstein regeneration referenced in ERR-0010.
+
+**NEW RULE, added to `prover-v2` skill and now MECHANICAL going forward:**
+any `self_check`/`self_check_concrete` in this family must test `c` across
+at least a couple orders of magnitude including `c >= 1` (not just tiny
+`c < 0.3`), and `K` should include at least one value in the hundreds, not
+only single/double digits -- a self-check whose domain is much narrower than
+the Bernstein box it is meant to validate is not actually validating the
+whole box. Two independent files carried the identical algebra mistake
+undetected specifically because both self-checks used a narrow, small-value
+range. A narrow self-check is worse than no self-check: it manufactures
+false confidence.

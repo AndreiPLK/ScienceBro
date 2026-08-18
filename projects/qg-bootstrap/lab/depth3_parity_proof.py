@@ -1,4 +1,21 @@
-"""Depth 3, same parity-split pipeline as depth 2, engine 2 only.
+"""SUPERSEDED / KNOWN BUGGY (2026-08-18, ERR-0011, docs/ERRATA.md) -- do not
+trust build_branch's output here. It has the same homogenization bug as
+ERR-0010 (wrong prefix product + Qg**(d-j) instead of the correct complement
+product + Qg**j): checked directly against jacobi_coeff_rec at c=1, this
+file's build_branch disagrees with the exact engine at EVERY tested K (15
+through 300), both parities. Its own self_check_concrete never caught this
+because `main()`'s trials only cover c in [0.01, 0.29], never c>=1. The
+Bernstein certificate this file produces is NOT a valid proof of the depth-3
+claim -- see results/D3_STATUS.md's retraction notice.
+
+The correct, wide-range-verified depth-3 result comes from
+`lab/depth_d_proof.py` (generic, ERR-0010-fixed, checked against the exact
+engine at K up to 1000). Kept here unmodified for the historical record
+rather than deleted, per the ERRATA policy.
+
+--- original module docstring below, describes the (buggy) intent ---
+
+Depth 3, same parity-split pipeline as depth 2, engine 2 only.
 
 Builds H_final(K, c) for depth 3 (cubic in gamma before homogenization) at the
 half-level M = K (an actual integer, so T_hat(lam) <= T_K(lam) by definition --

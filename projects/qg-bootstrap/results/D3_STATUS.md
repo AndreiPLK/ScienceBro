@@ -1,5 +1,21 @@
 # Depth 3, status
 
+**RETRACTED 2026-08-18 (ERR-0011, docs/ERRATA.md): the "fully proved" claim
+below was built on a buggy `build_branch` in `lab/depth3_parity_proof.py`
+(same homogenization bug as ERR-0010: wrong prefix product + wrong power of
+Qg). Checked directly against the exact reference engine at c=1, K=15..300,
+both parities: ALL mismatch. Its own self-check never caught this because it
+only tested c up to 0.29, never c>=1. The Bernstein certificate cited below
+("0 open boxes") certified the WRONG polynomial and proves nothing about the
+physical depth-3 claim.** The correct depth-3 result, once re-certified, is
+being produced by `lab/depth_d_proof.py` (the generic, ERR-0010-fixed
+implementation, independently verified against the exact engine at K up to
+1000, both parities, several c -- see ERR-0010/ERR-0011). Everything below
+this notice is the ORIGINAL (now-known-wrong) text, kept for the record
+rather than deleted, per the ERRATA policy of never hiding a retracted claim.
+
+---
+
 Same pipeline that closed depth 2 (docs: `D2_COMPLETE.md`), one level deeper.
 
 ## Proved (Bernstein certificates, both verified against the exact engine first)

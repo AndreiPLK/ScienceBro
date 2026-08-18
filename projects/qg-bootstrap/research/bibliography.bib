@@ -1,0 +1,472 @@
+% Bibliography for the qg-bootstrap KEYSTONE problem: positivity of the CHR
+% graviton partial waves uniformly in the trajectory index j (equivalently, in
+% the depth d = j - 1), below the shore T_hat(lam).
+%
+% Every entry below had its metadata verified on 2026-08-18 against arXiv API,
+% Crossref API, OpenAlex API, Semantic Scholar API, or the raw NIST DLMF page.
+% The `note` field records WHAT WAS ACTUALLY READ. Entries whose note says
+% "abstract only" or "metadata only" must not be cited for a technical claim
+% without first obtaining the source. Companion machine-readable records:
+%   projects/qg-bootstrap/research/corpus.jsonl
+%   projects/qg-bootstrap/evidence/keystone-uniformity-records.jsonl
+
+% =====================================================================
+% (1) Positivity of Jacobi/Gegenbauer expansions, uniform in an index
+% =====================================================================
+
+@article{askeyGasper1976PositiveJacobiII,
+  title   = {Positive {J}acobi Polynomial Sums, {II}},
+  author  = {Askey, Richard and Gasper, George},
+  journal = {American Journal of Mathematics},
+  volume  = {98},
+  pages   = {709--737},
+  year    = {1976},
+  doi     = {10.2307/2373813},
+  note    = {Metadata verified via Crossref and OpenAlex on 2026-08-18.
+             NOT READ: no abstract is exposed by any API and the article is
+             paywalled (JSTOR). Known only through the DLMF 18.14(iv)
+             annotations, which name it as the source of Conjecture 1
+             (= DLMF 18.14.25) and of (1.7),(1.12) (= DLMF 18.14.26).}
+}
+
+@article{gasper1977PositiveSums,
+  title   = {Positive Sums of the Classical Orthogonal Polynomials},
+  author  = {Gasper, George},
+  journal = {SIAM Journal on Mathematical Analysis},
+  volume  = {8},
+  pages   = {423--447},
+  year    = {1977},
+  doi     = {10.1137/0508032},
+  note    = {ABSTRACT ONLY (publisher abstract retrieved verbatim via OpenAlex,
+             2026-08-18). The abstract states the mechanism: "An expansion as a
+             sum of squares of Jacobi polynomials is used to prove that if
+             0 <= lambda <= alpha+beta and beta >= -1/2 then (*) >= 0". Theorem
+             numbers 4 and 5 are taken from DLMF annotations, not from the paper.
+             Paywalled (SIAM).}
+}
+
+@misc{dlmf1814,
+  title        = {{NIST Digital Library of Mathematical Functions},
+                  \S 18.14 Inequalities; \S 18.14(iv) Positive Sums},
+  author       = {{NIST DLMF}},
+  howpublished = {\url{https://dlmf.nist.gov/18.14}},
+  year         = {2024},
+  note         = {Raw HTML fetched with curl and parsed locally on 2026-08-18
+                  (not a web summary). Eqs. 18.14.25 and 18.14.26 read verbatim
+                  together with their provenance annotations
+                  "Proved: Gasper (1977, Theorem 5)" and
+                  "Proved: Gasper (1977, Theorem 4)". Subsection 18.14(iv) was
+                  added in DLMF Release 1.2.0, 2024-03-27.}
+}
+
+@book{askey1975OrthogonalPolynomials,
+  title     = {Orthogonal Polynomials and Special Functions},
+  author    = {Askey, Richard},
+  series    = {CBMS-NSF Regional Conference Series in Applied Mathematics},
+  number    = {21},
+  publisher = {SIAM},
+  address   = {Philadelphia},
+  year      = {1975},
+  doi       = {10.1137/1.9781611970470},
+  note      = {METADATA ONLY. Chapter titles and page ranges verified via
+               Crossref per-chapter DOIs on 2026-08-18: ch.5 "Linearization of
+               Products" pp.39--46; ch.6 "Rational Functions with Positive Power
+               Series Coefficients" pp.47--56; ch.7 "Connection Coefficients"
+               pp.57--69; ch.8 "Positive Sums" pp.71--81; ch.9 "More Positive
+               Sums and Applications" pp.83--91. Text NOT obtained.}
+}
+
+@article{szwarc1992ConnectionCoefficients,
+  title   = {Connection Coefficients of Orthogonal Polynomials},
+  author  = {Szwarc, Ryszard},
+  journal = {Canadian Mathematical Bulletin},
+  volume  = {35},
+  pages   = {548--556},
+  year    = {1992},
+  doi     = {10.4153/cmb-1992-071-3},
+  note    = {ABSTRACT ONLY (OpenAlex, 2026-08-18): "Conditions are given which
+             imply that the coefficients in the expansion of P_n in terms of
+             Q_0, Q_1, ..., Q_n are non-negative." The conditions themselves
+             not read.}
+}
+
+@article{szwarc1992DiscreteBVPI,
+  title   = {Orthogonal Polynomials and a Discrete Boundary Value Problem {I}},
+  author  = {Szwarc, Ryszard},
+  journal = {SIAM Journal on Mathematical Analysis},
+  volume  = {23},
+  pages   = {959--964},
+  year    = {1992},
+  doi     = {10.1137/0523052},
+  note    = {ABSTRACT ONLY (OpenAlex, 2026-08-18): "Sufficient conditions are
+             given under which any product P_n P_m is a linear combination of
+             P_k's with positive coefficients." Part II: doi:10.1137/0523053,
+             same volume, pp. 965--969.}
+}
+
+@article{pillwein2008JacobiKernelSums,
+  title   = {Positivity of certain sums over {J}acobi kernel polynomials},
+  author  = {Pillwein, Veronika},
+  journal = {Advances in Applied Mathematics},
+  volume  = {41},
+  pages   = {365--377},
+  year    = {2008},
+  doi     = {10.1016/j.aam.2007.12.001},
+  note    = {ABSTRACT ONLY (Semantic Scholar, verbatim, 2026-08-18):
+             "We present a computer-assisted proof of positivity of sums over
+             kernel polynomials for ultraspherical Jacobi polynomials."
+             Certificate format and induction scheme not read.}
+}
+
+% =====================================================================
+% (2) Positivity criteria for hypergeometric / Pochhammer-ratio sums
+% =====================================================================
+
+@inproceedings{gerholdKauers2005DiscreteParameter,
+  title     = {A procedure for proving special function inequalities involving
+               a discrete parameter},
+  author    = {Gerhold, Stefan and Kauers, Manuel},
+  booktitle = {Proceedings of the 2005 International Symposium on Symbolic and
+               Algebraic Computation (ISSAC '05)},
+  pages     = {156--162},
+  year      = {2005},
+  doi       = {10.1145/1073884.1073907},
+  note      = {METADATA ONLY (Crossref 2026-08-18). NOT READ; no abstract is
+               exposed and the ACM DL copy is paywalled. Method inferred from
+               the title and from the follow-up literature.}
+}
+
+@inproceedings{kauersPillwein2010PFinitePositive,
+  title     = {When can we detect that a {P}-finite sequence is positive?},
+  author    = {Kauers, Manuel and Pillwein, Veronika},
+  booktitle = {Proceedings of the 2010 International Symposium on Symbolic and
+               Algebraic Computation (ISSAC '10)},
+  pages     = {195--201},
+  year      = {2010},
+  doi       = {10.1145/1837934.1837974},
+  note      = {ABSTRACT ONLY (Semantic Scholar, verbatim, 2026-08-18). Two
+               algorithms for proving positivity of P-finite sequences; neither
+               is guaranteed to terminate, and a priori termination criteria are
+               given only for restricted classes of recurrences of order <= 3.}
+}
+
+@inproceedings{pillwein2013TerminationConditions,
+  title     = {Termination conditions for positivity proving procedures},
+  author    = {Pillwein, Veronika},
+  booktitle = {Proceedings of the 38th International Symposium on Symbolic and
+               Algebraic Computation (ISSAC '13)},
+  pages     = {315--322},
+  year      = {2013},
+  doi       = {10.1145/2465506.2465945},
+  note      = {METADATA ONLY (Crossref 2026-08-18). NOT READ; ACM DL paywall.}
+}
+
+@article{fieldsWimp1961Expansions,
+  title   = {Expansions of hypergeometric functions in hypergeometric functions},
+  author  = {Fields, Jerry L. and Wimp, Jet},
+  journal = {Mathematics of Computation},
+  volume  = {15},
+  pages   = {390--395},
+  year    = {1961},
+  doi     = {10.1090/S0025-5718-1961-0125992-3},
+  note    = {ABSTRACT ONLY (OpenAlex 2026-08-18). A re-expansion toolbox, not a
+             positivity theorem.}
+}
+
+@article{gasper1973HahnPoissonKernel,
+  title   = {Nonnegativity of a discrete {P}oisson kernel for the {H}ahn
+             polynomials},
+  author  = {Gasper, George},
+  journal = {Journal of Mathematical Analysis and Applications},
+  volume  = {42},
+  pages   = {438--451},
+  year    = {1973},
+  doi     = {10.1016/0022-247X(73)90151-0},
+  note    = {METADATA ONLY (Crossref 2026-08-18). NOT READ; no abstract exposed;
+             Elsevier paywall. Recorded as a lead.}
+}
+
+@misc{choYun2018NewtonDiagram,
+  title        = {Newton diagram of positivity for {$_1F_2$} generalized
+                  hypergeometric functions},
+  author       = {Cho, Yong-Kum and Yun, Hera},
+  year         = {2018},
+  eprint       = {1801.02312},
+  archivePrefix= {arXiv},
+  primaryClass = {math.CA},
+  note         = {LISTING ONLY (arXiv API 2026-08-18); abstract not retrieved in
+                  full. Companion: arXiv:1805.11855. Recorded as a lead.}
+}
+
+@misc{karpSitnik2007Ratios,
+  title        = {Inequalities and monotonicity of ratios for generalized
+                  hypergeometric function},
+  author       = {Karp, D. and Sitnik, S. M.},
+  year         = {2007},
+  eprint       = {math/0703084},
+  archivePrefix= {arXiv},
+  note         = {LISTING ONLY (arXiv API 2026-08-18). Recorded as a lead.}
+}
+
+% =====================================================================
+% Reformulation as positive-definiteness on the sphere (PRIOR ART for the
+% project's own "descent lemma")
+% =====================================================================
+
+@article{schoenberg1942PositiveDefiniteSpheres,
+  title   = {Positive definite functions on spheres},
+  author  = {Schoenberg, I. J.},
+  journal = {Duke Mathematical Journal},
+  volume  = {9},
+  pages   = {96--108},
+  year    = {1942},
+  doi     = {10.1215/S0012-7094-42-00908-6},
+  note    = {NOT READ DIRECTLY (Crossref metadata only, 2026-08-18). Used here
+             only as restated and cited by Gneiting, arXiv:1111.7077, Theorem
+             1(a), which was read.}
+}
+
+@article{gneiting2013SpheresPD,
+  title   = {Strictly and non-strictly positive definite functions on spheres},
+  author  = {Gneiting, Tilmann},
+  journal = {Bernoulli},
+  volume  = {19},
+  number  = {4},
+  year    = {2013},
+  doi     = {10.3150/12-BEJSP06},
+  eprint  = {1111.7077},
+  archivePrefix = {arXiv},
+  note    = {FULL TEXT READ (arXiv v5, 24 pp., local copy
+             evidence/papers/1111.7077.pdf,
+             sha256 2e4be27bbb112c5e0b08ef9650ecc77fedb17d4ab9ab954e935c82952cd0c5ce).
+             Theorem 1(a): the class Psi_d is exactly the Gegenbauer series with
+             nonnegative coefficients (Schoenberg's characterisation).
+             Theorem 2(b),(c): Psi_{d+1} \subset Psi_d, strictly -- the classical
+             "dimension walk" that the project's own descent lemma reproduces.}
+}
+
+% =====================================================================
+% (3) Bootstrap: what SDP/SOS machinery does and does NOT certify in spin
+% =====================================================================
+
+@article{simmonsDuffin2015SDPB,
+  title   = {A Semidefinite Program Solver for the Conformal Bootstrap},
+  author  = {Simmons-Duffin, David},
+  journal = {JHEP},
+  volume  = {06},
+  pages   = {174},
+  year    = {2015},
+  eprint  = {1502.02033},
+  archivePrefix = {arXiv},
+  note    = {FULL TEXT READ (34 pp., local copy evidence/papers/1502.02033.pdf,
+             sha256 fd5dd7444ac01071473e589bd2129b27c512481256d099f93852778e48021bb2).
+             KEY NEGATIVE RESULT for our question 3: Sec. 2.1 gives an exact
+             SOS/Positivstellensatz certificate uniform in the CONTINUOUS
+             variable Delta, but Sec. 3.2 item 1 (pp. 18--19) and Appendix A
+             state that spin is truncated at a finite lmax and that positivity
+             for l > lmax is only expected and checked post hoc.}
+}
+
+@article{caracciolo2014OPEBounds,
+  title   = {Bounds on {OPE} Coefficients in {4D} Conformal Field Theories},
+  author  = {Caracciolo, Francesco and Castedo Echeverri, Alejandro and
+             von Harling, Benedict and Serone, Marco},
+  journal = {JHEP},
+  volume  = {10},
+  pages   = {020},
+  year    = {2014},
+  eprint  = {1406.7845},
+  archivePrefix = {arXiv},
+  note    = {NOT READ. Identified as reference [27] of arXiv:1502.02033, cited
+             there as "a more careful analysis" of the spin truncation.
+             Bibliography line read verbatim from the SDPB PDF; independent
+             arXiv-API confirmation of title and authors still pending.}
+}
+
+% =====================================================================
+% (4) The closest analogues in the amplitude literature
+% =====================================================================
+
+@article{arkaniHamed2022UnitarityStrings,
+  title   = {On Unitarity of Tree-Level String Amplitudes},
+  author  = {Arkani-Hamed, Nima and Eberhardt, Lorenz and Huang, Yu-tin and
+             Mizera, Sebastian},
+  journal = {JHEP},
+  volume  = {02},
+  pages   = {197},
+  year    = {2022},
+  doi     = {10.1007/JHEP02(2022)197},
+  eprint  = {2201.11575},
+  archivePrefix = {arXiv},
+  note    = {FULL TEXT EXTRACTED, READ IN PART (37 pp., local copy
+             evidence/papers/2201.11575.pdf,
+             sha256 608cf7ac9e9c4590e3de95abafed04a413b1f34323ee7356ea91aa6d54a58d34).
+             Read: abstract; contents (Sec. 3 double-contour representation p.14;
+             Sec. 4.1 manifest unitarity in D <= 6 p.18; Sec. 4.2 D = 10 low spin
+             p.20; Sec. 4.3 asymptotics p.21, incl. 4.3.2 Regge trajectories;
+             App. A "Some positive functions" p.25; App. B single-variable
+             generating function p.28). The central formula was read in the
+             verbatim reproduction as Eq. (2.11) of arXiv:2502.20372; its own
+             equation number inside this paper is NOT yet pinned down.}
+}
+
+@article{mansfield2025VenezianoTen,
+  title   = {Positivity of the {V}eneziano Amplitude in Ten Dimensions},
+  author  = {Mansfield, Gareth},
+  year    = {2025},
+  eprint  = {2502.20372},
+  archivePrefix = {arXiv},
+  primaryClass = {hep-th},
+  note    = {FULL TEXT READ (v2, 21 pp., local copy
+             evidence/papers/2502.20372.pdf,
+             sha256 7d5d85f65fc5a48e5ac9be681ca0b37b2561c597e2481dbfdb3ad3ade13a5522).
+             CLOSEST PUBLISHED ANALOGUE of our keystone. Eq. (1.2) positivity for
+             all n, j; Sec. 2.1 Eqs. (2.1)--(2.11) the AEHM double contour and the
+             D <= 6 manifest positivity; Eq. (2.12) why it breaks at D = 8;
+             Sec. 2.2 Eqs. (2.13)--(2.20) the zero-residue corrector P_j(x,y) and
+             the induction ON j via the Gregory-coefficient recursion (2.20);
+             Sec. 2.3 Eqs. (2.37)--(2.41) base case; Sec. 3.1 Eqs. (3.5)--(3.8)
+             type-II Virasoro-Shapiro residue = square of the Veneziano residue;
+             Sec. 3.2 Eq. (3.9) all B^5_{n,j} >= 0 for the massless hypergeometric
+             amplitude, which the paper states is the lambda -> 0 limit of the
+             Cheung-Hillman-Remmen planar analogue amplitude.}
+}
+
+@misc{mansfieldSpradlin2024Hypergeometric,
+  title        = {On Unitarity of the Hypergeometric Amplitude},
+  author       = {Mansfield, Gareth and Spradlin, Marcus},
+  year         = {2024},
+  eprint       = {2409.09561},
+  archivePrefix= {arXiv},
+  primaryClass = {hep-th},
+  note         = {ABSTRACT ONLY (arXiv API 2026-08-18). Claims a large subset of
+                  (r, m^2, D) where ALL partial wave coefficients of the residue
+                  are positive; the argument is not verified here. A project
+                  record EV-QG-0002 already exists for this paper.}
+}
+
+@article{maity2022VenezianoD4,
+  title   = {Positivity of the {V}eneziano Amplitude in {$D=4$}},
+  author  = {Maity, Pronobesh},
+  journal = {JHEP},
+  volume  = {04},
+  pages   = {064},
+  year    = {2022},
+  doi     = {10.1007/JHEP04(2022)064},
+  eprint  = {2110.01578},
+  archivePrefix = {arXiv},
+  note    = {ABSTRACT ONLY (arXiv API 2026-08-18). Generating function of the
+             Gegenbauer coefficients as an Appell hypergeometric function; exact
+             form only on the LEADING Regge trajectory in D = 4; the full
+             statement is called "indicated", not proved.}
+}
+
+@article{greenWen2019Hankel,
+  title   = {Superstring Amplitudes, Unitarity, and {H}ankel Determinants of
+             Multiple Zeta Values},
+  author  = {Green, Michael B. and Wen, Congkao},
+  journal = {JHEP},
+  volume  = {11},
+  pages   = {079},
+  year    = {2019},
+  doi     = {10.1007/JHEP11(2019)079},
+  eprint  = {1908.08426},
+  archivePrefix = {arXiv},
+  note    = {ABSTRACT ONLY (arXiv API + Crossref 2026-08-18). Recasts tree-level
+             superstring unitarity as positivity of Hankel determinants of MZV
+             polynomials -- a moment-problem reformulation on the Wilson
+             coefficient side, not on the residue side.}
+}
+
+@article{caronHuot2022GravitonPartialWaves,
+  title   = {Graviton partial waves and causality in higher dimensions},
+  author  = {Caron-Huot, Simon and Li, Yue-Zhou and Parra-Martinez, Julio and
+             Simmons-Duffin, David},
+  journal = {Physical Review D},
+  volume  = {108},
+  pages   = {026007},
+  year    = {2023},
+  doi     = {10.1103/PhysRevD.108.026007},
+  eprint  = {2205.01495},
+  archivePrefix = {arXiv},
+  note    = {ABSTRACT ONLY (arXiv API 2026-08-18). Supplies the full set of
+             SO(D-1) graviton partial waves in any D; numerical bounds. No
+             positivity theorem for a specific amplitude family in the abstract.}
+}
+
+@article{caronHuot2021SharpBoundaries,
+  title   = {Sharp Boundaries for the Swampland},
+  author  = {Caron-Huot, Simon and Mazac, Dalimil and Rastelli, Leonardo and
+             Simmons-Duffin, David},
+  journal = {JHEP},
+  volume  = {07},
+  pages   = {110},
+  year    = {2021},
+  doi     = {10.1007/JHEP07(2021)110},
+  eprint  = {2102.08951},
+  archivePrefix = {arXiv},
+  note    = {ABSTRACT ONLY (arXiv API 2026-08-18).}
+}
+
+@article{rigatosWang2024CoonHarmonic,
+  title   = {Coon unitarity via partial waves or: how {I} learned to stop
+             worrying and love the harmonic numbers},
+  author  = {Rigatos, Konstantinos C. and Wang, Bo},
+  journal = {Physical Review D},
+  volume  = {110},
+  pages   = {126024},
+  year    = {2024},
+  doi     = {10.1103/PhysRevD.110.126024},
+  eprint  = {2401.13031},
+  archivePrefix = {arXiv},
+  note    = {ABSTRACT ONLY; PDF held locally (6 pp.,
+             evidence/papers/2401.13031.pdf) but not yet read. Corrects the
+             incomplete metadata in the earlier project record
+             EV-KEYSTONE-2401.13031.}
+}
+
+@article{wang2024HypergeometricCoon,
+  title   = {Positivity of the Hypergeometric {C}oon Amplitude},
+  author  = {Wang, Bo},
+  journal = {JHEP},
+  volume  = {04},
+  pages   = {143},
+  year    = {2024},
+  doi     = {10.1007/JHEP04(2024)143},
+  eprint  = {2403.00906},
+  archivePrefix = {arXiv},
+  note    = {ABSTRACT ONLY; PDF held locally (25 pp.) but not yet read.}
+}
+
+@article{cheungHillmanRemmen2024Bootstrap,
+  title   = {Bootstrap Principle for the Spectrum and Scattering of Strings},
+  author  = {Cheung, Clifford and Hillman, Aaron and Remmen, Grant N.},
+  journal = {Physical Review Letters},
+  volume  = {133},
+  pages   = {251601},
+  year    = {2024},
+  eprint  = {2406.02665},
+  archivePrefix = {arXiv},
+  note    = {Held locally as research/pdfs/2406.02665.pdf; project record
+             EV-QG-0004. Read here only at the appendix locations giving the
+             general partial-wave coefficient (A3) and the CLOSED FORMS for the
+             leading trajectory l = n (A4) and the FIRST subleading trajectory
+             l = n-1 (A5) -- i.e. the published closed forms stop at the first
+             subleading trajectory. Title/authors/journal as recorded in the
+             pre-existing project record, not re-verified in this pass.}
+}
+
+@article{cheungHillmanRemmen2024Uniqueness,
+  title   = {Uniqueness Criteria for the {V}irasoro-{S}hapiro Amplitude},
+  author  = {Cheung, Clifford and Hillman, Aaron and Remmen, Grant N.},
+  journal = {Physical Review D},
+  volume  = {111},
+  pages   = {086034},
+  year    = {2025},
+  eprint  = {2408.03362},
+  archivePrefix = {arXiv},
+  note    = {Held locally as research/pdfs/2408.03362.pdf; project record
+             EV-QG-0003. Cited by Mansfield arXiv:2502.20372 as ref. [25], the
+             source of the "planar analogue amplitude" whose lambda -> 0 limit
+             Mansfield proves positive at D = 5 for all n and j.}
+}

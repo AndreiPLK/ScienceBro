@@ -202,9 +202,22 @@ def build_branch(parity: str, d: int, e_polys: dict) -> BiPoly:
     Pg = Abig * (Bexpr * fmpq(3) + Qbig)
     Qg = Qbig * fmpq(2)
 
+    # (2m+gamma+1)_j = prod_{i=0}^{j-1}(2m+gamma+1+i); substituting gamma=Pg/Qg
+    # and clearing by Qg gives L[i] = two_m_Qg+Pg+Qg*(1+i), so
+    # (2m+gamma+1)_j = (prod_{i=0}^{j-1} L[i]) / Qg^j.
+    #
+    # Each term's raw contribution is coeff*num*X^j / (2m+gamma+1)_j. To bring
+    # ALL terms (j=0..d) to a COMMON denominator L[0]*...*L[d-1] (which the
+    # LOWEST-j term needs in full, since L[0..j-1] divides it -- a nested
+    # "prefix product" exactly like depth 2's L_1..L_d), each term must be
+    # multiplied by the COMPLEMENT product L[j]*L[j+1]*...*L[d-1] (the factors
+    # it is MISSING relative to the full product) and by Qg^j (from clearing
+    # its own (2m+gamma+1)_j, not Qg^(d-j) as an earlier, wrong version had
+    # it -- verified against the raw unhomogenized sum before trusting this).
     total = BiPoly.const(0)
     half = BiPoly.const(fmpq(1, 2))
     two_m_Qg = (m * fmpq(2)) * Qg
+    L = [two_m_Qg + Pg + Qg * fmpq(1 + i) for i in range(d)]
     for k in range(d + 1):
         j = d - k
         coeff_N = e_polys[k] * falling_poly(k, j) / poch(fmpq(1), j)
@@ -214,11 +227,11 @@ def build_branch(parity: str, d: int, e_polys: dict) -> BiPoly:
         for i in range(j):
             num_bi = num_bi * (m + half + BiPoly.const(i))
 
-        den_cleared = BiPoly.const(1)
-        for i in range(j):
-            den_cleared = den_cleared * (two_m_Qg + Pg + Qg * fmpq(1 + i))
+        complement = BiPoly.const(1)
+        for i in range(j, d):
+            complement = complement * L[i]
 
-        total = total + coeff_bi * num_bi * den_cleared * (X**j) * (Qg ** (d - j))
+        total = total + coeff_bi * num_bi * complement * (X**j) * (Qg**j)
     return total
 
 
@@ -316,7 +329,17 @@ def affine_powers(lo, w, deg):
     return out
 
 
-def bernstein_lower(poly: BiPoly, box) -> fmpq:
+def bernstein_grid(poly: BiPoly, box):
+    """Full (d0+1)x(d1+1) grid of Bernstein coefficients on `box`, computed
+    directly from the monomial (power-basis) coefficients affine-mapped to
+    the box -- degree-preserving, not degree-elevating. O(d0^2*d1^2) but
+    called ONCE per bisection tree (at the root); children reuse this grid
+    via de Casteljau subdivision (`split_grid`), never rebuilding from the
+    monomial form. See ERR-0010's speed note: rebuilding this at EVERY box
+    (the old `bernstein_lower`) made the tree O(boxes * d0^2*d1^2) instead
+    of O(d0^2*d1^2 + boxes * d^2) -- the actual bottleneck once the ERR-0010
+    homogenization fix made the polynomials genuinely harder to certify.
+    """
     from math import comb
 
     (lo0, hi0), (lo1, hi1) = box
@@ -329,7 +352,7 @@ def bernstein_lower(poly: BiPoly, box) -> fmpq:
             for p1, cf1 in pw1[i1].items():
                 key = (p0, p1)
                 mono[key] = mono.get(key, fmpq(0)) + coeff * cf0 * cf1
-    best = None
+    grid = [[fmpq(0)] * (d1 + 1) for _ in range(d0 + 1)]
     for k0 in range(d0 + 1):
         for k1 in range(d1 + 1):
             b = fmpq(0)
@@ -337,20 +360,59 @@ def bernstein_lower(poly: BiPoly, box) -> fmpq:
                 if p0 <= k0 and p1 <= k1:
                     f = fmpq(comb(k0, p0), comb(d0, p0)) * fmpq(comb(k1, p1), comb(d1, p1))
                     b += cf * f
-            if best is None or b < best:
-                best = b
-                if best <= 0:
-                    return best
-    return best if best is not None else fmpq(0)
+            grid[k0][k1] = b
+    return grid, d0, d1
+
+
+def _decasteljau_half(coeffs):
+    """Split a 1D degree-d Bernstein sequence on [0,1] at t=1/2 (exact
+    fmpq): returns (left, right), each the same-degree Bernstein coeffs of
+    the polynomial restricted to [0,1/2] resp. [1/2,1]. Standard triangular
+    recurrence, O(d^2), no return to monomial form.
+    """
+    half = fmpq(1, 2)
+    d = len(coeffs) - 1
+    tri = [list(coeffs)]
+    for r in range(1, d + 1):
+        prev = tri[-1]
+        tri.append([(prev[i] + prev[i + 1]) * half for i in range(d - r + 1)])
+    left = [tri[r][0] for r in range(d + 1)]
+    right = [tri[d - r][r] for r in range(d + 1)]
+    return left, right
+
+
+def split_grid(grid, d0, d1, axis):
+    """Bisect a Bernstein coefficient grid at the midpoint along `axis`
+    (0=K, 1=c), via de Casteljau along that axis for every fixed index of
+    the other axis. Exact (fmpq), degree-preserving.
+    """
+    left = [[None] * (d1 + 1) for _ in range(d0 + 1)]
+    right = [[None] * (d1 + 1) for _ in range(d0 + 1)]
+    if axis == 0:
+        for k1 in range(d1 + 1):
+            col = [grid[k0][k1] for k0 in range(d0 + 1)]
+            lcol, rcol = _decasteljau_half(col)
+            for k0 in range(d0 + 1):
+                left[k0][k1] = lcol[k0]
+                right[k0][k1] = rcol[k0]
+    else:
+        for k0 in range(d0 + 1):
+            lrow, rrow = _decasteljau_half(grid[k0])
+            for k1 in range(d1 + 1):
+                left[k0][k1] = lrow[k1]
+                right[k0][k1] = rrow[k1]
+    return left, right
 
 
 def prove_box(poly: BiPoly, box, max_depth: int = 28):
-    stack = [(box, 0)]
+    grid, d0, d1 = bernstein_grid(poly, box)
+    stack = [(grid, box, 0)]
     boxes, open_boxes = 0, []
     while stack:
-        bx, depth = stack.pop()
+        g, bx, depth = stack.pop()
         boxes += 1
-        if bernstein_lower(poly, bx) > 0:
+        best = min(v for row in g for v in row)
+        if best > 0:
             continue
         if depth >= max_depth:
             open_boxes.append([(str(lo), str(hi)) for lo, hi in bx])
@@ -359,17 +421,24 @@ def prove_box(poly: BiPoly, box, max_depth: int = 28):
         k = 0 if w[0] >= w[1] else 1
         lo, hi = bx[k]
         mid = (lo + hi) / 2
-        left, right = [bx[0], bx[1]], [bx[0], bx[1]]
-        left[k], right[k] = (lo, mid), (mid, hi)
-        stack += [(left, depth + 1), (right, depth + 1)]
+        left_bx, right_bx = [bx[0], bx[1]], [bx[0], bx[1]]
+        left_bx[k], right_bx[k] = (lo, mid), (mid, hi)
+        left_g, right_g = split_grid(g, d0, d1, k)
+        stack += [(left_g, left_bx, depth + 1), (right_g, right_bx, depth + 1)]
     return (not open_boxes), boxes, open_boxes
 
 
 def run_depth(d: int) -> dict:
     t0 = time.time()
     e_polys = elementary_symmetric(d)
-    k_values = (3, 4, 5, 6, 8, 10, 15)
-    c_values = [(cn, 100) for cn in (1, 10, 20, 29)]
+    # ERR-0011: a self-check whose range is much narrower than the Bernstein
+    # box it validates gives false confidence -- two independent files
+    # (depth_d_proof.py pre-fix, depth3_parity_proof.py) carried the same
+    # homogenization bug undetected because their self-checks only tested
+    # small K and c<1. This range now spans into the hundreds for K and
+    # includes c>=1, matching the actual box the Bernstein step certifies.
+    k_values = (3, 4, 5, 6, 8, 10, 15, 40, 100, 300)
+    c_values = [(cn, 100) for cn in (1, 10, 20, 29, 100, 500, 2000)]
     bad = self_check(d, e_polys, k_values, c_values)
     n_trials = len(k_values) * len(c_values) * 2
     print(f"depth {d}: self-check {n_trials} trials, {len(bad)} mismatches", flush=True)
