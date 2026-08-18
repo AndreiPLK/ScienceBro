@@ -26,6 +26,7 @@ from pathlib import Path
 from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import machine_guard  # noqa: E402
 from gegenbauer_flint import T_hat, q_poly, to_gegenbauer  # noqa: E402
 from provenance import stamp  # noqa: E402
 
@@ -33,11 +34,17 @@ RES = Path(__file__).resolve().parents[1] / "results"
 OUT = RES / "threshold_table.json"
 
 # cheapest first, so an interruption still leaves a useful table
-LAMS = [fmpq(1, 40), fmpq(1, 16), fmpq(1, 8), fmpq(1, 6), fmpq(1, 4), fmpq(1, 3)]
+# lam = 1/3 predicts n* ~ 2300 and is what exhausted memory on 18 Aug; excluded
+# until the guard has been exercised on something smaller.
+LAMS = [fmpq(1, 40), fmpq(1, 16), fmpq(1, 8), fmpq(1, 6), fmpq(1, 4), fmpq(1, 5)]
 KNOWN = {"1/20": 516, "1/10": 660, "1/5": 1056, "1/8": 744}
 
 
 def clean(n: int, lam: fmpq, g: fmpq) -> bool:
+    # The appetite grows with n, so the check belongs HERE, not before the loop.
+    # On 18 August the lam = 1/3 case walked to degree ~2300 and took the machine
+    # from 31 GB free to 0.3 GB while a pre-flight check had happily passed.
+    machine_guard.check(6.0, what=f"n={n}, lam={lam}")
     a = to_gegenbauer(q_poly(n, lam), g)
     return not any(c < 0 for c in a)
 
@@ -71,14 +78,22 @@ def main() -> int:
         g = T_hat(lam) / fmpq(2) - fmpq(3, 2)
         coarse = math.exp(2 * float(g) / (float(lam) + 1))
         print(f"lam={key}: shore={float(g):.5f}, coarse prediction {coarse:.0f}", flush=True)
-        lo, hi = bracket(lam, g, int(coarse))
-        while hi - lo > 1:
-            mid = (lo + hi) // 2
-            if clean(mid, lam, g):
-                hi = mid
-            else:
-                lo = mid
-            print(f"   {lo} .. {hi}   ({time.time() - t0:.0f}s)", flush=True)
+        print("   " + machine_guard.note("this lam"), flush=True)
+        try:
+            lo, hi = bracket(lam, g, int(coarse))
+            while hi - lo > 1:
+                mid = (lo + hi) // 2
+                if clean(mid, lam, g):
+                    hi = mid
+                else:
+                    lo = mid
+                print(f"   {lo} .. {hi}   ({time.time() - t0:.0f}s)", flush=True)
+        except machine_guard.MachineBusy as e:
+            # Stop the whole run, not just this lam: memory does not come back on
+            # its own, and the next lam is always more expensive than this one.
+            print(f"   STOPPING: {e}", flush=True)
+            print(f"   table kept with {len(rows)} rows at {OUT}", flush=True)
+            return 0
         row = {
             "lam": key,
             "shore_gamma": str(g),

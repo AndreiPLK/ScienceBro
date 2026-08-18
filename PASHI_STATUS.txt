@@ -1,8 +1,30 @@
-ПАШИ · до 16:00 · 23:00 17.08
-[██████████████░] каньон: МЕХАНИЗМ НАЙДЕН
-СЕЙЧАС: вычисление префактора Абеля-Плана (последняя формулировка камня)
-ВЗЯТО:  контур (1e-13) · закон запаса (q=10.9 за +2j) · перевал 0.42j ·
-        двойной корень · θ=π · D=6 = точка Заальшютца ·
-        МЕХАНИЗМ: подавление Абеля-Плана, показатель pi*alpha, alpha=0.38
-ФОН:    ножи 13-20 (дно считается)
-ДАЛЬШЕ: префактор -> знак -> теорема для больших j; малые j уже машиной
+PASHI - night shift to 08:00
+================================================================
+NOW:   keystone. Region A constant confirmed exactly; building the
+       exact threshold table n*(lam) that tests the outside model.
+
+DONE TONIGHT
+  * Stokes constant settled by exact computation:
+        measured  4.730611 / 4.730610   (two parity classes)
+        outside   4.730616445749        <- CONFIRMED, 6e-6
+        3+sqrt(3) 4.732050807569        <- DEAD, off by 1.4e-3
+  * exact thresholds, each bisected to one level, dirty/clean both recorded:
+        lam   1/40   1/16   1/8    1/6    1/4
+        n*    454    550    744    906    1322
+        outside model overshoots  +3.1  +5.6  +10.1  +12.7  +17.7 %
+        -> the error is SMOOTH and MONOTONE in lam, not noise
+  * no reopening out to 3.68x past n* (lam=1/20, every coefficient checked)
+  * reply sent to the outside analysis with 4 questions, one of them a
+    blind pre-registered prediction
+
+INCIDENT, mine
+  * the background table walked to degree ~2300 and took free memory from
+    31 GB to 0.3 GB. Killed it, memory recovered.
+  * FIXED, not promised: lab/machine_guard.py checks free memory INSIDE the
+    loop before every heavy step and stops the job cleanly with its partial
+    results. A pre-flight check cannot help a job whose appetite grows.
+
+NEXT
+  1. restart the table under the guard (lam = 1/5 remains)
+  2. third point for the constant: n = 400, 402 (>10 min each, background)
+  3. edge profile at N = 3000 once the outside prediction arrives
