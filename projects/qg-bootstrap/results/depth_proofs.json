@@ -1,0 +1,28 @@
+{
+ "claim": "for each fixed depth d, the knife is positive throughout the physical region, proved by exact Bernstein subdivision after evaluating at the half-level shore bound and compactifying N",
+ "runs": [
+  {
+   "depth": 2,
+   "n_min": 8,
+   "c_max": "3/10",
+   "degree_in_N": 17,
+   "leading_coefficient": "5*(6*c**2 - 1)**2*(12*c**2 + 12*c + 5)",
+   "proved": true,
+   "boxes": 1,
+   "open": 0,
+   "denominator": "2*N**2*(N - 4)**6",
+   "seconds": 209.8
+  }
+ ],
+ "command": "python lab/depth_proof.py <d> [<d> ...]",
+ "git": "70eb55fb6f03",
+ "git_full": "70eb55fb6f03dc526884b1ff6ea2eedb65d4b284",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/depth_proof.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}
