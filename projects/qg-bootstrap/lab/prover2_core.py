@@ -272,7 +272,14 @@ def orthant_certify(p3):
 
 
 def from_sympy(expr, gens):
-    """Convert an expanded sympy expression to Q3Poly (gens -> var order)."""
+    """Convert an expanded sympy expression to Q3Poly (gens -> var order).
+
+    # ENGINE-OK: this is the ONE-TIME boundary the fast-engine law allows --
+    a polynomial built symbolically ELSEWHERE (by hand, once, not in a loop)
+    is parsed here exactly once and handed off to flint (Q3Poly/fmpq) for all
+    subsequent bulk work (bernstein_certify etc). sympy never touches a
+    growing object and never runs more than once per polynomial.
+    """
     import sympy as sp
 
     r3 = sp.sqrt(3)

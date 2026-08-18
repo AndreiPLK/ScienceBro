@@ -52,8 +52,8 @@ Not "I will port it later", not "a prototype on Fraction first" - immediately.
 | symbolic derivation ONLY | sympy | sympy for bulk arithmetic |
 
 **Founder, 18 August, after finding sympy doing real work behind an "ENGINE-OK,
-symbolic setup only" comment that was false: "SymPy это не выглядит как движок
-2... я запрещаю на нём работать, если есть другие возможности."** sympy is
+symbolic setup only" comment that was false: "That does not look like engine
+2 to me... I forbid working on it whenever another way exists."** sympy is
 BANNED whenever flint can do the job (`fmpq_poly`, `fmpq_mpoly` for multivariate,
 plain fmpq loops for anything else) - not just for "bulk arithmetic", for
 everything. A comment claiming "symbolic only" must be true: if sympy's
