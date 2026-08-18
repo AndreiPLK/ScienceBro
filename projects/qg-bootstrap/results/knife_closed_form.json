@@ -1,0 +1,47 @@
+{
+ "claim": "knife j > 0 iff SUM_t (-1)^t E_2t(n) s^-2t R_t > 0, with R_t elementary and E_2t explicit polynomials in n",
+ "central_factorial_mismatches": [],
+ "knives": {
+  "2": {
+   "cells_checked": 24,
+   "disagreements": 0,
+   "degree_n": 3,
+   "degree_D": 1,
+   "degree_lam": 2,
+   "polynomial": "-D*n**2 + 2*D*n + 6*lam**2*n - 9*lam**2 + 12*lam*n**2 - 30*lam*n + 18*lam + 2*n**3 - 4*n**2 + 6*n - 9"
+  },
+  "3": {
+   "cells_checked": 24,
+   "disagreements": 0,
+   "degree_n": 6,
+   "degree_D": 2,
+   "degree_lam": 4,
+   "polynomial": "5*D**2*n**4 - 24*D**2*n**3 + 28*D**2*n**2 + 12*D**2*n - 60*D*lam**2*n**3 + 270*D*lam**2*n**2 - 300*D*lam**2*n - 120*D*lam*n**4 + 660*D*lam*n**3 - 1140*D*lam*n**2 + 600*D*lam*n - 20*D*n**5 + 78*D*n**4 - 100*D*n**3 + 294*D*n**2 - 588*D*n + 180*lam**4*n**2 - 720*lam**4*n + 675*lam**4 + 720*lam**3*n**3 - 3600*lam**3*n**2 + 5580*lam**3*n - 2700*lam**3 + 840*lam**2*n**4 - 4740*lam**2*n**3 + 9600*lam**2*n**2 - 9120*lam**2*n + 4050*lam**2 + 240*lam*n**5 - 1080*lam*n**4 + 1680*lam*n**3 - 2520*lam*n**2 + 4380*lam*n - 2700*lam + 20*n**6 - 84*n**5 + 212*n**4 - 288*n**3 - 808*n**2 + 1596*n + 675"
+  },
+  "4": {
+   "cells_checked": 24,
+   "disagreements": 0,
+   "degree_n": 9,
+   "degree_D": 3,
+   "degree_lam": 6,
+   "polynomial": "-35*D**3*n**6 + 294*D**3*n**5 - 788*D**3*n**4 + 396*D**3*n**3 + 1048*D**3*n**2 + 480*D**3*n + 630*D**2*lam**2*n**5 - 5229*D**2*lam**2*n**4 + 14112*D**2*lam**2*n**3 - 10836*D**2*lam**2*n**2 - 5292*D**2*lam**2*n + 1260*D**2*lam*n**6 - 11718*D**2*lam*n**5 + 38682*D**2*lam*n**4 - 49896*D**2*lam*n**3 + 11088*D**2*lam*n**2 + 10584*D**2*lam*n + 210*D**2*n**7 - 1386*D**2*n**6 + 2514*D**2*n**5 - 4077*D**2*n**4 + 25248*D**2*n**3 - 41652*D**2*n**2 - 26892*D**2*n - 3780*D*lam**4*n**4 + 30240*D*lam**4*n**3 - 78435*D*lam**4*n**2 + 66150*D*lam**4*n - 15120*D*lam**3*n**5 + 136080*D*lam**3*n**4 - 434700*D*lam**3*n**3 + 578340*D*lam**3*n**2 - 264600*D*lam**3*n - 17640*D*lam**2*n**6 + 167328*D*lam**2*n**5 - 596862*D*lam**2*n**4 + 1037736*D*lam**2*n**3 - 1003338*D*lam**2*n**2 + 545076*D*lam**2*n - 5040*D*lam*n**7 + 37296*D*lam*n**6 - 84420*D*lam*n**5 + 101556*D*lam*n**4 - 370188*D*lam*n**3 + 881748*D*lam*n**2 - 560952*D*lam*n - 420*D*n**8 + 2520*D*n**7 - 5932*D*n**6 + 16500*D*n**5 + 3074*D*n**4 - 203436*D*n**3 + 152093*D*n**2 + 536406*D*n + 7560*lam**6*n**3 - 56700*lam**6*n**2 + 134190*lam**6*n - 99225*lam**6 + 45360*lam**5*n**4 - 385560*lam**5*n**3 + 1145340*lam**5*n**2 - 1400490*lam**5*n + 595350*lam**5 + 98280*lam**4*n**5 - 907200*lam**4*n**4 + 3120390*lam**4*n**3 - 5080320*lam**4*n**2 + 4129650*lam**4*n - 1488375*lam**4 + 90720*lam**3*n**6 - 846720*lam**3*n**5 + 3031560*lam**3*n**4 - 5624640*lam**3*n**3 + 6562080*lam**3*n**2 - 5197500*lam**3*n + 1984500*lam**3 + 32760*lam**2*n**7 - 256284*lam**2*n**6 + 656460*lam**2*n**5 - 661500*lam**2*n**4 + 614880*lam**2*n**3 - 1327536*lam**2*n**2 + 1774710*lam**2*n - 1488375*lam**2 + 5040*lam*n**8 - 33768*lam*n**7 + 86688*lam*n**6 - 171360*lam*n**5 - 47880*lam*n**4 + 2004408*lam*n**3 - 4160268*lam*n**2 + 1721790*lam*n + 595350*lam + 280*n**9 - 1848*n**8 + 6576*n**7 - 11844*n**6 - 23460*n**5 - 29412*n**4 + 385514*n**3 + 731604*n**2 - 2753550*n - 99225"
+  }
+ },
+ "knife4_below_shore": {
+  "cells": 1120,
+  "failures": 0
+ },
+ "status": "verified closed form and measured statement, NOT a proof: proving knife 4 needs D*(n,lam) > T_hat(lam) for all n, lam",
+ "command": "python lab/knife_closed_form.py",
+ "git": "1da22b586b49",
+ "git_full": "1da22b586b49fa62b7fa6ca0ded8dfe2664e8e91",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/knife_closed_form.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 7.8
+}

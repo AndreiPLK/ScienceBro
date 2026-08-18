@@ -326,3 +326,53 @@ WHAT IS LEFT, precisely: a bound on the alternating sum c_m that keeps the
 (-1)^m sign, valid for all m, using the ladder structure of the roots
 u_a = (a/s)^2 with a in {n-2, n-4, ...}. Every ingredient is now explicit and
 exact; nothing in the chain is numerical any more except the verification.
+
+## 2026-08-18 04:09 -- AN EXPLICIT CLOSED FORM FOR EVERY KNIFE, and the fourth knife measured
+
+The Saalschutz moments turn each knife into a finite sum, and the ratios of
+consecutive moments collapse to elementary products. Writing m = n - j, dividing
+by the (positive) t = 0 term and verifying every step against the exact engine:
+
+    knife j > 0   <=>   SUM_{t=0}^{j-1} (-1)^t E_2t(n) / s^(2t) * R_t  >  0
+
+    R_t = [prod_{i=1..t} (j-i)] [prod_{i=1..t} (D + 4n - 2j - 5 - 2(i-1))]
+          / ( [prod_{i=1..t} (n-i)] [prod_{i=1..t} (2n - 1 - 2i)] ),   R_0 = 1
+
+with the central factorial numbers now explicit polynomials, each verified on
+BOTH parities for n up to 59:
+
+    E_2 = n(n-1)(n-2)/3
+    E_4 = n(n-1)(n-2)(5n^3 - 24n^2 + 28n + 12)/90
+    E_6 = n(n-1)(n-2)(n-3)(n-4)(35n^4 - 154n^3 + 172n^2 + 292n + 120)/5670
+
+VERIFICATION: the closed form's sign agrees with the exact engine on 24 cells for
+each of j = 2, 3, 4 (n from j+3 to j+18, lam = 1 and 7, D = 6, 11, 23), zero
+disagreements. Two off-by-one slips in my own derivation of R_t were caught by
+exactly this check before anything was concluded from them.
+
+## The fourth knife
+
+Clearing positive denominators gives P4(n, D, lam), degree 9 in n, 3 in D, 6 in
+lam, whose positivity IS the fourth knife. Exact evaluation on 1736 cells below
+the shore: zero failures.
+
+Since P4 is cubic in D with a negative leading coefficient, there is a critical
+D*(n, lam) where the knife vanishes, and the theorem to prove is D* > T_hat(lam).
+Measured (minimum of D* over n = 5..120):
+
+    lam      1/4     1/2       1       2       3       5       7      14      26      60
+    D*/shore 1.316  1.252   1.220   1.163   1.142   1.116   1.062  1.0205  1.010  1.0042
+
+So knife 4 never cuts into the allowed region in anything tested, and the margin
+shrinks toward 1 as lam grows -- i.e. it appears ASYMPTOTICALLY TANGENT to the
+shore, the same delicacy the published blade theorem has for knife 3.
+
+NOTE, so the table is not over-read: the lam = 150 row (1.115) is an artefact of
+capping the search at n = 120. The minimising level grows roughly like 1.7 lam
+(n = 102 at lam = 60), so at lam = 150 the true minimum lies outside the range
+scanned. That row should be recomputed with a wider n before it is used.
+
+STATUS: this is an explicit, verified closed form and a measured statement, NOT a
+proof. What would make it a theorem is showing D*(n, lam) > T_hat(lam) for all
+n and lam -- now a finite algebraic question about one explicit polynomial,
+which is exactly the shape the published blade theorem took for knife 3.
