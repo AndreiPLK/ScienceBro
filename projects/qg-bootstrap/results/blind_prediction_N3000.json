@@ -1,0 +1,35 @@
+{
+ "claim": "a parameter-free edge model predicted, BEFORE this computation, the exact integer index at which the negative Gegenbauer coefficients of q stop at N = 3000, and it is right",
+ "predicted_before_the_run": 204,
+ "computed_exactly": 204,
+ "signs_near_transition": {
+  "200": "-",
+  "202": "-",
+  "204": "-",
+  "206": "+",
+  "208": "+",
+  "210": "+"
+ },
+ "outside_predicted_signs": {
+  "204": "-",
+  "206": "+"
+ },
+ "parameters": {
+  "N": 3000,
+  "lam": "1/10",
+  "gamma": "6"
+ },
+ "negatives_found": 103,
+ "method": "exact rational arithmetic; coefficients via the DLMF 18.18.17 connection sum (O(N) memory) rather than basis peeling; the formula path was verified against the peeling path on three (n,lam,gamma) triples first, and that check caught an off-by-one in the Pochhammer index before this run",
+ "why_it_matters": "the model has no free parameters and used no coefficient at N=3000. A blind hit on an exact integer is much stronger evidence for the edge mechanism than any post-hoc fit, and it is the mechanism that explains why positivity returns at large levels.",
+ "still_open": "this confirms the MECHANISM, not the theorem. The uniform-in-m steps (the edge lemma with explicit errors, and no new negative branch above the edge zone) remain unproved.",
+ "next": "same test at N = 10000, where the registered prediction is 310",
+ "git": "b85c3aad2e3a",
+ "git_full": "b85c3aad2e3a764c0cf963b648796f1bdf7d2f61",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}

@@ -74,6 +74,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  blind_prediction_N3000.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   boundary_N80_mu0.json:
     added: '2026-08-13'
     note: referenced by a paper, document or lab module
