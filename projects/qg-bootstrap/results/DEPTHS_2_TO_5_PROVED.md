@@ -77,3 +77,14 @@ some intermediate exponent/coefficient to interact with the specific K range
 -- NOT investigated further tonight. Next session: instrument build_branch
 term-by-term at this exact failing point and compare each partial sum against
 the independent method's.
+
+
+## Depth 6 failure window, precisely scoped (final check before deadline)
+
+Full scan K=3..30, c in {1/1000, 1/100}: failures ONLY at **even parity,
+K in [7,11]**, only at these very small c (c=5/100 and above all pass, per
+the earlier narrower scan). Odd parity never failed in any test tonight.
+K<=6 and K>=12 (even) are clean. This is a narrow, precisely bounded window
+-- next session can start by comparing build_branch's term-by-term output
+against the independent knife_sign_via_beta_formula at, e.g., K=9, c=1/100,
+rather than searching blind.
