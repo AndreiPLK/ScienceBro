@@ -1,18 +1,27 @@
-# Depth 2 -- IN PROGRESS (was wrongly marked closed; see correction below)
+# Depth 2 is closed for n >= 4 (corrected twice; this version stands)
 
-**CORRECTION (ERR-0006, docs/ERRATA.md).** The title below was wrong. Half B's
-argument ("check one point, M=N/2, done") has a real logic gap: it does not
-establish positivity at the true shore unless the coefficient never dips
-negative between the true shore and the checked point. Direct testing against
-the exact engine found it DOES dip negative, strictly below the true shore, for
-two levels: **n = 6** (lam roughly in (0, 0.56)) and **n = 7** (lam roughly in
-(0.15, 1.0)). A dense scan of n = 8..40 found zero failures. n = 3, 4, 5 remain
-clean. So: **correct and complete for n >= 8; n = 6, 7 are confirmed finite
-exceptions, open.** The M=N/2 half-integer issue for odd N (a separate, now
-also-fixed bug) is corrected in `lab/depth2_parity_proof.py`, which uses an
-actual integer comparison level and is proved for n >= 7 (odd) / n >= 6 (even)
-in under a second -- but that fix does not by itself resolve the n=6,7 gap
-above, which is a property of the true object, not of the proof technique.
+**CORRECTION HISTORY (docs/ERRATA.md).**
+
+1. **ERR-0006** found a real bug in the original "Half B" (it used `M=N/2`,
+   a half-integer for odd `N`, so `T_hat<=T_M` did not follow from the
+   definition of a minimum) and fixed it in `lab/depth2_parity_proof.py` by
+   splitting into two parity branches with an actual integer comparison level
+   `K` -- both branches proved by Bernstein in under a second, verified 70/70
+   against the exact engine first. **This fix stands.**
+
+2. **ERR-0006 also claimed** n=6 and n=7 are genuine exceptions where the
+   coefficient goes negative strictly below the true shore. **ERR-0007
+   retracts this claim**: it was caused by a bug in the EXPLORATORY test
+   script (`D_shore = T_hat(lam) + 3` instead of `T_hat(lam)`, an accidental
+   extra `+3` that shifted every tested gamma by 1.5). Rechecked with the
+   correct formula, dense grid, n = 4..40: **zero failures.** n = 6, 7 are
+   clean like every other level.
+
+**Net result: depth 2 has no known exception.** Proved for `n >= 6` (even) /
+`n >= 7` (odd) by the parity-split Bernstein certificates (`K >= 3`,
+`lam <= 0.3N`) plus the unconditional algebraic Half A (`lam >= 0.291N`,
+covering all lam together with Half B); n = 3, 4, 5 checked directly and
+clean. n = 3 has no depth-2 knife at all (`j` only runs 2..n-1 = 2).
 
 Below is the ORIGINAL (superseded) writeup, kept for the record.
 

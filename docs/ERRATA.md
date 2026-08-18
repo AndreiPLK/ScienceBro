@@ -209,7 +209,7 @@ and saying otherwise was rhetoric, not a result.
 excludable for fixed low m from the Gamma integral. The gap is a late negative
 BULK coefficient `a_m` with `m ~ rho N`. That is now the statement to attack.
 
-## ERR-0006 (2026-08-18): sympy engine ban violation, PLUS a real logic gap it exposed
+## ERR-0008 (2026-08-18): sympy engine ban violation, PLUS a real logic gap it exposed
 
 **What was wrong, part 1 (engine).** `lab/depth_proof.py` imported sympy with a
 comment claiming "symbolic setup only; bounds are computed on flint" -- false.
@@ -257,3 +257,38 @@ already correctly does), or (b) an explicit monotonicity proof. Checking a
 single endpoint is not the same as checking the interval, and small n is where
 this kind of gap actually bites -- check small n directly, at fine grain, near
 the true (not proxy) boundary, before calling anything closed.
+
+## ERR-0009 (2026-08-18): ERR-0008's "n=6,7 exceptions" was MY OWN bug, not physics
+
+**Retracting part of ERR-0008.** The claim "depth-2 negative strictly below
+the true shore at n=6,7" was built on a bug in the exploratory test script,
+not a property of the object. The script computed
+
+    D_shore = T_hat(lam) + 3
+
+and then read off `gamma = (D-3)/2` from that -- but `T_hat(lam)` **already
+equals** the shore's `D` value (since `gamma_shore = (T_hat-3)/2` by
+definition, so `D_shore = 2*gamma_shore+3 = T_hat`, no extra `+3`). Adding it
+anyway shifted every tested gamma up by 1.5, so the script was testing
+`gamma_shore_true + 1.5`, never the actual shore.
+
+**Rechecked with the correct formula** (`gamma_shore = T_hat(lam)/2 - 3/2`,
+no extra offset), dense grid, n = 4..40, lam from 0.001 to 5, at the true
+shore and just below it: **zero failures.** n=6 and n=7 are clean, exactly
+like every other level tested. There is no exception.
+
+**So `D2_COMPLETE.md`'s correction header is itself partly wrong and is now
+corrected again:** the sympy-ban fix and the odd-N parity fix (both real,
+both still stand, `depth2_parity_proof.py` verified 70/70 against the exact
+engine) are unaffected. But depth 2 is **NOT** limited to `n >= 8` -- it holds
+for every `n >= 4` tested, and the Bernstein certificates (parity-split,
+`K >= 3`) plus the direct checks (n = 3, 4, 5, and now 6, 7 too) leave no
+known gap.
+
+**Lesson, added to the scientist skill:** when a "shock finding" contradicts
+hundreds of thousands of prior zero-failure certificates, check the
+EXPLORATORY script's own arithmetic against the DEFINITION line by line
+before trusting the finding -- especially the `D <-> gamma` conversion
+(`D = 2*gamma+3`), which has exactly the kind of `+3`-shaped trap that bit me
+here. A surprising result is more likely to be a bug in new code than a
+40-year-old shore formula being wrong.
