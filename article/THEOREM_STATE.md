@@ -442,3 +442,40 @@ structure and identifies the marginal knives; it does not by itself close the
 finite-lam theorem.
 
 Written up as results/SCALING_LIMIT_THEOREM.md.
+
+## 2026-08-18 04:46 -- the tangency is approached from the SAFE side (asymptotics closed)
+
+The scaling-limit form says the even knives vanish exactly on
+d = 2 rho + 12 + 6/rho, whose minimum over rho is the shore asymptote
+12 + 4 sqrt(3) at rho* = sqrt(3). Two things finish the asymptotic question:
+
+1. STRICTLY BELOW THE SHORE the leading term already settles it. For d < the
+   curve, the bracket (d rho - 2 rho^2 - 12 rho - 6) is negative; knife 4 carries
+   it to an ODD power with a minus sign in front, so the leading term is positive.
+   Since the shore is the MINIMUM of the curve, d < shore implies d < curve(rho)
+   for every rho, hence every knife is positive at leading order.
+
+2. ON THE CURVE the leading term vanishes and the next order decides. Substituting
+   D = (2 rho + 12 + 6/rho) lam exactly and expanding:
+
+     j = 4: -12 rho (rho+1)^2 (128 rho^4 - 972 rho^3 + 810 rho^2 + 288 rho - 117)
+     j = 6: 1584 rho^2 (rho+1)^4 (2 rho^2 - 6 rho - 3)
+            (256 rho^4 - 1692 rho^3 + 738 rho^2 + 576 rho - 45)
+
+   At the tangency rho = sqrt(3) these are exactly
+
+     j = 4:  22896 sqrt(3) + 128952        = 1.68609e5   > 0
+     j = 6:  1811652480 sqrt(3) + 3362078016 = 6.49995e9 > 0
+
+   both strictly positive. Moreover the quartic for j = 4 has real roots at
+   -0.439, 0.267, 1.182, 6.584, so the subleading term is positive on the whole
+   interval rho in (1.182, 6.584) -- and rho* = sqrt(3) = 1.732 sits comfortably
+   inside it, not on its edge.
+
+CONCLUSION for the scaling limit: the even knives touch the shore asymptote from
+the SAFE side. They do not cut into the allowed region even in the limit, and the
+tangency is not a knife-edge in rho either.
+
+That closes the asymptotic question I posed at the start of the night ("does the
+fourth knife survive as lam grows?"). What remains is the finite-lam statement,
+where the margin is 1 + C/n and the exponentially small quantities live.
