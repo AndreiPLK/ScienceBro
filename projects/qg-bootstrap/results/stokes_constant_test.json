@@ -1,0 +1,51 @@
+{
+ "claim": "the Region A threshold constant is 4.730616..., NOT 3+sqrt(3)=4.732050808",
+ "method": "exact bisection of lam*/n at fixed n, every Gegenbauer coefficient of q checked at the shore; then Richardson extrapolation assuming lam*/n = c_inf - A/n, done separately in the two parity classes n mod 4",
+ "measured": [
+  {
+   "n": 100,
+   "n_mod_4": 0,
+   "lam_star_over_n": 4.727823299
+  },
+  {
+   "n": 200,
+   "n_mod_4": 0,
+   "lam_star_over_n": 4.729216596
+  },
+  {
+   "n": 102,
+   "n_mod_4": 2,
+   "lam_star_over_n": 4.718153761
+  },
+  {
+   "n": 202,
+   "n_mod_4": 2,
+   "lam_star_over_n": 4.72431988
+  }
+ ],
+ "extrapolated": {
+  "n_mod_4=0": 4.730611,
+  "n_mod_4=2": 4.73061,
+  "finite_size_A": {
+   "n_mod_4=0": 0.279,
+   "n_mod_4=2": 1.271
+  }
+ },
+ "candidates": {
+  "outside_stokes_c0": 4.730616445749216,
+  "three_plus_sqrt3": 4.732050807568877
+ },
+ "verdict": "two independent parity classes with very different finite-size constants agree with c0 to 6e-6 and miss 3+sqrt(3) by 1.44e-3, i.e. by 250 times as much. The distance to c0 also HALVES when n doubles, confirming the A/n form; the distance to 3+sqrt(3) does not.",
+ "caveat": "extrapolation from two points per class. n = 400, 402 queued; each bisection there exceeds 10 minutes of exact arithmetic.",
+ "credit": "the constant and the parity-splitting were predicted by the outside analysis BEFORE this test; this side only measured.",
+ "git": "91bdb2902724",
+ "git_full": "91bdb2902724e4399e837cac7a7cad65769c1e2d",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/threshold_table.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}

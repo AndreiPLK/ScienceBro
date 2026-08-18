@@ -656,12 +656,20 @@ artefacts:
     added: '2026-08-18'
     note: same step-6 artefact as FROZEN_PREDICTION_blocks.md
     status: retracted
+  stokes_constant_test.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   t2n6_law_check.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
   t2n6_window_vs_shore.json:
     added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  threshold_table.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   vs_d_clock.json:

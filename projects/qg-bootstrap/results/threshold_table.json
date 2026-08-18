@@ -1,0 +1,59 @@
+{
+ "claim": "exact thresholds n*(lam): q is dirty at n*-1 and clean at n*, every Gegenbauer coefficient checked in exact rational arithmetic",
+ "tests": "the outside memorandum's coarse endpoint model n* ~ exp(2 gamma_shore/(lam+1))",
+ "independently_known": {
+  "1/20": 516,
+  "1/10": 660,
+  "1/5": 1056,
+  "1/8": 744
+ },
+ "rows": [
+  {
+   "lam": "1/40",
+   "shore_gamma": "10083/3200",
+   "n_star": 454,
+   "verified_dirty_at": 453,
+   "coarse_prediction": 467.9,
+   "coarse_error_pct": 3.1,
+   "seconds": 28.5
+  },
+  {
+   "lam": "1/16",
+   "shore_gamma": "1731/512",
+   "n_star": 550,
+   "verified_dirty_at": 549,
+   "coarse_prediction": 580.5,
+   "coarse_error_pct": 5.6,
+   "seconds": 35.5
+  },
+  {
+   "lam": "1/8",
+   "shore_gamma": "483/128",
+   "n_star": 744,
+   "verified_dirty_at": 743,
+   "coarse_prediction": 819.2,
+   "coarse_error_pct": 10.1,
+   "seconds": 102.3
+  },
+  {
+   "lam": "1/6",
+   "shore_gamma": "97/24",
+   "n_star": 906,
+   "verified_dirty_at": 905,
+   "coarse_prediction": 1021.0,
+   "coarse_error_pct": 12.7,
+   "seconds": 305.4
+  }
+ ],
+ "command": "python lab/threshold_table.py",
+ "git": "91bdb2902724",
+ "git_full": "91bdb2902724e4399e837cac7a7cad65769c1e2d",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/threshold_table.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}
