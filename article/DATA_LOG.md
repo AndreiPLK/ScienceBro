@@ -3270,3 +3270,41 @@ The minimising level grows with lam roughly like 1.7 lam for knife 4 (n = 102 at
 lam = 60) and like 3 lam for knife 5 (n = 179 at lam = 60); the scan range is
 tied to lam and reported per point, after an earlier fixed cap at n = 120
 produced a spurious upturn.
+
+## 2026-08-18 04:42 -- THE SCALING LIMIT OF THE WHOLE FAMILY, IN CLOSED FORM
+
+Taking n = rho lam, D = d lam and lam -> infinity at FIXED j, every term of the
+closed form becomes (-1)^t C(j-1,t) x^t with x = rho(d+4rho)/(6(rho+1)^2), because
+the t! comes from E_2t(n) = n^(3t)/(3^t t!) + ... and the falling factorial
+(j-1)...(j-t) comes from R_t. Newton's binomial then sums it for every j at once:
+
+    knife_j  ->  (2 rho^2 + 12 rho + 6 - d rho)^(j-1) / (6 (rho+1)^2)^(j-1)
+
+Consequences, immediate:
+
+* j ODD  -> even power -> never negative. The odd knives are safe at leading
+  order. This is the recorded parity law, now with its mechanism.
+* j EVEN -> odd power -> the knife holds exactly while d < 2 rho + 12 + 6/rho,
+  whose minimum over rho is at rho = sqrt(3) and equals 12 + 4 sqrt(3) --
+  EXACTLY the shore asymptote. The even knives are therefore exactly marginal
+  against the shore in the scaling limit: tangent, not crossing.
+
+That explains the finite-lam measurements without any fitting: knife 4 descends
+to D*/shore = 1.0042 by lam = 60 while knives 3 and 5 level off at 1.087 and
+1.066.
+
+PREDICTION MADE AND THEN TESTED: the mechanism says knife 6 must carry an ODD
+power of the bracket. Computed afterwards: -385 rho^5 (d rho - 2 rho^2 - 12 rho
+- 6)^5. Power 5, odd, as predicted; its closed form also agrees with the exact
+engine on 24 cells with zero disagreements. E_10(n) was derived and verified on
+both parities to n = 49 to make that test possible.
+
+LIMITATIONS, on the record: the limit is at FIXED j and is not uniform in j (the
+approach E_2t -> n^(3t)/(3^t t!) is markedly slower for larger t: at n = 160 the
+ratio is 0.98 for t = 1 but 0.62 for t = 8). It is a leading-order statement; ON
+the curve the leading term vanishes and subleading terms decide, which is the
+same delicacy the published blade theorem handles for j = 3. So this explains the
+structure and identifies the marginal knives; it does not by itself close the
+finite-lam theorem.
+
+Written up as results/SCALING_LIMIT_THEOREM.md.
