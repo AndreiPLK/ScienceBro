@@ -1,0 +1,21 @@
+#!/bin/sh
+# The fast-engine law, enforced at commit time instead of by memory.
+#
+# Written 2026-08-18 after the third repeat of the same mistake. The law was in
+# CLAUDE.md and a test already caught it -- but I pushed anyway because I ran
+# only ruff before committing. A rule that needs remembering fails; this does not.
+#
+# Bypass (only with a stated reason, and say so in the commit message):
+#   git commit --no-verify
+set -e
+echo "pre-commit: fast-engine guard + lint"
+uv run pytest tests/test_fast_engine.py -q || {
+  echo ""
+  echo "BLOCKED: a new computational module is on the slow engine."
+  echo "Port it to flint, or mark the line with '# ENGINE-OK: <reason>'."
+  echo "See CLAUDE.md, ЗАКОН БЫСТРОГО ДВИЖКА."
+  exit 1
+}
+uv run ruff check . --quiet || { echo "BLOCKED: ruff"; exit 1; }
+uv run ruff format --check . --quiet || { echo "BLOCKED: ruff format (run: uv run ruff format .)"; exit 1; }
+echo "pre-commit: ok"

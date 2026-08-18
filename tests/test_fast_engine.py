@@ -55,7 +55,12 @@ def test_new_lab_modules_use_the_fast_engine():
         if path.relative_to(ROOT).as_posix() in debt:
             continue
         src = path.read_text(encoding="utf-8")
-        if MARKER in src or "flint" in src:
+        # An IMPORT of flint exempts a file; a mere mention in a comment does
+        # not. That hole let knife4_proof.py through once already.
+        imports_flint = (
+            "from flint import" in src or "import flint" in src or "from fastnum import" in src
+        )
+        if MARKER in src or imports_flint:
             continue
         if not HEAVY.search(src):
             continue

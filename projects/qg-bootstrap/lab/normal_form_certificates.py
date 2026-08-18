@@ -24,6 +24,9 @@ D < T_hat(lam) is checked before the cell is claimed.
 Run: python lab/normal_form_certificates.py -> results/normal_form_certificates.json
 """
 
+# ENGINE-OK: Fraction here is interface only -- the (lam, D) grid values; every
+# coefficient is computed by jacobi_coeff_rec on the flint engine.
+
 from __future__ import annotations
 
 import json

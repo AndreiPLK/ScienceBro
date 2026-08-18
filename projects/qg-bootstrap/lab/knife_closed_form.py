@@ -35,6 +35,10 @@ the flint engine (see CLAUDE.md, the fast-engine law).
 Run: python lab/knife_closed_form.py -> results/knife_closed_form.json
 """
 
+# ENGINE-OK: Fraction here is interface only -- parameter values (lam, D) handed
+# to jacobi_coeff_rec, which computes on flint. The symbolic derivation is sympy
+# by design (CLAUDE.md allows sympy for derivation, not for bulk arithmetic).
+
 from __future__ import annotations
 
 import json
