@@ -44,7 +44,10 @@ def clean(n: int, lam: fmpq, g: fmpq) -> bool:
     # The appetite grows with n, so the check belongs HERE, not before the loop.
     # On 18 August the lam = 1/3 case walked to degree ~2300 and took the machine
     # from 31 GB free to 0.3 GB while a pre-flight check had happily passed.
-    machine_guard.check(6.0, what=f"n={n}, lam={lam}")
+    # Floor 4 GB, not the module default of 6: this job is the only heavy thing
+    # running, and 4 GB still leaves the founder room to start a game -- at which
+    # point free memory drops, the guard fires, and this job yields to him.
+    machine_guard.check(4.0, what=f"n={n}, lam={lam}")
     a = to_gegenbauer(q_poly(n, lam), g)
     return not any(c < 0 for c in a)
 
