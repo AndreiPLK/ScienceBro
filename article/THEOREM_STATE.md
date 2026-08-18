@@ -651,3 +651,60 @@ WHAT REMAINS. Prove L'(z) + m(1-kappa)/(z-u)^2 > 0 along the saddle path. L' is
 explicit and negative (a sum of -2/(z-r_a)^2), so the content is that the
 m-term beats it. That is a concrete inequality about an explicit expression --
 the first time this lemma has had that form.
+
+## ERR-0005 (2026-08-18 11:49) -- the endpoint lemma is FALSE. Counterexample confirmed.
+
+WHAT I CLAIMED (today, hours ago): that for n >= 14 the minimum of the sequence
+C_m is always at an endpoint, so the whole knife family reduces to two cases; and
+that log-concavity holds for n >= 24. I called it "the uniform statement" and
+recorded it as the sharpest form of the problem.
+
+IT IS FALSE. An outside check produced a counterexample and my own exact engine
+reproduces it digit for digit:
+
+    n = 24, lam = 10, D = 177   (the shore is 187.541, so this is admissible)
+    C_m/C_0: 1.000000, 0.568188, 0.470609, ..., 0.308001, 0.305587, 0.312789, ...
+    global minimum at m = 10, strictly interior
+    log-concavity violated at m = 1..16, e.g. C_0 C_2 / C_1^2 = 1.4577
+
+A second one also confirmed: n = 14, lam = 2, D = 39 (shore 39.4), interior local
+minimum at m = 8.
+
+WHY I MISSED IT -- the mechanism, which matters more than the fact. My D-grids
+were ABSOLUTE: 4, 5, 7, 11, 19, 35, 70. At lam = 10 the shore is 187.5, so every
+test I ran there sat below 40 percent of the shore, and the counterexample lives
+at 94 percent of it. I varied D, so my own rule "vary every parameter" was
+formally satisfied -- but the parameter that matters is D RELATIVE TO THE SHORE,
+and on that scale I never left the deep interior at large lam. A grid that looks
+wide in absolute terms can be systematically blind.
+
+NEW RULE, added to the scientist skill: when a region has a moving boundary,
+sample RELATIVE to that boundary (fractions of the shore), never on an absolute
+grid.
+
+WHAT DIES WITH IT:
+* the endpoint-minimum lemma and everything built on it;
+* log-concavity of C_m;
+* today's saddle-point reduction "log-concavity <=> z' > 0". The machinery itself
+  reproduces the exact ratios to 0.003 at n = 40, but at the counterexample it
+  reports z' > 0 everywhere while log-concavity actually fails by 3 percent --
+  i.e. the asymptotics does not resolve the term that decides the question. An
+  asymptotic proof there would have been a proof of a false statement.
+
+WHAT SURVIVES, and it is most of the work:
+* every C_m in BOTH counterexamples is still POSITIVE -- the physics claim is
+  untouched;
+* the Jacobi normal form, the closed forms per knife, the Saalschutz moments, the
+  scaling limit and the parity mechanism, the knife-4 box proof -- all of these
+  are statements about SIGNS, and signs do not depend on the normalisation.
+
+ALSO CORRECTED, from the same outside check:
+* My C_m are RAW integrals, not Jacobi expansion coefficients: the true
+  coefficient is I_m / h_m with an m-dependent h_m (DLMF 18.18.1). Signs are
+  unaffected, but any statement about log-concavity or the location of the
+  minimum is normalisation-dependent, and I had not said which normalisation I
+  meant. That alone made the lemma ill-posed.
+* Strict positivity ON the shore is impossible: at D = T_k(lam) with k the
+  minimising level, that coefficient VANISHES (verified exactly: 0 at lam = 1 and
+  lam = 2). The correct statement is D < shore implies C_m > 0, and D = shore
+  implies C_m >= 0.
