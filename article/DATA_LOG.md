@@ -3108,3 +3108,28 @@ Also measured tonight: the "lowest spin binds" band shrinks with the level as a
 power law rather than vanishing -- 27.3 percent of the cells below the shore at
 n = 12, then 16.1, 11.8, 9.3 at n = 24, 40, 55, i.e. about n^-0.7. So it is a
 genuine feature at every finite level, not a small-n artefact.
+
+## 2026-08-18 03:38 -- the level recursion does NOT split into positivity-preserving steps
+
+The established level recursion G2^(n+2) = G2^(n) (1 - n^2 y)^2 says the level
+gains exactly one new double root, which looks like the ladder. But s = lam+n-1
+changes too, so ALL the old roots move: (a/s)^2 -> (a/(s+2))^2, a SHRINK by
+(s/(s+2))^2.
+
+Tested whether a pure dilation preserves the all-positive property (60 cases,
+n = 9..21, three (lam, D)):
+
+  * SHRINKING breaks it -- 44 failures of 60. c = 9/10 survives everywhere,
+    c = 1/2 already fails at lam = 1, and small c fails always. The extreme is
+    understandable: as c -> 0 the polynomial degenerates to a constant, whose
+    coefficients at m >= 1 are zero rather than positive.
+  * STRETCHING preserves it in every case tested, up to c = 2, even though that
+    pushes roots past u = 1 and outside the weight's support.
+
+So the level recursion is the composition of a shrink (not positivity-preserving)
+with a multiplication by the new factor. Both levels are positive, but neither
+step is individually, so induction on levels in this form does not work.
+
+Recorded also because it corrects an intuition: earlier I found that doubling the
+LARGEST single root breaks positivity, and here doubling ALL roots does not.
+Moving one root and moving all of them are genuinely different perturbations.
