@@ -53,24 +53,33 @@ def T_k(lam: fmpq, k: int) -> fmpq:
 
 
 def T_hat(lam: fmpq, kmax: int | None = None) -> fmpq:
-    """min over k >= 3 of T_k -- the binding shore.
+    """min over k >= 3 of T_k -- the binding shore, with an EXACT stopping certificate.
 
-    The minimising k sits at k ~ sqrt(3) lam (measured: k/lam = 1.7320 at
-    lam = 100..900), so a FIXED cap silently truncates. A cap of 400 returned
-    10547 instead of 9462 at lam = 500 -- an 11 percent error in the shore, which
-    is a wrong answer, not a slow one. The cap therefore scales with lam, and
-    `_argmin_is_interior` refuses to let a truncated minimum pass unnoticed.
+    History worth keeping. The first version used a fixed cap of 400 and silently
+    truncated: at lam = 500 it returned 10547 instead of 9462, an 11 percent error
+    in the shore, which is a wrong answer rather than a slow one. The second
+    version scaled the cap as 4 lam, which was right in practice but still a
+    heuristic -- nothing PROVED that the minimum was not further out.
+
+    It can be proved, and the argument is one line (owed to the outside analysis,
+    section 8.1). Every term of T_k is positive, so
+
+        T_k(lam) > 2k .
+
+    Hence once the running minimum M satisfies 2K >= M for some integer K, every
+    k >= K has T_k > 2k >= 2K >= M and cannot improve on it. Scanning to that K is
+    a complete search, not a truncated one. No cap is needed and none is used.
     """
-    if kmax is None:
-        kmax = max(400, int(4 * float(lam)) + 20)
-    best, bk = T_k(lam, 3), 3
-    for k in range(4, kmax + 1):
+    best, k = T_k(lam, 3), 3
+    while True:
+        k += 1
+        if 2 * k >= best:  # certificate: all further k are worse, exactly
+            return best
         t = T_k(lam, k)
         if t < best:
-            best, bk = t, k
-    if bk >= kmax:
-        raise ValueError(f"T_hat minimum hit the cap at k={bk}; raise kmax")
-    return best
+            best = t
+        if kmax is not None and k >= kmax:
+            raise ValueError(f"T_hat scan passed kmax={kmax} without a certificate")
 
 
 def gegenbauer(kmax: int, gamma: fmpq) -> list[fmpq_poly]:
