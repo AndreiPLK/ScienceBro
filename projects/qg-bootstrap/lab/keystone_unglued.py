@@ -66,32 +66,50 @@ RES = Path(__file__).resolve().parents[1] / "results"
 V_LO = fmpq(8, 5)
 V_HI = fmpq(2)
 
-# Below this lam the window [V_LO*lam, V_HI*lam] is shorter than 1 and need not
-# contain any integer, so step (b) of the argument has nothing to stand on and
-# the polynomial is legitimately negative there. lam < 5/2 is a genuinely
-# separate region, not covered by this file.
+# Below lam = 5/2 the window [V_LO*lam, V_HI*lam] is shorter than 1 and need
+# not contain any integer, so step (b) has nothing to stand on. Independently
+# MEASURED, step (c) dies at the same place: monotonicity of the knife in D
+# held on 120 of 120 configurations at lam >= 5/2 and failed on 33 of 96 below
+# it. Two different requirements, one boundary.
 LAM_MIN = fmpq(5, 2)
 
-# Where the direct lam piece hands over to the compactified tail. The two
-# pieces meet here, so together they cover all lam >= LAM_MIN.
-LAM_SPLIT = fmpq(200)
+# The rectangular sufficient condition for lam >= LAM_MIN: with K >= 3 we have
+# N >= 6, so c >= 5/12 forces lam = c*N >= 5/2. Points with lam >= 5/2 but
+# c < 5/12 (large N, moderate lam) are a SEPARATE region this file does not
+# cover, and are recorded as an open gap rather than quietly included.
+C_MIN = fmpq(5, 12)
+
+# Where the direct c piece hands over to the compactified tail; the two pieces
+# meet here, so together they cover all c >= C_MIN.
+C_SPLIT = fmpq(50)
 
 
 # --------------------------------------------------------------------------
 # Multivariate polynomial over Q: dict[(e0, e1, ..)] -> fmpq. Same design as
 # depth_d_proof.BiPoly, generalised to n slots because the unglued argument
 # needs a THIRD variable (v) that the glued one did not have.
-# Slot 0 = "K" (level), slot 1 = "lam", slot 2 = "v" (= k_s/lam).
+# Slot 0 = "K" (level), slot 1 = "c" (= lam/N), slot 2 = "v" (= k_s/lam).
 #
-# NOTE lam is an INDEPENDENT variable here, not the old c = lam/N. That change
-# is forced by the domain: the argument needs an INTEGER k_s >= 3 inside the
-# window [8/5*lam, 2*lam], and the window has length 2*lam/5, so it contains an
-# integer exactly once lam >= 5/2 (and then that integer is >= 4). With the old
-# c-parametrisation "lam >= 5/2" is the non-rectangular condition c >= 5/(2N),
-# and a Bernstein box in (K, c) inevitably swept in points with k_s < 3, where
-# T_hat <= T_{k_s} is simply FALSE and the polynomial is legitimately negative.
-# (Measured: every non-positive point found in the first (K,c,v) run had
-# k_s < 0.25.) In (K, lam, v) the domain is an honest box.
+# WHY c AND NOT lam, decided by measurement, not taste. The argument needs an
+# INTEGER k_s >= 3 in the window [8/5*lam, 2*lam]; that window is longer than 1
+# exactly once lam >= 5/2. A first version therefore made lam an independent
+# coordinate, since "lam >= 5/2" is then a box face while in c it is the
+# slanted condition c >= 5/(2N). That version proved the near region but JAMMED
+# on the tail: 69253 boxes and failure, and deeper bisection (214021 boxes),
+# a leading-term bound (threshold 3.5e13, useless) and a geometric ladder
+# (301829 boxes on ONE rung) all failed too. Printing the open boxes back in
+# the original variables showed every single one sat in the corner where
+# K -> inf AND lam -> inf TOGETHER -- a two-variable degeneration, i.e. the
+# wrong coordinate, not a resource problem. In (K, c) that corner is an
+# ordinary finite point because c = lam/N stays bounded there, and the same
+# tail closed in ONE box.
+#
+# The integrality condition is recovered rectangularly instead: for K >= 3 we
+# have N >= 6, so
+#       c >= 5/12   ==>   lam = c*N >= 5/2,
+# which is a box face in c. The remaining sliver (lam >= 5/2 but c < 5/12,
+# i.e. large N with moderate lam) is NOT covered by this file -- see
+# C_MIN below.
 # --------------------------------------------------------------------------
 NVARS = 3
 
@@ -199,12 +217,13 @@ def build_branch(parity: str, d: int, e_polys: dict) -> NPoly:
     stayed invisible until depth 6.
     """
     K = NPoly.var(0)
-    lam = NPoly.var(1)
+    c = NPoly.var(1)
     v = NPoly.var(2)
     one = NPoly.const(1)
 
     N = K * fmpq(2) if parity == "even" else K * fmpq(2) + one
     m = N - NPoly.const(d)
+    lam = c * N
     X = (N + lam) * (N + lam)
 
     # k_s = v * lam, the shore-bounding value -- INDEPENDENT of the level now.
@@ -444,6 +463,92 @@ def prove_box(poly: NPoly, box, max_depth: int = 24):
     return (not open_boxes), boxes, open_boxes
 
 
+def compactify_from_zero(poly: NPoly, slot: int) -> NPoly:
+    """Map [0, infinity) -> [0,1) via x = t/(1-t), clearing (1-t)^deg.
+
+    Distinct from `compactify`, which needs a strictly positive left endpoint.
+    Used for the wedge coordinate z, which starts at 0.
+    """
+    deg = poly.max_deg(slot)
+    pw = [{0: fmpq(1)}]
+    for _ in range(deg):
+        prev = pw[-1]
+        cur: dict = {}
+        for p, cf in prev.items():
+            cur[p] = cur.get(p, fmpq(0)) + cf
+            cur[p + 1] = cur.get(p + 1, fmpq(0)) - cf
+        pw.append(cur)
+    out: dict = {}
+    for expo, coeff in poly.d.items():
+        e = expo[slot]
+        for p, cf in pw[deg - e].items():
+            key = list(expo)
+            key[slot] = e + p
+            k = tuple(key)
+            out[k] = out.get(k, fmpq(0)) + coeff * cf
+    return NPoly({k: v for k, v in out.items() if v != 0})
+
+
+def build_wedge(parity: str, d: int, e_polys: dict) -> NPoly:
+    """The region c < C_MIN with lam >= LAM_MIN, as an honest box.
+
+    `build_branch`'s box needs c >= C_MIN = 5/12 to guarantee lam >= 5/2, which
+    leaves out large N at moderate lam. Rather than bound c, substitute the
+    LEVEL:
+        K = 5/(4c) + z,   z >= 0
+    Then N = 2K = 5/(2c) + 2z gives lam = c*N = 5/2 + 2*c*z >= 5/2 for free,
+    and K >= 5/(4c) >= 3 whenever c <= 5/12, also for free. So the wedge is the
+    plain box  c in (0, 5/12] x z in [0, inf) x v in [V_LO, V_HI]  with NO
+    leftover side conditions -- the two boxes together cover every point with
+    lam >= 5/2.
+
+    K is a fraction in c, so every quantity is carried multiplied by the
+    appropriate power of c (cK = c*K, cN = c*N, cm = c*m) to stay polynomial.
+    Slot 0 = c, slot 1 = z, slot 2 = v.
+    """
+    c = NPoly.var(0)
+    z = NPoly.var(1)
+    v = NPoly.var(2)
+
+    cK = NPoly.const(fmpq(5, 4)) + c * z
+    cN = cK * fmpq(2) if parity == "even" else cK * fmpq(2) + c
+    lam = cN  # this is c*lam_true; every companion below carries the same c-power
+    cm = cN - c * NPoly.const(d)
+    X = (cN + c * lam) * (cN + c * lam)
+    k_s = v * lam
+    B = lam * lam + (k_s * fmpq(2) - fmpq(2) * c) * lam + c * c
+    kk2 = k_s * (k_s - fmpq(2) * c)
+    Qg = kk2 * fmpq(2)
+    Pg = (
+        (k_s * fmpq(2) - fmpq(3) * c) * B * fmpq(3)
+        + k_s * k_s * (k_s - fmpq(2) * c) * fmpq(2)
+        - kk2 * fmpq(3) * c * c
+    )
+
+    total = NPoly.const(0)
+    half = NPoly.const(fmpq(1, 2))
+    two_m_Qg = (cm * fmpq(2)) * Qg
+    L = [two_m_Qg + Pg + Qg * c * fmpq(1 + i) for i in range(d)]
+    for k in range(d + 1):
+        j = d - k
+        coeff_N = e_polys[k] * falling_poly(k, j) / poch(fmpq(1), j)
+        coeffs = coeff_N.coeffs()
+        deg = len(coeffs) - 1
+        cb = NPoly.const(0)
+        for i, co in enumerate(coeffs):
+            cb = cb + NPoly.const(co) * (cN**i) * (c ** (deg - i))
+        cb = cb * fmpq((-1) ** k)
+
+        num = NPoly.const(1)
+        for i in range(j):
+            num = num * (cm + c * half + c * NPoly.const(i))
+        comp = NPoly.const(1)
+        for i in range(j, d):
+            comp = comp * L[i]
+        total = total + cb * num * comp * (X**j) * (Qg**j)
+    return total
+
+
 def compactify(poly: NPoly, slot: int, x_min) -> NPoly:
     """Map [x_min, infinity) -> [0,1) via x = x_min/(1-t), clearing (1-t)^deg."""
     deg = poly.max_deg(slot)
@@ -475,7 +580,7 @@ def run_depth(d: int) -> dict:
     # lam starts at LAM_MIN=5/2 (below it the window holds no integer k_s, so
     # the argument does not apply and the polynomial is legitimately negative).
     k_values = (3, 4, 5, 6, 10, 25, 100, 300)
-    c_values = [(5, 2), (3, 1), (10, 1), (100, 1), (5000, 1)]
+    c_values = [(5, 12), (1, 1), (5, 1), (50, 1), (500, 1)]
     v_values = [(8, 5), (7, 4), (19, 10), (2, 1)]
     bad = self_check(d, e_polys, k_values, c_values, v_values)
     n_trials = len(k_values) * len(c_values) * len(v_values) * 2
@@ -504,16 +609,23 @@ def run_depth(d: int) -> dict:
         # polynomial on the direct piece proved cleanly in 3687.
         poly_K = compactify(H, 0, 3)
         ok_lo, boxes_lo, open_lo = prove_box(
-            poly_K, [(fmpq(0), fmpq(999, 1000)), (LAM_MIN, LAM_SPLIT), (V_LO, V_HI)]
+            poly_K, [(fmpq(0), fmpq(999, 1000)), (C_MIN, C_SPLIT), (V_LO, V_HI)], max_depth=30
         )
-        poly_Kc = compactify(poly_K, 1, LAM_SPLIT)
+        poly_Kc = compactify(poly_K, 1, C_SPLIT)
         ok_hi, boxes_hi, open_hi = prove_box(
             poly_Kc, [(fmpq(0), fmpq(999, 1000)), (fmpq(0), fmpq(999, 1000)), (V_LO, V_HI)]
         )
+        # the wedge: c < C_MIN with lam >= LAM_MIN, as its own box
+        W = build_wedge(parity, d, e_polys)
+        Wz = compactify_from_zero(W, 1)
+        ok_w, boxes_w, open_w = prove_box(
+            Wz, [(fmpq(0), C_MIN), (fmpq(0), fmpq(999, 1000)), (V_LO, V_HI)]
+        )
         dt = time.time() - t1
         print(
-            f"  [{parity}] lo({float(LAM_MIN)}<=lam<={float(LAM_SPLIT)})={ok_lo}({boxes_lo}b) "
-            f"hi(lam>={float(LAM_SPLIT)})={ok_hi}({boxes_hi}b)  ({dt:.0f}s)",
+            f"  [{parity}] lo({float(C_MIN):.4f}<=c<={float(C_SPLIT)})={ok_lo}({boxes_lo}b) "
+            f"hi(c>={float(C_SPLIT)})={ok_hi}({boxes_hi}b) "
+            f"wedge(c<{float(C_MIN):.4f})={ok_w}({boxes_w}b)  ({dt:.0f}s)",
             flush=True,
         )
         result["branches"][parity] = {
@@ -527,25 +639,37 @@ def run_depth(d: int) -> dict:
             "hi_proved": ok_hi,
             "hi_boxes": boxes_hi,
             "hi_open": len(open_hi),
+            "wedge_proved": ok_w,
+            "wedge_boxes": boxes_w,
+            "wedge_open": len(open_w),
         }
     result["proved_for_all_c"] = all(
-        result["branches"][p]["lo_proved"] and result["branches"][p]["hi_proved"]
+        result["branches"][p]["lo_proved"]
+        and result["branches"][p]["hi_proved"]
+        and result["branches"][p]["wedge_proved"]
         for p in ("even", "odd")
     )
     result["seconds"] = round(time.time() - t0, 1)
     return result
 
 
-def main() -> int:
-    depths = [int(x) for x in sys.argv[1:]] or [2]
-    out = []
-    for d in depths:
-        try:
-            out.append(run_depth(d))
-        except Exception as exc:  # noqa: BLE001 - one bad depth must not kill the queue
-            print(f"depth {d} FAILED: {type(exc).__name__}: {exc}", flush=True)
-            out.append({"depth": d, "error": f"{type(exc).__name__}: {exc}"})
+CLAIM = (
+    "STEP (a) of the unglued keystone argument: the depth-d knife is positive at "
+    "D = T_v(lam) for all REAL v in [8/5, 2], all K>=3, and all c >= C_MIN = 5/12 "
+    "(which forces lam = c*N >= 5/2, since N >= 6). Integrality is NOT used here -- "
+    "it enters only in step (b), where an INTEGER k_s inside the window gives "
+    "T_hat <= T_{k_s} by definition. Step (c) (monotonicity of the knife in D, "
+    "measured clean on 120/120 configurations at lam >= 5/2 and FAILING on 33/96 "
+    "below it) then covers D <= T_hat. NOT covered here: lam >= 5/2 with c < 5/12, "
+    "i.e. large N at moderate lam. See docs/ERRATA.md ERR-0010/ERR-0011 for why "
+    "the older glued argument failed."
+)
 
+
+def _write(out: list) -> Path:
+    """Persist results. Called after EVERY depth, not once at the end: a run
+    that times out on depth 3 must not throw away a proved depth 2 (which is
+    exactly what happened once)."""
     path = RES / "keystone_unglued.json"
     prev = []
     if path.exists():
@@ -557,12 +681,7 @@ def main() -> int:
     path.write_text(
         json.dumps(
             {
-                "claim": "STEP (a) of the unglued keystone argument: the depth-d knife is "
-                "positive at D = T_v(lam) for all REAL v in [8/5, 2], all K>=3, all c>=0. "
-                "Integrality is NOT used here -- it enters only in step (b), where an "
-                "INTEGER k_s inside the window gives T_hat <= T_{k_s} by definition. Step "
-                "(c) (monotonicity of the knife in D) then covers D <= T_hat. See "
-                "docs/ERRATA.md ERR-0010/ERR-0011 for why the older glued argument failed.",
+                "claim": CLAIM,
                 "runs": sorted(keep + out, key=lambda r: r["depth"]),
                 "command": "python lab/keystone_unglued.py <d> [<d> ...]",
                 **stamp(),
@@ -571,7 +690,20 @@ def main() -> int:
         ),
         encoding="utf-8",
     )
-    print(f"written {path}")
+    return path
+
+
+def main() -> int:
+    depths = [int(x) for x in sys.argv[1:]] or [2]
+    out = []
+    for d in depths:
+        try:
+            out.append(run_depth(d))
+        except Exception as exc:  # noqa: BLE001 - one bad depth must not kill the queue
+            print(f"depth {d} FAILED: {type(exc).__name__}: {exc}", flush=True)
+            out.append({"depth": d, "error": f"{type(exc).__name__}: {exc}"})
+        path = _write(out)
+        print(f"  written {path}", flush=True)
     return 0
 
 

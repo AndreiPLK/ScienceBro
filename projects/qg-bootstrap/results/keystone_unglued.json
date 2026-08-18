@@ -1,5 +1,5 @@
 {
- "claim": "STEP (a) of the unglued keystone argument: the depth-d knife is positive at D = T_v(lam) for all REAL v in [8/5, 2], all K>=3, all c>=0. Integrality is NOT used here -- it enters only in step (b), where an INTEGER k_s inside the window gives T_hat <= T_{k_s} by definition. Step (c) (monotonicity of the knife in D) then covers D <= T_hat. See docs/ERRATA.md ERR-0010/ERR-0011 for why the older glued argument failed.",
+ "claim": "STEP (a) of the unglued keystone argument: the depth-d knife is positive at D = T_v(lam) for all REAL v in [8/5, 2], all K>=3, and all c >= C_MIN = 5/12 (which forces lam = c*N >= 5/2, since N >= 6). Integrality is NOT used here -- it enters only in step (b), where an INTEGER k_s inside the window gives T_hat <= T_{k_s} by definition. Step (c) (monotonicity of the knife in D, measured clean on 120/120 configurations at lam >= 5/2 and FAILING on 33/96 below it) then covers D <= T_hat. NOT covered here: lam >= 5/2 with c < 5/12, i.e. large N at moderate lam. See docs/ERRATA.md ERR-0010/ERR-0011 for why the older glued argument failed.",
  "runs": [
   {
    "depth": 2,
@@ -11,37 +11,43 @@
    ],
    "branches": {
     "even": {
-     "K_deg": 8,
+     "K_deg": 12,
      "c_deg": 8,
      "v_deg": 6,
      "terms": 180,
-     "lo_proved": false,
-     "lo_boxes": 336397,
-     "lo_open": 385,
-     "hi_proved": false,
-     "hi_boxes": 2883,
-     "hi_open": 384
+     "lo_proved": true,
+     "lo_boxes": 2211,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0,
+     "wedge_proved": true,
+     "wedge_boxes": 1,
+     "wedge_open": 0
     },
     "odd": {
-     "K_deg": 8,
+     "K_deg": 12,
      "c_deg": 8,
      "v_deg": 6,
-     "terms": 173,
-     "lo_proved": false,
-     "lo_boxes": 334561,
-     "lo_open": 324,
-     "hi_proved": false,
-     "hi_boxes": 2895,
-     "hi_open": 384
+     "terms": 301,
+     "lo_proved": true,
+     "lo_boxes": 2211,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0,
+     "wedge_proved": true,
+     "wedge_boxes": 1,
+     "wedge_open": 0
     }
    },
-   "proved_for_all_c": false,
-   "seconds": 1316.4
+   "proved_for_all_c": true,
+   "seconds": 25.8
   }
  ],
  "command": "python lab/keystone_unglued.py <d> [<d> ...]",
- "git": "ed74b6796264",
- "git_full": "ed74b6796264f2d97a82f46cadaf192cf63524b4",
+ "git": "df78b023e814",
+ "git_full": "df78b023e814d504adf93e16010888cb79eea2f8",
  "dirty": true,
  "dirty_code_files": [
   "projects/qg-bootstrap/lab/keystone_unglued.py"
