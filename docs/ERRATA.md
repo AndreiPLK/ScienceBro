@@ -150,3 +150,61 @@ ALSO CORRECTED, from the same outside check:
   minimising level, that coefficient VANISHES (verified exactly: 0 at lam = 1 and
   lam = 2). The correct statement is D < shore implies C_m > 0, and D = shore
   implies C_m >= 0.
+
+---
+
+## ERR-0006 (18 August 2026) -- I measured a boundary claim OFF the boundary
+
+**What I wrote, and committed:** "the closed-form condition on `a_{N-2}` IS the
+binding coefficient for `lam >= 4`", supported by exact agreement to six figures
+at `n = 13, lam = 8` and `n = 21, lam = 8`, and at `lam = 16`.
+
+**What is true:** in the regime that actually decides Region A -- `lam ~ 4.72 n`
+-- the binding coefficient is `a_1` (and `a_3` for some residues of n mod 4), not
+`a_{N-2}`. Verified exactly on this claim's own terms:
+
+| n | lam/n = 4.70 | lam/n = 4.72 |
+|---|---|---|
+| 20 | negative index [1] | clean |
+| 24 | negative index [1] | clean |
+| 28 | negative index [1] | negative index [1] |
+| 40 | negative index [1] | negative index [1] |
+
+`a_{N-2}` is positive with an enormous margin at every one of those points.
+
+**The mechanism of the error, and it is a NEW one for me.** My checks at
+`lam = 8, 16` were real and correct -- but they sit at `lam/n` of 0.6 and 0.38,
+while the boundary lives at `lam/n = 4.72`. I verified the claim where it was
+cheap to verify, and then stated it in a range (`lam >= 4`) that contains the
+place I had never looked. This is not the ERR-0005 error (one value of a
+parameter); it is subtler: I sampled the right parameter over the wrong RATIO.
+
+**NEW RULE, added to the scientist skill:** a claim about a BOUNDARY must be
+measured ON the boundary. If the boundary is a curve `lam = c(n)`, sample along
+that curve, not at fixed convenient values of lam.
+
+**Also corrected, same source -- and this one is strategic.** I wrote that the
+unproved band is finite in n for each lam, and added "and finitely many levels is
+exactly what certificates are for". The first half stands; **the second half was
+unsupported**. The endpoint model gives `n*(lam) ~ exp(2 gamma_shore/(lam+1))`,
+which tends to `exp(12 + 4 sqrt 3) ~ 1.66e8` as lam grows. "Finite" here may mean
+1e8, not 1e3, and our certificates reach 1e3. Region A only overtakes that scale
+around `lam ~ 7.9e8`. So the band is finite and STILL out of computational reach,
+and saying otherwise was rhetoric, not a result.
+
+**What survives and is confirmed by the same outside check:**
+* the exact transitions, reproduced digit for digit by our engine:
+  `lam = 1/20`: n = 515 has `a_0 < 0`, n = 516 clean; `lam = 1/10`: n = 659 has
+  `a_0 < 0`, n = 660 clean (our own bisection had bracketed it to (656, 662]);
+* the Gamma coordinate, verified exactly as a polynomial identity:
+  `q(1 - 2u/s) = (2/s)^N * Gamma(d+N-u)/Gamma(d-u)` with `d = (lam+1)/2`
+  (0 mismatches, 18 rational test points). This is the right coordinate: the
+  zeros become `u = d, d+1, d+2, ...` and the oscillation splits into explicit
+  Gamma lobes;
+* the reason positivity RETURNS at large n -- the negative lobes all begin at a
+  FIXED `u = d`, while the factor `N^{-u}` pulls the effective mass left of that
+  barrier. That is a mechanism, not a coincidence.
+
+**Where the open problem actually is, corrected.** Not `a_0` reopening -- that is
+excludable for fixed low m from the Gamma integral. The gap is a late negative
+BULK coefficient `a_m` with `m ~ rho N`. That is now the statement to attack.
