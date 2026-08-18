@@ -304,3 +304,32 @@ inequalities. So the target is now named and standard, rather than open-ended.
 A false start worth recording: I first tested log-CONVEXITY, which fails
 everywhere -- the profiles rise then fall, so the property that matters is
 concavity. Checking the wrong direction cost one run.
+
+## 2026-08-18 11:19 -- three mechanisms for the single lemma, all excluded
+
+The lemma left standing is: for n >= 14 the coefficient sequence has no interior
+minimum (sufficient: log-concavity, measured to hold for n >= 24). Three standard
+mechanisms were tried today and none of them supplies it.
+
+1. REAL-ROOTEDNESS. If the generating polynomial SUM_m c_m x^m had only real
+   roots, Newton's inequalities would give log-concavity for free. It does not:
+   certified roots show ALL roots complex, at every level tested (n = 14, 18, 24,
+   30, 40; degree 12 to 38; zero real roots in every case).
+2. A CLOSED FORM FOR THE RATIO. Log-concavity is exactly "r_m = c_m/c_(m-1) is
+   decreasing". The ratios ARE beautifully monotone -- e.g. at n = 24, lam = 1,
+   D = 6 they run 1.909, 1.379, 1.180, ..., 0.174, 0.118, decreasing throughout,
+   with nearly constant differences in the tail -- but no rational function of m
+   of degree <= 3/3 reproduces them (fitted on a subset, checked on held-out m).
+3. LOG-CONVEXITY. Fails everywhere; it was the wrong direction to begin with,
+   since the profiles rise and then fall.
+
+So the lemma is empirically very solid and mechanically unexplained. What is left
+to try, in order of promise: total positivity of the underlying moment matrix
+(log-concavity would follow from a 2x2 minor condition); a direct positive
+representation of c_m^2 - c_(m-1) c_(m+1) as an integral; or the observation that
+the ratio's tail is almost linear in m, which suggests an asymptotic argument for
+large m plus a finite check for small m.
+
+Status of the day, stated plainly: the grand theorem was NOT proved. What changed
+is its shape -- from an infinite family with no uniform handle to a single lemma
+with two trivial endpoints, plus a list of mechanisms that are now ruled out.
