@@ -3,6 +3,10 @@
 # Regenerate with: uv run python tools/results_manifest.py
 # Hand-set decisions are preserved; only new files get a default.
 artefacts:
+  AEHM_ROUTE_VERDICT.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   BOUNDARY_PUSH_2026-08-18.md:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -17,8 +21,8 @@ artefacts:
     status: live
   DEPTHS_2_TO_5_PROVED.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   FROZEN_PREDICTION_blocks.md:
     added: '2026-08-18'
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
@@ -317,6 +321,10 @@ artefacts:
     status: live
   keystone_symbolic_n.json:
     added: '2026-08-17'
+    note: referenced by a paper, document or lab module
+    status: live
+  keystone_unglued.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   knife10_belowdiag_shift.json:
