@@ -51,7 +51,7 @@ def q_monomials(n: int, lam: fmpq) -> list[fmpq]:
     for k in range(N):
         P = P * (X - fmpq(N - 1 - 2 * k))
         if k % 256 == 0:
-            machine_guard.check(4.0, what=f"building q, root {k}/{N}")
+            machine_guard.check(machine_guard.floor_for(N), what=f"building q, root {k}/{N}")
     # substitute x = s v : coefficient j gets s^j, then divide by s^N
     cs = P.coeffs()
     out = []
@@ -91,7 +91,7 @@ def a_low(n: int, lam: fmpq, gamma: fmpq, m_max: int) -> dict:
             j += 2
         out[m] = tot
         if m % 32 == 0:
-            machine_guard.check(4.0, what=f"coefficient m={m}")
+            machine_guard.check(machine_guard.floor_for(deg), what=f"coefficient m={m}")
     return out
 
 

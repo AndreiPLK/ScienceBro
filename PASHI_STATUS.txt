@@ -1,30 +1,28 @@
-PASHI - night shift to 08:00
+PASHI - night shift to 08:00          updated 17:15
 ================================================================
-NOW:   keystone. Region A constant confirmed exactly; building the
-       exact threshold table n*(lam) that tests the outside model.
+NOW:   waiting on the founder's ffmpeg encode to release memory,
+       then N=10000 blind test (registered prediction: 310)
 
-DONE TONIGHT
-  * Stokes constant settled by exact computation:
-        measured  4.730611 / 4.730610   (two parity classes)
-        outside   4.730616445749        <- CONFIRMED, 6e-6
-        3+sqrt(3) 4.732050807569        <- DEAD, off by 1.4e-3
-  * exact thresholds, each bisected to one level, dirty/clean both recorded:
-        lam   1/40   1/16   1/8    1/6    1/4
-        n*    454    550    744    906    1322
-        outside model overshoots  +3.1  +5.6  +10.1  +12.7  +17.7 %
-        -> the error is SMOOTH and MONOTONE in lam, not noise
-  * no reopening out to 3.68x past n* (lam=1/20, every coefficient checked)
-  * reply sent to the outside analysis with 4 questions, one of them a
-    blind pre-registered prediction
+BIGGEST RESULT TODAY
+  * BLIND PREDICTION HIT.  Outside model said the negative
+    coefficients stop at index 204 for N=3000 -- registered BEFORE
+    any computation at that size, from a parameter-free model.
+    Computed exactly here:  204.  Signs around it match too.
+  * Stokes constant settled: 4.730616445749 confirmed to 6e-6,
+    3+sqrt(3) refuted.
+  * their A_3 - A_1 = 0.9920772 from theory; my data gives 0.992.
 
-INCIDENT, mine
-  * the background table walked to degree ~2300 and took free memory from
-    31 GB to 0.3 GB. Killed it, memory recovered.
-  * FIXED, not promised: lab/machine_guard.py checks free memory INSIDE the
-    loop before every heavy step and stops the job cleanly with its partial
-    results. A pre-flight check cannot help a job whose appetite grows.
+EXACT THRESHOLDS (each bisected to one level)
+  lam   1/40  1/20  1/16  1/10  1/8   1/6   1/5   1/4
+  n*    454   516   550   660   744   906   1056  1322
 
-NEXT
-  1. restart the table under the guard (lam = 1/5 remains)
-  2. third point for the constant: n = 400, 402 (>10 min each, background)
-  3. edge profile at N = 3000 once the outside prediction arrives
+ENGINEERING DONE TONIGHT
+  * O(N) memory path via the DLMF connection formula; its self-check
+    caught an off-by-one before any large-N number was believed
+  * product tree + certified ball arithmetic for N=10000
+  * machine_guard: floor now SCALES with job size. A fixed 4 GB floor
+    was wrong twice -- it let a huge job run and it blocked a tiny one.
+
+MACHINE
+  free 3.6 GB; founder's video encode running -> big job stands aside,
+  small checks keep going. This is the guard working as intended.

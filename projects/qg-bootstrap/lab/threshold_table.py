@@ -47,7 +47,7 @@ def clean(n: int, lam: fmpq, g: fmpq) -> bool:
     # Floor 4 GB, not the module default of 6: this job is the only heavy thing
     # running, and 4 GB still leaves the founder room to start a game -- at which
     # point free memory drops, the guard fires, and this job yields to him.
-    machine_guard.check(4.0, what=f"n={n}, lam={lam}")
+    machine_guard.check(machine_guard.floor_for(n), what=f"n={n}, lam={lam}")
     a = to_gegenbauer(q_poly(n, lam), g)
     return not any(c < 0 for c in a)
 

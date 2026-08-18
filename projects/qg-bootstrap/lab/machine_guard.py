@@ -54,5 +54,17 @@ def check(floor_gb: float = 6.0, what: str = "") -> None:
         )
 
 
+def floor_for(size: int) -> float:
+    """Headroom a job of this size should insist on, in GB.
+
+    A FIXED floor is wrong in both directions, and I got it wrong on the first
+    try: 4 GB blocked a 200-degree cross-check that needs megabytes, while the
+    same 4 GB would be far too little for degree 10000. The requirement has to
+    scale with the work, so small checks keep running while the founder's video
+    encode holds memory, and only the genuinely large jobs stand aside.
+    """
+    return max(1.2, min(6.0, 1.2 + size / 2500.0))
+
+
 def note(what: str = "") -> str:
     return f"[machine] free {free_gb():.1f} GB{(' before ' + what) if what else ''}"
