@@ -1,0 +1,46 @@
+# Files written before the English-only rule (2026-08-18). This register may
+# SHRINK -- translate a file and delete its line -- but never GROW:
+# tests/test_english_only.py fails on any new file containing Cyrillic.
+.claude/skills/research-iteration/SKILL.md
+article/DATA_LOG.md
+article/NIGHT_REPORT_2026-08-17_to_18.md
+article/NIGHT_SUMMARY_2026-08-17.md
+article/visuals/critical_canyon.py
+article/visuals/flying_blades.py
+article/visuals/galaxy_universes.py
+article/visuals/keystone_arch.py
+article/visuals/last_obstacle.py
+article/visuals/perfect_square.py
+article/visuals/string-inside-vs-edge.html
+article/visuals/the_hunt.py
+docs/ERRATA.md
+docs/LINKS_DIGEST.md
+docs/QG_BOOTSTRAP_PLAN.md
+docs/STRATEGY_ANALYSIS.md
+HANDOFF.md
+live_status.html
+PASHI_STATUS.txt
+projects/ainstein-audit/reports/reply-to-hirst-draft.md
+projects/qg-bootstrap/lab/blade_proof.py
+projects/qg-bootstrap/lab/collapse_zones.py
+projects/qg-bootstrap/lab/eft_map_d4.py
+projects/qg-bootstrap/lab/knife_belowdiag2.py
+projects/qg-bootstrap/lab/knife_belowdiag_shift.py
+projects/qg-bootstrap/lab/knife_farbelow2.py
+projects/qg-bootstrap/lab/knife_proof.py
+projects/qg-bootstrap/lab/knife_tail2.py
+projects/qg-bootstrap/lab/knife_tail_deep.py
+projects/qg-bootstrap/lab/master_completeness_scan.py
+projects/qg-bootstrap/lab/n2_fixed_spin.py
+projects/qg-bootstrap/lab/provenance.py
+projects/qg-bootstrap/research/gravity-milestones.md
+projects/qg-bootstrap/research/letter-to-chr-draft.md
+projects/qg-bootstrap/research/night-plan-2026-08-13.md
+projects/qg-bootstrap/research/sideways-radar.md
+research/NEXT_GOAL.md
+sciencebro/schemas/core.py
+tests/test_fast_engine.py
+tools/eta.json
+tools/live_status.py
+tools/night_batch.py
+tools/night_queue.py
