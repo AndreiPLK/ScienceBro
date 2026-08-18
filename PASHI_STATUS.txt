@@ -1,28 +1,24 @@
-PASHI - night shift to 08:00          updated 17:15
+ПАШИ · до 08:00 · ночная смена
 ================================================================
-NOW:   waiting on the founder's ffmpeg encode to release memory,
-       then N=10000 blind test (registered prediction: 310)
+[██░░░░░░░░░░░░░░] шаг 1 из 5 закрыт
 
-BIGGEST RESULT TODAY
-  * BLIND PREDICTION HIT.  Outside model said the negative
-    coefficients stop at index 204 for N=3000 -- registered BEFORE
-    any computation at that size, from a parameter-free model.
-    Computed exactly here:  204.  Signs around it match too.
-  * Stokes constant settled: 4.730616445749 confirmed to 6e-6,
-    3+sqrt(3) refuted.
-  * their A_3 - A_1 = 0.9920772 from theory; my data gives 0.992.
+СЕЙЧАС:  шаг 2 — ступеньки 3 и 4 тем же приёмом, что закрыл 2-ю
 
-EXACT THRESHOLDS (each bisected to one level)
-  lam   1/40  1/20  1/16  1/10  1/8   1/6   1/5   1/4
-  n*    454   516   550   660   744   906   1056  1322
+ЗАКРЫТО ЭТОЙ НОЧЬЮ
+  * СТУПЕНЬКА 2 ДОКАЗАНА, двумя половинами с перекрытием:
+      - алгебра: B^2-4AE2 = -N^2(N^2-1)(N-1)(2N-3)(N^3-3N^2+11N-3)/90 < 0
+        всегда  ->  при lam >= 0.291N корней нет, условие не нужно вовсе
+      - машина: Бернштейн на N>=5, c<=0.3  ->  15 коробок, 0 открытых, 4 с
+      - N=3,4 проверены отдельно, 0 отказов
+  * старший коэффициент оказался полным квадратом 5(6c^2-1)^2
+  * порог 0.291 = sqrt(5/3)-1, вывод, а не подгонка
 
-ENGINEERING DONE TONIGHT
-  * O(N) memory path via the DLMF connection formula; its self-check
-    caught an off-by-one before any large-N number was believed
-  * product tree + certified ball arithmetic for N=10000
-  * machine_guard: floor now SCALES with job size. A fixed 4 GB floor
-    was wrong twice -- it let a huge job run and it blocked a tiny one.
+ИНСТРУМЕНТ, УЛУЧШЕННЫЙ ЗА ИТЕРАЦИЮ
+  * machine_guard: порог памяти теперь ЗАВИСИТ ОТ РАЗМЕРА работы
+  * T_hat: перебор берега останавливается по СЕРТИФИКАТУ (T_k>2k), не по догадке
+  * путь O(N) памяти вместо O(N^2) — достал до N=3000
 
-MACHINE
-  free 3.6 GB; founder's video encode running -> big job stands aside,
-  small checks keep going. This is the guard working as intended.
+ДАЛЬШЕ
+  1. обобщить прувер на любую глубину d  (сейчас)
+  2. прогнать d=3, затем d=4
+  3. если приём держится — искать общий вид для всех d
