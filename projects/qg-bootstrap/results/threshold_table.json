@@ -52,11 +52,20 @@
    "coarse_prediction": 1556.2,
    "coarse_error_pct": 17.7,
    "seconds": 980.9
+  },
+  {
+   "lam": "1/5",
+   "shore_gamma": "213/50",
+   "n_star": 1056,
+   "verified_dirty_at": 1055,
+   "coarse_prediction": 1212.0,
+   "coarse_error_pct": 14.8,
+   "seconds": 682.8
   }
  ],
  "command": "python lab/threshold_table.py",
- "git": "74d02342ce7d",
- "git_full": "74d02342ce7df6fd272da45968402d9cfeebc4b8",
+ "git": "006d320d6e01",
+ "git_full": "006d320d6e01523062c0cb9ab633686cf2f7c861",
  "dirty": false,
  "dirty_code_files": [],
  "dirty_count": 0,
