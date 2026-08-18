@@ -628,6 +628,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  margin_structure.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   master_checks.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module

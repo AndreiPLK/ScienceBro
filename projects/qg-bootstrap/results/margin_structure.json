@@ -1,0 +1,43 @@
+{
+ "claim": "the global shore is the ENVELOPE of the top-coefficient conditions: for every level n the first gamma at which any coefficient turns negative is >= gamma_shore(lam), with equality approached exactly at the argmin level k*",
+ "method": "the beta-mean formula (verified 248/0 against the exact knife engine): the sign of knife m is the sign of one polynomial at X = s^2, so the threshold in gamma is found by exact bisection per coefficient",
+ "margin_profile": {
+  "lam=10, k*=17": {
+   "10": 1.0628,
+   "14": 1.0088,
+   "18": 1.0003,
+   "22": 1.0114,
+   "24": 1.0211,
+   "26": 1.0327,
+   "30": 1.0601,
+   "36": 1.0874,
+   "44": 1.1359
+  },
+  "lam=20, k*=34": {
+   "10": 1.3446,
+   "14": 1.1679,
+   "18": 1.0834,
+   "22": 1.0387,
+   "24": 1.0249,
+   "26": 1.015,
+   "30": 1.0035,
+   "36": 1.0003,
+   "44": 1.0113
+  },
+  "reading": "a sharp minimum exactly at n = k*, growing away from it in both directions. At the minimum the BINDING coefficient is the top one (m = N-1), whose condition is exactly the published T_n."
+ },
+ "what_this_reduces_the_theorem_to": [
+  "at n = k*: binding is the top coefficient, condition exactly T_n -- already published",
+  "away from k*: the margin exceeds 1 and grows -- this is what needs proving"
+ ],
+ "refuted_today_by_my_own_test": "the stronger guess that the binding coefficient is ALWAYS the top one is FALSE: at (n=24, lam=1) coefficients 15, 16, 20, 21 turn negative below that level's own shore, and similarly at (30,3), (40,2), (15,1/5), (12,50). Interior coefficients CAN bind before the level's own top -- but never, on any cell measured, before the GLOBAL shore.",
+ "why_the_suggested_experiment_was_aimed_wrong": "the incoming note proposed working down from the top at d = 2, 3, 4. Measured: the d=2 threshold sits 3 to 18 times ABOVE the shore, so that end carries no difficulty at all.",
+ "git": "d86cf0276c25",
+ "git_full": "d86cf0276c2592f1c059f21cc9190d84c7f9bd11",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}
