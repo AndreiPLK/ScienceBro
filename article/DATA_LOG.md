@@ -3133,3 +3133,33 @@ step is individually, so induction on levels in this form does not work.
 Recorded also because it corrects an intuition: earlier I found that doubling the
 LARGEST single root breaks positivity, and here doubling ALL roots does not.
 Moving one root and moving all of them are genuinely different perturbations.
+
+## 2026-08-18 03:42 -- a second, independent measure of how close the family is to failing
+
+Since stretching all roots preserves positivity and shrinking eventually breaks
+it, every configuration has a DILATION THRESHOLD c0: shrink all roots by c and
+positivity survives exactly for c >= c0. The theorem holds because the real
+configuration sits at c = 1.
+
+Measured by bisection (exact arithmetic), lam = 1, D = 6:
+
+    n      7      9     12     15     18     21     25     30     36     44
+    c0   .627   .694   .759   .801   .830   .853   .874   .894   .910   .926
+  n(1-c0) 2.61  2.76   2.89   2.99   3.06   3.09   3.15   3.19   3.24   3.28
+
+So 1 - c0 ~ C/n with C still climbing at n = 44. The ladder-step margin measured
+earlier gave 1 + 3.38/n with C stable at 3.36-3.39 from n = 31 to 81.
+
+CAREFUL: these are close but NOT shown to be the same constant. At lam = 1 the
+dilation constant is still rising (3.28) toward the step constant (3.38); at
+lam = 7 they are further apart (11.9 rising, against about 17). Two independent
+measures of the same margin agreeing to within this much is encouraging and is
+the reason to record it, but calling them equal would be exactly the kind of
+claim I had to withdraw twice tonight.
+
+What is safe to say: however the distance to failure is measured, it shrinks like
+a constant over the level, with the constant growing with lam. The CHR family
+sits a relative distance of order a few / n from the positivity boundary.
+
+Also: the "lowest spin binds" band continues its power-law decline -- 27.3, 16.1,
+11.8, 9.3, 7.5 percent at n = 12, 24, 40, 55, 70.
