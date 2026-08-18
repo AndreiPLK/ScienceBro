@@ -111,7 +111,17 @@ Each of these was actually run, not just considered.
    ratio of Gamma factors cannot produce.
 6. **Term-by-term domination inside the sum defining `C_m`.** DEAD by a wide
    margin: the ratio (sum of the rest)/(first term) reaches 1e33.
-7. **Creative telescoping in the summation index.** The summand involves the
+7. **Total positivity, Karlin's route.** If the kernel
+   `K(u,m) = (-1)^m P_m^{(alpha,beta)}(1-2u)` were TP2, the basic composition
+   formula would make the transform of ANY positive measure log-concave. DEAD,
+   and for a reason worth stating: 37 to 47 percent of the 2x2 minors are
+   negative (51,480 minors tested at each of `D = 6, 11, 23`). In hindsight it
+   had to fail — it would have proved the lemma for every `F`, whereas ours is
+   special.
+8. **`C_m` as a Stieltjes moment sequence.** A Stieltjes moment sequence is
+   log-CONVEX by Cauchy-Schwarz, which is the opposite of what we observe, so the
+   sequence is not one. Consistent, and it closes the Hankel-determinant route.
+9. **Creative telescoping in the summation index.** The summand involves the
    central factorial numbers, which are not hypergeometric in their index, so the
    standard algorithm does not apply in that variable.
 
@@ -120,11 +130,15 @@ Each of these was actually run, not just considered.
 I have been attacking this as a polynomial-positivity problem. Directions I have
 NOT explored, and cannot easily see from inside:
 
-* **Total positivity.** Log-concavity of `C_m` would follow from total positivity
-  of a suitable moment matrix. Is there a natural TP structure here? The measure
-  `F(u) w(u) du` is positive; the coefficients are its "Jacobi-Fourier" data, not
-  plain moments, which is exactly why the classical Hankel results do not apply
-  directly — but perhaps a different matrix does.
+* **Total positivity, but RESTRICTED.** The unrestricted version is dead (item 7
+  above). What is not ruled out is a TP structure that uses the special form of
+  `F` — a square of a lattice-node polynomial — rather than holding for all
+  positive measures. If you know a class of measures for which the Jacobi
+  coefficients are provably log-concave, that class is what we need.
+* **Prekopa-Leindler.** Marginals of jointly log-concave functions are
+  log-concave. Is there a representation `C_m = INT g(u,m) du` with `g` positive
+  and jointly log-concave in `(u,m)`? The obvious integrand is not positive,
+  because `P_m` oscillates — but a different representation might be.
 * **A representation of `C_m^2 - C_{m-1} C_{m+1}` as something manifestly
   positive** — a Gram determinant, a discriminant, an integral of a square. This
   quantity is a 2x2 determinant of Jacobi coefficients of a positive measure; is
