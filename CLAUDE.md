@@ -51,6 +51,16 @@ Not "I will port it later", not "a prototype on Fraction first" - immediately.
 | interval bounds and signs | `flint.arb` / `acb` | float, math, numpy |
 | symbolic derivation ONLY | sympy | sympy for bulk arithmetic |
 
+**Founder, 18 August, after finding sympy doing real work behind an "ENGINE-OK,
+symbolic setup only" comment that was false: "SymPy это не выглядит как движок
+2... я запрещаю на нём работать, если есть другие возможности."** sympy is
+BANNED whenever flint can do the job (`fmpq_poly`, `fmpq_mpoly` for multivariate,
+plain fmpq loops for anything else) - not just for "bulk arithmetic", for
+everything. A comment claiming "symbolic only" must be true: if sympy's
+`.expand`/`.factor`/`.subs`/`.Poly` ever runs on the actual object being proved,
+that is bulk work, no matter what the comment says. Check what the comment
+claims against what the code actually does before trusting it.
+
 **And the second half of the law, which matters more.** The engine buys factors;
 the algorithm buys orders. On 18 August porting the normal form to flint gave 3x,
 and removing a recomputation of Pochhammer symbols (a recursive step instead of

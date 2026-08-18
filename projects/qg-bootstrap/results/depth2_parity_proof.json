@@ -1,0 +1,44 @@
+{
+ "claim": "depth-2 coefficient positive for N >= 6 (even) and N >= 7 (odd), 0 <= lam/N <= 0.3, using an ACTUAL INTEGER comparison level K (not N/2), so gamma_shore <= gamma_at_K holds by definition of the min -- no numerical spot-check required for that step",
+ "supersedes": "d2_proof.py Half B, which used the non-integer M=N/2 for odd N and had 97 grid violations of T_hat <= T_{N/2} (all at odd N); this file fixes that by construction",
+ "branches": [
+  {
+   "parity": "even",
+   "k_min": 3,
+   "c_max": "3/10",
+   "degree_K": 12,
+   "degree_c": 4,
+   "proved": true,
+   "boxes": 7,
+   "open": 0,
+   "seconds": 0.0
+  },
+  {
+   "parity": "odd",
+   "k_min": 3,
+   "c_max": "3/10",
+   "degree_K": 12,
+   "degree_c": 4,
+   "proved": true,
+   "boxes": 11,
+   "open": 0,
+   "seconds": 0.0
+  }
+ ],
+ "not_covered_here": "N = 3, 4, 5, 6 are outside both branches' validity floor and must be checked directly",
+ "engine": "flint only (fmpq + custom BiPoly dict polynomial); zero sympy imports",
+ "command": "python lab/depth2_parity_proof.py",
+ "git": "7f3a67e499a7",
+ "git_full": "7f3a67e499a70a0085c01ad341c1944c7c5cece1",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/d2_proof.py",
+  "projects/qg-bootstrap/lab/depth2_parity_proof.py",
+  "projects/qg-bootstrap/lab/depth_proof.py"
+ ],
+ "dirty_count": 3,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0",
+ "runtime_s": 0.7
+}

@@ -208,3 +208,52 @@ and saying otherwise was rhetoric, not a result.
 **Where the open problem actually is, corrected.** Not `a_0` reopening -- that is
 excludable for fixed low m from the Gamma integral. The gap is a late negative
 BULK coefficient `a_m` with `m ~ rho N`. That is now the statement to attack.
+
+## ERR-0006 (2026-08-18): sympy engine ban violation, PLUS a real logic gap it exposed
+
+**What was wrong, part 1 (engine).** `lab/depth_proof.py` imported sympy with a
+comment claiming "symbolic setup only; bounds are computed on flint" -- false.
+sympy did the actual polynomial expansion/factoring on a two-variable degree-40
+polynomial before flint ever touched it. This is exactly the uncontrolled memory
+growth that took the founder's machine down. Founder's rule, now absolute: **no
+sympy anywhere there is another way.** Fixed by rewriting the depth-2 proof
+(`lab/depth2_parity_proof.py`) entirely on flint `fmpq` plus a small in-house
+`BiPoly` dict-polynomial class -- zero sympy imports, verified against the exact
+knife engine (70/70 match) before trusting any Bernstein output.
+
+**What was wrong, part 2 (logic, found while fixing part 1).** The committed
+`d2_proof.py` "Half B" step evaluated the top-knife condition at `M = N/2` and
+claimed `gamma_shore <= (T_M-3)/2` "because the shore is a minimum over
+levels" -- true only when `M` is an actual integer `k >= 3` in that minimum.
+For ODD `N`, `M = N/2` is a half-integer, outside that set; grid search found
+97 violations (all odd `N`) where the continuous formula dips below the true
+`T_hat`. **Fixed** in `depth2_parity_proof.py` by splitting into two parity
+branches with an ACTUAL INTEGER comparison level `K` (`N=2K` even, `N=2K+1`
+odd), so `T_hat <= T_K` holds by definition, no numerical check needed. Both
+branches now proved by Bernstein in under a second (7 and 11 boxes, 0 open).
+
+**What this exposed, and it is the important part.** Checking positivity at
+ONE point (`gamma = gamma_at_K`) only implies positivity at the TRUE shore
+`gamma_hat` if the coefficient does not dip negative somewhere in between --
+an assumption neither the old nor the new proof actually established. Testing
+it directly against the exact engine found it is FALSE for two small levels:
+
+* `n = 6`: depth-2 knife negative for `lam` roughly in `(0, 0.56)`, **strictly
+  below the true shore**, not just at it.
+* `n = 7`: depth-2 knife negative for `lam` roughly in `(0.15, 1.0)`, same.
+* `n = 8` through `n = 40` (dense scan): **clean, zero failures.**
+
+So "DEPTH 2 CLOSED" (`D2_COMPLETE.md`) is **withdrawn to "in progress"**: the
+argument is correct and complete for `n >= 8`; `n = 6, 7` are confirmed finite
+exceptions where the published depth-1 shore `T_hat` is NOT sufficient to
+guarantee depth-2 positivity, and need either a refined (tighter) shore for
+those two levels specifically, or a separate argument. `n = 3, 4, 5` remain
+clean (checked directly).
+
+**NEW RULE, added to the scientist skill:** a "prove at one boundary-adjacent
+point implies the whole interval" argument is not valid without either (a) a
+discriminant/no-root argument covering the WHOLE interval (as depth-2's Half A
+already correctly does), or (b) an explicit monotonicity proof. Checking a
+single endpoint is not the same as checking the interval, and small n is where
+this kind of gap actually bites -- check small n directly, at fine grain, near
+the true (not proxy) boundary, before calling anything closed.

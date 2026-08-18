@@ -1,4 +1,22 @@
-# Depth 2 is closed
+# Depth 2 -- IN PROGRESS (was wrongly marked closed; see correction below)
+
+**CORRECTION (ERR-0006, docs/ERRATA.md).** The title below was wrong. Half B's
+argument ("check one point, M=N/2, done") has a real logic gap: it does not
+establish positivity at the true shore unless the coefficient never dips
+negative between the true shore and the checked point. Direct testing against
+the exact engine found it DOES dip negative, strictly below the true shore, for
+two levels: **n = 6** (lam roughly in (0, 0.56)) and **n = 7** (lam roughly in
+(0.15, 1.0)). A dense scan of n = 8..40 found zero failures. n = 3, 4, 5 remain
+clean. So: **correct and complete for n >= 8; n = 6, 7 are confirmed finite
+exceptions, open.** The M=N/2 half-integer issue for odd N (a separate, now
+also-fixed bug) is corrected in `lab/depth2_parity_proof.py`, which uses an
+actual integer comparison level and is proved for n >= 7 (odd) / n >= 6 (even)
+in under a second -- but that fix does not by itself resolve the n=6,7 gap
+above, which is a property of the true object, not of the proof technique.
+
+Below is the ORIGINAL (superseded) writeup, kept for the record.
+
+---
 
 Not a scan. The pieces below are exact algebra and exact Bernstein subdivision,
 and together they cover the whole physical region.
