@@ -2,9 +2,13 @@
 
 Written the same day as the Dougall reduction (`gegenbauer_term_by_term.json`).
 The reduction proves the whole family for `lam >= lam*(n)`, with `lam*/n` measured
-at 4.7165..4.7260. The task here was to move that boundary DOWN. **It did not
-move.** What follows is what was tried, what was learned, and two errors of mine
-caught on the way.
+at 4.7165..4.7260. The task here was to move that boundary DOWN.
+
+**Read section 5 first.** Sections 1-4 are the three routes that failed and the
+two errors of mine they exposed, written up before the thing that worked; the
+boundary DID move in the end, and it moved by following the direction those
+failures pointed at rather than the direction I had assumed. The order is kept
+because the failures are what located the right corner.
 
 ---
 
