@@ -519,3 +519,20 @@ WHAT REMAINS for knife 4: lam > 30 and n > 200. Runs are in progress at
 statements take over (n -> infinity at fixed lam, D has leading coefficient +280;
 lam -> infinity is the scaling form with the tangency approached from the safe
 side). Joining those to the box with explicit thresholds is the last gap.
+
+## 2026-08-18 10:23 -- knife 4 proved up to lam = 60, n = 400
+
+    lam in [1/10, 1],  n <= 200:      47 boxes, 0 open
+    lam in [1, 10],    n <=  50:   1 325 boxes, 0 open
+    lam in [1, 30],    n <= 200:  12 929 boxes, 0 open  (456 s)
+    lam in [1, 60],    n <= 400:  39 970 boxes, 0 open  (1853 s)
+
+so knife 4 is now PROVED on lam in [1/10, 60], 4 <= n <= 400, 4 <= D <= shore.
+
+The cost grows the way the difficulty does: the box count roughly triples when
+lam doubles, because the margin at the shore thins from 1.010 at lam = 26 to
+1.0042 at lam = 60 and the subdivision has to follow it. That is visible directly
+in article/visuals/proof-in-3d.png, where brick size IS local difficulty: coarse
+bricks in the open, a fine dust along the shore.
+
+Running: lam <= 120, n <= 1000. Beyond it the two asymptotic statements take over.
