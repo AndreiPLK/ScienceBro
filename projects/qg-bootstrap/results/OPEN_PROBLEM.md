@@ -265,3 +265,42 @@ not a term-by-term bound. The candidates that remain untried:
 
 The last one is the most promising: it is the only formulation in which "all j"
 is a single statement rather than a family of them.
+
+## 2026-08-18 11:16 -- THE UNIFORM STATEMENT, and it reduces the whole family to TWO knives
+
+After three routes to a uniform-in-j theorem were closed today, a fourth one
+worked, and it is the one the founder pushed for: a single statement instead of a
+family of them.
+
+THE STRUCTURE:
+
+  * ENDPOINT m = 0 (knife j = n) is positive AUTOMATICALLY, with no condition on
+    D at all: c_0 = INT F u^alpha (1-u)^beta du with F >= 0 and the weight
+    positive. Verified 64 of 64 as a sanity check, but it is a one-line argument.
+  * ENDPOINT m = n-2 (knife j = 2) is exactly the shore condition D < T_n(lam),
+    which is the PUBLISHED shore paper.
+  * MEASURED: for n >= 14 the minimum of the coefficient sequence over m is
+    always attained at one of those two endpoints. Zero violations over n = 14..60
+    (46 configurations per level, eight lam from 1/10 to 80, seven D below the
+    shore). The eight violations found at all are at n = 6 and n = 8 only.
+  * MEASURED: log-concavity c_m^2 >= c_(m-1) c_(m+1) holds for every n >= 24,
+    zero violations. Log-concavity implies unimodality, which implies the minimum
+    is at an endpoint -- so it is a sufficient mechanism for the statement above.
+
+CONSEQUENCE. If "no interior minimum for n >= 14" is proved, then every knife of
+every level follows from the two endpoints, one of which is trivial and the other
+published. The infinite family collapses to two cases. Small levels (n <= 12) are
+a finite set already covered by the 525,346 certified knives.
+
+WHAT IS NOW THE SINGLE OPEN LEMMA:
+
+    for n >= 14, the sequence (-1)^m c_m has no interior local minimum
+    (sufficient: it is log-concave, which is measured to hold for n >= 24)
+
+That is a classical kind of statement: log-concavity of a coefficient sequence
+follows from real-rootedness of the generating polynomial by Newton's
+inequalities. So the target is now named and standard, rather than open-ended.
+
+A false start worth recording: I first tested log-CONVEXITY, which fails
+everywhere -- the profiles rise then fall, so the property that matters is
+concavity. Checking the wrong direction cost one run.
