@@ -60,12 +60,18 @@ explicitly before any result here was trusted.
 
 Second attempt (fixed N, K forced to 3, single-variable-in-c polynomial)
 disagrees with the exact engine at moderate-to-large c for all of n=5,6,7 --
-same symptom as the first attempt earlier tonight. Hypothesis, NOT verified:
-clearing denominators assumes the cleared factors (Qg, den_cleared) stay
-POSITIVE throughout the domain, which held for the parity-split K>=3 case
-(there m=N-d is bounded below by the K>=3 floor) but may FAIL for these small,
-fixed N where m=N-d is very small (1, 2, 3) -- a sign change in a cleared
-denominator factor would flip the polynomial's sign relative to the true
-value without warning. Not confirmed, not fixed. Next session: check the
-sign of every cleared factor (Qg, each den_cleared term) across the tested
-range before trusting any homogenized formula at small N.
+same symptom as the first attempt earlier tonight.
+
+FIRST HYPOTHESIS TESTED AND REFUTED: checked whether Qg or any cleared
+denominator factor goes negative at the failing point (n=5, c=5) -- all of
+them are positive (Qg=6, all den_cleared factors around 4356-4368). So the
+sign-flip-from-clearing-a-negative-denominator theory is WRONG, at least at
+this point. The actual cause is still unknown.
+
+Not fixed tonight. Next session: since the K-parametrized (parity, N=2K or
+N=2K+1) construction is independently verified correct (70/70 against the
+exact engine, plus the depth_d_proof.py generic version also 56/56 for
+d=2..5), while this SEPARATE "fixed N, independent K" construction fails --
+the bug is likely in how this second, differently-structured construction
+diverges from the first, not in the shared homogenization math. Compare the
+two code paths term-by-term at the failing point rather than guessing again.
