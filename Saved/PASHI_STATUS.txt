@@ -1,6 +1,11 @@
-ПАШИ · ночь 17->18.08 ЗАВЕРШЕНА в 08:44
-[████████████████] отчёт сдан, все прогоны досчитаны
-ИТОГ: 525 346 ножей сертифицировано, 0 отказов, уровни до n=200
-      нормальная форма + замкнутая форма каждого ножа + масштабный предел
-      механизм чётности доказан, касание берега - с безопасной стороны
-ОСТАЛОСЬ: конечная λ - оценка десяти явных A_k(rho,d) на компакте
+SCIENCEBRO - LIVE STATUS
+State: the endpoint lemma was refuted (ERR-0005); positivity itself untouched.
+Now:   items 4 and 5 from the outside review -- prove non-negativity only ON the
+       shore and descend in dimension; new coordinate (x)_N^2 instead of the
+       central factorials. Both identities of item 5 verified exactly.
+Done:  Jacobi normal form (4500 checks); closed form per knife j=2..6;
+       scaling limit for all j at once; parity mechanism; knife 4 proved by
+       exact Bernstein subdivision on lam in [1/10,60], n <= 400; 525,346
+       knives certified, zero failures.
+Rules: all skills and documents in English; self-check protocol A-D in
+       sciencebro-scientist; pre-commit hook enforces the fast engine.

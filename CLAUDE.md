@@ -1,69 +1,71 @@
-# ЗАКОН ЭФФЕКТИВНОГО ВРЕМЕНИ (основатель, 2026-08-17, в ДНК)
+# THE MAIN GOAL (founder, 2026-08-17) - REMEMBER IN EVERY REQUEST
 
-Когда запущен длинный расчёт и я жду — время НЕ простаивает. Пока считается,
-я обязан: искать со стороны (литература, соседние области), искать другие формы
-задачи, искать, где может быть ошибка в текущем подходе, перечитывать свои же
-находки. Правило: **никогда не ждать вхолостую**. Порядок действий при запуске
-долгого счёта: (1) проверить загрузку машины, (2) запустить в фоне, (3) сразу
-взять вторую линию работы, (4) вернуться к результату, когда он готов.
+**Make a discovery that enters science under the founder's name (Andrei Pluzhnik).**
+Everything else is means: instruments, provers, certificates, articles, the lab.
+An instrument can be rebuilt in a day; the value is in the research, the approach
+and the accumulated skill.
 
-Смежное: визуализации делаются НЕ для показа, а чтобы САМОМУ на них смотреть и
-думать, что эта форма означает. Основатель увидел в графике «каплю на воде и
-расходящиеся волны» — и это оказалось содержательной гипотезой (границы зон
-не вертикальные линии по j, а фронты, дрейфующие с параметром). Смотреть на
-свои картинки как на данные.
+**THE LAW OF NOT STOPPING.** The phrases "I cannot do more", "this needs a
+specialist", "this is beyond my means" are FORBIDDEN as a final answer. If a
+method is unknown: learn it, find the skill, find the paper, find a person,
+invent an experimental detour - and keep going until a way is found. Hit a new
+wall: search again. Endlessly, until every possibility is exhausted.
 
-# ГЛАВНАЯ ЗАДАЧА (основатель, 2026-08-17) — ПОМНИТЬ В КАЖДОМ ЗАПРОСЕ
+**Distinguish a WALL from a GAP.** "It is impossible" is a wall (proved
+impossibility). "I do not know how" is a gap, and gaps close by reading and
+learning. Substituting the second for the first is a lie, and it cost a day of
+work on 17 August.
 
-**Сделать открытие, которое войдёт в науку под именем основателя (Андрей
-Плужник).** Всё остальное — средства: инструменты, прувер, сертификаты,
-статьи, лаборатория. Инструмент можно пересобрать за день; ценность в
-исследовании, подходе и накопленных навыках.
+**Choosing a task** (by significance, not by what the instrument can do):
+importance of the question x real chance of moving it x visibility of the result.
+Optimise the product, not the factor that is easiest to compute.
 
-**ЗАКОН НЕОСТАНОВКИ.** Слова «больше не могу», «нужен специалист», «это за
-пределами моих средств» — ЗАПРЕЩЕНЫ как конечный ответ. Если метод неизвестен:
-изучить его, найти скилл, найти статью, найти человека, придумать
-экспериментальный обход — и идти дальше, пока не найдётся способ. Уперся в
-новую стену — снова искать. До бесконечности, пока не перебраны все
-возможности. Основатель: «Вся моя жизнь — это когда я ошибаюсь, но при этом
-иду вперёд и получаю свои награды».
+# THE LAW OF EFFECTIVE TIME (founder, 2026-08-17, in the DNA)
 
-**Различать стену и пробел.** «Нельзя» — это стена (доказанная
-невозможность). «Я не умею» — это пробел, он закрывается чтением и учёбой.
-Подменять второе первым — ложь, и она стоила дня работы 17.08.
+While a long computation runs and I wait, the time is NOT idle. I must: search
+sideways (literature, neighbouring fields), look for other forms of the problem,
+look for where the current approach might be wrong, re-read my own findings.
+Rule: **never wait empty.** Order when starting a long run: (1) check machine
+load, (2) start it in the background, (3) immediately take a second line of work,
+(4) return to the result when it is ready.
 
-**Критерий выбора задачи** (не под инструмент, а под значимость): важность
-вопроса для физики × реальный шанс сдвинуть × заметность результата снаружи.
-Оптимизировать произведение, а не тот множитель, который легче считать.
+Related: visualisations are made NOT to show but to LOOK AT and think about what
+the shape means. The founder read one plot as "a drop on water with spreading
+ripples" and that turned out to be a substantive hypothesis (the zone boundaries
+are not vertical lines in j but fronts drifting with the parameter). Look at your
+own pictures as data.
 
-# ЗАКОН БЫСТРОГО ДВИЖКА (основатель, 2026-08-18, ловил меня много раз)
+# THE FAST-ENGINE LAW (founder, 2026-08-18, after catching me repeatedly)
 
-Основатель: «мы проходили это уже много раз… мне надоело тебя ловить. Ты можешь
-это где-то прописать очень жёстко?»
+Founder: "we have been through this many times... I am tired of catching you. Can
+you write it down somewhere very hard?"
 
-**Любой новый счётный код в этом репозитории пишется на flint (движок 2).**
-Не «потом перенесу», не «сначала прототип на Fraction» — сразу.
+**All new computational code in this repository is written on flint (engine 2).**
+Not "I will port it later", not "a prototype on Fraction first" - immediately.
 
-| задача | ЧЕМ считать | ЧЕМ НЕЛЬЗЯ |
+| task | USE | NEVER |
 |---|---|---|
-| точная рациональная арифметика | `flint.fmpq` | `fractions.Fraction` |
-| многочлены (в т.ч. многомерные) | `flint.fmpq_poly`, `fmpq_mpoly` | списки Fraction, sympy |
-| корни многочленов | `fmpq_poly.complex_roots` (сертифицированные) | `numpy.roots` |
-| интервальные оценки и знаки | `flint.arb` / `acb` | float, `math`, numpy |
-| символьный вывод (только вывод!) | sympy | sympy для массового счёта |
+| exact rational arithmetic | `flint.fmpq` | `fractions.Fraction` |
+| polynomials, incl. multivariate | `flint.fmpq_poly`, `fmpq_mpoly` | lists of Fraction, sympy |
+| polynomial roots | `fmpq_poly.complex_roots` (certified) | `numpy.roots` |
+| interval bounds and signs | `flint.arb` / `acb` | float, math, numpy |
+| symbolic derivation ONLY | sympy | sympy for bulk arithmetic |
 
-**И вторая половина закона, она важнее первой.** Движок даёт разы, а алгоритм —
-порядки. 18.08 порт нормальной формы на flint дал 3x, а устранение
-пересчёта символов Похгаммера (рекуррентный шаг вместо O(j·m)) — ещё 7x.
-Прежде чем радоваться движку, спросить: **что я пересчитываю заново в цикле?**
+**And the second half of the law, which matters more.** The engine buys factors;
+the algorithm buys orders. On 18 August porting the normal form to flint gave 3x,
+and removing a recomputation of Pochhammer symbols (a recursive step instead of
+O(j*m)) gave another 7x. Before celebrating an engine, ask: **what am I
+recomputing inside a loop?**
 
-**Никакого float в сравнениях точных величин.** 18.08 сравнение через float
-упало с OverflowError при n=70, потому что числа вышли за диапазон double. Точные
-величины сравниваются точно; float допустим только для печати и картинок.
+**No float in comparisons of exact quantities.** On 18 August such a comparison
+died with OverflowError at n = 70, because the numbers left double range. Exact
+quantities are compared exactly; float is for printing and pictures.
 
-**Механическая проверка:** `tests/test_fast_engine.py` валит `sb check`, если в
-`projects/*/lab/` появляется новый модуль, считающий на `Fraction` без пометки
-`# ENGINE-OK: <причина>`. Правило теперь ловит машина, а не основатель.
+**Mechanical enforcement:** `.githooks/pre-commit` runs the fast-engine test and
+both ruff gates on every commit, and `tests/test_fast_engine.py` fails
+`sb check` if a new module under `projects/*/lab/` computes on `Fraction` without
+an explicit `# ENGINE-OK: <reason>`. The rule is now enforced by the machine, not
+by the founder.
 
 # ScienceBro — Claude Code project instructions
 
