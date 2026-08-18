@@ -281,3 +281,48 @@ Margin trend continues to hold up: at n = 51, worst margin 1.06637, so
 n(margin-1) = 3.385 -- against 3.36 at n = 41 and 3.38 at n = 31. The constant is
 stable near 3.36-3.39 rather than drifting to zero, so the induction's inequality
 is not about to fail.
+
+## 2026-08-18 03:33 -- two more routes closed, and a map of what is left
+
+With the Saalschutz closed form the m-th coefficient is an explicit finite sum
+c_m = SUM_{q=m}^{n-1} F_q M(q,m). Two natural shortcuts were tested and both fail.
+
+1. TERM DOMINATION. Does the first term (q = m) exceed the rest, so that the sign
+   is decided term by term? NO, and not marginally: sum|rest| / |first| reaches
+   3.1e3 at n = 9 (lam = 1, D = 6), 1.5e10 at n = 21, 4.0e33 at n = 30 with
+   lam = 26. The worst index is m = 0 or 1. Positivity therefore rests on a
+   delicate cancellation between huge alternating terms -- exactly the
+   exponential thinness measured earlier, now seen at the level of the summands.
+
+2. CLOSED PRODUCT FORM. If c_m were a product of Gamma factors, its numerator
+   would only contain primes bounded by the parameters. Factored exactly: the
+   denominators are smooth (largest prime <= 4n, as Pochhammers must be) but the
+   numerators are not -- 2.3e11 at n = 9, 6.3e13 at n = 12 lam = 7, 3.5e12 at
+   n = 14. So there is NO closed product form for general m. The exceptions are
+   the last indices, m = n-2 and n-3, where the sum has two or three terms; that
+   is precisely the case already exploited to rederive the shore.
+
+CONSEQUENCE: the theorem cannot come from an identity. It needs an inequality
+argument that survives cancellation of relative size 1e33.
+
+MAP OF ROUTES TRIED THIS NIGHT (all conclusions from our own data):
+  * per-knife contour certificates -- works but does not scale, and part of the
+    failure structure was the instrument (radius searched outside the admissible
+    window; argument principle fixes that);
+  * single-circle contour -- provably impossible for specific j (conjugate root
+    pair at equal modulus), deformed loops rescue some of those (j = 55, 58);
+  * Airy / fold caustic -- no saddle coalescence anywhere, dropped;
+  * conjugate saddle pair -- gives a constant period 14.87 against measured
+    growing spacings, dropped;
+  * factor-by-factor (Gasper-style) induction -- single squares are not positive,
+    dropped;
+  * ladder induction smallest-first -- works at every step, but asymptotically
+    tight (margin 1 + 3.38/n, confirmed to n = 81) and the degree-only version
+    runs out of room near n ~ 100;
+  * term domination -- fails by up to 33 orders;
+  * closed product form -- excluded by prime factorisation.
+
+WHAT IS LEFT, precisely: a bound on the alternating sum c_m that keeps the
+(-1)^m sign, valid for all m, using the ladder structure of the roots
+u_a = (a/s)^2 with a in {n-2, n-4, ...}. Every ingredient is now explicit and
+exact; nothing in the chain is numerical any more except the verification.

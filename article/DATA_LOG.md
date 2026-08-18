@@ -3039,3 +3039,72 @@ the shore. The published claim should carry that qualifier.
 Consequence for the keystone: the theorem does NOT reduce to the shore, because
 the shore is the leading-trajectory condition and the leading trajectory is not
 always the weakest. Both ends have to be controlled.
+
+## 2026-08-18 03:33 -- two more routes closed, and a map of what is left
+
+With the Saalschutz closed form the m-th coefficient is an explicit finite sum
+c_m = SUM_{q=m}^{n-1} F_q M(q,m). Two natural shortcuts were tested and both fail.
+
+1. TERM DOMINATION. Does the first term (q = m) exceed the rest, so that the sign
+   is decided term by term? NO, and not marginally: sum|rest| / |first| reaches
+   3.1e3 at n = 9 (lam = 1, D = 6), 1.5e10 at n = 21, 4.0e33 at n = 30 with
+   lam = 26. The worst index is m = 0 or 1. Positivity therefore rests on a
+   delicate cancellation between huge alternating terms -- exactly the
+   exponential thinness measured earlier, now seen at the level of the summands.
+
+2. CLOSED PRODUCT FORM. If c_m were a product of Gamma factors, its numerator
+   would only contain primes bounded by the parameters. Factored exactly: the
+   denominators are smooth (largest prime <= 4n, as Pochhammers must be) but the
+   numerators are not -- 2.3e11 at n = 9, 6.3e13 at n = 12 lam = 7, 3.5e12 at
+   n = 14. So there is NO closed product form for general m. The exceptions are
+   the last indices, m = n-2 and n-3, where the sum has two or three terms; that
+   is precisely the case already exploited to rederive the shore.
+
+CONSEQUENCE: the theorem cannot come from an identity. It needs an inequality
+argument that survives cancellation of relative size 1e33.
+
+MAP OF ROUTES TRIED THIS NIGHT (all conclusions from our own data):
+  * per-knife contour certificates -- works but does not scale, and part of the
+    failure structure was the instrument (radius searched outside the admissible
+    window; argument principle fixes that);
+  * single-circle contour -- provably impossible for specific j (conjugate root
+    pair at equal modulus), deformed loops rescue some of those (j = 55, 58);
+  * Airy / fold caustic -- no saddle coalescence anywhere, dropped;
+  * conjugate saddle pair -- gives a constant period 14.87 against measured
+    growing spacings, dropped;
+  * factor-by-factor (Gasper-style) induction -- single squares are not positive,
+    dropped;
+  * ladder induction smallest-first -- works at every step, but asymptotically
+    tight (margin 1 + 3.38/n, confirmed to n = 81) and the degree-only version
+    runs out of room near n ~ 100;
+  * term domination -- fails by up to 33 orders;
+  * closed product form -- excluded by prime factorisation.
+
+WHAT IS LEFT, precisely: a bound on the alternating sum c_m that keeps the
+(-1)^m sign, valid for all m, using the ladder structure of the roots
+u_a = (a/s)^2 with a in {n-2, n-4, ...}. Every ingredient is now explicit and
+exact; nothing in the chain is numerical any more except the verification.
+
+## 2026-08-18 03:36 -- creative telescoping does not apply in the obvious variable
+
+The letter's route (2) was: get a low-order recursion in j by creative
+telescoping. With the terms now explicit this is directly testable, and the
+answer is no in the obvious formulation.
+
+* c_m = SUM_q F_q M(q,m). The ratio t(q+1)/t(q) at n = 14, lam = 1, D = 6, m = 4
+  runs -33.248, -13.690, -7.456, -4.504, -2.838, -1.797, -1.102, -0.615, -0.263,
+  and no rational function of q with numerator and denominator degree <= 4 fits
+  it. The reason is structural: F_q are the elementary symmetric functions of the
+  squares (a/s)^2, and those are not hypergeometric in their index.
+* The natural repair -- read M(q,m) as a moment sequence in q and fold the sum
+  back into a product -- closes on itself: the measure is w P_m du, and its sign
+  changes ARE the difficulty. Circular, recorded so it is not tried again.
+
+So a recursion, if one exists, has to be sought in n or m with the central
+factorial numbers carried along, not in q. That is a heavier computation
+(the E_2t satisfy their own recursion) and is the natural next attempt.
+
+Also measured tonight: the "lowest spin binds" band shrinks with the level as a
+power law rather than vanishing -- 27.3 percent of the cells below the shore at
+n = 12, then 16.1, 11.8, 9.3 at n = 24, 40, 55, i.e. about n^-0.7. So it is a
+genuine feature at every finite level, not a small-n artefact.
