@@ -1,0 +1,73 @@
+{
+ "claim": "at lam=1/10, gamma=6 (above the shore, so negatives are guaranteed) the NEGATIVE Gegenbauer coefficients of q are confined to a low band: the largest negative index divided by sqrt(N) sits at 3.93..4.07 across N = 199..1599, while its share of the spectrum falls from 0.286 to 0.098",
+ "why_it_matters": "the outside memorandum's remaining gap is a possible negative BULK coefficient at m ~ rho N. These measurements show the offending set living at the sqrt(N) scale, i.e. m/N -> 0, with no sign of bulk offending. Evidence, not proof: the constant near 4 is stable but drifts slightly downward at the largest N, and this is a single (lam, gamma) line.",
+ "other_lines_measured": {
+  "lam=1/10,gamma=9": [
+   5.6,
+   5.957,
+   6.12
+  ],
+  "lam=1,gamma=12": [
+   5.6,
+   5.757,
+   5.767
+  ],
+  "lam=3,gamma=30": [
+   8.861,
+   9.562,
+   9.941
+  ],
+  "note": "same N = 199,399,799; the constant depends on (lam,gamma) and still drifts upward on those lines -- NOT a law yet"
+ },
+ "rows": [
+  {
+   "n": 200,
+   "N": 199,
+   "neg": 29,
+   "max_index": 57,
+   "max_over_N": 0.2864,
+   "max_over_sqrtN": 4.041
+  },
+  {
+   "n": 400,
+   "N": 399,
+   "neg": 41,
+   "max_index": 81,
+   "max_over_N": 0.203,
+   "max_over_sqrtN": 4.055
+  },
+  {
+   "n": 800,
+   "N": 799,
+   "neg": 58,
+   "max_index": 115,
+   "max_over_N": 0.1439,
+   "max_over_sqrtN": 4.068
+  },
+  {
+   "n": 1200,
+   "N": 1199,
+   "neg": 70,
+   "max_index": 139,
+   "max_over_N": 0.1159,
+   "max_over_sqrtN": 4.014
+  },
+  {
+   "n": 1600,
+   "N": 1599,
+   "neg": 79,
+   "max_index": 157,
+   "max_over_N": 0.0982,
+   "max_over_sqrtN": 3.926
+  }
+ ],
+ "command": "see docs/BRIEF_FOR_OUTSIDE_HELP_2.md and results/BOUNDARY_PUSH_2026-08-18.md",
+ "git": "289fc821a142",
+ "git_full": "289fc821a142513f57de160d075e62fb0e306f78",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}

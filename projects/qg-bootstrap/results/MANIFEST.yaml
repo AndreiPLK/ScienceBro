@@ -66,6 +66,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  bad_set_localisation.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   blade_proof.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
