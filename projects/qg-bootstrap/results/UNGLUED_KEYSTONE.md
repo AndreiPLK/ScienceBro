@@ -216,3 +216,64 @@ appears in the amplitude literature as the branching-rule argument. Cite it.
 See also `AEHM_ROUTE_VERDICT.md` for why the closest prior method
 (Mansfield arXiv:2502.20372, all `n` and all `j` at `D <= 10`) does not transfer
 to this regime, and why his theorem does not already contain this problem.
+
+---
+
+## A hole in step (b), found 2026-08-19 by a dense sweep, and closed the same way
+
+The claim above -- "the window contains the integer MINIMISER" -- was checked at
+14 values of lam (2.5, 3, 4, 5, 7, 10, 20, 50, 100, 300, 1000, 5000, 20000,
+100000) and held 14 of 14. **A dense sweep breaks it.** Stepping lam by 0.05 from
+2.5 to 70 (1351 values, exact arithmetic):
+
+| lam band | argmin | window | side |
+|---|---|---|---|
+| 2.60 .. 2.95 | 6 | [4.16, 5.20] .. [4.72, 5.90] | RIGHT of it |
+| 3.35 .. 3.45 | 7 | [5.36, 6.70] .. [5.52, 6.90] | RIGHT of it |
+
+11 of 1351 fail, all just above `lam = 5/2`, all falling off the RIGHT edge.
+Above `lam = 3.45` the argmin is inside the window at every one of the remaining
+samples.
+
+**Why it matters.** Step (b) only needs *some* integer in the window for
+`T_hat <= T_{k_s}`, and one is always there. But the sharpened version -- the one
+that closes step (c) without needing monotonicity above the shore -- needs the
+MINIMISER, so that `T_{k_s} = T_hat` exactly. On this band the argument does not
+close.
+
+**Why the sparse check missed it, and it is the ERR-0005 mechanism again.** My
+ladder jumped 2.5 -> 3 -> 4, straight over [2.6, 2.95], and 3 -> 4 straight over
+[3.35, 3.45]. A sparse grid over a narrow feature is blind, and 14 of 14 read as
+convincing. The derivative test is what pointed at it: `dT/dk` at the right edge
+`k = 2 lam` is NEGATIVE for lam = 2.5 and 3, meaning the continuous minimiser
+sits right of the window there -- so the integer one had no reason to be inside,
+and only was at the sampled points because `2 lam` happened to be an integer.
+
+**Closed, by the mechanism already in the file.** The bad band is FINITE, so it
+gets a fixed shore level exactly as `lam <= 5/2` does. Measured on
+lam in [2.5, 3.6], depths 2..8, 1127 trials:
+
+| fixed k_s | negative knives |
+|---|---|
+| 4 | **5** (fails: d=2, n=13, lam=3.4) |
+| 5 | **0** |
+| 6 | 0 |
+| 7 | 0 |
+| 8 | 0 |
+
+So `k_s = 5` covers the band. The lam axis is now three pieces, each closed by
+its own device:
+
+| lam | device |
+|---|---|
+| `<= 5/2` | fixed `k_s = 4` |
+| `[5/2, 18/5]` | fixed `k_s = 5` (this band was the hole) |
+| `>= 18/5` | the window `[8/5, 2]`, argmin inside |
+
+**Still not a proof, and stated as such.** "argmin inside the window for all
+lam >= 18/5" now rests on 1351 exact samples up to lam = 70 plus the sparse
+ladder to 1e5 -- not on an argument. The derivative form above is the route to
+proving it: show `dT/dk < 0` at `k = 8/5 lam` and `> 0` at `k = 2 lam` for all
+lam >= 18/5, both being polynomial inequalities in (k, lam) after clearing the
+positive denominator `(k(k-2))^2`. The first sign held at every lam tested; the
+second is what fails below 18/5 and is exactly what needs bounding.
