@@ -159,13 +159,29 @@ Every piece was verified against the exact reference engine
 trusted — 320 trials for the main construction, 36 for the wedge, 30 per
 depth/parity for the small-`lam` piece, all 0 mismatches.
 
-## Status
+## Status, as of 2026-08-19 15:00 (from the artefacts, not from memory)
 
-**Depth 2: closed for every `lam > 0` and every `K >= 3`.**
+`results/keystone_unglued.json` -- the MAIN argument, all four pieces, both
+parities, 0 open boxes:
 
-Depths 3 and up: the self-check passes and the small-`lam` piece is proved at
-depths 3, 4, 5; the remaining pieces are still running. Nothing here is claimed
-for them yet.
+| depth | lo | hi | wedge | small | seconds |
+|---|---|---|---|---|---|
+| 2 | 2211 | 1 | 1 | 3 | 6 |
+| 4 | 1369 | 1 | 1 | 3 | 119 / 134 |
+| 6 | 937 | 1 | 1 | 3 | 2354 |
+
+All three re-certified AFTER the ERR-0012 wedge fix. Note the `lo` box count
+FALLS with depth (2211 -> 1369 -> 937) while the wall-clock rises: the geometry
+gets easier, the algebra gets bigger.
+
+**Odd depths 3 and 5 are NOT closed.** Their `lo` piece did not converge in 40
+minutes on repeated attempts. Their self-checks pass and their other three
+pieces close, so there is no known obstruction -- but that is not a proof, and
+depth 3 in particular has now resisted several hours across two sessions.
+
+`results/monotonicity_cert.json` -- step (c) certified at depths 2, 3, 4, 5, 6,
+both parities, 0 open, 432 self-check trials each against exact finite
+differences.
 
 ## What this does NOT yet establish, and the concrete route to fixing it
 
