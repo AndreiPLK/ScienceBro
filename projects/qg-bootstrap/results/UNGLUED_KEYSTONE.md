@@ -36,9 +36,56 @@ inside the window, where `T_hat(lam) <= T_{k_s}(lam)` holds **by definition** of
 a minimum over integers. This is exactly the property ERR-0008 showed must never
 be assumed for a non-integer.
 
-**(c) Monotonicity step.** The knife decreases in `D` at fixed `(n, lam)`, so
-positivity at the largest admissible `D` (namely `T_{k_s} >= T_hat`) carries
-down over the whole physical region `D <= T_hat`.
+**(c) Monotonicity step.** The knife decreases in `D` at fixed `(n, lam)` on the
+physical interval, so positivity at the top of that interval carries down over
+all of `D <= T_hat`.
+
+### A gap in step (c), found 2026-08-19, and how it closes
+
+As first written, step (b) delivered positivity at `D = T_{k_s}` for *some*
+integer in the window, and step (c) was supposed to carry that down. **That does
+not follow.** `T_{k_s} >= T_hat`, so the claim sits ABOVE the shore, while
+monotonicity holds only up to the shore — measured, restricted to `3 < D <=
+T_hat`:
+
+| region | result |
+|---|---|
+| `lam >= 5/2` | **monotone on the whole physical interval**, every depth, every level tested |
+| `lam < 5/2` | non-monotone only in a sliver at `D ~ 3.2..3.6`, i.e. 1.7-5% of the way to the shore |
+
+Above the shore monotonicity genuinely fails, so "positive at `T_{k_s}`" could
+not be walked down to `T_hat`. An earlier version of this file asserted the walk
+anyway. That was the ERR-0008 error a second time — proving something at one
+point and helping myself to an interval.
+
+**What closes it.** The window does not merely *contain some* integer; it
+contains the **integer minimiser** of `T_k`. Checked exactly at `lam` = 2.5, 3,
+4, 5, 7, 10, 20, 50, 100, 300, 1000, 5000, 20000, 100000: argmin is inside
+`[8/5 lam, 2 lam]` in **14 of 14** cases —
+
+| lam | argmin | window |
+|---|---|---|
+| 100 | 173 | [160, 200] |
+| 1000 | 1732 | [1600, 2000] |
+| 100000 | 173205 | [160000, 200000] |
+
+and the reason is structural rather than lucky: `argmin ~ sqrt(3)*lam`, and the
+window `[1.6, 2]*lam` is centred on `sqrt(3) = 1.732...`. The window was fixed
+EMPIRICALLY, by measuring where the knife's sign stays positive — and it landed
+on the minimiser by itself, which makes sense, since the shore estimate is
+tightest exactly there.
+
+So choose `k_s = argmin`. Then `T_{k_s} = T_hat` **exactly**, step (a) gives
+positivity **on the shore**, and step (c) only ever needs monotonicity on
+`[3, T_hat]` — which is what holds. The argument is now shorter than before: it
+never requires anything above the shore.
+
+Note this also means step (b) needs a sharper statement than "the window
+contains an integer": it needs "the window contains the minimiser". Verified
+above for 14 values of lam; making it a proof means bounding
+`argmin_k T_k(lam) / lam` inside `[8/5, 2]` for all lam >= 5/2, which is a
+one-variable calculus statement about a known closed form, not a certificate
+problem.
 
 ## The window was measured, not guessed
 

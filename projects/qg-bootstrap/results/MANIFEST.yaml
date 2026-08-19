@@ -60,8 +60,8 @@ artefacts:
     status: live
   UNGLUED_KEYSTONE.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   adversarial_review2_knives4_7.json:
     added: '2026-08-16'
     note: referenced by a paper, document or lab module

@@ -49,14 +49,63 @@
    },
    "proved_for_all_lam": true,
    "seconds": 21.1
+  },
+  {
+   "depth": 4,
+   "self_check_trials": 320,
+   "self_check_passed": true,
+   "v_window": [
+    "8/5",
+    "2"
+   ],
+   "branches": {
+    "even": {
+     "K_deg": 24,
+     "c_deg": 16,
+     "v_deg": 12,
+     "terms": 1232,
+     "lo_proved": true,
+     "lo_boxes": 1369,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0,
+     "wedge_proved": true,
+     "wedge_boxes": 1,
+     "wedge_open": 0,
+     "small_lam_proved": true,
+     "small_lam_boxes": 3,
+     "small_lam_open": 0
+    },
+    "odd": {
+     "K_deg": 24,
+     "c_deg": 16,
+     "v_deg": 12,
+     "terms": 2071,
+     "lo_proved": true,
+     "lo_boxes": 1369,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 1,
+     "hi_open": 0,
+     "wedge_proved": true,
+     "wedge_boxes": 1,
+     "wedge_open": 0,
+     "small_lam_proved": true,
+     "small_lam_boxes": 1,
+     "small_lam_open": 0
+    }
+   },
+   "proved_for_all_lam": true,
+   "seconds": 313.3
   }
  ],
  "command": "python lab/keystone_unglued.py <d> [<d> ...]",
- "git": "8072b99ce051",
- "git_full": "8072b99ce051b44df7395816fb6d495c9fc7520a",
+ "git": "f5cf6865389f",
+ "git_full": "f5cf6865389f176274a66bcfbbc681427537b119",
  "dirty": true,
  "dirty_code_files": [
-  "projects/qg-bootstrap/lab/keystone_unglued.py"
+  "projects/qg-bootstrap/lab/monotonicity_cert.py"
  ],
  "dirty_count": 1,
  "python": "3.12.10",
