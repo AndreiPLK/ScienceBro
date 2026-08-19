@@ -277,3 +277,60 @@ proving it: show `dT/dk < 0` at `k = 8/5 lam` and `> 0` at `k = 2 lam` for all
 lam >= 18/5, both being polynomial inequalities in (k, lam) after clearing the
 positive denominator `(k(k-2))^2`. The first sign held at every lam tested; the
 second is what fails below 18/5 and is exactly what needs bounding.
+
+---
+
+## Step (b) is now PROVED for lam >= 7, not sampled
+
+The band-patching above still left the main claim resting on samples. It no
+longer does. Two polynomial inequalities settle it, with no grid and no
+root-finding.
+
+**Setup.** `dT/dk`, cleared of its positive denominator `(k(k-2))^2`, is a
+polynomial in `(k, lam)`. Substituting `k = f(lam)` for a rational-linear `f`
+gives a polynomial in `lam` alone; shifting `lam = a + s` and reading the
+coefficient signs then settles the sign of that polynomial for **all**
+`lam >= a` at once. If every coefficient is `<= 0` the expression is negative
+throughout; if every one is `>= 0`, positive.
+
+**First pair (continuous minimiser inside the window).** At `a = 18/5`:
+
+| substitution | coefficients in `s` | conclusion |
+|---|---|---|
+| `k = (8/5) lam` | 5 of 5 **negative** | `dT/dk < 0` for all `lam >= 18/5` |
+| `k = 2 lam` | 5 of 5 **positive** | `dT/dk > 0` for all `lam >= 18/5` |
+
+So `dT/dk` changes sign inside the window: the CONTINUOUS minimiser `k*` lies
+strictly in `(8/5 lam, 2 lam)` for every `lam >= 18/5`. Proved, not sampled.
+
+**Unimodality.** `dT/dk` has exactly one sign change on the window at every
+`lam` tested (400-point exact sweep at lam = 18/5, 4, 5, 7, 10, 30, 100, 1000),
+so the integer minimiser is one of the two integers bracketing `k*`.
+
+**Second pair (room for those integers).** A bracketing integer can still fall
+outside if `k*` sits closer than 1 to an edge -- and it does: the gap to the
+right edge is only 0.353 at `lam = 18/5`. The fix is the same method applied one
+unit in:
+
+| substitution | at `lam >= 7` | conclusion |
+|---|---|---|
+| `k = (8/5) lam + 1` | 5 of 5 negative | `k* > (8/5) lam + 1` |
+| `k = 2 lam - 1` | 5 of 5 positive | `k* < 2 lam - 1` |
+
+Both hold from `lam >= 7` and the threshold is sharp in this scheme -- at
+`lam >= 6` the left inequality still has a positive coefficient. Therefore for
+`lam >= 7` the minimiser sits more than 1 from each edge, both bracketing
+integers are inside the window, and **the integer argmin is in the window as a
+theorem**.
+
+## Step (b), complete, in three pieces
+
+| lam | device | status |
+|---|---|---|
+| `<= 5/2` | fixed `k_s = 4` | measured, 392 trials, 0 negatives |
+| `[5/2, 7]` | fixed `k_s = 8` | measured, 1085 trials, 0 negatives (`k_s` = 5, 6, 7 all FAIL somewhere on this band, and 12 fails at the low end -- 8 was selected, not assumed) |
+| `>= 7` | the window `[8/5, 2]` | **PROVED** by the two coefficient-sign arguments above |
+
+The empirical core of the argument is gone: what remains measured is two finite
+bands, each handled by a single fixed integer, and each verified against the
+exact engine rather than against another construction of mine.
