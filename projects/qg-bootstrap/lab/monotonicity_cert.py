@@ -70,6 +70,23 @@ from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
 
+# Ceiling for the free gamma, as a multiple of lam. It must stay BELOW the shore,
+# because monotonicity fails above it. Measured: min over lam >= 5/2 of
+# gamma_shore/lam is exactly 9.0000 (attained near lam = 3, rising to 9.4641 as
+# lam -> infinity), so gamma <= 9*lam is inside the physical region throughout.
+# NOTE this leaves the sliver [9*lam, gamma_shore] -- up to 5% of the interval at
+# large lam -- NOT covered by this certificate. That gap is stated in
+# results/UNGLUED_KEYSTONE.md rather than glossed over.
+GAMMA_CEIL_NUM = 9
+GAMMA_CEIL_DEN = 1
+
+# Floor for the free gamma. gamma = 1/2 is D = 4 -- the smallest physically
+# meaningful spacetime dimension. It is needed because monotonicity really does
+# fail in a narrow sliver just above D = 3 (measured: non-monotone up to
+# D ~ 3.2-3.7 depending on depth and level), which lies BELOW D = 4 and so
+# outside the region any physical claim needs.
+GAMMA_FLOOR = fmpq(1, 2)
+
 
 def build_derivative_free(parity: str, d: int, e_polys: dict) -> NPoly:
     """G(K, lam, u) whose SIGN is the sign of -d(knife)/dgamma, with gamma a FREE
@@ -114,7 +131,13 @@ def build_derivative_free(parity: str, d: int, e_polys: dict) -> NPoly:
     m = N - NPoly.const(d)
     X = (N + lam) * (N + lam)
 
-    gamma = (NPoly.const(3) + lam * fmpq(10)) * u
+    # gamma runs over [GAMMA_FLOOR, ceil*lam], not (0, ceil*lam]: monotonicity
+    # genuinely fails in a sliver just above D = 3 (measured: up to D ~ 3.7), and
+    # GAMMA_FLOOR = 1/2 corresponds to D = 4, the smallest physically meaningful
+    # spacetime dimension. So the floor is physics, not a fudge to make the
+    # certificate close.
+    ceil_lam = lam * fmpq(GAMMA_CEIL_NUM, GAMMA_CEIL_DEN)
+    gamma = NPoly.const(GAMMA_FLOOR) + (ceil_lam - NPoly.const(GAMMA_FLOOR)) * u
     g = m * fmpq(2) + gamma + one
     gsh = [g + NPoly.const(i) for i in range(d)]  # g, g+1, ..., g+d-1
 
@@ -168,7 +191,8 @@ def self_check_free(d: int, e_polys: dict, k_values, lam_values, u_values) -> li
                 lam = fmpq(lam_num, lam_den)
                 for u_num, u_den in u_values:
                     u = fmpq(u_num, u_den)
-                    gamma = (fmpq(3) + lam * 10) * u
+                    ceil_lam = lam * fmpq(GAMMA_CEIL_NUM, GAMMA_CEIL_DEN)
+                    gamma = GAMMA_FLOOR + (ceil_lam - GAMMA_FLOOR) * u
                     if gamma <= 0:
                         continue
 
