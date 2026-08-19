@@ -507,50 +507,57 @@ def build_wedge(parity: str, d: int, e_polys: dict) -> NPoly:
     leftover side conditions -- the two boxes together cover every point with
     lam >= 5/2.
 
-    K is a fraction in c, so every quantity is carried multiplied by the
-    appropriate power of c (cK = c*K, cN = c*N, cm = c*m) to stay polynomial.
+    HOW IT IS BUILT, and why not by hand (ERR-0012). The first version rewrote
+    the whole beta-mean construction with each quantity carried at "the
+    appropriate power of c" -- and got those powers wrong, silently. Four
+    independent verifier agents caught it: the hand-written wedge disagreed in
+    SIGN with `build_branch` at their shared boundary c = C_MIN (9 of 9 test
+    points at depth 3), and since `build_branch` is the construction validated
+    against the exact engine, the wedge was the wrong one. It survived because
+    `self_check` never touched this code path at all.
+
+    So the wedge is no longer re-derived. It is obtained by SUBSTITUTION into
+    the already-validated `build_branch`: write H(K,c,v) = sum_a K^a P_a(c,v),
+    then
+        W = sum_a (5 + 4cz)^a (4c)^(A-a) P_a(c,v),     A = deg_K H
+    which is exactly (4c)^A * H(K -> 5/(4c) + z, c, v). Since (4c)^A > 0 on the
+    domain, W has the same sign as the knife. Nothing is re-derived, so nothing
+    new can be mis-derived.
+
     Slot 0 = c, slot 1 = z, slot 2 = v.
     """
+    H = build_branch(parity, d, e_polys)
+
+    # split H by powers of K: H = sum_a K^a * P_a(c, v)
+    A = H.max_deg(0)
+    P: dict[int, dict] = {}
+    for expo, coeff in H.d.items():
+        a = expo[0]
+        key = (0, expo[1], expo[2])  # slot 0 will carry c, slot 1 will carry z
+        P.setdefault(a, {})
+        P[a][key] = P[a].get(key, fmpq(0)) + coeff
+
     c = NPoly.var(0)
     z = NPoly.var(1)
-    v = NPoly.var(2)
+    four_c = c * fmpq(4)
+    num = NPoly.const(5) + four_c * z  # 4c*K = 5 + 4cz
 
-    cK = NPoly.const(fmpq(5, 4)) + c * z
-    cN = cK * fmpq(2) if parity == "even" else cK * fmpq(2) + c
-    lam = cN  # this is c*lam_true; every companion below carries the same c-power
-    cm = cN - c * NPoly.const(d)
-    X = (cN + c * lam) * (cN + c * lam)
-    k_s = v * lam
-    B = lam * lam + (k_s * fmpq(2) - fmpq(2) * c) * lam + c * c
-    kk2 = k_s * (k_s - fmpq(2) * c)
-    Qg = kk2 * fmpq(2)
-    Pg = (
-        (k_s * fmpq(2) - fmpq(3) * c) * B * fmpq(3)
-        + k_s * k_s * (k_s - fmpq(2) * c) * fmpq(2)
-        - kk2 * fmpq(3) * c * c
-    )
-
+    # W = sum_a (5+4cz)^a * (4c)^(A-a) * P_a, where P_a's (c,v) exponents move
+    # from H's (c=slot1, v=slot2) to the wedge's (c=slot0, v=slot2).
     total = NPoly.const(0)
-    half = NPoly.const(fmpq(1, 2))
-    two_m_Qg = (cm * fmpq(2)) * Qg
-    L = [two_m_Qg + Pg + Qg * c * fmpq(1 + i) for i in range(d)]
-    for k in range(d + 1):
-        j = d - k
-        coeff_N = e_polys[k] * falling_poly(k, j) / poch(fmpq(1), j)
-        coeffs = coeff_N.coeffs()
-        deg = len(coeffs) - 1
-        cb = NPoly.const(0)
-        for i, co in enumerate(coeffs):
-            cb = cb + NPoly.const(co) * (cN**i) * (c ** (deg - i))
-        cb = cb * fmpq((-1) ** k)
+    for a, terms in P.items():
+        Pa = NPoly({(e[1], 0, e[2]): co for e, co in terms.items()})
+        total = total + Pa * (num**a) * (four_c ** (A - a))
 
-        num = NPoly.const(1)
-        for i in range(j):
-            num = num * (cm + c * half + c * NPoly.const(i))
-        comp = NPoly.const(1)
-        for i in range(j, d):
-            comp = comp * L[i]
-        total = total + cb * num * comp * (X**j) * (Qg**j)
+    # Divide out the largest common power of c. It is a strictly positive factor
+    # on the domain (c > 0), so the sign is untouched -- but leaving it in makes
+    # the polynomial needlessly high-degree and Bernstein then cannot close it:
+    # measured, the undivided wedge failed at depth 2 with 174761 boxes, while
+    # the divided one closes in a single box.
+    if total.d:
+        shift = min(e[0] for e in total.d)
+        if shift:
+            total = NPoly({(e[0] - shift, e[1], e[2]): co for e, co in total.d.items()})
     return total
 
 
@@ -624,6 +631,112 @@ def compactify(poly: NPoly, slot: int, x_min) -> NPoly:
             k = tuple(key)
             out[k] = out.get(k, fmpq(0)) + base * cf
     return NPoly({k: v for k, v in out.items() if v != 0})
+
+
+def self_check_all(d: int, e_polys: dict) -> dict:
+    """Check ALL THREE constructions against the exact engine, INCLUDING points
+    where the reference sign is NEGATIVE.
+
+    Two lessons from ERR-0012 are baked in here, both found by the verifier
+    agents rather than by me:
+
+    1. `self_check` only ever exercised `build_branch`. `build_wedge` and
+       `build_small_lam` had no self-check at all, which is exactly how a wrong
+       wedge shipped. All three are covered now.
+
+    2. Far more subtle: inside the window v in [8/5, 2] the reference sign is
+       ALWAYS +1, so a sign comparison there cannot tell the intended polynomial
+       apart from any other positive function. A check with no negative
+       reference values is close to vacuous. So v is deliberately pushed OUTSIDE
+       the window (v = 1, 5/4, 3, 4) and the count of genuinely negative
+       reference signs is REPORTED -- if that count is 0, the check proved
+       nothing and says so.
+    """
+    from fractions import Fraction as F  # ENGINE-OK: interface glue only
+
+    from jacobi_normal_form import jacobi_coeff_rec
+
+    def ref_sign(n, j, m, lam, k_s):
+        Bexpr = lam * lam + (k_s * 2 - 2) * lam + 1
+        kk2 = k_s * (k_s - 2)
+        Qg = kk2 * 2
+        Pg = (k_s * 2 - 3) * Bexpr * 3 + k_s * k_s * (k_s - 2) * 2 - kk2 * 3
+        D = (Pg / Qg) * 2 + 3
+        knife = (-1) ** m * jacobi_coeff_rec(j, n, F(int(lam.p), int(lam.q)), F(int(D.p), int(D.q)))
+        return (knife > 0) - (knife < 0)
+
+    # v values reaching WELL outside the window, so the reference goes negative
+    v_probe = [(1, 1), (5, 4), (8, 5), (7, 4), (2, 1), (3, 1), (4, 1)]
+    report = {"branch": [0, 0, 0], "wedge": [0, 0, 0], "small": [0, 0, 0]}
+    # each entry: [trials, mismatches, negative_reference_signs]
+
+    for parity in ("even", "odd"):
+        H = build_branch(parity, d, e_polys)
+        W = build_wedge(parity, d, e_polys)
+        S = build_small_lam(parity, d, e_polys)
+        j = d + 1
+
+        for K_val in (3, 4, 6, 11, 30):
+            N = 2 * K_val if parity == "even" else 2 * K_val + 1
+            n = N + 1
+            m = n - j
+            if m < 0 or j > n - 1:
+                continue
+
+            # --- branch: coordinates (K, c, v)
+            for cn, cd_ in ((5, 12), (1, 1), (7, 1), (60, 1)):
+                c_val = fmpq(cn, cd_)
+                lam = c_val * N
+                for vn, vd in v_probe:
+                    v_val = fmpq(vn, vd)
+                    k_s = v_val * lam
+                    if k_s <= 3:
+                        continue
+                    got = H.eval_at((fmpq(K_val), c_val, v_val))
+                    sg = (got > 0) - (got < 0)
+                    se = ref_sign(n, j, m, lam, k_s)
+                    report["branch"][0] += 1
+                    report["branch"][1] += sg != se
+                    report["branch"][2] += se < 0
+
+            # --- small lam: coordinates (K, lam) at the fixed shore level
+            for ln, ld in ((1, 100), (1, 2), (2, 1), (5, 2)):
+                lam = fmpq(ln, ld)
+                got = S.eval_at((fmpq(K_val), lam, fmpq(0)))
+                sg = (got > 0) - (got < 0)
+                se = ref_sign(n, j, m, lam, KS_SMALL)
+                report["small"][0] += 1
+                report["small"][1] += sg != se
+                report["small"][2] += se < 0
+
+        # --- wedge: coordinates (c, z, v); K = 5/(4c)+z must be an INTEGER for
+        #     the reference engine, so pick c making it so.
+        for cn, cd_ in ((5, 12), (5, 20), (5, 40), (5, 100)):
+            c_val = fmpq(cn, cd_)
+            for zi in (0, 1, 4, 9):
+                K_real = fmpq(5, 4) / c_val + zi
+                if K_real.q != 1 or K_real < 3:
+                    continue
+                K_val = int(K_real)
+                N = 2 * K_val if parity == "even" else 2 * K_val + 1
+                n = N + 1
+                m = n - j
+                if m < 0 or j > n - 1:
+                    continue
+                lam = c_val * N
+                for vn, vd in v_probe:
+                    v_val = fmpq(vn, vd)
+                    k_s = v_val * lam
+                    if k_s <= 3:
+                        continue
+                    got = W.eval_at((c_val, fmpq(zi), v_val))
+                    sg = (got > 0) - (got < 0)
+                    se = ref_sign(n, j, m, lam, k_s)
+                    report["wedge"][0] += 1
+                    report["wedge"][1] += sg != se
+                    report["wedge"][2] += se < 0
+
+    return report
 
 
 def run_depth(d: int) -> dict:

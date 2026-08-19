@@ -23,6 +23,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  DEPTHS_GRAPH_RUN.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   FROZEN_PREDICTION_blocks.md:
     added: '2026-08-18'
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
@@ -686,6 +690,10 @@ artefacts:
     status: live
   model_test.json:
     added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  monotonicity_cert.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   n2_fixed_spin.json:

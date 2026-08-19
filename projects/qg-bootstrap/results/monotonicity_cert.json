@@ -1,0 +1,191 @@
+{
+ "claim": "STEP (c) of the unglued keystone as a CERTIFICATE, not a measurement: -d(knife)/dgamma > 0 (the knife DECREASES in D) for all K>=3, all lam>=5/2, and gamma running over the whole interval from GAMMA_FLOOR=1/2 (i.e. D=4, the smallest physical dimension) up to 9*lam (which stays below the shore: min of gamma_shore/lam over lam>=5/2 is exactly 9.0000). gamma is a FREE variable here, not the single point D=T_v(lam) an earlier version pinned it to -- pinning it was the ERR-0008 mistake repeated. KNOWN GAP: the sliver [9*lam, gamma_shore], up to 5% of the interval at large lam, is not covered. See results/UNGLUED_KEYSTONE.md.",
+ "runs": [
+  {
+   "depth": 2,
+   "self_check_trials": 432,
+   "self_check_passed": true,
+   "gamma_floor": "1/2",
+   "gamma_ceiling": "9/1 * lam",
+   "branches": {
+    "even": {
+     "K_deg": 9,
+     "lam_deg": 5,
+     "u_deg": 2,
+     "terms": 95,
+     "lo_proved": true,
+     "lo_boxes": 243,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 225,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 9,
+     "lam_deg": 5,
+     "u_deg": 2,
+     "terms": 95,
+     "lo_proved": true,
+     "lo_boxes": 229,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 225,
+     "hi_open": 0
+    }
+   },
+   "monotone_proved": true,
+   "seconds": 2.8
+  },
+  {
+   "depth": 3,
+   "self_check_trials": 432,
+   "self_check_passed": true,
+   "gamma_floor": "1/2",
+   "gamma_ceiling": "9/1 * lam",
+   "branches": {
+    "even": {
+     "K_deg": 14,
+     "lam_deg": 8,
+     "u_deg": 4,
+     "terms": 375,
+     "lo_proved": true,
+     "lo_boxes": 131,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 281,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 14,
+     "lam_deg": 8,
+     "u_deg": 4,
+     "terms": 389,
+     "lo_proved": true,
+     "lo_boxes": 127,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 281,
+     "hi_open": 0
+    }
+   },
+   "monotone_proved": true,
+   "seconds": 4.9
+  },
+  {
+   "depth": 4,
+   "self_check_trials": 432,
+   "self_check_passed": true,
+   "gamma_floor": "1/2",
+   "gamma_ceiling": "9/1 * lam",
+   "branches": {
+    "even": {
+     "K_deg": 19,
+     "lam_deg": 11,
+     "u_deg": 6,
+     "terms": 950,
+     "lo_proved": true,
+     "lo_boxes": 105,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 285,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 19,
+     "lam_deg": 11,
+     "u_deg": 6,
+     "terms": 971,
+     "lo_proved": true,
+     "lo_boxes": 101,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 285,
+     "hi_open": 0
+    }
+   },
+   "monotone_proved": true,
+   "seconds": 13.8
+  },
+  {
+   "depth": 5,
+   "self_check_trials": 432,
+   "self_check_passed": true,
+   "gamma_floor": "1/2",
+   "gamma_ceiling": "9/1 * lam",
+   "branches": {
+    "even": {
+     "K_deg": 24,
+     "lam_deg": 14,
+     "u_deg": 8,
+     "terms": 1924,
+     "lo_proved": true,
+     "lo_boxes": 95,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 287,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 24,
+     "lam_deg": 14,
+     "u_deg": 8,
+     "terms": 1953,
+     "lo_proved": true,
+     "lo_boxes": 97,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 281,
+     "hi_open": 0
+    }
+   },
+   "monotone_proved": true,
+   "seconds": 46.3
+  },
+  {
+   "depth": 6,
+   "self_check_trials": 432,
+   "self_check_passed": true,
+   "gamma_floor": "1/2",
+   "gamma_ceiling": "9/1 * lam",
+   "branches": {
+    "even": {
+     "K_deg": 29,
+     "lam_deg": 17,
+     "u_deg": 10,
+     "terms": 3389,
+     "lo_proved": true,
+     "lo_boxes": 93,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 285,
+     "hi_open": 0
+    },
+    "odd": {
+     "K_deg": 29,
+     "lam_deg": 17,
+     "u_deg": 10,
+     "terms": 3425,
+     "lo_proved": true,
+     "lo_boxes": 93,
+     "lo_open": 0,
+     "hi_proved": true,
+     "hi_boxes": 285,
+     "hi_open": 0
+    }
+   },
+   "monotone_proved": true,
+   "seconds": 127.7
+  }
+ ],
+ "command": "python lab/monotonicity_cert.py <d> [<d> ...]",
+ "git": "c31fa77688ea",
+ "git_full": "c31fa77688ea5c5c9e081c3df33560a3738b7504",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/monotonicity_cert.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.10",
+ "flint": "0.9.0",
+ "platform": "Windows-11-10.0.22631-SP0"
+}

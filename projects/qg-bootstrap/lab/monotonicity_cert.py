@@ -57,10 +57,6 @@ from flint import fmpq
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from depth_d_proof import elementary_symmetric, falling_poly, poch  # noqa: E402
 from keystone_unglued import (  # noqa: E402
-    C_MIN,
-    C_SPLIT,
-    V_HI,
-    V_LO,
     NPoly,
     compactify,
     lift_N,
@@ -337,14 +333,25 @@ def self_check(d: int, e_polys: dict, k_values, c_values, v_values) -> list[str]
     return bad
 
 
+LAM_MIN = fmpq(5, 2)
+LAM_SPLIT = fmpq(200)
+
+
 def run_depth(d: int) -> dict:
+    """Certify monotonicity on the region the argument uses: K >= 3, lam >= 5/2,
+    gamma from GAMMA_FLOOR up to GAMMA_CEIL*lam.
+
+    Uses build_derivative_free (gamma a free variable), NOT the older
+    build_derivative that pinned gamma to the single point D = T_v(lam) --
+    see that function's docstring for why the pinned version was wrong.
+    """
     t0 = time.time()
     e_polys = elementary_symmetric(d)
     k_values = (3, 4, 6, 10, 25, 100)
-    c_values = [(5, 12), (1, 1), (5, 1), (50, 1), (500, 1)]
-    v_values = [(8, 5), (7, 4), (19, 10), (2, 1)]
-    bad = self_check(d, e_polys, k_values, c_values, v_values)
-    n_trials = len(k_values) * len(c_values) * len(v_values) * 2
+    lam_values = [(5, 2), (3, 1), (5, 1), (20, 1), (100, 1), (1000, 1)]
+    u_values = [(0, 1), (1, 100), (1, 10), (1, 2), (9, 10), (1, 1)]
+    bad = self_check_free(d, e_polys, k_values, lam_values, u_values)
+    n_trials = len(k_values) * len(lam_values) * len(u_values) * 2
     print(f"depth {d}: derivative self-check {n_trials} trials, {len(bad)} mismatches", flush=True)
     if bad:
         for b in bad[:5]:
@@ -355,18 +362,22 @@ def run_depth(d: int) -> dict:
         "depth": d,
         "self_check_trials": n_trials,
         "self_check_passed": True,
+        "gamma_floor": str(GAMMA_FLOOR),
+        "gamma_ceiling": f"{GAMMA_CEIL_NUM}/{GAMMA_CEIL_DEN} * lam",
         "branches": {},
     }
     for parity in ("even", "odd"):
-        G = build_derivative(parity, d, e_polys)
+        G = build_derivative_free(parity, d, e_polys)
         t1 = time.time()
         gK = compactify(G, 0, 3)
         ok_lo, b_lo, o_lo = prove_box(
-            gK, [(fmpq(0), fmpq(999, 1000)), (C_MIN, C_SPLIT), (V_LO, V_HI)], max_depth=30
+            gK, [(fmpq(0), fmpq(999, 1000)), (LAM_MIN, LAM_SPLIT), (fmpq(0), fmpq(1))], max_depth=28
         )
-        gKc = compactify(gK, 1, C_SPLIT)
+        gKc = compactify(gK, 1, LAM_SPLIT)
         ok_hi, b_hi, o_hi = prove_box(
-            gKc, [(fmpq(0), fmpq(999, 1000)), (fmpq(0), fmpq(999, 1000)), (V_LO, V_HI)]
+            gKc,
+            [(fmpq(0), fmpq(999, 1000)), (fmpq(0), fmpq(999, 1000)), (fmpq(0), fmpq(1))],
+            max_depth=28,
         )
         dt = time.time() - t1
         print(
@@ -375,8 +386,8 @@ def run_depth(d: int) -> dict:
         )
         result["branches"][parity] = {
             "K_deg": G.max_deg(0),
-            "c_deg": G.max_deg(1),
-            "v_deg": G.max_deg(2),
+            "lam_deg": G.max_deg(1),
+            "u_deg": G.max_deg(2),
             "terms": len(G.d),
             "lo_proved": ok_lo,
             "lo_boxes": b_lo,
@@ -415,10 +426,15 @@ def main() -> int:
             json.dumps(
                 {
                     "claim": "STEP (c) of the unglued keystone as a CERTIFICATE, not a "
-                    "measurement: -d(knife)/dgamma > 0 (i.e. the knife decreases in D) at "
-                    "D = T_v(lam) for all real v in [8/5, 2], all K>=3, all c >= 5/12. "
-                    "Combined with steps (a) and (b) this removes the last measured-only "
-                    "link in the argument. See results/UNGLUED_KEYSTONE.md.",
+                    "measurement: -d(knife)/dgamma > 0 (the knife DECREASES in D) for all "
+                    "K>=3, all lam>=5/2, and gamma running over the whole interval from "
+                    "GAMMA_FLOOR=1/2 (i.e. D=4, the smallest physical dimension) up to "
+                    "9*lam (which stays below the shore: min of gamma_shore/lam over "
+                    "lam>=5/2 is exactly 9.0000). gamma is a FREE variable here, not the "
+                    "single point D=T_v(lam) an earlier version pinned it to -- pinning it "
+                    "was the ERR-0008 mistake repeated. KNOWN GAP: the sliver "
+                    "[9*lam, gamma_shore], up to 5% of the interval at large lam, is not "
+                    "covered. See results/UNGLUED_KEYSTONE.md.",
                     "runs": sorted(keep + out, key=lambda r: r["depth"]),
                     "command": "python lab/monotonicity_cert.py <d> [<d> ...]",
                     **stamp(),

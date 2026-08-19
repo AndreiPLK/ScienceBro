@@ -412,3 +412,62 @@ whole box. Two independent files carried the identical algebra mistake
 undetected specifically because both self-checks used a narrow, small-value
 range. A narrow self-check is worse than no self-check: it manufactures
 false confidence.
+
+## ERR-0012 (2026-08-19): `build_wedge` certified the WRONG polynomial, and the
+self-check could not have caught it -- found by four independent verifier agents
+
+**What was wrong.** `keystone_unglued.build_wedge` re-derived the whole beta-mean
+construction from scratch in wedge coordinates, carrying each quantity at "the
+appropriate power of c". Those powers were wrong. Consequence: every
+`wedge proved, 1 box, 0 open` written to `results/keystone_unglued.json` at
+depths 2 and 4 certified an object that is not the knife.
+
+**This retracted "depth 2 fully proved".** Its `lo`, `hi` and `small` pieces
+verify clean, but the wedge is one of the four pieces, so the region `c < 5/12`
+was uncovered at every depth. Depth 2 was downgraded the moment this was found,
+not after the fix.
+
+**How it was found, and this is the part worth keeping.** A Workflow graph ran
+four depths in parallel, each with an INDEPENDENT verifier agent instructed not
+to trust the prover and to write its own harness. All four, separately, landed on
+the same function. Their decisive test was one I had not thought to run: the
+wedge and the branch must agree in SIGN on their shared boundary `c = C_MIN`,
+where the wedge's `K = 5/(4c)+z = 3+z`. They disagreed 9 of 9 points at depth 3
+(branch +, wedge -), and since `build_branch` is the construction validated
+against the exact engine, the wedge was the wrong one. Mismatch counts against
+the reference: 770/3145 at d=3, 30/5367 at d=4, 148/502 at d=5, 256/4639 at d=6.
+
+**Why my own self-check was blind, in two separate ways.**
+1. `self_check` built and tested ONLY `build_branch`. `build_wedge` and
+   `build_small_lam` had no self-check at all. Third occurrence of the ERR-0010
+   pattern: the bug lives exactly where the check does not reach.
+2. Subtler, and the more useful lesson: inside the window `v in [8/5, 2]` the
+   reference sign is ALWAYS +1. A sign comparison there cannot distinguish the
+   intended polynomial from ANY other positive function. So even a self-check
+   that HAD covered the wedge would have passed while the wedge was wrong. The
+   check was close to vacuous and reported "0 mismatches" all the same.
+
+**Fixed, two ways, cross-validated.** The wedge is no longer re-derived. It is
+obtained by SUBSTITUTION into the already-validated branch: with
+`H(K,c,v) = sum_a K^a P_a(c,v)` and `A = deg_K H`,
+`W = sum_a (5+4cz)^a (4c)^(A-a) P_a(c,v)`, which is `(4c)^A * H(K -> 5/(4c)+z)`.
+Since `(4c)^A > 0` on the domain the sign is preserved, and nothing is
+re-derived, so nothing new can be mis-derived. The verifiers independently
+confirmed the equivalent algebraic route (removing the spurious c's from
+`B`, `kk2`, `Qg`, `Pg`) gives the identical coefficient dict. Boundary agreement
+after the fix: 9/9 at every depth 2-6, both parities.
+
+**And the check is fixed too, not just the code.** `self_check_all` now covers
+all THREE constructions, probes `v` well OUTSIDE the window (v = 1, 5/4, 3, 4) so
+the reference actually goes negative, and REPORTS the number of negative
+reference signs -- printing `VACUOUS` when that count is 0, i.e. saying out loud
+when it has proved nothing. A check that cannot fail is not a check.
+
+**Physics is untouched, again.** 1196 in-window trials found 0 negative knives;
+every sign failure sits at `v` outside `[8/5, 2]`. What was broken was the
+certificate, not the claim.
+
+**NEW RULE:** an independent verifier that does not share the prover's code is
+worth more than any amount of self-checking. This bug had survived my own
+review, two commits and a night of work; it did not survive one pass of four
+agents told to disbelieve me.
