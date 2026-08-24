@@ -34,8 +34,8 @@ artefacts:
     status: retracted
   ODD_DEPTH_DIAGNOSIS.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   OPEN_PROBLEM.md:
     added: '2026-08-18'
     note: the standing statement of the open problem plus the list of CLOSED routes; read before any new
@@ -707,6 +707,18 @@ artefacts:
   normal_form_certificates.json:
     added: '2026-08-18'
     note: certificates from the normal-form route
+    status: live
+  odd_depth_factor.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  odd_depth_margin_scan.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  odd_depth_window_refuted.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
     status: live
   paper2_artifacts.json:
     added: '2026-08-15'
