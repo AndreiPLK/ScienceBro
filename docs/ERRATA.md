@@ -471,3 +471,70 @@ certificate, not the claim.
 worth more than any amount of self-checking. This bug had survived my own
 review, two commits and a night of work; it did not survive one pass of four
 agents told to disbelieve me.
+
+## ERR-0013 (2026-08-24): the odd-depth "cancellation" diagnosis was wrong -- the
+fixed-window step (a) statement is FALSE at odd depths, and the Bernstein runs
+were failing because they were asked to prove a false claim
+
+**What was wrong, twice.**
+1. `ODD_DEPTH_DIAGNOSIS.md` concluded the odd-depth `lo` piece fails through
+   near-total cancellation (relative margin `7.8e-05` at the corner), i.e. a
+   conditioning problem, and recommended an SOS basis change. The mechanism is
+   refuted by its own measure: the corner margin decreases SMOOTHLY with depth
+   (2.2e-3, 7.8e-5, 3.1e-6, 1.1e-7 for depths 2, 3, 4, 5) with NO parity
+   structure, while certification alternates by parity. Depth 4's margin is 25x
+   WORSE than depth 3's, and depth 4 certifies in 1369 boxes.
+2. The actual reason: **the statement is false.** The step-(a) claim "knife_d
+   positive at `D = T_{v*lam}` for ALL v in `[8/5, 2]`" fails at odd depths.
+   Exact witnesses, confirmed independently by `build_branch` AND the exact
+   reference engine `jacobi_coeff_rec` (`results/odd_depth_window_refuted.json`):
+   depth 3 even parity `K=54, c=239/400, v=2` (n=109, lam=64.53); depth 3 odd
+   `K=54, c=71/120, v=2`; depth 5 both parities at `K=111, c~0.59, v=2`; also
+   `v=8/5` at `K=226, c=3/5`. All inside the certified box.
+
+**The structural mechanism, which was on the wall the whole time.** The margin
+law of 2026-08-17: knives of even order `j` MUST have a threshold in `D`, odd-j
+knives cannot. Odd depth d means even `j = d+1`. Away from the integer argmin
+of `T_k`, the evaluation point `T_{v*lam}` exceeds the true shore by an amount
+growing with `lam`, overshoots the threshold, and the knife is LEGITIMATELY
+negative. Even depths are thresholdless, which is the entire even/odd split in
+the certification record. This is the ERR-0010 mechanism a second time: the
+method demanded strictly more than the physics. The physics shows no violation:
+at every witness point the knife is POSITIVE at the true shore `T_hat` (integer
+argmin), both engines agreeing.
+
+**Why every earlier scan missed it (ERR-0005, third occurrence).** The negative
+region needs BOTH `c` in a narrow band (~0.52..0.67) AND `K` large (>= 54).
+Every window-cleanliness scan used `c` grids like {5/12, 1, 5, 7, 50, 60} --
+stepping straight over the band -- and the ERR-0012 note "1196 in-window trials,
+0 negative knives" inherited the same blindness. A 2D-conjunctive feature needs
+BOTH axes sampled inside it; the existing rule "sample relative to moving
+boundaries" now extends to: when a region is suspected clean, hunt its
+COMPLEMENT with an optimizer (bisection on sign along rays), not only grids.
+
+**What dies:**
+* the fixed-window form of step (a) for ALL odd depths -- unprovable, being false;
+* the SOS/Jacobi-basis route AS AIMED AT THAT STATEMENT (you cannot certify a
+  false inequality; the basis was never the problem);
+* the "same window clean at every depth" keystone property claimed in
+  `UNGLUED_KEYSTONE.md` (its "0 negatives out of 160 per depth" was grid
+  blindness);
+* the cancellation diagnosis in `ODD_DEPTH_DIAGNOSIS.md` (correction appended
+  in place).
+
+**What survives:**
+* even-depth certificates (2, 4, 6): their statements are about thresholdless
+  knives, are true as far as anything now shows, and were honestly certified;
+* step (b) (PROVED for lam >= 7) and step (c) -- unaffected;
+* the physical claim itself: positivity at and below `T_hat`. No witness
+  violates it.
+
+**The repaired route, made concrete the same day.** What the argument actually
+needs at odd depths is positivity in a window of FIXED width in k-units around
+the critical level `k*(lam)` (the measured room is ~sqrt(lam) k-units, ample).
+The critical curve `dT/dk = 0` is quadratic in `lam` with discriminant
+`3 k^2 (k-2)^2 (4k^2-12k+3)`: the non-square part is a QUADRATIC, so the curve
+is a conic, has the rational point `(k, w) = (3, 3)`, and admits an explicit
+rational parametrization. Substituting `lam = lam(t)`, `k = k(t) + delta` with
+`delta in [-3/2, 3/2]` turns the odd-depth claim into a polynomial positivity
+problem in `(t, delta, K)` -- certifiable by the existing Bernstein pipeline.

@@ -86,3 +86,45 @@ on more subdivision.
 Secondary option, cheaper to test: find an explicit factorisation of `H` at odd
 depth. If a factor is responsible for the near-cancellation, certifying the
 factors separately avoids it entirely.
+
+---
+
+# CORRECTION (2026-08-24): the diagnosis above is WRONG -- see ERR-0013
+
+The conclusion "it is CANCELLATION" does not survive its own measure, and the
+recommended fix (SOS basis change) was aimed at certifying a FALSE statement.
+
+* The corner margin decreases smoothly with depth -- 2.2e-3 / 7.8e-5 / 3.1e-6 /
+  1.1e-7 for depths 2 / 3 / 4 / 5 -- with no parity structure at all. Depth 4's
+  margin is 25x worse than depth 3's, and depth 4 certifies in 1369 boxes.
+  Cancellation therefore cannot be what separates even from odd.
+
+* The truth: the step-(a) fixed-window statement is FALSE at odd depths. Exact
+  witnesses inside the certified box, confirmed by build_branch AND the exact
+  reference engine independently: depth 3 at K=54, c=239/400, v=2 the knife is
+  NEGATIVE (also v=8/5 at K=226, c=3/5; depth 5 from K=111). Artifact:
+  `results/odd_depth_window_refuted.json`.
+
+* Mechanism: odd depth = even knife order j = d+1, and even-j knives MUST have
+  a threshold (margin law, 2026-08-17). Away from the argmin of T_k the window
+  point T_{v*lam} overshoots that threshold once lam is large. Even depths are
+  thresholdless, hence immune. The Bernstein runs did not jam -- they correctly
+  refused to prove a false claim.
+
+* Why the scans above missed it: the negative region needs BOTH c in ~(0.52,
+  0.67) AND K >= 54; every c grid used here stepped over that band (ERR-0005
+  mechanism, third occurrence).
+
+* The physics is untouched: at every witness point the knife is positive at the
+  true shore T_hat (integer argmin), both engines agreeing.
+
+* The three failed attempts recorded above now have a one-line explanation:
+  subdividing (1), reparametrizing (2), or switching decision procedure (3)
+  cannot prove a false statement. Z3's `unknown` was the only honest answer in
+  the file.
+
+Repaired route: certify positivity on a window of fixed width in k-units
+around the critical level k*(lam). The critical curve dT/dk = 0 is a conic in
+(k, lam) (discriminant 3 k^2 (k-2)^2 (4k^2-12k+3), non-square part quadratic,
+rational point (3,3)), so it has an explicit rational parametrization and the
+repaired claim is polynomial in (t, delta, K). See ERR-0013.

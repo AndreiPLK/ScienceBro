@@ -20,6 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 science = [
+    "python-flint>=0.6",
     "sympy>=1.12",
     "scipy>=1.13",
     "mpmath>=1.3",

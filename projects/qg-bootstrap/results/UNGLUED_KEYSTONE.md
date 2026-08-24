@@ -350,3 +350,22 @@ theorem**.
 The empirical core of the argument is gone: what remains measured is two finite
 bands, each handled by a single fixed integer, and each verified against the
 exact engine rather than against another construction of mine.
+
+---
+
+## CORRECTION (2026-08-24, ERR-0013): the window is NOT clean at odd depths
+
+The claim above that "the same window is clean at every depth tested -- 0
+negatives out of 160 per depth for depths 2 through 8" is refuted. The clean
+scans were grid-blind: the negative region requires BOTH c in ~(0.52, 0.67)
+AND K >= 54 simultaneously, and no scan sampled that conjunction. Exact
+witnesses (two independent engines, `results/odd_depth_window_refuted.json`):
+depth 3, K=54, c=239/400, v=2 -- knife NEGATIVE; likewise depth 5 from K=111.
+
+Consequence: step (a) as stated holds only at EVEN depths (thresholdless
+knives, odd j). At odd depths the fixed-window statement is false and the
+odd-depth Bernstein failures were the correct refusal to certify it. The
+even-depth certificates (2, 4, 6) stand. The odd-depth replacement is a
+window of fixed width in k-units around the critical level k*(lam), using the
+rational parametrization of the conic dT/dk = 0 -- see ERR-0013 and the
+correction appended to ODD_DEPTH_DIAGNOSIS.md.

@@ -3741,3 +3741,82 @@ ALSO CORRECTED, from the same outside check:
   minimising level, that coefficient VANISHES (verified exactly: 0 at lam = 1 and
   lam = 2). The correct statement is D < shore implies C_m > 0, and D = shore
   implies C_m >= 0.
+
+## 2026-08-24 17:08 -- ERR-0013: the odd-depth jam was a FALSE STATEMENT, not cancellation; window refuted, repair route found
+
+Session goal was the odd-depth blocker (depths 3, 5) per HANDOVER.md. The
+recorded plan -- factorisation first, then SOS in the Jacobi basis -- died in
+its first hour, and what it died of rewrote the problem.
+
+1. FACTORISATION PROBE (`lab/odd_depth_factor.py`,
+   `results/odd_depth_factor.json`). H factors at every depth as
+   (linear-in-K factors) x (one irreducible core); the core carries the full
+   corner margin unchanged (7.86e-05 at depth 3). Route as imagined: dead.
+   But the probe measured margins ACROSS depths at the same corner:
+   2.2e-3 / 7.8e-5 / 3.1e-6 / 1.1e-7 for depths 2 / 3 / 4 / 5. Monotone in
+   depth, NO parity structure. Depth 4 is 25x worse-conditioned than depth 3
+   and certifies in 1369 boxes. The cancellation diagnosis could not be the
+   even/odd discriminator.
+
+2. ZERO HUNT. Odd depths have real zeros in v bracketing the window (even
+   depths: none anywhere in [0.5, 4]) -- the margin law's thresholds (even
+   j = d+1 must have one). Following the zero surface: at c = 2/3 it
+   converges to v = 2 with clearance exactly ~ 1/K, and the K->infinity
+   leading form P_A VANISHES at (c=2/3, v=2). Then the decisive find: P_A
+   changes SIGN along both window edges in a c-band my own morning grid had
+   stepped over (ERR-0005, third occurrence, this time against me
+   within the same session).
+
+3. REFUTATION (`lab/odd_depth_window_refuted.py`,
+   `results/odd_depth_window_refuted.json`). The step-(a) fixed-window
+   statement is FALSE at odd depths. Six exact witnesses inside the certified
+   box, EACH confirmed by build_branch and the exact reference engine
+   independently: smallest is depth 3, K=54 (n=109), c=239/400, v=2, knife
+   negative; depth 5 from K=111. The Bernstein runs never jammed -- they
+   correctly refused to prove a false claim, for three sessions, while the
+   diagnosis blamed their arithmetic. Z3's `unknown` was the honest answer.
+
+4. PHYSICS INTACT. At every witness point the knife is POSITIVE at the true
+   shore T_hat (integer argmin), both engines. The falsity is pure method
+   overshoot -- the ERR-0010 mechanism again: at odd depths, T_{v*lam} for v
+   away from the argmin ratio overshoots the threshold once lam is large.
+
+5. WHAT DIES: fixed-window step (a) at all odd depths; the SOS route AS AIMED
+   AT THAT STATEMENT (a basis change cannot rescue a false inequality); the
+   keystone property "one window, every depth". WHAT SURVIVES: even-depth
+   certificates 2/4/6 (thresholdless knives -- true statements, honestly
+   certified), step (b) as proved, step (c), and the physical claim.
+
+6. REPAIR ROUTE, concrete. Measured: the positivity room around the integer
+   argmin is ~sqrt(lam) in k-units (16 at lam=72, 261 at lam=3600) -- the
+   needed width is 2. So the true odd-depth statement is positivity on a
+   FIXED-width k-window around the critical level k*(lam). The critical curve
+   dT/dk = 0 is quadratic in lam with discriminant
+   3 k^2 (k-2)^2 (4k^2 - 12k + 3): non-square part QUADRATIC, so the curve is
+   a conic with rational point (k, w) = (3, 3) -- explicitly rationally
+   parametrizable. Substituting lam = lam(t), k = k(t) + delta,
+   delta in [-3/2, 3/2] makes the odd-depth claim polynomial in (t, delta, K):
+   the existing Bernstein pipeline applies. Derivation is the next iteration.
+
+Checkpoint (research-loop format):
+RESULT: odd-depth diagnosis overturned; fixed-window step (a) refuted at odd
+  depths with exact two-engine witnesses; physics verified intact at those
+  points; rational-conic repair route established.
+EVIDENCE: results/odd_depth_factor.json, results/odd_depth_margin_scan.json,
+  results/odd_depth_window_refuted.json; corrections appended to
+  ODD_DEPTH_DIAGNOSIS.md and UNGLUED_KEYSTONE.md; ERR-0013.
+STATUS: refutation = experimentally-supported (exact witnesses, two engines);
+  repair route = speculative until derived.
+NOVELTY: internal to the project (method repair), NOVELTY_UNCHECKED.
+TIME: predicted UNKNOWN (calibration slice); actual ~2h agent time.
+LEARNED: (a) a diagnosis must vary the discriminating variable -- margins were
+  never compared across depths before blaming cancellation; (b) grid blindness
+  now three occurrences: clean-region claims need optimizer-driven hunts of
+  the complement, not denser grids; (c) "certificate fails to converge" has
+  TWO hypotheses, and "the statement is false" must be tested before "the
+  method is weak".
+NEXT: derive the rational parametrization of the conic dT/dk = 0 explicitly,
+  build H in (t, delta, K) coordinates from the validated build_branch by
+  substitution (ERR-0012 discipline: substitute, never re-derive), self-check
+  against the reference engine including points where the reference is
+  negative, then Bernstein depth 3.

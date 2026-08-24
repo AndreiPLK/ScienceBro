@@ -1,6 +1,6 @@
 # HANDOVER — read this first
 
-Last updated: 2026-08-21 09:48 (from `date`, not memory).
+Last updated: 2026-08-24 17:08 (from `date`, not memory).
 
 ## The goal
 
@@ -14,10 +14,14 @@ covering every depth rather than a per-depth ladder.
 
 Read next, in this order:
 1. `projects/qg-bootstrap/results/UNGLUED_KEYSTONE.md` -- the whole argument
-2. `projects/qg-bootstrap/results/ODD_DEPTH_DIAGNOSIS.md` -- why we are stuck
-3. `docs/ERRATA.md` ERR-0010 .. ERR-0012 -- three bugs from 19 Aug, all
+   (read its 24 Aug correction at the bottom)
+2. `docs/ERRATA.md` ERR-0013 -- 24 Aug: the odd-depth diagnosis was WRONG,
+   the fixed-window statement is FALSE at odd depths, and the repair route
+3. `projects/qg-bootstrap/results/ODD_DEPTH_DIAGNOSIS.md` -- the old
+   diagnosis plus its correction (kept visible per the evidence contract)
+4. `docs/ERRATA.md` ERR-0010 .. ERR-0012 -- three bugs from 19 Aug, all
    instructive
-4. `NORTH_STAR.md` and `CLAUDE.md` -- standing law
+5. `NORTH_STAR.md` and `CLAUDE.md` -- standing law
 
 ## Where we are
 
@@ -25,7 +29,7 @@ The argument has three steps. Status of each, from the artefacts:
 
 | step | what it says | status |
 |---|---|---|
-| (a) | knife positive at `D = T_v(lam)` for all real `v` in `[8/5, 2]` | **certified** at depths 2, 4, 6 (all four pieces, both parities, 0 open boxes) |
+| (a) | knife positive at `D = T_v(lam)` for all real `v` in `[8/5, 2]` | **certified** at depths 2, 4, 6 (all four pieces, both parities, 0 open boxes); **FALSE at odd depths** (ERR-0013) -- odd depths need the k-window form |
 | (b) | apply it at an INTEGER `k_s` in that window, where `T_hat <= T_{k_s}` holds by definition | **PROVED** for `lam >= 7`; two finite bands below it covered by fixed levels (`k_s=4` under 5/2, `k_s=8` on `[5/2,7]`) |
 | (c) | knife decreases in `D`, carrying positivity down the physical interval | **certified** at depths 2-6 |
 
@@ -35,26 +39,30 @@ Artefacts, which are the only thing to trust:
 
 ## The one thing blocking progress
 
-**Odd depths 3 and 5 do not close.** Even ones do. Diagnosed 21 Aug:
+**Odd depths 3 and 5 do not close -- because at odd depths the statement is
+FALSE (found 24 Aug, ERR-0013).** The 21 Aug cancellation diagnosis is
+retracted: margins have no parity structure (depth 4 is 25x worse-conditioned
+than 3 and certifies). The truth: odd depth = even knife order `j = d+1`, and
+even-j knives HAVE thresholds; away from the argmin of `T_k` the window point
+`T_{v*lam}` overshoots them at large `lam`. Exact two-engine witnesses from
+`K=54` (depth 3) / `K=111` (depth 5): `results/odd_depth_window_refuted.json`.
+The physics is intact -- the knife is positive at the true shore `T_hat` at
+every witness. Do NOT retry SOS/factorisation/subdivision on the old
+statement: it is false, not ill-conditioned.
 
-The polynomial is positive but its value at the hard corner is **7.8e-05** of
-the largest single term being summed -- near-total cancellation. Bernstein
-bounds a polynomial by its coefficients, so it cannot see through that. It is a
-conditioning problem, not a size or domain problem (depth 6 is 7x larger than
-depth 3 and closes fine).
-
-Already tried and failed, do NOT repeat: splitting the `v` window; extending the
-wedge upward past `c = 5/12`; Z3 (unknown after 300 s). Numbers in
-`ODD_DEPTH_DIAGNOSIS.md`.
-
-**Next move:** an SOS certificate in the Gegenbauer/Jacobi basis instead of the
-monomial basis -- write the object as a sum of manifestly non-negative pieces so
-the cancellation never happens. This is exactly Gasper's mechanism for the
-Askey-Gasper inequality (his abstract: "an expansion as a sum of squares of
-Jacobi polynomials"), it is NOT on our closed-routes list, and the diagnosis
-above is the reason to spend effort there rather than on more subdivision.
-Cheaper thing to try first: look for an explicit factorisation of `H` at odd
-depth.
+**Next move (route fixed 24 Aug, derivation not yet done):** replace the fixed
+`v`-window at odd depths by a window of FIXED width in k-units around the
+critical level `k*(lam)` (measured room ~sqrt(lam) k-units; needed: 2). The
+critical curve `dT/dk = 0` is `-3(k^2-3k+3)lam^2 + 3(k^2-6k+6)lam +
+(k^4-4k^3+k^2+9k-9) = 0`, quadratic in `lam`, discriminant
+`3 k^2 (k-2)^2 (4k^2-12k+3)` -- non-square part quadratic, so the curve is a
+CONIC with rational point `(k, w) = (3, 3)`: rationally parametrizable. Build
+the odd-depth polynomial in `(t, delta, K)` coordinates (`lam = lam(t)`,
+`k = k(t) + delta`, `delta in [-3/2, 3/2]`) by SUBSTITUTION into the validated
+`build_branch` (ERR-0012 discipline), self-check with negative reference
+points, then Bernstein. Step (b) must be re-derived to say the argmin integer
+is within the delta-window of `k*` (unimodality + bracketing already proved
+for `lam >= 7`).
 
 ## Also open, smaller
 
