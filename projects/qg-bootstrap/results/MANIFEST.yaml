@@ -712,6 +712,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  odd_depth_kwindow_selfcheck.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   odd_depth_margin_scan.json:
     added: untracked
     note: referenced by a paper, document or lab module

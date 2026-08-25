@@ -1,0 +1,48 @@
+{
+ "runs": [
+  {
+   "depth": 3,
+   "terms": {
+    "even": 9954,
+    "odd": 20704
+   },
+   "self_check_trials": 296,
+   "mismatches": [],
+   "self_check_passed": true,
+   "negative_reference_signs": 21,
+   "vacuous": false,
+   "in_window_negatives": [],
+   "delta_window": [
+    "-3/2",
+    "3/2"
+   ],
+   "seconds": 54.9
+  },
+  {
+   "depth": 5,
+   "terms": {
+    "even": 44715,
+    "odd": 92783
+   },
+   "self_check_trials": 296,
+   "mismatches": [],
+   "self_check_passed": true,
+   "negative_reference_signs": 14,
+   "vacuous": false,
+   "in_window_negatives": [],
+   "delta_window": [
+    "-3/2",
+    "3/2"
+   ],
+   "seconds": 1138.2
+  }
+ ],
+ "git": "79e26ec34208",
+ "git_full": "79e26ec3420883da8769b1edf9561b8d199a7940",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39"
+}
