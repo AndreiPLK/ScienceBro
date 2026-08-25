@@ -10,14 +10,17 @@ critical curve -- the statement step (b)'s bracketing theorem actually needs
 (the integer argmin is within 1 of k* for lam >= 7, and lam(KMIN) < 7 so the
 curve coverage overlaps the fixed-k_s band below).
 
-Per-box tests, together complete wherever G > 0 (C := A^2 - B^2 * w^2, a
-polynomial since w^2 is one):
-  (i)   minB A >= 0 and minB B >= 0          -> G >= 0  (w >= 0)
-  (ii)  minB A >= 0 and minB C >= 0          -> |B| w <= A, so G >= 0
-  (iii) minB B >= 0 and maxB C <= 0          -> B w >= |A|, so G >= 0
-where minB/maxB are Bernstein coefficient bounds. All three polynomials are
-carried as Bernstein grids from the root and split exactly by de Casteljau
-(the keystone_unglued machinery, reused).
+Per-box test: Bernstein lower bounds minA, minB of A and B, plus EXACT
+rational brackets [w_lo, w_hi] of w on the box (w is increasing in k for
+k >= 3/2, and integer-sqrt bracketing of a rational square root is exact),
+give
+    G = A + B w  >=  minA + (minB * w_lo  if minB >= 0 else  minB * w_hi),
+and the box is proved when that bound is >= 0. No polynomial C = A^2-B^2w^2
+is ever formed -- squaring the grids is what made the first version
+intractable (killed at 50 minutes with the root grid still unfinished).
+Grids are built once at the root by a fast per-axis dense transform (the
+generic bernstein_grid is O(grid * monomials), hopeless at ~10^4 terms) and
+split exactly by de Casteljau.
 
 Infinite axes are compactified rationally: K = 3/(1-x), k = KMIN/(1-y). The
 conic itself never needs a parametrization here, so the irrational point at
@@ -37,12 +40,7 @@ from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from depth_d_proof import elementary_symmetric  # noqa: E402
-from keystone_unglued import (  # noqa: E402
-    NPoly,
-    bernstein_grid,
-    compactify,
-    split_grid,
-)
+from keystone_unglued import NPoly, compactify, split_grid  # noqa: E402
 from odd_depth_kwindow import build_kwindow, lam_of, line_point  # noqa: E402
 from provenance import stamp  # noqa: E402
 
@@ -68,36 +66,109 @@ def split_AB(G) -> tuple[NPoly, NPoly]:
     return NPoly(A), NPoly(B)
 
 
-def prove_G(A: NPoly, B: NPoly, C: NPoly, box, max_depth: int = 26):
-    """Three-test Bernstein bisection for A + B*w >= 0, where C is any
-    polynomial with sign(C) = sign(A^2 - B^2 w^2) on the box. Exact fmpq."""
+def fast_bernstein_grid(poly: NPoly, box):
+    """Bernstein coefficients of poly on box, by per-axis dense transforms:
+    O(sum_axis grid*deg_axis) instead of bernstein_grid's O(grid*monomials).
+    Returns the same flat-dict format split_grid consumes."""
+    from math import comb
 
-    grids = []
-    degs = []
-    for poly in (A, B, C):
-        g, dg = bernstein_grid(poly, box)
-        grids.append(g)
-        degs.append(dg)
+    degs = [poly.max_deg(s) for s in range(3)]
+    dims = [d + 1 for d in degs]
+
+    # dense array, flat index i0*dims1*dims2 + i1*dims2 + i2
+    arr = [fmpq(0)] * (dims[0] * dims[1] * dims[2])
+    for (e0, e1, e2), c in poly.d.items():
+        arr[(e0 * dims[1] + e1) * dims[2] + e2] = c
+
+    def axis_lines(axis):
+        """Yield (base_indices, stride) covering every 1D line along axis."""
+        stride = {0: dims[1] * dims[2], 1: dims[2], 2: 1}[axis]
+        others = [s for s in range(3) if s != axis]
+        for a in range(dims[others[0]]):
+            for b in range(dims[others[1]]):
+                idx = [0, 0, 0]
+                idx[others[0]], idx[others[1]] = a, b
+                base = (idx[0] * dims[1] + idx[1]) * dims[2] + idx[2]
+                yield base, stride
+
+    for axis in range(3):
+        n = degs[axis]
+        lo, hi = box[axis]
+        wdt = hi - lo
+        # x = lo + wdt*t  (affine), then monomial-in-t -> Bernstein
+        lo_pow = [fmpq(1)]
+        w_pow = [fmpq(1)]
+        for _ in range(n):
+            lo_pow.append(lo_pow[-1] * lo)
+            w_pow.append(w_pow[-1] * wdt)
+        aff = [[fmpq(comb(p, m)) * lo_pow[p - m] * w_pow[m] for p in range(n + 1)] for m in range(n + 1)]
+        ber = [
+            [fmpq(comb(kk, p), comb(n, p)) if p <= kk else fmpq(0) for p in range(n + 1)]
+            for kk in range(n + 1)
+        ]
+        for base, stride in axis_lines(axis):
+            line = [arr[base + i * stride] for i in range(n + 1)]
+            # affine: b_m = sum_p aff[m][p] * line[p]  (aff[m][p]=0 for p<m)
+            tmp = [sum((aff[m][p] * line[p] for p in range(m, n + 1)), fmpq(0)) for m in range(n + 1)]
+            # to Bernstein: c_k = sum_{p<=k} ber[k][p] * tmp[p]
+            out = [sum((ber[kk][p] * tmp[p] for p in range(kk + 1)), fmpq(0)) for kk in range(n + 1)]
+            for i in range(n + 1):
+                arr[base + i * stride] = out[i]
+
+    grid = {}
+    for i0 in range(dims[0]):
+        for i1 in range(dims[1]):
+            for i2 in range(dims[2]):
+                grid[(i0, i1, i2)] = arr[(i0 * dims[1] + i1) * dims[2] + i2]
+    return grid, degs
+
+
+def sqrt_bracket(x: fmpq) -> tuple[fmpq, fmpq]:
+    """Exact rational lo <= sqrt(x) <= hi via integer sqrt (x >= 0)."""
+    from math import isqrt
+
+    p, q = int(x.p), int(x.q)
+    r = isqrt(p * q)
+    return fmpq(r, q), fmpq(r + 1, q)
+
+
+def w_bracket_on(y_lo: fmpq, y_hi: fmpq) -> tuple[fmpq, fmpq]:
+    """[w_lo, w_hi] on a y-box, y the compactified k (k = KMIN/(1-y)).
+    w^2 = 12k^2-36k+9 is increasing in k for k >= 3/2, and k is increasing
+    in y, so the bracket comes from the box endpoints."""
+    k_lo = KMIN / (1 - y_lo)
+    k_hi = KMIN / (1 - y_hi)
+    w2_lo = k_lo * k_lo * 12 - k_lo * 36 + 9
+    w2_hi = k_hi * k_hi * 12 - k_hi * 36 + 9
+    lo, _ = sqrt_bracket(w2_lo)
+    _, hi = sqrt_bracket(w2_hi)
+    return lo, hi
+
+
+def prove_G(A: NPoly, B: NPoly, box, max_depth: int = 26):
+    """Bernstein bisection for A + B*w >= 0 with exact interval brackets on w
+    (slot 1 is the compactified k). Exact fmpq throughout."""
+    t0 = time.time()
+    gA, dA = fast_bernstein_grid(A, box)
+    gB, dB = fast_bernstein_grid(B, box)
+    print(f"    root grids built ({time.time()-t0:.0f}s)", flush=True)
 
     root_w = [box[s][1] - box[s][0] for s in range(3)]
-    stack = [(grids, box, 0)]
+    stack = [((gA, gB), box, 0)]
     boxes = 0
     open_boxes = []
-    t0 = time.time()
     while stack:
-        gs, bx, depth = stack.pop()
+        (ga, gb), bx, depth = stack.pop()
         boxes += 1
-        if boxes % 2000 == 0:
+        if boxes % 500 == 0:
             print(f"    ... {boxes} boxes, {len(stack)} pending, {time.time()-t0:.0f}s", flush=True)
-        minA = min(gs[0].values())
-        minB = min(gs[1].values())
+        minA = min(ga.values())
+        minB = min(gb.values())
         if minA >= 0 and minB >= 0:
             continue
-        minC = min(gs[2].values())
-        if minA >= 0 and minC >= 0:
-            continue
-        maxC = max(gs[2].values())
-        if minB >= 0 and maxC <= 0:
+        w_lo, w_hi = w_bracket_on(bx[1][0], bx[1][1])
+        lb = minA + (minB * w_lo if minB >= 0 else minB * w_hi)
+        if lb >= 0:
             continue
         if depth >= max_depth:
             open_boxes.append([(str(lo), str(hi)) for lo, hi in bx])
@@ -108,12 +179,9 @@ def prove_G(A: NPoly, B: NPoly, C: NPoly, box, max_depth: int = 26):
         mid = (lo + hi) / 2
         lbx, rbx = list(bx), list(bx)
         lbx[axis], rbx[axis] = (lo, mid), (mid, hi)
-        lgs, rgs = [], []
-        for g, dg in zip(gs, degs):
-            lg, rg = split_grid(g, dg, axis)
-            lgs.append(lg)
-            rgs.append(rg)
-        stack += [(lgs, lbx, depth + 1), (rgs, rbx, depth + 1)]
+        la, ra = split_grid(ga, dA, axis)
+        lb2, rb2 = split_grid(gb, dB, axis)
+        stack += [((la, lb2), lbx, depth + 1), ((ra, rb2), rbx, depth + 1)]
     return (not open_boxes), boxes, open_boxes
 
 
@@ -141,23 +209,12 @@ def run_depth(d: int, max_depth: int) -> dict:
                 B2 = B2 * one_minus ** (da - db)
             else:
                 A2 = A2 * one_minus ** (db - da)
-        # In the compactified k-coordinate y (k = KMIN/(1-y)),
-        #   w^2 = [12 KMIN^2 - 36 KMIN (1-y) + 9 (1-y)^2] / (1-y)^2 = W2/(1-y)^2,
-        # so  sign(A2^2 - B2^2 w^2) = sign( (A2 (1-y))^2 - B2^2 W2 )  since
-        # (1-y)^2 > 0 on the box. That product is the C passed to prove_G.
-        one_minus_y = NPoly.const(1) - NPoly.var(1)
-        W2 = (
-            NPoly.const(KMIN * KMIN * 12)
-            - one_minus_y * (KMIN * 36)
-            + one_minus_y * one_minus_y * fmpq(9)
-        )
-        C2 = (A2 * one_minus_y) * (A2 * one_minus_y) - B2 * B2 * W2
         box = [
             (fmpq(0), fmpq(999, 1000)),
             (fmpq(0), fmpq(999, 1000)),
             (-DELTA, DELTA),
         ]
-        ok, boxes, open_boxes = prove_G(A2, B2, C2, box, max_depth=max_depth)
+        ok, boxes, open_boxes = prove_G(A2, B2, box, max_depth=max_depth)
         dt = time.time() - t1
         print(
             f"depth {d} [{parity}]: proved={ok} boxes={boxes} open={len(open_boxes)} ({dt:.0f}s)",
