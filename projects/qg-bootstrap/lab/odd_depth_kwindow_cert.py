@@ -107,6 +107,8 @@ def fast_bernstein_grid(poly: NPoly, box):
                 base = (idx[0] * dims[1] + idx[1]) * dims[2] + idx[2]
                 yield base, stride
 
+    from flint import fmpq_mat
+
     for axis in range(3):
         n = degs[axis]
         lo, hi = box[axis]
@@ -117,25 +119,23 @@ def fast_bernstein_grid(poly: NPoly, box):
             lo_pow.append(lo_pow[-1] * lo)
             w_pow.append(w_pow[-1] * wdt)
         aff = [
-            [fmpq(comb(p, m)) * lo_pow[p - m] * w_pow[m] for p in range(n + 1)]
+            [fmpq(comb(p, m)) * lo_pow[p - m] if p >= m else fmpq(0) for p in range(n + 1)]
             for m in range(n + 1)
         ]
+        for m in range(n + 1):
+            for p in range(m, n + 1):
+                aff[m][p] *= w_pow[m]
         ber = [
             [fmpq(comb(kk, p), comb(n, p)) if p <= kk else fmpq(0) for p in range(n + 1)]
             for kk in range(n + 1)
         ]
+        # one C-speed matrix per axis: monomial-on-box -> Bernstein
+        P = fmpq_mat(ber) * fmpq_mat(aff)
         for base, stride in axis_lines(axis):
-            line = [arr[base + i * stride] for i in range(n + 1)]
-            tmp = [
-                sum((aff[m][p] * line[p] for p in range(m, n + 1)), fmpq(0))
-                for m in range(n + 1)
-            ]
-            out = [
-                sum((ber[kk][p] * tmp[p] for p in range(kk + 1)), fmpq(0))
-                for kk in range(n + 1)
-            ]
+            v = fmpq_mat([[arr[base + i * stride]] for i in range(n + 1)])
+            out = P * v
             for i in range(n + 1):
-                arr[base + i * stride] = out[i]
+                arr[base + i * stride] = out[i, 0]
 
     grid = {}
     for i0 in range(dims[0]):
@@ -143,6 +143,53 @@ def fast_bernstein_grid(poly: NPoly, box):
             for i2 in range(dims[2]):
                 grid[(i0, i1, i2)] = arr[(i0 * dims[1] + i1) * dims[2] + i2]
     return grid, degs
+
+
+def make_split_mats(n: int):
+    """De Casteljau split-at-1/2 as two (n+1)x(n+1) matrices (C speed):
+    left[i] = sum_{p<=i} C(i,p) b_p / 2^i,
+    right[i] = sum_{j>=i} C(n-i, j-i) b_j / 2^(n-i)."""
+    from math import comb
+
+    from flint import fmpq_mat
+
+    L = [[fmpq(comb(i, p), 2**i) if p <= i else fmpq(0) for p in range(n + 1)] for i in range(n + 1)]
+    R = [
+        [fmpq(comb(n - i, j - i), 2 ** (n - i)) if j >= i else fmpq(0) for j in range(n + 1)]
+        for i in range(n + 1)
+    ]
+    return fmpq_mat(L), fmpq_mat(R)
+
+
+def fast_split_grid(grid, degs, axis, mats):
+    """Matrix de Casteljau bisection of a Bernstein grid along axis."""
+    from flint import fmpq_mat
+
+    L, R = mats
+    n = degs[axis]
+    left: dict = {}
+    right: dict = {}
+    others = [s for s in range(3) if s != axis]
+    seen = set()
+    for key in grid:
+        base = tuple(key[s] for s in others)
+        if base in seen:
+            continue
+        seen.add(base)
+        idx = [None, None, None]
+        idx[others[0]], idx[others[1]] = base[0], base[1]
+        keys = []
+        for i in range(n + 1):
+            k = list(idx)
+            k[axis] = i
+            keys.append(tuple(k))
+        v = fmpq_mat([[grid[k]] for k in keys])
+        lv = L * v
+        rv = R * v
+        for i, k in enumerate(keys):
+            left[k] = lv[i, 0]
+            right[k] = rv[i, 0]
+    return left, right
 
 
 def sqrt_bracket(x: fmpq, scale: int = 1) -> tuple[fmpq, fmpq]:
@@ -218,6 +265,8 @@ def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label="", ckpt_path=N
         stack = [((gA, gB), box, 0)]
     dA = [A2.max_deg(s) for s in range(3)]
     dB = [B2.max_deg(s) for s in range(3)]
+    matsA = {ax: make_split_mats(dA[ax]) for ax in range(3)}
+    matsB = {ax: make_split_mats(dB[ax]) for ax in range(3)}
     last_ckpt = time.time()
     while stack:
         (ga, gb), bx, depth = stack.pop()
@@ -251,8 +300,8 @@ def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label="", ckpt_path=N
         mid = (lo + hi) / 2
         lbx, rbx = list(bx), list(bx)
         lbx[axis], rbx[axis] = (lo, mid), (mid, hi)
-        la, ra = split_grid(ga, dA, axis)
-        lb2, rb2 = split_grid(gb, dB, axis)
+        la, ra = fast_split_grid(ga, dA, axis, matsA[axis])
+        lb2, rb2 = fast_split_grid(gb, dB, axis, matsB[axis])
         stack += [((la, lb2), lbx, depth + 1), ((ra, rb2), rbx, depth + 1)]
     if ckpt_path is not None:
         ckpt_path.write_text(
@@ -348,26 +397,44 @@ def run_parity(d: int, parity: str, max_depth: int) -> dict:
     )
     print(f"  piece1 (rho>=2): proved={ok1} boxes={boxes1} open={len(open1)} ({sec1}s)", flush=True)
 
-    # ---- piece 2: wedge K = (6 + rho*z)/rho, k = 12 + 2*rho*z, cleared by rho^Amax
-    rho = P4.var(0)
-    z = P4.var(1)
-    sixrz = P4.const(6) + rho * z
-    k_new = P4.const(12) + rho * z * fmpq(2)
-    mp_a = {0: P4.const(1)}
-    for i in range(1, Amax + 1):
-        mp_a[i] = mp_a[i - 1] * sixrz
-    mp_b = {0: P4.const(1)}
-    for i in range(1, kb_max + 1):
-        mp_b[i] = mp_b[i - 1] * k_new
-    mp_r = {0: P4.const(1)}
-    for i in range(1, Amax + 1):
-        mp_r[i] = mp_r[i - 1] * rho
-    Gw = P4()
-    for e, c in G.d.items():
-        a, b, dd, we = e
-        term = mp_a[a] * mp_b[b] * mp_r[Amax - a] * c
-        term = P4({(kk[0], kk[1], dd, we): v for kk, v in term.d.items()})
-        Gw = Gw + term
+    # ---- piece 2: wedge K = (6 + rho*z)/rho, k = 12 + 2*rho*z, cleared by rho^Amax.
+    # Cached like G itself: rebuilding it every restart was dying before the
+    # first checkpoint on depth 5.
+    import hashlib
+
+    src = Path(__file__).resolve().parent / "odd_depth_kwindow.py"
+    fp = hashlib.sha256(src.read_bytes()).hexdigest()[:16]
+    wcache = STATE / f"Gwcache_d{d}_{parity}_{fp}.json"
+    if wcache.exists():
+        raw = json.loads(wcache.read_text(encoding="utf-8"))
+        Gw = P4(
+            {tuple(map(int, e.split(","))): fmpq(int(p), int(q)) for e, (p, q) in raw.items()}
+        )
+        print(f"  piece2: Gw loaded from cache, {len(Gw.d)} terms", flush=True)
+    else:
+        rho = P4.var(0)
+        z = P4.var(1)
+        sixrz = P4.const(6) + rho * z
+        k_new = P4.const(12) + rho * z * fmpq(2)
+        mp_a = {0: P4.const(1)}
+        for i in range(1, Amax + 1):
+            mp_a[i] = mp_a[i - 1] * sixrz
+        mp_b = {0: P4.const(1)}
+        for i in range(1, kb_max + 1):
+            mp_b[i] = mp_b[i - 1] * k_new
+        mp_r = {0: P4.const(1)}
+        for i in range(1, Amax + 1):
+            mp_r[i] = mp_r[i - 1] * rho
+        Gw = P4()
+        for e, c in G.d.items():
+            a, b, dd, we = e
+            term = mp_a[a] * mp_b[b] * mp_r[Amax - a] * c
+            term = P4({(kk[0], kk[1], dd, we): v for kk, v in term.d.items()})
+            Gw = Gw + term
+        wcache.write_text(
+            json.dumps({",".join(map(str, e)): [str(c.p), str(c.q)] for e, c in Gw.d.items()}),
+            encoding="utf-8",
+        )
 
     def pm2(G_, Gs, r, zq, delta, wv):
         K = (6 + r * zq) / r
