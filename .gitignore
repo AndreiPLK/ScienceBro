@@ -33,3 +33,6 @@ Thumbs.db
 projects/*/upstream/checkout/
 # PDF статей: храним локально, в evidence остаются sha256 + метаданные
 projects/*/evidence/papers/*.pdf
+
+# resumable working state of the k-window certifier (not artefacts, not raw data)
+projects/*/.kwindow_cache/**

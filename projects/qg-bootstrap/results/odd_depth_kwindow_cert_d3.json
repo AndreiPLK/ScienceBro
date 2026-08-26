@@ -13,16 +13,16 @@
     "proved": true,
     "boxes": 1,
     "open": 0,
-    "seconds": 13.9
+    "seconds": 1.9
    },
    "piece2_wedge": {
     "proved": true,
     "boxes": 11,
     "open": 0,
-    "seconds": 105.8
+    "seconds": 17.7
    },
    "proved": true,
-   "seconds": 134.8
+   "seconds": 22.6
   },
   {
    "parity": "odd",
@@ -30,22 +30,22 @@
     "proved": true,
     "boxes": 1,
     "open": 0,
-    "seconds": 19.8
+    "seconds": 3.2
    },
    "piece2_wedge": {
     "proved": true,
     "boxes": 11,
     "open": 0,
-    "seconds": 104.9
+    "seconds": 19.3
    },
    "proved": true,
-   "seconds": 172.5
+   "seconds": 28.5
   }
  ],
  "proved_all": true,
  "command": "python lab/odd_depth_kwindow_cert.py <d>",
- "git": "bbe7b04223c4",
- "git_full": "bbe7b04223c43d1a3e0604a500e7b314e7b237ad",
+ "git": "1c6e0b90100c",
+ "git_full": "1c6e0b90100cae8c8d23b9a91a8a3f3f57e73709",
  "dirty": false,
  "dirty_code_files": [],
  "dirty_count": 0,

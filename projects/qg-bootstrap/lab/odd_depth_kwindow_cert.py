@@ -56,13 +56,15 @@ from keystone_unglued import (  # noqa: E402
     NPoly,
     compactify,
     compactify_from_zero,
-    split_grid,
 )
 from odd_depth_kwindow import P4, build_kwindow, lam_of, line_point  # noqa: E402
 from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
-STATE = RES / "raw" / "kwindow_state"  # gitignored scratch: G cache + checkpoints
+# Scratch (G caches + frontier checkpoints) lives OUTSIDE results/: the
+# provenance gate rightly treats every results/**.json as an artefact, and
+# these are neither artefacts nor raw data -- they are resumable working state.
+STATE = Path(__file__).resolve().parents[1] / ".kwindow_cache"
 
 KMIN = fmpq(12)
 DELTA = fmpq(9, 8)
