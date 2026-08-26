@@ -712,6 +712,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  odd_depth_kwindow_cert_d3.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   odd_depth_kwindow_selfcheck.json:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -732,6 +736,22 @@ artefacts:
     added: '2026-08-14'
     note: referenced by a paper, document or lab module
     status: live
+  raw/kwindow_state/kwstate_d3_even_y0-1_1-2.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  raw/kwindow_state/kwstate_d3_even_y1-2_999-1000.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  raw/kwindow_state/kwstate_d3_odd_y0-1_1-2.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  raw/kwindow_state/kwstate_d3_odd_y1-2_999-1000.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   step_lemma.json:
     added: '2026-08-18'
     note: same step-6 artefact as FROZEN_PREDICTION_blocks.md

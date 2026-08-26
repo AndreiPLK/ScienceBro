@@ -50,19 +50,27 @@ The physics is intact -- the knife is positive at the true shore `T_hat` at
 every witness. Do NOT retry SOS/factorisation/subdivision on the old
 statement: it is false, not ill-conditioned.
 
-**Next move (route fixed 24 Aug, derivation not yet done):** replace the fixed
-`v`-window at odd depths by a window of FIXED width in k-units around the
-critical level `k*(lam)` (measured room ~sqrt(lam) k-units; needed: 2). The
-critical curve `dT/dk = 0` is `-3(k^2-3k+3)lam^2 + 3(k^2-6k+6)lam +
-(k^4-4k^3+k^2+9k-9) = 0`, quadratic in `lam`, discriminant
-`3 k^2 (k-2)^2 (4k^2-12k+3)` -- non-square part quadratic, so the curve is a
-CONIC with rational point `(k, w) = (3, 3)`: rationally parametrizable. Build
-the odd-depth polynomial in `(t, delta, K)` coordinates (`lam = lam(t)`,
-`k = k(t) + delta`, `delta in [-3/2, 3/2]`) by SUBSTITUTION into the validated
-`build_branch` (ERR-0012 discipline), self-check with negative reference
-points, then Bernstein. Step (b) must be re-derived to say the argmin integer
-is within the delta-window of `k*` (unimodality + bracketing already proved
-for `lam >= 7`).
+**The repair is BUILT and CERTIFIED at depth 3 (26 Aug).** The k-window form
+-- knife positive at `D = T_{k+delta}(lam*(k))` along the critical curve
+`dT/dk = 0`, `|delta| <= 9/8` -- is certified for BOTH parities at depth 3:
+`results/odd_depth_kwindow_cert_d3.json`, 1 + 11 boxes per parity, 0 open,
+covering ALL `K >= 3` and ALL `k >= 12` (no finite-coverage caveat). The
+constructor (`lab/odd_depth_kwindow.py`) is validated by substitution and a
+non-vacuous self-check (0/296 mismatches per depth, depths 3 and 5); the
+certifier (`lab/odd_depth_kwindow_cert.py`) works in `rho = k/(2K)`
+coordinates -- the (K, k) double-infinity corner is the UNGLUED two-variable
+degeneration again, and `rho` makes it an ordinary point (piece 1 closes in
+ONE box). Lesson pair: delta-slack you do not need is surface you cannot
+defend (3/2 jammed, 9/8 closes); a jammed certificate means false statement
+OR wrong coordinates -- measure which.
+
+**Remaining for the odd-depth chain:** depth 5 with the same machinery (was
+running at handover time -- check `results/odd_depth_kwindow_cert_d5.json`,
+rerun `python lab/odd_depth_kwindow_cert.py 5` if absent); a 2-variable
+certificate for the odd-depth `lam in [5/2, 7]` band at fixed `k_s = 8`
+(currently measured: 1085 trials, 0 negatives); unimodality of `dT/dk` on
+the window (measured, not proved); step (b)'s bracketing theorem already
+places the argmin within `|delta| < 1` for `lam >= 7`.
 
 ## Also open, smaller
 

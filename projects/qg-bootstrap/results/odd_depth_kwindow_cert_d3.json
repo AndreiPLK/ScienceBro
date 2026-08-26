@@ -1,0 +1,55 @@
+{
+ "depth": 3,
+ "claim": "REPAIRED step (a) for odd depth 3 (ERR-0013): the depth-3 knife is positive at D = T_(k+delta)(lam*(k)) for ALL levels K >= 3, ALL k >= 12 on the critical curve dT/dk = 0 (branch lam* = (3b + k(k-2)w)/(6a), w = sqrt(12k^2-36k+9)), and all delta in [-9/8, 9/8]. Both infinities are compactified; the two rho = k/(2K) pieces (rho >= 2 direct, rho <= 2 wedge) cover the region with no side conditions. Step (b) (integer argmin within 1 of k* for lam >= 7 -- proved, given measured unimodality) places the shore integer inside the delta window; lam*(12) < 7 so coverage overlaps the fixed-k_s band below lam = 7; step (c) carries positivity down from the shore.",
+ "KMIN": "12",
+ "delta_window": [
+  "-9/8",
+  "9/8"
+ ],
+ "branches": [
+  {
+   "parity": "even",
+   "piece1_rho_ge_2": {
+    "proved": true,
+    "boxes": 1,
+    "open": 0,
+    "seconds": 13.9
+   },
+   "piece2_wedge": {
+    "proved": true,
+    "boxes": 11,
+    "open": 0,
+    "seconds": 105.8
+   },
+   "proved": true,
+   "seconds": 134.8
+  },
+  {
+   "parity": "odd",
+   "piece1_rho_ge_2": {
+    "proved": true,
+    "boxes": 1,
+    "open": 0,
+    "seconds": 19.8
+   },
+   "piece2_wedge": {
+    "proved": true,
+    "boxes": 11,
+    "open": 0,
+    "seconds": 104.9
+   },
+   "proved": true,
+   "seconds": 172.5
+  }
+ ],
+ "proved_all": true,
+ "command": "python lab/odd_depth_kwindow_cert.py <d>",
+ "git": "bbe7b04223c4",
+ "git_full": "bbe7b04223c43d1a3e0604a500e7b314e7b237ad",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39"
+}

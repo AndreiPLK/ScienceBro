@@ -3820,3 +3820,55 @@ NEXT: derive the rational parametrization of the conic dT/dk = 0 explicitly,
   substitution (ERR-0012 discipline: substitute, never re-derive), self-check
   against the reference engine including points where the reference is
   negative, then Bernstein depth 3.
+
+## 2026-08-26 09:45 -- DEPTH 3 CLOSED: the repaired odd-depth statement is CERTIFIED
+
+The k-window form of step (a) -- the ERR-0013 repair -- is now a theorem-grade
+certificate at depth 3, and the road there taught two more lessons.
+
+1. THE CONSTRUCTION. G = A + B*w in (K, k, delta, w), w^2 = 12k^2-36k+9,
+   built by pure substitution from the validated build_branch (nothing
+   re-derived, ERR-0012 discipline), self-checked at rational points of the
+   conic dT/dk = 0 against the exact reference engine: 296 trials per depth,
+   0 mismatches, 21/14 genuinely negative reference signs (non-vacuous),
+   depths 3 AND 5. Artifact: results/odd_depth_kwindow_selfcheck.json.
+
+2. TWO JAMS, BOTH INSTRUCTIVE.
+   a) delta-window slack: the first runs used |delta| <= 3/2 "for safety";
+      all 156+58 open boxes sat at delta in [1.31, 1.5] -- slack the argument
+      never needed (step (b) gives |argmin - k*| < 1 strictly). Narrowed to
+      9/8 with a 1/8 margin.
+   b) The remaining open boxes crowded the corner where K and k grow
+      TOGETHER, with A, B, G all POSITIVE there and G/max(|A|,|Bw|) ~ 1:
+      not cancellation of the object, degeneration of the Bernstein
+      coefficients at a double face -- the UNGLUED two-variable degeneration,
+      third appearance. Same cure: rho = k/(2K) makes the corner an ordinary
+      point. Piece 1 (rho >= 2, an exponent remap) closed in ONE box; piece 2
+      (rho <= 2, wedge K = (6+rho z)/rho) in 11 boxes.
+
+3. THE RESULT. Depth 3, BOTH parities: proved, 1 + 11 boxes each, 0 open,
+   ~2.5 min per parity, coverage ALL K >= 3 and ALL k >= 12 (both infinities
+   compactified -- the old "finite in K" caveat is GONE for this piece).
+   delta in [-9/8, 9/8]; lam*(12) < 7 overlaps the fixed-k_s band below.
+   Artifact: results/odd_depth_kwindow_cert_d3.json (stamp bbe7b04, clean).
+   Depth 5 is running now with the same machinery.
+
+4. WHAT REMAINS for the full odd-depth chain: depth 5 run (in progress);
+   the lam in [5/2, 7] band at odd depths currently rests on the measured
+   fixed-k_s = 8 trials (1085, 0 negatives) -- needs its own 2-variable
+   certificate; unimodality of dT/dk on the window is still measured, not
+   proved; and step (c) monotonicity is certified at depths 2-6 as before.
+
+Checkpoint:
+RESULT: repaired step (a) certified at depth 3, both parities, full range.
+EVIDENCE: odd_depth_kwindow_cert_d3.json, odd_depth_kwindow_selfcheck.json.
+STATUS: experimentally-supported (exact Bernstein certificate; premises:
+  measured unimodality for step (b), measured k_s=8 band).
+NOVELTY: internal repair; the rho-degeneration lesson is a reusable rule.
+TIME: predicted UNKNOWN (calibration), actual ~3h agent time от конструктора
+  до сертификата, из них ~2h -- две ложные конфигурации окна/координат.
+LEARNED: slack you do not need is surface you cannot defend; a jammed
+  certificate points either at a false statement (ERR-0013) or at the wrong
+  coordinates (this entry) -- measure WHICH before adding compute.
+NEXT: depth 5 with the same two pieces; then the odd-depth lam in [5/2,7]
+  band certificate.
