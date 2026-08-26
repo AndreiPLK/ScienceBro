@@ -54,7 +54,15 @@ STATE_DIR = RES / "raw" / "kwindow_state"  # gitignored (results/raw/**)
 
 KMIN = fmpq(12)  # lam*(12) < 7 (checked in main), so the curve piece overlaps
 # the fixed-k_s = 8 band that covers lam in [5/2, 7].
-DELTA = fmpq(3, 2)
+#
+# DELTA: step (b) needs only |delta| < 1 -- for lam >= 7 the integer argmin is
+# one of the two integers BRACKETING k* (proved in UNGLUED_KEYSTONE.md via the
+# coefficient-sign pairs, given measured unimodality), so |argmin - k*| < 1
+# strictly. 9/8 keeps a 1/8 margin. The first attempt used 3/2 "for safety"
+# and that extra slack was exactly what jammed: all 156+58 open boxes sat at
+# delta in [1.31, 1.5] in the K,k -> infinity corner, where the polynomial
+# degenerates relative to its coefficient scale while the physics stays safe.
+DELTA = fmpq(9, 8)
 CHECKPOINT_S = 120
 
 
