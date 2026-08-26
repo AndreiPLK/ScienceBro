@@ -1,0 +1,18 @@
+{
+ "claim": "d^2T/dk^2 > 0 on k in [8/5 lam, 2 lam] for all lam >= 7 (lam compactified): T_k(lam) is strictly convex in k on the step-(b) window, so dT/dk is strictly increasing there, has exactly one sign change, and the integer argmin is one of the two integers bracketing k* -- the unimodality premise of the bracketing theorem in UNGLUED_KEYSTONE.md, previously a 400-point measurement, is now certified. Verified by exact-value comparison against an independent fmpq_poly quotient-rule computation of T'' (non-vacuous: T is genuinely concave at small k, and those probes go negative).",
+ "self_check_trials": 16,
+ "negative_reference_signs": 3,
+ "proved": true,
+ "boxes": 1,
+ "open": 0,
+ "command": "python lab/unimodality_cert.py",
+ "seconds": 0.0,
+ "git": "4d8937bca932",
+ "git_full": "4d8937bca932165271923febc0345f1beb43ce4b",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39"
+}
