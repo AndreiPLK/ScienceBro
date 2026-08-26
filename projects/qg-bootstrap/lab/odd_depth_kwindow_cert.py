@@ -134,13 +134,15 @@ def fast_bernstein_grid(poly: NPoly, box):
     return grid, degs
 
 
-def sqrt_bracket(x: fmpq) -> tuple[fmpq, fmpq]:
-    """Exact rational lo <= sqrt(x) <= hi via integer sqrt (x >= 0)."""
+def sqrt_bracket(x: fmpq, scale: int = 1) -> tuple[fmpq, fmpq]:
+    """Exact rational lo <= sqrt(x) <= hi via integer sqrt (x >= 0).
+    `scale` = M tightens the bracket to width 1/(q*M) at cost of isqrt on
+    p*q*M^2 -- used where a loose bound would fail a strict comparison."""
     from math import isqrt
 
     p, q = int(x.p), int(x.q)
-    r = isqrt(p * q)
-    return fmpq(r, q), fmpq(r + 1, q)
+    r = isqrt(p * q * scale * scale)
+    return fmpq(r, q * scale), fmpq(r + 1, q * scale)
 
 
 def w_bracket_on(y_lo: fmpq, y_hi: fmpq) -> tuple[fmpq, fmpq]:
@@ -273,7 +275,7 @@ def main() -> int:
     # coverage check: lam at KMIN must be BELOW 7 so the curve piece overlaps
     # the fixed-k_s band (lam in [5/2, 7]).
     w2 = KMIN * KMIN * 12 - KMIN * 36 + 9
-    _, whi = sqrt_bracket(w2)
+    _, whi = sqrt_bracket(w2, scale=10**6)
     lam_hi = lam_of(KMIN, whi)
     assert lam_hi < 7, "KMIN too large: curve piece would not overlap the lam<=7 band"
     kq, wq = line_point(fmpq(4))
