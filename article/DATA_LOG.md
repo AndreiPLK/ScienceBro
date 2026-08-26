@@ -3873,3 +3873,61 @@ LEARNED: slack you do not need is surface you cannot defend; a jammed
   coordinates (this entry) -- measure WHICH before adding compute.
 NEXT: depth 5 with the same two pieces; then the odd-depth lam in [5/2,7]
   band certificate.
+
+## 2026-08-26 13:45 -- ODD-DEPTH CHAIN CLOSED: three certificates in one day
+
+The ERR-0013 repair is complete for both odd depths. Everything the chain
+needed below and above lam = 7 is now a Bernstein certificate, not a
+measurement.
+
+1. DEPTH 5 k-WINDOW (results/odd_depth_kwindow_cert_d5.json). Same two
+   rho-pieces as depth 3: piece1 in ONE box, piece2 in 11, per parity,
+   0 open, covering ALL K >= 3 and ALL k >= 12, delta in [-9/8, 9/8].
+   Getting there took infrastructure the environment forced on us: the
+   container kills background processes every few minutes, so the certifier
+   grew G/Gw caches keyed by the constructor's sha256 (a stale cache is the
+   ERR-0011 shape), per-piece frontier checkpoints with resume, fmpq_mat
+   matrix engines for grids and de Casteljau splits (6-8x), and an in-place
+   accumulation fix in the constructor (the quadratic `total = total + term`
+   was 40% of the depth-5 odd build). Every change was regression-gated on
+   depth 3's exact box counts (1 + 11) and the 296-trial self-check.
+
+2. THE lam IN [5/2, 7] BAND (results/odd_depth_band_cert.json). The k_s = 8
+   band -- until now 1085 measured trials -- certified for depths 3 and 5:
+   build_small_lam (the validated k_s = 4 code path) at KS_SMALL = 8,
+   self-checked non-vacuously (22/24 negative refs outside the band),
+   11 boxes per parity per depth.
+
+3. UNIMODALITY -> CONVEXITY (results/unimodality_cert.json). Step (b)'s
+   bracketing theorem needed "dT/dk changes sign once on the window",
+   previously a 400-point sweep. Certified strictly stronger: T'' * U^3 > 0
+   on k in [8/5 lam, 2 lam], lam >= 7 -- ONE box. Cross-checked by exact
+   VALUE equality against an independent fmpq_poly quotient-rule route;
+   probes at k < 2, where T is genuinely concave, keep the check honest.
+
+STATE OF THE ODD DEPTHS, honestly. Depths 3 and 5 now rest on certificates
+for: step (a) in k-window form (all K, all k on the curve, |delta| <= 9/8),
+the integer argmin inside the delta window (coefficient-sign pairs, lam >= 7,
+with unimodality now certified), the [5/2, 7] band at k_s = 8, the small-lam
+piece at k_s = 4 (from keystone_unglued), and step (c) monotonicity
+(certified at depths 2-6 earlier). Still measured anywhere in the chain:
+the k_s = 4 piece's lam <= 5/2 region uses keystone_unglued's certified
+small piece -- certificate; nothing else at these depths. Depth 7+ remains
+open (the machinery now exists end to end).
+
+Checkpoint:
+RESULT: odd depths 3 and 5 fully certificate-backed; three new artifacts.
+EVIDENCE: odd_depth_kwindow_cert_d5.json, odd_depth_band_cert.json,
+  unimodality_cert.json (+ d3 regenerated on the final code).
+STATUS: experimentally-supported, gates passed; no self-approval beyond that.
+NOVELTY: internal to the programme; the rho-coordinate cure and the
+  convexity reduction are reusable rules.
+TIME: the odd-depth repair, ERR-0013 to closed chain: ~2 days of sessions;
+  this closing day ~5h agent time, half of it environment survivability.
+LEARNED: an environment that kills processes is a constraint to engineer
+  around (cache + checkpoint + resume beats hoping), and every speed or
+  robustness change to proof code must be regression-gated on exact
+  certificate outputs, not on "it still runs".
+NEXT: depth 7 with the same pipeline as a uniformity test of the machinery;
+  then the j-infinity question (one argument for all depths) with the
+  k-window form as the base case shape.

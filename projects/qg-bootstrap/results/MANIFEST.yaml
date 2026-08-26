@@ -720,6 +720,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  odd_depth_kwindow_cert_d5.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   odd_depth_kwindow_selfcheck.json:
     added: untracked
     note: referenced by a paper, document or lab module

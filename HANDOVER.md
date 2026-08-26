@@ -64,13 +64,22 @@ ONE box). Lesson pair: delta-slack you do not need is surface you cannot
 defend (3/2 jammed, 9/8 closes); a jammed certificate means false statement
 OR wrong coordinates -- measure which.
 
-**Remaining for the odd-depth chain:** depth 5 with the same machinery (was
-running at handover time -- check `results/odd_depth_kwindow_cert_d5.json`,
-rerun `python lab/odd_depth_kwindow_cert.py 5` if absent); a 2-variable
-certificate for the odd-depth `lam in [5/2, 7]` band at fixed `k_s = 8`
-(currently measured: 1085 trials, 0 negatives); unimodality of `dT/dk` on
-the window (measured, not proved); step (b)'s bracketing theorem already
-places the argmin within `|delta| < 1` for `lam >= 7`.
+**The odd-depth chain is CLOSED for depths 3 and 5 (26 Aug).** Certified:
+depth 5 k-window (`results/odd_depth_kwindow_cert_d5.json`, 1 + 11 boxes per
+parity, 0 open, same as depth 3); the `lam in [5/2, 7]` band at `k_s = 8`
+(`results/odd_depth_band_cert.json`, both depths); unimodality via strict
+convexity of `T` in `k` on the window (`results/unimodality_cert.json`, ONE
+box, replacing the 400-point sweep premise of step (b)). With
+keystone_unglued's small piece (`k_s = 4`, `lam <= 5/2`) and step (c)
+monotonicity (depths 2-6), nothing in the depth-3/5 chain rests on a
+measurement any more. The certifier survived the process-killing environment
+via G/Gw caches keyed by the constructor sha256, per-piece frontier
+checkpoints with resume, and fmpq_mat matrix engines -- every change
+regression-gated on depth 3's exact box counts.
+
+**Next:** depth 7 with the same pipeline (a uniformity test of the
+machinery), then the j-infinity question -- one argument for all depths --
+with the k-window form as the base-case shape.
 
 ## Also open, smaller
 
