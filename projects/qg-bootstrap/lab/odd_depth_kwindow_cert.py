@@ -62,6 +62,7 @@ from odd_depth_kwindow import P4, build_kwindow, lam_of, line_point  # noqa: E40
 from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
+STATE = RES / "raw" / "kwindow_state"  # gitignored scratch: G cache + checkpoints
 
 KMIN = fmpq(12)
 DELTA = fmpq(9, 8)
@@ -176,20 +177,61 @@ def equalize(A: NPoly, B: NPoly, A2: NPoly, B2: NPoly, slots) -> tuple[NPoly, NP
     return A2, B2
 
 
-def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label=""):
+def _box_ser(bx):
+    return [[str(lo), str(hi)] for lo, hi in bx]
+
+
+def _box_de(bs):
+    return [(fmpq(lo), fmpq(hi)) for lo, hi in bs]
+
+
+def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label="", ckpt_path=None):
     """Bernstein bisection for A2 + B2*w >= 0 on box; k_range_of_box maps a
-    box to exact (k_lo, k_hi) for the w bracket. Exact fmpq throughout."""
+    box to exact (k_lo, k_hi) for the w bracket. Exact fmpq throughout.
+
+    Environment restarts kill long runs, so the pending frontier is
+    checkpointed to ckpt_path every ~2 minutes (boxes only; grids are
+    re-derived for the restored frontier, which is cheap -- the frontier is
+    tens of boxes, not thousands)."""
     t0 = time.time()
-    gA, dA = fast_bernstein_grid(A2, box)
-    gB, dB = fast_bernstein_grid(B2, box)
     root_w = [box[s][1] - box[s][0] for s in range(3)]
-    stack = [((gA, gB), box, 0)]
     boxes = 0
     open_boxes = []
+    stack = None
+    if ckpt_path is not None and ckpt_path.exists():
+        st = json.loads(ckpt_path.read_text(encoding="utf-8"))
+        if st.get("done"):
+            print(f"    {label}: already done in checkpoint", flush=True)
+            return (not st["open_boxes"]), st["boxes"], st["open_boxes"], 0.0
+        stack = []
+        for bs, dep in st["pending"]:
+            bx = _box_de(bs)
+            ga, _ = fast_bernstein_grid(A2, bx)
+            gb, _ = fast_bernstein_grid(B2, bx)
+            stack.append(((ga, gb), bx, dep))
+        boxes = st["boxes"]
+        open_boxes = st["open_boxes"]
+        print(f"    {label}: RESUME {len(stack)} frontier, {boxes} done ({time.time()-t0:.0f}s)", flush=True)
+    if stack is None:
+        gA, dA0 = fast_bernstein_grid(A2, box)
+        gB, dB0 = fast_bernstein_grid(B2, box)
+        stack = [((gA, gB), box, 0)]
+    dA = [A2.max_deg(s) for s in range(3)]
+    dB = [B2.max_deg(s) for s in range(3)]
+    last_ckpt = time.time()
     while stack:
         (ga, gb), bx, depth = stack.pop()
         boxes += 1
-        if boxes % 500 == 0:
+        if ckpt_path is not None and time.time() - last_ckpt > 120:
+            st = {
+                "pending": [(_box_ser(b), dp) for (_, b, dp) in stack] + [(_box_ser(bx), depth)],
+                "boxes": boxes - 1,
+                "open_boxes": open_boxes,
+            }
+            tmp = ckpt_path.with_suffix(".tmp")
+            tmp.write_text(json.dumps(st), encoding="utf-8")
+            tmp.replace(ckpt_path)
+            last_ckpt = time.time()
             print(f"    {label}: {boxes} boxes, {len(stack)} pending, {time.time()-t0:.0f}s", flush=True)
         minA = min(ga.values())
         minB = min(gb.values())
@@ -212,6 +254,11 @@ def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label=""):
         la, ra = split_grid(ga, dA, axis)
         lb2, rb2 = split_grid(gb, dB, axis)
         stack += [((la, lb2), lbx, depth + 1), ((ra, rb2), rbx, depth + 1)]
+    if ckpt_path is not None:
+        ckpt_path.write_text(
+            json.dumps({"pending": [], "boxes": boxes, "open_boxes": open_boxes, "done": True}),
+            encoding="utf-8",
+        )
     return (not open_boxes), boxes, open_boxes, round(time.time() - t0, 1)
 
 
@@ -233,13 +280,46 @@ def sanity_substitution(G, G_sub, point_maker, n_points=6) -> None:
             assert lhs == rhs, f"substitution mismatch at {u},{v},{delta}"
 
 
+def load_or_build_G(d: int, parity: str):
+    """The depth-5 odd G takes ~17 minutes to build and environment restarts
+    kill runs more often than that, so the built dictionary is cached to the
+    gitignored scratch dir as exact (p, q) integer pairs."""
+    import hashlib
+
+    STATE.mkdir(parents=True, exist_ok=True)
+    # the cache is only valid for the exact constructor version that wrote it
+    # (a stale cache would silently certify a different polynomial -- the
+    # ERR-0011 failure shape), so it is keyed by the constructor file's hash.
+    src = Path(__file__).resolve().parent / "odd_depth_kwindow.py"
+    fingerprint = hashlib.sha256(src.read_bytes()).hexdigest()[:16]
+    cache = STATE / f"Gcache_d{d}_{parity}_{fingerprint}.json"
+    if cache.exists():
+        raw = json.loads(cache.read_text(encoding="utf-8"))
+        G = P4(
+            {
+                tuple(map(int, e.split(","))): fmpq(int(p), int(q))
+                for e, (p, q) in raw.items()
+            }
+        )
+        return G, True
+    G = build_kwindow(parity, d, elementary_symmetric(d))
+    cache.write_text(
+        json.dumps({",".join(map(str, e)): [str(c.p), str(c.q)] for e, c in G.d.items()}),
+        encoding="utf-8",
+    )
+    return G, False
+
+
 def run_parity(d: int, parity: str, max_depth: int) -> dict:
     t0 = time.time()
-    e_polys = elementary_symmetric(d)
-    G = build_kwindow(parity, d, e_polys)
+    G, cached = load_or_build_G(d, parity)
     Amax = max(e[0] for e in G.d)
     kb_max = max(e[1] for e in G.d)
-    print(f"depth {d} [{parity}]: G built, {len(G.d)} terms ({time.time()-t0:.0f}s)", flush=True)
+    print(
+        f"depth {d} [{parity}]: G {'loaded from cache' if cached else 'built'}, "
+        f"{len(G.d)} terms ({time.time()-t0:.0f}s)",
+        flush=True,
+    )
 
     # ---- piece 1: k = 2*K*rho, rho >= RHO_SPLIT (exponent remap, no algebra)
     Gr = P4({(e[0] + e[1], e[1], e[2], e[3]): c * fmpq(2) ** e[1] for e, c in G.d.items()})
@@ -262,7 +342,10 @@ def run_parity(d: int, parity: str, max_depth: int) -> dict:
         )
 
     box1 = [(fmpq(0), fmpq(999, 1000)), (fmpq(0), fmpq(999, 1000)), (-DELTA, DELTA)]
-    ok1, boxes1, open1, sec1 = prove_piece(A2, B2, box1, krange1, max_depth, f"{parity}/p1")
+    ok1, boxes1, open1, sec1 = prove_piece(
+        A2, B2, box1, krange1, max_depth, f"{parity}/p1",
+        ckpt_path=STATE / f"ckpt_d{d}_{parity}_p1.json",
+    )
     print(f"  piece1 (rho>=2): proved={ok1} boxes={boxes1} open={len(open1)} ({sec1}s)", flush=True)
 
     # ---- piece 2: wedge K = (6 + rho*z)/rho, k = 12 + 2*rho*z, cleared by rho^Amax
@@ -303,7 +386,10 @@ def run_parity(d: int, parity: str, max_depth: int) -> dict:
         return (12 + rlo * (tlo / (1 - tlo)) * 2, 12 + rhi * (thi / (1 - thi)) * 2)
 
     box2 = [(fmpq(0), RHO_SPLIT), (fmpq(0), fmpq(999, 1000)), (-DELTA, DELTA)]
-    ok2, boxes2, open2, sec2 = prove_piece(Aw2, Bw2, box2, krange2, max_depth, f"{parity}/p2")
+    ok2, boxes2, open2, sec2 = prove_piece(
+        Aw2, Bw2, box2, krange2, max_depth, f"{parity}/p2",
+        ckpt_path=STATE / f"ckpt_d{d}_{parity}_p2.json",
+    )
     print(f"  piece2 (rho<=2): proved={ok2} boxes={boxes2} open={len(open2)} ({sec2}s)", flush=True)
 
     return {
