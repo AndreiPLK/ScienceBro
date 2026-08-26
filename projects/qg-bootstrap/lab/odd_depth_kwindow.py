@@ -204,7 +204,12 @@ def build_kwindow(parity: str, d: int, e_polys: dict) -> P4:
             Kpow_cache[n] = Kpow_cache[n - 1] * Kv if n - 1 in Kpow_cache else Kv**n
         return Kpow_cache[n]
 
-    total = P4()
+    # Accumulate into one dict in place: `total = total + term` copies the
+    # growing total dict on every one of the |H| additions (P4.__add__ starts
+    # from dict(self.d)), which is quadratic -- measured 996 s at depth 5 odd
+    # while every prepared power table takes under a second. Same algebra,
+    # incremental merge.
+    acc: dict = {}
     for (aa, i, j), h in H.d.items():
         e = Jv + i - j
         term = (
@@ -215,8 +220,13 @@ def build_kwindow(parity: str, d: int, e_polys: dict) -> P4:
             * Ldpow[Elam - e]
             * h
         )
-        total = total + term
-    return reduce_w(total)
+        for key, v in term.d.items():
+            nv = acc.get(key, fmpq(0)) + v
+            if nv == 0:
+                acc.pop(key, None)
+            else:
+                acc[key] = nv
+    return reduce_w(P4(acc))
 
 
 def line_point(t: fmpq) -> tuple[fmpq, fmpq]:
