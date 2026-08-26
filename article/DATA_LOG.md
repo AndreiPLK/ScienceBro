@@ -3865,8 +3865,9 @@ EVIDENCE: odd_depth_kwindow_cert_d3.json, odd_depth_kwindow_selfcheck.json.
 STATUS: experimentally-supported (exact Bernstein certificate; premises:
   measured unimodality for step (b), measured k_s=8 band).
 NOVELTY: internal repair; the rho-degeneration lesson is a reusable rule.
-TIME: predicted UNKNOWN (calibration), actual ~3h agent time от конструктора
-  до сертификата, из них ~2h -- две ложные конфигурации окна/координат.
+TIME: predicted UNKNOWN (calibration), actual ~3h agent time from constructor
+  to certificate, of which ~2h went to the two wrong window/coordinate
+  configurations.
 LEARNED: slack you do not need is surface you cannot defend; a jammed
   certificate points either at a false statement (ERR-0013) or at the wrong
   coordinates (this entry) -- measure WHICH before adding compute.
