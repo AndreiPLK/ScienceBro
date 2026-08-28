@@ -1,0 +1,445 @@
+{
+ "claim": "STRUCTURE OF THE DEFECT (measured). E_{2t}(n) is e_t of a multiset where every nonzero square occurs twice (k <-> n-k), over N_n = floor((n-1)/2) distinct values. Findings: (1) the ONLY moment condition that ever fails is H1 = [m_{a+b+1}] (support in [0, inf)) -- 37 of 37 first failures -- while H0 = [m_{a+b}] and the [0,1]-localizer hold; (2) H0 is POSITIVE DEFINITE at full size N and N+1, so m is a genuine Hamburger moment sequence, NOT a rank-deficient finite-atom one; (3) the H1 failures are exponentially tiny in normalized terms (1e-11 down to 1e-65). So the representing measure lives on (-inf, 1] with an exponentially small part at NEGATIVE y. That defect is HARMLESS for the knife: P_r(y) = sum_t C(r,t)(g)_t(-y)^t has all terms nonnegative for y <= 0 (as g > r on the physical domain), so mass at negative y contributes POSITIVELY to K_r = INT P_r dmu. The open question is therefore not the negative tail but the mass distribution on [0, Y] against the sign changes of P_r.",
+ "lam": "3",
+ "rows": [
+  {
+   "n": 8,
+   "N_distinct": 3,
+   "largest_clean_tmax": 4,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 3,
+   "normalized_magnitude": 7.502148139585832e-11
+  },
+  {
+   "n": 9,
+   "N_distinct": 4,
+   "largest_clean_tmax": 4,
+   "tmax_over_n": 0.444,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 3,
+   "normalized_magnitude": 8.771351100924234e-13
+  },
+  {
+   "n": 10,
+   "N_distinct": 4,
+   "largest_clean_tmax": 6,
+   "tmax_over_n": 0.6,
+   "tmax_minus_N": 2,
+   "first_fail_family": "H1",
+   "first_fail_size": 4,
+   "normalized_magnitude": 2.389205506983046e-14
+  },
+  {
+   "n": 11,
+   "N_distinct": 5,
+   "largest_clean_tmax": 6,
+   "tmax_over_n": 0.545,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 4,
+   "normalized_magnitude": 1.8862100755418787e-15
+  },
+  {
+   "n": 12,
+   "N_distinct": 5,
+   "largest_clean_tmax": 6,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 4,
+   "normalized_magnitude": 1.8434532606345676e-16
+  },
+  {
+   "n": 13,
+   "N_distinct": 6,
+   "largest_clean_tmax": 6,
+   "tmax_over_n": 0.462,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 4,
+   "normalized_magnitude": 4.722923334973193e-18
+  },
+  {
+   "n": 14,
+   "N_distinct": 6,
+   "largest_clean_tmax": 8,
+   "tmax_over_n": 0.571,
+   "tmax_minus_N": 2,
+   "first_fail_family": "H1",
+   "first_fail_size": 5,
+   "normalized_magnitude": 3.168369325565081e-20
+  },
+  {
+   "n": 15,
+   "N_distinct": 7,
+   "largest_clean_tmax": 8,
+   "tmax_over_n": 0.533,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 5,
+   "normalized_magnitude": 2.953961444283188e-21
+  },
+  {
+   "n": 16,
+   "N_distinct": 7,
+   "largest_clean_tmax": 8,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 5,
+   "normalized_magnitude": 3.3639781515728154e-22
+  },
+  {
+   "n": 17,
+   "N_distinct": 8,
+   "largest_clean_tmax": 8,
+   "tmax_over_n": 0.471,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 5,
+   "normalized_magnitude": 2.0660358825806565e-23
+  },
+  {
+   "n": 18,
+   "N_distinct": 8,
+   "largest_clean_tmax": 10,
+   "tmax_over_n": 0.556,
+   "tmax_minus_N": 2,
+   "first_fail_family": "H1",
+   "first_fail_size": 6,
+   "normalized_magnitude": 3.928510133940937e-26
+  },
+  {
+   "n": 19,
+   "N_distinct": 9,
+   "largest_clean_tmax": 10,
+   "tmax_over_n": 0.526,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 6,
+   "normalized_magnitude": 3.5380082244926586e-27
+  },
+  {
+   "n": 20,
+   "N_distinct": 9,
+   "largest_clean_tmax": 10,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 6,
+   "normalized_magnitude": 4.378345572281922e-28
+  },
+  {
+   "n": 21,
+   "N_distinct": 10,
+   "largest_clean_tmax": 10,
+   "tmax_over_n": 0.476,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 6,
+   "normalized_magnitude": 4.138039244995578e-29
+  },
+  {
+   "n": 22,
+   "N_distinct": 10,
+   "largest_clean_tmax": 12,
+   "tmax_over_n": 0.545,
+   "tmax_minus_N": 2,
+   "first_fail_family": "H1",
+   "first_fail_size": 7,
+   "normalized_magnitude": 4.8608483238770437e-32
+  },
+  {
+   "n": 23,
+   "N_distinct": 11,
+   "largest_clean_tmax": 12,
+   "tmax_over_n": 0.522,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 7,
+   "normalized_magnitude": 3.283648090742746e-33
+  },
+  {
+   "n": 24,
+   "N_distinct": 11,
+   "largest_clean_tmax": 12,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 7,
+   "normalized_magnitude": 4.155597898517877e-34
+  },
+  {
+   "n": 25,
+   "N_distinct": 12,
+   "largest_clean_tmax": 12,
+   "tmax_over_n": 0.48,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 7,
+   "normalized_magnitude": 4.903456382911079e-35
+  },
+  {
+   "n": 26,
+   "N_distinct": 12,
+   "largest_clean_tmax": 14,
+   "tmax_over_n": 0.538,
+   "tmax_minus_N": 2,
+   "first_fail_family": "H1",
+   "first_fail_size": 8,
+   "normalized_magnitude": 2.0450589778651766e-37
+  },
+  {
+   "n": 27,
+   "N_distinct": 13,
+   "largest_clean_tmax": 14,
+   "tmax_over_n": 0.519,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 8,
+   "normalized_magnitude": 2.483058466940876e-39
+  },
+  {
+   "n": 28,
+   "N_distinct": 13,
+   "largest_clean_tmax": 14,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 8,
+   "normalized_magnitude": 2.99329238154418e-40
+  },
+  {
+   "n": 29,
+   "N_distinct": 14,
+   "largest_clean_tmax": 14,
+   "tmax_over_n": 0.483,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 8,
+   "normalized_magnitude": 3.956608515693865e-41
+  },
+  {
+   "n": 30,
+   "N_distinct": 14,
+   "largest_clean_tmax": 14,
+   "tmax_over_n": 0.467,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 8,
+   "normalized_magnitude": 2.557522883538752e-42
+  },
+  {
+   "n": 31,
+   "N_distinct": 15,
+   "largest_clean_tmax": 16,
+   "tmax_over_n": 0.516,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 9,
+   "normalized_magnitude": 1.6763615842869488e-45
+  },
+  {
+   "n": 32,
+   "N_distinct": 15,
+   "largest_clean_tmax": 16,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 9,
+   "normalized_magnitude": 1.7107110108037047e-46
+  },
+  {
+   "n": 33,
+   "N_distinct": 16,
+   "largest_clean_tmax": 16,
+   "tmax_over_n": 0.485,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 9,
+   "normalized_magnitude": 2.3611328185891026e-47
+  },
+  {
+   "n": 34,
+   "N_distinct": 16,
+   "largest_clean_tmax": 16,
+   "tmax_over_n": 0.471,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 9,
+   "normalized_magnitude": 2.5433142097978682e-48
+  },
+  {
+   "n": 35,
+   "N_distinct": 17,
+   "largest_clean_tmax": 18,
+   "tmax_over_n": 0.514,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 10,
+   "normalized_magnitude": 1.3317320394212022e-51
+  },
+  {
+   "n": 36,
+   "N_distinct": 17,
+   "largest_clean_tmax": 18,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 10,
+   "normalized_magnitude": 8.163887199297484e-53
+  },
+  {
+   "n": 37,
+   "N_distinct": 18,
+   "largest_clean_tmax": 18,
+   "tmax_over_n": 0.486,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 10,
+   "normalized_magnitude": 1.102768689684678e-53
+  },
+  {
+   "n": 38,
+   "N_distinct": 18,
+   "largest_clean_tmax": 18,
+   "tmax_over_n": 0.474,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 10,
+   "normalized_magnitude": 1.45550865615857e-54
+  },
+  {
+   "n": 39,
+   "N_distinct": 19,
+   "largest_clean_tmax": 18,
+   "tmax_over_n": 0.462,
+   "tmax_minus_N": -1,
+   "first_fail_family": "H1",
+   "first_fail_size": 10,
+   "normalized_magnitude": 4.074437376814285e-56
+  },
+  {
+   "n": 40,
+   "N_distinct": 19,
+   "largest_clean_tmax": 20,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 11,
+   "normalized_magnitude": 3.515029518557894e-59
+  },
+  {
+   "n": 41,
+   "N_distinct": 20,
+   "largest_clean_tmax": 20,
+   "tmax_over_n": 0.488,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 11,
+   "normalized_magnitude": 4.224683684984113e-60
+  },
+  {
+   "n": 42,
+   "N_distinct": 20,
+   "largest_clean_tmax": 20,
+   "tmax_over_n": 0.476,
+   "tmax_minus_N": 0,
+   "first_fail_family": "H1",
+   "first_fail_size": 11,
+   "normalized_magnitude": 6.063802219075235e-61
+  },
+  {
+   "n": 43,
+   "N_distinct": 21,
+   "largest_clean_tmax": 20,
+   "tmax_over_n": 0.465,
+   "tmax_minus_N": -1,
+   "first_fail_family": "H1",
+   "first_fail_size": 11,
+   "normalized_magnitude": 5.921881708723996e-62
+  },
+  {
+   "n": 44,
+   "N_distinct": 21,
+   "largest_clean_tmax": 22,
+   "tmax_over_n": 0.5,
+   "tmax_minus_N": 1,
+   "first_fail_family": "H1",
+   "first_fail_size": 12,
+   "normalized_magnitude": 1.6735449133491173e-65
+  }
+ ],
+ "rank_reports": [
+  {
+   "n": 8,
+   "N_distinct": 3,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  },
+  {
+   "n": 10,
+   "N_distinct": 4,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  },
+  {
+   "n": 12,
+   "N_distinct": 5,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  },
+  {
+   "n": 14,
+   "N_distinct": 6,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  },
+  {
+   "n": 16,
+   "N_distinct": 7,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  },
+  {
+   "n": 20,
+   "N_distinct": 9,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  },
+  {
+   "n": 24,
+   "N_distinct": 11,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  },
+  {
+   "n": 30,
+   "N_distinct": 14,
+   "detH0_size_N_sign": 1,
+   "detH0_size_N1_sign": 1,
+   "H0_full_rank_positive": true
+  }
+ ],
+ "H0_positive_definite_everywhere": true,
+ "command": "python lab/moment_boundary_law.py",
+ "seconds": 4.2,
+ "git": "4ad24b8d75b0",
+ "git_full": "4ad24b8d75b005739ee6db20bc89585425868eb1",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}

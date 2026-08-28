@@ -720,6 +720,10 @@ artefacts:
     added: '2026-08-14'
     note: referenced by a paper, document or lab module
     status: live
+  moment_boundary_law.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   moment_kernel_probe.json:
     added: untracked
     note: referenced by a paper, document or lab module
