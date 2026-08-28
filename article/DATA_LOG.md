@@ -4599,3 +4599,54 @@ NEXT: the J-form's loss is now in the split at w = eta: both bounds are crude
 treatment of the small-w piece, or injecting the shore condition into b (which
 grows with D, sharpening the weight exactly when the physics tightens), is where
 the next factor should come from.
+
+## 2026-08-28 — Where the J-form bound loses, and two fixes killed
+
+A useful accident makes Theorem 9's two sides directly comparable with the truth:
+`a + r = n - 1/2 = C + 1` ALWAYS, so `B(a+r,b)` is the J-form's own normaliser
+and dividing through leaves `K_r >= POS - NEG` with
+`POS = (1-eta)^{n-3/2+b}` and `NEG = eta^{n-1/2}/[a B(n-1/2,b)]`.
+
+MEASURED (results/bform_gap_diagnosis.json). NEG is the binding side by a wide
+margin — it spans fourteen orders of magnitude across the grid and explodes below
+the threshold (3.1e14 against a true K_r of 1.9e-3 at n=20, lam=30, r=18). POS
+stays within a factor 1.2 to 29 of the true K_r, so POS is lossy too and
+increasingly so with depth — I first wrote "single-digit factor" and the numbers
+say 29x at n=20, r=18; corrected before banking. But the threshold is set by NEG:
+the single step `|prod_i (w - eta_i)| <= eta^r` on `[0, eta]`, which throws away
+the fact that the integrand VANISHES at each of the r roots.
+
+TWO FIXES KILLED, both cheap to test and both dead:
+
+1. THE TRIANGLE INEQUALITY. `|prod (w-eta_i)| <= sum_t e_t(eta) w^{r-t}`
+   integrates in closed form, so it looked like a free upgrade. It is WORSE in
+   24/24 cases, by up to 21.7x. Reason: dropping the signs destroys exactly the
+   cancellation that makes the piece small — `sum_t e_t(eta) eta^{r-t} =
+   prod_i (eta + eta_i) >= eta^r`. A bound that discards oscillation cannot beat
+   one that at least caps the envelope.
+
+2. A PER-INSTANCE CERTIFIED QUADRATURE of the integral's sign. Abandoned before
+   being built, after writing it: it is CIRCULAR. For given (n, r, lam, D) the
+   sign of the integral IS the sign of K_r, which this repository already
+   computes exactly, so no per-instance certificate can add information. Only an
+   all-n bound can. Recording this because the module was written and deleted,
+   and because the same trap will look attractive again.
+
+WHERE THE SHORE ENTERS — and this answers a question the programme has been
+carrying since the moment routes began. Every route so far imposed `D <= T_hat`
+only at the very end. The J-form says where it belongs: the weight is
+`Beta(a, b)` with `b = D/2 + (n-2-r)`, so its mean
+`a/(a+b) = (n-1/2-r)/(D/2+2n-5/2-2r)` shrinks as D grows — raising D slides the
+weight's mass toward w = 0, which is exactly where the roots sit and where the
+integrand oscillates. Both the mean and eta_max shrink as lam grows, but at
+different rates, and the RATIO is what matters: at n=20, r=18 it climbs
+0.04 -> 0.15 -> 0.28 -> 1.00 at lam = 30, 272, 531, 2000. So in this
+representation the shore condition is not an afterthought — it is the statement
+that the weight's mass stays clear of the roots.
+
+NEXT: the remaining factor is a bound on the oscillating integral over [0, eta]
+that is valid for ALL n. The naive envelopes are exhausted (both above); what is
+needed is a handle on `max_{[0,eta]} |prod_i (w - eta_i)|` for the roots of the
+m-th derivative of `prod_k (u - b_k)` — which is a finite free probability
+object (Marcus-Spielman-Srivastava), and is exactly what the domain-critic pass
+was asked to place in the literature.

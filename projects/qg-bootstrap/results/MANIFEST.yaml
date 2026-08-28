@@ -118,6 +118,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  bform_gap_diagnosis.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   bform_jacobi_bound.json:
     added: untracked
     note: referenced by a paper, document or lab module
