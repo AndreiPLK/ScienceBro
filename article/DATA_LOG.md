@@ -4055,3 +4055,36 @@ TIME: conjecture to proved theorem: ~4 hours within one session.
 NEXT: (a) literature check of the identity family before any novelty
   wording; (b) pair TP + affine recursion against K_r: e.g. characterize
   the cone of sequences M with K_r >= 0 for all r under the recursion.
+
+## 2026-08-28 15:05 -- Depth 7: measured compute wall in this environment, stated honestly
+
+Depth 7 is NOT closed. Its certificate is compute-bound here, with numbers
+rather than impressions (all measured today):
+
+* piece-1 polynomials at depth 7 have degrees (131, 118, 21) after
+  compactification -> Bernstein root grids of 345 576 exact rationals each
+  (~350 MB serialized per grid, A and B).
+* one de Casteljau split of such a grid along the widest axis: 19 s; a box
+  therefore costs ~38 s (A and B), and restoring a frontier box at tree
+  depth 6 costs ~230 s of splits.
+* the container kills long processes after roughly 180 s, so a restart
+  cannot even rebuild one frontier box before dying: banked progress stands
+  at 24 boxes, 0 open, 15 pending, and does not advance.
+
+Infrastructure built while establishing this (all committed, all regression-
+gated on depth 3's exact 1 + 11 box counts): constructor build checkpoints,
+caches for G, the wedge polynomial Gw, the compactified A/B pairs and the
+root grids, frontier checkpoints, and frontier restore by split-tree descent
+with shared prefixes. Depths 2-6 remain fully certified; depth 7 was always
+a uniformity TEST of the machinery, not a link in the chain, so nothing in
+the proved statements depends on it.
+
+What would unblock it, in order of cost: a machine that does not kill
+processes (the run needs hours, not minutes); or splitting along the
+cheapest axis (delta, degree 21: ~3 s per split instead of 19 s) at the cost
+of more boxes; or a positivity test that does not carry full grids.
+
+LEARNED: measure the unit cost before assuming an environment can be
+engineered around. Five successive survivability layers each looked like
+the last one needed; the arithmetic (230 s of restore vs a 180 s process
+lifetime) settles it in one line and should have been done first.
