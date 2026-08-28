@@ -77,9 +77,48 @@ via G/Gw caches keyed by the constructor sha256, per-piece frontier
 checkpoints with resume, and fmpq_mat matrix engines -- every change
 regression-gated on depth 3's exact box counts.
 
-**Next:** depth 7 with the same pipeline (a uniformity test of the
-machinery), then the j-infinity question -- one argument for all depths --
-with the k-window form as the base-case shape.
+**Depth 7 is closed as compute-bound here, not as mathematics** (28 Aug):
+one grid split costs 19 s, restoring a frontier box ~230 s, and the
+container kills processes at ~180 s, so it cannot advance regardless of
+caching (banked: 24 boxes, 0 open). It was a uniformity test, never a link
+in a proved chain. Unblocking options are in the DATA_LOG entry.
+
+## The j-infinity front (28 Aug) -- where the real work now is
+
+An outside report (`research/reading-notes/keystone-outside-report-2026-08-28.pdf`,
+answering our `research/BRIEF_KEYSTONE_FOR_OUTSIDE_HELP.md`) proposed
+reorganizing the exact knife sum into an alternating binomial transform.
+Same-day exact testing produced:
+
+1. **A THEOREM (`results/KERNEL_TP_THEOREM.md`).** The depth kernel
+   `B_{r,t} = C(r,t)(H-r)_t t!` has every solid `q x q` minor equal to
+   `prod_a (H-r0-a)_{t0} * prod_a (r0+a)_{t0} * prod_{a<b}(b-a)(H-2r0-a-b)`
+   -- proved by one quadratic substitution `z = y^2 - Hy` turning the
+   matrix into a generalized Vandermonde; verified including the constant,
+   86/86. Every root is `<= 2 r_max - 1 < H` on the physical domain, so the
+   kernel is STRICTLY TOTALLY POSITIVE there. First uniform-in-depth
+   theorem of the programme.
+2. **The Charlier reduction (`results/charlier_reduction.json`).**
+   `M_t^(r) = (H-r)_t m_t` with `m_t` independent of `r` and `D`, and
+   `sum_t C(r,t)(g)_t(-y)^t = C_r(g;1/y)` is a Charlier polynomial
+   (verified against its three-term recurrence). So a moment representation
+   of `m` would give `K_r = INT C_r(H-r;1/y) dmu(y)`.
+3. **Two exact kills.** The report's Hausdorff hypothesis for `M_t^(r)` is
+   refuted (it quantifies over `r` while the sequence moves with `r`); and
+   my own crude sufficient condition -- `P_r >= 0` on the measure's support
+   -- is refuted too, the smallest zero sitting at 0.63-1.06 of a support
+   lower bound (`results/charlier_zero_test.json`).
+4. **A measured regime.** `m_t` IS a Hausdorff moment sequence for
+   `t <~ n/2` and fails beyond, with the boundary INDEPENDENT of `lam` over
+   five orders of magnitude -- so that failure is intrinsic to the central
+   factorial numbers `E_{2t}(n)`.
+
+**Next:** use the measure's MASS, not its support (Hankel quadrature gives
+the atoms exactly in the regime where `m` is a moment sequence, so
+`INT P_r dmu` can be evaluated directly); explain the `t ~ n/2` breakdown
+(a lam-free statement about `E_{2t}(n)`); and check the kernel identity
+against the binomial-determinant literature (Krattenthaler's *Advanced
+Determinant Calculus*) before any novelty wording.
 
 ## Also open, smaller
 
