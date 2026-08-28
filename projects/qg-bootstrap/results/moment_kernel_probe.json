@@ -1790,14 +1790,12 @@
   "q4_r8_t1": "(95040, [(x + (-11), 1), (x + (-18), 1), (x + (-9), 1), (x + (-8), 1), (x + (-17), 1), (x + (-21), 1), (x + (-10), 1), (x + (-20), 1), (x + (-19), 2)])",
   "q4_r8_t2": "(479001600, [(x + (-21), 1), (x + (-12), 1), (x + (-20), 1), (x + (-17), 1), (x + (-8), 1), (x + (-18), 1), (x + (-10), 2), (x + (-9), 2), (x + (-11), 2), (x + (-19), 2)])"
  },
- "seconds": 1787918948.3,
- "git": "8f0e1ab15379",
- "git_full": "8f0e1ab15379237cc6e96572b022c302047b839b",
- "dirty": true,
- "dirty_code_files": [
-  "projects/qg-bootstrap/lab/moment_kernel_probe.py"
- ],
- "dirty_count": 1,
+ "seconds": 1787918968.8,
+ "git": "2224f46be1b0",
+ "git_full": "2224f46be1b0b4ced39935b641e60a3db255c8ee",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
  "python": "3.12.3",
  "flint": "0.9.0",
  "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
