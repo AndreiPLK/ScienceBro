@@ -40,7 +40,7 @@ from flint import acb, acb_mat, ctx, fmpq, fmpq_poly
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from base_moment_probe import m_seq  # noqa: E402
-from charlier_zero_test import P_r, smallest_positive_zero  # noqa: E402
+from charlier_zero_test import smallest_positive_zero  # noqa: E402
 from moment_kernel_probe import falling, ref_sign, shore  # noqa: E402
 from provenance import stamp  # noqa: E402
 

@@ -4221,3 +4221,53 @@ NEXT: extract the measure's mass distribution (Jacobi matrix from the
   Hankel data gives nodes and weights exactly), then evaluate INT P_r dmu
   directly against the reference knife sign; that is the decisive test of
   the whole Charlier mechanism.
+
+## 2026-08-28 17:05 -- THE MECHANISM, QUANTIFIED: a bounded cancellation, uniform in depth
+
+The decisive test of the Charlier route is done (results/measure_mass_test.json).
+The measure behind the base sequence is extracted from the exact moments by
+Gaussian quadrature -- orthogonal polynomial from exact Hankel determinants,
+nodes as CERTIFIED root enclosures, weights solved in acb interval
+arithmetic -- and nothing was interpreted until both verifications passed in
+all 54 rows: the quadrature reproduces m_0..m_{2q-1}, and it reproduces the
+exactly computed K_r.
+
+WHAT THE MECHANISM IS. K_r = INT P_r dmu is positive NOT because P_r >= 0 on
+the support -- it is not, and up to 98% of the mass can sit where P_r < 0 --
+but because the negative contribution is bounded by a fixed fraction of the
+positive one:
+
+    |negative part| / |positive part|  <=  0.70   at and below the shore
+    (max 0.70, 0.62, 0.66 at depths j = 4, 6, 8 -- NOT growing with depth),
+
+over lam = 1, 3, 72 and n = 12, 24, both at the shore and at 80% of it.
+
+CONTROL (the part that makes it evidence rather than decoration). Above the
+shore, where even knives are genuinely negative, the same ratio EXCEEDS 1 in
+9 of 9 negative-knife rows -- from 1.07 up to 2.9e4 -- and the quadrature
+sign agrees with the reference engine in all 54 rows. A diagnostic that
+never crossed 1 anywhere would have been measuring nothing.
+
+THE THEOREM SHAPE IS NOW EXPLICIT. An all-depths proof needs:
+  (i)  m_t is a Hamburger moment sequence with measure on (-inf, 1]
+       (measured: H0 positive definite at full size; the negative-y part is
+       exponentially tiny and provably HELPS, since P_r >= 0 there);
+  (ii) a bound |INT_{P_r<0} P_r dmu| <= c |INT_{P_r>0} P_r dmu| with c < 1
+       UNIFORM IN r, valid exactly on D <= T_hat.
+Step (ii) is where the shore must enter, and the control above shows it
+enters correctly: the bound fails precisely when the physics fails.
+
+RESULT: the mechanism of knife positivity is identified and quantified.
+EVIDENCE: results/measure_mass_test.json (54 rows, both verifications, the
+  above-shore control).
+STATUS: measured, with certified enclosures; (i) and (ii) are unproved.
+NOVELTY: NOVELTY_UNCHECKED.
+TIME: from the crude criterion's death to the quantified mechanism: ~1h.
+LEARNED: when a sufficient condition dies, do not abandon the
+  representation -- measure HOW it dies. The gap between "P_r changes sign
+  in the support" and "the knife is still positive" was the whole content,
+  and it turned out to be a stable 0.7 rather than a near-miss.
+NEXT: attack (ii) directly -- the positive part is dominated by the mass
+  near the smallest nodes, so bound the ratio by the first few Christoffel
+  weights against the tail; and check whether c can be taken independent of
+  n and lam as the data suggest.
