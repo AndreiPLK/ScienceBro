@@ -4148,3 +4148,35 @@ NEXT: (a) why does the moment property break at t ~ n/2? (the boundary is
   statement via classical zero bounds (largest zero of C_r(.;a) vs g);
   (c) the complementary regime j-1 > n/2 has small m = n-j and may want a
   moment structure in m instead.
+
+## 2026-08-28 16:05 -- The crude Charlier criterion is dead; the tightness is structural
+
+I proposed a sufficient condition for the whole depth family and killed it
+the same hour (results/charlier_zero_test.json). If m is a moment sequence
+on [0, Y], then K_r = INT_0^Y P_r(y) dmu(y) with P_r = C_r(g;1/y), so
+"P_r >= 0 on [0, Y]" would settle every depth at once. Measured exactly:
+
+* max_t m_{t+1}/m_t is a LOWER bound on Y (the ratios increase to sup supp);
+* the smallest positive zero of P_r, bracketed by exact rational bisection,
+  sits at 0.63-1.06 times that lower bound;
+* so P_r changes sign strictly INSIDE the support in 56 of 84 at-or-below-
+  shore configurations, while the knives there are positive.
+
+The route is dead as stated, and it had to be: at the shore the even knives
+are marginal by construction (the shore IS their threshold), so no argument
+comparing a support to a zero can decide them -- only one that uses where
+the measure's MASS sits. That is a sharper description of the difficulty
+than the project had before: the obstruction is not conditioning, not
+coordinates, and not the depth index; it is that the true statement is
+tight at the boundary, so every sufficient condition must be tight too.
+
+RESULT: one more exact kill, with the margin quantified (0.63-1.06).
+EVIDENCE: results/charlier_zero_test.json.
+STATUS: refuted route, recorded; the Charlier reduction itself stands.
+LEARNED: when a claim is marginal at its boundary by design, sufficient
+  conditions that ignore the boundary geometry cannot close it -- test the
+  margin ratio early, it costs minutes and predicts the outcome.
+NEXT: use the mass, not the support: (a) get the actual measure for m in the
+  regime where it exists (Hankel-based quadrature gives the atoms exactly),
+  then evaluate INT P_r dmu directly as a check of the mechanism; (b) the
+  complementary regime t > n/2 where m stops being a moment sequence.

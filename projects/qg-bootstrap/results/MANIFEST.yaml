@@ -126,6 +126,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  charlier_zero_test.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   chr_closed_form.json:
     added: '2026-08-16'
     note: referenced by a paper, document or lab module
