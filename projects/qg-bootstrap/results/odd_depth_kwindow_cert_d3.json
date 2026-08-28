@@ -13,16 +13,16 @@
     "proved": true,
     "boxes": 1,
     "open": 0,
-    "seconds": 1.9
+    "seconds": 0.0
    },
    "piece2_wedge": {
     "proved": true,
     "boxes": 11,
     "open": 0,
-    "seconds": 18.7
+    "seconds": 0.0
    },
    "proved": true,
-   "seconds": 34.1
+   "seconds": 13.2
   },
   {
    "parity": "odd",
@@ -30,26 +30,29 @@
     "proved": true,
     "boxes": 1,
     "open": 0,
-    "seconds": 2.9
+    "seconds": 0.0
    },
    "piece2_wedge": {
     "proved": true,
     "boxes": 11,
     "open": 0,
-    "seconds": 18.5
+    "seconds": 0.0
    },
    "proved": true,
-   "seconds": 66.1
+   "seconds": 42.3
   }
  ],
  "proved_all": true,
  "command": "python lab/odd_depth_kwindow_cert.py <d>",
- "git": "c20df5c6f574",
- "git_full": "c20df5c6f57479fe9b73729cb70dd449fb963d79",
- "dirty": false,
- "dirty_code_files": [],
- "dirty_count": 0,
+ "git": "90e308e4956d",
+ "git_full": "90e308e4956d3c362a28c4e65e31ecef785fda00",
+ "dirty": true,
+ "dirty_code_files": [
+  "rojects/qg-bootstrap/lab/odd_depth_kwindow.py",
+  "projects/qg-bootstrap/lab/odd_depth_kwindow_cert.py"
+ ],
+ "dirty_count": 2,
  "python": "3.12.3",
  "flint": "0.9.0",
- "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39"
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
 }

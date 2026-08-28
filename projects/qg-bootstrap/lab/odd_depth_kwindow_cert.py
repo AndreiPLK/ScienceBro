@@ -353,7 +353,10 @@ def load_or_build_G(d: int, parity: str):
             }
         )
         return G, True
-    G = build_kwindow(parity, d, elementary_symmetric(d))
+    G = build_kwindow(
+        parity, d, elementary_symmetric(d),
+        ckpt=STATE / f"buildckpt_d{d}_{parity}_{fingerprint}.json",
+    )
     cache.write_text(
         json.dumps({",".join(map(str, e)): [str(c.p), str(c.q)] for e, c in G.d.items()}),
         encoding="utf-8",

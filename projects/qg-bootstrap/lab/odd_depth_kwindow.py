@@ -154,11 +154,18 @@ def reduce_w(p: P4) -> P4:
         out = keep + add
 
 
-def build_kwindow(parity: str, d: int, e_polys: dict) -> P4:
+def build_kwindow(parity: str, d: int, e_polys: dict, ckpt=None) -> P4:
     """G(K, k, delta, w) = A + B*w with sign(G) = sign of the depth-d knife at
     level N, lam = lam*(k), D = T_{k+delta}(lam*). Pure substitution from the
     validated build_branch; cleared factors N^*, lam^*, (6a)^* are positive on
-    the domain (k > 2, lam > 0), so the sign is untouched."""
+    the domain (k > 2, lam > 0), so the sign is untouched.
+
+    ckpt (optional Path): the accumulation loop checkpoints its partial sum
+    every ~150 s and resumes from it -- the depth-7 build outlives any single
+    process in this environment. Term order is the deterministic insertion
+    order of H's dict (same code version => same order), so resuming at a
+    saved index is exact; the checkpoint stores the term count to guard
+    against a mismatched H. No algebra changes: same terms, same sum."""
     H = build_branch(parity, d, e_polys)
     Ic = H.max_deg(1)  # c-degree
     Jv = H.max_deg(2)  # v-degree
@@ -209,8 +216,24 @@ def build_kwindow(parity: str, d: int, e_polys: dict) -> P4:
     # from dict(self.d)), which is quadratic -- measured 996 s at depth 5 odd
     # while every prepared power table takes under a second. Same algebra,
     # incremental merge.
+    import json as _json
+    import time as _time
+
+    items = list(H.d.items())
     acc: dict = {}
-    for (aa, i, j), h in H.d.items():
+    start = 0
+    if ckpt is not None and ckpt.exists():
+        st = _json.loads(ckpt.read_text(encoding="utf-8"))
+        if st["n_terms"] == len(items):
+            acc = {
+                tuple(map(int, e.split(","))): fmpq(int(p), int(q))
+                for e, (p, q) in st["acc"].items()
+            }
+            start = st["idx"]
+            print(f"    build resume at term {start}/{len(items)}", flush=True)
+    last = _time.time()
+    for idx in range(start, len(items)):
+        (aa, i, j), h = items[idx]
         e = Jv + i - j
         term = (
             Kpow(aa)
@@ -226,6 +249,19 @@ def build_kwindow(parity: str, d: int, e_polys: dict) -> P4:
                 acc.pop(key, None)
             else:
                 acc[key] = nv
+        if ckpt is not None and _time.time() - last > 150:
+            st = {
+                "n_terms": len(items),
+                "idx": idx + 1,
+                "acc": {",".join(map(str, k)): [str(c.p), str(c.q)] for k, c in acc.items()},
+            }
+            tmp = ckpt.with_suffix(".tmp")
+            tmp.write_text(_json.dumps(st), encoding="utf-8")
+            tmp.replace(ckpt)
+            last = _time.time()
+            print(f"    build ckpt at term {idx + 1}/{len(items)}", flush=True)
+    if ckpt is not None and ckpt.exists():
+        ckpt.unlink()
     return reduce_w(P4(acc))
 
 
