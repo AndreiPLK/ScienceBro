@@ -45,9 +45,9 @@ from provenance import stamp  # noqa: E402
 RES = Path(__file__).resolve().parents[1] / "results"
 
 
-def contributions(n: int, lam: fmpq, j: int, Dfac: fmpq = fmpq(1)) -> list[float]:
+def contributions(n: int, lam: fmpq, j: int, Dfac: fmpq | None = None) -> list[float]:
     Th = shore(lam)[0]
-    D = Th * Dfac
+    D = Th * (Dfac if Dfac is not None else fmpq(1))
     m = m_seq(n, lam, n - 2)
     q = min((n - 2) // 2, 12)
     nodes, weights = quadrature(m, q)

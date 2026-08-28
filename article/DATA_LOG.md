@@ -4314,3 +4314,44 @@ NEXT: since c -> 1, look for the exact pairing instead of a bound: adjacent
   positivity structurally; also test whether 1 - c has a clean law in n
   (the data suggest a power decay), which would itself be the theorem's
   quantitative core.
+
+## 2026-08-28 18:10 -- Three constant-free routes tested and refuted; the line closes
+
+Because the cancellation ratio approaches 1 with the level, a proof cannot
+fix a constant and would have to obtain positivity structurally. Three
+natural structures were tested exactly on the ordered quadrature
+contributions c_i = w_i P_r(y_i) (results/pairing_structures_probe.json):
+
+* adjacent pairing, c_i + c_{i+1} >= 0:            holds in 1 of 9;
+* nonnegative partial sums from the left:          5 of 9; from the right: 1 of 9
+  -- this was the most interesting candidate, because it is exactly the
+  variation-diminishing shape a total-positivity argument delivers, and it
+  would have connected the day's kernel TP theorem to the knife itself;
+* Leibniz alternating tail (monotone magnitudes):  6 of 9.
+
+All three are refuted. The only property holding in all 9 configurations is
+no stronger than the ratio already measured: the head block at the smallest
+nodes exceeds the tail, with |tail|/head between 0.00 and 0.79.
+
+So this line is closed for now, with a precise statement of what is missing:
+the positivity of K_r is a genuinely quantitative balance that tightens with
+n, and neither pairwise cancellation, nor sign-regularity of the partial
+sums, nor an alternating-series bound explains it.
+
+RESULT: three candidate mechanisms refuted; the sign pattern of the
+  contributions (a positive head then an alternating tail) documented.
+EVIDENCE: results/pairing_structures_probe.json.
+STATUS: refuted routes, recorded as such.
+LEARNED: a theorem elsewhere in the same session (kernel TP) does not imply
+  a usable route here -- the variation-diminishing shape it would give is
+  exactly the one the data refuse. Test the shape a theorem would need
+  BEFORE building a bridge to it.
+NEXT (for a fresh session, in order of promise): (a) the asymptotic route --
+  since the tightness grows with n, expand K_r around the scaling limit
+  where the leading behaviour is known exactly in closed form, and control
+  the correction uniformly in j; (b) literature check of the kernel identity
+  (Krattenthaler, Advanced Determinant Calculus) before any novelty wording;
+  (c) revisit whether the shore condition can be injected earlier -- every
+  route so far imposes D <= T_hat only at the end, whereas the measured
+  control shows the bound failing exactly when the physics does, so the
+  shore may belong inside the representation itself.
