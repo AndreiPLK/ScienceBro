@@ -4463,3 +4463,83 @@ says the keystone is open and that depths 2-6 are certified while 7 is only
 banked. No claim-promotion words appear.
 
 NEXT: back to the asymptotic route (the corner theorem), per the previous entry.
+
+## 2026-08-28 — The B-form, the derivative form, and the first PROVED all-depths positivity
+
+THE MOVE. Two elementary substitutions change the character of the exact knife
+sum. `C(r,t) t! = (r)_t` absorbs the binomial into a falling factorial, and
+`E_{2t}(n)` IS by definition the t-th elementary symmetric function of
+`{(n-2k)^2}`, so `E_{2t}(n)/s^{2t} = e_t(b)` with `b_k = (n-2k)^2/s^2`. Hence
+
+    K_r = sum_t (-1)^t c_t e_t(b),  c_t = (r)_t (H-r)_t / [(n-1)_t (n-3/2)_t].
+
+Every `b_k` is below 1 for every `lam > 0` (`max_k b_k = (n-2)^2/s^2`, and
+`s = lam+n-1 > n-2`), uniformly in n and lam — and `c_t` carries no lam at all.
+The earlier moment route produced a measure whose support was the obstruction;
+here the variables are inside the unit interval by construction.
+
+THE THEOREM. `T_t = c_t e_t(b) > 0` on the physical domain, and if `T_{t+1} <= T_t`
+the sum groups as `(T_0-T_1) + (T_2-T_3) + ...` — Leibniz, and it does not care
+about the parity of r, so the criterion is uniform in DEPTH. Newton's
+inequalities (the b's are nonnegative, so `prod(1+b_k x)` is real-rooted) bound
+`e_{t+1}/e_t <= bbar (n-1-t)/(t+1)` with `bbar = n(n-2)/(3s^2)`, and the
+resulting `f(t)` is decreasing, so ONE inequality suffices:
+`r(H-r) n(n-2) <= (3n-9/2) s^2`. `r(H-r)` increases in r on `r <= n-2` (because
+`H/2 > n-2` exactly when `D > 3`), so the worst depth is `r = n-2` and
+
+    D <= D*(n,lam) = (6n-9)s^2/(n(n-2)^2) - 2n + 3  ==>  EVERY knife positive.
+
+No search, no per-depth ladder. `results/BFORM_POSITIVITY_THEOREM.md`.
+
+THE DERIVATIVE FORM. The lam-free factor `w_t = (r)_t/(n-1)_t` equals
+`C(N-t,N-r)/C(N,r)` (N = n-1), a polynomial in t that VANISHES for t > r — the
+depth truncation is automatic, not imposed. So the sum may be run to t = N, and
+since `x^{N-t}` differentiated m = N-r times at x = 1 gives `(N-t)_m` exactly,
+the whole sum is an m-th derivative; homogeneity in y then removes y from the
+roots. Result: `K_r = sum_t (-1)^t d_t e_t(eta) = INT_1^inf prod_i (1 - eta_i y)
+dsigma(y)`, with eta the roots of the m-th derivative of `prod_k (u - b_k)` (all
+real in [0, B] by Rolle) and sigma an explicit Beta-type density. The
+alternating sum is GONE: r real linear factors against one density on one
+variable. `results/bform_derivative_form.json`.
+
+VERIFICATION, all non-vacuous. B-form vs the reference engine: 870 trials, 0
+mismatches, including 37 points where the reference knife is NEGATIVE. D-form vs
+both: 870 trials, 0 disagreements. `w_t` identity: 18200 checks, 0 violations.
+eta real and inside [0,B] by certified enclosures: 0 violations / 45 cases. The
+sigma representation by interval arithmetic on the Gamma ratio: 0 violations.
+Both implications (closed form => Leibniz => K_r >= 0): 612 cases, 0 violations
+either way — either would have broken the proof.
+
+THE HONEST SIZE, and it is the important part. `D*` reaches the shore at
+lam = 127, 340, 654, 1069, 2202, 4659, 10773, 30572 for n = 8..100, i.e.
+lam ~> 3 n^2 (ratio still drifting up at n=100). The MEASURED Hausdorff corner
+(results/asymptotic_regime_probe.json) already covers all depths from lam ~> 2n.
+So: proved region lam ~> 3n^2, measured region lam ~> 2n. The proved one is much
+smaller. It is progress only in the sense that it rests on no search.
+
+AND THE GAP IS NOT SLACK. The binding step is `T_1 <= T_0`, where Newton's
+inequality is an EQUALITY (`p_1/p_0 = bbar` exactly) — so the closed form is
+essentially Leibniz's first step, not a lossy weakening of it. On the 612-case
+grid the closed form and full Leibniz hold in exactly the same 265 cases.
+Closing the gap needs a route that is not term-by-term monotonicity. That is
+what the derivative form is for.
+
+TWO SELF-CAUGHT ERRORS. (1) The sigma/Gamma check first reported 91 violations;
+the identity was fine, my comparison went through `float`, producing a point
+value with no error bars — fixed to exact fmpq -> arb enclosures, 0 violations.
+(2) `lam_theorem` hung: it called the linear-scan shore at lam ~ 10^7, which
+costs O(lam). Replaced by a ternary search justified by the project's own
+convexity certificate (results/unimodality_cert.json), regression-checked
+against the scan on lam = 1/2..300, 0 disagreements.
+
+CLAIM STATE: source-supported by internal derivation and machine verification;
+NOT independently validated. Ingredients (Newton, Rolle/Gauss-Lucas, the Beta
+integral, the binomial identity) are all classical, and the m-th-derivative
+operation is exactly finite free probability's object (Marcus-Spielman-
+Srivastava). Novelty status POSSIBLY_KNOWN for the technique. Independent
+validator and domain critic passes are queued.
+
+NEXT: the derivative form is the live front. sigma has unbounded support, so
+positivity of the integrand on `y < 1/max(eta)` does not close the argument —
+the question is a tail bound on sigma against the measured root contraction
+(max(eta)/B = 0.448 at r=2 rising to 1.000 at r=n-2, n=20, lam=7).

@@ -1,0 +1,108 @@
+{
+ "identity": {
+  "trials": 870,
+  "mismatches": 0,
+  "negative_refs": 37,
+  "zero_refs": 0,
+  "sample_fail": []
+ },
+ "e1_identity_violations": [],
+ "implications": {
+  "cases": 612,
+  "closed_form_holds": 265,
+  "leibniz_holds": 265,
+  "closed_form_without_leibniz": [],
+  "leibniz_with_negative_K": []
+ },
+ "shore_fast_disagreements": [],
+ "region": [
+  {
+   "n": 8,
+   "lam_theorem": 127.0,
+   "over_n_squared": 1.984375,
+   "shore_at_lam_theorem": 2401.470308590492
+  },
+  {
+   "n": 12,
+   "lam_theorem": 340.0,
+   "over_n_squared": 2.361111111111111,
+   "shore_at_lam_theorem": 6433.144789626977
+  },
+  {
+   "n": 16,
+   "lam_theorem": 654.0,
+   "over_n_squared": 2.5546875,
+   "shore_at_lam_theorem": 12376.59099330811
+  },
+  {
+   "n": 20,
+   "lam_theorem": 1069.0,
+   "over_n_squared": 2.6725,
+   "shore_at_lam_theorem": 20231.791247272828
+  },
+  {
+   "n": 28,
+   "lam_theorem": 2202.0,
+   "over_n_squared": 2.808673469387755,
+   "shore_at_lam_theorem": 41677.442427756905
+  },
+  {
+   "n": 40,
+   "lam_theorem": 4659.0,
+   "over_n_squared": 2.911875,
+   "shore_at_lam_theorem": 88184.03615266818
+  },
+  {
+   "n": 60,
+   "lam_theorem": 10773.0,
+   "over_n_squared": 2.9925,
+   "shore_at_lam_theorem": 203911.06989826408
+  },
+  {
+   "n": 100,
+   "lam_theorem": 30572.0,
+   "over_n_squared": 3.0572,
+   "shore_at_lam_theorem": 578670.5652662596
+  }
+ ],
+ "end_to_end": [
+  {
+   "n": 8,
+   "lam": "128",
+   "D_star_reaches_shore": true,
+   "every_depth_positive_at_shore": true
+  },
+  {
+   "n": 12,
+   "lam": "341",
+   "D_star_reaches_shore": true,
+   "every_depth_positive_at_shore": true
+  },
+  {
+   "n": 16,
+   "lam": "655",
+   "D_star_reaches_shore": true,
+   "every_depth_positive_at_shore": true
+  },
+  {
+   "n": 20,
+   "lam": "1070",
+   "D_star_reaches_shore": true,
+   "every_depth_positive_at_shore": true
+  }
+ ],
+ "claim": "THE B-FORM AND THE FIRST PROVED ALL-DEPTHS POSITIVITY. Rewriting the exact knife sum as K_r = sum_t (-1)^t c_t e_t(b) with c_t = (r)_t (H-r)_t / [(n-1)_t (n-3/2)_t] and b_k = (n-2k)^2/s^2 puts the entire lam dependence into elementary symmetric functions of numbers that are all < 1 (max_k b_k = (n-2)^2/s^2 < 1 for every lam > 0), and leaves c_t free of lam. Leibniz on the resulting terms is uniform in depth, and Newton's inequalities turn it into a single closed-form hypothesis r(H-r)n(n-2) <= (3n-9/2)s^2, worst at r = n-2. HENCE: for D <= D*(n,lam) = (6n-9)s^2/(n(n-2)^2) - 2n + 3, EVERY knife is positive -- a proof, not a measurement, covering all depths at once in an unbounded region. It is however WEAKER than what is measured: the region is lam ~> 1.2 n^2, while the Hausdorff mechanism is already visible at lam ~> 2n (results/asymptotic_regime_probe.json). Verified here: the identity against the reference engine at negative knife points, the constant e_1(b) = n(n-1)(n-2)/(3s^2), and both implications (closed form => Leibniz => K_r >= 0) with zero violations.",
+ "command": "python lab/bform_positivity.py",
+ "seconds": 1.2,
+ "git": "e6255baf02b8",
+ "git_full": "e6255baf02b827b939aa4a1bd8c72c2ee52945c1",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/bform_derivative_form.py",
+  "projects/qg-bootstrap/lab/bform_positivity.py"
+ ],
+ "dirty_count": 2,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}

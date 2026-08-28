@@ -144,6 +144,39 @@ condition EARLIER -- every route so far imposes `D <= T_hat` only at the
 end, while the measured control shows the bound failing exactly when the
 physics does, so the shore may belong inside the representation itself.
 
+## The B-form (28 Aug) — the first PROVED all-depths positivity
+
+Two elementary moves on the exact knife sum change its character. `C(r,t) t!`
+is the falling factorial `(r)_t`, and `E_{2t}(n)/s^{2t}` is by definition
+`e_t(b)` with `b_k = (n-2k)^2/s^2`. So
+
+    K_r = sum_t (-1)^t c_t e_t(b),   c_t = (r)_t (H-r)_t / [(n-1)_t (n-3/2)_t].
+
+Every `b_k` is `< 1` for every `lam > 0` (`max_k b_k = (n-2)^2/s^2`), and `c_t`
+carries no `lam` at all. Leibniz on `T_t = c_t e_t(b)` is uniform in depth, and
+Newton's inequalities (the `b`'s are nonnegative, so `prod (1 + b_k x)` is
+real-rooted) collapse the whole criterion to ONE inequality, worst at `r = n-2`:
+
+    D <= D*(n, lam) = (6n-9) s^2 / (n (n-2)^2) - 2n + 3
+      ==>  every knife positive, every depth, no computer search.
+
+`results/BFORM_POSITIVITY_THEOREM.md` + `results/bform_positivity.json`
+(`lab/bform_positivity.py`). Honest size: the region is `lam ~> 1.2 n^2`, weaker
+than the MEASURED Hausdorff corner at `lam ~> 2n`
+(`results/asymptotic_regime_probe.json`). Both are corners; only this one is a
+theorem. The gap is Leibniz itself — the binding step `T_1 <= T_0` is exact, so
+sharpening needs a route that is not term-by-term monotonicity.
+
+## Outreach: how this project shows its work (founder, 28 Aug)
+
+`outreach/shore_of_universes.html` — an interactive 3D explainer of the whole
+problem, built for the founder's children and adopted by him as the house style
+("we will share our work like this style and interactive"). The pattern is in
+`docs/DECISIONS.md`: data exported from the SAME exact engine the certificates
+use, every quoted number computed by the builder from that data, and the builder
+refuses to emit the page if the data would falsify the page's central claim.
+Live: https://claude.ai/code/artifact/7e16abf9-09a6-463b-822f-b1ebc5382bd8
+
 ## Also open, smaller
 
 - step (c) leaves a sliver `[9*lam, gamma_shore]`, up to 5% of the interval

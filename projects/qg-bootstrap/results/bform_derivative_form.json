@@ -1,0 +1,397 @@
+{
+ "w_identity": {
+  "checked": 18200,
+  "violations": [],
+  "n_violations": 0
+ },
+ "dform_identity": {
+  "trials": 870,
+  "vs_bform_mismatches": 0,
+  "vs_reference_mismatches": 0,
+  "negative_refs": 37,
+  "zero_refs": 0,
+  "sample_fail": []
+ },
+ "eta_real_and_bounded": {
+  "violations": [],
+  "n_violations": 0,
+  "cases": 45
+ },
+ "root_contraction": [
+  {
+   "n": 12,
+   "lam": "1",
+   "r": 2,
+   "max_eta_over_B": 0.5117139203501515,
+   "one_over_max_eta": 2.814072361007198,
+   "B": 0.6944444444444444
+  },
+  {
+   "n": 12,
+   "lam": "1",
+   "r": 4,
+   "max_eta_over_B": 0.677244078881587,
+   "one_over_max_eta": 2.1262644368601076,
+   "B": 0.6944444444444444
+  },
+  {
+   "n": 12,
+   "lam": "1",
+   "r": 6,
+   "max_eta_over_B": 0.808149557693241,
+   "one_over_max_eta": 1.781848404533308,
+   "B": 0.6944444444444444
+  },
+  {
+   "n": 12,
+   "lam": "1",
+   "r": 6,
+   "max_eta_over_B": 0.808149557693241,
+   "one_over_max_eta": 1.781848404533308,
+   "B": 0.6944444444444444
+  },
+  {
+   "n": 12,
+   "lam": "1",
+   "r": 10,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 1.44,
+   "B": 0.6944444444444444
+  },
+  {
+   "n": 12,
+   "lam": "7",
+   "r": 2,
+   "max_eta_over_B": 0.5117139203501515,
+   "one_over_max_eta": 6.331662812266195,
+   "B": 0.30864197530864196
+  },
+  {
+   "n": 12,
+   "lam": "7",
+   "r": 4,
+   "max_eta_over_B": 0.677244078881587,
+   "one_over_max_eta": 4.784094982935242,
+   "B": 0.30864197530864196
+  },
+  {
+   "n": 12,
+   "lam": "7",
+   "r": 6,
+   "max_eta_over_B": 0.808149557693241,
+   "one_over_max_eta": 4.009158910199943,
+   "B": 0.30864197530864196
+  },
+  {
+   "n": 12,
+   "lam": "7",
+   "r": 6,
+   "max_eta_over_B": 0.808149557693241,
+   "one_over_max_eta": 4.009158910199943,
+   "B": 0.30864197530864196
+  },
+  {
+   "n": 12,
+   "lam": "7",
+   "r": 10,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 3.24,
+   "B": 0.30864197530864196
+  },
+  {
+   "n": 12,
+   "lam": "72",
+   "r": 2,
+   "max_eta_over_B": 0.5117139203501515,
+   "one_over_max_eta": 134.6260034373513,
+   "B": 0.014515894904920888
+  },
+  {
+   "n": 12,
+   "lam": "72",
+   "r": 4,
+   "max_eta_over_B": 0.677244078881587,
+   "one_over_max_eta": 101.7210812883978,
+   "B": 0.014515894904920888
+  },
+  {
+   "n": 12,
+   "lam": "72",
+   "r": 6,
+   "max_eta_over_B": 0.8081495576932409,
+   "one_over_max_eta": 85.24412263076361,
+   "B": 0.014515894904920888
+  },
+  {
+   "n": 12,
+   "lam": "72",
+   "r": 6,
+   "max_eta_over_B": 0.8081495576932409,
+   "one_over_max_eta": 85.24412263076361,
+   "B": 0.014515894904920888
+  },
+  {
+   "n": 12,
+   "lam": "72",
+   "r": 10,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 68.89,
+   "B": 0.014515894904920888
+  },
+  {
+   "n": 20,
+   "lam": "1",
+   "r": 2,
+   "max_eta_over_B": 0.4481252824184822,
+   "one_over_max_eta": 2.7549615022204113,
+   "B": 0.81
+  },
+  {
+   "n": 20,
+   "lam": "1",
+   "r": 4,
+   "max_eta_over_B": 0.5609887052790071,
+   "one_over_max_eta": 2.200700102545838,
+   "B": 0.81
+  },
+  {
+   "n": 20,
+   "lam": "1",
+   "r": 6,
+   "max_eta_over_B": 0.6502889341251189,
+   "one_over_max_eta": 1.8984913266216379,
+   "B": 0.81
+  },
+  {
+   "n": 20,
+   "lam": "1",
+   "r": 10,
+   "max_eta_over_B": 0.7951758637388521,
+   "one_over_max_eta": 1.55257215105817,
+   "B": 0.81
+  },
+  {
+   "n": 20,
+   "lam": "1",
+   "r": 18,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 1.2345679012345678,
+   "B": 0.81
+  },
+  {
+   "n": 20,
+   "lam": "7",
+   "r": 2,
+   "max_eta_over_B": 0.44812528241848226,
+   "one_over_max_eta": 4.655884938752495,
+   "B": 0.47928994082840237
+  },
+  {
+   "n": 20,
+   "lam": "7",
+   "r": 4,
+   "max_eta_over_B": 0.5609887052790071,
+   "one_over_max_eta": 3.719183173302466,
+   "B": 0.47928994082840237
+  },
+  {
+   "n": 20,
+   "lam": "7",
+   "r": 6,
+   "max_eta_over_B": 0.6502889341251189,
+   "one_over_max_eta": 3.2084503419905683,
+   "B": 0.47928994082840237
+  },
+  {
+   "n": 20,
+   "lam": "7",
+   "r": 10,
+   "max_eta_over_B": 0.7951758637388522,
+   "one_over_max_eta": 2.623846935288307,
+   "B": 0.47928994082840237
+  },
+  {
+   "n": 20,
+   "lam": "7",
+   "r": 18,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 2.0864197530864197,
+   "B": 0.47928994082840237
+  },
+  {
+   "n": 20,
+   "lam": "72",
+   "r": 2,
+   "max_eta_over_B": 0.44812528241848226,
+   "one_over_max_eta": 57.034590499718064,
+   "B": 0.039125709455379784
+  },
+  {
+   "n": 20,
+   "lam": "72",
+   "r": 4,
+   "max_eta_over_B": 0.5609887052790071,
+   "one_over_max_eta": 45.55999387295521,
+   "B": 0.039125709455379784
+  },
+  {
+   "n": 20,
+   "lam": "72",
+   "r": 6,
+   "max_eta_over_B": 0.6502889341251189,
+   "one_over_max_eta": 39.30351668938446,
+   "B": 0.039125709455379784
+  },
+  {
+   "n": 20,
+   "lam": "72",
+   "r": 10,
+   "max_eta_over_B": 0.7951758637388521,
+   "one_over_max_eta": 32.142124957281766,
+   "B": 0.039125709455379784
+  },
+  {
+   "n": 20,
+   "lam": "72",
+   "r": 18,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 25.558641975308642,
+   "B": 0.039125709455379784
+  },
+  {
+   "n": 33,
+   "lam": "1",
+   "r": 2,
+   "max_eta_over_B": 0.4117577287457954,
+   "one_over_max_eta": 2.7520906345134257,
+   "B": 0.8824609733700642
+  },
+  {
+   "n": 33,
+   "lam": "1",
+   "r": 4,
+   "max_eta_over_B": 0.4928756648409892,
+   "one_over_max_eta": 2.2991489939666887,
+   "B": 0.8824609733700642
+  },
+  {
+   "n": 33,
+   "lam": "1",
+   "r": 6,
+   "max_eta_over_B": 0.5563816234425862,
+   "one_over_max_eta": 2.036721813273114,
+   "B": 0.8824609733700642
+  },
+  {
+   "n": 33,
+   "lam": "1",
+   "r": 16,
+   "max_eta_over_B": 0.7831175335977874,
+   "one_over_max_eta": 1.4470300310653457,
+   "B": 0.8824609733700642
+  },
+  {
+   "n": 33,
+   "lam": "1",
+   "r": 31,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 1.1331945889698232,
+   "B": 0.8824609733700642
+  },
+  {
+   "n": 33,
+   "lam": "7",
+   "r": 2,
+   "max_eta_over_B": 0.4117577287457954,
+   "one_over_max_eta": 3.8438290680394127,
+   "B": 0.6318211702827088
+  },
+  {
+   "n": 33,
+   "lam": "7",
+   "r": 4,
+   "max_eta_over_B": 0.4928756648409892,
+   "one_over_max_eta": 3.211208099011325,
+   "B": 0.6318211702827088
+  },
+  {
+   "n": 33,
+   "lam": "7",
+   "r": 6,
+   "max_eta_over_B": 0.5563816234425862,
+   "one_over_max_eta": 2.8446775739103822,
+   "B": 0.6318211702827088
+  },
+  {
+   "n": 33,
+   "lam": "7",
+   "r": 16,
+   "max_eta_over_B": 0.7831175335977872,
+   "one_over_max_eta": 2.021058473140855,
+   "B": 0.6318211702827088
+  },
+  {
+   "n": 33,
+   "lam": "7",
+   "r": 31,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 1.5827263267429759,
+   "B": 0.6318211702827088
+  },
+  {
+   "n": 33,
+   "lam": "72",
+   "r": 2,
+   "max_eta_over_B": 0.41175772874579536,
+   "one_over_max_eta": 27.333895594946938,
+   "B": 0.08884985207100592
+  },
+  {
+   "n": 33,
+   "lam": "72",
+   "r": 4,
+   "max_eta_over_B": 0.4928756648409892,
+   "one_over_max_eta": 22.835257592969423,
+   "B": 0.08884985207100592
+  },
+  {
+   "n": 33,
+   "lam": "72",
+   "r": 6,
+   "max_eta_over_B": 0.5563816234425862,
+   "one_over_max_eta": 20.22881830336272,
+   "B": 0.08884985207100592
+  },
+  {
+   "n": 33,
+   "lam": "72",
+   "r": 16,
+   "max_eta_over_B": 0.7831175335977872,
+   "one_over_max_eta": 14.37197136455719,
+   "B": 0.08884985207100592
+  },
+  {
+   "n": 33,
+   "lam": "72",
+   "r": 31,
+   "max_eta_over_B": 1.0,
+   "one_over_max_eta": 11.254942767950052,
+   "B": 0.08884985207100592
+  }
+ ],
+ "sigma_gamma_identity_violations": [],
+ "claim": "THE DERIVATIVE FORM. The lam-free factor w_t = (r)_t/(n-1)_t of the B-form equals C(N-t,N-r)/C(N,r), a polynomial in t that vanishes for t > r, so the depth truncation is automatic and the sum may be run to t = N. Then x^{N-t} differentiated m = N-r times at x = 1 supplies (N-t)_m exactly, and homogeneity in y removes the y dependence of the roots. RESULT: K_r = sum_t (-1)^t d_t e_t(eta) with d_t = (H-r)_t/(n-3/2)_t and eta_1..eta_r the roots of the (n-1-r)-th derivative of prod_k (u - b_k); equivalently K_r = INT_1^inf prod_i (1 - eta_i y) dsigma(y) with sigma the explicit Beta-type density representing d_t. The alternating sum becomes a product of r real linear factors against one explicit density on one variable. By Rolle every eta_i is real in [0, B], B = (n-2)^2/s^2 < 1, and the m-fold differentiation CONTRACTS the span -- measured here. This is a structural identity, verified, NOT yet a positivity proof: sigma has unbounded support, so the integrand's positivity on y < 1/max(eta) does not by itself close the argument.",
+ "command": "python lab/bform_derivative_form.py",
+ "seconds": 2.0,
+ "git": "e6255baf02b8",
+ "git_full": "e6255baf02b827b939aa4a1bd8c72c2ee52945c1",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/bform_derivative_form.py",
+  "projects/qg-bootstrap/lab/bform_positivity.py"
+ ],
+ "dirty_count": 2,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}
