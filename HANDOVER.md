@@ -134,7 +134,27 @@ Same-day exact testing produced:
    ratio survives: the head block at the smallest nodes beats the tail,
    `|tail|/head` in 0.00-0.79.
 
-**Next, in order of promise:** (a) the ASYMPTOTIC route -- since the
+**The J-form split is exhausted — three dead ends, all measured, do not retry
+them.** (1) The triangle inequality on `[0, eta]` is WORSE by up to 21.7x
+(dropping signs destroys the cancellation). (2) A per-instance certified
+quadrature is CIRCULAR: the sign of the integral is the sign of `K_r`, already
+computed exactly, so only an all-`n` bound can add anything. (3) Replacing the
+crude envelope by the TRUE envelope `max_{[0,eta]}|prod (w-eta_i)|` — which is
+scale-invariant and genuinely tiny, about `2.4^{-r}` — moves the threshold only
+1.1x, because `NEG ~ lam^{-(2n-1)}` means a gain of `G` buys `G^{1/(2n-1)}`.
+**No constant, and no factor exponential in `r`, can move this threshold.**
+Reaching `lam ~ 2n` needs a different decomposition, not a better bound inside
+this one.
+
+**Where the shore belongs, at last.** The weight is `Beta(a, b)` with
+`b = D/2 + (n-2-r)`, so raising `D` slides its mass toward `w = 0` where the
+roots sit; `mean(W)/eta_max` climbs `0.04 -> 1.00` over `lam = 30..2000` at
+`n = 20, r = 18`. The shore condition is not an afterthought in this
+representation — it is the statement that the weight's mass stays clear of the
+roots. That is the "inject the shore earlier" question the programme has carried
+for weeks, answered.
+
+**Older next-steps, still open:** (a) the ASYMPTOTIC route -- since the
 tightness grows with `n`, expand `K_r` around the scaling limit, whose
 leading behaviour is known in closed form (`results/SCALING_LIMIT_THEOREM.md`),
 and control the correction uniformly in `j`; (b) check the kernel identity
@@ -160,12 +180,33 @@ real-rooted) collapse the whole criterion to ONE inequality, worst at `r = n-2`:
     D <= D*(n, lam) = (6n-9) s^2 / (n (n-2)^2) - 2n + 3
       ==>  every knife positive, every depth, no computer search.
 
-`results/BFORM_POSITIVITY_THEOREM.md` + `results/bform_positivity.json`
-(`lab/bform_positivity.py`). Honest size: the region is `lam ~> 1.2 n^2`, weaker
-than the MEASURED Hausdorff corner at `lam ~> 2n`
-(`results/asymptotic_regime_probe.json`). Both are corners; only this one is a
-theorem. The gap is Leibniz itself — the binding step `T_1 <= T_0` is exact, so
-sharpening needs a route that is not term-by-term monotonicity.
+Then the same object, handled better. Substituting `w = 1-v` turns the
+derivative form's integral over an unbounded ray into a COMPACT one — a Jacobi
+(Beta) moment of a real-rooted polynomial on `[0,1]`, all roots in `[0,B]`,
+`B = (n-2)^2/s^2 < 1` — and splitting at the largest root gives a second proved
+region, `lam ~> 32 n`, LINEAR in `n` (`lam/n` plateaus at 31.9 by `n = 420`
+while `lam/(n ln n)` keeps falling).
+
+**All of it is written up in `results/BFORM_POSITIVITY_THEOREM.md`** (Theorems
+1-9, proofs, verification, honest limits), with
+`lab/bform_positivity.py`, `lab/bform_derivative_form.py`,
+`lab/bform_jacobi_bound.py`, `lab/bform_gap_diagnosis.py`.
+
+**Both review passes are done and folded in** (the rule: never self-approved).
+Independent validator: PASS, `validation/VAL-BFORM-0001.yaml` — rebuilt from the
+reference engine alone, 13380 adversarial points with the hypothesis true, no
+counterexample. Domain critic: `results/BFORM_CRITIQUE.md`. Between them they
+found two real arithmetic slips of mine (ERR-0014) and three substantive
+additions, now in the file.
+
+**Read the honest limits before quoting any of this.** The region is a corner:
+Theorem 6 is VACUOUS at `lam = 1, 5/2, 7` for `n >= 6` — the values the
+project's own sweeps use. At fixed depth the threshold is linear in `n`
+(`lam* ~ c r n`), which is a much better statement than the all-depths `3 n^2`.
+Claim state: independently-validated for the MATHEMATICS, NOT for novelty — no
+literature pass has been done and the critic would call the technique LIKELY
+KNOWN (Polya-Schur multiplier sequences, Malo-Schur-Szego composition,
+finite free probability).
 
 ## Outreach: how this project shows its work (founder, 28 Aug)
 
