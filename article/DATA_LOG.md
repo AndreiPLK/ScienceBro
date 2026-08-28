@@ -4543,3 +4543,59 @@ NEXT: the derivative form is the live front. sigma has unbounded support, so
 positivity of the integrand on `y < 1/max(eta)` does not close the argument —
 the question is a tail bound on sigma against the measured root contraction
 (max(eta)/B = 0.448 at r=2 rising to 1.000 at r=n-2, n=20, lam=7).
+
+## 2026-08-28 — The J-form: the same theorem, with the factor of n recovered
+
+THE FIX. The derivative form left `K_r = INT_1^inf prod_i (1 - eta_i y)
+dsigma(y)` over an UNBOUNDED ray, and that unboundedness was the whole reason it
+would not close. It was removable by writing sigma in its original variable and
+substituting `w = 1 - v`:
+
+    K_r = [1/B(eps,C+1)] INT_0^1 w^{a-1}(1-w)^{b-1} prod_i (w - eta_i) dw,
+    a = n - 1/2 - r,   b = D/2 + (n - 2 - r).
+
+The knife is a JACOBI (Beta) MOMENT of a real-rooted polynomial over the COMPACT
+interval [0,1], all of whose roots lie in [0, B], B = (n-2)^2/s^2 < 1. Splitting
+at eta = max eta_i and bounding both pieces (on [eta,1] each factor is at least
+w-eta; on [0,eta] each is at most eta in absolute value, and b >= 1 makes
+(1-w)^{b-1} <= 1) gives the sufficient condition
+
+    a (1 - eta)^{a+b+r-1} B(a+r, b) >= eta^{a+r}.
+
+WHAT IT BUYS, measured. The Leibniz route proves positivity for lam ~> 3 n^2.
+This one, on the same object, reaches lam ~> 32 n:
+
+  n:      6    20    40    60   100   160   260   420
+  lam:   83   531  1179  1824  3112  5040  8249 13380
+  lam/n: 13.8 26.6  29.5  30.4  31.1  31.5  31.7  31.9
+
+`lam/n` plateaus near 32 while `lam/(n ln n)` keeps FALLING (7.7 -> 5.3), so the
+growth is linear in n, not n log n — I checked that specifically rather than
+calling a rising ratio "linear". At n = 60 the new bound needs lam = 1824 where
+Leibniz needs 10773, and the ratio grows with n because one region is linear and
+the other quadratic. Against the measured (unproved) Hausdorff corner at
+lam ~> 2n, the proved region is now within a constant factor of about 16 instead
+of a factor growing like n.
+
+SOUNDNESS. 1239 cases against the exact reference engine; the hypothesis fired
+469 times and in 0 of those was the knife non-positive. Every inequality is
+decided on a certified arb enclosure in log form, accepted only when the
+enclosure of the difference is strictly positive — never on a midpoint. Using
+the exact eta_max instead of the uniform bound B closed 0 extra of 16 cases, so
+B is not the bottleneck and the loss is elsewhere.
+
+WHY THE EARLIER ROUTE LOST THE FACTOR. Leibniz's binding step is `T_1 <= T_0`,
+where Newton's inequality is an EQUALITY, so no sharpening of constants could
+have helped; the whole loss was term-by-term monotonicity itself. Recording this
+because it is the reusable lesson: when the binding step of a bound is tight,
+the bound is not the thing to improve — the decomposition is.
+
+STILL A CORNER. All three statements (Leibniz 3n^2 proved, J-form 32n proved,
+Hausdorff 2n measured) cover only large lam. The region below the shore at small
+lam — where the physics actually is — remains open, and none of this touches it.
+
+NEXT: the J-form's loss is now in the split at w = eta: both bounds are crude
+(the [0,eta] piece uses |prod| <= eta^r, ignoring all cancellation). A sharper
+treatment of the small-w piece, or injecting the shore condition into b (which
+grows with D, sharpening the weight exactly when the physics tightens), is where
+the next factor should come from.

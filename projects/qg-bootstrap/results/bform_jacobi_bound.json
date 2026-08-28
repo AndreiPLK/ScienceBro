@@ -1,0 +1,225 @@
+{
+ "soundness": {
+  "checked": 1239,
+  "theorem_fired": 469,
+  "violations": [],
+  "n_violations": 0
+ },
+ "region": [
+  {
+   "n": 6,
+   "lam_jacobi": 83,
+   "over_n": 13.833333333333334,
+   "over_n_log_n": 7.72053033395892,
+   "over_n_squared": 2.3055555555555554
+  },
+  {
+   "n": 8,
+   "lam_jacobi": 144,
+   "over_n": 18.0,
+   "over_n_log_n": 8.656170245333781,
+   "over_n_squared": 2.25
+  },
+  {
+   "n": 12,
+   "lam_jacobi": 272,
+   "over_n": 22.666666666666668,
+   "over_n_log_n": 9.121737699321812,
+   "over_n_squared": 1.8888888888888888
+  },
+  {
+   "n": 16,
+   "lam_jacobi": 402,
+   "over_n": 25.125,
+   "over_n_log_n": 9.061928225583802,
+   "over_n_squared": 1.5703125
+  },
+  {
+   "n": 20,
+   "lam_jacobi": 531,
+   "over_n": 26.55,
+   "over_n_log_n": 8.86260772846112,
+   "over_n_squared": 1.3275
+  },
+  {
+   "n": 28,
+   "lam_jacobi": 791,
+   "over_n": 28.25,
+   "over_n_log_n": 8.47787100513667,
+   "over_n_squared": 1.0089285714285714
+  },
+  {
+   "n": 40,
+   "lam_jacobi": 1179,
+   "over_n": 29.475,
+   "over_n_log_n": 7.99023127934655,
+   "over_n_squared": 0.736875
+  },
+  {
+   "n": 60,
+   "lam_jacobi": 1824,
+   "over_n": 30.4,
+   "over_n_log_n": 7.424875834949558,
+   "over_n_squared": 0.5066666666666667
+  },
+  {
+   "n": 100,
+   "lam_jacobi": 3112,
+   "over_n": 31.12,
+   "over_n_log_n": 6.7576221384145985,
+   "over_n_squared": 0.3112
+  },
+  {
+   "n": 160,
+   "lam_jacobi": 5040,
+   "over_n": 31.5,
+   "over_n_log_n": 6.206683977098175,
+   "over_n_squared": 0.196875
+  },
+  {
+   "n": 260,
+   "lam_jacobi": 8249,
+   "over_n": 31.726923076923075,
+   "over_n_log_n": 5.705581650271336,
+   "over_n_squared": 0.12202662721893491
+  },
+  {
+   "n": 420,
+   "lam_jacobi": 13380,
+   "over_n": 31.857142857142858,
+   "over_n_log_n": 5.274138985838496,
+   "over_n_squared": 0.07585034013605442
+  }
+ ],
+ "exact_eta_gain": {
+  "cases": 16,
+  "extra_cases_closed": 0,
+  "rows": [
+   {
+    "n": 12,
+    "lam": 7,
+    "r": 2,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 12,
+    "lam": 7,
+    "r": 4,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 12,
+    "lam": 7,
+    "r": 6,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 12,
+    "lam": 7,
+    "r": 10,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 12,
+    "lam": 60,
+    "r": 2,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 12,
+    "lam": 60,
+    "r": 4,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 12,
+    "lam": 60,
+    "r": 6,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 12,
+    "lam": 60,
+    "r": 10,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 7,
+    "r": 2,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 7,
+    "r": 4,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 7,
+    "r": 10,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 7,
+    "r": 18,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 60,
+    "r": 2,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 60,
+    "r": 4,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 60,
+    "r": 10,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   },
+   {
+    "n": 20,
+    "lam": 60,
+    "r": 18,
+    "with_bound_B": false,
+    "with_exact_eta": false
+   }
+  ]
+ },
+ "claim": "THE J-FORM AND A POSITIVITY BOUND LINEAR IN n. Substituting w = 1-v in the sigma representation turns the derivative form's integral over the unbounded ray into a compact one: K_r = [1/B(eps,C+1)] INT_0^1 w^{a-1}(1-w)^{b-1} prod_i (w - eta_i) dw with a = n-1/2-r and b = D/2+(n-2-r) -- a Jacobi (Beta) moment of a real-rooted polynomial whose roots all lie in [0, B], B = (n-2)^2/s^2 < 1. Splitting at eta = max eta_i and bounding each side gives the sufficient condition a (1-eta)^{a+b+r-1} B(a+r,b) >= eta^{a+r}, valid for b >= 1. Soundness checked against the exact reference engine; the resulting region is recorded in 'region' and is LINEAR in n, unlike the Leibniz route's 3 n^2 (results/BFORM_POSITIVITY_THEOREM.md). All inequalities are certified arb enclosures, never midpoints.",
+ "command": "python lab/bform_jacobi_bound.py",
+ "seconds": 1.1,
+ "git": "5df505360274",
+ "git_full": "5df505360274a8a8a4d61fe6287cb3744760074f",
+ "dirty": true,
+ "dirty_code_files": [
+  "projects/qg-bootstrap/lab/bform_jacobi_bound.py"
+ ],
+ "dirty_count": 1,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}

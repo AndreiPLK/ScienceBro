@@ -1,13 +1,17 @@
 # The B-form, the derivative form, and an all-depths positivity theorem
 
-2026-08-28. Derivations in `lab/bform_positivity.py` and
-`lab/bform_derivative_form.py`; machine checks in
-`results/bform_positivity.json` and `results/bform_derivative_form.json`.
+2026-08-28. Derivations in `lab/bform_positivity.py`,
+`lab/bform_derivative_form.py` and `lab/bform_jacobi_bound.py`; machine checks
+in `results/bform_positivity.json`, `results/bform_derivative_form.json` and
+`results/bform_jacobi_bound.json`.
 
-This is the first statement in the programme that gives knife positivity at
-EVERY depth at once from an argument rather than from a search. It is also
-strictly weaker than what the programme has already measured, and the gap is
-stated in full below rather than buried.
+These are the first statements in the programme that give knife positivity at
+EVERY depth at once from an argument rather than from a search. Two of them are
+proved (§3 and §4b); both hold only in a corner of the domain, and the corner is
+stated in full in §6 rather than buried. §4b supersedes §3 quantitatively — its
+region is linear in `n` where §3's is quadratic — but §3 is kept because it is
+the shorter argument and because the reason it loses a factor of `n` is itself
+informative.
 
 ## 0. Setup
 
@@ -154,6 +158,74 @@ This is a structural identity, **not** a positivity proof: `sigma` has unbounded
 support, so positivity of the integrand on `y < 1/max(eta)` does not close the
 argument by itself.
 
+
+## 4b. The J-form: compact support, and a bound linear in n
+
+The `sigma` of Theorem 7 lives on the unbounded ray `[1, inf)`, and that
+unboundedness is exactly what stopped the derivative form from closing. It is
+removable. Writing the same representation in its original variable,
+`d_t = [1/B(eps,C+1)] INT_0^1 v^{eps-1}(1-v)^{C-t} dv`, and substituting
+`w = 1 - v`:
+
+**Theorem 8 (J-form).**
+
+    K_r = [1/B(eps, C+1)] INT_0^1 w^{a-1} (1-w)^{b-1} prod_{i=1}^{r} (w - eta_i) dw,
+    a := C - r + 1 = n - 1/2 - r,      b := eps = D/2 + (n - 2 - r).
+
+*Proof.* Substituting `w = 1-v` in the Beta integral of Theorem 7 gives
+`d_t = [1/B(eps,C+1)] INT_0^1 (1-w)^{eps-1} w^{C-t} dw`. Multiply by
+`(-1)^t e_t(eta)` and sum: pulling out `w^{C-r}` leaves
+`sum_t (-1)^t e_t(eta) w^{r-t} = prod_i (w - eta_i)`. The exponent `C-r = n-3/2-r
+>= 1/2` is positive, so the integral converges at 0. QED
+
+So the knife is a **Jacobi (Beta) moment of a real-rooted polynomial over the
+compact interval [0,1]**, with every root in `[0, B]`, `B = (n-2)^2/s^2 < 1`.
+The integrand is positive for `w > eta_max` and alternates below it, and the
+whole question becomes how far above the roots the `Beta(a,b)` weight sits.
+
+**Theorem 9 (the bound).** Let `eta = max_i eta_i`. If `b >= 1` and
+
+    a (1 - eta)^{a+b+r-1} B(a+r, b)  >=  eta^{a+r}                        (**)
+
+then `K_r >= 0`.
+
+*Proof.* Split the integral at `w = eta`. On `[eta, 1]` every factor satisfies
+`w - eta_i >= w - eta >= 0`, so the product is at least `(w-eta)^r`;
+substituting `w = eta + (1-eta)u` and using `w >= (1-eta)u` gives
+
+    INT_eta^1 >= (1-eta)^{a+b+r-1} INT_0^1 u^{a+r-1}(1-u)^{b-1} du
+              = (1-eta)^{a+b+r-1} B(a+r, b).
+
+On `[0, eta]` each `|w - eta_i| <= max(w, eta_i) <= eta`, so the product is at
+most `eta^r` in absolute value, and for `b >= 1` we have `(1-w)^{b-1} <= 1`, so
+`INT_0^eta <= eta^r · eta^a/a`. The difference of the two bounds is nonnegative
+exactly under `(**)`. QED
+
+Both sides of `(**)` are monotone in `eta`, so the uniform bound
+`eta <= B = (n-2)^2/s^2` may be substituted, leaving a hypothesis in
+`(n, r, lam, D)` alone. Note `b >= 1` holds throughout the physical domain:
+`b = D/2 + (n-2-r) >= D/2 > 3/2`.
+
+**Verification** (`lab/bform_jacobi_bound.py`,
+`results/bform_jacobi_bound.json`). Soundness against the exact reference
+engine: over 1239 cases the hypothesis fired 469 times, and in **0** of those
+was the reference knife non-positive. Every inequality is decided on a certified
+`arb` enclosure in log form — accepted only when the enclosure of the difference
+is strictly positive — never on a midpoint.
+
+**The region, and it is linear.** The smallest `lam` at which `(**)` holds for
+every depth at the shore:
+
+| n | 6 | 20 | 40 | 60 | 100 | 160 | 260 | 420 |
+|---|---|---|---|---|---|---|---|---|
+| lam | 83 | 531 | 1179 | 1824 | 3112 | 5040 | 8249 | 13380 |
+| lam / n | 13.8 | 26.6 | 29.5 | 30.4 | 31.1 | 31.5 | 31.7 | 31.9 |
+| lam / (n ln n) | 4.9 | 8.9 | 8.0 | 7.4 | 6.8 | 6.2 | 5.7 | 5.3 |
+
+`lam/n` plateaus near 32 while `lam/(n ln n)` keeps falling, so the growth is
+LINEAR in `n`, not `n log n`. Using the exact `eta_max` in place of the uniform
+bound `B` closed 0 extra cases of 16 tested, so `B` is not the bottleneck.
+
 ## 5. Verification
 
 `lab/bform_positivity.py` (`results/bform_positivity.json`):
@@ -193,24 +265,33 @@ drifting upward at `n = 100`. End-to-end spot check inside the region: at
 `n = 8, 12, 16, 20` with `lam` just above the threshold, every knife
 `j = 3..n-1` is positive at the shore, as the theorem requires.
 
-**Against what is already measured:** `results/asymptotic_regime_probe.json`
-sees the Hausdorff mechanism — which also covers every depth at once — from
-about `lam ~> 2n`, and with an exact depth cutoff `j <= n/2 + 1`. That region is
-far larger in `lam` and is NOT proved. So:
+**Against what is already measured:**
+`results/asymptotic_regime_probe.json` sees the Hausdorff mechanism — which also
+covers every depth at once — from about `lam ~> 2n`, with an exact depth cutoff
+`j <= n/2 + 1`. That region is not proved. So the three statements stand as:
 
-- proved, all depths, no depth cutoff: `lam ~> 3 n^2`;
-- measured, all depths up to `j <= n/2+1`, not proved: `lam ~> 2n`.
+| route | status | region | depth coverage |
+|---|---|---|---|
+| Leibniz + Newton (Thm 6) | proved | `lam ~> 3 n^2` | all depths |
+| J-form bound (Thm 9) | proved | `lam ~> 32 n` | all depths |
+| Hausdorff corner | measured only | `lam ~> 2n` | `j <= n/2 + 1` |
 
-Both are corners of an unbounded domain, and neither is the keystone. What this
-adds is that the first line no longer depends on any search.
+The J-form bound is the same object handled better: at `n = 60` it needs
+`lam = 1824` where Leibniz needs `10773`, and the ratio between them grows with
+`n` because one region is linear and the other quadratic. It is now within a
+constant factor — about 16 — of what the programme has measured, instead of a
+factor growing like `n`. None of the three is the keystone: all are corners of
+an unbounded domain, and the whole region below the shore at small `lam` remains
+open.
 
 **Why the gap is real and not slack.** The binding step is `f(0) <= 1`, i.e.
 `T_1 <= T_0`, and at `t = 0` Newton's inequality is an EQUALITY
 (`p_1/p_0 = bbar` exactly). So `(*)` is not a lossy consequence of Leibniz — it
 is essentially Leibniz's first step itself. On the 612-case grid the closed-form
 hypothesis and the full Leibniz criterion hold in exactly the same 265 cases.
-Closing the gap therefore requires abandoning term-by-term monotonicity, not
-sharpening the constant — which is what the derivative form of §4 is for.
+Closing the gap therefore required abandoning term-by-term monotonicity, not
+sharpening the constant — which is what §4b does, and it is where the factor of
+`n` was recovered.
 
 ## 7. Claim status and prior art (checked before any wording)
 

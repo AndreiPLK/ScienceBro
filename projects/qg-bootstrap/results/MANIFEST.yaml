@@ -9,8 +9,8 @@ artefacts:
     status: live
   BFORM_POSITIVITY_THEOREM.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   BOUNDARY_PUSH_2026-08-18.md:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -115,6 +115,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   bform_derivative_form.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  bform_jacobi_bound.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
