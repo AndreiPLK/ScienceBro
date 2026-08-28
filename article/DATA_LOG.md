@@ -3931,3 +3931,67 @@ LEARNED: an environment that kills processes is a constraint to engineer
 NEXT: depth 7 with the same pipeline as a uniformity test of the machinery;
   then the j-infinity question (one argument for all depths) with the
   k-window form as the base case shape.
+
+## 2026-08-28 12:07 -- OUTSIDE REPORT TESTED THE SAME DAY: one route killed exactly, one route promoted
+
+An outside AI report (research/reading-notes/keystone-outside-report-2026-08-28.pdf,
+produced from our BRIEF_KEYSTONE_FOR_OUTSIDE_HELP.md) proposed reorganizing the
+exact closed sum into an alternating binomial transform
+K_r = SUM_t (-1)^t C(r,t) M_t^(r), r = j-1, with a normalized sequence
+M_t^(r) = t! (H-r)_t E_{2t}(n) / [s^{2t} (n-1)_t (n-3/2)_t], H = (D+4n-7)/2,
+an exact depth recursion M_t^(r+1) = (1 - t/(H-r)) M_t^(r), a
+Hausdorff-moment hypothesis (M_t moments of a positive measure on [0,1],
+which would explain the parity law instantly), and a depth kernel
+B_{r,t} = C(r,t)(H-r)_t t! with provably positive adjacent 2x2 minors.
+All four claims were tested exactly within hours (lab/moment_kernel_probe.py,
+results/moment_kernel_probe.json):
+
+1. NORMALIZATION CONFIRMED -- with a correction. The report's own page-7
+   display has R_t inverted relative to the repository's closed form; deriving
+   from the repository formula, the reconstruction matches the exact reference
+   engine on 450/450 sign trials including 15 genuinely negative references.
+
+2. DEPTH RECURSION CONFIRMED EXACTLY: 0 violations across depths 2..6,
+   lam in {3, 50}, n in {12, 30}. This affine one-step structure is real.
+
+3. NAIVE MOMENT HYPOTHESIS KILLED, with structure. At lam = 3 the truncated
+   Hankel minors go NEGATIVE at and below the shore for j = 6, 7, 8 (exact
+   rationals, e.g. H0 2nd minor < 0 at lam=3, j=6, n=12, D=T_hat) -- so
+   "M_t are moments of a positive measure on [0,1] throughout the physical
+   region" is FALSE as stated. The failures concentrate at small lam and
+   small n: at lam = 72 and 650/3 with n = 40 every tested minor is
+   nonnegative, consistent with the scaling collapse M_t -> x^t. The route
+   died exactly as designed ("it can fail quickly and exactly"); any revival
+   must target a modified representation, not this one.
+
+4. KERNEL TOTAL-POSITIVITY PROMOTED. All 27 solid q x q minors (q = 2, 3, 4)
+   of the depth kernel B_{r,t}, computed symbolically in H, factor COMPLETELY
+   into positive integer constants times products of linear factors (H - c)
+   with integer c <= 2 r_max - 1. Since H - (2r-1) >= (D-1)/2 > 0 on the
+   physical domain (r <= n-2), every tested solid minor is strictly positive
+   there: the depth kernel looks totally positive on the physical region,
+   now as a precise factorization conjecture with explicit integer roots --
+   a theorem candidate, not an analogy. (TP alone does not close the theorem:
+   the input carries (-1)^t; per the report this needs pairing with structure
+   of the M-sequence.)
+
+Checkpoint:
+RESULT: exact reorganization verified; naive measure route refuted with exact
+  counterexamples; kernel minor factorization promoted to theorem candidate.
+EVIDENCE: results/moment_kernel_probe.json (450 sign trials, recursion checks,
+  Hankel tables, 27 symbolic factorizations).
+STATUS: reorganization + recursion: verified identities. Measure hypothesis:
+  refuted as stated. Kernel factorization: measured pattern, unproved.
+NOVELTY: the depth-index kernel structure was not previously explored here;
+  outside literature pointers (Mansfield 2502.20372, Koornwinder, Hahn class,
+  Curto-Fialkow) recorded in the report.
+TIME: report analysis to banked verdicts: ~1.5h agent time.
+LEARNED: the outside-brief loop works -- a fresh reorganization suggested by
+  an external reader produced one exact kill and one new theorem candidate in
+  a single session; the brief's dead-routes list successfully prevented
+  rehashing.
+NEXT: (a) conjecture and prove the explicit minor factorization of B (roots
+  look like consecutive integers tied to 2r-1); (b) probe what replaces the
+  naive measure at small lam -- e.g. signed measure with controlled negative
+  part, or a different normalization absorbing (H-r)_t differently; depth-7
+  certificate continues in parallel.
