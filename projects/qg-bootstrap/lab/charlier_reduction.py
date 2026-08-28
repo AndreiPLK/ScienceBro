@@ -50,7 +50,7 @@ from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from base_moment_probe import m_seq, moment_report  # noqa: E402
-from moment_kernel_probe import K_from_M, M_seq, falling, ref_sign, shore  # noqa: E402
+from moment_kernel_probe import M_seq, falling, ref_sign, shore  # noqa: E402
 from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
