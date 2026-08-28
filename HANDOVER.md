@@ -113,12 +113,36 @@ Same-day exact testing produced:
    five orders of magnitude -- so that failure is intrinsic to the central
    factorial numbers `E_{2t}(n)`.
 
-**Next:** use the measure's MASS, not its support (Hankel quadrature gives
-the atoms exactly in the regime where `m` is a moment sequence, so
-`INT P_r dmu` can be evaluated directly); explain the `t ~ n/2` breakdown
-(a lam-free statement about `E_{2t}(n)`); and check the kernel identity
-against the binomial-determinant literature (Krattenthaler's *Advanced
-Determinant Calculus*) before any novelty wording.
+5. **The mechanism, quantified (`results/measure_mass_test.json`).** The
+   measure was extracted by exact-moment Gaussian quadrature (certified
+   nodes, acb weights, and BOTH verifications -- moments and `K_r`
+   reproduced -- in all 54 rows). `K_r > 0` holds not because `P_r >= 0`
+   (up to 98% of the mass sits where `P_r < 0`) but because the negative
+   contribution is a bounded fraction of the positive one. Control: above
+   the shore that fraction exceeds 1 in 9 of 9 negative-knife rows, so the
+   diagnostic tracks the physics.
+6. **But the constant is not uniform (`results/cancellation_bound_sweep.json`).**
+   Widening to `n <= 40`, `j <= 12`, five orders of `lam`: the ratio peaks
+   at INTERMEDIATE depth (0.954 at `j = 14`, `n = 40`, falling to 0.54 by
+   `j = 24`) and the peak GROWS with the level -- 0.68, 0.80, 0.89, 0.95 at
+   `n = 14, 20, 28, 40`. So "sup c < 1 uniformly" is in doubt: the object is
+   asymptotically tight in `n`.
+7. **Three constant-free routes refuted (`results/pairing_structures_probe.json`).**
+   Adjacent pairing (1/9), nonnegative partial sums (5/9 left, 1/9 right --
+   the variation-diminishing shape the kernel TP theorem would have fed) and
+   a Leibniz alternating tail (6/9) all fail. Only a restatement of the
+   ratio survives: the head block at the smallest nodes beats the tail,
+   `|tail|/head` in 0.00-0.79.
+
+**Next, in order of promise:** (a) the ASYMPTOTIC route -- since the
+tightness grows with `n`, expand `K_r` around the scaling limit, whose
+leading behaviour is known in closed form (`results/SCALING_LIMIT_THEOREM.md`),
+and control the correction uniformly in `j`; (b) check the kernel identity
+against the binomial-determinant literature (Krattenthaler, *Advanced
+Determinant Calculus*) before any novelty wording; (c) inject the shore
+condition EARLIER -- every route so far imposes `D <= T_hat` only at the
+end, while the measured control shows the bound failing exactly when the
+physics does, so the shore may belong inside the representation itself.
 
 ## Also open, smaller
 
