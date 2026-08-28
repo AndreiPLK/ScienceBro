@@ -139,7 +139,7 @@ def main() -> int:
     for r in rows:
         fams[r["first_fail_family"]] = fams.get(r["first_fail_family"], 0) + 1
     mags = [r["normalized_magnitude"] for r in rows if r["normalized_magnitude"] is not None]
-    print(f"n = 8..44 at lam = 3:", flush=True)
+    print("n = 8..44 at lam = 3:", flush=True)
     print(f"  tmax - N_distinct: min {min(diffs)}, max {max(diffs)}, values {sorted(set(diffs))}", flush=True)
     print(f"  first failing family counts: {fams}", flush=True)
     if mags:

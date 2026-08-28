@@ -4180,3 +4180,44 @@ NEXT: use the mass, not the support: (a) get the actual measure for m in the
   regime where it exists (Hankel-based quadrature gives the atoms exactly),
   then evaluate INT P_r dmu directly as a check of the mechanism; (b) the
   complementary regime t > n/2 where m stops being a moment sequence.
+
+## 2026-08-28 16:35 -- The moment "failure" is a harmless tail: the base sequence IS Hamburger
+
+The t ~ n/2 breakdown of the base sequence turns out to be far weaker than
+"m is not a moment sequence" (results/moment_boundary_law.json, fine sweep
+n = 8..44 at lam = 3):
+
+1. The ONLY condition that ever fails is H1 = [m_{a+b+1}], i.e. support in
+   [0, infinity): 37 of 37 first failures, never H0, never the [0,1]
+   localizer.
+2. H0 = [m_{a+b}] is POSITIVE DEFINITE at full size N and N+1 (N = number of
+   DISTINCT squares in the E-multiset, since k <-> n-k doubles every value).
+   So m is a genuine Hamburger moment sequence, not a rank-deficient
+   finite-atom one -- the natural first guess, and it is wrong.
+3. The H1 failures are exponentially tiny in normalized terms: 7.5e-11 at
+   n = 8 down to 1.7e-65 at n = 44, shrinking monotonically with n.
+
+So the representing measure lives on (-infinity, 1] with an exponentially
+small part at NEGATIVE y. And that part is HARMLESS for the knife:
+P_r(y) = sum_t C(r,t)(g)_t(-y)^t has every term nonnegative for y <= 0
+(because g = H - r > r on the physical domain), so mass at negative y
+contributes POSITIVELY to K_r = INT P_r dmu.
+
+The open question therefore narrows sharply: not the negative tail, not the
+existence of the measure, but the MASS DISTRIBUTION on [0, Y] against the
+sign changes of P_r -- which is exactly what the crude support test could
+not see this morning.
+
+RESULT: the moment structure survives in the form that matters; the defect
+  is identified, quantified, and shown harmless.
+EVIDENCE: results/moment_boundary_law.json (rank reports, first-failure
+  families and magnitudes over n = 8..44).
+STATUS: measured; the "harmless" step is a one-line proof (all terms of
+  P_r are nonnegative at y <= 0 when g > r), the rest is measurement.
+LEARNED: a failing test can fail in a direction that does not matter --
+  check WHICH condition breaks and what its sign means for the target
+  before discarding a route. This one looked dead twice today and is not.
+NEXT: extract the measure's mass distribution (Jacobi matrix from the
+  Hankel data gives nodes and weights exactly), then evaluate INT P_r dmu
+  directly against the reference knife sign; that is the decisive test of
+  the whole Charlier mechanism.
