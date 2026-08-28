@@ -4017,3 +4017,41 @@ points at Lindstrom-Gessel-Viennot / known binomial determinant identities.
 NEXT: prove the identity (row operations reducing to a pure binomial
 determinant, or LGV paths), then attack what TP + the exact affine depth
 recursion M_t^(r+1) = (1-t/(H-r)) M_t^(r) yield jointly for K_r >= 0.
+
+## 2026-08-28 13:30 -- THEOREM: the depth kernel is strictly totally positive
+
+The 86-case law of the morning is now a PROVED identity with a two-line
+mechanism (full proof: results/KERNEL_TP_THEOREM.md; machine verification
+including the constant: results/kernel_minor_identity.json, 86/86 exact
+polynomial comparisons):
+
+    det[B_{r0+a,t0+b}] = prod_a (H-r0-a)_{t0} * prod_a (r0+a)_{t0}
+                         * prod_{a<b}(b-a) * prod_{a<b}(H-2r0-a-b).
+
+Mechanism: the paired roots t0+i and H-t0-i of each column factor are
+symmetric about H/2, so ONE quadratic substitution z = y^2 - Hy (y the row
+variable) makes every column a monic polynomial in z of degree u -- a
+generalized Vandermonde -- and z_b - z_a = -(b-a)(H - y_a - y_b) delivers
+the product law, signs cancelling exactly. Corollary: every solid minor of
+the depth kernel is strictly positive on the physical domain (all roots
+<= 2 r_max - 1 < H there): STRICT TOTAL POSITIVITY of the depth kernel, as
+a theorem. This is the first uniform-in-depth structural theorem of the
+programme -- it holds for ALL r, i.e. all knife orders at once.
+
+What it does not yet give: K_r >= 0, because the knife input carries the
+alternating weight; TP must be paired with structure of M_t^(r) (naive
+positive measure refuted at small lam earlier today). The exact affine
+recursion M_t^(r+1) = (1 - t/(H-r)) M_t^(r) plus this kernel theorem is now
+the sharpest coherent toolset the depth direction has ever had.
+
+RESULT: first all-depths theorem (kernel TP) proved and machine-verified.
+EVIDENCE: KERNEL_TP_THEOREM.md, kernel_minor_identity.json,
+  kernel_minor_law.json (the discovery trail with its two dead guesses).
+STATUS: proved identity (elementary, self-contained) + exact verification.
+NOVELTY: NOVELTY_UNCHECKED as literature (binomial-determinant identities
+  are a classical genre; the specific pairing with this kernel and domain
+  is ours). LITERATURE task queued before any external claim.
+TIME: conjecture to proved theorem: ~4 hours within one session.
+NEXT: (a) literature check of the identity family before any novelty
+  wording; (b) pair TP + affine recursion against K_r: e.g. characterize
+  the cone of sequences M with K_r >= 0 for all r under the recursion.

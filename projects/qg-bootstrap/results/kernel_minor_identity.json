@@ -1,0 +1,16 @@
+{
+ "claim": "PROVED IDENTITY (proof: results/KERNEL_TP_THEOREM.md): the solid q x q minor of the depth kernel B_{r,t} = C(r,t)(H-r)_t t! equals prod_a (H-r0-a)_{t0} * prod_a (r0+a)_{t0} * prod_{a<b}(b-a) * prod_{a<b}(H-2r0-a-b). Corollary: the depth kernel is strictly totally positive on the physical domain (every root <= 2 r_max - 1 < H there).",
+ "tested": 86,
+ "mismatches": [],
+ "verified": true,
+ "command": "python lab/kernel_minor_identity.py",
+ "seconds": 0.0,
+ "git": "0df458cb6ce0",
+ "git_full": "0df458cb6ce028652a028bcac7f130978590f335",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}

@@ -32,6 +32,10 @@ artefacts:
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
       grid. Kept because freezing it first is exactly what made the refutation meaningful.
     status: retracted
+  KERNEL_TP_THEOREM.md:
+    added: '2026-08-28'
+    note: referenced by a paper, document or lab module
+    status: live
   ODD_DEPTH_DIAGNOSIS.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -234,6 +238,10 @@ artefacts:
     added: '2026-08-18'
     note: the reformulation the whole program now runs on; 4500 sign checks against the independent exact
       value, 0 mismatches
+    status: live
+  kernel_minor_identity.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
     status: live
   kernel_minor_law.json:
     added: untracked
