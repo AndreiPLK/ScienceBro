@@ -1,0 +1,170 @@
+{
+ "claim": "Three structural routes to K_r >= 0 without a constant -- adjacent pairing of quadrature contributions, nonnegative partial sums (the variation-diminishing shape that would have connected to the kernel TP theorem), and a Leibniz alternating tail -- are all REFUTED by exact computation. What survives is quantitative and no better than the cancellation ratio itself: the head block at the smallest nodes exceeds the tail, with |tail|/head between 0.43 and 0.79.",
+ "adjacent_pairing": [
+  1,
+  9
+ ],
+ "partial_sums_left": [
+  5,
+  9
+ ],
+ "partial_sums_right": [
+  1,
+  9
+ ],
+ "leibniz_tail": [
+  6,
+  9
+ ],
+ "head_dominates": [
+  9,
+  9
+ ],
+ "rows": [
+  {
+   "n": 20,
+   "j": 8,
+   "lam": 7,
+   "signs": "++++-+-+-",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": true,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": false,
+   "head_sum": 7.319891882675614e-07,
+   "tail_sum": 4.206341862463559e-07,
+   "tail_over_head": 0.5746453540412171,
+   "head_dominates": true,
+   "total": 1.1526233745139174e-06
+  },
+  {
+   "n": 28,
+   "j": 8,
+   "lam": 7,
+   "signs": "++++++-+-+-+",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": false,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": true,
+   "head_sum": 8.719970426475836e-07,
+   "tail_sum": -6.135269126618519e-07,
+   "tail_over_head": 0.7035882952068772,
+   "head_dominates": true,
+   "total": 2.584701299857317e-07
+  },
+  {
+   "n": 40,
+   "j": 14,
+   "lam": 7,
+   "signs": "++++-+-+-+-+",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": false,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": false,
+   "head_sum": 1.9881859703183007e-10,
+   "tail_sum": -1.5742923310640312e-10,
+   "tail_over_head": 0.7918234785712693,
+   "head_dominates": true,
+   "total": 4.138936392542696e-11
+  },
+  {
+   "n": 40,
+   "j": 10,
+   "lam": 7,
+   "signs": "++++--+-+--+",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": false,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": false,
+   "head_sum": 3.617862767877864e-08,
+   "tail_sum": -2.0701978087944657e-08,
+   "tail_over_head": 0.5722156813617298,
+   "head_dominates": true,
+   "total": 1.5476649590833983e-08
+  },
+  {
+   "n": 28,
+   "j": 12,
+   "lam": 1,
+   "signs": "+++++++-+--+",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": true,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": true,
+   "head_sum": 3.0462604416333718e-06,
+   "tail_sum": -1.3185443380641304e-06,
+   "tail_over_head": 0.43284031793326944,
+   "head_dominates": true,
+   "total": 1.7277161035692414e-06
+  },
+  {
+   "n": 20,
+   "j": 5,
+   "lam": 7,
+   "signs": "+++++-+-+",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": false,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": true,
+   "head_sum": 0.00013147069576169927,
+   "tail_sum": -7.918796232329593e-05,
+   "tail_over_head": 0.6023240530104913,
+   "head_dominates": true,
+   "total": 5.228273343840334e-05
+  },
+  {
+   "n": 20,
+   "j": 8,
+   "lam": 1,
+   "signs": "+++++--+-",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": true,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": true,
+   "head_sum": 0.00013555215913874197,
+   "tail_sum": -5.22984095513203e-05,
+   "tail_over_head": 0.38581760617911814,
+   "head_dominates": true,
+   "total": 8.325374958742167e-05
+  },
+  {
+   "n": 28,
+   "j": 6,
+   "lam": 72,
+   "signs": "++++++++++++",
+   "adjacent_pairs_nonneg": true,
+   "partial_sums_left_nonneg": true,
+   "partial_sums_right_nonneg": true,
+   "tail_magnitudes_decreasing": true,
+   "head_sum": 0.004275093964172316,
+   "tail_sum": 0,
+   "tail_over_head": 0.0,
+   "head_dominates": true,
+   "total": 0.004275093964172316
+  },
+  {
+   "n": 40,
+   "j": 8,
+   "lam": 1,
+   "signs": "+++++++--++-",
+   "adjacent_pairs_nonneg": false,
+   "partial_sums_left_nonneg": true,
+   "partial_sums_right_nonneg": false,
+   "tail_magnitudes_decreasing": true,
+   "head_sum": 0.00022598758563823978,
+   "tail_sum": -6.214979778295071e-06,
+   "tail_over_head": 0.02750142119861394,
+   "head_dominates": true,
+   "total": 0.00021977260585994473
+  }
+ ],
+ "command": "python lab/pairing_structures_probe.py",
+ "seconds": 0.4,
+ "git": "ea3761376d8f",
+ "git_full": "ea3761376d8ff43fe0ad3f3f87a3b5e632b3733e",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}

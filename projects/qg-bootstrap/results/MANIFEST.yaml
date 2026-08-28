@@ -776,6 +776,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  pairing_structures_probe.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   paper2_artifacts.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
