@@ -364,7 +364,35 @@ def load_or_build_G(d: int, parity: str):
     return G, False
 
 
+def _np_cache_path(d: int, parity: str, tag: str) -> Path:
+    import hashlib
+
+    src = Path(__file__).resolve().parent / "odd_depth_kwindow.py"
+    fp = hashlib.sha256(src.read_bytes()).hexdigest()[:16]
+    return STATE / f"ABcache_d{d}_{parity}_{tag}_{fp}.json"
+
+
+def _np_save(path: Path, polys) -> None:
+    out = [
+        {",".join(map(str, e)): [str(c.p), str(c.q)] for e, c in P.d.items()} for P in polys
+    ]
+    path.write_text(json.dumps(out), encoding="utf-8")
+
+
+def _np_load(path: Path):
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    return [
+        NPoly({tuple(map(int, e.split(","))): fmpq(int(p), int(q)) for e, (p, q) in d_.items()})
+        for d_ in raw
+    ]
+
+
 def run_parity(d: int, parity: str, max_depth: int) -> dict:
+    """Each expensive preparation stage (G build, the substituted/compactified
+    A2,B2 pairs per piece) is cached to gitignored scratch keyed by the
+    constructor hash: at depth 7 the preparation alone outlives a process, so
+    a restart must never repeat a finished stage. The sanity checks run when
+    the stage is COMPUTED; a cache hit replays a checked computation."""
     t0 = time.time()
     G, cached = load_or_build_G(d, parity)
     Amax = max(e[0] for e in G.d)
@@ -376,16 +404,24 @@ def run_parity(d: int, parity: str, max_depth: int) -> dict:
     )
 
     # ---- piece 1: k = 2*K*rho, rho >= RHO_SPLIT (exponent remap, no algebra)
-    Gr = P4({(e[0] + e[1], e[1], e[2], e[3]): c * fmpq(2) ** e[1] for e, c in G.d.items()})
+    p1cache = _np_cache_path(d, parity, "p1")
+    if p1cache.exists():
+        A2, B2 = _np_load(p1cache)
+        print("  piece1: A2/B2 loaded from cache", flush=True)
+    else:
+        Gr = P4(
+            {(e[0] + e[1], e[1], e[2], e[3]): c * fmpq(2) ** e[1] for e, c in G.d.items()}
+        )
 
-    def pm1(G_, Gs, K, rho, delta, wv):
-        return Gs.eval_at((K, rho, delta, wv)), G_.eval_at((K, K * rho * 2, delta, wv))
+        def pm1(G_, Gs, K, rho, delta, wv):
+            return Gs.eval_at((K, rho, delta, wv)), G_.eval_at((K, K * rho * 2, delta, wv))
 
-    sanity_substitution(G, Gr, lambda G_, Gs, u, v, dl, wv: pm1(G_, Gs, u + 3, v + 2, dl, wv))
-    A, B = split_AB(Gr)
-    A2 = compactify(compactify(A, 0, 3), 1, RHO_SPLIT)
-    B2 = compactify(compactify(B, 0, 3), 1, RHO_SPLIT)
-    A2, B2 = equalize(A, B, A2, B2, (0, 1))
+        sanity_substitution(G, Gr, lambda G_, Gs, u, v, dl, wv: pm1(G_, Gs, u + 3, v + 2, dl, wv))
+        A, B = split_AB(Gr)
+        A2 = compactify(compactify(A, 0, 3), 1, RHO_SPLIT)
+        B2 = compactify(compactify(B, 0, 3), 1, RHO_SPLIT)
+        A2, B2 = equalize(A, B, A2, B2, (0, 1))
+        _np_save(p1cache, (A2, B2))
 
     def krange1(bx):
         # k = 2*K*rho = 2 * 3/(1-x) * RHO_SPLIT/(1-y)
@@ -403,54 +439,71 @@ def run_parity(d: int, parity: str, max_depth: int) -> dict:
     print(f"  piece1 (rho>=2): proved={ok1} boxes={boxes1} open={len(open1)} ({sec1}s)", flush=True)
 
     # ---- piece 2: wedge K = (6 + rho*z)/rho, k = 12 + 2*rho*z, cleared by rho^Amax.
-    # Cached like G itself: rebuilding it every restart was dying before the
-    # first checkpoint on depth 5.
-    import hashlib
-
-    src = Path(__file__).resolve().parent / "odd_depth_kwindow.py"
-    fp = hashlib.sha256(src.read_bytes()).hexdigest()[:16]
-    wcache = STATE / f"Gwcache_d{d}_{parity}_{fp}.json"
-    if wcache.exists():
-        raw = json.loads(wcache.read_text(encoding="utf-8"))
-        Gw = P4(
-            {tuple(map(int, e.split(","))): fmpq(int(p), int(q)) for e, (p, q) in raw.items()}
-        )
-        print(f"  piece2: Gw loaded from cache, {len(Gw.d)} terms", flush=True)
+    # Two cache layers: the final A/B pair (skips everything), else the Gw
+    # polynomial (skips the substitution) -- rebuilding either every restart
+    # was dying before the first checkpoint at depth >= 5.
+    p2cache = _np_cache_path(d, parity, "p2")
+    if p2cache.exists():
+        Aw2, Bw2 = _np_load(p2cache)
+        print("  piece2: Aw2/Bw2 loaded from cache", flush=True)
     else:
-        rho = P4.var(0)
-        z = P4.var(1)
-        sixrz = P4.const(6) + rho * z
-        k_new = P4.const(12) + rho * z * fmpq(2)
-        mp_a = {0: P4.const(1)}
-        for i in range(1, Amax + 1):
-            mp_a[i] = mp_a[i - 1] * sixrz
-        mp_b = {0: P4.const(1)}
-        for i in range(1, kb_max + 1):
-            mp_b[i] = mp_b[i - 1] * k_new
-        mp_r = {0: P4.const(1)}
-        for i in range(1, Amax + 1):
-            mp_r[i] = mp_r[i - 1] * rho
-        Gw = P4()
-        for e, c in G.d.items():
-            a, b, dd, we = e
-            term = mp_a[a] * mp_b[b] * mp_r[Amax - a] * c
-            term = P4({(kk[0], kk[1], dd, we): v for kk, v in term.d.items()})
-            Gw = Gw + term
-        wcache.write_text(
-            json.dumps({",".join(map(str, e)): [str(c.p), str(c.q)] for e, c in Gw.d.items()}),
-            encoding="utf-8",
-        )
+        import hashlib
 
-    def pm2(G_, Gs, r, zq, delta, wv):
-        K = (6 + r * zq) / r
-        k = 12 + r * zq * 2
-        return Gs.eval_at((r, zq, delta, wv)), (r**Amax) * G_.eval_at((K, k, delta, wv))
+        src = Path(__file__).resolve().parent / "odd_depth_kwindow.py"
+        fp = hashlib.sha256(src.read_bytes()).hexdigest()[:16]
+        wcache = STATE / f"Gwcache_d{d}_{parity}_{fp}.json"
+        if wcache.exists():
+            raw = json.loads(wcache.read_text(encoding="utf-8"))
+            Gw = P4(
+                {tuple(map(int, e.split(","))): fmpq(int(p), int(q)) for e, (p, q) in raw.items()}
+            )
+            print(f"  piece2: Gw loaded from cache, {len(Gw.d)} terms", flush=True)
+        else:
+            rho = P4.var(0)
+            z = P4.var(1)
+            sixrz = P4.const(6) + rho * z
+            k_new = P4.const(12) + rho * z * fmpq(2)
+            mp_a = {0: P4.const(1)}
+            for i in range(1, Amax + 1):
+                mp_a[i] = mp_a[i - 1] * sixrz
+            mp_b = {0: P4.const(1)}
+            for i in range(1, kb_max + 1):
+                mp_b[i] = mp_b[i - 1] * k_new
+            mp_r = {0: P4.const(1)}
+            for i in range(1, Amax + 1):
+                mp_r[i] = mp_r[i - 1] * rho
+            # in-place accumulation: `Gw = Gw + term` copies the growing dict
+            # per term (the quadratic add fixed in the constructor on 26 Aug)
+            acc: dict = {}
+            for e, c in G.d.items():
+                a, b, dd, we = e
+                term = mp_a[a] * mp_b[b] * mp_r[Amax - a] * c
+                for kk, v in term.d.items():
+                    key = (kk[0], kk[1], dd, we)
+                    nv = acc.get(key, fmpq(0)) + v
+                    if nv == 0:
+                        acc.pop(key, None)
+                    else:
+                        acc[key] = nv
+            Gw = P4(acc)
+            wcache.write_text(
+                json.dumps(
+                    {",".join(map(str, e)): [str(c.p), str(c.q)] for e, c in Gw.d.items()}
+                ),
+                encoding="utf-8",
+            )
 
-    sanity_substitution(G, Gw, pm2)
-    Aw, Bw = split_AB(Gw)
-    Aw2 = compactify_from_zero(Aw, 1)
-    Bw2 = compactify_from_zero(Bw, 1)
-    Aw2, Bw2 = equalize(Aw, Bw, Aw2, Bw2, (1,))
+        def pm2(G_, Gs, r, zq, delta, wv):
+            K = (6 + r * zq) / r
+            k = 12 + r * zq * 2
+            return Gs.eval_at((r, zq, delta, wv)), (r**Amax) * G_.eval_at((K, k, delta, wv))
+
+        sanity_substitution(G, Gw, pm2)
+        Aw, Bw = split_AB(Gw)
+        Aw2 = compactify_from_zero(Aw, 1)
+        Bw2 = compactify_from_zero(Bw, 1)
+        Aw2, Bw2 = equalize(Aw, Bw, Aw2, Bw2, (1,))
+        _np_save(p2cache, (Aw2, Bw2))
 
     def krange2(bx):
         # k = 12 + 2*rho*z, z = t/(1-t)
