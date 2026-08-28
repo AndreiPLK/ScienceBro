@@ -716,6 +716,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  measure_mass_test.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   model_test.json:
     added: '2026-08-14'
     note: referenced by a paper, document or lab module
