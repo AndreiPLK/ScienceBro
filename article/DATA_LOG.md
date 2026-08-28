@@ -3995,3 +3995,25 @@ NEXT: (a) conjecture and prove the explicit minor factorization of B (roots
   naive measure at small lam -- e.g. signed measure with controlled negative
   part, or a different normalization absorbing (H-r)_t differently; depth-7
   certificate continues in parallel.
+
+## 2026-08-28 13:05 -- KERNEL MINOR LAW: a double-Vandermonde closed form, 86/86
+
+Following the same-day probe, the depth-kernel minor factorization is now a
+precise conjecture (results/kernel_minor_law.json): the solid q x q minor of
+B_{r,t} = C(r,t)(H-r)_t t! (rows r0..r0+q-1, cols t0..t0+q-1) equals
+
+    (positive integer) * prod_{a=0}^{q-1} (H-r0-a)_{t0}
+                       * prod_{0<=a<b<=q-1} (H - 2r0 - a - b),
+
+verified in exact symbolic arithmetic on 86/86 cases (q <= 5, r0 <= 12,
+t0 <= 3; the multiplicity of root 2r0+s is the number of index pairs a < b
+with a+b = s). Two wrong guesses (a t0-shifted trapezoid, then an unshifted
+trapezoid) were killed by the exact sweep before this form; the pair-count
+multiplicity pattern is what identified the product structure. Max root is
+exactly 2 r_max - 1 < H on the whole physical domain, so PROVING this one
+determinant identity proves the depth kernel totally positive there. The
+shape (binomial times falling-factorial kernel, Vandermonde-type product)
+points at Lindstrom-Gessel-Viennot / known binomial determinant identities.
+NEXT: prove the identity (row operations reducing to a pure binomial
+determinant, or LGV paths), then attack what TP + the exact affine depth
+recursion M_t^(r+1) = (1-t/(H-r)) M_t^(r) yield jointly for K_r >= 0.

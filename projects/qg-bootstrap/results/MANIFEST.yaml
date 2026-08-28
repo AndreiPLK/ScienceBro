@@ -235,6 +235,10 @@ artefacts:
     note: the reformulation the whole program now runs on; 4500 sign checks against the independent exact
       value, 0 mismatches
     status: live
+  kernel_minor_law.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   keystone_asymptotics.json:
     added: '2026-08-17'
     note: referenced by a paper, document or lab module
