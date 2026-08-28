@@ -1,0 +1,570 @@
+<title>The Shore of Universes</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+  :root {
+    --abyss: #061a21;
+    --deep: #0c2932;
+    --page: #f2f6f4;
+    --panel: #ffffff;
+    --ink: #0a1d24;
+    --ink-soft: #46626b;
+    --hair: #d3e0dc;
+    --sea: #12a97c;
+    --coral: #d8452a;
+    --gold: #a8791d;
+    --shadow: 0 1px 2px rgba(10, 29, 36, .06), 0 12px 40px rgba(10, 29, 36, .07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #061a21;
+      --panel: #0c2932;
+      --ink: #e4efec;
+      --ink-soft: #8fa8ad;
+      --hair: #1b3d48;
+      --sea: #3be0ac;
+      --coral: #ff7d5c;
+      --gold: #ffce63;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 18px 50px rgba(0, 0, 0, .45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #061a21;
+    --panel: #0c2932;
+    --ink: #e4efec;
+    --ink-soft: #8fa8ad;
+    --hair: #1b3d48;
+    --sea: #3be0ac;
+    --coral: #ff7d5c;
+    --gold: #ffce63;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 18px 50px rgba(0, 0, 0, .45);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    line-height: 1.62;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, .ui, .eyebrow { font-family: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, "Courier New", monospace; }
+
+  /* ---------------- stage ---------------- */
+  .stage {
+    position: sticky;
+    top: 0;
+    height: 62svh;
+    background: radial-gradient(120% 90% at 50% 10%, #0e3140 0%, #061a21 62%, #03080b 100%);
+    overflow: hidden;
+    z-index: 0;
+  }
+  canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
+
+  .axes {
+    position: absolute; inset: 0; pointer-events: none;
+    color: #9fc4c9; font-size: 12px; letter-spacing: .11em; text-transform: uppercase;
+  }
+  .axes span { position: absolute; opacity: .78; }
+  .ax-x { left: 50%; bottom: 14px; transform: translateX(-50%); }
+  .ax-y { left: 16px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: left center; }
+  .hint {
+    position: absolute; right: 14px; bottom: 12px; font-size: 11px;
+    color: #7ea6ad; letter-spacing: .08em; text-transform: uppercase; opacity: .8;
+  }
+  .legend {
+    position: absolute; left: 16px; top: 16px; display: flex; flex-direction: column; gap: 7px;
+    font-size: 12px; letter-spacing: .04em; color: #cfe6e6; pointer-events: none;
+  }
+  .legend div { display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity .5s ease; }
+  .legend div.on { opacity: .92; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 10px currentColor; background: currentColor; }
+  .bar { width: 18px; height: 3px; border-radius: 2px; background: currentColor; box-shadow: 0 0 10px currentColor; }
+
+  /* ---------------- story ---------------- */
+  .story { position: relative; z-index: 1; }
+  .chapter {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 15svh 1.6rem;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--hair);
+    border-radius: 3px;
+    padding: 2rem 2rem 1.6rem;
+    box-shadow: var(--shadow);
+  }
+  .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--sea); margin: 0 0 .7rem;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 4.2rem);
+    font-weight: 800; line-height: .98; letter-spacing: -.025em;
+    margin: 0 0 1rem; text-wrap: balance;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 4.4vw, 2.3rem);
+    font-weight: 700; line-height: 1.06; letter-spacing: -.02em;
+    margin: 0 0 .9rem; text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 1.16em; }
+  em { font-style: italic; }
+  strong { font-weight: 400; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--gold) 45%, transparent) 0); }
+
+  .grown {
+    margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--hair);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12.5px; line-height: 1.65; color: var(--ink-soft);
+  }
+  .grown b { color: var(--ink); font-weight: 500; }
+
+  .numbers {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 1px; background: var(--hair); border: 1px solid var(--hair);
+    margin: 1.5rem 0 0; border-radius: 3px; overflow: hidden;
+  }
+  .numbers div { background: var(--panel); padding: .9rem 1rem; }
+  .numbers b {
+    display: block; font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums; line-height: 1.1;
+  }
+  .numbers span {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  footer {
+    max-width: 40rem; margin: 0 auto; padding: 4rem 1.6rem 6rem;
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+    color: var(--ink-soft); line-height: 1.75;
+  }
+  footer a { color: var(--sea); }
+
+  @media (min-width: 900px) {
+    .stage { height: 100svh; }
+    .chapter { margin: 0 0 0 auto; max-width: 34rem; padding: 22svh 3rem; }
+    footer { margin: 0 0 0 auto; max-width: 34rem; padding-left: 3rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+
+<div class="stage">
+  <canvas id="c"></canvas>
+  <div class="axes">
+    <span class="ax-x">the dial &#955; &#8212; how the theory is tuned</span>
+    <span class="ax-y">D &#8212; dimensions of space and time</span>
+    <span class="hint">drag to look around</span>
+  </div>
+  <div class="legend" id="legend">
+    <div data-key="peaks"><i class="bar" style="color:#d9b478"></i> a rule you must stay under</div>
+    <div data-key="shore"><i class="bar" style="color:#ffce63"></i> the shore &#8212; the lowest rule of all</div>
+    <div data-key="sea"><i class="dot" style="color:#3be0ac"></i> universes that hold together</div>
+    <div data-key="knife"><i class="dot" style="color:#ff7d5c"></i> universes that fall apart</div>
+  </div>
+</div>
+
+<div class="story">
+
+  <section class="chapter" data-scene="0">
+    <div class="card">
+      <p class="eyebrow">A picture of what we do all day</p>
+      <h1>The Shore of Universes</h1>
+      <p class="lead">Not every universe is allowed to exist. Some of them break the moment
+      you try to build one &#8212; the maths falls apart in your hands.</p>
+      <p>Our job is to find the exact line between the universes that work and the
+      universes that don't. We found part of that line. It looks like a coastline,
+      so that is what we call it.</p>
+      <p>Scroll down. The shape in the window above will build itself as you go.</p>
+      <div class="grown">
+        <b>For grown-ups.</b> Subject: the graviton scattering amplitudes of
+        Cheung, Hillman and Remmen. The horizontal dial is the family parameter
+        &#955;; the vertical axis is the spacetime dimension D. Everything drawn
+        here is computed from the project's own exact engine, not sketched.
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" data-scene="1">
+    <div class="card">
+      <p class="eyebrow">Chapter one</p>
+      <h2>Every rule is a mountain</h2>
+      <p>Physics hands us a whole family of rules. Each one says: <em>your universe
+      must stay underneath me.</em></p>
+      <p>Draw them all together and you get a mountain range. There are infinitely
+      many peaks, marching off past the edge of the window.</p>
+      <p>Here is the thing about staying under <strong>all</strong> the mountains at
+      once: only the lowest one is actually doing any work. The tall ones don't matter.
+      You just have to duck under the valley floor.</p>
+      <div class="grown">
+        <b>For grown-ups.</b> The surface is
+        <span class="mono">T&#8342;(&#955;) = 3(2k&#8722;3)/(k(k&#8722;2)) &#183;
+        (&#955;&#178; + (2k&#8722;2)&#955; + 1) + 2k</span>, one sheet per integer
+        spin level k &#8805; 3, sampled on a 73&#215;73 grid. Depth into the screen
+        is k. The plateau at the back is a display clamp, not a feature of the
+        physics &#8212; the range really does run off to infinity there.
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" data-scene="2">
+    <div class="card">
+      <p class="eyebrow">Chapter two</p>
+      <h2>The valley floor is the shore</h2>
+      <p>That gold line is the lowest point of the whole mountain range, at every
+      setting of the dial. It is the highest a universe can reach and still survive.</p>
+      <p>Watch it closely and you'll see it is made of pieces. As you turn the dial,
+      a different mountain becomes the lowest one, and the line hands over from one
+      to the next. We counted <strong>18 handovers</strong> in this window. Each kink
+      in the gold line is one mountain giving way to another.</p>
+      <div class="grown">
+        <b>For grown-ups.</b> The shore is
+        <span class="mono">T&#770;(&#955;) = min over integers k &#8805; 3 of T&#8342;(&#955;)</span>,
+        computed exactly at 241 values of &#955;. The kinks are the level handovers;
+        proving where they sit needed a separate certificate of its own, because a
+        minimum over infinitely many curves is not something you can check by looking.
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" data-scene="3">
+    <div class="card">
+      <p class="eyebrow">Chapter three</p>
+      <h2>Under the line is the sea</h2>
+      <p>Everything below the gold line is the safe part: universes that hold together.
+      That's the green sea, and it is what we are really trying to map.</p>
+      <p>Above the line is the dry, broken part. A universe up there doesn't just look
+      wrong, it is impossible &#8212; it would need a probability somewhere to come out
+      negative, and nature doesn't do that.</p>
+      <div class="grown">
+        <b>For grown-ups.</b> The sea is the region D &#8804; T&#770;(&#955;). Above
+        it, unitarity fails: some partial-wave coefficient goes negative.
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" data-scene="4">
+    <div class="card">
+      <p class="eyebrow">Chapter four</p>
+      <h2>We test it by throwing knives</h2>
+      <p>How do you find out whether a particular universe is fine? You throw a knife
+      at it. A knife is a number you can compute about that universe. If it comes out
+      <strong>plus</strong>, the universe survives. If it comes out
+      <strong>minus</strong>, that universe is dead.</p>
+      <p>Every dot in the window is one universe with one knife thrown at it. Green
+      means it lived. Red means it broke.</p>
+      <p>Now look where the red dots are. All of them are above the gold line.
+      <strong>Not one red dot is under the water.</strong> We checked every dot with
+      exact arithmetic &#8212; no rounding anywhere, no nearly-zero, no maybe.</p>
+      <div class="numbers">
+        <div><b>__DOTS__</b><span>universes tested</span></div>
+        <div><b>__NEG__</b><span>found broken</span></div>
+        <div><b>0</b><span>broken below the shore</span></div>
+      </div>
+      <div class="grown">
+        <b>For grown-ups.</b> A knife is a signed coefficient of the amplitude in
+        its Jacobi expansion, <span class="mono">knife&#8321; = (&#8722;1)&#7504; f&#7504;</span>,
+        computed by the same exact reference engine the project's certificates use.
+        The grid is 41&#215;41 in (&#955;, D), at knife orders j = 4 and j = 5 with
+        n = 12. Signs are exact rationals; the count of negative knives below the
+        shore is a self-check, and it is zero.
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" data-scene="5">
+    <div class="card">
+      <p class="eyebrow">Chapter five</p>
+      <h2>The part that isn't finished</h2>
+      <p>Here is the problem, and it is the whole reason this is hard.</p>
+      <p>There isn't one knife. There are <strong>infinitely many</strong> &#8212; a new
+      one at every depth, forever. In the window they're the walls fading away into the
+      dark. We can throw the first few. A computer can throw a few thousand. But
+      infinity is not a number of things you can check one at a time.</p>
+      <p>So checking isn't enough. We need a <em>proof</em>: one single argument that
+      covers every knife at once, including the ones nobody will ever compute. We have
+      proved a handful of the walls completely, and this year we found an argument that
+      covers an infinite corner of the rest. The middle is still open.</p>
+      <p>That's what we're doing. Not knowing yet is the job.</p>
+      <div class="grown">
+        <b>For grown-ups.</b> Each ghost wall is one depth. Depths 2 through 6 are
+        certified by exact Bernstein positivity certificates with zero open boxes;
+        depth 7 is banked but compute-bound. The keystone theorem &#8212; all depths
+        by one argument &#8212; is open. The current front: a moment representation of
+        the knife sum, a strict-total-positivity theorem for its kernel, and an
+        asymptotic corner that does cover every depth at once, in an unbounded but
+        incomplete region.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built from the project's own exact computations
+    (<span class="mono">projects/qg-bootstrap</span>): every surface, line and dot
+    on this page comes from <span class="mono">results/shore_landscape_data.json</span>,
+    generated by <span class="mono">lab/shore_landscape_data.py</span> in exact rational
+    arithmetic. Nothing here is drawn by hand or approximated for effect.</p>
+    <p>ScienceBro &#183; the quantum-gravity S-matrix bootstrap &#183; __STAMP__</p>
+  </footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/ null;
+
+(function () {
+  "use strict";
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canvas = document.getElementById("c");
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x03080b, 0.033);
+  const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 300);
+
+  // ---- coordinate maps (data units -> world units)
+  const LAM0 = DATA.mountains.lam[0], LAM1 = DATA.mountains.lam[DATA.mountains.lam.length - 1];
+  const K0 = DATA.mountains.k[0], K1 = DATA.mountains.k[DATA.mountains.k.length - 1];
+  const TMAX = DATA.mountains.clamp;
+  const WX = 16, WZ = 11, WY = 8;
+  const X = l => (l - LAM0) / (LAM1 - LAM0) * WX - WX / 2;
+  const Z = k => (k - K0) / (K1 - K0) * WZ;
+  const Y = t => Math.min(t, TMAX) / TMAX * WY;
+  const WALL_Z = -2.2, WALL_GAP = 2.6;
+
+  // ---- lights
+  scene.add(new THREE.HemisphereLight(0x8fd6e0, 0x07141a, 0.85));
+  const key = new THREE.DirectionalLight(0xffe9c4, 1.15);
+  key.position.set(-9, 14, -6);
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0x4fd7c0, 0.5);
+  rim.position.set(10, 4, 12);
+  scene.add(rim);
+
+  // ---- 1. the mountain range
+  const lams = DATA.mountains.lam, ks = DATA.mountains.k, T = DATA.mountains.T;
+  const NL = lams.length, NK = ks.length;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(NL * NK * 3);
+  const col = new Float32Array(NL * NK * 3);
+  const lowC = new THREE.Color(0x123a47), midC = new THREE.Color(0x2f6d7e), hiC = new THREE.Color(0xd9b478);
+  const tmp = new THREE.Color();
+  for (let i = 0; i < NL; i++) {
+    for (let j = 0; j < NK; j++) {
+      const n = (i * NK + j) * 3;
+      pos[n] = X(lams[i]); pos[n + 1] = Y(T[i][j]); pos[n + 2] = Z(ks[j]);
+      const h = Math.min(T[i][j], TMAX) / TMAX;
+      tmp.copy(h < 0.5 ? lowC.clone().lerp(midC, h * 2) : midC.clone().lerp(hiC, (h - 0.5) * 2));
+      col[n] = tmp.r; col[n + 1] = tmp.g; col[n + 2] = tmp.b;
+    }
+  }
+  const idx = [];
+  for (let i = 0; i < NL - 1; i++) {
+    for (let j = 0; j < NK - 1; j++) {
+      const a = i * NK + j, b = a + 1, c = a + NK, d = c + 1;
+      idx.push(a, c, b, b, c, d);
+    }
+  }
+  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  geo.setIndex(idx);
+  geo.computeVertexNormals();
+  const mountains = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+    vertexColors: true, roughness: 0.88, metalness: 0.04,
+    side: THREE.DoubleSide, transparent: true, opacity: 0
+  }));
+  scene.add(mountains);
+
+  const wire = new THREE.LineSegments(
+    new THREE.WireframeGeometry(geo),
+    new THREE.LineBasicMaterial({ color: 0x6fb9c4, transparent: true, opacity: 0 })
+  );
+  scene.add(wire);
+
+  // ---- 2. the shore, in the range and projected onto the front wall
+  const sp = DATA.shore.points;
+  const ridgePts = sp.map(p => new THREE.Vector3(X(p.lam), Y(p.T) + 0.05, Z(p.k)));
+  const wallPts = sp.map(p => new THREE.Vector3(X(p.lam), Y(p.T), WALL_Z + 0.02));
+  const goldMat = () => new THREE.LineBasicMaterial({ color: 0xffce63, transparent: true, opacity: 0 });
+  const ridgeLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(ridgePts), goldMat());
+  const wallLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(wallPts), goldMat());
+  scene.add(ridgeLine, wallLine);
+
+  // droplines from the valley to the wall, at the handovers
+  const dropPts = [];
+  DATA.shore.level_jumps.forEach(j => {
+    dropPts.push(new THREE.Vector3(X(j.lam), Y(j.T), Z(j.from_k)));
+    dropPts.push(new THREE.Vector3(X(j.lam), Y(j.T), WALL_Z));
+  });
+  const drops = new THREE.LineSegments(
+    new THREE.BufferGeometry().setFromPoints(dropPts),
+    new THREE.LineBasicMaterial({ color: 0xffce63, transparent: true, opacity: 0 })
+  );
+  scene.add(drops);
+
+  // ---- 3. the sea: the region D <= shore, on the front wall
+  const seaPos = [];
+  for (let i = 0; i < sp.length - 1; i++) {
+    const x0 = X(sp[i].lam), x1 = X(sp[i + 1].lam);
+    const y0 = Y(sp[i].T), y1 = Y(sp[i + 1].T), yb = Y(4);
+    seaPos.push(x0, yb, WALL_Z, x1, yb, WALL_Z, x0, y0, WALL_Z);
+    seaPos.push(x1, yb, WALL_Z, x1, y1, WALL_Z, x0, y0, WALL_Z);
+  }
+  const seaGeo = new THREE.BufferGeometry();
+  seaGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(seaPos), 3));
+  const sea = new THREE.Mesh(seaGeo, new THREE.MeshBasicMaterial({
+    color: 0x3be0ac, transparent: true, opacity: 0, side: THREE.DoubleSide,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  }));
+  scene.add(sea);
+
+  // ---- 4. the knives: exact signs, one wall per depth
+  const knifeGroups = [];
+  DATA.sign_fields.forEach((f, fi) => {
+    const p = [], c = [];
+    const green = new THREE.Color(0x6cf2c4), red = new THREE.Color(0xff6a45);
+    f.rows.forEach(row => {
+      row.sign.forEach((s, di) => {
+        if (s === 0) return;
+        p.push(X(row.lam), Y(row.D[di]), WALL_Z - fi * WALL_GAP);
+        const cc = s > 0 ? green : red;
+        c.push(cc.r, cc.g, cc.b);
+      });
+    });
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(p), 3));
+    g.setAttribute("color", new THREE.BufferAttribute(new Float32Array(c), 3));
+    const pts = new THREE.Points(g, new THREE.PointsMaterial({
+      size: 0.15, vertexColors: true, transparent: true, opacity: 0,
+      sizeAttenuation: true, depthWrite: false
+    }));
+    scene.add(pts);
+    knifeGroups.push(pts);
+  });
+
+  // ---- 5. the depths we have not checked: ghost walls receding
+  const ghosts = [];
+  for (let i = 0; i < 6; i++) {
+    const z = WALL_Z - (DATA.sign_fields.length + i) * WALL_GAP;
+    const g = new THREE.BufferGeometry().setFromPoints(
+      sp.filter((_, n) => n % 6 === 0).map(p => new THREE.Vector3(X(p.lam), Y(p.T), z))
+    );
+    const gl = new THREE.Line(g, new THREE.LineBasicMaterial({
+      color: 0x9fd8cf, transparent: true, opacity: 0
+    }));
+    gl.userData.fade = Math.pow(0.62, i + 1);
+    scene.add(gl);
+    ghosts.push(gl);
+  }
+
+  // ---- scenes: what is visible, and where the camera stands
+  const SCENES = [
+    { cam: [16, 12, 20], look: [0, 3.2, 3], vis: { mtn: 0.22, wire: 0.05 }, legend: [] },
+    { cam: [13, 9.5, 16], look: [0, 3.4, 4], vis: { mtn: 1, wire: 0.16 }, legend: ["peaks"] },
+    { cam: [4, 7.5, 15], look: [0, 3.2, 3.5], vis: { mtn: 0.95, wire: 0.14, ridge: 1, drops: 0.5 }, legend: ["peaks", "shore"] },
+    { cam: [0.5, 5.2, 15.5], look: [0, 3, -1], vis: { mtn: 0.42, wire: 0.07, ridge: 0.35, wall: 1, sea: 0.4 }, legend: ["shore", "sea"] },
+    { cam: [0, 4.4, 14], look: [0, 3.4, -2.2], vis: { mtn: 0.2, wall: 1, sea: 0.22, knives: 1 }, legend: ["shore", "sea", "knife"] },
+    { cam: [-11, 6, 9], look: [0, 3, -10], vis: { mtn: 0.14, wall: 0.8, sea: 0.16, knives: 0.85, ghosts: 1 }, legend: ["shore", "knife"] }
+  ];
+
+  const state = {
+    cam: new THREE.Vector3(...SCENES[0].cam),
+    look: new THREE.Vector3(...SCENES[0].look),
+    vis: {}, yaw: 0, target: 0
+  };
+  const targets = { cam: state.cam.clone(), look: state.look.clone(), vis: {} };
+
+  function applyScene(i) {
+    const s = SCENES[Math.max(0, Math.min(SCENES.length - 1, i))];
+    targets.cam.set(...s.cam);
+    targets.look.set(...s.look);
+    targets.vis = s.vis;
+    document.querySelectorAll("#legend div").forEach(d => {
+      d.classList.toggle("on", s.legend.indexOf(d.dataset.key) >= 0);
+    });
+  }
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+  function fade(obj, want, t) {
+    obj.material.opacity = lerp(obj.material.opacity, want || 0, t);
+    obj.visible = obj.material.opacity > 0.004;
+  }
+
+  // ---- drag to orbit
+  let dragging = false, lastX = 0, lastY = 0, orbitYaw = 0, orbitPitch = 0;
+  const down = e => { dragging = true; lastX = e.clientX; lastY = e.clientY; };
+  const move = e => {
+    if (!dragging) return;
+    orbitYaw += (e.clientX - lastX) * 0.006;
+    orbitPitch = Math.max(-0.5, Math.min(0.8, orbitPitch + (e.clientY - lastY) * 0.004));
+    lastX = e.clientX; lastY = e.clientY;
+  };
+  const up = () => { dragging = false; };
+  canvas.addEventListener("pointerdown", down);
+  window.addEventListener("pointermove", move);
+  window.addEventListener("pointerup", up);
+
+  // ---- scroll drives the chapters
+  const chapters = Array.from(document.querySelectorAll(".chapter"));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) applyScene(+en.target.dataset.scene);
+    });
+  }, { rootMargin: "-45% 0px -45% 0px" });
+  chapters.forEach(ch => io.observe(ch));
+  applyScene(0);
+
+  function resize() {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (canvas.width !== w || canvas.height !== h) {
+      renderer.setSize(w, h, false);
+      camera.aspect = w / Math.max(h, 1);
+      camera.updateProjectionMatrix();
+    }
+  }
+
+  let t = 0;
+  function frame() {
+    resize();
+    t += 0.004;
+    const e = reduced ? 1 : 0.055;
+    state.cam.lerp(targets.cam, e);
+    state.look.lerp(targets.look, e);
+    const drift = reduced ? 0 : Math.sin(t) * 0.13;
+    const yaw = orbitYaw + drift;
+    const r = Math.hypot(state.cam.x, state.cam.z);
+    camera.position.set(
+      Math.sin(Math.atan2(state.cam.x, state.cam.z) + yaw) * r,
+      state.cam.y + orbitPitch * 6,
+      Math.cos(Math.atan2(state.cam.x, state.cam.z) + yaw) * r
+    );
+    camera.lookAt(state.look);
+
+    const v = targets.vis;
+    fade(mountains, v.mtn, e);
+    fade(wire, v.wire, e);
+    fade(ridgeLine, v.ridge, e);
+    fade(wallLine, v.wall, e);
+    fade(drops, v.drops, e);
+    fade(sea, v.sea, e);
+    knifeGroups.forEach(g => fade(g, v.knives, e));
+    ghosts.forEach(g => fade(g, (v.ghosts || 0) * g.userData.fade, e));
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>

@@ -792,6 +792,10 @@ artefacts:
     added: '2026-08-14'
     note: referenced by a paper, document or lab module
     status: live
+  shore_landscape_data.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   step_lemma.json:
     added: '2026-08-18'
     note: same step-6 artefact as FROZEN_PREDICTION_blocks.md

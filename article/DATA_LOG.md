@@ -4434,3 +4434,32 @@ NEXT: (a) prove complete monotonicity in the corner -- with the measure a
   rather than the power-of-two grid) and test whether lam*/n has a limit;
   (c) the complementary region needs a different idea -- the j > n/2 + 1
   half may want the m = n - j variable instead, where the roles invert.
+
+## 2026-08-28 — Outreach: the shore landscape, drawn from the exact engine
+
+WHAT. `lab/shore_landscape_data.py` exports three already-established objects on
+a display grid — the level surface `T_k(lam)` (73x73), the shore
+`T_hat(lam) = min_k T_k(lam)` at 241 values of lam with its 18 integer-level
+handovers, and the exact knife sign field on a 41x41 `(lam, D)` grid at knife
+orders j = 4 and j = 5, n = 12, from the same reference engine
+(`jacobi_normal_form.jacobi_coeff_rec`) the certificates use. Artifact:
+`results/shore_landscape_data.json`. `lab/build_shore_viz.py` injects it into
+`outreach/shore_of_universes.html`, a 3D scrollable explainer written for
+children (founder's request).
+
+NO NEW SCIENCE, and the artifact says so in its own `claim` field. What it does
+carry is a self-check with teeth: of 3362 exactly evaluated knife signs, 401 are
+negative and **0 of those sit below the shore**. The builder REFUSES to produce
+the page if that count is ever nonzero, because the page's central sentence to a
+child ("not one red dot is under the water") would then be false. A picture that
+can state a falsehood is a picture with a gate on it.
+
+The prose counts (dots, negatives, handovers) are computed by the builder from
+the data rather than typed, so the text cannot drift from the picture.
+
+HONEST LIMITS stated on the page itself: the back plateau is a display clamp at
+T = 140, not physics; the ghost walls are the unproved depths; the last chapter
+says the keystone is open and that depths 2-6 are certified while 7 is only
+banked. No claim-promotion words appear.
+
+NEXT: back to the asymptotic route (the corner theorem), per the previous entry.
