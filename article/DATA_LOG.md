@@ -4650,3 +4650,71 @@ needed is a handle on `max_{[0,eta]} |prod_i (w - eta_i)|` for the roots of the
 m-th derivative of `prod_k (u - b_k)` — which is a finite free probability
 object (Marcus-Spielman-Srivastava), and is exactly what the domain-critic pass
 was asked to place in the literature.
+
+## 2026-08-28 — Two independent review passes on the positivity theorems
+
+Neither pass was run by the role that wrote the proofs, per the standing rule.
+
+INDEPENDENT VALIDATOR: **PASS** (validation/VAL-BFORM-0001.yaml,
+lab/validator_bform_check.py). It rebuilt the closed form from
+lab/jacobi_normal_form.py alone, never importing the modules under review, and
+hunted 13380 adversarially chosen points with the hypothesis (*) true — at
+equality in (*), at D = 3 + 1e-9, n = 4..60, lam = 1e-3..1e15 — finding NO
+counterexample. It also confirmed each monotonicity factor of Theorem 5
+separately over 3952 cells, every step of Theorem 7 exactly, and §4b's J-form
+and (**). Non-vacuity: 77 of 544 probes just outside (*) carry a NEGATIVE
+reference knife, so the hypothesis is not describing a trivially safe region.
+
+TWO ARITHMETIC SLIPS, both mine, both found by BOTH passes independently and in
+algebraically identical forms (ERR-0014). My Lemma 3 identity was wrong by 2 and
+my Theorem 6 parenthetical claimed an equivalence threshold of D > 3 where it is
+D > -1. Both conservative, so no conclusion moved — which is exactly why every
+machine check I had built passed over them. The rule I failed to apply is the
+repository's own ERR-0012: a check that cannot fail is not a check. I verified
+the THEOREMS and never verified the hand-derived intermediate IDENTITIES
+separately. Two writing gaps also fixed: Theorem 9's substitution needs a >= 1
+(true, unstated), and Theorems 5/6 must not be quoted at j = n, where
+e_{n-1}(b) = 0 for even n breaks the Newton step.
+
+DOMAIN CRITIC: the verdict is "present as STRUCTURAL progress; the coverage
+number must not be the headline", and three of its findings changed the file.
+
+1. THEOREM 6 IS VACUOUS WHERE WE ACTUALLY WORK. D* must exceed 3 to say
+   anything, and D*(12, lam) = -13.44, -11.43, -3.99 at lam = 1, 5/2, 7 — every
+   value used in the project's own sweeps. At lam = 1 (Virasoro-Shapiro) it is
+   empty for every n >= 6. Verified exactly. This now sits in the statement.
+2. THE ALL-DEPTHS NUMBER UNDERSELLS THE THEOREM BY A FACTOR OF n. Condition (*)
+   is depth-resolved and Theorem 6 quotes only its worst case r = n-2. At FIXED
+   depth the threshold is LINEAR in n: lam*/(r n) = 2.13..2.90, flat in n across
+   n = 12, 24, 48. The honest form is lam* ~ c r n per depth.
+3. THE REPRESENTATION EXPLAINS THE PARITY DICHOTOMY IN ONE LINE. As D -> inf the
+   Beta mass goes to 0, so the w -> 0 end dominates and
+   sign(K_r) -> (-1)^r = (-1)^{j-1}: odd j never turns negative, even j must.
+   Verified at n=12, lam=7: j=3,5 stay +1 through D = 2e5, while j=4,6 flip to
+   -1 by D = 500. The programme has MEASURED that asymmetry for months; here it
+   is derived.
+
+AND A THIRD DEAD END, measured. The obvious repair to Theorem 9 — replacing
+|prod (w-eta_i)| <= eta^r by the true envelope max_{[0,eta]}|prod| — was tested.
+The envelope is scale-invariant in lam, hence a pure function of (n,r), and it
+is much smaller: about 2.4^{-r}, e.g. 3.96e-7 at n=20, r=18. Substituting it
+moves the threshold by 1.1x-1.2x. ONLY. The reason closes the route: NEG carries
+eta^{n-1/2} with eta ~ 1/lam^2, so NEG ~ lam^{-(2n-1)} and a gain of factor G
+buys G^{1/(2n-1)} in lam — a 2.5-million-fold gain at n=20 is 1.45x. No constant,
+and no factor exponential in r, can move this threshold. Reaching lam ~ 2n needs
+a different decomposition, not a better bound inside this one. That is three
+dead ends on the same split (triangle inequality, per-instance quadrature,
+envelope), all measured rather than guessed.
+
+The critic also notes the deepest knife is structurally immune to root
+contraction: b_1 = b_{n-1} = B is a DOUBLE root of prod_k (u - b_k), so one
+differentiation leaves it and eta_max = B exactly at r = n-2. That is why the
+measurement read 1.0000 there — exact, not rounding.
+
+CLAIM STATE moved to independently-validated for the mathematics of Theorems
+1-9 as sufficient conditions on the stated domain. NOT validated for novelty:
+no literature pass has been done, and the critic would strengthen
+POSSIBLY_KNOWN to LIKELY KNOWN, naming Malo-Schur-Szego composition,
+Polya-Schur multiplier sequences (Aissen-Schoenberg-Whitney, Borcea-Branden),
+the Askey-Gasper method, and finite free probability as the places to look.
+It ran no search; that is a to-do list, not a finding.

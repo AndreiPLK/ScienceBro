@@ -1,0 +1,62 @@
+[0] conventions / identity with the reference engine
+  R_t (closed form) == c_t (B-form): 0 mismatches
+  sign(K_r) vs engine: 816 trials, 0 mismatches, 30 NEGATIVE reference points, 0 zero (non-vacuous)
+  Lemma 2 (e_1 = n(n-1)(n-2)/(3s^2)): 0 violations
+[2] Lemma 3 (T_t > 0) at the boundaries
+  855 (n,j,lam,D) boundary cases incl. n even, r=n-2, D=3+1e-9, n=5,6,7: e_t<=0: 0, (H-r)_t<=0: 0, T_t<=0: 0
+  side identity H-2r+1 = (D-1)/2+2(n-2-r): FALSE in 36/36 cases (true value is (D+3)/2+2(n-2-r)); conclusion still holds
+[3] Theorem 5: monotonicity of f, factor by factor; Newton chain
+  3952 parameter cases: factor sign/monotonicity 0, f(t+1)>f(t) 0, Newton 0, p-ratio>bbar 0, T-ratio>f 0
+[4] Newton chain when some p_t = 0 (r = n-1, j = n: OUTSIDE the domain)
+  even n: e_{n-1} = 0 exactly as the .md says, and t <= r <= n-2 avoids it (4 cases). The caveat in the Thm-5 proof is correct AND load-bearing.
+  probe at j = n (r = n-1, not claimed by the theorem): 0 bad points
+[5] Theorem 6: vertex claim, monotonicity in r, and the algebra for D*
+  'H/2 > n-2 exactly when D > 3': FALSE (true threshold D > -1); witness n=5 D=-9/10. Implication D>3 => vertex ok is still fine.
+  r(H-r) increasing on 2..n-2 for D>3: 0 violations
+  D*(n,lam) = (6n-9)s^2/(n(n-2)^2) - 2n + 3 solves (*) at r=n-2: 0 mismatches
+[6] Theorem 7: constants, derivative, w_t, the y-identity, sigma
+  constants 0, w_t 0, derivative 0
+  y-identity + D-form vs closed form: 0 violations
+  sigma/Gamma representation of d_t: 0; convergence t<C+1: 0 bad
+[7] section 4b: Theorem 8 identity and Theorem 9 soundness
+  Theorem 8 identity: 0 violations; Theorem 9 hypothesis fired 201 times, knife non-positive in 0
+[8] HUNT: (*) true but reference knife not positive
+  13380 points where (*) HOLDS: 0 counterexamples, 0 strict-but-zero
+  tightest positive point: K=2.340e-01 at n=6 j=3 lam=1/2 D=257/64
+  non-vacuity: outside (*), 77/544 probes have a NEGATIVE knife -- the hypothesis is not covering a trivially positive region
+[8b] HUNT: f(0) <= 1 but T_{t+1} > T_t for some t
+  4883 points with f(0) <= 1: 0 with a later T increase
+  Leibniz vs (*): both 1576, Leibniz-only 0, (*)-only 0 -- (*)-only must be 0 or the proof of Thm 5 is broken
+[9] section 6 table: smallest lam at which D*(n,lam) reaches the shore
+  n=8: claimed 127, recomputed 127  [ok]
+  n=12: claimed 340, recomputed 340  [ok]
+  n=16: claimed 654, recomputed 654  [ok]
+  n=20: claimed 1069, recomputed 1069  [ok]
+  n=28: claimed 2202, recomputed 2202  [ok]
+  n=40: claimed 4659, recomputed 4659  [ok]
+[10] slack: first D above D_max(*) where the knife actually turns negative
+  36 (n,j,lam) cells: 12 where (*) is EMPTY (D_max <= 3), 21 where no negative knife was found up to ~1.2^60 x D_max
+  slack D_firstneg/D_max(*): min 3.58, median 3.64, max 6.17
+[11] section 4: max(eta)/B at n=20, lam=7, r = 2,4,6,10,18
+  r=2: claimed 0.448, recomputed 0.448  [ok]
+  r=4: claimed 0.561, recomputed 0.561  [ok]
+  r=6: claimed 0.650, recomputed 0.650  [ok]
+  r=10: claimed 0.795, recomputed 0.795  [ok]
+  r=18: claimed 1.000, recomputed 1.000  [ok]
+[12] Theorem 6 END-TO-END: D <= D*(n,lam) => every knife j=3..n-1 positive
+  85 (n,lam) cells with a non-empty region, 3912 knives checked, 0 non-positive
+
+=== 0 hard failures, 26.4s
+
+--- notes (not failures) ---
+  * identity grid: 816 trials, 30 negative reference points
+  * MD ARITHMETIC SLIP (Lemma 3 proof): H-2r+1 = (D+3)/2 + 2(n-2-r), not (D-1)/2 + 2(n-2-r); the .md value is smaller by 2. Conclusion (H-2r+1 > 0) unaffected -- the .md statement is the weaker one.
+  * outside the stated domain (j = n, r = n-1): (*) true and knife <= 0 in 0 probes
+  * MD ARITHMETIC SLIP (Theorem 6 proof): H/2 > n-2 <=> D > -1, NOT D > 3. Counterexample to the stated equivalence: n=5, D=-9/10: H/2 > n-2 is True while D > 3 is False. D > 3 still IMPLIES H/2 > n-2, so the theorem stands; the word 'exactly' is wrong.
+  * Thm 9 (**) fired 201 times in my grid, 0 bad
+  * hunt: 13380 points with (*) true, 0 counterexamples; 77/544 negative knives just outside (*)
+  * Leibniz vs (*) on my grid: coincide in 1576 cases, Leibniz-only 0, (*)-only 0 (the .md's 'same 265 cases' claim reproduces in kind)
+  * slack of (*) vs the true sign change: factor 3.58..6.17 in D; the hypothesis is sufficient but not tight (as the .md says)
+  * (*) is EMPTY (no admissible D > 3) in 12/36 probed (n,j,lam) cells
+  * the b_k come in equal pairs (b_k = b_{n-k}), so B is a DOUBLE root of prod(u-b_k); the 1.000 in the section-4 table is exact, not rounding
+  * Thm 6 end-to-end: 3912 knives under D <= D*, 0 non-positive

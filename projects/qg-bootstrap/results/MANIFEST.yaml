@@ -7,6 +7,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  BFORM_CRITIQUE.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   BFORM_POSITIVITY_THEOREM.md:
     added: untracked
     note: referenced by a paper, document or lab module

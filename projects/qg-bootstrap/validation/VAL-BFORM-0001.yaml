@@ -1,0 +1,81 @@
+# Schema: sciencebro.schemas.ValidationResult
+id: VAL-BFORM-0001
+experiment_id: EXP-BFORM-POSITIVITY-2026-08-28   # results/BFORM_POSITIVITY_THEOREM.md
+validator: independent-validator
+independence_level: separate-formulation
+# Target of validation:
+#   results/BFORM_POSITIVITY_THEOREM.md  (sha256 6b64e763...9147e3a at read time,
+#   including the section 4b added mid-review),
+#   lab/bform_positivity.py, lab/bform_derivative_form.py (docstrings only; NOT imported).
+# Validator code: lab/validator_bform_check.py  (imports only lab/jacobi_normal_form.py,
+#   the reference engine, and rebuilds K_r from lab/knife_closed_form.py's R_t by hand).
+checks:
+  known_answer: >-
+    pass - sign(K_r) rebuilt independently agrees with the reference engine
+    (jacobi_coeff_rec, (-1)^(n-j) convention) at 816 grid trials plus all 13380
+    hunt points; 0 mismatches, n up to 60, lam up to 10^15.
+  negative_control: >-
+    pass - the grid is non-vacuous: 30 reference-negative knives inside the
+    identity grid, and 77/544 probes just outside (*) have a NEGATIVE knife, so
+    the hypothesis is not merely describing a trivially positive region.
+  hidden_points: >-
+    pass - hunt over 13380 (n,j,lam,D) with (*) true, chosen adversarially at the
+    exact boundary D = D_max(*), at D_max - 1e-12, at D = 3 + 1e-9, small n
+    (4,5,6,7), n even and odd, lam from 1e-3 to 1e15: 0 counterexamples,
+    0 cases of (*) strict with K_r = 0. Theorem 6 end-to-end: 3912 knives under
+    D <= D*, 0 non-positive.
+  precision_convergence: >-
+    pass - all decisions exact in flint fmpq/fmpq_poly; the only non-rational
+    quantities (Gamma/Beta in Theorems 7-9, eta roots) are decided on certified
+    arb/acb enclosures at 400 bits, accepted only when the enclosure of the
+    difference contains 0 (identities) or is strictly signed (inequalities).
+  boundary_map: >-
+    pass - boundaries checked explicitly: n even where b_{n/2}=0 (e_t>0 still
+    holds for t<=n-2); r = n-2 (worst case of (*)); n = 4, the tightest instance
+    of r <= n-2 < n-3/2; D just above 3; the Newton chain with a vanishing p_t
+    occurs only at r = n-1 = j-1, i.e. j = n, which is OUTSIDE the stated
+    physical domain - the caveat in the Theorem 5 proof is correct and
+    load-bearing.
+  signature: >-
+    pass - the reported side quantities reproduce: section 6 lam-threshold table
+    (n=8,12,16,20,28,40 -> 127,340,654,1069,2202,4659) exact; section 4 eta table
+    at n=20,lam=7 (0.448,0.561,0.650,0.795,1.000) exact; Leibniz criterion and
+    (*) coincide on my grid (1576 cases both, 0 either-only), matching the .md's
+    "same 265 cases" observation in kind.
+decision: pass
+allowed_claim_state: independently-validated
+blockers: []
+findings_not_blocking:
+  - >-
+    MD ARITHMETIC SLIP (Lemma 3 proof, section 2): the file writes
+    "H - r - (t-1) >= H - 2r + 1 = (D-1)/2 + 2(n-2-r)". The correct value is
+    H - 2r + 1 = (D+3)/2 + 2(n-2-r); the printed expression is smaller by 2.
+    36/36 tested (n,r,D) disagree with the printed form and agree with the
+    corrected one. Direction is conservative (the file understates its own
+    margin), so Lemma 3 and everything downstream stand. Fix the display.
+  - >-
+    MD ARITHMETIC SLIP (Theorem 6 proof, section 3): "H/2 = (D+4n-7)/4 > n-2
+    exactly when D > 3" is false; the equivalence threshold is D > -1
+    (witness n=5, D=-9/10: H/2 = 7/2 - ... > n-2 holds while D > 3 fails).
+    D > 3 still IMPLIES the vertex condition, so Theorem 6 is unaffected; the
+    word "exactly" is wrong and should read "in particular when D > 3".
+  - >-
+    Scope note, not an error: the theorem's domain is 3 <= j <= n-1. At j = n
+    (r = n-1) Lemma 3 fails for even n because e_{n-1}(b) = 0, and the Newton
+    chain terminates. The .md's parenthetical about p_t = 0 is exactly what
+    protects this; no probe found (*) true with a non-positive knife at j = n
+    either, but the theorem should not be quoted for j = n.
+  - >-
+    Tightness: between D_max(*) and the first D at which the reference knife
+    actually turns negative there is a factor 3.6 to 6.2 in D on the probed
+    cells, and (*) is EMPTY (no admissible D > 3) in 12/36 probed (n,j,lam)
+    cells. Consistent with the .md's own "honest size of the region" section.
+  - >-
+    UNSTATED (but satisfied) HYPOTHESIS in Theorem 9, section 4b: the step
+    "using w >= (1-eta)u" needs a >= 1 to raise both sides to the power a-1.
+    a = C - r + 1 = n - 1/2 - r >= 3/2 on r <= n-2, so it holds; it should be
+    said. Checked over the whole Theorem 9 grid: 0 violations.
+  - >-
+    Not validated here: any novelty/prior-art claim (finite free probability,
+    Marcus-Spielman-Srivastava). This validation covers correctness of the
+    derivation and its numerical claims only.

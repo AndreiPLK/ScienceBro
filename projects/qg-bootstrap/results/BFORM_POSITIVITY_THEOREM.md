@@ -25,6 +25,11 @@ falling factorial:
     M_t^(r) = t! (H-r)_t E_{2t}(n) / [ s^{2t} (n-1)_t (n-3/2)_t ].
 
 Physical domain: `3 <= j <= n-1` (so `2 <= r <= n-2`), `D > 3`, `lam > 0`.
+The upper limit is load-bearing, not cosmetic: for even `n`, `e_{n-1}(b) = 0`
+exactly (the root `b_{n/2} = 0` enters at the last order), which would be the
+`t = r` term at `r = n-1`, i.e. `j = n`. Theorems 5 and 6 must not be quoted
+there — their Newton step assumes no `e_t` vanishes for `t <= r`, which holds
+precisely because `r <= n-2`.
 
 ## 1. The B-form
 
@@ -60,7 +65,7 @@ Write `T_t = c_t e_t(b)`.
 
 *Proof.* `(r)_t > 0` for `t <= r`; `(n-1)_t > 0` and `(n-3/2)_t > 0` for
 `t <= n-1`. For `(H-r)_t = prod_{i<t}(H-r-i)` the smallest factor is
-`H - r - (t-1) >= H - 2r + 1 = (D-1)/2 + 2(n-2-r) > 0` for `D > 1` and
+`H - r - (t-1) >= H - 2r + 1 = (D-1)/2 + 2(n-1-r) > 0` for `D > 1` and
 `r <= n-2`. Finally `e_t(b) > 0`: the `b_k` are nonnegative and at most one of
 them vanishes (`b_k = 0` only for `n = 2k`), so at least `n-2` are strictly
 positive and every `e_t` with `t <= n-2` has a strictly positive term. QED
@@ -107,7 +112,8 @@ then applies. QED
       ==>  knife_j > 0 for every admissible j.
 
 *Proof.* `r -> r(H-r)` is a downward parabola with vertex at `r = H/2`, and
-`H/2 = (D+4n-7)/4 > n-2` exactly when `D > 3`. So on `2 <= r <= n-2` the left
+`H/2 = (D+4n-7)/4 > n-2` exactly when `D > -1`, so in particular throughout the
+physical domain `D > 3`. So on `2 <= r <= n-2` the left
 side of `(*)` is increasing in `r` and its worst case is `r = n-2`, where
 `H - r = (D+2n-3)/2`. Substituting and solving `(*)` for `D` gives the stated
 bound; it is independent of `r`, so one inequality covers every depth. QED
@@ -191,7 +197,9 @@ then `K_r >= 0`.
 
 *Proof.* Split the integral at `w = eta`. On `[eta, 1]` every factor satisfies
 `w - eta_i >= w - eta >= 0`, so the product is at least `(w-eta)^r`;
-substituting `w = eta + (1-eta)u` and using `w >= (1-eta)u` gives
+substituting `w = eta + (1-eta)u` and using `w >= (1-eta)u` — which may be
+raised to the power `a-1` because `a = n-1/2-r >= 3/2 >= 1` on the physical
+domain — gives
 
     INT_eta^1 >= (1-eta)^{a+b+r-1} INT_0^1 u^{a+r-1}(1-u)^{b-1} du
               = (1-eta)^{a+b+r-1} B(a+r, b).
@@ -293,14 +301,103 @@ Closing the gap therefore required abandoning term-by-term monotonicity, not
 sharpening the constant — which is what §4b does, and it is where the factor of
 `n` was recovered.
 
+
+## 6b. What the domain-critic pass changed (2026-08-28)
+
+The critique is in `results/BFORM_CRITIQUE.md`. Every one of its checkable
+findings was re-verified exactly here before being accepted; four changed the
+content of this file.
+
+**Two arithmetic slips, both mine, both corrected above** (Lemma 3's identity and
+Theorem 6's parenthetical) and recorded as ERR-0014. Both were conservative,
+which is exactly why the machine checks did not catch them.
+
+**Theorem 6 is VACUOUS at the small `lam` the programme actually works at.**
+`D*(n, lam)` must exceed 3 to say anything, and it does not:
+
+| | lam = 1 | lam = 5/2 | lam = 7 |
+|---|---|---|---|
+| `D*(4, ·)` | 10.00 | 23.36 | 88.75 |
+| `D*(6, ·)` | **1.13** | 6.82 | 31.50 |
+| `D*(12, ·)` | **-13.44** | **-11.43** | **-3.99** |
+
+So at `n = 12` the theorem is empty at `lam = 1, 5/2, 7` — every value used in
+the project's own cancellation sweeps — and at `lam = 1` (Virasoro–Shapiro) it is
+empty for every `n >= 6`. This belongs in the statement, not in a footnote.
+
+**The all-depths threshold understates the theorem by a factor of `n` at shallow
+depth.** Condition `(*)` is depth-resolved; Theorem 6 quotes only its worst case
+`r = n-2`. Solving `(*)` at FIXED `r` gives a threshold linear in `n`:
+
+| | r = 2 | r = 4 | r = 8 |
+|---|---|---|---|
+| n = 12 | 51 | 124 | 268 |
+| n = 24 | 104 | 253 | 550 |
+| n = 48 | 209 | 512 | 1112 |
+
+`lam*/(r n)` sits at 2.13–2.90 and is flat in `n`, so the honest statement of the
+Leibniz route is `lam* ~ c · r · n` per depth, with the quadratic `3 n^2` being
+only what one gets after taking the worst depth. The critic's closed form for the
+all-depths asymptote, `lam*/n^2 -> (12 + 4 sqrt 3)/6 = 3.1547`, matches the
+measurement (3.131 at `n = 420`, still rising).
+
+**The representation explains the parity dichotomy in one line.** As `D -> inf`
+the Beta weight's mass goes to 0, so the `w -> 0` end dominates and
+`sign(K_r) -> sign(prod_i (-eta_i)) = (-1)^r = (-1)^{j-1}`. Odd `j` never turns
+negative; even `j` must. Verified at `n = 12`, `lam = 7`, `D = 50 .. 2e5`: `j = 3, 5`
+stay `+1` throughout, `j = 4, 6` are `+1` at `D = 50` and `-1` from `D = 500` on.
+That is the programme's long-measured parity asymmetry — even-`j` knives have
+thresholds, odd-`j` knives do not — derived rather than observed.
+
+## 6c. Why no constant-factor fix to this route can matter
+
+The obvious repair to Theorem 9 is to replace the crude `|prod_i (w-eta_i)| <=
+eta^r` on `[0, eta]` by the true envelope `max_{[0,eta]}|prod_i (w-eta_i)|`. That
+envelope is scale-invariant in `lam` (both numerator and `eta^r` scale together),
+so it is a pure function of `(n, r)`, and it is genuinely much smaller: measured
+`max|P|/eta^r` is about `2.4^{-r}`, e.g. `3.96e-7` at `n = 20, r = 18`.
+
+Substituting the measured envelope moves the threshold by **1.1x to 1.2x**
+(n = 12: 272 -> 229; n = 20: 531 -> 472; n = 28: 791 -> 721).
+
+The reason is worth stating because it closes the route. `NEG` carries
+`eta^{n-1/2}` and `eta ~ 1/lam^2`, so `NEG ~ lam^{-(2n-1)}`: a gain of factor `G`
+in `NEG` buys only `G^{1/(2n-1)}` in `lam`. A 2.5-million-fold improvement at
+`n = 20` is `(2.5e6)^{1/39} = 1.45`. **No constant, and no factor exponential in
+`r`, can move this threshold meaningfully.** Reaching `lam ~ 2n` requires a
+different decomposition, not a better bound inside this one. Together with the
+two fixes killed in `results/bform_gap_diagnosis.json`, that is three dead ends
+on the same split, measured rather than guessed.
+
+The critic also notes the deepest depth is structurally immune to the root
+contraction: `b_1 = b_{n-1} = B` is a double root of `prod_k (u - b_k)`, so one
+differentiation leaves it in place and `eta_max = B` exactly at `r = n-2`. That
+matches the measurement (`max(eta)/B = 1.0000` at `r = 18`, `n = 20`) and means
+any argument leaning on contraction cannot close the deepest knife.
+
 ## 7. Claim status and prior art (checked before any wording)
 
-**Claim state: source-supported by internal derivation and machine
-verification; NOT independently validated.** The proofs above are written out
-and every identity they rest on is machine-checked against the exact reference
-engine at non-vacuous points, but nothing here has had a literature pass by
-someone who knows the genre, and the project's own rule is that a claim is never
-approved by the role that produced it.
+**Claim state: independently-validated for the mathematics; NOT validated for
+novelty.** Two review passes ran on 2026-08-28, neither by the role that wrote
+the proofs.
+
+The independent-validator pass (`validation/VAL-BFORM-0001.yaml`,
+`lab/validator_bform_check.py`) rebuilt the closed form from
+`lab/jacobi_normal_form.py` alone — never importing the modules under review —
+and returned **PASS**. It hunted 13380 adversarially chosen points with `(*)`
+true (at equality in `(*)`, at `D = 3 + 1e-9`, `n = 4..60`, `lam = 1e-3..1e15`)
+and found **no counterexample**; it confirmed each monotonicity factor of
+Theorem 5 separately over 3952 cells, every step of Theorem 7 exactly, and the
+J-form and `(**)` of §4b. Non-vacuity: 77 of 544 probes just outside `(*)` have
+a NEGATIVE reference knife, so the hypothesis is not describing a trivially safe
+region. It also found the two arithmetic slips (ERR-0014) and the two writing
+gaps now fixed above.
+
+The domain-critic pass (`results/BFORM_CRITIQUE.md`) supplied §6b and §6c.
+
+**Not validated: any novelty or prior-art claim.** The literature pass has not
+been done; §7's POSSIBLY_KNOWN wording stands, and the critic would strengthen
+it — see below.
 
 **The ingredients are all classical** and this file does not pretend otherwise:
 Newton's inequalities on elementary symmetric functions of nonnegative reals;
@@ -318,6 +415,15 @@ knife sum has a form in which all the variables `b_k` lie below 1 uniformly, and
 that its lam-free weight is a polynomial in `t` that makes the depth truncation
 automatic and converts the whole sum into a derivative.
 
-**Novelty status: POSSIBLY_KNOWN for the technique; the application to the CHR
-knives is this project's.** Do not describe any of it as new in outward-facing
-text without a literature pass.
+**Novelty status: POSSIBLY_KNOWN for the technique, and the domain-critic pass
+would nudge that to LIKELY KNOWN.** Its reading: the transform is a composition
+of truncation-by-differentiation with a Pochhammer-ratio multiplier, i.e. an
+Erdelyi-Kober/Weyl fractional integral, and the genre to search first is
+Malo-Schur-Szego composition and Polya-Schur multiplier sequences (with
+`{e_t(b)}` a Polya frequency sequence by Aissen-Schoenberg-Whitney), modernised
+by Borcea-Branden; the multiplier step is the Askey-Gasper method reached from
+the other end. Finite free probability (Marcus-Spielman-Srivastava, and
+Hoskins-Kabluchko for derivative root distributions) is the right home for any
+`max(eta)` claim. The critic explicitly ran NO literature search, so this is a
+list of places to look, not a finding. Do not describe any of this as new in
+outward-facing text until someone has actually looked.

@@ -538,3 +538,38 @@ is a conic, has the rational point `(k, w) = (3, 3)`, and admits an explicit
 rational parametrization. Substituting `lam = lam(t)`, `k = k(t) + delta` with
 `delta in [-3/2, 3/2]` turns the odd-depth claim into a polynomial positivity
 problem in `(t, delta, K)` -- certifiable by the existing Bernstein pipeline.
+
+## ERR-0014 (2026-08-28) — two arithmetic slips in the positivity write-ups, both conservative
+
+Found by the domain-critic pass on the same day the theorems were written, not by
+me. Both are wrong as stated; neither breaks a conclusion, because both err in
+the safe direction.
+
+**(a) The lower bound in Lemma 3 (`results/BFORM_POSITIVITY_THEOREM.md`), and
+the same expression duplicated in `results/KERNEL_TP_THEOREM.md`'s corollary.**
+I wrote `H - 2r + 1 = (D-1)/2 + 2(n-2-r)`. The identity is
+`H - 2r + 1 = (D-1)/2 + 2(n-1-r)`, with `H = (D+4n-7)/2`. Checked exactly: my
+form fails in 27/27 test cases, the correct form in 0/27. My version understates
+the quantity by 2, so every positivity conclusion drawn from it still holds.
+Both files corrected.
+
+**(b) Theorem 6's parenthetical.** I wrote that `H/2 > n-2` holds "exactly when
+`D > 3`". It reduces to `D > -1`. The physical domain has `D > 3`, so the
+theorem's proof is unaffected — but the stated equivalence is false. Corrected to
+`D > -1`, with the note that this holds throughout the physical domain a
+fortiori.
+
+**The lesson is the one the repository already encodes and I did not apply.** I
+derived both expressions by hand and then machine-verified the THEOREMS built on
+them — the identity checks, the implications, the region — all of which passed,
+because both slips are conservative and therefore invisible to any check that
+only asks whether the conclusion holds. A check that cannot fail is not a check
+(ERR-0012). Every hand-derived intermediate identity must be machine-verified as
+an identity, separately from the result it feeds. `lab/bform_gap_diagnosis.py`
+now does this for the pieces it uses; the earlier modules did not.
+
+**Both review passes found (a) independently, in different but algebraically
+identical forms** — the domain-critic wrote `(D-1)/2 + 2(n-1-r)`, the
+independent-validator wrote `(D+3)/2 + 2(n-2-r)`; both equal `(D+4n-5-4r)/2`,
+and both differ from what I wrote. Two reviewers converging on the same line is
+the strongest signal available here that the slip was real and mine.

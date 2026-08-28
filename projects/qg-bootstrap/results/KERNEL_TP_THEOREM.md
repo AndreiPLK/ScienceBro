@@ -25,7 +25,7 @@ For integers `q >= 1`, `r0 >= t0 + q - 1 >= 0`, the solid minor with rows
 
 **Corollary (total positivity).** On the physical domain of the knife
 problem every row index satisfies `r <= n - 2`, and there
-`H - (2r - 1) = (D-1)/2 + 2(n - 2 - r) >= (D-1)/2 > 0` for `D > 3`. Every
+`H - (2r - 1) = (D-1)/2 + 2(n - 1 - r) >= (D-1)/2 > 0` for `D > 3`. Every
 root of the identity's right side is `<= 2(r0 + q - 1) - 1 = 2 r_max - 1`
 (the largest core root) or `<= r_max + t0 - 1 < 2 r_max - 1` (row factors),
 so every factor is strictly positive there. Hence ALL solid minors of the

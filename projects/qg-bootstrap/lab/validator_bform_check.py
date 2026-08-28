@@ -647,6 +647,10 @@ def check_7_jform() -> None:
                         bad_id += 1
                         fail("Thm8", f"J-form != K_r at n={n} r={r} lam={lam} D={D}")
                     # Theorem 9 soundness with the uniform bound eta <= B
+                    # unstated but needed in the .md proof: a >= 1, else
+                    # w^(a-1) >= ((1-eta)u)^(a-1) is FALSE
+                    if a < 1:
+                        fail("Thm9-a", f"a = C-r+1 < 1 at n={n} r={r}")
                     Bmax = fmpq((n - 2) ** 2) / (lam + (n - 1)) ** 2
                     if bb >= 1:
                         lhs = (
