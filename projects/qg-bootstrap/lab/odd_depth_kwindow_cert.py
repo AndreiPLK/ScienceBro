@@ -239,36 +239,71 @@ def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label="", ckpt_path=N
     box to exact (k_lo, k_hi) for the w bracket. Exact fmpq throughout.
 
     Environment restarts kill long runs, so the pending frontier is
-    checkpointed to ckpt_path every ~2 minutes (boxes only; grids are
-    re-derived for the restored frontier, which is cheap -- the frontier is
-    tens of boxes, not thousands)."""
+    checkpointed to ckpt_path every ~2 minutes (boxes only). Restored
+    frontier grids are NOT rebuilt per box from the monomials (at depth 7
+    that costs ~4 min per box and outlives the process): they are re-derived
+    by descending the split tree from the ROOT grid, reusing shared
+    prefixes -- the axis choice is deterministic, so each frontier box's
+    path from the root is reproducible, and one de Casteljau split per tree
+    node reaches all frontier boxes far cheaper."""
     t0 = time.time()
     root_w = [box[s][1] - box[s][0] for s in range(3)]
     boxes = 0
     open_boxes = []
     stack = None
+    dA = [A2.max_deg(s) for s in range(3)]
+    dB = [B2.max_deg(s) for s in range(3)]
+    matsA = {ax: make_split_mats(dA[ax]) for ax in range(3)}
+    matsB = {ax: make_split_mats(dB[ax]) for ax in range(3)}
+
+    def pick_axis(bx):
+        rel = [(bx[s][1] - bx[s][0]) / root_w[s] for s in range(3)]
+        return max(range(3), key=lambda s: rel[s])
+
+    def contains(outer, inner) -> bool:
+        return all(outer[s][0] <= inner[s][0] and inner[s][1] <= outer[s][1] for s in range(3))
+
     if ckpt_path is not None and ckpt_path.exists():
         st = json.loads(ckpt_path.read_text(encoding="utf-8"))
         if st.get("done"):
             print(f"    {label}: already done in checkpoint", flush=True)
             return (not st["open_boxes"]), st["boxes"], st["open_boxes"], 0.0
+        targets = [(_box_de(bs), dep) for bs, dep in st["pending"]]
+        gA, _ = fast_bernstein_grid(A2, box)
+        gB, _ = fast_bernstein_grid(B2, box)
         stack = []
-        for bs, dep in st["pending"]:
-            bx = _box_de(bs)
-            ga, _ = fast_bernstein_grid(A2, bx)
-            gb, _ = fast_bernstein_grid(B2, bx)
-            stack.append(((ga, gb), bx, dep))
+
+        def descend(ga, gb, bx, todo):
+            exact = [(tb, dp) for tb, dp in todo if tb == bx]
+            for tb, dp in exact:
+                stack.append(((ga, gb), tb, dp))
+            rest = [(tb, dp) for tb, dp in todo if tb != bx]
+            if not rest:
+                return
+            axis = pick_axis(bx)
+            lo, hi = bx[axis]
+            mid = (lo + hi) / 2
+            lbx, rbx = list(bx), list(bx)
+            lbx[axis], rbx[axis] = (lo, mid), (mid, hi)
+            left_t = [(tb, dp) for tb, dp in rest if contains(lbx, tb)]
+            right_t = [(tb, dp) for tb, dp in rest if contains(rbx, tb)]
+            assert len(left_t) + len(right_t) == len(rest), "frontier box off the split tree"
+            la, ra = fast_split_grid(ga, dA, axis, matsA[axis])
+            lb2, rb2 = fast_split_grid(gb, dB, axis, matsB[axis])
+            if left_t:
+                descend(la, lb2, lbx, left_t)
+            if right_t:
+                descend(ra, rb2, rbx, right_t)
+
+        descend(gA, gB, box, targets)
+        assert len(stack) == len(targets), "tree restore lost a frontier box"
         boxes = st["boxes"]
         open_boxes = st["open_boxes"]
-        print(f"    {label}: RESUME {len(stack)} frontier, {boxes} done ({time.time()-t0:.0f}s)", flush=True)
+        print(f"    {label}: RESUME {len(stack)} frontier via tree, {boxes} done ({time.time()-t0:.0f}s)", flush=True)
     if stack is None:
         gA, dA0 = fast_bernstein_grid(A2, box)
         gB, dB0 = fast_bernstein_grid(B2, box)
         stack = [((gA, gB), box, 0)]
-    dA = [A2.max_deg(s) for s in range(3)]
-    dB = [B2.max_deg(s) for s in range(3)]
-    matsA = {ax: make_split_mats(dA[ax]) for ax in range(3)}
-    matsB = {ax: make_split_mats(dB[ax]) for ax in range(3)}
     last_ckpt = time.time()
     while stack:
         (ga, gb), bx, depth = stack.pop()
