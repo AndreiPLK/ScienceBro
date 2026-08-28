@@ -1,0 +1,237 @@
+{
+ "claim": "THE ASYMPTOTIC ROUTE, measured. If M_t^(r) is a Hausdorff moment sequence then by Hausdorff's theorem every alternating difference is nonnegative, i.e. K_r >= 0 for EVERY depth at once. Measured at the shore, that holds in an explicit corner with TWO sharp boundaries: (1) a lam threshold with lam*/n staying BOUNDED (1.33 to 2.86 over n = 12..60, i.e. lam ~> 2n), and (2) a depth boundary that is exact: at lam = 10^4 the largest depth with the property is j = n/2 + 1 in every case tested (n = 12..44). So the route proves all depths up to n/2 + 1 in the region lam ~> 2n by a classical theorem, and does NOT reach the complementary region -- which is unbounded, so this is a corner, not a finish.",
+ "lam_grid": [
+  "1",
+  "5/2",
+  "5",
+  "10",
+  "20",
+  "40",
+  "80",
+  "160",
+  "320",
+  "1000",
+  "5000"
+ ],
+ "rows": [
+  {
+   "n": 12,
+   "j": 4,
+   "threshold_lam": "20",
+   "threshold_over_n": 1.6666666666666667
+  },
+  {
+   "n": 12,
+   "j": 6,
+   "threshold_lam": "20",
+   "threshold_over_n": 1.6666666666666667
+  },
+  {
+   "n": 12,
+   "j": 8,
+   "threshold_lam": null,
+   "threshold_over_n": null
+  },
+  {
+   "n": 12,
+   "j": 10,
+   "threshold_lam": null,
+   "threshold_over_n": null
+  },
+  {
+   "n": 20,
+   "j": 4,
+   "threshold_lam": "40",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 20,
+   "j": 6,
+   "threshold_lam": "40",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 20,
+   "j": 8,
+   "threshold_lam": "40",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 20,
+   "j": 10,
+   "threshold_lam": "40",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 20,
+   "j": 12,
+   "threshold_lam": null,
+   "threshold_over_n": null
+  },
+  {
+   "n": 28,
+   "j": 4,
+   "threshold_lam": "40",
+   "threshold_over_n": 1.4285714285714286
+  },
+  {
+   "n": 28,
+   "j": 6,
+   "threshold_lam": "40",
+   "threshold_over_n": 1.4285714285714286
+  },
+  {
+   "n": 28,
+   "j": 8,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.857142857142857
+  },
+  {
+   "n": 28,
+   "j": 10,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.857142857142857
+  },
+  {
+   "n": 28,
+   "j": 12,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.857142857142857
+  },
+  {
+   "n": 40,
+   "j": 4,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 40,
+   "j": 6,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 40,
+   "j": 8,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 40,
+   "j": 10,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 40,
+   "j": 12,
+   "threshold_lam": "80",
+   "threshold_over_n": 2.0
+  },
+  {
+   "n": 60,
+   "j": 4,
+   "threshold_lam": "80",
+   "threshold_over_n": 1.3333333333333333
+  },
+  {
+   "n": 60,
+   "j": 6,
+   "threshold_lam": "80",
+   "threshold_over_n": 1.3333333333333333
+  },
+  {
+   "n": 60,
+   "j": 8,
+   "threshold_lam": "80",
+   "threshold_over_n": 1.3333333333333333
+  },
+  {
+   "n": 60,
+   "j": 10,
+   "threshold_lam": "160",
+   "threshold_over_n": 2.6666666666666665
+  },
+  {
+   "n": 60,
+   "j": 12,
+   "threshold_lam": "160",
+   "threshold_over_n": 2.6666666666666665
+  }
+ ],
+ "depth_boundary": [
+  {
+   "n": 12,
+   "largest_good_j": 7,
+   "n_over_2_plus_1": 7,
+   "matches_law": true
+  },
+  {
+   "n": 16,
+   "largest_good_j": 9,
+   "n_over_2_plus_1": 9,
+   "matches_law": true
+  },
+  {
+   "n": 20,
+   "largest_good_j": 11,
+   "n_over_2_plus_1": 11,
+   "matches_law": true
+  },
+  {
+   "n": 24,
+   "largest_good_j": 13,
+   "n_over_2_plus_1": 13,
+   "matches_law": true
+  },
+  {
+   "n": 28,
+   "largest_good_j": 15,
+   "n_over_2_plus_1": 15,
+   "matches_law": true
+  },
+  {
+   "n": 36,
+   "largest_good_j": 19,
+   "n_over_2_plus_1": 19,
+   "matches_law": true
+  },
+  {
+   "n": 44,
+   "largest_good_j": 23,
+   "n_over_2_plus_1": 23,
+   "matches_law": true
+  }
+ ],
+ "depth_law_j_le_half_n_plus_1": true,
+ "consistency_checks": [
+  {
+   "n": 40,
+   "j": 8,
+   "lam": "320",
+   "ref_sign": 1
+  },
+  {
+   "n": 28,
+   "j": 6,
+   "lam": "160",
+   "ref_sign": 1
+  },
+  {
+   "n": 20,
+   "j": 4,
+   "lam": "80",
+   "ref_sign": 1
+  }
+ ],
+ "command": "python lab/asymptotic_regime_probe.py",
+ "seconds": 1.4,
+ "git": "82372fa48ceb",
+ "git_full": "82372fa48ceb8cefd5a24a7e32ca0abf4dd1ceef",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}

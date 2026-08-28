@@ -82,6 +82,10 @@ artefacts:
     added: '2026-08-16'
     note: referenced by a paper, document or lab module
     status: live
+  asymptotic_regime_probe.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   attack_blade.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module

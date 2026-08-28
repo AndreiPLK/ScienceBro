@@ -4381,3 +4381,56 @@ LEARNED: run the novelty gate on the same day as the theorem, while the
 proof is fresh -- the honest scope ("the technique is classical, the
 identification is ours") is easy to write now and painful to retrofit into
 a preprint later.
+
+## 2026-08-28 19:05 -- THE ASYMPTOTIC ROUTE: a corner where ALL depths follow from one classical theorem
+
+The route the handover put first has produced its first concrete result
+(results/asymptotic_regime_probe.json).
+
+THE IDEA, from the scaling limit. With n = rho*lam, D = d*lam and
+lam -> infinity, the normalized sequence collapses to a single geometric
+mode, M_t^(r) -> x^t, so the measure becomes ONE Dirac atom and
+K_r -> (1-x)^r, with the shore condition being exactly x <= 1. Away from the
+limit the atom spreads -- but if the finite sequence M_t^(r) is still a
+HAUSDORFF moment sequence, then by Hausdorff's theorem every alternating
+difference is nonnegative, i.e. K_r = (-1)^r Delta^r M_0 >= 0 for EVERY
+depth at once. No depth induction, no uniform constant: one classical
+theorem covers the whole family.
+
+WHERE IT HOLDS -- two sharp boundaries, both measured at the shore:
+
+1. A LAM THRESHOLD WITH BOUNDED RATIO. lam*(n, j)/n stays between 1.33 and
+   2.86 as n runs 12, 20, 28, 40, 60 (grid of powers of two, so lam* is
+   located to a factor of 2): the property switches on around lam ~ 2n and
+   stays on.
+2. AN EXACT DEPTH BOUNDARY. At lam = 10^4 the largest depth with the
+   property is j = n/2 + 1 -- exactly, in every case tested: 7, 9, 11, 13,
+   15, 19, 23 at n = 12, 16, 20, 24, 28, 36, 44. This is the same n/2
+   boundary the base sequence m showed earlier today, now sharp rather than
+   approximate.
+
+WHAT IT IS AND IS NOT. It is the first statement in the programme covering
+ALL depths at once in an unbounded region, by a named classical theorem
+rather than a per-depth certificate. It is NOT a finish: the complementary
+region (lam below ~2n, or j above n/2 + 1) is itself unbounded, so it cannot
+be handed to the compact-region machinery the way lam <= 7 was.
+
+RESULT: an explicit corner -- lam ~> 2n and j <= n/2 + 1 -- where knife
+  positivity for all depths follows from complete monotonicity.
+EVIDENCE: results/asymptotic_regime_probe.json (thresholds per (n, j), the
+  exact depth law, consistency spot-checks in the implication direction).
+STATUS: measured. Two things would make it a theorem: proving M is
+  completely monotone in that corner, and sharpening lam* (the grid is
+  coarse by a factor of 2).
+NOVELTY: the mechanism is Hausdorff's theorem, entirely classical; what is
+  ours is the identification of the corner. NOVELTY_UNCHECKED beyond that.
+LEARNED: the scaling limit was treated for a year as an asymptotic FACT;
+  read as a statement about the MEASURE (one atom) it becomes a hypothesis
+  about finite n that is exactly testable -- and true in a describable
+  region. Re-read old limits as structural claims, not just as numbers.
+NEXT: (a) prove complete monotonicity in the corner -- with the measure a
+  perturbed single atom there, a Hausdorff criterion via the explicit
+  E_{2t}(n) structure looks reachable; (b) locate lam* sharply (bisect
+  rather than the power-of-two grid) and test whether lam*/n has a limit;
+  (c) the complementary region needs a different idea -- the j > n/2 + 1
+  half may want the m = n - j variable instead, where the roles invert.
