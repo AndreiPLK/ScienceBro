@@ -122,6 +122,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  cancellation_bound_sweep.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   charlier_reduction.json:
     added: untracked
     note: referenced by a paper, document or lab module

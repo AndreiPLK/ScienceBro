@@ -4271,3 +4271,46 @@ NEXT: attack (ii) directly -- the positive part is dominated by the mass
   near the smallest nodes, so bound the ratio by the first few Christoffel
   weights against the tail; and check whether c can be taken independent of
   n and lam as the data suggest.
+
+## 2026-08-28 17:40 -- My own theorem shape challenged within the hour
+
+The step (ii) I wrote down at 17:05 -- "a bound |negative| <= c |positive|
+with c < 1 UNIFORM IN r" -- does not survive its own widening test
+(results/cancellation_bound_sweep.json, 486 verified rows):
+
+* on the wider grid (n <= 40, j <= 12, lam over five orders) the worst
+  cancellation ratio is 0.912, not 0.70;
+* the ratio does not grow monotonically in depth: at n = 40, lam = 7 it
+  rises to 0.954 at j = 14 and falls back to 0.54 by j = 24, so the worst
+  case sits at INTERMEDIATE depth;
+* and the peak GROWS WITH THE LEVEL: 0.68, 0.80, 0.89, 0.95 at
+  n = 14, 20, 28, 40 (lam = 7), i.e. 1 - peak = 0.34, 0.20, 0.11, 0.046.
+
+All 486 rows keep both verifications (moments and K_r reproduced) and the
+quadrature sign agrees with the reference engine everywhere, so the
+measurement is sound; and the peaks are LOWER bounds, because the
+quadrature rule is capped at 12 points (j <= 24).
+
+HONEST VERDICT. The mechanism is real but ASYMPTOTICALLY TIGHT in n: a
+proof cannot fix a constant c < 1 and must instead track how the two parts
+approach each other, or pair terms rather than bound groups. That is a
+harder theorem than the one I proposed, and knowing it now is worth more
+than an hour of building on a false shape. It also explains, independently,
+why every earlier route died at large n and near the shore: the object is
+marginal there in TWO directions at once.
+
+RESULT: proposed theorem shape refuted by its own measurement; the
+  asymptotic tightness in n quantified (1 - peak ~ 0.34 -> 0.046).
+EVIDENCE: results/cancellation_bound_sweep.json (486 verified rows plus the
+  peak trend).
+STATUS: measured; the trend is a lower bound, so the true behaviour may be
+  worse, not better.
+LEARNED: measure a proposed constant's DEPENDENCE before building on it --
+  the first grid said 0.70 and looked like a margin; three parameters later
+  it reads as an approach to 1. Sample the direction a constant could
+  degrade in, not just the region it was found in.
+NEXT: since c -> 1, look for the exact pairing instead of a bound: adjacent
+  quadrature nodes whose contributions cancel in pairs would give the
+  positivity structurally; also test whether 1 - c has a clean law in n
+  (the data suggest a power decay), which would itself be the theorem's
+  quantitative core.
