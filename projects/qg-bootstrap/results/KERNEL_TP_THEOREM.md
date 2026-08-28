@@ -94,3 +94,31 @@ theorem with the exact affine depth recursion
 positive-measure hypothesis for `M` is already refuted at small `lam`
 (results/moment_kernel_probe.json), so the pairing must use something
 weaker than a Hausdorff measure.
+
+## Prior art and novelty status (checked 2026-08-28, before any claim)
+
+**The proof mechanism is classical, and this file does not claim otherwise.**
+Step 3 is the standard polynomial-alternant fact: for `q` linearly
+independent polynomials of degree `< q`, the determinant of the alternant is
+the determinant of the coefficient matrix times the Vandermonde determinant;
+with monic columns of degrees `0..q-1` the coefficient determinant is 1 and
+one gets the Vandermonde outright. That is textbook, and determinant
+evaluations of binomial/factorial kernels are a developed genre --
+Krattenthaler's *Advanced Determinant Calculus* (Sém. Lothar. Combin. 42
+(1999), B42q) and its *Complement* (Linear Algebra Appl. 411 (2005) 68-166)
+collect the family, with Lindström-Gessel-Viennot as the combinatorial
+route. A targeted search did not turn up this exact kernel, but absence in a
+search is not absence in the literature, and the pieces here are elementary
+enough that a specialist may well recognize it immediately.
+
+What is specific to this project is therefore NOT the determinant technique
+but (a) noticing that the column factors `(y - t0 - i)(H - t0 - i - y)` have
+roots symmetric about `H/2`, so a single quadratic substitution
+`z = y^2 - Hy` linearizes every column at once; (b) that the resulting root
+bound `2 r_max - 1` sits below `H` exactly on the physical domain of the
+knife problem, which is what turns the identity into strict total positivity
+where it is needed.
+
+**Novelty status: POSSIBLY_KNOWN.** Do not describe the identity as new in
+any outward-facing text without a proper literature pass by someone who
+knows this genre.

@@ -4355,3 +4355,29 @@ NEXT (for a fresh session, in order of promise): (a) the asymptotic route --
   route so far imposes D <= T_hat only at the end, whereas the measured
   control shows the bound failing exactly when the physics does, so the
   shore may belong inside the representation itself.
+
+## 2026-08-28 18:30 -- Novelty gate applied to the day's theorem: POSSIBLY_KNOWN
+
+Before any outward wording, the kernel identity was checked against the
+determinant-evaluation literature. The verdict is that its MECHANISM is
+classical: the polynomial-alternant fact (monic columns of degrees 0..q-1
+give the Vandermonde outright) is textbook, and determinant evaluations of
+binomial/factorial kernels are a developed genre -- Krattenthaler's
+*Advanced Determinant Calculus* (Sem. Lothar. Combin. 42 (1999), B42q) and
+its *Complement* (Linear Algebra Appl. 411 (2005) 68-166), with
+Lindstrom-Gessel-Viennot as the combinatorial route. A targeted search did
+not surface this exact kernel, but absence in a search is not absence in the
+literature.
+
+So results/KERNEL_TP_THEOREM.md now carries an explicit prior-art section
+and the status POSSIBLY_KNOWN. What is ours is narrower and stated as such:
+the observation that the column factors have roots symmetric about H/2 (so
+one quadratic substitution linearizes all columns), and that the resulting
+root bound 2 r_max - 1 falls below H exactly on the physical domain, which
+is what converts the identity into strict total positivity where the knife
+problem needs it.
+
+LEARNED: run the novelty gate on the same day as the theorem, while the
+proof is fresh -- the honest scope ("the technique is classical, the
+identification is ours") is easy to write now and painful to retrofit into
+a preprint later.
