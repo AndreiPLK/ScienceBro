@@ -234,6 +234,36 @@ def _box_de(bs):
     return [(fmpq(lo), fmpq(hi)) for lo, hi in bs]
 
 
+def _grid_save(path: Path, grid: dict) -> None:
+    path.write_text(
+        json.dumps({",".join(map(str, k)): [str(v.p), str(v.q)] for k, v in grid.items()}),
+        encoding="utf-8",
+    )
+
+
+def _grid_load(path: Path) -> dict:
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    return {
+        tuple(map(int, k.split(","))): fmpq(int(p), int(q)) for k, (p, q) in raw.items()
+    }
+
+
+def root_grids(A2, B2, box, cache_prefix: Path | None):
+    """Root Bernstein grids, cached to disk: at depth 7 building them takes
+    ~4 minutes and the environment kills processes faster than that."""
+    if cache_prefix is not None:
+        pa = cache_prefix.with_name(cache_prefix.name + "_A.json")
+        pb = cache_prefix.with_name(cache_prefix.name + "_B.json")
+        if pa.exists() and pb.exists():
+            return _grid_load(pa), _grid_load(pb)
+    gA, _ = fast_bernstein_grid(A2, box)
+    gB, _ = fast_bernstein_grid(B2, box)
+    if cache_prefix is not None:
+        _grid_save(pa, gA)
+        _grid_save(pb, gB)
+    return gA, gB
+
+
 def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label="", ckpt_path=None):
     """Bernstein bisection for A2 + B2*w >= 0 on box; k_range_of_box maps a
     box to exact (k_lo, k_hi) for the w bracket. Exact fmpq throughout.
@@ -269,8 +299,9 @@ def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label="", ckpt_path=N
             print(f"    {label}: already done in checkpoint", flush=True)
             return (not st["open_boxes"]), st["boxes"], st["open_boxes"], 0.0
         targets = [(_box_de(bs), dep) for bs, dep in st["pending"]]
-        gA, _ = fast_bernstein_grid(A2, box)
-        gB, _ = fast_bernstein_grid(B2, box)
+        gA, gB = root_grids(
+            A2, B2, box, ckpt_path.with_name("rootgrid_" + ckpt_path.stem) if ckpt_path else None
+        )
         stack = []
 
         def descend(ga, gb, bx, todo):
@@ -301,8 +332,9 @@ def prove_piece(A2, B2, box, k_range_of_box, max_depth=26, label="", ckpt_path=N
         open_boxes = st["open_boxes"]
         print(f"    {label}: RESUME {len(stack)} frontier via tree, {boxes} done ({time.time()-t0:.0f}s)", flush=True)
     if stack is None:
-        gA, dA0 = fast_bernstein_grid(A2, box)
-        gB, dB0 = fast_bernstein_grid(B2, box)
+        gA, gB = root_grids(
+            A2, B2, box, ckpt_path.with_name("rootgrid_" + ckpt_path.stem) if ckpt_path else None
+        )
         stack = [((gA, gB), box, 0)]
     last_ckpt = time.time()
     while stack:
