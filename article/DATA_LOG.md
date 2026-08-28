@@ -4088,3 +4088,63 @@ LEARNED: measure the unit cost before assuming an environment can be
 engineered around. Five successive survivability layers each looked like
 the last one needed; the arithmetic (230 s of restore vs a 180 s process
 lifetime) settles it in one line and should have been done first.
+
+## 2026-08-28 15:40 -- CHARLIER REDUCTION: the depth index becomes a classical orthogonal family
+
+The outside report's moment route is not dead -- it was aimed at the wrong
+sequence, and the correction changes its character (all verified exactly,
+results/charlier_reduction.json, results/base_moment_probe.json):
+
+1. THE SPLIT (144 trials, 0 violations).  M_t^(r) = (H-r)_t * m_t with
+
+       m_t = t! E_{2t}(n) / [ s^{2t} (n-1)_t (n-3/2)_t ],   s = lam+n-1,
+
+   INDEPENDENT of both the depth r and the dimension D. Every trace of r
+   in the reorganized knife sum is a single falling factorial. That is
+   exactly why a fixed Hausdorff hypothesis for M_t^(r) was ill-posed: the
+   sequence tested changes with r, this one does not.
+
+2. THE CHARLIER FORM (45 recurrence trials, 0 violations; 108 sign trials
+   against the reference engine, 0 mismatches, 8 negative references).
+   With g = H - r,
+
+       K_r = sum_t (-1)^t C(r,t) (g)_t m_t,
+       P_r(y) := sum_t C(r,t) (g)_t (-y)^t  =  C_r(g ; 1/y),
+
+   the CHARLIER polynomial (verified against the standard three-term
+   recurrence). So a Hausdorff representation of m gives
+
+       K_r = INT_0^1 C_r(H-r ; 1/y) dmu(y),
+
+   turning all-depths positivity into a zero/positivity question for a
+   classical orthogonal family IN THE DEPTH INDEX -- with a century of
+   zero bounds available, uniform in r by construction. This is the first
+   time the depth direction has landed on a named classical family.
+
+3. THE REGIME, measured and sharp. m_t IS a Hausdorff moment sequence for
+   t up to about n/2 and fails beyond; the boundary is INDEPENDENT of lam
+   at every n tested, over five orders of magnitude (lam = 1/10 to 5000).
+   The failure is therefore intrinsic to the central factorial numbers
+   E_{2t}(n), not to the amplitude parameter. Concretely the clean range
+   is tmax/n ~ 0.47-0.6 while the admissible range is t <= n-2, so as it
+   stands the route covers knives with j-1 <~ n/2, not all j.
+
+Checkpoint:
+RESULT: exact split + Charlier identification + measured moment regime.
+EVIDENCE: charlier_reduction.json, base_moment_probe.json.
+STATUS: (1),(2) verified identities; (3) measured, lam-independence is a
+  strong structural signal but not a proof.
+NOVELTY: NOVELTY_UNCHECKED -- Charlier/2F0 identifications are classical;
+  what is ours is the identification of THIS knife family's depth index
+  with that structure.
+TIME: ~40 min from the failed M-hypothesis to the corrected reduction.
+LEARNED: when a hypothesis about a sequence fails, check first whether the
+  sequence was even well-defined for the question -- here the tested object
+  moved with the very index the hypothesis quantified over. Splitting off
+  the r-dependence took one line and changed the verdict.
+NEXT: (a) why does the moment property break at t ~ n/2? (the boundary is
+  lam-free, so it is a statement about E_{2t}(n) alone -- likely provable);
+  (b) for j-1 <~ n/2, push the Charlier route to an actual positivity
+  statement via classical zero bounds (largest zero of C_r(.;a) vs g);
+  (c) the complementary regime j-1 > n/2 has small m = n-j and may want a
+  moment structure in m instead.

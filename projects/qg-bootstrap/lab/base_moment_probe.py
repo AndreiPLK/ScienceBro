@@ -38,7 +38,7 @@ from pathlib import Path
 from flint import fmpq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from moment_kernel_probe import E2_list, falling, leading_minors, shore  # noqa: E402
+from moment_kernel_probe import E2_list, falling, leading_minors  # noqa: E402
 from provenance import stamp  # noqa: E402
 
 RES = Path(__file__).resolve().parents[1] / "results"
