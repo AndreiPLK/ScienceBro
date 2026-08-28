@@ -102,6 +102,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  base_moment_probe.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   blade_proof.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
@@ -116,6 +120,10 @@ artefacts:
     status: live
   bruteforce_recheck.json:
     added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  charlier_reduction.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   chr_closed_form.json:

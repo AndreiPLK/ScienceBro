@@ -1,0 +1,140 @@
+{
+ "split_identity": {
+  "trials": 144,
+  "violations": 0
+ },
+ "charlier_recurrence": {
+  "trials": 45,
+  "violations": 0
+ },
+ "K_reconstruction": {
+  "trials": 108,
+  "mismatches": 0,
+  "negative_refs": 8
+ },
+ "hausdorff_regime": {
+  "lam_independent_everywhere": true,
+  "rows": [
+   {
+    "n": 8,
+    "n_minus_2": 6,
+    "tmax_clean": {
+     "1/10": 4,
+     "3": 4,
+     "72": 4,
+     "5000": 4
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 10,
+    "n_minus_2": 8,
+    "tmax_clean": {
+     "1/10": 6,
+     "3": 6,
+     "72": 6,
+     "5000": 6
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 12,
+    "n_minus_2": 10,
+    "tmax_clean": {
+     "1/10": 6,
+     "3": 6,
+     "72": 6,
+     "5000": 6
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 14,
+    "n_minus_2": 12,
+    "tmax_clean": {
+     "1/10": 8,
+     "3": 8,
+     "72": 8,
+     "5000": 8
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 16,
+    "n_minus_2": 14,
+    "tmax_clean": {
+     "1/10": 8,
+     "3": 8,
+     "72": 8,
+     "5000": 8
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 20,
+    "n_minus_2": 18,
+    "tmax_clean": {
+     "1/10": 10,
+     "3": 10,
+     "72": 10,
+     "5000": 10
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 24,
+    "n_minus_2": 22,
+    "tmax_clean": {
+     "1/10": 12,
+     "3": 12,
+     "72": 12,
+     "5000": 12
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 30,
+    "n_minus_2": 28,
+    "tmax_clean": {
+     "1/10": 14,
+     "3": 14,
+     "72": 14,
+     "5000": 14
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 40,
+    "n_minus_2": 38,
+    "tmax_clean": {
+     "1/10": 20,
+     "3": 20,
+     "72": 20,
+     "5000": 20
+    },
+    "lam_independent": true
+   },
+   {
+    "n": 60,
+    "n_minus_2": 58,
+    "tmax_clean": {
+     "1/10": 28,
+     "3": 28,
+     "72": 28,
+     "5000": 28
+    },
+    "lam_independent": true
+   }
+  ]
+ },
+ "claim": "VERIFIED: (a) M_t^(r) = (H-r)_t m_t with m_t independent of r and D -- the r-dependence of the reorganized knife sum is entirely in a falling factorial; (b) P_r(y) = sum_t C(r,t)(g)_t(-y)^t is the Charlier polynomial C_r(g;1/y), verified against the standard three-term recurrence, so a Hausdorff representation of m would give K_r = INT C_r(H-r;1/y) dmu(y), a uniform-in-depth classical structure. MEASURED, NOT PROVED: m_t is a Hausdorff moment sequence exactly for t up to about n/2 and fails beyond, with a boundary independent of lam over five orders of magnitude; so this route currently covers knives with j-1 <~ n/2 only.",
+ "seconds": 7.8,
+ "git": "7766088738ee",
+ "git_full": "7766088738ee566c4abfb1d1db1d3e98e0ab6ded",
+ "dirty": false,
+ "dirty_code_files": [],
+ "dirty_count": 0,
+ "python": "3.12.3",
+ "flint": "0.9.0",
+ "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39"
+}
