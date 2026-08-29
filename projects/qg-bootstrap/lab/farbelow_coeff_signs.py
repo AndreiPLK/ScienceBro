@@ -16,7 +16,12 @@ The formula itself is not taken on trust: it was verified against the assembled
 polynomial at every k for j = 6 and j = 9 (0 mismatches), and this file re-checks
 its own output against `farbelow_negative_pattern`'s artefact wherever one exists.
 
-Run: KNIFE_J=18 python lab/farbelow_coeff_signs.py -> results/farbelow_coeff_signs_j<J>.json
+V_OFFSET shifts v so the run sits inside the regime n >= 2J-3, exactly as the repair
+certificate does; without it the criterion is being asked to hold where it is known
+not to, and a negative there says nothing.
+
+Run: KNIFE_J=18 [V_OFFSET=k] python lab/farbelow_coeff_signs.py
+     -> results/farbelow_coeff_signs_j<J>[_v<k>].json
 """
 
 from __future__ import annotations
@@ -52,7 +57,8 @@ def negatives_of(P: Q3Poly) -> list[tuple[int, ...]]:
 
 def main() -> int:
     t0 = time.time()
-    lam, D_num, den, m_expr = region()
+    v_offset = int(os.environ.get("V_OFFSET", "0"))
+    lam, D_num, den, m_expr = region(v_offset=v_offset)
     n_expr = m_expr + 3
     s = lam + (n_expr - 1)
     c_const = 4 * n_expr - 4 * J - 1
@@ -110,7 +116,9 @@ def main() -> int:
         "runtime_s": round(time.time() - t0, 1),
         **stamp(),
     }
-    (RES / f"farbelow_coeff_signs_j{J}.json").write_text(
+    out["v_offset"] = v_offset
+    name = f"farbelow_coeff_signs_j{J}" + (f"_v{v_offset}" if v_offset else "") + ".json"
+    (RES / name).write_text(
         json.dumps(out, indent=2), encoding="utf-8"
     )
     negs = {r["k"]: r["negative"] for r in rows if r["negative"]}

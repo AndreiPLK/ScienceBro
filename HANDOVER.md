@@ -1,6 +1,10 @@
 # HANDOVER — read this first
 
-Last updated: 2026-08-29 16:07 local (from `date`, not memory).
+Last updated: 2026-08-29 22:10 local (from `date`, not memory).
+
+**Start with `projects/qg-bootstrap/results/THEOREM_STATE.md`.** It says in one page
+what is proved tonight, what the ceiling is, and which two gaps remain. Everything
+below is detail behind it.
 
 ## Starting a new session from scratch
 
@@ -383,3 +387,46 @@ uv run sb check          # ruff + mypy + pytest + integrity
 python lab/keystone_unglued.py <d>     # main argument, one depth
 python lab/monotonicity_cert.py <d>    # step (c)
 ```
+
+
+## Evening of 29 August — what changed after 21:00
+
+**The theorem is stated exactly** in `results/THEOREM_STATE.md`:
+Proposition 1 (the grouping reduction) is a proof at every depth; Theorem 2 gives
+far-below positivity at `j = 9..16` with both hypotheses certified. The ceiling is
+**leg (a)**, not (R) — (R) is certified at 17 depths to 50, (a) computed only to 16
+because it used to need the whole polynomial. That cost is now down, and
+`lab/farbelow_coeff_signs.py` accepts `V_OFFSET` so it can be run inside the regime
+exactly as the repair certificate is.
+
+**Gap 2 shrank from a search to an estimate.** `results/POISSON_BINOMIAL_VIEW.md`
+decodes `f` as the reciprocal variance of a tilted Bernoulli sum (split exact at
+finite `n`; limit measured, gap flat `O(1/n)`), and
+`results/edgeworth_prediction.json` writes `g` out:
+
+    log rho = 1/K'' + K''''/(2 K''^3) - K'''^2/K''^4
+
+in the tilted cumulants, with the residual falling like `1/n^3` where the Gaussian
+term alone leaves `O(1/n^2)`. What a proof still owes is a remainder bound.
+
+**The AP-square brief was checked and survives** (`results/AP_BRIEF_VERIFICATION.md`,
+6 of 6 clean, their Conjecture 1 attacked on 14652 exact cases). It halves the
+object: the physical spectrum is the centered point and `p_t` is a hypergeometric
+self-convolution of the half spectrum.
+
+**But its Problem 2 as stated is false** (`results/SELFCONV_PRESERVATION.md`): 1561
+of 2800 general RLC inputs map to non-RLC outputs. Among real-rooted inputs, 1409
+cases held with none against, including the 174 nearest to breaking. The
+load-bearing hypothesis is real-rootedness, not RLC.
+
+**Two audit lessons, both cheap to repeat and expensive to miss.** A background run
+reported exit code 0 without running the module at all — artefacts and their
+timestamps are the evidence, never exit codes. And the ad-hoc certificate audit had
+two bugs that made a TRUE claim look false; it is now `lab/certificate_audit.py`
+with the artefact-name pattern and key names in one place.
+
+### Left running at the close
+`conjecture_B_rungs.py` with `RUNG_TOP=200`; leg (a) at `j = 17` and `j = 18`; a
+check that `c_{J-1} = den^{J-1} E_{J-1}` is manifestly nonnegative at every depth
+(one-term collapse of the coefficient formula — if it lands clean, that is the first
+piece of leg (a) that is uniform in `J`).
