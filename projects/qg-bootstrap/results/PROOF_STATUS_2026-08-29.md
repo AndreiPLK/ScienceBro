@@ -36,6 +36,7 @@ one grouping — depths that previously needed the interval-Bernstein route.
 | the `b`-multiset is doubled: `prod (u - b_k)` is a perfect square, `E_{2t}` a self-convolution | **proved** (one line), and new to this repository |
 | the transform of the B-form is the Schur–Szegő composition (Szegő 1922, Walsh 1922) | identified exactly, novelty of the technique KNOWN |
 | squares of an AP have a Gamma-ratio generating function | verified exactly |
+| the family is a tilted Poisson-binomial, and f is its reciprocal tilted variance | split **exact** at finite n; the limit measured, gap exactly O(1/n) (`POISSON_BINOMIAL_VIEW.md`) |
 
 ## What was withdrawn today
 

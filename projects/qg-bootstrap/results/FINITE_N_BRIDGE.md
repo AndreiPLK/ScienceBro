@@ -231,3 +231,15 @@ much below 5.65, since `45(M_{45,22} - f(22/45)) = 5.645`.
 So the bridge is no longer an open analytic problem: it is two inequalities about
 an explicitly recursive family, with every numerical precondition checked and the
 two base cases already in hand.
+
+
+## Update, 2026-08-29 evening: the remaining ask has changed shape
+
+The expansion M = f + g/n + O(1/n^2) is no longer a statement about elementary
+symmetric functions. `results/POISSON_BINOMIAL_VIEW.md` identifies the family as a
+tilted Poisson-binomial and decodes f as n/sigma^2(s_t) - 1/theta - 1/(1-theta),
+with the split exact at finite n and the limit measured to a flat O(1/n).
+
+So what is wanted is an effective local limit theorem for a Bernoulli sum with
+explicitly known tilted cumulants -- a classical subject with effective versions,
+where the previous formulation had none.

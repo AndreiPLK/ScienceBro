@@ -5847,3 +5847,35 @@ negative monomials with no escalation recorded. It was never re-run.
 Corrected the wording everywhere to the exact list -- J = 7, 9, 12, 16, 20, 25-32,
 35, 40, 50 -- and put J = 45 back in the queue. A phrase like "every J tested" is
 exactly the kind that drifts ahead of the data; the audit exists to catch it.
+
+### 2026-08-29 evening -- the limit shape was a tilted variance all along
+
+A prior-art check on conjecture (B) (Fatehi and Kittaneh, arXiv:1911.12167) came
+back negative on (B) itself: they prove log-concavity and unimodality, nothing
+about ratio log-concavity or any upper bound on the Newton excess. Verified by
+reading the PDF text directly rather than a summary of it -- the strings "ratio
+log" and "log-monoton" occur zero times.
+
+But their Theorem 6 says the array is Poisson-binomially distributed, and that
+unlocked the limit shape. prod (1 + b_i s) is the pgf of a Bernoulli sum and s is
+an exponential tilt. Then the Newton excess of e_t is tilt-invariant, M splits
+exactly as n(rho_t beta_t - 1) with beta_t the explicit binomial factor, and the
+leftover is n/sigma^2(s_t). The check by hand came first: with b_i = i^2 and
+s = 1/a^2 the tilted mean gives theta = 1 - arctan(u)/u with u = n/a -- the same u
+the limit shape was already written in. It was never a change of variable; it was
+the tilt.
+
+Exact split: 0 mismatches over every even n = 8..40 and every 2 <= t <= N-3.
+Limit: relative gap times n flat at 0.1890 / 0.4017 / 0.6504 / 0.9550 / 1.3065
+across n = 100, 200, 400, so the gap is exactly O(1/n) and the limit is equality.
+
+My own guess rho - 1 <= 1/sigma^2 died immediately: 12 failures of 12, always the
+other way, ratio 1.031 at n = 60 falling to 1.009 at n = 200 -- which is the sign
+of g seen from a second side.
+
+The remaining gap is now an effective local limit theorem for a Bernoulli sum, not
+an asymptotic for a ratio of elementary symmetric functions. The first has an
+effective literature; the second had none.
+
+Also today: a background run reported exit code 0 and touched nothing -- the module
+never ran. Caught by reading the artefact timestamp instead of the exit code.

@@ -1,0 +1,314 @@
+{
+  "what": "the central factorial family is a Poisson-binomial pmf; f(theta) decoded as n/sigma^2 of the tilted distribution minus the binomial terms",
+  "source_of_the_idea": "Fatehi & Kittaneh, arXiv:1911.12167, Theorem 6 (Poisson-binomial); the tilt reading and everything below are ours",
+  "exact_split_mismatches": [],
+  "limit_shape_vs_tilted_variance": [
+    {
+      "theta": 0.1,
+      "n": 100,
+      "n_over_sigma2": 12.045611143069548,
+      "f_plus_binomial_terms": 12.022850074259173,
+      "relative_gap": 0.0018931508477434415,
+      "gap_times_n": 0.18931508477434417
+    },
+    {
+      "theta": 0.1,
+      "n": 200,
+      "n_over_sigma2": 12.034216803747244,
+      "f_plus_binomial_terms": 12.022850074259173,
+      "relative_gap": 0.0009454272005276695,
+      "gap_times_n": 0.1890854401055339
+    },
+    {
+      "theta": 0.1,
+      "n": 400,
+      "n_over_sigma2": 12.028529857448943,
+      "f_plus_binomial_terms": 12.022850074259173,
+      "relative_gap": 0.0004724157046532281,
+      "gap_times_n": 0.18896628186129125
+    },
+    {
+      "theta": 0.2,
+      "n": 100,
+      "n_over_sigma2": 7.3308580200115,
+      "f_plus_binomial_terms": 7.301365508876512,
+      "relative_gap": 0.004039314440447232,
+      "gap_times_n": 0.4039314440447232
+    },
+    {
+      "theta": 0.2,
+      "n": 200,
+      "n_over_sigma2": 7.316058437284638,
+      "f_plus_binomial_terms": 7.301365508876512,
+      "relative_gap": 0.0020123534961047134,
+      "gap_times_n": 0.4024706992209427
+    },
+    {
+      "theta": 0.2,
+      "n": 400,
+      "n_over_sigma2": 7.308698666382692,
+      "f_plus_binomial_terms": 7.301365508876512,
+      "relative_gap": 0.0010043542536344221,
+      "gap_times_n": 0.40174170145376886
+    },
+    {
+      "theta": 0.3,
+      "n": 100,
+      "n_over_sigma2": 6.031989873994178,
+      "f_plus_binomial_terms": 5.992684261488349,
+      "relative_gap": 0.00655893265701061,
+      "gap_times_n": 0.655893265701061
+    },
+    {
+      "theta": 0.3,
+      "n": 200,
+      "n_over_sigma2": 6.01222631783604,
+      "f_plus_binomial_terms": 5.992684261488349,
+      "relative_gap": 0.003260985477455866,
+      "gap_times_n": 0.6521970954911732
+    },
+    {
+      "theta": 0.3,
+      "n": 400,
+      "n_over_sigma2": 6.00242784597667,
+      "f_plus_binomial_terms": 5.992684261488349,
+      "relative_gap": 0.0016259132073648008,
+      "gap_times_n": 0.6503652829459203
+    },
+    {
+      "theta": 0.4,
+      "n": 100,
+      "n_over_sigma2": 5.690926490222142,
+      "f_plus_binomial_terms": 5.636483585141527,
+      "relative_gap": 0.00965901953908515,
+      "gap_times_n": 0.965901953908515
+    },
+    {
+      "theta": 0.4,
+      "n": 200,
+      "n_over_sigma2": 5.663499308243829,
+      "f_plus_binomial_terms": 5.636483585141527,
+      "relative_gap": 0.004793010162137121,
+      "gap_times_n": 0.9586020324274241
+    },
+    {
+      "theta": 0.4,
+      "n": 400,
+      "n_over_sigma2": 5.64994064295711,
+      "f_plus_binomial_terms": 5.636483585141527,
+      "relative_gap": 0.0023874917068963638,
+      "gap_times_n": 0.9549966827585454
+    },
+    {
+      "theta": 0.49,
+      "n": 100,
+      "n_over_sigma2": 5.842882264426573,
+      "f_plus_binomial_terms": 5.7664637218565336,
+      "relative_gap": 0.013252236770413024,
+      "gap_times_n": 1.3252236770413024
+    },
+    {
+      "theta": 0.49,
+      "n": 200,
+      "n_over_sigma2": 5.804311495251345,
+      "f_plus_binomial_terms": 5.7664637218565336,
+      "relative_gap": 0.00656342868357229,
+      "gap_times_n": 1.312685736714458
+    },
+    {
+      "theta": 0.49,
+      "n": 400,
+      "n_over_sigma2": 5.785298580437985,
+      "f_plus_binomial_terms": 5.7664637218565336,
+      "relative_gap": 0.00326627539683678,
+      "gap_times_n": 1.3065101587347119
+    }
+  ],
+  "candidate_finite_n_inequality": {
+    "statement": "rho_t - 1 <= 1/sigma^2(s_t)",
+    "rows": [
+      {
+        "n": 60,
+        "t": 6,
+        "rho_minus_1": 0.2072642445784793,
+        "one_over_sigma2": 0.20101404570171283,
+        "holds": false
+      },
+      {
+        "n": 60,
+        "t": 15,
+        "rho_minus_1": 0.11227364726737343,
+        "one_over_sigma2": 0.10875515870702923,
+        "holds": false
+      },
+      {
+        "n": 60,
+        "t": 24,
+        "rho_minus_1": 0.09884236298980374,
+        "one_over_sigma2": 0.09546923221240346,
+        "holds": false
+      },
+      {
+        "n": 60,
+        "t": 29,
+        "rho_minus_1": 0.10156698500735561,
+        "one_over_sigma2": 0.09782483704272342,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 12,
+        "rho_minus_1": 0.10188530522295361,
+        "one_over_sigma2": 0.10034841744804318,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 30,
+        "rho_minus_1": 0.054999837573505246,
+        "one_over_sigma2": 0.05413878349058668,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 48,
+        "rho_minus_1": 0.048167403508257024,
+        "one_over_sigma2": 0.04734781459510599,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 59,
+        "rho_minus_1": 0.04955312726040472,
+        "one_over_sigma2": 0.048636109559062855,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 20,
+        "rho_minus_1": 0.06072072329727149,
+        "one_over_sigma2": 0.060171084018736214,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 50,
+        "rho_minus_1": 0.03273394850097319,
+        "one_over_sigma2": 0.03242658064418428,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 80,
+        "rho_minus_1": 0.028609248505475852,
+        "one_over_sigma2": 0.028317496541219147,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 98,
+        "rho_minus_1": 0.029346220207063248,
+        "one_over_sigma2": 0.029021557476256725,
+        "holds": false
+      }
+    ],
+    "failures": [
+      {
+        "n": 60,
+        "t": 6,
+        "rho_minus_1": 0.2072642445784793,
+        "one_over_sigma2": 0.20101404570171283,
+        "holds": false
+      },
+      {
+        "n": 60,
+        "t": 15,
+        "rho_minus_1": 0.11227364726737343,
+        "one_over_sigma2": 0.10875515870702923,
+        "holds": false
+      },
+      {
+        "n": 60,
+        "t": 24,
+        "rho_minus_1": 0.09884236298980374,
+        "one_over_sigma2": 0.09546923221240346,
+        "holds": false
+      },
+      {
+        "n": 60,
+        "t": 29,
+        "rho_minus_1": 0.10156698500735561,
+        "one_over_sigma2": 0.09782483704272342,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 12,
+        "rho_minus_1": 0.10188530522295361,
+        "one_over_sigma2": 0.10034841744804318,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 30,
+        "rho_minus_1": 0.054999837573505246,
+        "one_over_sigma2": 0.05413878349058668,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 48,
+        "rho_minus_1": 0.048167403508257024,
+        "one_over_sigma2": 0.04734781459510599,
+        "holds": false
+      },
+      {
+        "n": 120,
+        "t": 59,
+        "rho_minus_1": 0.04955312726040472,
+        "one_over_sigma2": 0.048636109559062855,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 20,
+        "rho_minus_1": 0.06072072329727149,
+        "one_over_sigma2": 0.060171084018736214,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 50,
+        "rho_minus_1": 0.03273394850097319,
+        "one_over_sigma2": 0.03242658064418428,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 80,
+        "rho_minus_1": 0.028609248505475852,
+        "one_over_sigma2": 0.028317496541219147,
+        "holds": false
+      },
+      {
+        "n": 200,
+        "t": 98,
+        "rho_minus_1": 0.029346220207063248,
+        "one_over_sigma2": 0.029021557476256725,
+        "holds": false
+      }
+    ]
+  },
+  "status": "parts 1-2 exact; parts 3-4 numeric probes at 40 digits, NOT certificates",
+  "runtime_s": 6.9,
+  "git": "76cf6409aa77",
+  "git_full": "76cf6409aa77f5bb36ee3e8fc4bd2034fe5dca66",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/poisson_binomial_view.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

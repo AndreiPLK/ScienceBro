@@ -77,6 +77,10 @@ artefacts:
     note: the standing statement of the open problem plus the list of CLOSED routes; read before any new
       attempt
     status: live
+  POISSON_BINOMIAL_VIEW.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   PROOF_STATUS_2026-08-29.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -941,6 +945,10 @@ artefacts:
     status: live
   paper_artifacts.json:
     added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  poisson_binomial_view.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   repair_certificate_j12.json:
