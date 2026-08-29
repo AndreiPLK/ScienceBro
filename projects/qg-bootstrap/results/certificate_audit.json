@@ -1,0 +1,341 @@
+{
+  "what": "which depths the repair criterion (R) is certified at, read back from artefacts",
+  "certified_depths": [
+    7,
+    9,
+    12,
+    16,
+    20,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    35,
+    40,
+    45,
+    50
+  ],
+  "uncertified_depths": [],
+  "full_region": [
+    7,
+    9,
+    12,
+    16,
+    20,
+    25,
+    26,
+    27,
+    28,
+    29
+  ],
+  "in_regime_only": [
+    30,
+    31,
+    32,
+    35,
+    40,
+    45,
+    50
+  ],
+  "needed_a_bernstein_step": [
+    31,
+    32,
+    35,
+    40,
+    45,
+    50
+  ],
+  "rows": [
+    {
+      "j": 7,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j7.json"
+        }
+      ]
+    },
+    {
+      "j": 9,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j9.json"
+        }
+      ]
+    },
+    {
+      "j": 12,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j12.json"
+        }
+      ]
+    },
+    {
+      "j": 16,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j16.json"
+        }
+      ]
+    },
+    {
+      "j": 20,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j20.json"
+        }
+      ]
+    },
+    {
+      "j": 25,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j25.json"
+        }
+      ]
+    },
+    {
+      "j": 26,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j26.json"
+        }
+      ]
+    },
+    {
+      "j": 27,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j27.json"
+        }
+      ]
+    },
+    {
+      "j": 28,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j28.json"
+        }
+      ]
+    },
+    {
+      "j": 29,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j29.json"
+        }
+      ]
+    },
+    {
+      "j": 30,
+      "certified": true,
+      "smallest_certified_v_offset": 13,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": false,
+          "by": "monomial signs",
+          "negative_monomials": 39,
+          "artefact": "repair_certificate_j30.json"
+        },
+        {
+          "v_offset": 13,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j30_v13.json"
+        }
+      ]
+    },
+    {
+      "j": 31,
+      "certified": true,
+      "smallest_certified_v_offset": 15,
+      "by": "Bernstein in thL",
+      "runs": [
+        {
+          "v_offset": 15,
+          "certified": true,
+          "by": "Bernstein in thL",
+          "negative_monomials": 70,
+          "artefact": "repair_certificate_j31_v15.json"
+        }
+      ]
+    },
+    {
+      "j": 32,
+      "certified": true,
+      "smallest_certified_v_offset": 17,
+      "by": "Bernstein in thL",
+      "runs": [
+        {
+          "v_offset": 17,
+          "certified": true,
+          "by": "Bernstein in thL",
+          "negative_monomials": 143,
+          "artefact": "repair_certificate_j32_v17.json"
+        }
+      ]
+    },
+    {
+      "j": 35,
+      "certified": true,
+      "smallest_certified_v_offset": 23,
+      "by": "Bernstein in thL",
+      "runs": [
+        {
+          "v_offset": 23,
+          "certified": true,
+          "by": "Bernstein in thL",
+          "negative_monomials": 206,
+          "artefact": "repair_certificate_j35_v23.json"
+        }
+      ]
+    },
+    {
+      "j": 40,
+      "certified": true,
+      "smallest_certified_v_offset": 33,
+      "by": "Bernstein in thL",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": false,
+          "by": "monomial signs",
+          "negative_monomials": 398,
+          "artefact": "repair_certificate_j40.json"
+        },
+        {
+          "v_offset": 33,
+          "certified": true,
+          "by": "Bernstein in thL",
+          "negative_monomials": 392,
+          "artefact": "repair_certificate_j40_v33.json"
+        }
+      ]
+    },
+    {
+      "j": 45,
+      "certified": true,
+      "smallest_certified_v_offset": 43,
+      "by": "Bernstein in thL",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": false,
+          "by": "monomial signs",
+          "negative_monomials": 701,
+          "artefact": "repair_certificate_j45.json"
+        },
+        {
+          "v_offset": 43,
+          "certified": true,
+          "by": "Bernstein in thL",
+          "negative_monomials": 533,
+          "artefact": "repair_certificate_j45_v43.json"
+        }
+      ]
+    },
+    {
+      "j": 50,
+      "certified": true,
+      "smallest_certified_v_offset": 53,
+      "by": "Bernstein in thL",
+      "runs": [
+        {
+          "v_offset": 53,
+          "certified": true,
+          "by": "Bernstein in thL",
+          "negative_monomials": 746,
+          "artefact": "repair_certificate_j50_v53.json"
+        }
+      ]
+    }
+  ],
+  "runtime_s": 0.0,
+  "git": "4c818a26c4aa",
+  "git_full": "4c818a26c4aab27ba4bfee13c556bf193a381fca",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/certificate_audit.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

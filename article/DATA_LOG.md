@@ -5879,3 +5879,24 @@ effective literature; the second had none.
 
 Also today: a background run reported exit code 0 and touched nothing -- the module
 never ran. Caught by reading the artefact timestamp instead of the exit code.
+
+### 2026-08-29, later -- the audit was the thing that was wrong
+
+The entry above says the audit caught an overstatement in "(R) certified at every
+J tested from 7 to 50". It did not. The audit was wrong, twice over: it globbed
+`repair_certificate_j*.json` and read the FULL-REGION artefact for J = 45 while
+its IN-REGIME run, under a `_v43` suffix, had certified it; and it looked for a key
+named `bernstein` where the module writes `bernstein_in_thL`, so it reported every
+depth as certified by monomial signs even where a Bernstein step was needed.
+
+So the original sentence was true and my correction moved it away from the data.
+Both directions of drift cost the same.
+
+The audit is now a module, `lab/certificate_audit.py`, with the artefact-name
+pattern and the key names in one place, and it re-derives the table from the files:
+17 depths from 7 to 50, all certified, full region to J = 29, in regime from 30,
+one Bernstein step from 31.
+
+The J = 45 run also exposed a third thing: its first launch reported exit code 0
+and never ran the module. Exit codes are not evidence; artefacts and their
+timestamps are.

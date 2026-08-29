@@ -572,7 +572,7 @@ the orthant, fixes it:
 | monomials negative | 70 | 143 | 206 | 392 | 746 |
 | **Bernstein coefficients negative** | **0 of 8215** | **0 of 8485** | **0 of 9295** | **0 of 10645** | **0 of 13345** |
 
-So (R) is **certified at `J` = 7, 9, 12, 16, 20, 25-32, 35, 40 and 50** — by monomial signs up to 29, by
+So (R) is **certified at every one of the 17 depths tested from 7 to 50**, with no exceptions (`certificate_audit.json`, produced by `lab/certificate_audit.py`) — by monomial signs up to 29, by
 monomial signs inside the regime at 30, and by one Bernstein step in `thL` from 31
 on. That escalation is the same one the far-below criterion itself used past
 `j = 8`, and it is now part of `lab/repair_certificate.py`: it runs automatically

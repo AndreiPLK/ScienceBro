@@ -188,6 +188,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  certificate_audit.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   charlier_reduction.json:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -1015,6 +1019,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  repair_certificate_j45_v43.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_certificate_j50_v53.json:
     added: untracked
     note: referenced by a paper, document or lab module

@@ -1,0 +1,211 @@
+{
+  "j": 45,
+  "v_offset": 43,
+  "statement": "(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0 on the far-below region, cleared by den^2; every region variable is >= 0, so all-nonnegative monomials PROVE it there",
+  "monomials": 9302,
+  "negative_monomials": 533,
+  "manifestly_positive": false,
+  "bernstein_in_thL": {
+    "axis": "thL on [0,1]",
+    "coefficients": 11995,
+    "negative": 0,
+    "certified": true
+  },
+  "certified": true,
+  "sample_negatives": [
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 0,
+        "K3": 1
+      },
+      "total_degree": 3
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 1,
+        "K3": 1
+      },
+      "total_degree": 4
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 0,
+        "K3": 1
+      },
+      "total_degree": 4
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 2,
+        "K3": 1
+      },
+      "total_degree": 5
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 1,
+        "K3": 1
+      },
+      "total_degree": 5
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 3,
+        "K3": 1
+      },
+      "total_degree": 6
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 2,
+        "K3": 1
+      },
+      "total_degree": 6
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 4,
+        "K3": 1
+      },
+      "total_degree": 7
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 3,
+        "K3": 1
+      },
+      "total_degree": 7
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 5,
+        "K3": 1
+      },
+      "total_degree": 8
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 4,
+        "K3": 1
+      },
+      "total_degree": 8
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 6,
+        "K3": 1
+      },
+      "total_degree": 9
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 5,
+        "K3": 1
+      },
+      "total_degree": 9
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 7,
+        "K3": 1
+      },
+      "total_degree": 10
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 6,
+        "K3": 1
+      },
+      "total_degree": 10
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 8,
+        "K3": 1
+      },
+      "total_degree": 11
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 7,
+        "K3": 1
+      },
+      "total_degree": 11
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 9,
+        "K3": 1
+      },
+      "total_degree": 12
+    },
+    {
+      "exponents": {
+        "thL": 3,
+        "y": 0,
+        "v": 8,
+        "K3": 1
+      },
+      "total_degree": 12
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 10,
+        "K3": 1
+      },
+      "total_degree": 13
+    }
+  ],
+  "sizes": {
+    "terms_w": 133,
+    "terms_u": 796,
+    "terms_inner": 4682
+  },
+  "runtime_s": 50.7,
+  "git": "4c818a26c4aa",
+  "git_full": "4c818a26c4aab27ba4bfee13c556bf193a381fca",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

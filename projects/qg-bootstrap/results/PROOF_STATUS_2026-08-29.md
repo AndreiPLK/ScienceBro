@@ -10,7 +10,7 @@ an artefact.
 |---|---|---|---|
 | 1 | The far-below polynomial `N(y)` has exactly one negative `y`-coefficient, at degree `J-2` | **certified per depth**, `j = 9..16` | `farbelow_negative_pattern_j*.json` |
 | 2 | That localisation holds iff `n >= 2J-3` | measured on a grid containing BOTH sides: 1376 points inside with 0 violations, 100 outside with 0 clean | `farbelow_regime_map.json` |
-| 3 | `(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0` on the region | **certified** at `J` = 7, 9, 12, 16, 20, 25-32, 35, 40, 50 | `repair_certificate_j*.json` |
+| 3 | `(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0` on the region | **certified** at all 17 depths tested from 7 to 50, none missing | `repair_certificate_j*.json` |
 | 4 | (1) + (3) + one grouping ⇒ `N(y) > 0` on `y >= 0` | **proof** (quadratic with nonpositive discriminant) | `FARBELOW_NEGATIVE_PATTERN.md` |
 | 5 | The conclusion, tested against the object rather than its parts | 252 points each at `j = 9, 11, 13`, 0 non-positive | `farbelow_endtoend_j*.json` |
 
