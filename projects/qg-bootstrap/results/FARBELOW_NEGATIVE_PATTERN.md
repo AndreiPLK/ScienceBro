@@ -116,12 +116,18 @@ and the stronger log-concave form `c_{J-2}^2 <= c_{J-1} c_{J-3}` is the discrete
 Newton inequality on the coefficient sequence — the same shape of tool as
 Theorem 5 in `BFORM_POSITIVITY_THEOREM.md`.
 
-**First measurement (`j = 9`, 512 points of the region grid,
-`thL, v, K3` in {0,1,2,3,6,12,40,200}):** 6 points have `c_{J-2} < 0`, and at
-**every one of them both inequalities hold** — 0 discriminant failures, 0 failures
-even of the stronger log-concave form. Away from those points the log-concave
-form does fail sometimes, which costs nothing: where the coefficient is already
-nonnegative there is nothing to repair.
+**Measured at three depths** (512 points of the region grid each,
+`thL, v, K3` in {0,1,2,3,6,12,40,200}):
+
+| j | points with `c_{J-2} < 0` | discriminant failures | log-concave failures |
+|---|---|---|---|
+| 9 | 6 | **0** | **0** |
+| 10 | 7 | **0** | **0** |
+| 11 | 20 | **0** | **0** |
+
+33 negative points, no failure of either form. Away from those points the
+log-concave form does fail sometimes, which costs nothing: where the coefficient
+is already nonnegative there is nothing to repair.
 
 So the candidate mechanism for uniformity in depth, in the far-below region, is
 two explicit statements:
@@ -130,10 +136,10 @@ two explicit statements:
 2. wherever `c_{J-2} < 0`, `c_{J-2}^2 <= 4 c_{J-1} c_{J-3}`.
 
 Both are polynomial inequalities in the region variables, and `c_{J-1}`, `c_{J-2}`
-are already in closed form above. **Neither is proved, and (2) is measured at one
-depth only** — `j = 10, 11, 12` were queued and stopped when the founder's machine
-went under the memory rule (a game was running); they are the first thing to run
-next.
+are already in closed form above. **Neither is proved.** (2) is now measured at
+`j = 9, 10, 11` — 33 points where the coefficient dips, no failure — and the
+`y`-degree localisation holds at all three. `j = 12` is still queued (179k
+monomials, it is the slow one).
 
 ## The general coefficient, verified — and why J-2 is the weakest link
 
@@ -174,5 +180,5 @@ other `c_k` is a longer sum whose cancellation resolves in the monomials.
 
 Nothing here proves anything. This is a localisation of a known failure, measured
 on 3 depths, and the `y`-degree pattern `J-2` is an observation over `j = 9, 10,
-11` — three points. `j = 12` and up are running; the pattern is a hypothesis
-until they land, and the artefacts are what will decide it, not this file.
+11` — three points, now confirmed at `j = 10` and `j = 11` as well. `j = 12` and up
+remain unrun; the artefacts are what will decide the pattern, not this file.

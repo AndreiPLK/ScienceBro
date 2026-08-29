@@ -500,12 +500,669 @@
   "by_y_degree": {
     "9": 41
   },
-  "runtime_s": 184.9,
-  "git": "2aab7f1b279d",
-  "git_full": "2aab7f1b279d4757eb209e4c109e52cbfa0e3b2f",
+  "c_Jm2_closed_form_check": {
+    "j": 11,
+    "monomials_in_c_Jm2": 2670,
+    "monomials_in_formula": 2670,
+    "mismatches": 0,
+    "sample_mismatch": []
+  },
+  "newton_on_y_coefficients": {
+    "j": 11,
+    "criterion": "where c_{J-2} < 0, the quadratic c_{J-3} + c_{J-2} y + c_{J-1} y^2 must be nonnegative for y >= 0, i.e. c_{J-2}^2 <= 4 c_{J-1} c_{J-3} (discriminant); the stronger log-concave form c_{J-2}^2 <= c_{J-1} c_{J-3} is reported too",
+    "points": 512,
+    "points_with_c_Jm2_negative": 20,
+    "discriminant_failures_where_negative": 0,
+    "strict_newton_failures_where_negative": 0,
+    "rows_of_interest": [
+      {
+        "thL": 0,
+        "v": 0,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 0,
+        "K3": 1,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 0,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 0,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 1,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 1,
+        "K3": 1,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 1,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 1,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 2,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 2,
+        "K3": 1,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 2,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 2,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 3,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 3,
+        "K3": 1,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 3,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 3,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 6,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 6,
+        "K3": 1,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 6,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 6,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 12,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 12,
+        "K3": 1,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 12,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 12,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 40,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 40,
+        "K3": 1,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 40,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 0,
+        "v": 200,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 0,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 0,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 0,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 1,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 1,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 1,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 2,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 2,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 2,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 3,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 3,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 3,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 6,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 6,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 6,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 12,
+        "K3": 0,
+        "c_Jm2_negative": true,
+        "newton_strict_ok": true,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 12,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 12,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 40,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 1,
+        "v": 200,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 0,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 0,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 1,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 1,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 2,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 2,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 3,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 3,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 6,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 6,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 12,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 12,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 40,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 2,
+        "v": 200,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 0,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 0,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 1,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 1,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 2,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 2,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 3,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 3,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 6,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 6,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 12,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 12,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 40,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 3,
+        "v": 200,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 6,
+        "v": 0,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 6,
+        "v": 0,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 6,
+        "v": 1,
+        "K3": 40,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      },
+      {
+        "thL": 6,
+        "v": 1,
+        "K3": 200,
+        "c_Jm2_negative": false,
+        "newton_strict_ok": false,
+        "discriminant_ok": true
+      }
+    ]
+  },
+  "runtime_s": 208.5,
+  "git": "0433911b4fb0",
+  "git_full": "0433911b4fb075aaad598ef39b865306a40df4f0",
   "dirty": true,
   "dirty_code_files": [
-    "projects/qg-bootstrap/lab/farbelow_negative_pattern.py"
+    "projects/qg-bootstrap/lab/grace_transfer_check.py"
   ],
   "dirty_count": 1,
   "python": "3.12.10",

@@ -4970,3 +4970,15 @@ coefficient changes sign while the longer sums do not -- it is a difference of t
 same-size quantities, with nothing else in the sum to absorb the swing.
 
 Write-up corrected in place (FARBELOW_NEGATIVE_PATTERN.md), not deleted.
+
+### 2026-08-29 — the repair holds at three depths
+
+j = 10 and j = 11 landed after the machine freed up. The localisation holds --
+every negative monomial at y-degree J-2 (30 at j=10, 41 at j=11) -- the closed
+form for c_{J-2} checks with 0 mismatches at both, and the neighbour repair
+c_{J-2}^2 <= 4 c_{J-1} c_{J-3} holds at every point where the coefficient dips:
+
+  j=9: 6 negative points, 0 failures     j=10: 7, 0     j=11: 20, 0
+
+33 points in all, and the stronger log-concave form holds at every one of them
+too. Still not a proof, and j=12 is still unrun.
