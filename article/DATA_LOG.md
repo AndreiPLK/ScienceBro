@@ -5337,3 +5337,17 @@ gives 143, J = 40 gives 392. So manifest positivity covers J = 7..29 on the full
 region and J = 30 in-regime, and no further; past that the certificate needs the
 Bernstein escalation, exactly as the criterion itself did past j = 8. Corrected in
 the write-up and in the shift report the same hour, before either was quoted.
+
+### 2026-08-29 — the escalation, and it is one line
+
+The in-regime monomial test fails from J = 31 (70 negatives, then 143 at 32, 392
+at 40). But that test treats thL as ranging over the whole ray, and in this region
+thL lives on [0,1] -- the integer part of lam is carried by K. So it was
+certifying a strictly larger set than the region. One Bernstein change of basis
+along that axis, v and K3 still in the orthant:
+
+   J = 31: 0 negative of 8215 Bernstein coefficients -> CERTIFIED
+   J = 32: 0 negative of 8485                        -> CERTIFIED
+
+Now part of lab/repair_certificate.py: it runs automatically when the monomial
+test fails, and the artefact records both results. Deeper J running.

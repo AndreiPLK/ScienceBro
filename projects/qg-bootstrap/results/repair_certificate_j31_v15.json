@@ -5,6 +5,13 @@
   "monomials": 6362,
   "negative_monomials": 70,
   "manifestly_positive": false,
+  "bernstein_in_thL": {
+    "axis": "thL on [0,1]",
+    "coefficients": 8215,
+    "negative": 0,
+    "certified": true
+  },
+  "certified": true,
   "sample_negatives": [
     {
       "exponents": {
@@ -192,12 +199,14 @@
     "terms_u": 544,
     "terms_inner": 3212
   },
-  "runtime_s": 15.9,
-  "git": "1c5e45c9b145",
-  "git_full": "1c5e45c9b145905b0699ba8411197816fc235f88",
-  "dirty": false,
-  "dirty_code_files": [],
-  "dirty_count": 0,
+  "runtime_s": 15.1,
+  "git": "b9e1a9ca7848",
+  "git_full": "b9e1a9ca78483f72c4f7d87ff2ec273b319c0cf1",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/repair_certificate.py"
+  ],
+  "dirty_count": 1,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"

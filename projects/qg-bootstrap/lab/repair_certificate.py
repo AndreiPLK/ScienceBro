@@ -47,7 +47,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 J = int(os.environ.get("KNIFE_J", "9"))
 os.environ["KNIFE_J"] = str(J)
 from farbelow_negative_pattern import NV, region  # noqa: E402
-from knife_tail2 import E_at  # noqa: E402
+from knife_tail2 import E_at, bern_axis_pair  # noqa: E402
 from provenance import stamp  # noqa: E402
 from prover2_core import Q3Poly, sign_q3  # noqa: E402
 
@@ -110,6 +110,24 @@ def main() -> int:
                 {"exponents": {NAMES[i]: int(e[i]) for i in range(NV)}, "total_degree": int(sum(e))}
             )
     neg.sort(key=lambda d: d["total_degree"])
+
+    # ESCALATION.  thL lives on [0,1] in the region, not on the whole ray, so
+    # reading signs off its monomials certifies a strictly larger set than the
+    # region.  One Bernstein change of basis along that axis fixes it: nonnegative
+    # Bernstein coefficients on [0,1], with (v, K3) still in the orthant, prove
+    # positivity on the region.  Only run when the plain monomial test fails.
+    bern = None
+    if neg:
+        A, B = bern_axis_pair(R.a.c, R.b.c, 0, 0)
+        keys = set(A) | set(B)
+        bneg = sum(1 for e in keys if sign_q3(A.get(e, fmpq(0)), B.get(e, fmpq(0))) < 0)
+        bern = {
+            "axis": "thL on [0,1]",
+            "coefficients": len(keys),
+            "negative": bneg,
+            "certified": bneg == 0,
+        }
+
     out = {
         "j": J,
         "v_offset": v_offset,
@@ -119,6 +137,8 @@ def main() -> int:
         "monomials": len(mons),
         "negative_monomials": len(neg),
         "manifestly_positive": len(neg) == 0,
+        "bernstein_in_thL": bern,
+        "certified": len(neg) == 0 or bool(bern and bern["certified"]),
         "sample_negatives": neg[:20],
         "sizes": info,
         "runtime_s": round(time.time() - t0, 1),
@@ -134,7 +154,13 @@ def main() -> int:
     ).write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(
         f"[j={J}, v>={v_offset}] (R): {len(mons)} monomials, {len(neg)} negative -> "
-        f"{'MANIFESTLY POSITIVE (certificate)' if not neg else 'not manifest; needs Bernstein'}"
+        f"{'MANIFESTLY POSITIVE (certificate)' if not neg else 'not manifest'}"
+        + (
+            ""
+            if not bern
+            else f" -> Bernstein in thL: {bern['negative']} negative of {bern['coefficients']}"
+            + (" -> CERTIFIED" if bern["certified"] else " -> still open")
+        )
     )
     for d in neg[:8]:
         print(f"   {d['exponents']}  deg={d['total_degree']}")

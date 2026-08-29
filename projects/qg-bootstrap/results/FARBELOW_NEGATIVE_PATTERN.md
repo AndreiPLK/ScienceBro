@@ -403,14 +403,27 @@ instead of 0 — the same build gives **6152 monomials and 0 negatives**:
 manifestly positive after all (`results/repair_certificate_j30_v13.json`). So
 (R) is certified at `J = 30` where the proof it serves actually applies.
 
-**But that rescue stops at 30, and it is worth being exact about it.** With the
-matching offsets, the in-regime build fails from `J = 31` on: 70 negative monomials
-at `J = 31`, 143 at `J = 32`, 392 at `J = 40`. So manifest positivity covers
-`J = 7..29` on the full region and `J = 30` inside the regime, and no further —
-past that the certificate needs the Bernstein escalation, exactly as the far-below
-criterion itself did past `j = 8`. An earlier sentence of mine in the session log
-claimed there was no depth where the in-regime certificate failed; there is, and
-it starts at 31.
+**That rescue stops at 30 — and the escalation past it is one line.** With the
+matching offsets, the in-regime monomial test fails from `J = 31` on: 70 negative
+monomials at `J = 31`, 143 at `J = 32`, 392 at `J = 40`. (An earlier sentence of
+mine claimed there was no depth where the in-regime certificate failed; there is,
+and it starts at 31.)
+
+But reading signs off monomials treats `thL` as ranging over the whole ray,
+whereas in this region **`thL` lives on `[0,1]`** — the integer part of `lam` is
+carried by `K`. So the monomial test was certifying a strictly larger set than the
+region. One Bernstein change of basis along that axis, with `v` and `K3` still in
+the orthant, fixes it:
+
+| J | 31 | 32 |
+|---|---|---|
+| monomials negative | 70 | 143 |
+| **Bernstein coefficients negative** | **0 of 8215** | **0 of 8485** |
+
+So (R) is **certified at `J = 31` and `J = 32` as well**, by the same escalation
+the far-below criterion itself used past `j = 8`, and the escalation is now part
+of `lab/repair_certificate.py` — it runs automatically whenever the monomial test
+fails, and the artefact records both.
 
 The table below is therefore the picture on the FULL region, corner included:
 

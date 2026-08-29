@@ -1,18 +1,47 @@
 {
-  "j": 32,
-  "v_offset": 17,
+  "j": 50,
+  "v_offset": 53,
   "statement": "(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0 on the far-below region, cleared by den^2; every region variable is >= 0, so all-nonnegative monomials PROVE it there",
-  "monomials": 6572,
-  "negative_monomials": 143,
+  "monomials": 10352,
+  "negative_monomials": 746,
   "manifestly_positive": false,
-  "bernstein_in_thL": {
-    "axis": "thL on [0,1]",
-    "coefficients": 8485,
-    "negative": 0,
-    "certified": true
-  },
-  "certified": true,
   "sample_negatives": [
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 0,
+        "K3": 1
+      },
+      "total_degree": 3
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 1,
+        "K3": 1
+      },
+      "total_degree": 4
+    },
+    {
+      "exponents": {
+        "thL": 1,
+        "y": 0,
+        "v": 0,
+        "K3": 3
+      },
+      "total_degree": 4
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 0,
+        "K3": 2
+      },
+      "total_degree": 4
+    },
     {
       "exponents": {
         "thL": 3,
@@ -21,6 +50,33 @@
         "K3": 1
       },
       "total_degree": 4
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 2,
+        "K3": 1
+      },
+      "total_degree": 5
+    },
+    {
+      "exponents": {
+        "thL": 1,
+        "y": 0,
+        "v": 1,
+        "K3": 3
+      },
+      "total_degree": 5
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 1,
+        "K3": 2
+      },
+      "total_degree": 5
     },
     {
       "exponents": {
@@ -33,12 +89,84 @@
     },
     {
       "exponents": {
+        "thL": 4,
+        "y": 0,
+        "v": 0,
+        "K3": 1
+      },
+      "total_degree": 5
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 3,
+        "K3": 1
+      },
+      "total_degree": 6
+    },
+    {
+      "exponents": {
+        "thL": 1,
+        "y": 0,
+        "v": 2,
+        "K3": 3
+      },
+      "total_degree": 6
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 2,
+        "K3": 2
+      },
+      "total_degree": 6
+    },
+    {
+      "exponents": {
         "thL": 3,
         "y": 0,
         "v": 2,
         "K3": 1
       },
       "total_degree": 6
+    },
+    {
+      "exponents": {
+        "thL": 4,
+        "y": 0,
+        "v": 1,
+        "K3": 1
+      },
+      "total_degree": 6
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 4,
+        "K3": 1
+      },
+      "total_degree": 7
+    },
+    {
+      "exponents": {
+        "thL": 1,
+        "y": 0,
+        "v": 3,
+        "K3": 3
+      },
+      "total_degree": 7
+    },
+    {
+      "exponents": {
+        "thL": 2,
+        "y": 0,
+        "v": 3,
+        "K3": 2
+      },
+      "total_degree": 7
     },
     {
       "exponents": {
@@ -51,162 +179,25 @@
     },
     {
       "exponents": {
-        "thL": 3,
+        "thL": 4,
         "y": 0,
-        "v": 4,
+        "v": 2,
         "K3": 1
       },
-      "total_degree": 8
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 5,
-        "K3": 1
-      },
-      "total_degree": 9
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 6,
-        "K3": 1
-      },
-      "total_degree": 10
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 7,
-        "K3": 1
-      },
-      "total_degree": 11
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 8,
-        "K3": 1
-      },
-      "total_degree": 12
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 9,
-        "K3": 1
-      },
-      "total_degree": 13
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 10,
-        "K3": 1
-      },
-      "total_degree": 14
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 11,
-        "K3": 1
-      },
-      "total_degree": 15
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 12,
-        "K3": 1
-      },
-      "total_degree": 16
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 13,
-        "K3": 1
-      },
-      "total_degree": 17
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 14,
-        "K3": 1
-      },
-      "total_degree": 18
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 15,
-        "K3": 1
-      },
-      "total_degree": 19
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 16,
-        "K3": 1
-      },
-      "total_degree": 20
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 17,
-        "K3": 1
-      },
-      "total_degree": 21
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 18,
-        "K3": 1
-      },
-      "total_degree": 22
-    },
-    {
-      "exponents": {
-        "thL": 3,
-        "y": 0,
-        "v": 19,
-        "K3": 1
-      },
-      "total_degree": 23
+      "total_degree": 7
     }
   ],
   "sizes": {
-    "terms_w": 94,
-    "terms_u": 562,
-    "terms_inner": 3317
+    "terms_w": 148,
+    "terms_u": 886,
+    "terms_inner": 5207
   },
-  "runtime_s": 16.5,
+  "runtime_s": 70.8,
   "git": "b9e1a9ca7848",
   "git_full": "b9e1a9ca78483f72c4f7d87ff2ec273b319c0cf1",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/repair_certificate.py"
-  ],
-  "dirty_count": 1,
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"
