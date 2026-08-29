@@ -1,19 +1,19 @@
-PASHI - autonomous run until 23:00 - last update 20:30
+ПАШИ · до 08:00 · старт 22:10
+[█░░░░░░░░░░░░░░] 0/7   ночная очередь принята
 
-[################]  the day turned a front from measurements into proofs
-PROVED TODAY
-  (R), the neighbour repair: certified at every J tested from 7 to 50
-  the elementary half of the uniformity chain: two independent proofs
-  the limit-shape bound f(theta) < 2: external proof, one step repaired here
-  (B) at every t <= 100: one hundred finite proofs, degrees 22 to 1606
-  the b-multiset is doubled: perfect square, E_2t a self-convolution
-COMBINED
-  far-below closed at j = 9..16 by manifest positivity plus one grouping,
-  where the interval-Bernstein route was needed before
-OPEN, and reduced to ONE ask
-  an effective expansion M = f + g/n + O(1/n^2); it gives the bound AND (C)
-  g measured: 1.39 at theta=0.05 up to 5.35 at 0.49, positive and increasing
-WITHDRAWN TODAY
-  the depth law j <= n/2+1 (fitted on multiples of four), and five of my own
-RUNNING
-  rungs to t = 200, leg (a) at j = 17, end-to-end at j = 15
+МАШИНА: основатель ИГРАЕТ (cod26-cod), свободно 4.8 ГБ
+        -> тяжёлое НЕ запускаю; 4 идущих счёта переведены в Idle
+        -> ночью только лёгкая работа, пока игра не закроется
+
+СЕЙЧАС: очередь ночи составлена, жду результатов трёх фоновых прогонов
+
+ОЧЕРЕДЬ
+ 1. собрать 3 фоновых: ступени (B) до t=200, нога (a) j=17, старший коэффициент
+ 2. доказать c_(J-1) >= 0 равномерно по J  (первый кусок ноги (a) без сетки)
+ 3. попробовать то же для c_(J-3): второй множитель в (R)
+ 4. поднять потолок ноги (a): j=17..20 внутри режима  [ТОЛЬКО когда игра закрыта]
+ 5. остаток Эджворта: выписать явную границу, а не только форму
+ 6. ERRATA + DATA_LOG в порядок, сверка всех заявленных чисел
+ 7. утренний отчёт из пяти блоков
+
+ПОСЛЕДНЕЕ: карта теоремы опубликована; (R) сертифицирован на 17 глубинах до 50
