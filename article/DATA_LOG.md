@@ -5764,3 +5764,19 @@ multiplicity linear factors * ONE irreducible factor of degree 21, 29, 37 -- i.e
 entirely on the irreducible factor, which is where a uniform proof would have to
 work. No shortcut visible from the factorisation itself; recorded as the structural
 observation it is.
+
+### 2026-08-29 — end-of-day reproducibility pass
+
+Re-ran today's modules from scratch. Every number reproduces:
+
+  doubled_multiset        pairing 7/7, square factorisation 5/5, 182 convolution checks 0 bad
+  elementary_half_check   78210 pairs, 0 cancellation mismatches, 0 failures, slack 1.2772
+  limit_shape_check       0 failures on all four steps; corrected (z-1)^2 form 0 mismatches,
+                          printed (z-1) form 31 of 31 -- i.e. the repair still stands
+  conjecture_B_t1         degree 22, 23 coefficients, 0 negative, 0 direct failures
+  finite_n_bridge_check   (B) 2050 pairs 0, (C) 72 values 0, base cases to 10 digits
+  farbelow_regime_map     1476 points: 1376 inside 0 violations, 100 outside 0 clean
+  repair_certificate      J = 9 and 20 both manifestly positive
+
+Nothing drifted, and the modules run from a clean start rather than from cached
+state.

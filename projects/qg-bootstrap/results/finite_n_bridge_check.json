@@ -25,14 +25,12 @@
     "status": "identity"
   },
   "reduction": "if (B) and (C) hold, the lemma reduces to the two base cases above, both below the 2 allowed",
-  "runtime_s": 0.0,
-  "git": "3f9c7a432a4a",
-  "git_full": "3f9c7a432a4a3427719aaae26f050add77295fe4",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/finite_n_bridge_check.py"
-  ],
-  "dirty_count": 1,
+  "runtime_s": 0.1,
+  "git": "de68c7436623",
+  "git_full": "de68c74366233198e012228a87515df2038dd9c7",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"

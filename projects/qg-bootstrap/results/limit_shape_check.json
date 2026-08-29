@@ -13,13 +13,11 @@
   },
   "crossing_u_where_f_equals_2": 2.6586,
   "runtime_s": 0.0,
-  "git": "8f736aa471d5",
-  "git_full": "8f736aa471d57127b314356a3ffae40c2e52024e",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/limit_shape_check.py"
-  ],
-  "dirty_count": 1,
+  "git": "de68c7436623",
+  "git_full": "de68c74366233198e012228a87515df2038dd9c7",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"
