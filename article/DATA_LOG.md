@@ -5823,3 +5823,16 @@ That reframes today's work: the value of the far-below repair is not that it is
 cheaper at a given depth -- one cell was already cheap -- but that its ingredients
 are explicit polynomials in n and J, which is what a single argument for all depths
 could be built from.
+
+### 2026-08-29 — end-to-end at j = 15, and a faster route to leg (a)
+
+j = 15 end-to-end: 252 points, 0 non-positive (48 minutes). So the conclusion has
+been tested against the object at j = 9, 11, 13, 15.
+
+And leg (a) got a faster method. farbelow_negative_pattern builds all of N and
+splits it -- 77 minutes at j = 16. lab/farbelow_coeff_signs.py instead computes each
+c_k straight from the verified formula, reusing the elementary symmetric functions
+of the A's across k. Checked against the old route at j = 12: identical answer (71
+negatives, all at k = J-2), in 517s instead of the full build. j = 18 is now
+running -- a depth the existing ladder never reached (it is complete only to
+j = 17).

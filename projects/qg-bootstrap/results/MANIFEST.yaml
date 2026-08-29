@@ -257,11 +257,19 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  farbelow_coeff_signs_j12.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   farbelow_endtoend_j11.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
   farbelow_endtoend_j13.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  farbelow_endtoend_j15.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
