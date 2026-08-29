@@ -7,6 +7,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  AP_BRIEF_VERIFICATION.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   BFORM_CRITIQUE.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -120,6 +124,10 @@ artefacts:
     status: live
   adversarial_review_knife45.json:
     added: '2026-08-16'
+    note: referenced by a paper, document or lab module
+    status: live
+  ap_square_brief_check.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   asymptotic_regime_probe.json:

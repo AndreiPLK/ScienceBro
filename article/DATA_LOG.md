@@ -5900,3 +5900,30 @@ one Bernstein step from 31.
 The J = 45 run also exposed a third thing: its first launch reported exit code 0
 and never ran the module. Exit codes are not evidence; artefacts and their
 timestamps are.
+
+### 2026-08-29 night -- the AP-square brief checked, and it survives
+
+Fourth external answer of the day, checked before use like the others. Six
+checkable claims, six clean: their two counterexamples reproduce exactly
+(-5/108 and -627/4096), the shift identity and both centered factorisations have
+0 mismatches, and the hypergeometric self-convolution identity holds exactly.
+
+Their Conjecture 1 -- the corrected range 1 <= t <= floor(N/2) for every real AP --
+was attacked rather than sampled: a dense exact grid in the centered parameter with
+denominators to 6, spanning both the crossing and non-crossing regimes at every
+N from 5 to 26. 14652 exact cases, 0 counterexamples. Their reflection symmetry was
+tested rather than assumed, 0 mismatches. Nothing needed repair, which is a first
+today.
+
+What it changes: their Section 8 says the physical spectrum is the centered point,
+so the general AP conjecture is not on our path at all -- only its most special
+point, which is where our doubled-multiset result already lives. Their Section 9
+then halves the object: p_t is a hypergeometric self-convolution of the half
+spectrum, so the physical (B) becomes "does that convolution preserve ratio
+log-concavity". We tested the induction input and it holds on the FULL index range,
+not just the first half: m = 5..40, 738 cases, 0 failures.
+
+And it meets the evening's other finding head on. F = G^2 means the Bernoulli sum
+is Y' + Y'' with the two halves iid. The prior-art check and the AP factorisation
+found the same structure the same day from opposite directions, and a local limit
+theorem for two iid copies is easier than one for a general Bernoulli sum.

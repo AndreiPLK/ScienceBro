@@ -1,0 +1,58 @@
+{
+  "what": "machine-check of the AP-square brief before any of it is used",
+  "source": "AP_Squared_Ratio_Log_Concavity_Research_Brief.pdf (parallel chat, untrusted)",
+  "checks": {
+    "C1": {
+      "p": [
+        "1",
+        "11/12",
+        "19/48",
+        "9/64"
+      ],
+      "H_at_t1": "-5/108",
+      "brief_says": "-5/108",
+      "matches": true
+    },
+    "C2": {
+      "H_at_t2": "-627/4096",
+      "is_a_failure": true
+    },
+    "C3": {
+      "statement": "Conjecture 1: N >= 5, 1 <= t <= floor(N/2), every real AP",
+      "cases_tested": 14652,
+      "counterexamples": [],
+      "counterexample_count": 0,
+      "reflection_c_to_minus_c_mismatches": 0
+    },
+    "C4": {
+      "identity": "(1+a^2 z)F_N(z;a+1) = (1+(a+N)^2 z)F_N(z;a)",
+      "mismatches": 0
+    },
+    "C5": {
+      "formulas": "(7) n=2m+1 and (8) n=2m",
+      "mismatched_n": []
+    },
+    "C6": {
+      "formula": "(9) p_t = sum C(m,i)C(m,t-i)/C(2m,t) q_i q_{t-i}",
+      "mismatches": 0
+    },
+    "C7": {
+      "question": "is the half spectrum {(2j-1)^2} ratio log-concave over its full index range?",
+      "why": "it is the induction input for the self-convolution (9), and an instance of their Conjecture 1",
+      "tested": 738,
+      "failures": [],
+      "failure_count": 0
+    }
+  },
+  "runtime_s": 0.5,
+  "git": "5b59b73d71ca",
+  "git_full": "5b59b73d71ca361e1639d47cd7d58ae1ecda1762",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/ap_square_brief_check.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

@@ -26,7 +26,7 @@ one grouping — depths that previously needed the interval-Bernstein route.
 | 8 | Newton-excess lemma, asymptotic half: `f(theta) < 2` on `(0,1/2)` | **PROVED** (external proof, one step repaired here) | `LIMIT_SHAPE_BOUND.md` |
 | 9 | finite-`n` half reduces to (B) + (C) + two numbers | reduction, with the exact recursion `e_t(n+2) = e_t(n) + 2n^2 e_{t-1} + n^4 e_{t-2}` verified | `FINITE_N_BRIDGE.md` |
 | 10 | (B) ratio-log-concavity | **PROVED for every `t <= 100`**, hence for the whole needed range at `n <= 200` | `conjecture_B_rungs.json` |
-| 11 | (B) uniformly in `t` | **open** — one statement: `P_t(m + 2t)` has nonnegative coefficients for every `t >= 3` | same |
+| 11 | (B) uniformly in `t` | **open** — two routes now: `P_t(m + 2t)` nonnegative for every `t >= 3`, or "hypergeometric self-convolution preserves ratio log-concavity", whose input we verified (`AP_BRIEF_VERIFICATION.md`) | same |
 | 12 | (C) parity monotonicity | **open**, and shown NOT locally derivable (three synthetic tests) | `FINITE_N_BRIDGE.md` |
 
 ## Structure found along the way
