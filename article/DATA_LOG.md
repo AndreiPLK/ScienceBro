@@ -5507,3 +5507,11 @@ proof written here earlier.
 Children's page for today's result, built by lab/build_kids_viz.py from the same
 artefacts (refuses to emit if the down-block moves off J-2 or the certified run
 shortens): https://claude.ai/code/artifact/650b337d-40e6-453f-bee5-df65841260e7
+
+### 2026-08-29 — (R) is certified from J = 7 to J = 40
+
+With the Bernstein step in thL the deep depths close too: 0 negative Bernstein
+coefficients of 9295 at J = 35 and of 10645 at J = 40 (against 206 and 392 negative
+monomials for the cruder test). So the repair inequality is certified at every J
+from 7 to 40 -- monomial signs to 29, monomial signs in-regime at 30, one Bernstein
+step from 31 on. J = 50 is running.
