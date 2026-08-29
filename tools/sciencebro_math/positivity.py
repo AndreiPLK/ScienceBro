@@ -113,10 +113,10 @@ def bernstein_coefficients(coeffs: Any, lo: Any = 0, hi: Any = 1) -> list[fmpq]:
         q = q + pw * p[k]
         pw = pw * shifted
     c = [q[k] for k in range(n + 1)]
-    return [
-        sum(fmpq(comb(j, i) * 1, comb(n, i)) * c[j] for j in range(0, i + 1))
-        for i in range(n + 1)
-    ]
+    # b_i = SUM_{j<=i} C(i,j)/C(n,j) c_j -- the standard power-to-Bernstein change of
+    # basis. Writing C(j,i)/C(n,i) here instead is a silent no-op for j < i and was
+    # caught only because a test demanded that x^2 - x + 1 be certified on [0,1].
+    return [sum(fmpq(comb(i, j), comb(n, j)) * c[j] for j in range(0, i + 1)) for i in range(n + 1)]
 
 
 def bernstein_certificate(coeffs: Any, lo: Any = 0, hi: Any = 1) -> Result:
@@ -139,7 +139,9 @@ def bernstein_certificate(coeffs: Any, lo: Any = 0, hi: Any = 1) -> Result:
     )
 
 
-def verify_polynomial_positive(coeffs: Any, lo: Any = 0, hi: Any = 1, subdivisions: int = 4) -> Result:
+def verify_polynomial_positive(
+    coeffs: Any, lo: Any = 0, hi: Any = 1, subdivisions: int = 4
+) -> Result:
     """Escalate: manifest monomial signs, then Bernstein, then Bernstein on subdivisions.
 
     Returns the cheapest level that succeeded, and `inconclusive` if none did.

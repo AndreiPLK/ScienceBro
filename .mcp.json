@@ -3,6 +3,22 @@
     "inspirehep": {
       "type": "http",
       "url": "https://mcp.inspirehep.net/mcp"
+    },
+    "arxiv-latex": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["arxiv-latex-mcp"]
+    },
+    "openalex": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@cyanheads/openalex-mcp-server"]
+    },
+    "sciencebro-math": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "python", "-m", "sciencebro_math.server"],
+      "env": { "PYTHONPATH": "tools" }
     }
   }
 }

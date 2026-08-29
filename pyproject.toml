@@ -16,6 +16,7 @@ dependencies = [
     "plotly>=5.22",
     "streamlit>=1.35",
     "requests>=2.32",
+    "mcp>=2.1.1",
 ]
 
 [project.optional-dependencies]

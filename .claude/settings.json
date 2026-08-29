@@ -5,8 +5,23 @@
       "Bash(uv sync:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(uvx:*)",
+      "Bash(npx:*)"
     ],
     "deny": []
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run python tools/research_stop_audit.py",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
   }
 }

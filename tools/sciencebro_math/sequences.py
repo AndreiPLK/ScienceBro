@@ -183,7 +183,9 @@ def hankel_minors(values: Any, max_order: int = 6, shift: int = 0) -> Result:
     dets, order = [], 1
     while order <= max_order and 2 * order - 2 + shift < len(a):
         m = [[a[i + j + shift] for j in range(order)] for i in range(order)]
-        dets.append({"order": order, "det": str(_det(m)), "sign": int(_det(m) > 0) - int(_det(m) < 0)})
+        dets.append(
+            {"order": order, "det": str(_det(m)), "sign": int(_det(m) > 0) - int(_det(m) < 0)}
+        )
         order += 1
     neg = [d for d in dets if d["sign"] < 0]
     return Result(
@@ -256,9 +258,7 @@ def hausdorff_conditions(values: Any, max_order: int = 10) -> Result:
         bad = []
         for k in range(0, max_order + 1):
             for t in range(0, len(seq) - k):
-                d = sum(
-                    fmpq((-1) ** j * comb(k, j)) * seq[t + k - j] for j in range(k + 1)
-                )
+                d = sum(fmpq((-1) ** j * comb(k, j)) * seq[t + k - j] for j in range(k + 1))
                 if (fmpq(-1) ** k) * d < 0:
                     bad.append({"k": k, "t": t, "value": str(d)})
         return bad
@@ -319,9 +319,7 @@ def real_rootedness(coeffs: Any) -> Result:
         else:
             imag.append(str(r))
     real_sorted = sorted(real, key=lambda x: float(x.mid()))
-    mesh = [
-        str((real_sorted[i + 1] - real_sorted[i]).mid()) for i in range(len(real_sorted) - 1)
-    ]
+    mesh = [str((real_sorted[i + 1] - real_sorted[i]).mid()) for i in range(len(real_sorted) - 1)]
     return Result(
         tool="real_rootedness",
         inputs={"degree": poly.degree()},
