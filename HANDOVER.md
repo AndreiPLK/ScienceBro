@@ -184,10 +184,22 @@ taken apart:
   `theta = 1 - arctan(u)/u`, and `f < 2` on `(0, 1/2)`. That proof came from the
   parallel chat and needed one repair: its factorisation had `(z-1)` where the
   quartic has `z = 1` as a DOUBLE root;
-* what is left is the **bridge to finite `n`**, and it has a number: the
-  correction is `g(theta)/n` with `g` rising to about 5.3 at `theta -> 1/2`.
-  Granting `g <= 5.6`, the lemma closes by arithmetic for `n >= 29`, and the
-  region has `n >= 44`.
+* the **finite-`n` half** (`results/FINITE_N_BRIDGE.md`) rests on an exact
+  recursion `e_t(n+2) = e_t(n) + 2n^2 e_{t-1}(n) + n^4 e_{t-2}(n)` — today's
+  doubling, read as a step in `n` — plus two statements (B) and (C). With both,
+  everything reduces to two computed numbers, `M_{44,21} = 1.8393` and
+  `M_{45,22} = 1.8860`, against the 2 allowed;
+* **(B) is now a theorem for every `t <= 100`**, hence for the whole needed range
+  at every `n <= 200`. At fixed `t` it is one polynomial inequality in `n`, and
+  `lab/conjecture_B_rungs.py` proves each rung by the same
+  all-nonnegative-coefficients move (degrees 22 to 1606, zero failures). What is
+  owed is only uniformity in `t`: that the shift `n = m + 2t` works for EVERY `t`;
+* **(C) is open, and it is not locally derivable** — synthetic five-term windows
+  fed through the recursion violate it under Newton (233/400), under Newton + (B)
+  (25/600), and even inside the near-extremal band (865/2714). A proof must use
+  the global structure: squares of an arithmetic progression have the Gamma-ratio
+  generating function `PROD (1+(a+k)^2 z) = z^N Gamma-ratios at conjugate
+  arguments`, verified exactly.
 
 **A structural fact found on the way, absent from the repository before:** the
 B-form's multiset is DOUBLED — `b_{n-k} = b_k` — so `prod_k (u - b_k)` is a perfect
