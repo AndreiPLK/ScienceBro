@@ -5310,3 +5310,12 @@ ZERO negatives: manifestly positive after all.
 So (R) is certified at J = 30 where it is needed, and the "break" was a statement
 about my test domain, not about the inequality. J = 40, 50, 60 with the matching
 offsets are running.
+
+### 2026-08-29 — no two-term shortcut inside c_{J-3}
+
+Tried to reduce leg (a) and (R) to one shared domination. At J = 9:
+poch_2 s^4 E_{J-3} den^2 - u den e1p has 622 negative monomials of 914, while the
+full c_{J-3} = w e2 - u den e1p + poch_2 s^4 E_{J-3} den^2 has 0 of 902. And T2 =
+w e2 - u den e1p is negative in all of its monomials. So no pair of the three
+terms carries the sign: positivity is a genuine three-way balance, and there is no
+shortcut of that shape. Closed, ten minutes.
