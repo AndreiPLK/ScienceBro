@@ -5950,3 +5950,24 @@ provably doomed.
 Also: leg (a) reproduced at j = 16 -- 582256 monomials, 205 negative, ALL at
 y-degree 14 = J-2, which is the statement. j = 17 was still building when its
 wrapper stopped it.
+
+### 2026-08-29 night -- one ingredient of leg (a) proved uniformly, on paper
+
+The coefficient formula sums i from 0 to J-1-k. At the top index that range holds a
+single value, so c_{J-1} = den^{J-1} E_{J-1} exactly. Both factors are positive for
+reasons that never mention the depth: den = kk(kk-2) with kk = v+K3+53 >= 53, and
+E_{J-1} is an elementary symmetric function of SQUARES, so a sum of products of
+nonnegative reals.
+
+Proposition 1 needs c_{J-1} > 0 as the leading coefficient of the grouped quadratic.
+That ingredient is now unconditional and uniform in J -- no per-depth certificate.
+
+The same argument stops one index down, and instructively: c_{J-2} is the first
+difference E_{J-1}e_1 - E_{J-2} poch_1 s^2 den, which is why it is the exceptional
+negative coefficient, and from c_{J-3} down the sign turns on ratios E_{J-1-i}/E_{J-2-i}
+against poch_i s^2 den -- the Newton-excess theme again. The difficulty sits exactly
+where the reduction already says it does.
+
+A background job had been computing the stronger monomial-level statement depth by
+depth. It was not needed and was stopped -- the founder is playing, and the cores
+belong to the game.

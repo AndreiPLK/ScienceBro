@@ -27,6 +27,11 @@ For `j = 9, 10, ..., 16`, in the far-below region with `n >= 2J-3`,
 
     N(y) > 0   for every y >= 0.
 
+*One ingredient is now unconditional.* `c_{J-1} > 0` at every depth, by hand and
+with no computation: the coefficient formula collapses to one term there, and it is
+a product of `den = kk(kk-2) >= 53*51` and an elementary symmetric function of
+squares (`UNIFORM_TOP_COEFFICIENT.md`).
+
 *Hypotheses discharged:* (a) certified per depth over `j = 9..16`
 (`farbelow_negative_pattern_j*.json`, and independently by the faster coefficient
 route, `farbelow_coeff_signs_j*.json`); (R) certified

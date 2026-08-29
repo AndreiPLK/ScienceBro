@@ -120,9 +120,13 @@ artefacts:
     status: live
   THEOREM_STATE.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   UNGLUED_KEYSTONE.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  UNIFORM_TOP_COEFFICIENT.md:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
