@@ -871,6 +871,22 @@ artefacts:
     added: '2026-08-14'
     note: referenced by a paper, document or lab module
     status: live
+  repair_certificate_j12.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j16.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j7.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j9.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_inequality_probe.json:
     added: untracked
     note: referenced by a paper, document or lab module

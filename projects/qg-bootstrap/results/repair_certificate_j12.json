@@ -1,0 +1,24 @@
+{
+  "j": 12,
+  "statement": "(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0 on the far-below region, cleared by den^2; every region variable is >= 0, so all-nonnegative monomials PROVE it there",
+  "monomials": 2372,
+  "negative_monomials": 0,
+  "manifestly_positive": true,
+  "sample_negatives": [],
+  "sizes": {
+    "terms_w": 34,
+    "terms_u": 202,
+    "terms_inner": 1217
+  },
+  "runtime_s": 0.8,
+  "git": "f00dfffe5784",
+  "git_full": "f00dfffe57845ada810709798c2c088abe382de1",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/repair_certificate.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

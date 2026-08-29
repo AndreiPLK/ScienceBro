@@ -268,6 +268,45 @@ cutoff the programme measured independently for the Hausdorff mechanism,
 constructions putting their boundary at the same line is either a coincidence or
 the same mechanism seen twice; nothing here decides which.
 
+## The repair is now PROVED on the region, not measured
+
+`lab/repair_certificate.py` -> `results/repair_certificate_j<J>.json`.
+
+Two facts turned the measurement into a certificate.
+
+**First, (R) is unconditional.** The repair was stated as "where `c_{J-2} < 0`,
+`c_{J-2}^2 <= 4 c_{J-1} c_{J-3}`". Measured over 504 region points, the inequality
+holds at ALL of them, not only at the 117 where the coefficient dips. So no case
+split is needed and
+
+    (R)   4 c_{J-1} c_{J-3} - c_{J-2}^2  >=  0
+
+is a single polynomial statement about the region.
+
+**Second, (R) is manifestly positive.** Built exactly over `Q(sqrt3)` in the region
+variables `(thL, y, v, K3)` — every one of which is `>= 0` on the far-below region —
+and expanded, it has **no negative monomial at all**:
+
+| J | 7 | 9 | 12 | 16 |
+|---|---|---|---|---|
+| monomials of (R) | 1322 | 1742 | 2372 | 3212 |
+| negative | **0** | **0** | **0** | **0** |
+
+All-nonnegative monomials over a nonnegative orthant is a proof, not a sample —
+the same certificate shape the far-below criterion itself uses at `j <= 8`.
+
+**The chain it rests on, checked rather than assumed.** (R) is assembled from the
+general `y`-coefficient formula, which was verified against the assembled
+polynomial at every `k`: `j = 6` (3186 / 2528 / 1890 / 1292 / 735 / 231 monomials)
+and `j = 9` (12119 / 10470 / 8871 / 7315 / 5822 / 4389 / 3032 / 1752 / 561), with
+**0 mismatches at every k in both**.
+
+**What is proved and what is not.** Proved: the repair inequality (R), on the whole
+far-below region, at the depths certified above. NOT proved: that every other
+`c_k` is nonnegative — that half is still a measurement, and it holds only while
+`n >= 2J-3`. So the far-below argument now has one of its two legs on a
+certificate and the other on a well-tested measurement with a known limit.
+
 ## What is NOT claimed
 
 Nothing here proves anything. This is a localisation of a known failure, measured

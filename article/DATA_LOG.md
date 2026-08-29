@@ -5129,3 +5129,27 @@ Page built from that artefact in the house pattern (every number computed by the
 builder, refuses to emit if the data stops supporting the claim):
 outreach/depth_boundary.html ->
 https://claude.ai/code/artifact/04252c94-60e7-426d-983d-6d428f0f59d1
+
+### 2026-08-29 — the neighbour repair, PROVED on the region
+
+Two steps turned today's measurement into a certificate.
+
+(1) The repair is UNCONDITIONAL. Stated as "where c_{J-2} < 0, its square is at
+most 4 c_{J-1} c_{J-3}", it actually holds at all 504 region points tested, not
+only the 117 where the coefficient dips. So there is no case split: it is one
+polynomial statement, (R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0.
+
+(2) (R) is MANIFESTLY POSITIVE. Built exactly over Q(sqrt3) in the region
+variables (thL, y, v, K3), all of which are >= 0 on the far-below region, it
+expands with NO negative monomial: 1322, 1742, 2372, 3212 monomials at
+J = 7, 9, 12, 16 and zero negatives in each. Nonnegative monomials over a
+nonnegative orthant is a proof.
+
+The chain rests on the general y-coefficient formula, so that was re-verified
+against the assembled polynomial at every k for j = 9 as well as j = 6 -- 12119
+down to 561 monomials, 0 mismatches throughout.
+
+Proved: the repair inequality on the whole far-below region, at those depths. NOT
+proved: that the other c_k are nonnegative, which stays a measurement and holds
+only while n >= 2J-3. One leg on a certificate, one on a measurement -- and that
+is the first time this front has had a leg on a certificate at all.
