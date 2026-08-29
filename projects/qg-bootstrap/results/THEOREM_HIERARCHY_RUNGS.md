@@ -8,16 +8,14 @@
 Let `p_t = e_t/C(N,t)` for the centred spectrum `b_k = (n-2k)^2`, `N = n-1`. For every
 pair
 
-    t = 1, 2, 3, 4        r = 3, 4, 5, 6, 7, 8
-
-**[extended the same night to `t = 1..8`, 48 rungs, degrees to 6137]**
+    t = 1, ..., 8        r = 3, 4, 5, 6, 7, 8
 
 and every `n` for which the claim is made — that is, every `n` with the difference
 window inside the first half, `t + r <= floor(N/2)`, equivalently `n >= 2(t+r)+1` —
 
     Delta^r log p_t  <  0.
 
-Twenty-four rungs, each covering infinitely many `n`.
+Forty-eight rungs, each covering infinitely many `n`.
 
 ## Proof
 
@@ -39,22 +37,14 @@ Such an `s` exists for each of the 24 pairs, and — the point that makes each r
 complete rather than partial — **`s` is always smaller than the domain requirement
 `2(t+r)+1`**, so the proof covers the entire range where the statement is claimed.
 
-| `r` \ `t` | 1 | 2 | 3 | 4 |
-|---|---|---|---|---|
-| 3 | n≥6 | n≥5 | n≥8 | n≥7 |
-| 4 | n≥5 | n≥8 | n≥7 | n≥10 |
-| 5 | n≥9 | n≥7 | n≥10 | n≥9 |
-| 6 | n≥7 | n≥11 | n≥9 | n≥12 |
-| 7 | n≥11 | n≥9 | n≥13 | n≥11 |
-| 8 | n≥9 | n≥13 | n≥11 | n≥15 |
-
-Degrees of `D_{t,r}` run from 38 to 4089. The polynomial identities are exact over `Q`
+The shifts are tabulated below as the excess `s - (t+r)`, which is where the structure
+shows. Degrees of `D_{t,r}` run from 38 to 6137. The polynomial identities are exact over `Q`
 throughout; the `e_t` are obtained by interpolation and each is then **verified at five
 nodes beyond the ones it was built from**, so an interpolation that had gone wrong
 could not pass.
 
 The direction of the inequality is not taken on trust either: each rung is spot-checked
-against the reference sign computation at six values of `n`. Zero mismatches in 24
+against the reference sign computation at six values of `n`. Zero mismatches in 48
 rungs. ∎
 
 ## Why `r >= 4` is the new content
@@ -65,8 +55,8 @@ The rung `r = 3` **is** conjecture (B): `Delta^3 log p_{t-1} <= 0` is exactly
 
 Everything with `r >= 4` is new. It settles a question the hierarchy raised when it was
 first observed: is it a genuinely deeper family of inequalities, or a restatement of
-(B)? **It is deeper.** Eighteen of these twenty-four rungs are statements that do not
-follow from (B), and each is now a theorem.
+(B)? **It is deeper.** Forty of these forty-eight rungs are statements that do not follow
+from (B), and each is now a theorem.
 
 ## The shift obeys an exact parity law
 
@@ -104,6 +94,6 @@ family, of exactly the kind this programme has proved before at fixed parameters
 
 ## Status
 
-`CLAIM-HIER-RUNGS` in the registry: **PROVED**, for the 24 listed pairs on their full
-domains. `CLAIM-HIER` — the hierarchy for all `t` and `r` — remains
+`CLAIM-HIER-RUNGS` in the registry: **PROVED**, for the 48 listed pairs on their full
+domains. `CLAIM-U` is the uniformity conjecture above, `CONJECTURED`. `CLAIM-HIER` — the hierarchy for all `t` and `r` — remains
 `COMPUTATIONALLY_VERIFIED` and is not upgraded by this.

@@ -6084,3 +6084,26 @@ computation at six values of n. Zero mismatches across all 24.
 Open, and now sharp: uniformity in (t,r). Degrees grow like 3(t+r)2^r so computation
 cannot reach it. The shifts depend on the PARITIES of t and r, not just their sizes
 (r=5,t=1 needs 9 while r=6,t=1 needs 7); explaining that parity is probably the way in.
+
+### 2026-08-30 night -- the hierarchy collapses to one statement
+
+Extending the rung theorem to t = 1..8 (48 rungs, degrees to 6137) made the shift law
+unambiguous, and it is a PARITY law: the excess s-(t+r) is exactly 0 when t and r have
+opposite parity, and 2 or 3 when they have the same. 24 rungs on each side, no
+exceptions. Presumably the doubling of the spectrum showing through -- the centred
+multiset is a half spectrum taken twice.
+
+Because the excess never exceeds 3, the whole family collapses into
+
+  (U)  D_{t,r}(m + t + r + 3) has all nonnegative coefficients, for every t >= 1, r >= 3.
+
+And t+r+3 <= 2(t+r)+1 on the domain of the claim. So (U) implies the ENTIRE
+log-difference hierarchy at once -- and with it conjecture (B), which is the rung r = 3.
+
+That is the sharpest the problem has been. It is no longer infinitely many inequalities
+to prove; it is one coefficient-positivity statement about an explicit polynomial family,
+which is exactly the kind of statement this programme has proved before at fixed
+parameters.
+
+Separately: (B) is now proved for every t <= 200, 198 finite polynomial proofs, 0
+failures.

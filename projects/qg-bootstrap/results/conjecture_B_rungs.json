@@ -31,19 +31,17 @@
     }
   ],
   "uniform_shift_2t": {
-    "t_range": "3..100",
+    "t_range": "3..200",
     "failures": [],
     "meaning": "a clean t proves (B) at that t for every n > 2t, which is the whole range the bridge needs; so (B) is a theorem for t <= this range"
   },
   "note": "this proves rungs, not (B) for all t at once; t = 1 is the tightest rung and is proved",
-  "runtime_s": 201.5,
-  "git": "83aa7b97549b",
-  "git_full": "83aa7b97549b88d21b9801e741a36c2a22687709",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/conjecture_B_rungs.py"
-  ],
-  "dirty_count": 1,
+  "runtime_s": 5969.5,
+  "git": "25e8e3562e43",
+  "git_full": "25e8e3562e438e3049fca3bd673380bd6206879d",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"
