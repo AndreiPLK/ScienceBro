@@ -93,6 +93,7 @@ def main() -> int:
         "negatives": neg,
         "by_y_degree": {},
         "c_Jm2_closed_form_check": c_Jm2_closed_form(N),
+        "newton_on_y_coefficients": newton_on_y_coefficients(N),
         "runtime_s": round(time.time() - t0, 1),
         **stamp(),
     }
@@ -176,6 +177,87 @@ def c_Jm2_closed_form(N=None) -> dict:
         "monomials_in_formula": len(pred),
         "mismatches": len(bad),
         "sample_mismatch": sorted(bad)[:3],
+    }
+
+
+def _eval_q3(part_dicts, point):
+    """Evaluate the (a, b) coefficient dicts of one y-coefficient at a point.
+
+    point maps (thL, v, K3) exponents to values; returns (a, b) with the value
+    a + b sqrt(3), exactly in fmpq.
+    """
+    out = [fmpq(0), fmpq(0)]
+    for idx, d in enumerate(part_dicts):
+        for (e_thl, e_v, e_k3), cval in d.items():
+            out[idx] += cval * point[0] ** e_thl * point[1] ** e_v * point[2] ** e_k3
+    return out[0], out[1]
+
+
+def _q3_mul(x, y):
+    return (x[0] * y[0] + 3 * x[1] * y[1], x[0] * y[1] + x[1] * y[0])
+
+
+def newton_on_y_coefficients(N=None) -> dict:
+    """Test c_{J-2}^2 <= c_{J-1} c_{J-3} -- the repair the structure suggests.
+
+    N(y) = SUM_k c_k y^k has every c_k manifestly nonnegative except c_{J-2}
+    (results above).  A single negative coefficient in an otherwise nonnegative
+    series is harmless exactly when its neighbours dominate it: pairing to the
+    left covers y <= c_{J-3}/|c_{J-2}| and to the right y >= |c_{J-2}|/c_{J-1},
+    and the two ranges meet iff
+
+        c_{J-2}^2 <= c_{J-1} c_{J-3},
+
+    a discrete Newton (log-concavity) inequality on the coefficient sequence.
+    This function evaluates the three coefficients at points of the region and
+    reports where it holds.  It is a MEASUREMENT: the inequality is checked, not
+    derived.
+    """
+    lam, D_num, den, m_expr = region()
+    if N is None:
+        N = build_P(lam, D_num, den, m_expr)
+    coeffs = {}
+    for part, idx in ((N.a, 0), (N.b, 1)):
+        for e, cval in part.c.items():
+            slot = coeffs.setdefault(int(e[Y]), [{}, {}])
+            slot[idx][(int(e[THL]), int(e[V]), int(e[K3]))] = cval
+    grid = (0, 1, 2, 3, 6, 12, 40, 200)
+    rows, fails = [], 0
+    for thl in grid:
+        for v in grid:
+            for k3 in grid:
+                pt = (fmpq(thl), fmpq(v), fmpq(k3))
+                c1 = _eval_q3(coeffs[J - 1], pt)
+                c2 = _eval_q3(coeffs[J - 2], pt)
+                c3 = _eval_q3(coeffs[J - 3], pt)
+                lhs = _q3_mul(c2, c2)
+                rhs = _q3_mul(c1, c3)
+                strict = sign_q3(rhs[0] - lhs[0], rhs[1] - lhs[1]) >= 0
+                disc = sign_q3(4 * rhs[0] - lhs[0], 4 * rhs[1] - lhs[1]) >= 0
+                neg = sign_q3(*c2) < 0
+                fails += neg and not disc
+                if neg or not strict:
+                    rows.append(
+                        {
+                            "thL": thl,
+                            "v": v,
+                            "K3": k3,
+                            "c_Jm2_negative": neg,
+                            "newton_strict_ok": strict,
+                            "discriminant_ok": disc,
+                        }
+                    )
+    negs = [r for r in rows if r["c_Jm2_negative"]]
+    return {
+        "j": J,
+        "criterion": "where c_{J-2} < 0, the quadratic c_{J-3} + c_{J-2} y + c_{J-1} y^2 must be "
+        "nonnegative for y >= 0, i.e. c_{J-2}^2 <= 4 c_{J-1} c_{J-3} (discriminant); the stronger "
+        "log-concave form c_{J-2}^2 <= c_{J-1} c_{J-3} is reported too",
+        "points": len(grid) ** 3,
+        "points_with_c_Jm2_negative": len(negs),
+        "discriminant_failures_where_negative": fails,
+        "strict_newton_failures_where_negative": sum(1 for r in negs if not r["newton_strict_ok"]),
+        "rows_of_interest": rows[:80],
     }
 
 

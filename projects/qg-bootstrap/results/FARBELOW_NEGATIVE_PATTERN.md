@@ -104,6 +104,37 @@ written down rather than searched for. Whether that threshold sits inside or
 outside the physical range is the next thing to measure, and it is measured
 nowhere yet.
 
+## The repair the structure suggests, and its first measurement
+
+With every `c_k >= 0` except `c_{J-2}`, positivity of `N(y) = SUM_k c_k y^k` on
+`y >= 0` follows if the one negative term is absorbed by its two neighbours:
+
+    c_{J-3} + c_{J-2} y + c_{J-1} y^2 >= 0  for y >= 0
+      <==>  c_{J-2}^2 <= 4 c_{J-1} c_{J-3}   (discriminant),
+
+and the stronger log-concave form `c_{J-2}^2 <= c_{J-1} c_{J-3}` is the discrete
+Newton inequality on the coefficient sequence — the same shape of tool as
+Theorem 5 in `BFORM_POSITIVITY_THEOREM.md`.
+
+**First measurement (`j = 9`, 512 points of the region grid,
+`thL, v, K3` in {0,1,2,3,6,12,40,200}):** 6 points have `c_{J-2} < 0`, and at
+**every one of them both inequalities hold** — 0 discriminant failures, 0 failures
+even of the stronger log-concave form. Away from those points the log-concave
+form does fail sometimes, which costs nothing: where the coefficient is already
+nonnegative there is nothing to repair.
+
+So the candidate mechanism for uniformity in depth, in the far-below region, is
+two explicit statements:
+
+1. `c_k >= 0` monomial-by-monomial for every `k != J-2` and every `j`;
+2. wherever `c_{J-2} < 0`, `c_{J-2}^2 <= 4 c_{J-1} c_{J-3}`.
+
+Both are polynomial inequalities in the region variables, and `c_{J-1}`, `c_{J-2}`
+are already in closed form above. **Neither is proved, and (2) is measured at one
+depth only** — `j = 10, 11, 12` were queued and stopped when the founder's machine
+went under the memory rule (a game was running); they are the first thing to run
+next.
+
 ## What is NOT claimed
 
 Nothing here proves anything. This is a localisation of a known failure, measured

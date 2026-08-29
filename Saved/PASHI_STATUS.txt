@@ -1,10 +1,10 @@
-PASHI - autonomous run until 23:00 - last update 16:00
+PASHI - autonomous run until 23:00 - last update 16:25
 
-[###########.....]  the uniformity obstruction now has an address
-NOW:   closed form for c_{J-2}; next its pairing threshold in y
-LAST:  every negative monomial of the far-below criterion sits in ONE
-       y-coefficient (degree J-2) at thL=K3=0 -- j=9,10,11 measured
-       closed form verified: j=6 735 monomials, j=9 1752, 0 mismatches
-       j=12 still building in the background (179k monomials)
-NEXT:  measure whether the pair y^{J-2}(c_{J-1} y + c_{J-2}) >= 0 has its
-       threshold inside or outside the physical y-range
+[############....]  repair mechanism found; heavy runs PAUSED for the founder
+NOW:   light work only -- a game (cod26-cod) is running, free RAM 7.6 GB
+LAST:  all negatives sit in c_{J-2}; closed form for it verified (0 mismatches)
+       repair candidate: c_{J-2}^2 <= 4 c_{J-1} c_{J-3}; at j=9 it holds at all
+       6 points where c_{J-2} < 0, and the stronger log-concave form does too
+QUEUED (needs the machine free): the same test at j = 10, 11, 12
+NEXT while paused: derive c_{J-3} in closed form the same way, on paper, so the
+       repair inequality becomes fully explicit and provable rather than sampled

@@ -860,13 +860,13 @@
   "by_y_degree": {
     "10": 71
   },
-  "runtime_s": 423.7,
-  "git": "",
-  "git_full": "",
+  "runtime_s": 545.3,
+  "git": "0a4f231cb599",
+  "git_full": "0a4f231cb599ef80faf8a7a9b1c0ea80749430ae",
   "dirty": false,
   "dirty_code_files": [],
   "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
-  "platform": "Windows-11-10.0.22621-SP0"
+  "platform": "Windows-11-10.0.22631-SP0"
 }

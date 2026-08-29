@@ -4916,3 +4916,21 @@ This is the first time the obstruction to uniformity in depth has an ADDRESS
 rather than a size. Next: the natural repair is the pair
 y^{J-2}(c_{J-1} y + c_{J-2}) >= 0, whose threshold in y is now writable in closed
 form; whether it falls inside the physical range is unmeasured.
+
+### 2026-08-29 — the repair candidate: one negative coefficient absorbed by its neighbours
+
+With every y-coefficient nonnegative except c_{J-2}, N(y) > 0 on y >= 0 follows
+from c_{J-3} + c_{J-2} y + c_{J-1} y^2 >= 0, i.e. c_{J-2}^2 <= 4 c_{J-1} c_{J-3}.
+Measured at j = 9 over 512 region points: 6 have c_{J-2} < 0, and at all 6 BOTH
+the discriminant form and the stronger log-concave form c_{J-2}^2 <= c_{J-1}c_{J-3}
+hold. The log-concave form fails at 18 other points, all of them with
+c_{J-2} >= 0, where there is nothing to repair.
+
+So the far-below uniformity target is now two explicit polynomial statements:
+(1) every c_k with k != J-2 is manifestly nonnegative; (2) where c_{J-2} < 0,
+c_{J-2}^2 <= 4 c_{J-1} c_{J-3}. c_{J-1} and c_{J-2} are already in closed form.
+
+MACHINE RULE, honoured: j = 10, 11, 12 were queued and I killed the run at 16:20
+when free memory fell to 6.9 GB with cod26-cod (a game, windowed, 1.8 GB) and the
+Firebird editor running. The founder's session comes first; the queue resumes
+when the machine is free. Nothing is claimed from the unrun depths.
