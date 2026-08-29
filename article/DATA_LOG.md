@@ -5188,3 +5188,25 @@ So the far-below region is closed at j = 9, 10, 11 by manifest positivity plus o
 grouping, where before it needed the heavier interval-Bernstein route -- and the
 same pair closes any J passing both checks. Boundary of the statement: n >= 2J-3,
 which in this parametrisation (n = 44 + v) covers every J <= 23 outright.
+
+### 2026-08-29 — what a J-uniform proof of (R) needs, and the tool it does NOT need
+
+Expanding (R): w^2(4e2 - e1^2) + 2 u w den (alpha_0 - e1p) - u^2 den^2
++ 4 w poch_2 s^4 E_{J-3} den^2 >= 0. The alphas are nearly equal (they differ by
+2r against a T_cap of order lam^2), so 4e2 - e1^2 ~ alpha^2 m(m-2) > 0 for
+m = J-1 >= 3. The dangerous term is -u^2 den^2, dominated by the last one exactly
+when E_{J-2}^2/(E_{J-1}E_{J-3}) <= 2cd/(ab) with a = 2n-2J+1 .. d = a+3.
+
+Measured: 144 cases (n = 44..200, J = 4..39), 0 violations, tightest slack 1.33.
+
+MY FIRST TOOL WAS BACKWARDS. I reached for Newton, which gives
+E_k^2/(E_{k-1}E_{k+1}) >= C(N,k)^2/(C(N,k-1)C(N,k+1)) -- a LOWER bound on the very
+ratio that needs an upper one. Caught by an assertion in the first run. No
+universal upper bound exists either (spread the roots and the ratio grows without
+limit), so it must come from the family: our b_k are squares of an arithmetic
+progression.
+
+So the missing piece is one self-contained lemma about central factorial numbers,
+with no knives and no lam in it:
+
+    E_t^2 / (E_{t+1} E_{t-1}) <= 2(2n-2J+3)(2n-2J+4)/[(2n-2J+1)(2n-2J+2)]  at t = J-2.

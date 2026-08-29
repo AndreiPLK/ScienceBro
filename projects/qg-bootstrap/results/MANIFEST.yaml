@@ -887,6 +887,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  repair_certificate_j30.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_certificate_j7.json:
     added: untracked
     note: referenced nowhere; classify before relying on it

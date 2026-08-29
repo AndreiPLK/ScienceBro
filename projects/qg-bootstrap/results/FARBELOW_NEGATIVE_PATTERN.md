@@ -210,6 +210,40 @@ That form is **false** — at 70 of the 315 points — but only just: the ratios
 strong to be the proof, and the true statement is tight at the `10^-3` level.
 Tightness again, in a third independent place today.
 
+## What a proof uniform in J would need — one named lemma
+
+Expanding (R) with `alpha_r = A_r/den` and using `e1 - 2 e1p = alpha_0 - e1p`:
+
+    (R) = w^2 (4 e2 - e1^2) + 2 u w den (alpha_0 - e1p)
+          - u^2 den^2 + 4 w poch_2 s^4 E_{J-3} den^2   >=  0.
+
+The `alpha_r` differ only by `2r` against a `T_cap` of order `lam^2`, so they are
+nearly equal, and for `m = J-1` near-equal numbers `4 e2 - e1^2 = e1^2 - 2 SUM
+alpha^2 ~ alpha^2 m(m-2) > 0` for `m >= 3`. The dangerous term is `- u^2 den^2`,
+and it is dominated by the last one exactly when
+
+    poch_1^2 E_{J-2}^2  <=  4 poch_2 E_{J-1} E_{J-3},
+      i.e.   E_{J-2}^2 / (E_{J-1} E_{J-3})  <=  2cd/(ab),
+      a = 2n-2J+1, b = a+1, c = a+2, d = a+3.
+
+**Measured: 144 cases (`n` = 44..200, `J` = 4..39), 0 violations, tightest slack
+1.33.** So the mechanism is real.
+
+**And the tool for it is NOT Newton** — that was my first thought and it is
+backwards. Newton's inequality gives `E_k^2/(E_{k-1}E_{k+1}) >= C(N,k)^2 /
+(C(N,k-1)C(N,k+1))`, a LOWER bound on exactly the ratio that needs an upper one.
+No universal upper bound exists (spread the roots far enough and the ratio grows
+without limit), so it has to come from the specific family: the `b_k` are the
+squares of an arithmetic progression.
+
+**The missing lemma, stated plainly.** For `E_t(n) = e_t({(n-2k)^2 : k = 1..n-1})`,
+
+    E_{t}^2 / (E_{t+1} E_{t-1})  <=  2 (2n-2J+3)(2n-2J+4) / [(2n-2J+1)(2n-2J+2)]
+    at t = J-2.
+
+Prove that and the leading obstruction in (R) is J-uniform. It is a statement
+about central factorial numbers alone — no knives, no region, no `lam`.
+
 ## What the two pieces prove together
 
 The far-below criterion asks for `N(y) = SUM_k c_k y^k > 0` on `y >= 0`. Put the
