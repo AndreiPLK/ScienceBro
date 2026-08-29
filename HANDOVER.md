@@ -151,6 +151,24 @@ The rule that came out of it, saved to memory: before recording a law, check the
 sample can distinguish it from its nearest rival — and if a claim PRUNES a
 search, keep sampling the pruned branch.
 
+**THE ONE PROVED THING FROM 29 AUG.** The neighbour repair is no longer a
+measurement. It is unconditional (it holds at all 504 region points, not only the
+117 dips), so it is the single polynomial statement
+
+    (R)   4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0   on the far-below region,
+
+and built exactly over `Q(sqrt3)` in the region variables — all nonnegative there —
+it expands with **no negative monomial at all**: 1322 / 1742 / 2372 / 3212 / 4052 /
+5102 monomials at `J = 7, 9, 12, 16, 20, 25`, zero negatives in each
+(`results/repair_certificate_j<J>.json`). Nonnegative monomials over a nonnegative
+orthant is a proof. The general `y`-coefficient formula it rests on was verified
+against the assembled polynomial at EVERY `k` for `j = 6` and `j = 9`, 0 mismatches.
+Its sign comes from one place: `w e2 - u den e1p` is negative in all 1520 of its
+monomials, and `4 w poch_2 s^4 E_{J-3} den^2` beats it and `outer^2` term by term.
+
+**Still NOT proved, and it is the other leg:** that every `c_k` with `k != J-2` is
+nonnegative. That stays a measurement and holds only while `n >= 2J-3`.
+
 **The far-below front (29 Aug), and its exact limit.** Every negative monomial of
 the `knife_farbelow2` criterion sits in ONE `y`-coefficient (degree `J-2`), with
 closed form verified; the neighbour repair `c_{J-2}^2 <= 4 c_{J-1} c_{J-3}` holds
