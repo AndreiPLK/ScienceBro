@@ -35,6 +35,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  FFP_LITERATURE_PASS.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   FROZEN_PREDICTION_blocks.md:
     added: '2026-08-18'
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
@@ -200,6 +204,10 @@ artefacts:
     status: live
   eft_map_d4.json:
     added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  ffp_convolution_check.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   fig1_map_mu-3_5.json:

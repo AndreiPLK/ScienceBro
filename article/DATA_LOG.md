@@ -4718,3 +4718,57 @@ POSSIBLY_KNOWN to LIKELY KNOWN, naming Malo-Schur-Szego composition,
 Polya-Schur multiplier sequences (Aissen-Schoenberg-Whitney, Borcea-Branden),
 the Askey-Gasper method, and finite free probability as the places to look.
 It ran no search; that is a to-do list, not a finding.
+
+## 2026-08-29 — THE LITERATURE PASS: our transform is a century old, and it hands us a new criterion
+
+The to-do list at the end of the 28 August entry was executed. The answer to
+"is the B-form transform new" is NO, and it is not close: multiplying e_t by a
+Pochhammer ratio is the finite free multiplicative convolution BOX_n, which
+Martinez-Finkelshtein, Morales and Perales (arXiv:2309.10970, sec. 1) name in
+passing as "also known as Schur-Szego composition". The zero-preservation
+results attached to it are Szego 1922 and Walsh 1922. The critic's guess
+(Malo-Schur-Szego, Polya-Schur multiplier sequences) was the right genre — the
+same paper remarks that BOX_n sits in the framework of finite multiplier
+sequences.
+
+IDENTIFIED, NOT ASSUMED. K_r = (p BOX_{n-1} q)(1) with p = prod_k (x - b_k) and
+e_t(q) = (r)_t (H-r)_t / [t! (n-3/2)_t]: 336 cases, 0 sign mismatches against
+the reference engine, 65 of them with a NEGATIVE reference knife, so the check
+cannot be vacuous (lab/ffp_convolution_check.py, results/ffp_convolution_check.json).
+BFORM_POSITIVITY_THEOREM.md sec. 7 moved POSSIBLY_KNOWN -> KNOWN for the
+technique. Sec. 1, 4 and 4b introduce no new operation; what is ours is the
+identification of the CHR knife with such a composition, and the two region
+theorems proved for it.
+
+THE ROUTE IT OPENED, CLOSED THE SAME DAY. The reason to care was the
+Szego-Walsh preservation theorem: if q were in P(R>=0), then p BOX q would be
+real-rooted and positivity would reduce to theta_max < 1 with NOTHING thrown
+away — unlike Theorem 9, whose loss sec. 6c proves no constant can repair. But q
+has genuinely complex zeros in 336 of 336 cases, and rigorously so: the arb
+enclosure of the imaginary part EXCLUDES zero (at n=12, j=6, lam=7, D=30 the
+zeros are 3.7358 and 3.2986 +/- 1.3805i and 2.0954 +/- 2.2525i). p BOX q itself
+is real-rooted in only 93 of 336. That is exactly the exclusion direction the
+same authors use. Route closed for a stated reason, not abandoned.
+
+AND WHAT FELL OUT OF IT — CRITERION S. Write the reduced composition
+P(x) = sum_t (-1)^t c_t e_t(b) x^{r-t} and expand at x = 1:
+P(1+y) = sum_m A_m y^m with A_0 = K_r. If every A_m > 0 then P has no real zero
+on [1, inf), so P keeps its sign at +inf, which is +, so K_r > 0. Descartes on
+the shift; exact in fmpq; sufficient, not necessary.
+
+Measured: 3094 of 3094 points below the shore, n = 6, 12, 20, 28, 40, EVERY
+depth 3 <= j <= n-1, lam in {1/10, 1/2, 1, 5/2, 7, 30, 300}, D/T_hat in
+{1/4, 1/2, 9/10, 99/100, 1}. Negative control at D = 40 T_hat: 26 negative
+knives seen, criterion fired on 0 of them. Beside Theorem 6 (lam ~> 3n^2) and
+Theorem 9 (lam ~> 32n), both corners, this is the first candidate all-depths
+criterion whose tested region is the physical domain itself.
+
+IT IS A MEASUREMENT. No A_m with m > 0 is proved; n <= 40 is not all n; and
+ERR-0013 killed a statement that had certified at three depths, so a sweep is
+not a proof in this repository. Next target: A_m > 0 by downward induction from
+A_r = 1.
+
+Also recorded: INSPIRE title searches for "Schur-Szego composition" and
+"finite free convolution" return 0 records, with the control query returning
+the expected papers — weak evidence that the framing is absent from the
+amplitude literature, and labelled weak in results/FFP_LITERATURE_PASS.md.

@@ -415,8 +415,26 @@ knife sum has a form in which all the variables `b_k` lie below 1 uniformly, and
 that its lam-free weight is a polynomial in `t` that makes the depth truncation
 automatic and converts the whole sum into a derivative.
 
-**Novelty status: POSSIBLY_KNOWN for the technique, and the domain-critic pass
-would nudge that to LIKELY KNOWN.** Its reading: the transform is a composition
+**Novelty status: KNOWN for the technique (settled 2026-08-29; see
+`results/FFP_LITERATURE_PASS.md`).** The literature pass was done and the answer
+is unambiguous: multiplying `e_t` by a Pochhammer ratio is the finite free
+multiplicative convolution `BOX_N`, classically the **Schur–Szegő composition**
+(arXiv:2309.10970 §1; the preservation results are Szegő 1922 and Walsh 1922).
+Verified exactly, not by resemblance: `K_r = (p BOX_{n-1} q)(1)` over 336 cases
+with 0 mismatches and 65 negative-knife points
+(`results/ffp_convolution_check.json`). So §1, §4 and §4b introduce **no new
+operation**; what is specific here is the identification of the CHR knife with
+such a composition and the two region theorems proved for it. The pass also
+closed the route it opened: `q` has complex zeros in 336 of 336 cases, so the
+Szegő–Walsh preservation theorem does not apply and `theta_max < 1` is not
+available as a lossless criterion.
+
+The paragraph below is the pre-pass wording, kept because its reading of the
+genre turned out to be right — the same paper remarks that `BOX_n` belongs to the
+framework of finite multiplier sequences.
+
+**Pre-pass wording (2026-08-28): POSSIBLY_KNOWN for the technique, and the
+domain-critic pass would nudge that to LIKELY KNOWN.** Its reading: the transform is a composition
 of truncation-by-differentiation with a Pochhammer-ratio multiplier, i.e. an
 Erdelyi-Kober/Weyl fractional integral, and the genre to search first is
 Malo-Schur-Szego composition and Polya-Schur multiplier sequences (with
