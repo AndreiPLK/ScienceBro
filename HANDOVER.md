@@ -141,6 +141,31 @@ region points, 6 have `c_{J-2} < 0` and all 6 satisfy it — and the stronger
 log-concave form too. `j = 10, 11` were queued. **Do not quote this as more than
 one depth until those land.**
 
+**Three corrections of my own claims, same day, same failure mode** — read
+`docs/ERRATA.md` 0015-0017 together, they are one lesson:
+* ERR-0015: "criterion S" had its conclusion inside its hypothesis;
+* ERR-0016: "odd-`j` knives never dip" — they do, at small `lam`, 72 cases;
+* ERR-0017: the depth law `j <= n/2+1` was fitted on a sample of multiples of 4
+  and fails in 31 of 51 cases over `n = 11..61` (`results/depth_boundary_map.json`).
+The rule that came out of it, saved to memory: before recording a law, check the
+sample can distinguish it from its nearest rival — and if a claim PRUNES a
+search, keep sampling the pruned branch.
+
+**The far-below front (29 Aug), and its exact limit.** Every negative monomial of
+the `knife_farbelow2` criterion sits in ONE `y`-coefficient (degree `J-2`), with
+closed form verified; the neighbour repair `c_{J-2}^2 <= 4 c_{J-1} c_{J-3}` holds
+at all 91 measured dips over `J = 5..40`. **But the localisation itself holds only
+while `n >= 2J-3`** (five of five at `J = 25, 26, 28, 32, 35`); past that several
+coefficients dip and one pairing cannot absorb them. So this route covers
+`j <= (n+3)/2` and no further.
+
+**Where every road stopped today:** condition (E) from the parallel chat is
+vacuous for `r > (2n+1)/4`; the far-below localisation ends at `j <= (n+3)/2`; the
+Hausdorff cutoff drifts near `n/2`. Three unrelated mechanisms breaking in the
+deep half of the depth range. Tested and rejected as a common cause: the peak of
+the terms `T_t`, which sits at `n/4`-`n/3` and moves with `lam` while the
+boundaries do not.
+
 **Refuted the same day, do not retry:** "the highest-`s` term dominates". Measured
 `rest/dominant` = 3 to 3.2e8 (`results/dominant_term_probe.json`). The terms are
 comparable in size; positivity is cancellation, not dominance.
