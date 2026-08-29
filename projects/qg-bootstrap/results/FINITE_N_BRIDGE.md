@@ -30,7 +30,14 @@ approximation.
 
 ## The reduction, and its two conjectures
 
-* **(B) ratio-log-concavity in `t`:** `p_{t+1}^3 p_{t-1} >= p_t^3 p_{t+2}`. This
+* **(B) ratio-log-concavity in `t`:** `p_{t+1}^3 p_{t-1} >= p_t^3 p_{t+2}`. Writing
+  `r_t = p_t/p_{t-1}`, this is exactly `r_{t+1}^2 >= r_t r_{t+2}` — **the ratio
+  sequence is log-concave** (verified equivalent over 1071 pairs, 0
+  disagreements). Newton says `r_t` decreases; (B) says it is also log-concave.
+  That is a named notion — a sequence with log-concave ratios is called *ratio
+  log-concave* — and there are criteria for it for sequences obeying a recurrence
+  (Chen, Guo and Wang), which is worth trying against the exact recursion (R)
+  above rather than proving from scratch. This
   makes `R_{n,t}` rise to the middle, so the maximum over `t` sits at the central
   index. **Tested: 2050 pairs `(n, t)` with `n = 8..89`, `t <= n/2+1`, 0
   failures.**

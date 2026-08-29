@@ -5642,3 +5642,16 @@ Restricted to what the target needs, it holds: t <= N/2 gives 1107 pairs and 0
 failures, and even t <= 0.7 N gives 1530 and 0. So the correctly scoped conjecture
 is (B) for squares of an AP with t <= N/2, with that counterexample marking the
 boundary. The brief sent to the parallel chat was corrected the same minute.
+
+### 2026-08-29 — (B) has a standard name, and criteria may exist for it
+
+(B) is equivalent to r_{t+1}^2 >= r_t r_{t+2} with r_t = p_t/p_{t-1} -- i.e. the
+RATIO sequence is log-concave (equivalence verified over 1071 pairs, 0
+disagreements). Newton gives that r_t decreases; (B) adds log-concavity of the
+same sequence.
+
+That is a named notion: such sequences are called ratio log-concave, and the
+literature carries criteria for sequences obeying a recurrence (Chen, Guo, Wang).
+Since our e_t(n) obey the exact recursion (R), the right first move is to test
+those criteria rather than build a proof from scratch. The brief to the parallel
+chat now says so.
