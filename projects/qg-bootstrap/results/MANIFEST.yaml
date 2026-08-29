@@ -253,6 +253,10 @@ artefacts:
     added: '2026-08-29'
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  farbelow_negative_pattern_j15.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   farbelow_negative_pattern_j9.json:
     added: untracked
     note: referenced by a paper, document or lab module

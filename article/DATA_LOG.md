@@ -5351,3 +5351,12 @@ along that axis, v and K3 still in the orthant:
 
 Now part of lab/repair_certificate.py: it runs automatically when the monomial
 test fails, and the artefact records both results. Deeper J running.
+
+### 2026-08-29 — leg (a) now covers j = 9..15
+
+Every depth from 9 to 15 has its negative monomials ONLY at y-degree J-2 -- 11,
+30, 41, 71, 96, 130, 165 of them -- and the repair holds at every dip: 310 dips
+across the seven depths, 0 failures. Combined with (R), certified at J = 7..32,
+that closes the far-below region at j = 9..15 with manifest positivity plus one
+grouping, where the programme previously needed the interval-Bernstein route.
+j = 16 and 17 are running; they would complete the range that route covered.

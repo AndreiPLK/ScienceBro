@@ -27,11 +27,19 @@ Rebuilt on the fast engine (`Q3Poly` over `Q(sqrt3)` via `knife_tail2.build_P`;
 no new derivation, the same construction the certificates use), the negative
 monomials are:
 
-| j | count | y-degree | thL | K3 | v |
-|---|---|---|---|---|---|
-| 9 | 11 | **7 = J-2**, all of them | 0 | 0 | 0..10 |
-| 10 | 30 | **8 = J-2**, all of them | 0 | 0 | 0..29 |
-| 11 | 41 | **9 = J-2**, all of them | 0 | 0 and 1 | 0..37 |
+| j | negatives | y-degree | dips found | repair failures |
+|---|---|---|---|---|
+| 9 | 11 | **7 = J-2**, all | 6 | **0** |
+| 10 | 30 | **8 = J-2**, all | 7 | **0** |
+| 11 | 41 | **9 = J-2**, all | 20 | **0** |
+| 12 | 71 | **10 = J-2**, all | 38 | **0** |
+| 13 | 96 | **11 = J-2**, all | 62 | **0** |
+| 14 | 130 | **12 = J-2**, all | 78 | **0** |
+| 15 | 165 | **13 = J-2**, all | 99 | **0** |
+
+(at `j = 9, 10` the negatives also share `thL = K3 = 0`, differing only in `v`;
+by `j = 11` a couple sit at `K3 = 1`.) 310 dips in total across the seven depths,
+and the repair holds at every one.
 
 So every failure of the criterion, at the `j` measured HERE, lives in **one single
 `y`-coefficient — the one of degree `J-2`** (but read the correction below: this
@@ -302,10 +310,11 @@ discriminant — hence nonnegative for EVERY real `y`, in particular on `y >= 0`
 Every other term is nonnegative there. Therefore `N(y) >= 0` on the whole ray.
 
 **That closes the far-below region at the depths where the criterion alone
-failed.** `j = 9, 10, 11, 12` were shown here to have their negatives only at `J-2`
-(11, 30, 41 and 71 of them), and `(R)` is certified at every `J` from 7 to 29, so
-those depths now have a proof of the manifest-positivity kind rather than the
-heavier interval-Bernstein certificates they were closed with. The same pair closes any further `J` for which
+failed.** `j = 9..15` were shown here to have their negatives only at `J-2`
+(11, 30, 41, 71, 96, 130, 165 of them), and `(R)` is certified at every `J` from 7
+to 32, so those depths now have a proof of the manifest-positivity kind rather
+than the heavier interval-Bernstein certificates they were closed with. `j = 16`
+and `17` are running; they would complete the range the old method covered. The same pair closes any further `J` for which
 both checks pass.
 
 **The honest boundary of that statement** is `n >= 2J-3`: outside it other
