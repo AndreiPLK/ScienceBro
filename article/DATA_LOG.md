@@ -5383,3 +5383,20 @@ symmetric polynomials, Marcus-Lopes concavity, robust bounds when the first few
 e_k are small) but nothing of the form "excess <= 1 + C/n for this family" turned
 up. Recorded so the search is not repeated: the lemma looks like it needs a direct
 proof from the structure of {(n-2k)^2}, not a citation.
+
+### 2026-08-29 — the lemma has a limit shape, and the t=1 rung is exact
+
+(excess - 1)*n converges as n grows and rises with theta = t/n: 0.859, 0.918,
+1.060, 1.242, 1.486, 1.641, 1.777 at theta = 0.05..0.49 (n = 240), and convergence
+is from ABOVE, so the supremum at fixed theta sits at small n -- which is why the
+worst constant in the whole scan was at n = 8.
+
+The t = 1 rung is closed form: excess_1 = e_1^2 (N-1)/[N(e_1^2 - S_2)] with
+e_1 = n(n-1)(n-2)/3 and S_2 = sum b^2 ~ n^5/5, giving 1 + (4/5)/n + O(1/n^2).
+Measured: 1.356 at n = 5 down to 0.809 at n = 240 -- the limit 4/5 exactly.
+
+And the limiting measure is explicit: b/n^2 -> (1-2x)^2 with x = k/n uniform, i.e.
+the law of V^2 for V uniform on (-1,1), density 1/(2 sqrt v) on (0,1) --
+Beta(1/2,1). So the lemma is: f(theta) <= 2 on (0,1/2) for the limit shape of that
+measure, plus an exact check below some n_0. Ordinary analysis, with the measure
+named and no knives in it.

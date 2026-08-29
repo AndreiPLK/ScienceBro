@@ -5,6 +5,13 @@
   "monomials": 7202,
   "negative_monomials": 206,
   "manifestly_positive": false,
+  "bernstein_in_thL": {
+    "axis": "thL on [0,1]",
+    "coefficients": 9295,
+    "negative": 0,
+    "certified": true
+  },
+  "certified": true,
   "sample_negatives": [
     {
       "exponents": {
@@ -192,9 +199,9 @@
     "terms_u": 616,
     "terms_inner": 3632
   },
-  "runtime_s": 22.9,
-  "git": "",
-  "git_full": "",
+  "runtime_s": 22.4,
+  "git": "6ad8b002202c",
+  "git_full": "6ad8b002202cf53644399141912dceb8312afff0",
   "dirty": false,
   "dirty_code_files": [],
   "dirty_count": 0,

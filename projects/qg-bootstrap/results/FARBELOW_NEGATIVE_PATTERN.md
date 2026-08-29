@@ -281,6 +281,34 @@ is proved, and that lemma is a self-contained question about
 is **1.9862, attained at the smallest `n = 8`**, not at the largest. So `1 + 2/n`
 is stable across the range and tight only at the edge of the physical domain.
 
+**It has a limit shape, and the shape is finite.** Writing `theta = t/n`, the
+quantity `(excess - 1) n` converges as `n` grows and rises with `theta`:
+
+| theta | 0.05 | 0.1 | 0.2 | 0.3 | 0.4 | 0.45 | 0.49 |
+|---|---|---|---|---|---|---|---|
+| n = 40 | 0.888 | 0.951 | 1.104 | 1.302 | 1.570 | 1.743 | 1.843 |
+| n = 240 | 0.859 | 0.918 | 1.060 | 1.242 | 1.486 | 1.641 | 1.777 |
+
+Convergence is from ABOVE, so the supremum over `n` at fixed `theta` sits at small
+`n` — which is why the worst constant in the whole scan was at `n = 8`.
+
+**The `t = 1` rung is exact.** With `e_1 = n(n-1)(n-2)/3` and `S_2 = SUM b^2`,
+
+    excess_1 = e_1^2 (N-1) / [ N (e_1^2 - S_2) ],   N = n-1,
+
+and since `S_2 ~ n^5/5` against `e_1^2 ~ n^6/9`, this is
+`(1 - 1/n)(1 + 9/(5n)) = 1 + (4/5)/n + O(1/n^2)`. Measured: `(excess-1)n` = 1.356
+at `n = 5` falling to 0.809 at `n = 240` — the limit `4/5` on the nose. That is
+`f(0)` of the table above.
+
+**So the lemma splits into an asymptotic and a finite check.** The limiting
+empirical measure is explicit: with `x = k/n`, `b/n^2 -> (1-2x)^2`, i.e. the law of
+`V^2` for `V` uniform on `(-1,1)` — density `1/(2 sqrt(v))` on `(0,1)`, a
+`Beta(1/2, 1)`. The limit shape `f(theta)` is the second difference of the
+Legendre-type limit of `log p_t` for that measure; the lemma is `f(theta) <= 2` on
+`(0, 1/2)` plus an exact check for `n` below some `n_0`. Both halves are ordinary
+work — no knives, no `lam`, and the measure is named.
+
 **Where the `1/n` comes from, and it is not special to us.** Writing
 `p_t = e_t/C(N,t)`, the Newton excess is the second difference of `log p_t`, and
 for a family whose empirical measure has a limit as `N -> inf` with `t/N -> theta`
