@@ -289,10 +289,10 @@ discriminant — hence nonnegative for EVERY real `y`, in particular on `y >= 0`
 Every other term is nonnegative there. Therefore `N(y) >= 0` on the whole ray.
 
 **That closes the far-below region at the depths where the criterion alone
-failed.** `j = 9, 10, 11` were shown here to have their negatives only at `J-2`,
-and `(R)` is certified at `J = 9` and beyond, so those depths now have a proof of
-the manifest-positivity kind rather than the heavier interval-Bernstein
-certificates they were closed with. The same pair closes any further `J` for which
+failed.** `j = 9, 10, 11, 12` were shown here to have their negatives only at `J-2`
+(11, 30, 41 and 71 of them), and `(R)` is certified at every `J` from 7 to 29, so
+those depths now have a proof of the manifest-positivity kind rather than the
+heavier interval-Bernstein certificates they were closed with. The same pair closes any further `J` for which
 both checks pass.
 
 **The honest boundary of that statement** is `n >= 2J-3`: outside it other
@@ -377,10 +377,19 @@ is a single polynomial statement about the region.
 variables `(thL, y, v, K3)` — every one of which is `>= 0` on the far-below region —
 and expanded, it has **no negative monomial at all**:
 
-| J | 7 | 9 | 12 | 16 | 20 | 25 |
-|---|---|---|---|---|---|---|
-| monomials of (R) | 1322 | 1742 | 2372 | 3212 | 4052 | 5102 |
-| negative | **0** | **0** | **0** | **0** | **0** | **0** |
+| J | 7 | 9 | 12 | 16 | 20 | 25 | 26 | 27 | 28 | 29 | **30** |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| monomials of (R) | 1322 | 1742 | 2372 | 3212 | 4052 | 5102 | 5312 | 5522 | 5732 | 5942 | 6152 |
+| negative | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **39** |
+
+**The certificate covers `J = 7..29` and breaks at exactly `J = 30`** — and it
+breaks in the narrowest way possible: all 39 negative monomials carry the same
+`thL^3 K3^1 y^0`, differing only in the power of `v` (0..38). One exponent line
+out of 6152 monomials. `(R)` itself was not seen to fail there — the 504-point
+numeric sweep found no violation up to `J = 40` — so what fails at `J = 30` is the
+crudeness of monomial signs, not the inequality. The escalation is the same one
+the far-below criterion itself used past `j = 8`: a Bernstein step, here needed in
+`thL` alone.
 
 All-nonnegative monomials over a nonnegative orthant is a proof, not a sample —
 the same certificate shape the far-below criterion itself uses at `j <= 8`.

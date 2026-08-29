@@ -5226,3 +5226,19 @@ rational-function inequality and can be done by hand.
 So the leading obstruction of (R) becomes J-uniform the moment the Newton-excess
 lemma is proved, and that lemma is a self-contained question about elementary
 symmetric functions of the squares of an arithmetic progression.
+
+### 2026-08-29 — the certificate's exact reach: J = 7..29, and j = 12 joins the proof
+
+(R) is manifestly positive at every J from 7 to 29 (1322 up to 5942 monomials,
+zero negatives in each) and breaks at exactly J = 30 -- in the narrowest way
+available: all 39 negative monomials there carry the same thL^3 K3^1 y^0 and
+differ only in the power of v (0..38). One exponent line out of 6152. The
+numeric sweep found no actual violation of (R) up to J = 40, so what fails at 30
+is the crudeness of monomial signs, not the inequality; the fix is a Bernstein
+step in thL alone -- the same escalation the far-below criterion itself used past
+j = 8.
+
+And the j = 12 extraction finished: 71 negative monomials, ALL at y-degree 10 =
+J-2, with the repair holding at all 38 dips. So the combined proof (manifest
+positivity everywhere except J-2, plus the certified grouping) now closes the
+far-below region at j = 9, 10, 11 AND 12.
