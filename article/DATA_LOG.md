@@ -5319,3 +5319,11 @@ full c_{J-3} = w e2 - u den e1p + poch_2 s^4 E_{J-3} den^2 has 0 of 902. And T2 
 w e2 - u den e1p is negative in all of its monomials. So no pair of the three
 terms carries the sign: positivity is a genuine three-way balance, and there is no
 shortcut of that shape. Closed, ten minutes.
+
+### 2026-08-29 — the named lemma, stress-tested to n = 200
+
+Largest constant needed in p_t^2/(p_{t-1}p_{t+1}) <= 1 + C/n, over ALL t < n/2 and
+n up to 200: C = 1.9862, and it is attained at the SMALLEST n = 8, not at the
+largest. So the bound 1 + 2/n is stable across the whole range and tight only at
+the very edge of the physical domain. The lemma stands as the one open piece
+between the certificate and a J-uniform (R).
