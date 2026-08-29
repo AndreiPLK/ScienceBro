@@ -6107,3 +6107,14 @@ parameters.
 
 Separately: (B) is now proved for every t <= 200, 198 finite polynomial proofs, 0
 failures.
+
+### 2026-08-30 -- Theorem 2 reaches j = 17
+
+Leg (a) at j = 17 came back clean on the FULL region after a three-hour run: 253
+negative monomials, every one at y-degree 15 = J-2, which is exactly the statement.
+(R) at J = 17 then certified immediately by manifest positivity -- 0 negative monomials
+of 3422, no Bernstein step needed.
+
+So both hypotheses of Proposition 1 hold at j = 17 and the far-below region is closed
+for j = 9..17. The ceiling moved by one depth, and it moved for the reason predicted:
+machine time, not mathematics.

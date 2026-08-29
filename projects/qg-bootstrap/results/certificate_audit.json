@@ -5,6 +5,7 @@
     9,
     12,
     16,
+    17,
     20,
     25,
     26,
@@ -25,6 +26,7 @@
     9,
     12,
     16,
+    17,
     20,
     25,
     26,
@@ -107,6 +109,21 @@
           "by": "monomial signs",
           "negative_monomials": 0,
           "artefact": "repair_certificate_j16.json"
+        }
+      ]
+    },
+    {
+      "j": 17,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j17.json"
         }
       ]
     },
@@ -328,13 +345,11 @@
     }
   ],
   "runtime_s": 0.0,
-  "git": "4c818a26c4aa",
-  "git_full": "4c818a26c4aab27ba4bfee13c556bf193a381fca",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/certificate_audit.py"
-  ],
-  "dirty_count": 1,
+  "git": "668cab406059",
+  "git_full": "668cab4060595b615abf7ce6d63a0dc6a92c7ebf",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"

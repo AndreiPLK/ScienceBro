@@ -1,13 +1,13 @@
 ---
 id: CLAIM-LEGA
 statement: Every y-coefficient c_k with k outside {J-2, J-3} is nonnegative.
-domain: j = 9..16
+domain: j = 9..17
 status: CERTIFIED
 certificate_artifact: projects/qg-bootstrap/results/farbelow_negative_pattern_j16.json
 last_verified: 2026-08-29
 dependencies:
 evidence:
-  - negative monomials occur only at y-degree J-2: 11,30,41,71,96,130,165,205 for j = 9..16
+  - negative monomials occur only at y-degree J-2: 11,30,41,71,96,130,165,205,253 for j = 9..17
 references:
 ---
 
