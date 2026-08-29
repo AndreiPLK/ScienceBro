@@ -1,0 +1,39 @@
+{
+  "source": "third answer from the parallel chat, 2026-08-29; untrusted, hence checked",
+  "recursion_A": {
+    "checks": 1760,
+    "mismatches": 0,
+    "status": "identity"
+  },
+  "conjecture_B_ratio_log_concavity": {
+    "pairs_tested": 2050,
+    "failures": 0,
+    "status": "CONJECTURE, tested only"
+  },
+  "conjecture_C_parity_monotonicity": {
+    "n_tested": 72,
+    "failures": 0,
+    "status": "CONJECTURE, tested only"
+  },
+  "base_cases": {
+    "M_44_21": 1.8393321287344042,
+    "M_45_22": 1.886035304662337
+  },
+  "closed_form_t1": {
+    "n_tested": 75,
+    "mismatches": 0,
+    "status": "identity"
+  },
+  "reduction": "if (B) and (C) hold, the lemma reduces to the two base cases above, both below the 2 allowed",
+  "runtime_s": 0.0,
+  "git": "3f9c7a432a4a",
+  "git_full": "3f9c7a432a4a3427719aaae26f050add77295fe4",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/finite_n_bridge_check.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

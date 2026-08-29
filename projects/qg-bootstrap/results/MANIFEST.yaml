@@ -47,6 +47,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  FINITE_N_BRIDGE.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   FROZEN_PREDICTION_blocks.md:
     added: '2026-08-18'
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
@@ -327,6 +331,10 @@ artefacts:
     status: live
   fine_boundary_mu0_N20_corrected.json:
     added: '2026-08-13'
+    note: referenced by a paper, document or lab module
+    status: live
+  finite_n_bridge_check.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   gegenbauer_term_by_term.json:

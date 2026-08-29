@@ -5575,3 +5575,31 @@ So the n >= 2J-3 restriction is a real boundary of this method, not an untested
 convenience. Anything beyond it needs a genuinely different grouping (an optimal
 unequal split is a flow problem, and at margins near 2 it is not obviously
 feasible).
+
+### 2026-08-29 — the finite-n bridge reduced to two conjectures and two numbers
+
+Third answer from the parallel chat. Not a proof -- a plan -- but it carries an
+exact structure worth more than a proof of the wrong thing:
+
+    F_{n+2}(z) = F_n(z)(1 + n^2 z)^2,
+    e_t(n+2) = e_t(n) + 2n^2 e_{t-1}(n) + n^4 e_{t-2}(n).
+
+Verified: 1760 checks, 0 mismatches. It is exactly the doubling this repository
+found today (DOUBLED_MULTISET) read as a step in n: going n -> n+2 adds the pair
++-n, i.e. the value n^2 twice. So the step from asymptotics to finite n is an
+algebraic recursion, not an approximation.
+
+The reduction rests on two conjectures, both tested here:
+  (B) p_{t+1}^3 p_{t-1} >= p_t^3 p_{t+2}   -- 2050 pairs, 0 failures
+  (C) M_{n+2,central} <= M_{n,central}     -- 72 values of n, 0 failures
+With both, the maximum sits at the two smallest cases per parity, and those are
+computed exactly: M_{44,21} = 1.8393321287, M_{45,22} = 1.8860353047, against the
+2 allowed. Their PDF quotes both to ten digits and both reproduce; M_{44,21} is
+the same maximum this repository had measured independently.
+
+Also verified from the same answer: the closed form R_{n,1} =
+5n(n-2)^2/(5n^3-24n^2+28n+12), 75 values of n, 0 mismatches.
+
+So the bridge is no longer an open analytic problem. It is two inequalities about
+an explicitly recursive family, with every numerical precondition checked and both
+base cases in hand.
