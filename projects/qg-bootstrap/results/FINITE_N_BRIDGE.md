@@ -138,8 +138,30 @@ making every coefficient nonnegative:
 
 So **(B) is proved at `t = 1, 2, 3, 4`**, including its tightest rung, by the same
 all-nonnegative-coefficients move that carries the repair certificate. Degrees grow
-by 16 per rung, so the machine keeps running; what it cannot do is reach every `t`
-at once, which is what a general proof still owes.
+by 16 per rung (`16t + 6`), so the machine keeps running: `t = 5` and `t = 6` also
+close, at shifts 7 and 10.
+
+**And the shifts line up with exactly what is needed.** Our range is `t < n/2`,
+i.e. `n > 2t`. Testing the shift `2t` itself:
+
+| t | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| degree | 22 | 38 | 54 | 70 | 86 | 102 | 118 | 134 | 150 | 166 |
+| negatives after `n = m + 2t` | 9 | 13 | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **0** |
+
+So for `t >= 3` the rung polynomial is nonnegative-coefficient after exactly the
+shift the application needs, and the two exceptional rungs `t = 1, 2` are proved
+separately for `n >= 3` and `n >= 6`.
+
+**That turns the open part of (B) into one sharp uniform statement:**
+
+> For every integer `t >= 3`, the polynomial `P_t(m + 2t)` has all coefficients
+> nonnegative, where
+> `P_t(n) = e_{t+1}^3 e_{t-1} C(N,t)^3 C(N,t+2) - e_t^3 e_{t+2} C(N,t+1)^3 C(N,t-1)`.
+
+Tested exactly at `t = 3..10`. It implies (B) on the whole range `t < n/2`, and it
+is a statement about one explicit family of polynomials — no knives, no `lam`, no
+asymptotics.
 
 **Proved:** the exact recursion; the `t = 1` rung in closed form, which the same
 PDF gives as `R_{n,1} = 5n(n-2)^2/(5n^3 - 24n^2 + 28n + 12)` — **verified over 75

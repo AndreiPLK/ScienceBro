@@ -5691,3 +5691,16 @@ all with 0 direct-check failures. Degrees grow by 16 per rung. So (B) holds as a
 theorem at its four lowest rungs, including the tightest one, by the same
 all-nonnegative-coefficients move as the repair certificate -- and what remains
 owed is the uniformity in t, not any individual case.
+
+### 2026-08-29 — the open part of (B) is now one sharp uniform statement
+
+The rung machine keeps running: t = 5 and 6 close at shifts 7 and 10. And the
+shifts line up with the application: our range is t < n/2, i.e. n > 2t, so test the
+shift 2t itself. Negatives after n = m + 2t: 9 at t=1, 13 at t=2, and ZERO at
+t = 3, 4, 5, 6, 7, 8, 9, 10 (degrees 54 to 166). The two exceptional rungs are the
+ones already proved separately, for n >= 3 and n >= 6.
+
+So what is open in (B) is exactly one uniform statement: for every t >= 3, the rung
+polynomial P_t(m + 2t) has all coefficients nonnegative. Tested at t = 3..10, it
+implies (B) on the whole range the bridge needs, and it is a statement about one
+explicit polynomial family with no knives, no lam and no asymptotics in it.
