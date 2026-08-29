@@ -5048,3 +5048,30 @@ at 70 of 315 points, but by ratios of 1.0000 to 1.0016: a tenth of a percent too
 strong. Third independent place today where the truth is tight to a fraction of a
 percent, and a reminder that the clean-looking reduction is not always the true
 one.
+
+### 2026-08-29 — correction: the localisation ends at n = 2J-3, and I nearly generalised past it
+
+The "one coefficient, one address" finding was measured at j = 9, 10, 11 with
+n = 44 -- all deep inside one regime. Evaluating the verified closed form as
+numbers (cheap, so it reaches depths the polynomial route cannot) shows it does
+NOT persist: at n = 44 the dips spread to k = 1 by J = 24, to k = 1,3,5,7,9,11 by
+J = 30, and to seventeen coefficients by J = 40. Not precision: identical at 300,
+1200 and 4000 bits.
+
+It is a J-versus-n effect and the boundary is SHARP. First clean n at fixed J:
+47, 49, 53, 61, 67 for J = 25, 26, 28, 32, 35 -- exactly 2J-3 in five of five,
+and the same at K3=3, thL=2. So at the corner
+
+    only c_{J-2} dips  <==>  n >= 2J-3  <==>  j <= (n+3)/2,
+
+and away from the corner (larger lam) the constraint is weaker still.
+
+COST TO THE PLAN. The two-statement target is a statement about j <= (n+3)/2
+only; above it several coefficients dip and one neighbour pairing cannot absorb
+them. The repair measurement stands on its own (it concerns c_{J-2}), but it is
+not by itself a route to uniformity over the whole range 3 <= j <= n-1.
+
+AND A COINCIDENCE WORTH WATCHING. That boundary sits next to the depth cutoff the
+programme measured independently for the Hausdorff mechanism, j <= n/2 + 1. Two
+unrelated constructions with the same boundary is either luck or one mechanism
+seen twice. Nothing here decides which.

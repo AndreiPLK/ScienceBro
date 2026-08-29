@@ -33,8 +33,9 @@ monomials are:
 | 10 | 30 | **8 = J-2**, all of them | 0 | 0 | 0..29 |
 | 11 | 41 | **9 = J-2**, all of them | 0 | 0 and 1 | 0..37 |
 
-So every failure of the criterion, at every `j` measured, lives in **one single
-`y`-coefficient — the one of degree `J-2`** — and inside it, on the corner
+So every failure of the criterion, at the `j` measured HERE, lives in **one single
+`y`-coefficient — the one of degree `J-2`** (but read the correction below: this
+holds only while `n >= 2J-3`) — and inside it, on the corner
 `thL = 0`, `K3 = 0` (with two strays at `K3 = 1` for `j = 11`). All `J-1` other
 coefficients are manifestly positive, monomial by monomial.
 
@@ -208,6 +209,52 @@ That form is **false** — at 70 of the 315 points — but only just: the ratios
 **1.0000 to 1.0016**. So the boundary reduction is a fraction of a percent too
 strong to be the proof, and the true statement is tight at the `10^-3` level.
 Tightness again, in a third independent place today.
+
+## CORRECTION (same day): the localisation is not universal — it ends at n = 2J-3
+
+Everything above was measured at `j = 9, 10, 11` with `n = 44 + v`, i.e. deep
+inside one regime. Evaluating the verified closed form as NUMBERS (cheap, so it
+reaches depths the polynomial route cannot) shows the picture does not persist:
+
+| J at the corner `v = K3 = thL = 0`, `n = 44` | dips other than `c_{J-2}` |
+|---|---|
+| 9 .. 20 | none |
+| 24 | `k = 1` |
+| 30 | `k = 1, 3, 5, 7, 9, 11` |
+| 40 | 17 of them, and `c_{J-2}` does not dip at all |
+
+Not a precision artefact: the signs are unchanged at 300, 1200 and 4000 bits of
+`arb`.
+
+**It is not a large-`J` effect but a `J`-versus-`n` one, and the boundary is
+sharp.** Scanning `n` upward at fixed `J`, the first `n` at which nothing but
+`c_{J-2}` dips is
+
+| J | 25 | 26 | 28 | 32 | 35 |
+|---|---|---|---|---|---|
+| first clean `n` | 47 | 49 | 53 | 61 | 67 |
+| `2J-3` | 47 | 49 | 53 | 61 | 67 |
+
+**five of five**, and the same at `K3 = 3, thL = 2`. So, at the corner of the
+region,
+
+    only c_{J-2} dips   <==>   n >= 2J - 3   <==>   j <= (n+3)/2.
+
+Away from the corner (`K3 = 60, thL = 50`, i.e. larger `lam`) the constraint is
+weaker still — cleanliness starts at `n = 44` for every `J` tested.
+
+**What this costs the plan above.** The two-statement target — everything except
+`c_{J-2}` manifestly nonnegative, plus the neighbour repair — is a statement
+about the regime `j <= (n+3)/2` only. Above it several coefficients dip and one
+neighbour pairing cannot absorb them. The repair measurement itself stands (it
+concerns `c_{J-2}` and holds at all 91 dips), but it is not by itself a route to
+uniformity across the whole physical range `3 <= j <= n-1`.
+
+**Worth noting, not yet explained.** That boundary sits right next to the depth
+cutoff the programme measured independently for the Hausdorff mechanism,
+`j <= n/2 + 1` (`results/asymptotic_regime_probe.json`). Two unrelated
+constructions putting their boundary at the same line is either a coincidence or
+the same mechanism seen twice; nothing here decides which.
 
 ## What is NOT claimed
 

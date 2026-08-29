@@ -155,3 +155,41 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+def all_coefficients_signs(J: int, v: int, k3: int, thl: int) -> dict:
+    """Sign of EVERY y-coefficient at one region point, from the verified formula.
+
+    The claim the whole picture rests on is "only c_{J-2} ever dips".  Full
+    polynomial expansion can test it to j = 12 at best; evaluating the verified
+    closed form as numbers tests it wherever we like.  A dip at some k != J-2
+    would refute the picture, so this is the check that can actually fail.
+    """
+    n, s, den, A = region_point(v, k3, thl, J)
+    E = E2_list(n, J)
+    alpha = [a / den for a in A]
+
+    def e_sym_alpha(items, t):
+        acc = [arb(1)] + [arb(0)] * t
+        for it in items:
+            for q in range(min(t, len(acc) - 1), 0, -1):
+                acc[q] = acc[q] + acc[q - 1] * it
+        return acc[t]
+
+    negatives = []
+    for k in range(J):
+        tot = arb(0)
+        for i in range(J - k):
+            poch = arb(1)
+            for q in range(1, 2 * i + 1):
+                poch *= arb(2 * n - 2 * J + q)
+            poch /= arb(math.factorial(i) * 2**i)
+            term = arb(E[J - 1 - i]) * poch * s ** (2 * i) * e_sym_alpha(alpha[i:], J - 1 - i - k)
+            tot = tot + term if i % 2 == 0 else tot - term
+        if (J - 1 + k) % 2:
+            tot = -tot
+        if tot < 0:
+            negatives.append(k)
+        elif not (tot > 0):
+            negatives.append(f"undecided_{k}")
+    return {"J": J, "v": v, "K3": k3, "thL": thl, "negative_k": negatives}
