@@ -5714,3 +5714,9 @@ the bridge needs, at every n <= 200.
 
 What remains owed is only uniformity in t: that the shift 2t works for EVERY t
 rather than for each one computed. Every instance computed is true.
+
+### 2026-08-29 — leg (a) reaches j = 16
+
+j = 16: 205 negative monomials, all at y-degree 14 = J-2, after 77 minutes of
+expansion. So the localisation holds at every depth from 9 to 16, and with (R)
+certified the combined proof closes those depths. j = 17 is still running.

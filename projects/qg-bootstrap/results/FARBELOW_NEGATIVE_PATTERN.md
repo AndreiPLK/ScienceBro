@@ -36,6 +36,7 @@ monomials are:
 | 13 | 96 | **11 = J-2**, all | 62 | **0** |
 | 14 | 130 | **12 = J-2**, all | 78 | **0** |
 | 15 | 165 | **13 = J-2**, all | 99 | **0** |
+| 16 | 205 | **14 = J-2**, all | — | — |
 
 (at `j = 9, 10` the negatives also share `thL = K3 = 0`, differing only in `v`;
 by `j = 11` a couple sit at `K3 = 1`.) 310 dips in total across the seven depths,
@@ -429,8 +430,8 @@ discriminant — hence nonnegative for EVERY real `y`, in particular on `y >= 0`
 Every other term is nonnegative there. Therefore `N(y) >= 0` on the whole ray.
 
 **That closes the far-below region at the depths where the criterion alone
-failed.** `j = 9..15` were shown here to have their negatives only at `J-2`
-(11, 30, 41, 71, 96, 130, 165 of them), and `(R)` is certified at every `J` from 7
+failed.** `j = 9..16` were shown here to have their negatives only at `J-2`
+(11, 30, 41, 71, 96, 130, 165, 205 of them), and `(R)` is certified at every `J` from 7
 to 32, so those depths now have a proof of the manifest-positivity kind rather
 than the heavier interval-Bernstein certificates they were closed with. `j = 16`
 and `17` are running; they would complete the range the old method covered. The same pair closes any further `J` for which
