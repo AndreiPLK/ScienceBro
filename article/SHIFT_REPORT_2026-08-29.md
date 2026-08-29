@@ -56,7 +56,7 @@ artefacts.
 
 ## Where I was wrong today
 
-Four of my own claims died, three of them by tests I wrote next to them.
+Six of my own claims died today, most of them by tests I wrote next to them.
 
 * **ERR-0015** — "criterion S" had its conclusion inside its hypothesis
   (`A_0 = K_r`). True and empty.
@@ -70,7 +70,10 @@ Four of my own claims died, three of them by tests I wrote next to them.
   paragraph: undoubled families of the same size sit at the same boundary.
 * **"The dominant term wins"** — refuted by measurement: the rest exceeds it by 3
   to 3.2e8.
-* **The J = 30 break** — my test domain, not the mathematics.
+* **The J = 30 break** — my test domain, not the mathematics; but then I said
+  there was no depth where the in-regime certificate failed, and that was wrong
+  too. It fails from `J = 31` (70 negative monomials). Corrected in the same hour,
+  before it was quoted anywhere.
 
 ## What checks this now
 

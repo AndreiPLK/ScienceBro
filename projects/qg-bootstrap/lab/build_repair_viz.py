@@ -234,7 +234,10 @@ def main() -> int:
                 f"n &ge; {2 * first_bad['j'] - 3}; the region as parametrised starts lower, so "
                 "part of what was being certified lies outside the regime the proof serves. "
                 f"Restricted to its own regime, the same build gives {rescued['monomials']} "
-                "monomials and zero negatives. The inequality did not break; the test domain did."
+                "monomials and zero negatives. The inequality did not break there; the test "
+                "domain did. It does break further on: with the matching restriction the build "
+                "gives 70 negative monomials at J = 31 and 392 at J = 40, so manifest positivity "
+                "is a tool with a range, and past it the certificate needs one Bernstein step."
             )
             break_caption = (
                 f"Amber at J = {first_bad['j']} is the full region; inside the regime n &ge; "

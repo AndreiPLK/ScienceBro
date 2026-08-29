@@ -58,13 +58,14 @@ footer { color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--ru
   <h2>Where the failure lives</h2>
   <p>Expand the object at the shore and collect powers of the distance below it.
   Every coefficient is a sum with all-positive parts except one: the coefficient of
-  <code>y<sup>J&minus;2</sup></code>. Measured, at 5 depths:</p>
+  <code>y<sup>J&minus;2</sup></code>. Measured, at 6 depths:</p>
   <table>
     <tr><th>knife order J</th><th>negative monomials</th><th>all at y-degree</th></tr>
     <tr><td>9</td><td>11</td><td>7</td></tr>
     <tr><td>10</td><td>30</td><td>8</td></tr>
     <tr><td>11</td><td>41</td><td>9</td></tr>
     <tr><td>12</td><td>71</td><td>10</td></tr>
+    <tr><td>13</td><td>96</td><td>11</td></tr>
     <tr><td>14</td><td>130</td><td>12</td></tr>
   </table>
 
@@ -87,7 +88,7 @@ footer { color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--ru
   </figure>
 
   <h2>What breaks, and how narrowly</h2>
-  <p>At J = 30 the certificate stops on the full region, with 39 negative monomials out of 6152. They are not scattered: every one carries the same thL<sup>3</sup>, y<sup>0</sup>, K3<sup>1</sup>, differing only in the remaining variable &mdash; one line in the exponent lattice. And that break is an artefact of where it was tested. The structure above holds only for n &ge; 2J&minus;3, which at J = 30 means n &ge; 57; the region as parametrised starts lower, so part of what was being certified lies outside the regime the proof serves. Restricted to its own regime, the same build gives 6152 monomials and zero negatives. The inequality did not break; the test domain did.</p>
+  <p>At J = 30 the certificate stops on the full region, with 39 negative monomials out of 6152. They are not scattered: every one carries the same thL<sup>3</sup>, y<sup>0</sup>, K3<sup>1</sup>, differing only in the remaining variable &mdash; one line in the exponent lattice. And that break is an artefact of where it was tested. The structure above holds only for n &ge; 2J&minus;3, which at J = 30 means n &ge; 57; the region as parametrised starts lower, so part of what was being certified lies outside the regime the proof serves. Restricted to its own regime, the same build gives 6152 monomials and zero negatives. The inequality did not break there; the test domain did. It does break further on: with the matching restriction the build gives 70 negative monomials at J = 31 and 392 at J = 40, so manifest positivity is a tool with a range, and past it the certificate needs one Bernstein step.</p>
 
   <h2>What this does and does not settle</h2>
   <p>Proved: the repair inequality, on the whole region, at those depths &mdash; and
