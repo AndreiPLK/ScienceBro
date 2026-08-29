@@ -1,0 +1,400 @@
+{
+  "what": "certified margin 1 - c* at the shore, where c* upper-bounds the largest real root of the reduced Schur-Szego composition",
+  "reading": "a positive margin everywhere means a root bound CAN close the diagonal; the log-log slope says how sharp it must be in n",
+  "rows": [
+    {
+      "n": 6,
+      "lam": "1",
+      "depths_tested": 3,
+      "uncertified_depths": [],
+      "worst_margin": 0.11111111110949423,
+      "worst_margin_exact": "7635497415/68719476736",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.6666666666569654
+    },
+    {
+      "n": 6,
+      "lam": "5/2",
+      "depths_tested": 3,
+      "uncertified_depths": [],
+      "worst_margin": 0.03367901234378223,
+      "worst_margin_exact": "9257616421/274877906944",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.2020740740626934
+    },
+    {
+      "n": 6,
+      "lam": "7",
+      "depths_tested": 3,
+      "uncertified_depths": [],
+      "worst_margin": 0.11049382716009859,
+      "worst_margin_exact": "7593077985/68719476736",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.6629629629605915
+    },
+    {
+      "n": 6,
+      "lam": "30",
+      "depths_tested": 3,
+      "uncertified_depths": [],
+      "worst_margin": 0.5801477760323905,
+      "worst_margin_exact": "79734903197/137438953472",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 3.4808866561943432
+    },
+    {
+      "n": 8,
+      "lam": "1",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.05769230769146816,
+      "worst_margin_exact": "15858340785/274877906944",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.46153846153174527
+    },
+    {
+      "n": 8,
+      "lam": "5/2",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.05697847858391469,
+      "worst_margin_exact": "7831062467/137438953472",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.45582782867131755
+    },
+    {
+      "n": 8,
+      "lam": "7",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.044897959181980696,
+      "worst_margin_exact": "6170728523/137438953472",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.35918367345584556
+    },
+    {
+      "n": 8,
+      "lam": "30",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.47262226563543663,
+      "worst_margin_exact": "129913419153/274877906944",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 3.780978125083493
+    },
+    {
+      "n": 12,
+      "lam": "1",
+      "depths_tested": 9,
+      "uncertified_depths": [],
+      "worst_margin": 0.060760541673516855,
+      "worst_margin_exact": "2087716315/34359738368",
+      "worst_at_r": 4,
+      "worst_margin_times_n": 0.7291265000822023
+    },
+    {
+      "n": 12,
+      "lam": "5/2",
+      "depths_tested": 9,
+      "uncertified_depths": [],
+      "worst_margin": 0.04787977921660058,
+      "worst_margin_exact": "1645136687/34359738368",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.574557350599207
+    },
+    {
+      "n": 12,
+      "lam": "7",
+      "depths_tested": 9,
+      "uncertified_depths": [],
+      "worst_margin": 0.011757789532566676,
+      "worst_margin_exact": "3231956577/274877906944",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.1410934743908001
+    },
+    {
+      "n": 12,
+      "lam": "30",
+      "depths_tested": 9,
+      "uncertified_depths": [],
+      "worst_margin": 0.3171764582803007,
+      "worst_margin_exact": "10898100123/34359738368",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 3.8061174993636087
+    },
+    {
+      "n": 16,
+      "lam": "1",
+      "depths_tested": 13,
+      "uncertified_depths": [],
+      "worst_margin": 0.05770078556088265,
+      "worst_margin_exact": "3965167791/68719476736",
+      "worst_at_r": 6,
+      "worst_margin_times_n": 0.9232125689741224
+    },
+    {
+      "n": 16,
+      "lam": "5/2",
+      "depths_tested": 13,
+      "uncertified_depths": [],
+      "worst_margin": 0.054732446722482564,
+      "worst_margin_exact": "15044740397/274877906944",
+      "worst_at_r": 4,
+      "worst_margin_times_n": 0.875719147559721
+    },
+    {
+      "n": 16,
+      "lam": "7",
+      "depths_tested": 13,
+      "uncertified_depths": [],
+      "worst_margin": 0.020651657639973564,
+      "worst_margin_exact": "5676684427/274877906944",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.330426522239577
+    },
+    {
+      "n": 16,
+      "lam": "30",
+      "depths_tested": 13,
+      "uncertified_depths": [],
+      "worst_margin": 0.21206318164695404,
+      "worst_margin_exact": "58291483511/274877906944",
+      "worst_at_r": 3,
+      "worst_margin_times_n": 3.3930109063512646
+    },
+    {
+      "n": 20,
+      "lam": "1",
+      "depths_tested": 17,
+      "uncertified_depths": [],
+      "worst_margin": 0.05284263328576344,
+      "worst_margin_exact": "14525272435/274877906944",
+      "worst_at_r": 8,
+      "worst_margin_times_n": 1.0568526657152688
+    },
+    {
+      "n": 20,
+      "lam": "5/2",
+      "depths_tested": 17,
+      "uncertified_depths": [],
+      "worst_margin": 0.05129906845104415,
+      "worst_margin_exact": "3525245141/68719476736",
+      "worst_at_r": 5,
+      "worst_margin_times_n": 1.025981369020883
+    },
+    {
+      "n": 20,
+      "lam": "7",
+      "depths_tested": 17,
+      "uncertified_depths": [],
+      "worst_margin": 0.039980809211556334,
+      "worst_margin_exact": "5494920577/137438953472",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.7996161842311267
+    },
+    {
+      "n": 20,
+      "lam": "30",
+      "depths_tested": 17,
+      "uncertified_depths": [],
+      "worst_margin": 0.14185934287525015,
+      "worst_margin_exact": "19496999625/137438953472",
+      "worst_at_r": 3,
+      "worst_margin_times_n": 2.837186857505003
+    },
+    {
+      "n": 28,
+      "lam": "1",
+      "depths_tested": 25,
+      "uncertified_depths": [],
+      "worst_margin": 0.045412462033709744,
+      "worst_margin_exact": "12482882513/274877906944",
+      "worst_at_r": 12,
+      "worst_margin_times_n": 1.2715489369438728
+    },
+    {
+      "n": 28,
+      "lam": "5/2",
+      "depths_tested": 25,
+      "uncertified_depths": [],
+      "worst_margin": 0.04934940766906948,
+      "worst_margin_exact": "13565061889/274877906944",
+      "worst_at_r": 8,
+      "worst_margin_times_n": 1.3817834147339454
+    },
+    {
+      "n": 28,
+      "lam": "7",
+      "depths_tested": 25,
+      "uncertified_depths": [],
+      "worst_margin": 0.04453272755199578,
+      "worst_margin_exact": "3060265735/68719476736",
+      "worst_at_r": 3,
+      "worst_margin_times_n": 1.2469163714558817
+    },
+    {
+      "n": 28,
+      "lam": "30",
+      "depths_tested": 25,
+      "uncertified_depths": [],
+      "worst_margin": 0.06058905400641379,
+      "worst_margin_exact": "16654592349/274877906944",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 1.696493512179586
+    },
+    {
+      "n": 40,
+      "lam": "1",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.036145284724625526,
+      "worst_margin_exact": "9935540211/274877906944",
+      "worst_at_r": 20,
+      "worst_margin_times_n": 1.445811388985021
+    },
+    {
+      "n": 40,
+      "lam": "5/2",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.061790087893314194,
+      "worst_margin_exact": "8492365015/137438953472",
+      "worst_at_r": 10,
+      "worst_margin_times_n": 2.4716035157325678
+    },
+    {
+      "n": 40,
+      "lam": "7",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.06548842175470782,
+      "worst_margin_exact": "18001320301/274877906944",
+      "worst_at_r": 10,
+      "worst_margin_times_n": 2.6195368701883126
+    },
+    {
+      "n": 40,
+      "lam": "30",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.012352850535535254,
+      "worst_margin_exact": "848881425/68719476736",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.49411402142141014
+    },
+    {
+      "n": 60,
+      "lam": "1",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.031103691817406798,
+      "worst_margin_exact": "8549717705/274877906944",
+      "worst_at_r": 30,
+      "worst_margin_times_n": 1.8662215090444079
+    },
+    {
+      "n": 60,
+      "lam": "5/2",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.04401647223130567,
+      "worst_margin_exact": "6049577879/137438953472",
+      "worst_at_r": 30,
+      "worst_margin_times_n": 2.64098833387834
+    },
+    {
+      "n": 60,
+      "lam": "7",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.05508450670095044,
+      "worst_margin_exact": "15141513907/274877906944",
+      "worst_at_r": 15,
+      "worst_margin_times_n": 3.3050704020570265
+    },
+    {
+      "n": 60,
+      "lam": "30",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.00540674465810298,
+      "worst_margin_exact": "1486194655/274877906944",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 0.3244046794861788
+    },
+    {
+      "n": 80,
+      "lam": "1",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.029402796360955108,
+      "worst_margin_exact": "4041089561/137438953472",
+      "worst_at_r": 40,
+      "worst_margin_times_n": 2.3522237088764086
+    },
+    {
+      "n": 80,
+      "lam": "5/2",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.03160796205338556,
+      "worst_margin_exact": "2172082613/68719476736",
+      "worst_at_r": 40,
+      "worst_margin_times_n": 2.528636964270845
+    },
+    {
+      "n": 80,
+      "lam": "7",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.041996174139057985,
+      "worst_margin_exact": "11543820447/274877906944",
+      "worst_at_r": 20,
+      "worst_margin_times_n": 3.3596939311246388
+    },
+    {
+      "n": 80,
+      "lam": "30",
+      "depths_tested": 5,
+      "uncertified_depths": [],
+      "worst_margin": 0.024730702607485,
+      "worst_margin_exact": "3398961885/137438953472",
+      "worst_at_r": 2,
+      "worst_margin_times_n": 1.9784562085988
+    }
+  ],
+  "log_log_fits": [
+    {
+      "lam": "1",
+      "points": 9,
+      "slope_log_log": -0.43548453841918877
+    },
+    {
+      "lam": "5/2",
+      "points": 9,
+      "slope_log_log": -0.037134203331391495
+    },
+    {
+      "lam": "7",
+      "points": 9,
+      "slope_log_log": 0.03584977324688889
+    },
+    {
+      "lam": "30",
+      "points": 9,
+      "slope_log_log": -1.7467891892565006
+    }
+  ],
+  "runtime_s": 6.1,
+  "git": "796183e74e3a",
+  "git_full": "796183e74e3ae61439297598ee8ac0272ee8921c",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/ffp_convolution_check.py",
+    "projects/qg-bootstrap/lab/root_margin_scan.py"
+  ],
+  "dirty_count": 2,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

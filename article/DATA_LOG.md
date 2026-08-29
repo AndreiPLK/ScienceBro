@@ -4801,3 +4801,24 @@ knives again, lower depth and lower dimension. Two consequences:
 Caught by asking what the object was, not by a check — ERR-0012's lesson again,
 one level up: before measuring a criterion, expand its hypothesis at the trivial
 index and see whether the conclusion is already there.
+
+### 2026-08-29, later — how much room the root bound has, and a fourth dead end
+
+The live route after ERR-0015 is theta_max(p BOX_N q) < 1, which would give the
+whole diagonal at once. Two measurements on it, both exact.
+
+ROOM. For each (n, r, lam) at the shore, the smallest c for which the exact
+Descartes test certifies no real zero in [c, inf). Worst margin 1 - c* over
+depths: .111/.061/.053/.045/.036/.031/.029 at lam = 1 for n = 6..80, and
+essentially FLAT near .04 at lam = 5/2 and 7 (log-log slopes -0.44, -0.04,
++0.04). 36 rows, 0 depths left uncertified. So a bound may waste a few percent,
+roughly uniformly in n — unlike Theorem 9, whose slack section 6c proved no
+constant could recover. Caveat: above n = 28 only five depths per row are
+tested, so the worst case may be optimistic.
+
+DEAD END 4. Classical magnitude bounds cannot close it. Fujiwara
+2 max_t (c_t e_t)^{1/t} and Cauchy 1 + max_t c_t e_t both need to be < 1 and
+come out at 2.8-49 and up to 1.4e7. They discard signs, and the cancellation is
+the whole phenomenon — the same wall as the Bernstein jam at odd depth and the
+same reason Theorem 5 cannot be sharpened. A usable bound must use the structure
+of the composition, not coefficient sizes.

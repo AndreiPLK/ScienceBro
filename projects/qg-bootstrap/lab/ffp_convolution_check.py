@@ -147,9 +147,56 @@ def sign_alternation_certificate(poly: fmpq_poly) -> tuple[bool, str]:
     return True, f"{d} sign changes on {d + 1} exact rational points"
 
 
-def theta_max(poly: fmpq_poly) -> float:
-    """Largest real root, as a float FOR REPORTING ONLY."""
+def max_real_part(poly: fmpq_poly) -> float:
+    """Largest REAL PART over all roots, as a float FOR REPORTING ONLY.
+
+    NOT the largest real root: when roots are complex -- and they usually are
+    here -- this exceeds it.  Reading it as a root is how one would talk oneself
+    into a contradiction with `staircase_positive`; use `real_root_bound` for the
+    quantity that means something.
+    """
     return max(float(root.real.mid().str(15, radius=False)) for root, _ in poly.complex_roots())
+
+
+def no_real_root_above(poly: fmpq_poly, c: fmpq) -> bool:
+    """Exact, certified: poly has no real zero in [c, inf).
+
+    Descartes on the shift: expand poly(c+y); if every nonzero coefficient has
+    the same sign, poly(c+y) has no zero with y >= 0.  Sufficient, not necessary,
+    so the bound it yields is an upper bound on the largest real root.
+    """
+    d = poly.degree()
+    shifted = [fmpq(0)] * (d + 1)
+    cp = [fmpq(1)] * (d + 1)
+    for i in range(1, d + 1):
+        cp[i] = cp[i - 1] * c
+    for i in range(d + 1):
+        ci = poly[i]
+        if ci == 0:
+            continue
+        for m in range(i + 1):
+            shifted[m] += ci * comb(i, m) * cp[i - m]
+    nz = [x for x in shifted if x != 0]
+    return bool(nz) and all((x > 0) == (nz[0] > 0) for x in nz)
+
+
+def real_root_bound(poly: fmpq_poly, steps: int = 40) -> fmpq | None:
+    """Smallest c on a dyadic bisection of (0, 4] with no real zero in [c, inf).
+
+    Returns None if even c = 4 cannot be certified.  Every evaluation is exact;
+    the bisection only chooses which exact test to run.
+    """
+    hi = fmpq(4)
+    if not no_real_root_above(poly, hi):
+        return None
+    lo = fmpq(0)
+    for _ in range(steps):
+        mid = (lo + hi) / 2
+        if no_real_root_above(poly, mid):
+            hi = mid
+        else:
+            lo = mid
+    return hi
 
 
 def taylor_at_one(poly: fmpq_poly) -> list[fmpq]:
@@ -247,7 +294,7 @@ def check_identity_and_rootedness(cases: list[tuple[int, int, fmpq, fmpq]]) -> d
                 "q_e_all_positive": all(e > 0 for e in e_of_q(n, r, H)),
                 "conv_all_real": ok_c,
                 "conv_why": why_c,
-                "theta_max": theta_max(conv_red),
+                "max_real_part": max_real_part(conv_red),
                 "staircase_positive": staircase_positive(conv_red),
             }
         )

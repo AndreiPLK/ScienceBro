@@ -1,5 +1,9 @@
-ПАШИ · до 23:00 · 15:35
-[████░░░░░░░░░░░]  литпроход закрыт, найдена диагональная тождественность
-СЕЙЧАС:   маршрут theta_max(p BOX q) < 1 — граница на наибольший корень
-ПОСЛЕДНЕЕ: A_m = C(r,m) K_(r-m)(D-2m), 1696 проверок, 0 расхождений; ERR-0015
-ДАЛЬШЕ:   S-преобразование MSS на нашу пару (p,q) → пробная граница → сверка
+PASHI - autonomous run until 23:00 - last update 15:25
+
+[####............]  literature pass CLOSED; diagonal identity found and corrected
+NOW:   route theta_max(p BOX_N q) < 1 -- a bound on the largest real root
+LAST:  A_m = C(r,m) K_{r-m}(D-2m), 1696 checks, 0 mismatches; ERR-0015 filed
+       margin 1 - c* stays near 0.04, flat in n at lam = 5/2 and 7 (36 rows)
+       dead end 4: Fujiwara/Cauchy magnitude bounds give 2.8-49, need < 1
+NEXT:  structure-aware bound (S-transform / majorization), parallel chat on the
+       literature side; then extend the margin scan to all depths for n > 28

@@ -121,6 +121,41 @@ the largest root of a finite free multiplicative convolution is a studied
 problem — it is what Marcus, Spielman and Srivastava used the `S`-transform for.
 That is the live route out of this pass.
 
+## 3b. How much room a root bound has, and one dead end already measured
+
+If the live route is `theta_max(p BOX_N q) < 1`, the first question is how sharp
+such a bound must be. Measured exactly (`lab/root_margin_scan.py` ->
+`results/root_margin_scan.json`): for each `(n, r, lam)` at the shore, the
+smallest `c` for which the exact Descartes test certifies **no real zero in
+[c, inf)** — so `c*` is a certified upper bound on the largest real root, and
+`1 - c*` is the room a bound may waste.
+
+| `lam` \ `n` | 6 | 12 | 20 | 28 | 40 | 60 | 80 |
+|---|---|---|---|---|---|---|---|
+| 1 | .111 | .061 | .053 | .045 | .036 | .031 | .029 |
+| 5/2 | .034 | .048 | .051 | .049 | .062 | .044 | .032 |
+| 7 | .110 | .012 | .040 | .045 | .065 | .055 | .042 |
+| 30 | .580 | .317 | .142 | .061 | .012 | .005 | .025 |
+
+(worst over the depths tested; 36 rows, **0 depths left uncertified**.)
+
+The room is small but it does **not** close: log-log slopes in `n` are `-0.44`
+at `lam = 1` and essentially flat (`-0.04`, `+0.04`) at `lam = 5/2` and `7`. So a
+bound has a few percent of slack, roughly uniformly in `n` — a far better
+situation than Theorem 9, where §6c of `BFORM_POSITIVITY_THEOREM.md` proves no
+constant can help at all. Caveat stated rather than buried: for `n > 28` only
+five depths per `(n, lam)` are tested, so these worst-case margins may be
+optimistic.
+
+**Dead end, measured, do not retry.** Classical coefficient-magnitude root
+bounds cannot deliver this. At the shore, Fujiwara `2 max_t (c_t e_t)^{1/t}` and
+Cauchy `1 + max_t c_t e_t` — both need to be `< 1` — come out at 2.8 to 49 and
+up to `1.4e7` respectively (`n` = 6..40, `lam` = 1, 7, 300). They ignore the
+cancellation, and the cancellation IS the phenomenon: the same reason the
+Bernstein route jammed at odd depth (`ODD_DEPTH_DIAGNOSIS.md`) and the same
+reason Theorem 5's Newton step cannot be sharpened. Any usable bound must use the
+structure of the composition, not the sizes of its coefficients.
+
 ## 4. Claim-state changes this pass forces
 
 - `BFORM_POSITIVITY_THEOREM.md` §7: novelty of the transform
