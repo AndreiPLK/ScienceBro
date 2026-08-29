@@ -66,6 +66,20 @@ it is the arithmetic progression. Our family is `a = n-2`, `d = -2` — an AP th
 crosses zero, which is where the doubling comes from — but the tested APs with
 `a >= 0`, `d > 0` never cross zero and (B) still holds.
 
+**With one correction, made within ten minutes of proposing it.** The AP statement
+is FALSE without a range restriction: for progressions that cross zero there are
+failures — 14 of 2028 pairs, the first at `N = 10`, `t = 8`, `a = -16/3`, `d = 16`.
+They all sit at large `t`. Restricting to what the target actually needs:
+
+| range | pairs | failures |
+|---|---|---|
+| `t <= N/2` | 1107 | **0** |
+| `t <= 0.6 N` | 1335 | **0** |
+| `t <= 0.7 N` | 1530 | **0** |
+
+So the correctly scoped conjecture is **(B) for squares of an AP with `t <= N/2`**,
+and the counterexample above is part of the statement, marking where it stops.
+
 **And squares of an AP have a classical generating function.** Verified exactly:
 
     PROD_{k=0}^{N-1} (1 + (a+k)^2 z)

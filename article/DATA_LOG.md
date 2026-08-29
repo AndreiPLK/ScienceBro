@@ -5631,3 +5631,14 @@ Gamma(a-i/sqrt z) * Gamma(a+N+i/sqrt z)/Gamma(a+i/sqrt z). So the e_t of the cla
 conjugate complex arguments -- a classical object, and the natural place to look
 for a proof. It also explains why generic real-rooted arguments cannot reach (B):
 they do not see this structure.
+
+### 2026-08-29 — correction inside the hour: the AP form of (B) needs a range restriction
+
+I proposed (B) for squares of an arithmetic progression without a restriction on
+t. That is FALSE: progressions crossing zero give 14 failures of 2028 pairs, the
+first at N = 10, t = 8, a = -16/3, d = 16. All failures sit at large t.
+
+Restricted to what the target needs, it holds: t <= N/2 gives 1107 pairs and 0
+failures, and even t <= 0.7 N gives 1530 and 0. So the correctly scoped conjecture
+is (B) for squares of an AP with t <= N/2, with that counterexample marking the
+boundary. The brief sent to the parallel chat was corrected the same minute.
