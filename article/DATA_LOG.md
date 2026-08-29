@@ -5720,3 +5720,18 @@ rather than for each one computed. Every instance computed is true.
 j = 16: 205 negative monomials, all at y-degree 14 = J-2, after 77 minutes of
 expansion. So the localisation holds at every depth from 9 to 16, and with (R)
 certified the combined proof closes those depths. j = 17 is still running.
+
+### 2026-08-29 — (C) is not locally derivable: three experiments, all negative
+
+By the recursion, M_{n+2} at the central index depends on five consecutive e_j(n),
+which invites proving (C) from generic inequalities on those five. Tested by
+feeding synthetic windows through the exact recursion:
+
+  Newton only (ratios decreasing):            233 violations of 400
+  Newton + (B) (ratios log-concave):           25 of 600
+  Newton + (B) + near-extremal (M_n <= 5/2):  865 of 2714
+
+So no local condition of that kind implies (C) -- the actual values of the family
+do the work, not the shape of five neighbours. Any proof of (C) must reach for the
+global structure: the Gamma-ratio generating function, or the recursion iterated,
+not a five-term window. Recorded so the three experiments are not repeated.

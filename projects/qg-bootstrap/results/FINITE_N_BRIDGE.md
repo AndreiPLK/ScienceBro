@@ -41,6 +41,22 @@ approximation.
   makes `R_{n,t}` rise to the middle, so the maximum over `t` sits at the central
   index. **Tested: 2050 pairs `(n, t)` with `n = 8..89`, `t <= n/2+1`, 0
   failures.**
+* **(C) is NOT locally derivable, and that was tested three ways.** By the
+  recursion, `M_{n+2}` at the central index depends on five consecutive `e_j(n)`,
+  which invites a proof from generic inequalities on those five. It does not work.
+  Feeding synthetic five-term windows through the exact recursion:
+
+  | constraints imposed on the window | violations of (C) |
+  |---|---|
+  | Newton (ratios decreasing) | 233 of 400 |
+  | Newton + (B) (ratios log-concave) | 25 of 600 |
+  | Newton + (B) + near-extremal (`M_n <= 5/2`) | 865 of 2714 |
+
+  So no set of local conditions of this kind implies (C): the actual values of the
+  family are doing the work, not the shape of five neighbours. A proof of (C) has
+  to reach for the global structure — the Gamma-ratio generating function, or the
+  recursion iterated, not a window.
+
 * **(C) parity monotonicity in `n`:** `M_{n+2, floor((n+1)/2)} <= M_{n,
   floor((n-1)/2)}`. This makes the central value fall as `n` grows, so the maximum
   over `n >= 44` sits at the two smallest cases, one per parity. **Tested: 72
