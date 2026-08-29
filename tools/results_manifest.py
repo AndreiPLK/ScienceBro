@@ -47,6 +47,18 @@ CURATED: dict[str, tuple[str, str]] = {
         "retracted",
         "same step-6 artefact as FROZEN_PREDICTION_blocks.md",
     ),
+    "asymptotic_regime_probe.json": (
+        "live",
+        "the lam ~> 2n threshold data stands; its depth_law_j_le_half_n_plus_1 field is "
+        "RETRACTED (ERR-0017) -- that law was fitted on n = 12,16,20,24,28,36,44, all "
+        "multiples of 4, and fails in 31 of 51 cases over n = 11..61. Superseded on that "
+        "point by depth_boundary_map.json.",
+    ),
+    "depth_boundary_map.json": (
+        "live",
+        "the depth cutoff computed at EVERY n, including the odd n the original run never "
+        "touched; the artefact behind ERR-0017.",
+    ),
     "OPEN_PROBLEM.md": (
         "live",
         "the standing statement of the open problem plus the list of CLOSED "

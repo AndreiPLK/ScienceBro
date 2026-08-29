@@ -698,3 +698,11 @@ so comparing the two lines forced the odd case to be computed for the first time
 measured on a sample that cannot separate two hypotheses is not a law, it is one
 hypothesis with a flattering sample. Before recording "exactly", check that the
 grid can distinguish the stated formula from its nearest rival.
+
+**And it is the second time this exact mistake has been paid for.** The manifest
+already carries `FROZEN_PREDICTION_blocks.md`, retracted on 18 August with the
+note: "the block-width step law was an artefact of scanning only even j; refuted
+by the full integer grid." Even `j` then, multiples of four now. The lesson was
+recorded as a fact about that one artefact rather than as a rule about sampling,
+so it did not transfer. It is now a rule, in memory as
+`law-needs-a-sample-that-can-refute-it`.
