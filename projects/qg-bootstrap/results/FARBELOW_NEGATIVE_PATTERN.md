@@ -244,6 +244,31 @@ squares of an arithmetic progression.
 Prove that and the leading obstruction in (R) is J-uniform. It is a statement
 about central factorial numbers alone — no knives, no region, no `lam`.
 
+**And it splits into one measured lemma plus one elementary inequality.** Writing
+`p_t = E_t/C(N,t)`, `N = n-1`, the ratio is `F_t` times the Newton excess:
+
+    E_t^2/(E_{t+1}E_{t-1}) = F_t * [p_t^2/(p_{t-1}p_{t+1})],
+    F_t = (t+1)(N-t+1)/(t(N-t)) = (J-1)(n-J+2)/[(J-2)(n-J+1)] at t = J-2.
+
+The family turns out to sit ALMOST at the Newton floor, and the excess shrinks
+like `1/n`: measured `1.05` at `n = 20`, `1.02` at `n = 44`, `1.008` at `n = 100`.
+Sharpened:
+
+> **Lemma (measured, not proved).** For the central factorial family,
+> `p_t^2/(p_{t-1}p_{t+1}) <= 1 + 2/n`. Largest constant needed over
+> `n = 8..120`, `t < n/2`: **1.986**, attained at the smallest `n`.
+
+Granting it, what remains is elementary and closes:
+
+    F_t (1 + 2/n)  <=  2cd/(ab)   for every J >= 4
+
+— **78207 pairs `(n, J)` with `n` up to 400, 0 failures, tightest slack 1.28.**
+That half is a rational-function inequality and can be settled by hand.
+
+So the leading obstruction of (R) is J-uniform as soon as the Newton-excess lemma
+is proved, and that lemma is a self-contained question about
+`e_t({(n-2k)^2})` — squares of an arithmetic progression.
+
 ## What the two pieces prove together
 
 The far-below criterion asks for `N(y) = SUM_k c_k y^k > 0` on `y >= 0`. Put the

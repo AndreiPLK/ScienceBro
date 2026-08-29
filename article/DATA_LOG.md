@@ -5210,3 +5210,19 @@ So the missing piece is one self-contained lemma about central factorial numbers
 with no knives and no lam in it:
 
     E_t^2 / (E_{t+1} E_{t-1}) <= 2(2n-2J+3)(2n-2J+4)/[(2n-2J+1)(2n-2J+2)]  at t = J-2.
+
+### 2026-08-29 — the lemma splits, and the elementary half closes on 78207 pairs
+
+E_t^2/(E_{t+1}E_{t-1}) = F_t * [Newton excess], F_t = (t+1)(N-t+1)/(t(N-t)). The
+central-factorial family sits ALMOST at the Newton floor: the excess is 1.05 at
+n = 20, 1.02 at n = 44, 1.008 at n = 100 -- it shrinks like 1/n. Sharpened to a
+candidate lemma: excess <= 1 + 2/n, with the largest constant needed over
+n = 8..120, t < n/2 being 1.986, attained at the smallest n.
+
+Granting it, the rest is elementary: F_t (1 + 2/n) <= 2cd/(ab) for J >= 4 --
+78207 pairs with n up to 400, 0 failures, tightest slack 1.28. That half is a
+rational-function inequality and can be done by hand.
+
+So the leading obstruction of (R) becomes J-uniform the moment the Newton-excess
+lemma is proved, and that lemma is a self-contained question about elementary
+symmetric functions of the squares of an arithmetic progression.
