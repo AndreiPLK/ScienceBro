@@ -5463,3 +5463,17 @@ QED.
 
 So of the two halves standing between today's certificate and a J-uniform (R), one
 is now a proof and the other is the one-variable lemma handed to the parallel chat.
+
+### 2026-08-29 — leg (a) has no end-term shortcut: the peak is in the middle
+
+A back-of-envelope scaling argument for leg (a) contradicted the verified numbers,
+so I measured the term magnitudes at REAL region points instead of assumed ones.
+At J = 12, across v = 0..400 and K3 = 0, 60: the largest |T_i| sits in the MIDDLE
+of the sum -- argmax i = 6 of 11 at k = 0, i = 3 of 6 at k = 5 -- and the ratio of
+the last term to the largest is 2e-3 to 5e-2. At k = J-2, where only two terms
+remain, they are equal to within 0.1% (ratio 0.999-1.000), which is exactly the
+same-size-difference structure measured this afternoon.
+
+So neither end of the sum carries the sign, for any k: leg (a) is a middle-peaked
+alternating sum, and the shortcut I was looking for does not exist. Recorded with
+the wrong estimate that led here, because the estimate is the kind one repeats.
