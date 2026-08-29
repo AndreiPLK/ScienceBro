@@ -1,11 +1,18 @@
-PASHI - autonomous run until 23:00 - last update 17:05
+PASHI - autonomous run until 23:00 - last update 17:45
 
-[###############.]  three of my own claims corrected; one law replaced-in-waiting
-NOW:   depth-boundary map running to n = 100 (held-out test of the candidate law)
-LAST:  ERR-0017 - the recorded depth law was fitted on multiples of four and
-       fails in 31 of 51 cases; the same sampling mistake was already paid for
-       on 18 Aug (even j), so the lesson is now a rule in lab memory
-       fixed the int->str landmine that kept these probes below n ~ 100
-       page builder written in the house pattern (refuses to emit if falsified)
-NEXT:  when the map lands - score the candidate (4n+32)/9 on n = 62..100,
-       build and publish the page, then back to the far-below line
+[################]  the shift produced a certificate, not a measurement
+DONE TODAY
+  (R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0 is MANIFESTLY POSITIVE for every J from
+  7 to 29, breaking at 30 on one exponent line -> with the one-negative-coefficient
+  structure it PROVES far-below positivity at j = 9,10,11,12,14, where the old
+  criterion needed the heavy interval route
+  the b-multiset is DOUBLED: perfect square, E_{2t} a self-convolution (new to the
+  repo); my hypothesis that this explains the half-depth boundaries: REFUTED
+  ERR-0015, 0016, 0017 - three of my own claims corrected; the depth law j <= n/2+1
+  withdrawn (it was fitted on multiples of four)
+  Grace-Szego transfer verified and closed with numbers: loss 2.5x to 8.7x
+  two pages published, both generated from the artefacts they describe
+NEXT
+  the named lemma: p_t^2/(p_{t-1}p_{t+1}) <= 1 + 2/n for the central factorial
+  family, valid to t ~ n/2 -- with it, (R) goes uniform in depth
+  a Bernstein step in thL alone would push the certificate past J = 30
