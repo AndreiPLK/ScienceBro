@@ -5153,3 +5153,19 @@ Proved: the repair inequality on the whole far-below region, at those depths. NO
 proved: that the other c_k are nonnegative, which stays a measurement and holds
 only while n >= 2J-3. One leg on a certificate, one on a measurement -- and that
 is the first time this front has had a leg on a certificate at all.
+
+### 2026-08-29 — where the certificate's sign comes from
+
+Split (R) at j = 9:
+   T1 = 4 w poch_2 s^4 E_{J-3} den^2 - outer^2   ->    0 negatives of 1755
+   T2 = 4 w (w e2 - u den e1p)                   -> 1520 negatives of 1520
+   R  = T1 + T2                                  ->    0 negatives of 1742
+
+So c_{J-3} is positive only because of its own last term (w e2 - u den e1p is
+negative monomial for monomial), and (R) holds because four times that last term,
+weighted by w, dominates both outer^2 and the entire negative block, term by term.
+That is the statement a J-uniform proof would have to make about the
+E-polynomials, and it is sharper than (R).
+
+Certificates now at J = 7, 9, 12, 16, 20, 25: 1322, 1742, 2372, 3212, 4052, 5102
+monomials, zero negatives in every one.

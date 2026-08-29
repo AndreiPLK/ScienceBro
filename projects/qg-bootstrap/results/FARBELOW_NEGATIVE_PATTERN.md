@@ -287,13 +287,26 @@ is a single polynomial statement about the region.
 variables `(thL, y, v, K3)` — every one of which is `>= 0` on the far-below region —
 and expanded, it has **no negative monomial at all**:
 
-| J | 7 | 9 | 12 | 16 |
-|---|---|---|---|---|
-| monomials of (R) | 1322 | 1742 | 2372 | 3212 |
-| negative | **0** | **0** | **0** | **0** |
+| J | 7 | 9 | 12 | 16 | 20 | 25 |
+|---|---|---|---|---|---|---|
+| monomials of (R) | 1322 | 1742 | 2372 | 3212 | 4052 | 5102 |
+| negative | **0** | **0** | **0** | **0** | **0** | **0** |
 
 All-nonnegative monomials over a nonnegative orthant is a proof, not a sample —
 the same certificate shape the far-below criterion itself uses at `j <= 8`.
+
+**Where the sign comes from.** Splitting (R) at `j = 9` shows it is not a
+coincidence of one big term:
+
+    T1 = 4 w poch_2 s^4 E_{J-3} den^2 - outer^2        0 negatives of 1755
+    T2 = 4 w (w e2 - u den e1p)                     1520 negatives of 1520
+    R  = T1 + T2                                       0 negatives of 1742
+
+So `c_{J-3}` is positive only because of its own last term — `w e2 - u den e1p`
+is negative monomial for monomial — and (R) holds because four times that last
+term, weighted by `w`, dominates both `outer^2` and the whole negative block, term
+by term. That is a sharper statement than (R) itself, and it is what a proof
+uniform in `J` would have to establish about the `E`-polynomials.
 
 **The chain it rests on, checked rather than assumed.** (R) is assembled from the
 general `y`-coefficient formula, which was verified against the assembled
