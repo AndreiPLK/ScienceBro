@@ -118,6 +118,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  THEOREM_STATE.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   UNGLUED_KEYSTONE.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -266,6 +270,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   doubled_multiset.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  edgeworth_prediction.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live

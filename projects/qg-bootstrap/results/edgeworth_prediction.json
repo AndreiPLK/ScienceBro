@@ -1,0 +1,201 @@
+{
+  "what": "g identified: the 1/n^2 part of rho - 1 is the Edgeworth term in the tilted cumulants",
+  "formula": "log rho = 1/K'' + K''''/(2 K''^3) - K'''^2/K''^4;  rho - 1 = log rho + (log rho)^2/2",
+  "test": "residual against exact rho must be O(1/n^3); the Gaussian term alone leaves O(1/n^2). Both columns should be flat after scaling.",
+  "rows": [
+    {
+      "n": 41,
+      "t": 8,
+      "theta": 0.2,
+      "rho_minus_1_exact": 0.1911151691158407,
+      "gaussian_error_times_n2": 14.466410521944454,
+      "edgeworth_error_times_n3": 113.90410780600172
+    },
+    {
+      "n": 41,
+      "t": 14,
+      "theta": 0.35,
+      "rho_minus_1_exact": 0.15064003287780492,
+      "gaussian_error_times_n2": 12.170106019911167,
+      "edgeworth_error_times_n3": 44.06745281878062
+    },
+    {
+      "n": 41,
+      "t": 18,
+      "theta": 0.45,
+      "rho_minus_1_exact": 0.14926920219571377,
+      "gaussian_error_times_n2": 12.990349751500434,
+      "edgeworth_error_times_n3": 39.57292664852313
+    },
+    {
+      "n": 61,
+      "t": 12,
+      "theta": 0.2,
+      "rho_minus_1_exact": 0.12548067092024853,
+      "gaussian_error_times_n2": 14.134560935728638,
+      "edgeworth_error_times_n3": 111.82768735948655
+    },
+    {
+      "n": 61,
+      "t": 21,
+      "theta": 0.35,
+      "rho_minus_1_exact": 0.09879787759708474,
+      "gaussian_error_times_n2": 11.873789543415192,
+      "edgeworth_error_times_n3": 43.02938412838067
+    },
+    {
+      "n": 61,
+      "t": 27,
+      "theta": 0.45,
+      "rho_minus_1_exact": 0.09776805973482543,
+      "gaussian_error_times_n2": 12.657643265948805,
+      "edgeworth_error_times_n3": 38.56608785984513
+    },
+    {
+      "n": 81,
+      "t": 16,
+      "theta": 0.2,
+      "rho_minus_1_exact": 0.0933932571054762,
+      "gaussian_error_times_n2": 13.970251743665216,
+      "edgeworth_error_times_n3": 110.79184739431487
+    },
+    {
+      "n": 81,
+      "t": 28,
+      "theta": 0.35,
+      "rho_minus_1_exact": 0.07349437140626679,
+      "gaussian_error_times_n2": 11.72759173026738,
+      "edgeworth_error_times_n3": 42.51596084550891
+    },
+    {
+      "n": 81,
+      "t": 36,
+      "theta": 0.45,
+      "rho_minus_1_exact": 0.07268047285221342,
+      "gaussian_error_times_n2": 12.493883235183203,
+      "edgeworth_error_times_n3": 38.069480282282065
+    },
+    {
+      "n": 121,
+      "t": 24,
+      "theta": 0.2,
+      "rho_minus_1_exact": 0.06178683400754585,
+      "gaussian_error_times_n2": 13.807040859179576,
+      "edgeworth_error_times_n3": 109.75779095746074
+    },
+    {
+      "n": 121,
+      "t": 42,
+      "theta": 0.35,
+      "rho_minus_1_exact": 0.04859655191880393,
+      "gaussian_error_times_n2": 11.582694494320666,
+      "edgeworth_error_times_n3": 42.00627260414197
+    },
+    {
+      "n": 121,
+      "t": 54,
+      "theta": 0.45,
+      "rho_minus_1_exact": 0.04802709603746082,
+      "gaussian_error_times_n2": 12.331831560751533,
+      "edgeworth_error_times_n3": 37.57737504556877
+    },
+    {
+      "n": 161,
+      "t": 32,
+      "theta": 0.2,
+      "rho_minus_1_exact": 0.04616267347271593,
+      "gaussian_error_times_n2": 13.725851819897052,
+      "edgeworth_error_times_n3": 109.24147775935074
+    },
+    {
+      "n": 161,
+      "t": 56,
+      "theta": 0.35,
+      "rho_minus_1_exact": 0.03629836830118697,
+      "gaussian_error_times_n2": 11.510732087612372,
+      "edgeworth_error_times_n3": 41.75282794668133
+    },
+    {
+      "n": 161,
+      "t": 72,
+      "theta": 0.45,
+      "rho_minus_1_exact": 0.03586143459169189,
+      "gaussian_error_times_n2": 12.251441645827853,
+      "edgeworth_error_times_n3": 37.333001895374515
+    },
+    {
+      "n": 201,
+      "t": 40,
+      "theta": 0.2,
+      "rho_minus_1_exact": 0.03684516723277438,
+      "gaussian_error_times_n2": 13.67727262979213,
+      "edgeworth_error_times_n3": 108.93192907774268
+    },
+    {
+      "n": 201,
+      "t": 70,
+      "theta": 0.35,
+      "rho_minus_1_exact": 0.028967367412248174,
+      "gaussian_error_times_n2": 11.467709882008569,
+      "edgeworth_error_times_n3": 41.60120872650022
+    },
+    {
+      "n": 201,
+      "t": 90,
+      "theta": 0.45,
+      "rho_minus_1_exact": 0.02861315426555233,
+      "gaussian_error_times_n2": 12.203410117599619,
+      "edgeworth_error_times_n3": 37.18691340956351
+    }
+  ],
+  "flatness": {
+    "0.2": {
+      "edgeworth_first_to_last": [
+        113.9041,
+        108.9319
+      ],
+      "edgeworth_relative_drift": 0.0437,
+      "gaussian_first_to_last": [
+        14.4664,
+        13.6773
+      ],
+      "gaussian_relative_drift": 0.0545
+    },
+    "0.35": {
+      "edgeworth_first_to_last": [
+        44.0675,
+        41.6012
+      ],
+      "edgeworth_relative_drift": 0.056,
+      "gaussian_first_to_last": [
+        12.1701,
+        11.4677
+      ],
+      "gaussian_relative_drift": 0.0577
+    },
+    "0.45": {
+      "edgeworth_first_to_last": [
+        39.5729,
+        37.1869
+      ],
+      "edgeworth_relative_drift": 0.0603,
+      "gaussian_first_to_last": [
+        12.9903,
+        12.2034
+      ],
+      "gaussian_relative_drift": 0.0606
+    }
+  },
+  "status": "numeric probe at 40 digits against exact rho; a measurement, not a certificate. The remainder bound is what a proof still owes.",
+  "runtime_s": 4.8,
+  "git": "6efe046d4701",
+  "git_full": "6efe046d4701bf2cc62b549b19aaa9e3d1e4d90f",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/edgeworth_prediction.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
