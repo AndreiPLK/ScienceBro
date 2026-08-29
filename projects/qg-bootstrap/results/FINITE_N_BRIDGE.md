@@ -122,6 +122,25 @@ and verified against the reference engine at 55 values of `n` before use, the
 shifted coefficient signs are computed exactly, and a direct evaluation over
 `n = 6..69` agrees.
 
+**And the move is a machine, not a one-off.** At any FIXED `t`, (B) is one
+polynomial inequality in `n`, since `p_j = e_j/C(N,j)` with `e_j` of degree `3j`
+and `C(N,j)` of degree `j`; cross-multiplying by the positive binomials gives
+
+    e_{t+1}^3 e_{t-1} C(N,t)^3 C(N,t+2) - e_t^3 e_{t+2} C(N,t+1)^3 C(N,t-1) >= 0.
+
+`lab/conjecture_B_rungs.py` builds that polynomial and finds the smallest shift
+making every coefficient nonnegative:
+
+| t | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|
+| degree | 22 | 38 | 54 | 70 |
+| proved for all `n >=` | 3 | 6 | 5 | 8 |
+
+So **(B) is proved at `t = 1, 2, 3, 4`**, including its tightest rung, by the same
+all-nonnegative-coefficients move that carries the repair certificate. Degrees grow
+by 16 per rung, so the machine keeps running; what it cannot do is reach every `t`
+at once, which is what a general proof still owes.
+
 **Proved:** the exact recursion; the `t = 1` rung in closed form, which the same
 PDF gives as `R_{n,1} = 5n(n-2)^2/(5n^3 - 24n^2 + 28n + 12)` — **verified over 75
 values of `n`, 0 mismatches** — with `1 + 2/n - R_{n,1} = 2(3n^3 - 20n^2 + 34n +

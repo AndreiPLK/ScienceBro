@@ -1,0 +1,45 @@
+{
+  "what": "(B) at fixed t is one polynomial inequality in n; a shift making all its coefficients nonnegative proves that rung",
+  "rungs": [
+    {
+      "t": 1,
+      "degree": 22,
+      "smallest_shift_with_all_coefficients_nonnegative": 3,
+      "proved_for_n_at_least": 3,
+      "direct_check_failures": 0
+    },
+    {
+      "t": 2,
+      "degree": 38,
+      "smallest_shift_with_all_coefficients_nonnegative": 6,
+      "proved_for_n_at_least": 6,
+      "direct_check_failures": 0
+    },
+    {
+      "t": 3,
+      "degree": 54,
+      "smallest_shift_with_all_coefficients_nonnegative": 5,
+      "proved_for_n_at_least": 5,
+      "direct_check_failures": 0
+    },
+    {
+      "t": 4,
+      "degree": 70,
+      "smallest_shift_with_all_coefficients_nonnegative": 8,
+      "proved_for_n_at_least": 8,
+      "direct_check_failures": 0
+    }
+  ],
+  "note": "this proves rungs, not (B) for all t at once; t = 1 is the tightest rung and is proved",
+  "runtime_s": 0.0,
+  "git": "a6ca192e9f9f",
+  "git_full": "a6ca192e9f9fc053ce96c5546036aab243e0eab0",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/conjecture_B_rungs.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

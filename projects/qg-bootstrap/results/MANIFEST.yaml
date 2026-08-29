@@ -204,6 +204,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  conjecture_B_rungs.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   conjecture_B_t1.json:
     added: untracked
     note: referenced by a paper, document or lab module

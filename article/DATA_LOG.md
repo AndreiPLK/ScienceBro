@@ -5674,3 +5674,20 @@ n = 6..69 agrees.
 
 So (B) is no longer entirely a conjecture: its hardest case is a theorem, by the
 same all-nonnegative-coefficients move that carries the whole day's work.
+
+### 2026-08-29 — (B) proved rung by rung: t = 1, 2, 3, 4
+
+At fixed t, (B) is one polynomial inequality in n -- p_j = e_j/C(N,j) with e_j of
+degree 3j and C(N,j) of degree j, so cross-multiplying by the positive binomials
+leaves an explicit polynomial. lab/conjecture_B_rungs.py builds it and finds the
+smallest shift making all coefficients nonnegative:
+
+   t=1: degree 22, proved for n >= 3
+   t=2: degree 38, proved for n >= 6
+   t=3: degree 54, proved for n >= 5
+   t=4: degree 70, proved for n >= 8
+
+all with 0 direct-check failures. Degrees grow by 16 per rung. So (B) holds as a
+theorem at its four lowest rungs, including the tightest one, by the same
+all-nonnegative-coefficients move as the repair certificate -- and what remains
+owed is the uniformity in t, not any individual case.
