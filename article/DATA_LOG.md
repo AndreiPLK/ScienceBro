@@ -5528,3 +5528,12 @@ n(excess-1) <= f(theta) + 5.6/n <= 1.8042 + 5.6/n <= 2 for n >= 29, and the regi
 has n >= 44. So what is left of the named lemma is one effective second-order
 estimate with its constant already measured. That is the third question sent to
 the parallel chat.
+
+### 2026-08-29 — the correction is g(theta)/n, not C/n
+
+Measured gap*n at fixed theta rather than at its maximum: 1.57, 2.04, 2.73, 3.81,
+4.58, 5.32 at theta = 0.1, 0.2, 0.3, 0.4, 0.45, 0.49 (n = 240), and each value
+converges as n grows (at n = 80 they are 1.58, 2.06, 2.77, 3.88, 4.68, 5.45). So
+the second-order term is a SHAPE g(theta)/n, not a constant over n, and it rises
+with theta the way f does. The uniform bound needed on (0,1/2) is g <= 5.6, with
+the supremum sitting at the right endpoint.
