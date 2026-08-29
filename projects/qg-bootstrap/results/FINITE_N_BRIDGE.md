@@ -113,6 +113,23 @@ family are Taylor coefficients of a Gamma ratio, which is where a proof of (B)
 should be looked for — and it is why generic real-rooted arguments cannot reach
 it.
 
+## (C) is a corollary of the same expansion, which simplifies the ask
+
+The margin in (C) — `M_{n,central} - M_{n+2,central}` — is positive but vanishing:
+0.007206 at `n = 20`, 0.001862 at 40, 0.000835 at 60, 0.000496 at 78, i.e. of order
+`1/n^2`. That is exactly what `M_n = f + g/n + O(1/n^2)` with `g > 0` predicts, the
+difference being `~2g/n^2`.
+
+So (C) is not an independent conjecture: it is the statement that the central
+curvature descends monotonically to its limit, and it follows from an effective
+second-order expansion with a positive `1/n` coefficient. The same expansion gives
+the bound directly. **The two conjectures therefore collapse into one analytic
+request** — an effective expansion of `M_{n,t}` with explicit error — which is what
+the bridge asked for before (B) and (C) were introduced as a route around it.
+
+That is worth stating plainly: (B) is now a theorem for `t <= 100` by finite
+proofs, and (C) is best attacked not directly but through the expansion.
+
 ## What is proved and what is not
 
 **Not proved in general:** (B) and (C). They are conjectures with 2050 and 72 clean

@@ -5780,3 +5780,18 @@ Re-ran today's modules from scratch. Every number reproduces:
 
 Nothing drifted, and the modules run from a clean start rather than from cached
 state.
+
+### 2026-08-29 — (C) is a corollary of the expansion, so the two conjectures collapse into one
+
+The margin in (C) is positive but vanishing: 0.007206, 0.001862, 0.000835, 0.000496
+at n = 20, 40, 60, 78 -- of order 1/n^2. That is what M_n = f + g/n + O(1/n^2) with
+g > 0 predicts, the difference being ~2g/n^2.
+
+So (C) is not independent: it says the central curvature descends monotonically to
+its limit, and follows from an effective second-order expansion with positive 1/n
+coefficient -- the same expansion that gives the bound directly. The two
+conjectures collapse into one analytic request, which is what the bridge wanted
+before (B) and (C) were introduced as a route around it.
+
+Practical upshot: (B) is a theorem for t <= 100 by finite proofs, and (C) should be
+attacked through the expansion rather than head-on.
