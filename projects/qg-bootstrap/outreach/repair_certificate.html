@@ -79,7 +79,7 @@ footer { color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--ru
   <div class="formula">(R)   4 c<sub>J-1</sub> c<sub>J-3</sub> &minus; c<sub>J-2</sub><sup>2</sup> &ge; 0</div>
   <p>Built exactly over the field of the region and expanded, (R) has
   <strong>no negative monomial at all</strong> for every J from 7 to
-  29, and it stays certified all the way to J = 40 once the region is
+  29, and it stays certified all the way to J = 50 once the region is
   read correctly. Every variable of the region is nonnegative there, so
   all-nonnegative monomials is not evidence &mdash; it is a proof.</p>
 
@@ -90,7 +90,7 @@ footer { color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--ru
   </figure>
 
   <h2>What breaks, and how narrowly</h2>
-  <p>At J = 30 the certificate stops on the full region, with 39 negative monomials out of 6152. They are not scattered: every one carries the same thL<sup>3</sup>, y<sup>0</sup>, K3<sup>1</sup>, differing only in the remaining variable &mdash; one line in the exponent lattice. And that break is an artefact of where it was tested. The structure above holds only for n &ge; 2J&minus;3, which at J = 30 means n &ge; 57; the region as parametrised starts lower, so part of what was being certified lies outside the regime the proof serves. Restricted to its own regime, the same build gives 6152 monomials and zero negatives. The inequality did not break there; the test domain did. It does break further on: with the matching restriction the build gives 70 negative monomials at J = 31 and 392 at J = 40, so manifest positivity is a tool with a range. Past it one Bernstein change of basis along thL -- which lives on [0,1] in this region, not on the whole ray -- certifies again: zero negative coefficients at every depth tested up to J = 40.</p>
+  <p>At J = 30 the certificate stops on the full region, with 39 negative monomials out of 6152. They are not scattered: every one carries the same thL<sup>3</sup>, y<sup>0</sup>, K3<sup>1</sup>, differing only in the remaining variable &mdash; one line in the exponent lattice. And that break is an artefact of where it was tested. The structure above holds only for n &ge; 2J&minus;3, which at J = 30 means n &ge; 57; the region as parametrised starts lower, so part of what was being certified lies outside the regime the proof serves. Restricted to its own regime, the same build gives 6152 monomials and zero negatives. The inequality did not break there; the test domain did. It does break further on: with the matching restriction the build gives 70 negative monomials at J = 31 and 392 at J = 40, so manifest positivity is a tool with a range. Past it one Bernstein change of basis along thL -- which lives on [0,1] in this region, not on the whole ray -- certifies again: zero negative coefficients at every depth tested up to J = 50.</p>
 
   <h2>What this does and does not settle</h2>
   <p>Proved: the repair inequality, on the whole region, at those depths &mdash; and
