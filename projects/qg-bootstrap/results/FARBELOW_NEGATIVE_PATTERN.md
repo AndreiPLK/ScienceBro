@@ -266,12 +266,25 @@ Sharpened:
 > `p_t^2/(p_{t-1}p_{t+1}) <= 1 + 2/n`. Largest constant needed over
 > `n = 8..120`, `t < n/2`: **1.986**, attained at the smallest `n`.
 
-Granting it, what remains is elementary and closes:
+Granting it, what remains is elementary — and it is now **proved**, not measured.
 
-    F_t (1 + 2/n)  <=  2cd/(ab)   for every J >= 4
+> **Lemma (elementary half).** For integers `J >= 4`, `n >= 6`, `M = n - J >= 2`,
+>
+>     (J-1)(n-J+2)/[(J-2)(n-J+1)] * (1 + 2/n)
+>          <=  2(2n-2J+3)(2n-2J+4)/[(2n-2J+1)(2n-2J+2)].
+>
+> *Proof.* Write both sides over `M`. The left is `[(J-1)/(J-2)] * [(M+2)/(M+1)]
+> * (1 + 2/n)` and the right is `2(2M+3)(M+2)/[(2M+1)(M+1)]`, so the common factor
+> `(M+2)/(M+1)` cancels and the claim becomes
+>
+>     (J-1)/(J-2) * (1 + 2/n)  <=  2(2M+3)/(2M+1).
+>
+> The right-hand side exceeds `2`. On the left, `(J-1)/(J-2) <= 3/2` for `J >= 4`
+> and `1 + 2/n <= 4/3` for `n >= 6`, so the product is at most `2`. QED
 
-— **78207 pairs `(n, J)` with `n` up to 400, 0 failures, tightest slack 1.28.**
-That half is a rational-function inequality and can be settled by hand.
+The cancellation is an identity, machine-checked over 18912 pairs with 0
+mismatches, and the numeric sweep that preceded it (78207 pairs, 0 failures,
+tightest slack 1.28) is now a consistency check rather than the evidence.
 
 So the leading obstruction of (R) is J-uniform as soon as the Newton-excess lemma
 is proved, and that lemma is a self-contained question about

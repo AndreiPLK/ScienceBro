@@ -5448,3 +5448,18 @@ n = 44, t = 21, theta = 0.477) -- against the 2 allowed, and only 0.035 above th
 asymptotic 1.8042. About 8% of room on the range actually used, and the finite
 check is a bounded computation rather than an open tail. (The 1.9862 that had
 worried me was at n = 8, far outside the region.)
+
+### 2026-08-29 — the elementary half is PROVED, in one line
+
+The inequality F_t(1+2/n) <= 2cd/(ab), which had been measured on 78207 pairs, is
+now proved. Writing M = n-J, both sides carry a common factor (M+2)/(M+1) --
+machine-checked as an identity over 18912 pairs, 0 mismatches -- and cancelling it
+leaves
+
+    (J-1)/(J-2) * (1 + 2/n)  <=  2(2M+3)/(2M+1).
+
+The right side exceeds 2; the left is at most (3/2)(4/3) = 2 for J >= 4, n >= 6.
+QED.
+
+So of the two halves standing between today's certificate and a J-uniform (R), one
+is now a proof and the other is the one-variable lemma handed to the parallel chat.
