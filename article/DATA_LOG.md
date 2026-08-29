@@ -5836,3 +5836,14 @@ of the A's across k. Checked against the old route at j = 12: identical answer (
 negatives, all at k = J-2), in 517s instead of the full build. j = 18 is now
 running -- a depth the existing ladder never reached (it is complete only to
 j = 17).
+
+### 2026-08-29 — an audit of claims against artefacts, and one it caught
+
+Read every artefact back and compared it with what the write-ups claim. Everything
+matched except one: I had written "(R) certified at every J tested from 7 to 50",
+but J = 45's artefact was written by the pre-Bernstein module and still shows 701
+negative monomials with no escalation recorded. It was never re-run.
+
+Corrected the wording everywhere to the exact list -- J = 7, 9, 12, 16, 20, 25-32,
+35, 40, 50 -- and put J = 45 back in the queue. A phrase like "every J tested" is
+exactly the kind that drifts ahead of the data; the audit exists to catch it.

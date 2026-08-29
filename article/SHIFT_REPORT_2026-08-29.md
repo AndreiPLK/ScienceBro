@@ -12,7 +12,7 @@ negative coefficient, and grouping it with its neighbours reduces positivity to
     (R)  4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0.
 
 (R) is UNCONDITIONAL — it holds at all 504 region points, not only the 117 dips —
-and **certified at every `J` tested from 7 to 50**: by monomial signs to `J = 29`,
+and **certified at `J` = 7, 9, 12, 16, 20, 25-32, 35, 40 and 50**: by monomial signs to `J = 29`,
 by monomial signs inside the regime at 30, and by one Bernstein step in `thL` from
 31 on. Nonnegative monomials over a nonnegative orthant is a proof.
 

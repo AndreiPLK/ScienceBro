@@ -79,8 +79,8 @@ artefacts:
     status: live
   PROOF_STATUS_2026-08-29.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   SCALING_LIMIT_THEOREM.md:
     added: '2026-08-18'
     note: the bracket-to-the-power-(j-1) result and the parity mechanism that predicted knife 6 before
