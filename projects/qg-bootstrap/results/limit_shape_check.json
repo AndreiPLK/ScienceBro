@@ -1,0 +1,26 @@
+{
+  "statement": "f(theta) < 2 on (0, 1/2), with theta = 1 - arctan(u)/u",
+  "source": "second-assistant PDF, 2026-08-29; untrusted, hence checked here",
+  "reformulation_max_error": 9.968192094972998e-36,
+  "equivalence_failures": 0,
+  "monotonicity_numerator_failures": 0,
+  "shafer_fink_failures": 0,
+  "points_checked_u": 88,
+  "factorisation": {
+    "z_points": 31,
+    "corrected_(z-1)^2_mismatches": 0,
+    "printed_(z-1)_mismatches": 31
+  },
+  "crossing_u_where_f_equals_2": 2.6586,
+  "runtime_s": 0.0,
+  "git": "8f736aa471d5",
+  "git_full": "8f736aa471d57127b314356a3ffae40c2e52024e",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/limit_shape_check.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

@@ -5477,3 +5477,29 @@ same-size-difference structure measured this afternoon.
 So neither end of the sum carries the sign, for any k: leg (a) is a middle-peaked
 alternating sum, and the shortcut I was looking for does not exist. Recorded with
 the wrong estimate that led here, because the estimate is the kind one repeats.
+
+### 2026-08-29 — the limit-shape bound is PROVED, after one repair
+
+The parallel chat returned a proof of f(theta) < 2 on (0,1/2). Checked here step by
+step, as untrusted input:
+
+  reformulation f = 2/(t-c) - 1/(1-t) - 1/t: matches to 1e-35
+  equivalence f < 2 <=> c < Phi(t): 0 failures, and it breaks exactly at
+    u = 2.6586, which is where this repository had independently put f = 2
+  monotonicity numerator 4t^4 - 8t^3 + 8t - 1 > 0: 0 failures
+  Shafer-Fink giving z > 14/37: 0 failures
+
+One step did NOT reproduce: the factorisation of Phi(3z/(z+2)) - z^2, printed as
+-z(z-1)(11z^2+28z-12)/[(z+2)(11z^2-16z-4)], evaluates negative where the true value
+is positive. Derived it here: the quartic 11z^4+6z^3-57z^2+52z-12 has z = 1 as a
+DOUBLE root, so the factor is (z-1)^2, not (z-1). With the square the printed sign
+argument is correct verbatim. Corrected form reproduces at 31 of 31 test points,
+printed form at 0 of 31.
+
+So the ASYMPTOTIC half of the named lemma is proved. The finite-n half -- what the
+certificate actually uses, n >= 44 -- still needs the bridge from the limit shape,
+and is measured at max constant 1.8393 against the 2 allowed.
+
+Their companion rational inequality also checked out exactly (Delta over 6555
+pairs, the a,b substitution over 1600), agreeing with the shorter cancellation
+proof written here earlier.

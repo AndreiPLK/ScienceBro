@@ -356,8 +356,21 @@ ERR-0017, caught this time by a derivation rather than by a wider scan.
 empirical measure is explicit: with `x = k/n`, `b/n^2 -> (1-2x)^2`, i.e. the law of
 `V^2` for `V` uniform on `(-1,1)` — density `1/(2 sqrt(v))` on `(0,1)`, a
 `Beta(1/2, 1)`. The lemma is now exactly: **`f(theta) < 2` on `(0, 1/2)`** for the explicit `f`
-above, plus an exact check for `n` below some `n_0`. And the proof shape is
-visible: `f` is numerically monotone increasing in `u` (59 sampled derivatives,
+above, plus an exact check for `n` below some `n_0`.
+
+**The asymptotic half is PROVED** — see `results/LIMIT_SHAPE_BOUND.md`. The proof
+came from the parallel chat, was checked here step by step, and one step needed
+repair: its factorisation of `Phi(3z/(z+2)) - z^2` was printed with `(z-1)` where
+the correct factor is `(z-1)^2`, which flips the sign and breaks the argument. The
+quartic `11z^4 + 6z^3 - 57z^2 + 52z - 12` has `z = 1` as a DOUBLE root; with the
+square restored the sign argument goes through verbatim and the bound holds. The
+corrected factorisation reproduces the direct evaluation at 31 test points, the
+printed one at none.
+
+What remains of the lemma is the bridge from the limit shape to finite `n` — the
+proved statement is asymptotic, the used statement is `n >= 44`.
+
+And the proof shape was visible beforehand: `f` is numerically monotone increasing in `u` (59 sampled derivatives,
 all positive), so **monotonicity plus the endpoint suffices** — at `theta = 1/2`,
 `u` solves `arctan(u)/u = 1/2`, giving `u = 2.3311` and `f = 1.8042 < 2`. Both halves are ordinary
 one-variable work — no knives, no `lam`, and both the measure and the function are
