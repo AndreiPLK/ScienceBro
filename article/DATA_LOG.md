@@ -4952,3 +4952,21 @@ against a term with none. k = J-1 is a single term and trivially safe.
 
 So the two targets are not arbitrary: (1) "the dominant term wins" for k <= J-3 --
 a ratio chain of the Theorem 5 kind -- and (2) the neighbour repair at k = J-2.
+
+### 2026-08-29 — my own explanation refuted within the hour: no term dominates
+
+I wrote that manifest positivity of c_k is the highest-s term swamping the rest,
+which would have made the uniform proof a decay estimate. lab/dominant_term_probe.py
+measured it as certified arb numbers and killed it: SUM_{i<J-1-k} T_i / T_{J-1-k}
+runs from 3 to 3.2e8 for k <= J-3. The "dominant" term is usually the SMALLEST.
+
+Why, once measured: each step in i gains s^2 den and loses one factor
+A ~ T_cap den ~ lam^2 den -- the same size. The terms are comparable, so manifest
+positivity is cancellation among comparable terms, not dominance.
+
+The measurement paid anyway. At the weak link k = J-2 that ratio is 0.9997 to
+1.0164: the two terms are equal to within a percent. That is exactly why this one
+coefficient changes sign while the longer sums do not -- it is a difference of two
+same-size quantities, with nothing else in the sum to absorb the swing.
+
+Write-up corrected in place (FARBELOW_NEGATIVE_PATTERN.md), not deleted.

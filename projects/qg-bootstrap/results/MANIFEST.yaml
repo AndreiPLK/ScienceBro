@@ -37,8 +37,8 @@ artefacts:
     status: unreviewed
   FARBELOW_NEGATIVE_PATTERN.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   FFP_LITERATURE_PASS.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -203,6 +203,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   depth_d_proofs.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  dominant_term_probe.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live

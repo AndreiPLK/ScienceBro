@@ -147,18 +147,28 @@ against the assembled polynomial for **every** `k` at `j = 6`: `k` = 0..5, 3186 
 2528 / 1890 / 1292 / 735 / 231 monomials, **0 mismatches at every k**
 (`general_coefficient_formula` in the module).
 
-That expression also says why `J-2` is where it breaks. The term with the highest
-power of `s` is `i = J-1-k`, and its total sign is
-`(-1)^{J-1+k}(-1)^{J-1-k} = +1` — **the dominant term is always positive**, for
-every `k`. Manifest positivity is then the statement that this term's monomials
-swamp the alternating remainder. The swamping is strongest for small `k`, where
-the dominant term carries `s^{2(J-1-k)}` with `s ~ lam` large, and weakest for
-`k = J-2`, where it carries only `s^2` against a term with none. `k = J-1` is
-trivially safe because the sum has a single term.
+One reading of that expression is **wrong, and the numbers killed it the same
+hour** — recorded here rather than quietly deleted. The term with the highest
+power of `s` is `i = J-1-k` and its total sign is
+`(-1)^{J-1+k}(-1)^{J-1-k} = +1`, so the highest-`s` term is always positive. I
+took that to mean manifest positivity was "the dominant term swamps the rest",
+which would have made the uniform proof a decay estimate. It is not:
+`lab/dominant_term_probe.py` (`results/dominant_term_probe.json`) evaluates the
+terms as certified `arb` numbers over the region and finds
 
-So the two statements the uniformity argument needs are not arbitrary: (1) is
-"the dominant term wins" for `k <= J-3`, a chain of ratio bounds of exactly the
-kind Theorem 5 runs on, and (2) covers the one place where it cannot win.
+    SUM_{i < J-1-k} T_i  /  T_{J-1-k}   =   3  to  3.2e8    for k <= J-3,
+
+so the "dominant" term is routinely the smallest thing in the sum. The reason is
+visible once measured: `T_i` gains `s^2 den` per step but loses one factor
+`A ~ T_cap den ~ lam^2 den`, and those two are the same size — the terms are
+comparable, and manifest positivity comes from cancellation among comparable
+terms, not from one of them winning.
+
+What survives, and it is the interesting half: at the weak link `k = J-2` that
+same ratio is **0.9997 to 1.0164** — the two terms are equal to within a percent.
+That is why this coefficient, and only this one, changes sign: it is a difference
+of two quantities that are the same size to a part in a hundred, while every
+other `c_k` is a longer sum whose cancellation resolves in the monomials.
 
 ## What is NOT claimed
 

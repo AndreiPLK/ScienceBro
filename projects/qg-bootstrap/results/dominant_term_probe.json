@@ -1,0 +1,1067 @@
+{
+  "what": "(DOM): does the dominant term T_{J-1-k} exceed the sum of the others?",
+  "reading": "rest/dominant < 1 means the crude uniform criterion suffices at that (J,k); the k = J-2 row is the known weak link",
+  "rows": [
+    {
+      "J": 6,
+      "k": 0,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 30.52882743688709,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 6,
+      "k": 1,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14.855958105922694,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 6,
+      "k": 2,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 6.962768653586481,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 6,
+      "k": 3,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 2.99321400762715,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 6,
+      "k": 4,
+      "is_the_weak_link": true,
+      "worst_rest_over_dominant": 0.9997140651939997,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": true
+    },
+    {
+      "J": 9,
+      "k": 0,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 245.08702315187585,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 9,
+      "k": 1,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 123.26289180465214,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 9,
+      "k": 2,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 61.6589634815154,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 9,
+      "k": 3,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 30.55105628332434,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 9,
+      "k": 4,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14.864759551318853,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 9,
+      "k": 5,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 6.966029927526232,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 9,
+      "k": 6,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 2.9942862345430723,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 9,
+      "k": 7,
+      "is_the_weak_link": true,
+      "worst_rest_over_dominant": 1.0000588787975657,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 0,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 1896.8790429999751,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 1,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 961.2531564934854,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 2,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 486.1932389991908,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 3,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 245.3225626135845,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 4,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 123.36498291498926,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 5,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 61.70222723964142,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 6,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 30.56884656553148,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 7,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14.871768591091074,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 8,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 6.9686136132807235,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 9,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 2.9951311048095626,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 12,
+      "k": 10,
+      "is_the_weak_link": true,
+      "worst_rest_over_dominant": 1.0008651279875311,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 0,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 28377.346184932387,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 1,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14465.556122071865,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 2,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 7363.396058146523,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 3,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 3742.716571014901,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 4,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 1899.476814791358,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 5,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 962.4206058710056,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 6,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 486.71148949624825,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 7,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 245.54926404012141,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 8,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 123.46237277446797,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 9,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 61.74311346641982,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 10,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 30.585493576250094,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 11,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14.878258909027327,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 12,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 6.970979706219857,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 13,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 2.9958957707874934,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 16,
+      "k": 14,
+      "is_the_weak_link": true,
+      "worst_rest_over_dominant": 1.0016064536076972,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 0,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 415167.8712885013,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 1,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 212793.1642214781,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 2,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 108914.92824313372,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 3,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 55668.81402612488,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 4,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 28413.811349425603,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 5,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14482.261354612934,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 6,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 7370.985983491109,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 7,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 3746.1332921697376,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 8,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 1901.0363576665045,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        2
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 9,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 963.1398875013019,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        2
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 10,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 487.0393689508162,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        2
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 11,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 245.6966353878659,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        2
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 12,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 123.52746832725832,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        2
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 13,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 61.771717746633826,
+      "worst_point_v_K3_thL": [
+        40,
+        5,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 14,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 30.59824789856044,
+      "worst_point_v_K3_thL": [
+        40,
+        5,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 15,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14.883690596608648,
+      "worst_point_v_K3_thL": [
+        40,
+        5,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 16,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 6.973138161248403,
+      "worst_point_v_K3_thL": [
+        40,
+        5,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 17,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 2.9985351694276017,
+      "worst_point_v_K3_thL": [
+        0,
+        5,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 20,
+      "k": 18,
+      "is_the_weak_link": true,
+      "worst_rest_over_dominant": 1.0023434999991325,
+      "worst_point_v_K3_thL": [
+        0,
+        5,
+        0
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 0,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 321107315.92770356,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 1,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 166804528.27077323,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 2,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 86522863.59471463,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 3,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 44814571.19395843,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 4,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 23177832.769571457,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 5,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 11969927.953526016,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 6,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 6172701.779467046,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 7,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 3178513.193768381,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 8,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 1634321.9528345822,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 9,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 839104.3458311679,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 10,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 430188.62633005646,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 11,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 220224.79140884124,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 12,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 112573.80297564536,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 13,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 57460.76475775517,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 14,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 29286.443083098595,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 15,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 14904.57320196654,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 16,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 7573.965037830847,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 17,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 3842.9463586670504,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 18,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 1946.7748546500482,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 19,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 984.518916467808,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 20,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 496.9158813944618,
+      "worst_point_v_K3_thL": [
+        40,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 21,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 251.1827894076338,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 22,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 126.60582123783016,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 23,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 63.383641480846464,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 24,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 31.391519811251246,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 25,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 15.249448670986268,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 26,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 7.1282727602917175,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 27,
+      "is_the_weak_link": false,
+      "worst_rest_over_dominant": 3.0542553770420975,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    },
+    {
+      "J": 30,
+      "k": 28,
+      "is_the_weak_link": true,
+      "worst_rest_over_dominant": 1.0164062293485443,
+      "worst_point_v_K3_thL": [
+        0,
+        0,
+        30
+      ],
+      "dominance_holds": false
+    }
+  ],
+  "worst_by_class": {
+    "k <= J-3": 321107315.92770356,
+    "k = J-2 (the weak link)": 1.0164062293485443
+  },
+  "failures": 2236,
+  "undecided_enclosures": 0,
+  "runtime_s": 1.2,
+  "git": "00df0006edc6",
+  "git_full": "00df0006edc61d82a7090d05c04dac22f2d97be8",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/dominant_term_probe.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
