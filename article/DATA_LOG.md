@@ -5075,3 +5075,28 @@ AND A COINCIDENCE WORTH WATCHING. That boundary sits next to the depth cutoff th
 programme measured independently for the Hausdorff mechanism, j <= n/2 + 1. Two
 unrelated constructions with the same boundary is either luck or one mechanism
 seen twice. Nothing here decides which.
+
+### 2026-08-29 — ERR-0017: the depth law was fitted on multiples of four
+
+Chasing whether the far-below boundary (n = 2J-3) coincides with the Hausdorff
+depth cutoff forced the odd-n case to be computed for the first time. It does not
+coincide, and worse, the recorded law does not hold.
+
+Mapped over every n from 11 to 61 with the same exact predicate (Hankel minors,
+no floating point): "largest good j = n/2 + 1" FAILS IN 31 OF 51 CASES, in both
+directions. n=31 gives 17 where the law says 16; n=47 gives 23 where it says 24;
+both stable across lam = 1e3..1e6.
+
+The old sample explains itself: 12, 16, 20, 24, 28, 36, 44 are all multiples of
+4, and that is exactly where the formula is right.
+
+What the boundary actually looks like: always ODD, rising in runs of 4 or 5
+consecutive n, drifting steadily below n/2 -- j - n/2 goes from +2 at n=14 to
+-1.5 at n=61. Its true form is open; 51 points do not license a guess.
+
+BFORM_POSITIVITY_THEOREM sec. 6 wording withdrawn in place. Nothing proved
+depended on it -- the Hausdorff corner was always recorded as measured -- but it
+was quoted as "exact", and it is not.
+
+Third instance today of the same failure mode (ERR-0015, ERR-0016, ERR-0017): a
+claim that survived because the sample could not contradict it.

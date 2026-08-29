@@ -275,8 +275,12 @@ drifting upward at `n = 100`. End-to-end spot check inside the region: at
 
 **Against what is already measured:**
 `results/asymptotic_regime_probe.json` sees the Hausdorff mechanism — which also
-covers every depth at once — from about `lam ~> 2n`, with an exact depth cutoff
-`j <= n/2 + 1`. That region is not proved. So the three statements stand as:
+covers every depth at once — from about `lam ~> 2n`, with a depth cutoff near
+`n/2`. **The "exact cutoff `j <= n/2 + 1`" wording is withdrawn: ERR-0017.** That
+formula was fitted on a sample of `n` that happens to consist of multiples of 4;
+over `n = 11..61` it fails in 31 of 51 cases, in both directions
+(`results/depth_boundary_map.json`). The true cutoff is odd-valued and drifts
+below `n/2` as `n` grows; its form is open. That region is not proved. So the three statements stand as:
 
 | route | status | region | depth coverage |
 |---|---|---|---|

@@ -206,6 +206,10 @@ artefacts:
     added: '2026-08-18'
     note: referenced by a paper, document or lab module
     status: live
+  depth_boundary_map.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   depth_d_proofs.json:
     added: untracked
     note: referenced by a paper, document or lab module

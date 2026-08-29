@@ -1,0 +1,606 @@
+{
+  "what": "largest j for which the Hausdorff moment conditions hold, over n = 11..61",
+  "reading": "the recorded law j <= n/2+1 was fitted on even n from 12 to 44; outside that sample it fails in BOTH directions",
+  "lam": "1e4",
+  "rows": [
+    {
+      "n": 11,
+      "largest_good_j": 7,
+      "law_n_over_2_plus_1": 6,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 12,
+      "largest_good_j": 7,
+      "law_n_over_2_plus_1": 7,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 13,
+      "largest_good_j": 7,
+      "law_n_over_2_plus_1": 7,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 14,
+      "largest_good_j": 9,
+      "law_n_over_2_plus_1": 8,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 2.0,
+      "parity": "even"
+    },
+    {
+      "n": 15,
+      "largest_good_j": 9,
+      "law_n_over_2_plus_1": 8,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 16,
+      "largest_good_j": 9,
+      "law_n_over_2_plus_1": 9,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 17,
+      "largest_good_j": 9,
+      "law_n_over_2_plus_1": 9,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 18,
+      "largest_good_j": 11,
+      "law_n_over_2_plus_1": 10,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 2.0,
+      "parity": "even"
+    },
+    {
+      "n": 19,
+      "largest_good_j": 11,
+      "law_n_over_2_plus_1": 10,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 20,
+      "largest_good_j": 11,
+      "law_n_over_2_plus_1": 11,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 21,
+      "largest_good_j": 11,
+      "law_n_over_2_plus_1": 11,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 22,
+      "largest_good_j": 13,
+      "law_n_over_2_plus_1": 12,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 2.0,
+      "parity": "even"
+    },
+    {
+      "n": 23,
+      "largest_good_j": 13,
+      "law_n_over_2_plus_1": 12,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 24,
+      "largest_good_j": 13,
+      "law_n_over_2_plus_1": 13,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 25,
+      "largest_good_j": 13,
+      "law_n_over_2_plus_1": 13,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 26,
+      "largest_good_j": 15,
+      "law_n_over_2_plus_1": 14,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 2.0,
+      "parity": "even"
+    },
+    {
+      "n": 27,
+      "largest_good_j": 15,
+      "law_n_over_2_plus_1": 14,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 28,
+      "largest_good_j": 15,
+      "law_n_over_2_plus_1": 15,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 29,
+      "largest_good_j": 15,
+      "law_n_over_2_plus_1": 15,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 30,
+      "largest_good_j": 15,
+      "law_n_over_2_plus_1": 16,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 31,
+      "largest_good_j": 17,
+      "law_n_over_2_plus_1": 16,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 32,
+      "largest_good_j": 17,
+      "law_n_over_2_plus_1": 17,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 33,
+      "largest_good_j": 17,
+      "law_n_over_2_plus_1": 17,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 34,
+      "largest_good_j": 17,
+      "law_n_over_2_plus_1": 18,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 35,
+      "largest_good_j": 19,
+      "law_n_over_2_plus_1": 18,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 36,
+      "largest_good_j": 19,
+      "law_n_over_2_plus_1": 19,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 37,
+      "largest_good_j": 19,
+      "law_n_over_2_plus_1": 19,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 38,
+      "largest_good_j": 19,
+      "law_n_over_2_plus_1": 20,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 39,
+      "largest_good_j": 19,
+      "law_n_over_2_plus_1": 20,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 40,
+      "largest_good_j": 21,
+      "law_n_over_2_plus_1": 21,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 41,
+      "largest_good_j": 21,
+      "law_n_over_2_plus_1": 21,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 42,
+      "largest_good_j": 21,
+      "law_n_over_2_plus_1": 22,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 43,
+      "largest_good_j": 21,
+      "law_n_over_2_plus_1": 22,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 44,
+      "largest_good_j": 23,
+      "law_n_over_2_plus_1": 23,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 1.0,
+      "parity": "even"
+    },
+    {
+      "n": 45,
+      "largest_good_j": 23,
+      "law_n_over_2_plus_1": 23,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 46,
+      "largest_good_j": 23,
+      "law_n_over_2_plus_1": 24,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 47,
+      "largest_good_j": 23,
+      "law_n_over_2_plus_1": 24,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 48,
+      "largest_good_j": 23,
+      "law_n_over_2_plus_1": 25,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even"
+    },
+    {
+      "n": 49,
+      "largest_good_j": 25,
+      "law_n_over_2_plus_1": 25,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 50,
+      "largest_good_j": 25,
+      "law_n_over_2_plus_1": 26,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 51,
+      "largest_good_j": 25,
+      "law_n_over_2_plus_1": 26,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 52,
+      "largest_good_j": 25,
+      "law_n_over_2_plus_1": 27,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even"
+    },
+    {
+      "n": 53,
+      "largest_good_j": 27,
+      "law_n_over_2_plus_1": 27,
+      "matches_recorded_law": true,
+      "offset_from_half_n": 0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 54,
+      "largest_good_j": 27,
+      "law_n_over_2_plus_1": 28,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 55,
+      "largest_good_j": 27,
+      "law_n_over_2_plus_1": 28,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 56,
+      "largest_good_j": 27,
+      "law_n_over_2_plus_1": 29,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even"
+    },
+    {
+      "n": 57,
+      "largest_good_j": 27,
+      "law_n_over_2_plus_1": 29,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd"
+    },
+    {
+      "n": 58,
+      "largest_good_j": 29,
+      "law_n_over_2_plus_1": 30,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even"
+    },
+    {
+      "n": 59,
+      "largest_good_j": 29,
+      "law_n_over_2_plus_1": 30,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd"
+    },
+    {
+      "n": 60,
+      "largest_good_j": 29,
+      "law_n_over_2_plus_1": 31,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even"
+    },
+    {
+      "n": 61,
+      "largest_good_j": 29,
+      "law_n_over_2_plus_1": 31,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd"
+    }
+  ],
+  "mismatches": 31,
+  "mismatching_n": [
+    [
+      11,
+      7,
+      6
+    ],
+    [
+      14,
+      9,
+      8
+    ],
+    [
+      15,
+      9,
+      8
+    ],
+    [
+      18,
+      11,
+      10
+    ],
+    [
+      19,
+      11,
+      10
+    ],
+    [
+      22,
+      13,
+      12
+    ],
+    [
+      23,
+      13,
+      12
+    ],
+    [
+      26,
+      15,
+      14
+    ],
+    [
+      27,
+      15,
+      14
+    ],
+    [
+      30,
+      15,
+      16
+    ],
+    [
+      31,
+      17,
+      16
+    ],
+    [
+      34,
+      17,
+      18
+    ],
+    [
+      35,
+      19,
+      18
+    ],
+    [
+      38,
+      19,
+      20
+    ],
+    [
+      39,
+      19,
+      20
+    ],
+    [
+      42,
+      21,
+      22
+    ],
+    [
+      43,
+      21,
+      22
+    ],
+    [
+      46,
+      23,
+      24
+    ],
+    [
+      47,
+      23,
+      24
+    ],
+    [
+      48,
+      23,
+      25
+    ],
+    [
+      50,
+      25,
+      26
+    ],
+    [
+      51,
+      25,
+      26
+    ],
+    [
+      52,
+      25,
+      27
+    ],
+    [
+      54,
+      27,
+      28
+    ],
+    [
+      55,
+      27,
+      28
+    ],
+    [
+      56,
+      27,
+      29
+    ],
+    [
+      57,
+      27,
+      29
+    ],
+    [
+      58,
+      29,
+      30
+    ],
+    [
+      59,
+      29,
+      30
+    ],
+    [
+      60,
+      29,
+      31
+    ],
+    [
+      61,
+      29,
+      31
+    ]
+  ],
+  "stability_of_counterexamples": [
+    {
+      "n": 31,
+      "law": 16,
+      "largest_good_j_by_lam": {
+        "1e3": 17,
+        "1e4": 17,
+        "1e5": 17,
+        "1e6": 17
+      }
+    },
+    {
+      "n": 47,
+      "law": 24,
+      "largest_good_j_by_lam": {
+        "1e3": 23,
+        "1e4": 23,
+        "1e5": 23,
+        "1e6": 23
+      }
+    }
+  ],
+  "runtime_s": 19.8,
+  "git": "fbebdf8749cf",
+  "git_full": "fbebdf8749cfc7a988ec94a9d65d20d483a28d10",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/depth_boundary_map.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

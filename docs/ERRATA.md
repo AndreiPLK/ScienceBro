@@ -654,3 +654,47 @@ zeros instead of skipping them. My first version of that scan skipped odd `j`
 "because §6b says so", and would have found nothing. When a derivation is used to
 prune a search, the pruned branch must still be sampled: a claim that removes
 work is exactly the claim that never gets checked.
+
+## ERR-0017 — the depth law "exactly j <= n/2 + 1" was measured on even n only (2026-08-29)
+
+**What the repository says.** `results/asymptotic_regime_probe.json` records
+`depth_law_j_le_half_n_plus_1` with `matches_law: true` in every row, and
+`results/BFORM_POSITIVITY_THEOREM.md` §6 quotes it as "an exact depth cutoff
+`j <= n/2 + 1`".
+
+**Every row of that measurement has EVEN n** — 12, 16, 20, 24, 28, 36, 44. At even
+`n` the two candidate forms `n/2 + 1` and `(n+3)/2` coincide, so the run could not
+distinguish them, and odd `n` was never probed at all.
+
+**Mapped over every n from 11 to 61** (`lab/depth_boundary_map.py` ->
+`results/depth_boundary_map.json`, same exact predicate, no floating point):
+**the law fails in 31 of 51 cases**, in both directions. The two headline
+counterexamples are stable across `lam = 10^3 .. 10^6`:
+
+| n | largest good j | law says |
+|---|---|---|
+| 31 | **17** | 16 |
+| 47 | **23** | 24 |
+
+And the original sample explains itself: 12, 16, 20, 24, 28, 36, 44 are **all
+multiples of 4**, which is exactly where the formula happens to be right.
+
+The measured boundary is always ODD, rises in runs of 4 or 5 consecutive `n`, and
+drifts steadily below `n/2`: `j - n/2` goes from `+2` at `n = 14` to `-1.5` at
+`n = 61`. So the cutoff is near `n/2` but is not `n/2 + 1`, and its true form is
+open — this file does not guess one from 51 points.
+
+**What is affected.** Nothing proved: the Hausdorff corner was always recorded as
+MEASURED, not proved, and the exact cutoff was descriptive. What must change is
+the wording — "exact depth cutoff" becomes "cutoff close to `n/2+1`, exact form
+unknown, and not `n/2+1` at `n = 31` or `n = 47`" — and the artefact's
+`matches_law` flag, which is true only because of the even-`n` sample.
+
+**How it was caught.** By a different question entirely: the far-below
+localisation has its own boundary at `n = 2J-3`, whose points are all at ODD `n`,
+so comparing the two lines forced the odd case to be computed for the first time.
+
+**The lesson, and it is the third instance today** (ERR-0015, ERR-0016). A law
+measured on a sample that cannot separate two hypotheses is not a law, it is one
+hypothesis with a flattering sample. Before recording "exactly", check that the
+grid can distinguish the stated formula from its nearest rival.
