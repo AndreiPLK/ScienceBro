@@ -5503,3 +5503,7 @@ and is measured at max constant 1.8393 against the 2 allowed.
 Their companion rational inequality also checked out exactly (Delta over 6555
 pairs, the a,b substitution over 1600), agreeing with the shorter cancellation
 proof written here earlier.
+
+Children's page for today's result, built by lab/build_kids_viz.py from the same
+artefacts (refuses to emit if the down-block moves off J-2 or the certified run
+shortens): https://claude.ai/code/artifact/650b337d-40e6-453f-bee5-df65841260e7
