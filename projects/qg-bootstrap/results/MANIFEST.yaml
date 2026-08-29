@@ -824,6 +824,10 @@ artefacts:
     added: '2026-08-14'
     note: referenced by a paper, document or lab module
     status: live
+  root_crossing_probe.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   root_margin_scan.json:
     added: untracked
     note: referenced by a paper, document or lab module

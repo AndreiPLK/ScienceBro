@@ -4822,3 +4822,23 @@ come out at 2.8-49 and up to 1.4e7. They discard signs, and the cancellation is
 the whole phenomenon — the same wall as the Bernstein jam at odd depth and the
 same reason Theorem 5 cannot be sharpened. A usable bound must use the structure
 of the composition, not coefficient sizes.
+
+### 2026-08-29, evening — the reformulation: one scalar crossing, and it is tight
+
+Chaining today's identity with step (c): A_m = C(r,m) K_{r-m}(D-2m), every knife
+decreases in D, so the diagonal staircase can switch off only once as D grows.
+Measured: 0 monotonicity violations in 1920 steps. Hence a single crossing
+D_cross where the composition's largest real zero passes 1, and
+
+    every knife positive below the shore  <==>  D_cross >= T_hat.
+
+D_cross/T_hat >= 1 in 120 of 120 rows (n = 6..60, three depths, lam = 1, 5/2, 7,
+30, 300). Worst 1.008 at n=60, r=2, lam=30. Descartes under-estimates the
+crossing, so every ratio is a lower bound on the truth.
+
+AND THE PRICE. The reformulation is exact but TIGHT: 0.8% at the worst tested
+point. Two more bounds died against that today -- Grace-Szego-Walsh product of
+extreme zeros (2 to 7.7, needs < 1) and Fujiwara/Cauchy magnitudes (2.8 to 49).
+Five measured dead ends now sit on the same wall: anything that spends a constant
+factor cannot pass. Measuring the room BEFORE hunting the bound is the lesson
+section 6c taught the expensive way.

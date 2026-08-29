@@ -156,6 +156,32 @@ Bernstein route jammed at odd depth (`ODD_DEPTH_DIAGNOSIS.md`) and the same
 reason Theorem 5's Newton step cannot be sharpened. Any usable bound must use the
 structure of the composition, not the sizes of its coefficients.
 
+## 3c. The reformulation, and how tight it is
+
+`lab/root_crossing_probe.py` -> `results/root_crossing_probe.json`.
+
+Since `A_m = C(r,m) K_{r-m}(D-2m)` and every knife decreases in `D` (the
+programme's step (c)), the staircase can only switch off once as `D` grows:
+measured, **0 monotonicity violations in 1920 steps**. So there is a single
+crossing `D_cross(n, r, lam)` where the composition's largest real zero passes 1,
+and the physical statement becomes one scalar inequality:
+
+    every knife positive below the shore   <==>   D_cross >= T_hat.
+
+**Measured: `D_cross / T_hat >= 1` in 120 of 120 rows** (`n` = 6..60, three
+depths each, `lam` = 1, 5/2, 7, 30, 300), and the worst case is **1.008** at
+`n = 60`, `r = 2`, `lam = 30`. Descartes is sufficient-only, so each ratio is a
+LOWER bound on the truth — the safe direction.
+
+**What that costs any future proof.** The reformulation is exact and it is
+*tight*: at the worst tested point the crossing sits 0.8% above the shore. Any
+argument that gives away a constant factor — the Grace–Szegő–Walsh product of
+extreme zeros gives 2 to 7.7 where under 1 is needed, Fujiwara and Cauchy give
+2.8 to 49 — cannot close it, and those three are now measured dead ends rather
+than guesses. This is the same shape as §6c of `BFORM_POSITIVITY_THEOREM.md`, and
+knowing it *before* spending a week on a bound is the point of measuring it
+first.
+
 ## 4. Claim-state changes this pass forces
 
 - `BFORM_POSITIVITY_THEOREM.md` §7: novelty of the transform
