@@ -58,3 +58,14 @@ A job was computing, depth by depth, whether `den^{J-1} E_{J-1}` has nonnegative
 monomials. That is a stronger statement than positivity and was not needed; the
 one-line argument gives what Proposition 1 actually uses. The run was stopped —
 also because the founder is playing and the cores are better left to the game.
+
+
+## Addendum the same night: c_{J-3} was never a separate hypothesis
+
+Proposition 1 was stated with `c_{J-3} >= 0` among its assumptions. It is not one.
+(R) says `4 c_{J-1} c_{J-3} >= c_{J-2}^2`, the right side is a square, and
+`c_{J-1} > 0` is now proved for every depth — so `c_{J-3} >= 0` follows.
+
+So the reduction, which began with four ingredients, now needs two: (R), and
+nonnegativity of the coefficients away from `J-2` and `J-3`. The two exceptional
+indices are exactly the two that were hard.

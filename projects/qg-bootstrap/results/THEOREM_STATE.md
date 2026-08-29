@@ -7,16 +7,30 @@ it. Nothing here is a plan; it is the statement as it stands tonight.*
 
 Let `N(y)` be the far-below polynomial of the knife at depth `j = J`. If
 
-* **(a)** every `y`-coefficient `c_k` with `k != J-2` is nonnegative, and
+* **(a')** every `y`-coefficient `c_k` with `k` outside `{J-2, J-3}` is nonnegative, and
 * **(R)** `4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0` on the region,
 
 then `N(y) > 0` for all `y >= 0`.
 
-*Proof.* By (a) the only negative coefficient is `c_{J-2}`. Group it with its two
-neighbours: `c_{J-1} y^{J-1} + c_{J-2} y^{J-2} + c_{J-3} y^{J-3}` is `y^{J-3}` times
-a quadratic in `y` whose discriminant is `c_{J-2}^2 - 4 c_{J-1} c_{J-3} <= 0` by (R).
-A quadratic with positive leading coefficient and nonpositive discriminant is
-nonnegative, and the remaining terms are nonnegative by (a). ∎
+*Proof.* `c_{J-1} > 0` on the whole region at every depth
+(`UNIFORM_TOP_COEFFICIENT.md`). Group the three middle terms:
+
+    c_{J-1} y^{J-1} + c_{J-2} y^{J-2} + c_{J-3} y^{J-3}
+        = y^{J-3} ( c_{J-1} y^2 + c_{J-2} y + c_{J-3} ).
+
+By (R) that quadratic has nonpositive discriminant, and its leading coefficient is
+positive, so it is nonnegative everywhere. The remaining terms are nonnegative by
+(a'). ∎
+
+**Note what is NOT a hypothesis.** `c_{J-3} >= 0` need not be assumed: (R) gives
+`4 c_{J-1} c_{J-3} >= c_{J-2}^2 >= 0`, and `c_{J-1} > 0`, so it follows. Nor is
+`c_{J-1} > 0` an assumption any more — it is proved uniformly in `J`. Of the four
+ingredients this reduction started with, two now come free, and leg (a) only has to
+be checked away from the two exceptional indices.
+
+*Consistency with the certificates:* at every depth `j = 9..16` the negative
+monomials sit only at `y`-degree `J-2` (11, 30, 41, 71, 96, 130, 165, 205 of them),
+and at `j = 12` the coefficient route confirms zero at both `J-1` and `J-3`.
 
 This is a proof, not a measurement, and it holds at every depth. Everything below is
 about supplying its two hypotheses.

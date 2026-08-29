@@ -5971,3 +5971,17 @@ where the reduction already says it does.
 A background job had been computing the stronger monomial-level statement depth by
 depth. It was not needed and was stopped -- the founder is playing, and the cores
 belong to the game.
+
+### 2026-08-29 night -- a hypothesis that was never needed
+
+Proposition 1 listed c_{J-3} >= 0 as an assumption. It is a consequence: (R) gives
+4 c_{J-1} c_{J-3} >= c_{J-2}^2, the right side is a square, and c_{J-1} > 0 was
+proved uniformly an hour ago. So the reduction went from four ingredients to two --
+(R), and nonnegativity away from the indices J-2 and J-3 -- and the two indices it
+no longer needs are exactly the two that were awkward.
+
+Checked against the certificates rather than assumed: at every depth 9..16 the
+negative monomials sit only at y-degree J-2 (11, 30, 41, 71, 96, 130, 165, 205), and
+at j = 12 the coefficient route confirms zero negatives at both J-1 and J-3.
+
+Nothing was computed for this. It was in the statement the whole time.
