@@ -1,6 +1,6 @@
 # HANDOVER — read this first
 
-Last updated: 2026-08-29 07:30 UTC (from `date`, not memory).
+Last updated: 2026-08-29 16:07 local (from `date`, not memory).
 
 ## Starting a new session from scratch
 
@@ -28,8 +28,10 @@ indexed by DEPTH `d`) holds for the CHR graviton family, with ONE argument
 covering every depth rather than a per-depth ladder.
 
 Read next, in this order:
-1. **`projects/qg-bootstrap/results/BFORM_POSITIVITY_THEOREM.md` -- the CURRENT
-   front (28 Aug).** Theorems 1-9, both proved regions, both review passes, and
+1. **`projects/qg-bootstrap/results/FARBELOW_NEGATIVE_PATTERN.md` and
+   `results/FFP_LITERATURE_PASS.md` -- the CURRENT front (29 Aug), summarised in
+   the 29 Aug section below.**
+2. `projects/qg-bootstrap/results/BFORM_POSITIVITY_THEOREM.md` (28 Aug). Theorems 1-9, both proved regions, both review passes, and
    the honest limits in sec. 6, 6b, 6c. Start here; the sections below on the
    odd-depth chain are finished work, not open work.
 2. `projects/qg-bootstrap/results/BFORM_CRITIQUE.md` -- the domain-critic pass
@@ -101,7 +103,49 @@ container kills processes at ~180 s, so it cannot advance regardless of
 caching (banked: 24 boxes, 0 open). It was a uniformity test, never a link
 in a proved chain. Unblocking options are in the DATA_LOG entry.
 
-## The j-infinity front (28 Aug) -- where the real work now is
+## The 29 Aug session — the literature pass, and where it led
+
+Read `results/FFP_LITERATURE_PASS.md` and `results/FARBELOW_NEGATIVE_PATTERN.md`
+before anything else on this front; `docs/ERRATA.md` ERR-0015 and ERR-0016 are
+both from this day and both are mine.
+
+**The transform is classical.** Multiplying `e_t` by a Pochhammer ratio is the
+finite free multiplicative convolution, i.e. the **Schur–Szegő composition**
+(arXiv:2309.10970 §1; preservation is Szegő 1922 / Walsh 1922). Identified
+exactly: `K_r = (p BOX_{n-1} q)(1)`, 336 cases, 0 mismatches, 65 with a negative
+reference knife. Novelty of the technique: POSSIBLY_KNOWN -> **KNOWN**. The route
+it opened is closed too: `q` has complex zeros in 336 of 336 cases, so the
+Szegő–Walsh preservation theorem does not apply.
+
+**The diagonal identity.** `A_m = C(r,m) K_{r-m}` at `D -> D-2m` (1696 checks, 0
+mismatches): the Taylor coefficients of the knife polynomial at `x = 1` are
+knives of lower depth at lower dimension. With step (c) this makes positivity
+below the shore ONE scalar inequality, `D_cross >= T_hat`, verified in 120 of 120
+rows, monotonicity 0 violations in 1920 steps. It is also TIGHT — worst ratio
+1.008 — so no bound that spends a constant factor can close it. Five such bounds
+died today with numbers: Fujiwara/Cauchy (2.8-49), Grace–Szegő–Walsh product
+(2-7.7), plus the three already in the J-form entry.
+
+**The live front: uniformity in depth, and it finally has an address.** The
+far-below criterion (`knife_farbelow2`) proves knives 4..8 by manifest positivity
+and breaks at `j = 9`. Every negative monomial — 11 at `j=9`, 30 at `j=10`, 41 at
+`j=11` — sits in ONE `y`-coefficient, the one of degree `J-2`, at `thL = K3 = 0`.
+Closed form for it verified (`j=6`: 735 monomials, `j=9`: 1752, 0 mismatches),
+and the general-`k` formula verified at every `k` for `j=6`. The reason that
+coefficient and no other: it is a difference of two terms equal to within a
+percent (ratio 0.9997-1.0164 measured), while every other `c_k` is a longer sum.
+
+**The candidate repair, measured at one depth only:** where `c_{J-2} < 0`, the
+neighbours absorb it iff `c_{J-2}^2 <= 4 c_{J-1} c_{J-3}`. At `j = 9`, over 512
+region points, 6 have `c_{J-2} < 0` and all 6 satisfy it — and the stronger
+log-concave form too. `j = 10, 11` were queued. **Do not quote this as more than
+one depth until those land.**
+
+**Refuted the same day, do not retry:** "the highest-`s` term dominates". Measured
+`rest/dominant` = 3 to 3.2e8 (`results/dominant_term_probe.json`). The terms are
+comparable in size; positivity is cancellation, not dominance.
+
+## The j-infinity front (28 Aug)
 
 An outside report (`research/reading-notes/keystone-outside-report-2026-08-28.pdf`,
 answering our `research/BRIEF_KEYSTONE_FOR_OUTSIDE_HELP.md`) proposed
