@@ -5373,3 +5373,13 @@ than left as something a reviewer would have to ask about.
 
 Also stated explicitly: the quadratic step needs c_{J-1} > 0 strictly, and
 c_{J-1} = den^{J-1} E_{J-1} > 0 always.
+
+### 2026-08-29 — literature check on the named lemma: nothing off the shelf
+
+Searched for a quantitative reverse-Newton bound of the shape we need -- an UPPER
+bound on the log-concavity excess p_t^2/(p_{t-1}p_{t+1}) for a specific family.
+The genre exists (quantitative Newton/Maclaurin, tail bounds for elementary
+symmetric polynomials, Marcus-Lopes concavity, robust bounds when the first few
+e_k are small) but nothing of the form "excess <= 1 + C/n for this family" turned
+up. Recorded so the search is not repeated: the lemma looks like it needs a direct
+proof from the structure of {(n-2k)^2}, not a citation.
