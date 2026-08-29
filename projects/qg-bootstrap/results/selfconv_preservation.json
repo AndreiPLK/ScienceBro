@@ -1,0 +1,208 @@
+{
+  "question": "does hypergeometric self-convolution preserve ratio log-concavity?",
+  "why": "the AP-square brief reduces the physical (B) to exactly this preservation",
+  "seed": 20260829,
+  "random_families": [
+    {
+      "family": "A_general_RLC",
+      "generated": 2800,
+      "rlc_inputs": 2800,
+      "outputs_not_rlc": 1561,
+      "examples": [
+        {
+          "m": 4,
+          "failing_t": [
+            2,
+            4
+          ],
+          "q": [
+            "1",
+            "24",
+            "1440/13",
+            "144000/2197",
+            "14400000/7054567"
+          ]
+        },
+        {
+          "m": 4,
+          "failing_t": [
+            3
+          ],
+          "q": [
+            "1",
+            "29/9",
+            "841/27",
+            "97556/153",
+            "62240728/19941"
+          ]
+        },
+        {
+          "m": 4,
+          "failing_t": [
+            2,
+            4
+          ],
+          "q": [
+            "1",
+            "23/3",
+            "5819/531",
+            "2944414/3477519",
+            "1489873484/432711166689"
+          ]
+        },
+        {
+          "m": 4,
+          "failing_t": [
+            3
+          ],
+          "q": [
+            "1",
+            "58/13",
+            "137924/2197",
+            "16399163600/10024911",
+            "487465138010000/320205682251"
+          ]
+        },
+        {
+          "m": 4,
+          "failing_t": [
+            3
+          ],
+          "q": [
+            "1",
+            "10",
+            "300",
+            "18360",
+            "5618160/29"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B_real_rooted",
+      "generated": 2800,
+      "rlc_inputs": 713,
+      "outputs_not_rlc": 0,
+      "examples": []
+    }
+  ],
+  "physical_half_spectrum": [
+    {
+      "m": 4,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 5,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 6,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 7,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 8,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 9,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 10,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 11,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 12,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 13,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 14,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 15,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 16,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 17,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 18,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 19,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 20,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 21,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 22,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 23,
+      "input_failures": [],
+      "output_failures": []
+    },
+    {
+      "m": 24,
+      "input_failures": [],
+      "output_failures": []
+    }
+  ],
+  "physical_failures": [],
+  "runtime_s": 0.6,
+  "git": "2cfef574121c",
+  "git_full": "2cfef574121ca75e1193e8d616c5bf4a963414cf",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/selfconv_preservation.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

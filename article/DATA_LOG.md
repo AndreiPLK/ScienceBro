@@ -5927,3 +5927,26 @@ And it meets the evening's other finding head on. F = G^2 means the Bernoulli su
 is Y' + Y'' with the two halves iid. The prior-art check and the AP factorisation
 found the same structure the same day from opposite directions, and a local limit
 theorem for two iid copies is easier than one for a general Bernoulli sum.
+
+### 2026-08-29 night -- asking which hypothesis carries the weight, before working
+
+The brief's Problem 2 wants a proof that hypergeometric self-convolution preserves
+ratio log-concavity. Rather than start on it, I asked whether it is true at all.
+
+It is not. Constructing general RLC sequences directly -- a sequence is RLC exactly
+when the ratio sequence is log-concave, so a decreasing second ratio generates every
+one of them -- 1561 of 2800 RLC inputs come out non-RLC. No general preservation
+theorem exists.
+
+But among real-rooted inputs, 713 of 713 held, and the physical half spectrum held
+at every m = 4..24. So the hypothesis that carries the weight is real-rootedness,
+not RLC, and the target sharpens into a plausible statement instead of a false one.
+The same table also shows the two hypotheses are independent: only 713 of 2800
+random positive multisets give an RLC q at all.
+
+Half an hour of exact computation to learn that a week of the obvious approach was
+provably doomed.
+
+Also: leg (a) reproduced at j = 16 -- 582256 monomials, 205 negative, ALL at
+y-degree 14 = J-2, which is the statement. j = 17 was still building when its
+wrapper stopped it.

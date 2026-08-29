@@ -64,3 +64,15 @@ tilted cumulants halve with it.
 The brief's Jacobi–Stirling transform (4), the LGV/total-positivity programme, and
 the finite-`S`-transform curvature reading are proposals, not claims with numbers;
 nothing was verified about them and nothing here relies on them.
+
+
+## Follow-up the same night: their Problem 2 needs a stronger hypothesis
+
+`SELFCONV_PRESERVATION.md` asks whether the preservation their Problem 2 wants is
+true in general. It is not: 1561 of 2800 general ratio-log-concave inputs are
+mapped to non-RLC outputs. It held for every real-rooted input tested (713 of 713),
+and for the physical half spectrum at every `m = 4..24`.
+
+So the route survives with its statement corrected -- the load-bearing hypothesis is
+real-rootedness, not RLC -- and any attempt arguing only from RLC of the input is
+provably doomed.
