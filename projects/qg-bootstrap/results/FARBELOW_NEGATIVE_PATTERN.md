@@ -498,6 +498,16 @@ the line present**:
 So the law is sharp in both directions on everything tested. It remains a
 measurement: the grid steps `n` by 3 and the region has more corners than two.
 
+**Tested: does the repair simply generalise past the regime?** Outside it the
+dips are at `k = 1, 3, 5, ...` and `k = J-2`. Each one is individually repairable
+by the SAME trick — at all 14 tested points with `c_1 < 0`, `4 c_0 c_2 >= c_1^2`
+holds. But the dips sit two apart, so consecutive triples SHARE a neighbour, and
+splitting that neighbour in half needs `c_{k-1} c_{k+1} >= c_k^2`, i.e. four times
+the margin the single repair needs. Measured margins `4c_{k-1}c_{k+1}/c_k^2` at
+every dip: 2.0 to 7.6, **worst 1.96**. So the simple halving is short, and the
+regime restriction is a real boundary of the method rather than an untested
+convenience.
+
 **What this costs the plan above.** The two-statement target — everything except
 `c_{J-2}` manifestly nonnegative, plus the neighbour repair — is a statement
 about the regime `j <= (n+3)/2` only. Above it several coefficients dip and one

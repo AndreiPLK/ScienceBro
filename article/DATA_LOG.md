@@ -5561,3 +5561,17 @@ lab/farbelow_endtoend_check.py assembles N(y) and evaluates it exactly over the
 region crossed with y up to 1e5 -- j = 9: 252 points, 0 non-positive; j = 11: 252
 points, 0 non-positive. That is the check a separated verification cannot do,
 since the grouping argument could in principle be wrong while both its legs pass.
+
+### 2026-08-29 — the repair does not simply generalise past the regime
+
+Outside n >= 2J-3 the dips are at k = 1, 3, 5, ... and k = J-2. Each is repairable
+individually by the same neighbour trick -- 14 of 14 tested points with c_1 < 0
+satisfy 4 c_0 c_2 >= c_1^2. But dips sit TWO apart, so consecutive triples share a
+neighbour, and splitting it in half requires c_{k-1}c_{k+1} >= c_k^2, four times
+the margin the single repair needs. Measured 4c_{k-1}c_{k+1}/c_k^2 at every dip:
+2.0 to 7.6, worst 1.96 -- short of the 4 needed.
+
+So the n >= 2J-3 restriction is a real boundary of this method, not an untested
+convenience. Anything beyond it needs a genuinely different grouping (an optimal
+unequal split is a flow problem, and at margins near 2 it is not obviously
+feasible).
