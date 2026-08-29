@@ -317,6 +317,18 @@ than the heavier interval-Bernstein certificates they were closed with. `j = 16`
 and `17` are running; they would complete the range the old method covered. The same pair closes any further `J` for which
 both checks pass.
 
+**The two legs are checked on the same set, and that needs saying.** Leg (a) is
+verified by monomial signs over the FULL far-below region, which starts at
+`n = 44`; leg (R) is certified either on that same full region (`J <= 29`) or on
+the region restricted to `n >= 2J-3`. For `j <= 23` the restriction is vacuous —
+`2J-3 <= 43 < 44` — so both legs hold on the same set and the grouping argument
+applies verbatim. That covers every depth closed here (`j = 9..15`). For
+`J >= 24` the two domains differ and the combined statement is only valid on the
+intersection, which is the restricted one.
+
+Also load-bearing and worth stating: the quadratic step needs `c_{J-1} > 0`
+strictly, and `c_{J-1} = den^{J-1} E_{J-1} > 0` always, so it never degenerates.
+
 **The honest boundary of that statement** is `n >= 2J-3`: outside it other
 coefficients dip too and one grouping is not enough. In the far-below
 parametrisation `n = 44 + v`, so it covers every `J <= 23` outright, and deeper `J`

@@ -5360,3 +5360,16 @@ across the seven depths, 0 failures. Combined with (R), certified at J = 7..32,
 that closes the far-below region at j = 9..15 with manifest positivity plus one
 grouping, where the programme previously needed the interval-Bernstein route.
 j = 16 and 17 are running; they would complete the range that route covered.
+
+### 2026-08-29 — self-review of the combined proof: the two legs' domains
+
+Re-read my own argument. Leg (a) is verified over the FULL far-below region
+(n >= 44); leg (R) is certified on that region for J <= 29 and on the restriction
+n >= 2J-3 beyond. For j <= 23 the restriction is vacuous (2J-3 <= 43 < 44), so
+both legs live on the same set and the grouping applies verbatim -- which covers
+every depth closed today, j = 9..15. For J >= 24 the domains differ and the
+combined statement holds only on the intersection. Written into the file rather
+than left as something a reviewer would have to ask about.
+
+Also stated explicitly: the quadratic step needs c_{J-1} > 0 strictly, and
+c_{J-1} = den^{J-1} E_{J-1} > 0 always.
