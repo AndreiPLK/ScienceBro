@@ -403,6 +403,15 @@ instead of 0 — the same build gives **6152 monomials and 0 negatives**:
 manifestly positive after all (`results/repair_certificate_j30_v13.json`). So
 (R) is certified at `J = 30` where the proof it serves actually applies.
 
+**But that rescue stops at 30, and it is worth being exact about it.** With the
+matching offsets, the in-regime build fails from `J = 31` on: 70 negative monomials
+at `J = 31`, 143 at `J = 32`, 392 at `J = 40`. So manifest positivity covers
+`J = 7..29` on the full region and `J = 30` inside the regime, and no further —
+past that the certificate needs the Bernstein escalation, exactly as the far-below
+criterion itself did past `j = 8`. An earlier sentence of mine in the session log
+claimed there was no depth where the in-regime certificate failed; there is, and
+it starts at 31.
+
 The table below is therefore the picture on the FULL region, corner included:
 
 **On the full region, the certificate covers `J = 7..29` and stops at `J = 30`** — and it

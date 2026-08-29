@@ -13,8 +13,10 @@ negative coefficient, and grouping it with its neighbours reduces positivity to
 (R) is UNCONDITIONAL (holds at all 504 region points, not only the 117 dips) and
 **manifestly positive** — built exactly over `Q(sqrt3)` in variables that are all
 nonnegative on the region, it expands with **zero negative monomials** at every
-`J` from 7 to 29 (1322 to 5942 monomials), and at `J = 30` too once the region is
-restricted to the regime the statement lives in. Nonnegative monomials over a
+`J` from 7 to 29 (1322 to 5942 monomials), and at `J = 30` once the region is
+restricted to the regime the statement lives in. It stops there: in-regime builds
+give 70 negatives at `J = 31`, 143 at `J = 32`, 392 at `J = 40`, so past 30 the
+certificate needs the Bernstein escalation. Nonnegative monomials over a
 nonnegative orthant is a proof.
 
 Combined with the one-negative-coefficient structure, that **closes the far-below

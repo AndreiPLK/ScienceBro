@@ -5327,3 +5327,13 @@ n up to 200: C = 1.9862, and it is attained at the SMALLEST n = 8, not at the
 largest. So the bound 1 + 2/n is stable across the whole range and tight only at
 the very edge of the physical domain. The lemma stands as the one open piece
 between the certificate and a J-uniform (R).
+
+### 2026-08-29 — correction: the in-regime rescue stops at J = 30
+
+Restricting to n >= 2J-3 rescued the certificate at J = 30 (0 negatives), and I
+said in the session that there was then no depth where the in-regime certificate
+failed. Wrong. With matching offsets: J = 31 gives 70 negative monomials, J = 32
+gives 143, J = 40 gives 392. So manifest positivity covers J = 7..29 on the full
+region and J = 30 in-regime, and no further; past that the certificate needs the
+Bernstein escalation, exactly as the criterion itself did past j = 8. Corrected in
+the write-up and in the shift report the same hour, before either was quoted.

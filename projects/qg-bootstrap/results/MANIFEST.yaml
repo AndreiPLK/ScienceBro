@@ -245,6 +245,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  farbelow_negative_pattern_j13.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   farbelow_negative_pattern_j14.json:
     added: '2026-08-29'
     note: referenced nowhere; classify before relying on it
@@ -919,8 +923,24 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  repair_certificate_j31_v15.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j32_v17.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j35_v23.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_certificate_j40.json:
     added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j40_v33.json:
+    added: '2026-08-29'
     note: referenced nowhere; classify before relying on it
     status: unreviewed
   repair_certificate_j45.json:
