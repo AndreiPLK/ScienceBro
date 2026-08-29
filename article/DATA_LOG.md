@@ -5242,3 +5242,8 @@ And the j = 12 extraction finished: 71 negative monomials, ALL at y-degree 10 =
 J-2, with the repair holding at all 38 dips. So the combined proof (manifest
 positivity everywhere except J-2, plus the certified grouping) now closes the
 far-below region at j = 9, 10, 11 AND 12.
+
+Page for the certificate, built by lab/build_repair_viz.py from
+results/repair_certificate_j*.json and results/farbelow_negative_pattern_j*.json
+(refuses to emit if either half stops holding):
+https://claude.ai/code/artifact/e0631d6e-2535-4105-a85d-ae34012e1c0a
