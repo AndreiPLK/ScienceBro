@@ -5431,3 +5431,11 @@ So the lemma's boundary is NOT n/2; it is 0.5445 n seen through finite-n
 corrections. Another small-sample reading corrected -- this time by a derivation
 predicting the number before the scan reached it, rather than by widening the
 scan. One of today's four half-depth boundaries is now explained and is not a half.
+
+### 2026-08-29 — the proof shape for the lemma: monotonicity plus an endpoint
+
+f is numerically monotone increasing in u across the whole range (59 sampled
+derivatives, all positive), rising from 4/5 at theta -> 0 to 1.8042 at theta = 1/2
+(where u solves arctan(u)/u = 1/2, u = 2.3311). So the asymptotic half of the
+lemma needs only monotonicity plus that endpoint value -- and there is room, since
+f does not reach 2 until theta = 0.5445. Passed to the parallel chat as the hint.

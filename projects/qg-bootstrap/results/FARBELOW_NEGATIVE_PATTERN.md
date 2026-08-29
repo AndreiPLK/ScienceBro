@@ -343,7 +343,10 @@ ERR-0017, caught this time by a derivation rather than by a wider scan.
 empirical measure is explicit: with `x = k/n`, `b/n^2 -> (1-2x)^2`, i.e. the law of
 `V^2` for `V` uniform on `(-1,1)` — density `1/(2 sqrt(v))` on `(0,1)`, a
 `Beta(1/2, 1)`. The lemma is now exactly: **`f(theta) < 2` on `(0, 1/2)`** for the explicit `f`
-above, plus an exact check for `n` below some `n_0`. Both halves are ordinary
+above, plus an exact check for `n` below some `n_0`. And the proof shape is
+visible: `f` is numerically monotone increasing in `u` (59 sampled derivatives,
+all positive), so **monotonicity plus the endpoint suffices** — at `theta = 1/2`,
+`u` solves `arctan(u)/u = 1/2`, giving `u = 2.3311` and `f = 1.8042 < 2`. Both halves are ordinary
 one-variable work — no knives, no `lam`, and both the measure and the function are
 written down.
 
