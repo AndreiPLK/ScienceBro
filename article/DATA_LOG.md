@@ -5804,3 +5804,22 @@ at theta = 0.05 .. 0.49. Positive and increasing, max about 5.35 on the needed
 range. Positivity gives (C); the size is the room the bound has. That is the
 target for whoever proves the expansion, and it is the last analytic ingredient
 the bridge needs.
+
+### 2026-08-29 — the cost of the per-depth method does not grow; the count of runs does
+
+Counted the certified cells behind each depth of the existing ladder:
+
+   j:            4     8    12    17    18
+   shallow:   1677  1505  1333  1118  1075
+   tail:        83    79    75    70     -
+   far-below:    1     1     1     1     -
+
+The cost per depth FALLS slightly as j rises. So the obstacle to uniformity was
+never the size of an individual certificate -- it is that every depth needs its own
+run, and the ladder simply stops where someone stopped running it (j = 17
+complete, j = 18 shallow only).
+
+That reframes today's work: the value of the far-below repair is not that it is
+cheaper at a given depth -- one cell was already cheap -- but that its ingredients
+are explicit polynomials in n and J, which is what a single argument for all depths
+could be built from.
