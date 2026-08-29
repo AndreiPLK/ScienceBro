@@ -326,6 +326,19 @@ a bijection `(0, inf) -> (0, 1)`. Since `f = -g''` with
 and `f(theta) -> 0.801, 0.8001` at `theta = 10^-3, 10^-4` — the `4/5` of the exact
 `t = 1` rung, from the other side.
 
+**And the derived shape predicts a boundary that was measured before it was
+understood.** `f` crosses 2 at `theta = 0.5445` (and `f(1/2) = 1.804`), so the
+bound `1 + 2/n` should hold asymptotically up to `t/n = 0.5445` — not up to `1/2`.
+The measured largest good `t`, which earlier looked like `n/2`, climbs:
+
+| n | 40 | 60 | 100 | 150 | 200 |
+|---|---|---|---|---|---|
+| `t*/n` | 0.500 | 0.5167 | 0.5300 | 0.5333 | 0.5350 |
+
+monotonically toward 0.5445 from below. So that boundary is **not** `n/2`; it is
+`0.5445 n` seen through finite-`n` corrections — the same small-sample trap as
+ERR-0017, caught this time by a derivation rather than by a wider scan.
+
 **So the lemma splits into an asymptotic and a finite check.** The limiting
 empirical measure is explicit: with `x = k/n`, `b/n^2 -> (1-2x)^2`, i.e. the law of
 `V^2` for `V` uniform on `(-1,1)` — density `1/(2 sqrt(v))` on `(0,1)`, a

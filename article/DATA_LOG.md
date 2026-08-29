@@ -5419,3 +5419,15 @@ other side.
 So the named lemma is now: f(theta) < 2 on (0, 1/2) for that explicit function,
 plus an exact check for small n. That is ordinary one-variable analysis, and it is
 the piece handed to the parallel chat.
+
+### 2026-08-29 — the derived shape predicts a boundary we had already measured
+
+f crosses 2 at theta = 0.5445, with f(1/2) = 1.804. So the bound 1 + 2/n should
+hold up to t/n = 0.5445 asymptotically, not up to 1/2. Measured t*/n: 0.500,
+0.5167, 0.5300, 0.5333, 0.5350 at n = 40, 60, 100, 150, 200 -- climbing
+monotonically toward 0.5445 from below.
+
+So the lemma's boundary is NOT n/2; it is 0.5445 n seen through finite-n
+corrections. Another small-sample reading corrected -- this time by a derivation
+predicting the number before the scan reached it, rather than by widening the
+scan. One of today's four half-depth boundaries is now explained and is not a half.
