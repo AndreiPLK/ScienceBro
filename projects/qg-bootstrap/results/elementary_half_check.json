@@ -1,0 +1,23 @@
+{
+  "lemma": "(J-1)(n-J+2)/[(J-2)(n-J+1)] (1+2/n) <= 2(2n-2J+3)(2n-2J+4)/[(2n-2J+1)(2n-2J+2)] for J >= 4, n >= 6",
+  "status": "PROVED by hand; this file checks the cancellation step and the range",
+  "pairs_checked": 78210,
+  "cancellation_identity_mismatches": 0,
+  "inequality_failures": 0,
+  "tightest_slack": {
+    "slack": 1.2771929824561403,
+    "n": 13,
+    "J": 4
+  },
+  "runtime_s": 0.2,
+  "git": "bcd6a45023b8",
+  "git_full": "bcd6a45023b8f396808cdd5448183f3ce1b415db",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/elementary_half_check.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

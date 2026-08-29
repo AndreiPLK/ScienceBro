@@ -233,6 +233,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  elementary_half_check.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   farbelow_negative_pattern_j10.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
