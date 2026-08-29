@@ -5439,3 +5439,12 @@ derivatives, all positive), rising from 4/5 at theta -> 0 to 1.8042 at theta = 1
 (where u solves arctan(u)/u = 1/2, u = 2.3311). So the asymptotic half of the
 lemma needs only monotonicity plus that endpoint value -- and there is room, since
 f does not reach 2 until theta = 0.5445. Passed to the parallel chat as the hint.
+
+### 2026-08-29 — the finite half of the lemma is smaller than it looked
+
+The far-below region starts at n = 44, so the lemma is only needed from there, not
+for all n. Over n = 44..200 and every t < n/2 the largest constant is 1.8393 (at
+n = 44, t = 21, theta = 0.477) -- against the 2 allowed, and only 0.035 above the
+asymptotic 1.8042. About 8% of room on the range actually used, and the finite
+check is a bounded computation rather than an open tail. (The 1.9862 that had
+worried me was at n = 8, far outside the region.)

@@ -350,6 +350,14 @@ all positive), so **monotonicity plus the endpoint suffices** — at `theta = 1/
 one-variable work — no knives, no `lam`, and both the measure and the function are
 written down.
 
+**And the finite half is smaller than it looks**, because the far-below region
+starts at `n = 44`: the lemma is not needed for all `n`, only from there. Measured
+over `n = 44..200` and every `t < n/2`, the largest constant is **1.8393** (at
+`n = 44`, `t = 21`, `theta = 0.477`) — against the 2 the bound allows, and only
+`0.035` above the asymptotic `1.8042`. So on the range that is actually used the
+lemma holds with about 8% of room, and the finite check is a bounded computation
+rather than an open tail.
+
 **Where the `1/n` comes from, and it is not special to us.** Writing
 `p_t = e_t/C(N,t)`, the Newton excess is the second difference of `log p_t`, and
 for a family whose empirical measure has a limit as `N -> inf` with `t/N -> theta`
