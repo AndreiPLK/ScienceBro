@@ -1,6 +1,21 @@
 # HANDOVER — read this first
 
-Last updated: 2026-08-24 17:08 (from `date`, not memory).
+Last updated: 2026-08-29 07:30 UTC (from `date`, not memory).
+
+## Starting a new session from scratch
+
+Everything is in git; nothing lives only in a chat. To continue:
+
+```
+git checkout claude/handoff-markdown-review-anzwo5   # the working branch
+uv sync && uv run sb check                           # must print: sb check passed
+```
+
+Read this file, then `article/DATA_LOG.md` from the bottom up (newest entries
+first) — it is the running record of what was tried, what was banked and what
+was killed, and it is the only place the reasoning behind a dead end survives.
+`docs/ERRATA.md` holds every error found so far, newest last. Chat context does
+NOT carry over between sessions and is not meant to; these files do.
 
 ## The goal
 
@@ -13,14 +28,17 @@ indexed by DEPTH `d`) holds for the CHR graviton family, with ONE argument
 covering every depth rather than a per-depth ladder.
 
 Read next, in this order:
-1. `projects/qg-bootstrap/results/UNGLUED_KEYSTONE.md` -- the whole argument
-   (read its 24 Aug correction at the bottom)
-2. `docs/ERRATA.md` ERR-0013 -- 24 Aug: the odd-depth diagnosis was WRONG,
-   the fixed-window statement is FALSE at odd depths, and the repair route
-3. `projects/qg-bootstrap/results/ODD_DEPTH_DIAGNOSIS.md` -- the old
-   diagnosis plus its correction (kept visible per the evidence contract)
-4. `docs/ERRATA.md` ERR-0010 .. ERR-0012 -- three bugs from 19 Aug, all
-   instructive
+1. **`projects/qg-bootstrap/results/BFORM_POSITIVITY_THEOREM.md` -- the CURRENT
+   front (28 Aug).** Theorems 1-9, both proved regions, both review passes, and
+   the honest limits in sec. 6, 6b, 6c. Start here; the sections below on the
+   odd-depth chain are finished work, not open work.
+2. `projects/qg-bootstrap/results/BFORM_CRITIQUE.md` -- the domain-critic pass
+   on it, including where it says the result is oversold
+3. `docs/ERRATA.md` ERR-0014 -- two arithmetic slips of mine in those write-ups,
+   found by BOTH review passes; then ERR-0013 (the odd-depth statement is FALSE)
+   and ERR-0010..ERR-0012 (three bugs from 19 Aug, all instructive)
+4. `projects/qg-bootstrap/results/UNGLUED_KEYSTONE.md` -- the older three-step
+   argument (read its 24 Aug correction at the bottom)
 5. `NORTH_STAR.md` and `CLAUDE.md` -- standing law
 
 ## Where we are
