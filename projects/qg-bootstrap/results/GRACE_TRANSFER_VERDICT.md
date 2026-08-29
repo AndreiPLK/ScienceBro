@@ -84,6 +84,38 @@ lives, are untouched.
   intermediate condition — is the strongest thing offered and is **not yet
   tested**. It is the obvious next experiment.
 
+## The ceiling, measured: it is (A) itself
+
+Their Routh–Hurwitz route (AC) was implemented (`hurwitz_test` in the module) and
+is **strictly stronger than (E)**, as advertised: at `lam = 300` it fires at
+`n = 12, r = 6` and `r = 10`, and at `n = 40, r = 2`, where (E) does not. But it
+still fails at the deep knives (`n = 20, r = 18`; `n = 40, r = 20, 38`), while the
+truth — no real zero of the composition at or above 1 — holds in all 27 cases
+tested.
+
+That is not a defect of the spectral estimate. It is the transfer bound itself.
+Measured loss, `[B · max Re zeta] / [certified true bound c*]` at the shore:
+
+| n | r = 2 | r = n/2 | r = n-2 |
+|---|---|---|---|
+| 12 | 2.50 | 3.5 | 5.9-6.1 |
+| 20 | 2.70 | 3.8-3.9 | 6.8-7.5 |
+| 40 | 2.7-2.9 | 3.4-4.1 | 6.1-8.7 |
+
+The true `c*` at the shore sits at 0.74-0.99 (§3b of
+`results/FFP_LITERATURE_PASS.md`), so a bound that overshoots by 2.5 to 8.7 can
+only certify where the truth has that much room — which is large `lam`, and that
+is exactly the corner (E) reaches. **No improvement to the spectral-abscissa part
+can change this**: even the exact Hurwitz test inherits the factor. Reaching the
+physical small-`lam` region through (A) would need a transfer with loss under
+about 1.05.
+
+So the route is a better corner, honestly obtained, and a sixth measured dead end
+for the keystone itself. The only line still standing with room in it is the one
+that never passes through an inequality: the far-below manifest positivity plus
+the neighbour repair (`results/FARBELOW_NEGATIVE_PATTERN.md`), which is an
+identity-level argument.
+
 ## Status
 
 Nothing here is promoted. (A) and (C) are external claims that our engine failed

@@ -5008,3 +5008,22 @@ Also: their (U) is exactly our Theorem 5 condition rederived from the coefficien
 side, and their (W) is the criterion we already filed as circular in ERR-0015.
 Their (Y) is not circular and is a small genuine relaxation; their Routh-Hurwitz
 route (AC) is the strongest item and is untested.
+
+### 2026-08-29 — the transfer route's ceiling, and it is the transfer itself
+
+Implemented their Routh-Hurwitz route (AC): exact Hurwitz determinants of
+Q_r(z+R), R = s^2/(n-2)^2, decided in fmpq_mat. It IS strictly stronger than (E)
+-- fires at n=12 r=6,10 and n=40 r=2 at lam=300 where (E) does not -- and still
+fails at the deep knives (n=20 r=18, n=40 r=20,38) while the truth holds in all
+27 cases.
+
+The reason is not the spectral estimate. Loss of the transfer bound itself,
+[B max Re zeta] / [certified c*] at the shore: 2.50-2.85 at r=2, 3.4-4.1 at
+r=n/2, 5.9-8.7 at r=n-2. With the true c* sitting at 0.74-0.99, a bound
+overshooting by 2.5-8.7 can only certify where the truth has that much room --
+large lam, which is exactly the corner (E) reaches. Even the exact Hurwitz test
+inherits the factor. Sixth measured dead end for the keystone.
+
+What that leaves: the only line with room in it is the one that passes through NO
+inequality -- far-below manifest positivity plus the neighbour repair. That is an
+identity-level argument, and it is where tomorrow's effort belongs.

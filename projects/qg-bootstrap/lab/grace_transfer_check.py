@@ -33,6 +33,7 @@ from __future__ import annotations
 import json
 import sys
 import time
+from math import comb
 from pathlib import Path
 
 from flint import ctx, fmpq
@@ -197,3 +198,51 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+def hurwitz_test(n: int, r: int, lam, D) -> dict:
+    """The external answer's strongest item (AC): Routh-Hurwitz on Q_r(z+R).
+
+    (A) reduces theta_max < 1 to max Re zeta < R = s^2/(n-2)^2.  Shifting the
+    active part of q by R, every zero of q has real part < R exactly when every
+    zero of Q_r(z+R) has NEGATIVE real part -- which the Hurwitz determinants of
+    its coefficient vector decide exactly, with no root computation.
+
+    Unlike (C), this is necessary AND sufficient for the intermediate condition,
+    so it should reach strictly further.  Everything below is exact fmpq; the
+    determinants are computed by fraction-free elimination on fmpq_mat.
+    """
+    from flint import fmpq_mat
+
+    H = (D + 4 * n - 7) / 2
+    s = lam + n - 1
+    R = s * s / fmpq((n - 2) ** 2)
+    e = e_of_q(n, r, H)  # e_t(q), t = 0..r
+    # Q_r(z) = SUM_t (-1)^t e_t z^{r-t};  shift z -> z + R
+    coef = [fmpq(0)] * (r + 1)  # coefficient of z^{r-i}
+    for t, et in enumerate(e):
+        sgn = fmpq((-1) ** t)
+        # (z+R)^{r-t} = SUM_m C(r-t, m) z^{r-t-m} R^m
+        for m in range(r - t + 1):
+            coef[t + m] += sgn * et * comb(r - t, m) * R**m
+    a = coef  # a[0] z^r + a[1] z^{r-1} + ... + a[r]
+    if a[0] < 0:
+        a = [-x for x in a]
+    dets = []
+    for kk in range(1, r + 1):
+        M = fmpq_mat(kk, kk)
+        for i in range(kk):
+            for jj in range(kk):
+                idx = 2 * i - jj + 1
+                M[jj, i] = a[idx] if 0 <= idx <= r else fmpq(0)
+        dets.append(M.det())
+    all_pos = all(d > 0 for d in dets)
+    return {
+        "n": n,
+        "r": r,
+        "lam": str(lam),
+        "D": str(D),
+        "R": float(R),
+        "hurwitz_all_positive": all_pos,
+        "first_nonpositive": next((i + 1 for i, d in enumerate(dets) if d <= 0), None),
+    }
