@@ -128,6 +128,7 @@ def leading_minors(mat: list[list[fmpq]]) -> list[fmpq]:
     n = len(mat)
     out = []
     a = deepcopy(mat)
+
     # simple exact determinant per leading size (sizes are tiny: <= 5)
     def det(sz: int) -> fmpq:
         m = [row[:sz] for row in a[:sz]]
@@ -155,6 +156,14 @@ def leading_minors(mat: list[list[fmpq]]) -> list[fmpq]:
     for sz in range(1, n + 1):
         out.append(det(sz))
     return out
+
+
+# hankel_report round-trips exact minors through str(), and CPython caps
+# int->str at 4300 digits by default.  Those minors pass 4300 digits somewhere
+# around n = 100, so the cap turns into a ValueError in every consumer of this
+# module at large n -- which is exactly where one wants to look.  Raised once,
+# here, rather than in each caller.
+sys.set_int_max_str_digits(2_000_000)
 
 
 def hankel_report(M: list[fmpq]) -> dict:
@@ -260,7 +269,9 @@ def main() -> int:
                     )
     ok_shore = sum(1 for h in out["hankel"] if h["where"] in ("shore", "below") and h["all_nonneg"])
     tot_shore = sum(1 for h in out["hankel"] if h["where"] in ("shore", "below"))
-    fail_above = sum(1 for h in out["hankel"] if h["where"] in ("above", "far_above") and not h["all_nonneg"])
+    fail_above = sum(
+        1 for h in out["hankel"] if h["where"] in ("above", "far_above") and not h["all_nonneg"]
+    )
     tot_above = sum(1 for h in out["hankel"] if h["where"] in ("above", "far_above"))
     print(
         f"hankel/[0,1]-localizer: at/below shore nonneg {ok_shore}/{tot_shore}; "
@@ -281,6 +292,7 @@ def main() -> int:
 
     def kernel_minor(r0: int, t0: int, q: int) -> fmpq_poly:
         rows = [[B_poly(r0 + a, t0 + b) for b in range(q)] for a in range(q)]
+
         # Laplace by first column (q <= 4, tiny)
         def det(mat):
             sz = len(mat)
@@ -292,6 +304,7 @@ def main() -> int:
                 term = mat[i][0] * det(sub)
                 tot = tot + term if i % 2 == 0 else tot - term
             return tot
+
         return det(rows)
 
     minors = {}
