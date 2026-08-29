@@ -148,6 +148,16 @@ def main() -> int:
                 f"  r={r} t={t}: degree {row['degree']:<5} {mark}"
                 f"   (spot mismatches {row['spot_check_mismatches']})"
             )
+    # the shift law, reported by the module rather than eyeballed, and conjecture (U)
+    S = {(w["r"], w["t"]): w["smallest_shift_all_coefficients_nonnegative"] for w in rows}
+    parity = {"same_parity": sorted({S[(r, t)] - (t + r) for (r, t) in S if (t - r) % 2 == 0}),
+              "opposite_parity": sorted({S[(r, t)] - (t + r) for (r, t) in S if (t - r) % 2 == 1})}
+    U = all(s_ <= t + r + 3 for (r, t), s_ in S.items() if s_)
+    print()
+    print(f"  shift excess s-(t+r): same parity {parity['same_parity']}, "
+          f"opposite {parity['opposite_parity']}")
+    print(f"  conjecture (U)  s <= t+r+3  holds on every rung tested: {U}")
+
     out = {
         "what": "the log-difference hierarchy proved at fixed (t, r) for every n >= s, by "
         "all-nonnegative coefficients after a shift",
@@ -156,6 +166,14 @@ def main() -> int:
         "rows": rows,
         "all_proved": all(r["smallest_shift_all_coefficients_nonnegative"] for r in rows),
         "spot_mismatches_total": sum(r["spot_check_mismatches"] for r in rows),
+        "shift_excess_by_parity": parity,
+        "conjecture_U": {
+            "statement": "D_{t,r}(m + t + r + 3) has all nonnegative coefficients for every "
+            "t >= 1, r >= 3",
+            "holds_on_every_rung_tested": U,
+            "why_it_matters": "t+r+3 <= 2(t+r)+1 whenever t+r >= 2, which is the domain of the "
+            "claim, so (U) implies the ENTIRE hierarchy",
+        },
         "runtime_s": round(time.time() - t0, 1),
         **stamp(),
     }

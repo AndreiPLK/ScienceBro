@@ -10,6 +10,8 @@ pair
 
     t = 1, 2, 3, 4        r = 3, 4, 5, 6, 7, 8
 
+**[extended the same night to `t = 1..8`, 48 rungs, degrees to 6137]**
+
 and every `n` for which the claim is made — that is, every `n` with the difference
 window inside the first half, `t + r <= floor(N/2)`, equivalently `n >= 2(t+r)+1` —
 
@@ -66,17 +68,39 @@ first observed: is it a genuinely deeper family of inequalities, or a restatemen
 (B)? **It is deeper.** Eighteen of these twenty-four rungs are statements that do not
 follow from (B), and each is now a theorem.
 
-## What is still open, and it is now sharp
+## The shift obeys an exact parity law
 
-Uniformity in `(t, r)`. Each rung is proved separately, and the degrees grow like
-`3(t+r)2^r`, so no amount of computation reaches all of them. What is wanted is one
-argument: that `D_{t,r}(m + s)` has nonnegative coefficients for every `t` and `r`, with
-`s` below the domain bound.
+Extending to 48 rungs made the pattern unambiguous. Writing the excess
+`s - (t + r)`:
 
-The shifts themselves show structure worth looking at — they depend on the parities of
-`t` and `r`, not only on their sizes (`r=5,t=1` needs 9 while `r=6,t=1` needs 7). A
-uniform argument will probably have to explain that parity, and explaining it may be the
-way in.
+| `r` \ `t` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---|---|---|---|---|---|---|---|---|
+| 3 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
+| 4 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 |
+| 5 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
+| 6 | 0 | 3 | 0 | 2 | 0 | 2 | 0 | 2 |
+| 7 | 3 | 0 | 3 | 0 | 2 | 0 | 2 | 0 |
+| 8 | 0 | 3 | 0 | 3 | 0 | 2 | 0 | 2 |
+
+**The excess is exactly 0 when `t` and `r` have opposite parity, and 2 or 3 when they
+have the same parity.** Twenty-four rungs on each side, no exceptions. That parity is
+presumably the doubling of the spectrum showing through — the centred multiset is a half
+spectrum taken twice.
+
+## The whole hierarchy reduces to one statement
+
+Since the excess never exceeds 3:
+
+> **Conjecture (U).** For every `t >= 1` and `r >= 3`, the polynomial
+> `D_{t,r}(m + t + r + 3)` has all nonnegative coefficients.
+
+It holds on all 48 rungs. And `t + r + 3 <= 2(t+r) + 1` whenever `t + r >= 2`, which is
+the domain of the claim — so **(U) implies the entire log-difference hierarchy, on its
+whole domain, for every `t` and `r` at once.**
+
+That is the sharpest form the problem has taken. It is no longer "prove infinitely many
+inequalities"; it is one coefficient-positivity statement about an explicit polynomial
+family, of exactly the kind this programme has proved before at fixed parameters.
 
 ## Status
 

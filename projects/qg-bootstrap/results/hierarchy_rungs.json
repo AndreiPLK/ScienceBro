@@ -35,6 +35,38 @@
       "spot_check_mismatches": 0
     },
     {
+      "t": 5,
+      "r": 3,
+      "degree": 102,
+      "smallest_shift_all_coefficients_nonnegative": 10,
+      "proved_for_all_n_at_least": 10,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 6,
+      "r": 3,
+      "degree": 118,
+      "smallest_shift_all_coefficients_nonnegative": 9,
+      "proved_for_all_n_at_least": 9,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 7,
+      "r": 3,
+      "degree": 134,
+      "smallest_shift_all_coefficients_nonnegative": 12,
+      "proved_for_all_n_at_least": 12,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 8,
+      "r": 3,
+      "degree": 150,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
       "t": 1,
       "r": 4,
       "degree": 93,
@@ -64,6 +96,38 @@
       "degree": 189,
       "smallest_shift_all_coefficients_nonnegative": 10,
       "proved_for_all_n_at_least": 10,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 5,
+      "r": 4,
+      "degree": 221,
+      "smallest_shift_all_coefficients_nonnegative": 9,
+      "proved_for_all_n_at_least": 9,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 6,
+      "r": 4,
+      "degree": 253,
+      "smallest_shift_all_coefficients_nonnegative": 12,
+      "proved_for_all_n_at_least": 12,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 7,
+      "r": 4,
+      "degree": 285,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 8,
+      "r": 4,
+      "degree": 317,
+      "smallest_shift_all_coefficients_nonnegative": 14,
+      "proved_for_all_n_at_least": 14,
       "spot_check_mismatches": 0
     },
     {
@@ -99,6 +163,38 @@
       "spot_check_mismatches": 0
     },
     {
+      "t": 5,
+      "r": 5,
+      "degree": 476,
+      "smallest_shift_all_coefficients_nonnegative": 12,
+      "proved_for_all_n_at_least": 12,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 6,
+      "r": 5,
+      "degree": 540,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 7,
+      "r": 5,
+      "degree": 604,
+      "smallest_shift_all_coefficients_nonnegative": 14,
+      "proved_for_all_n_at_least": 14,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 8,
+      "r": 5,
+      "degree": 668,
+      "smallest_shift_all_coefficients_nonnegative": 13,
+      "proved_for_all_n_at_least": 13,
+      "spot_check_mismatches": 0
+    },
+    {
       "t": 1,
       "r": 6,
       "degree": 507,
@@ -128,6 +224,38 @@
       "degree": 891,
       "smallest_shift_all_coefficients_nonnegative": 12,
       "proved_for_all_n_at_least": 12,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 5,
+      "r": 6,
+      "degree": 1019,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 6,
+      "r": 6,
+      "degree": 1147,
+      "smallest_shift_all_coefficients_nonnegative": 14,
+      "proved_for_all_n_at_least": 14,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 7,
+      "r": 6,
+      "degree": 1275,
+      "smallest_shift_all_coefficients_nonnegative": 13,
+      "proved_for_all_n_at_least": 13,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 8,
+      "r": 6,
+      "degree": 1403,
+      "smallest_shift_all_coefficients_nonnegative": 16,
+      "proved_for_all_n_at_least": 16,
       "spot_check_mismatches": 0
     },
     {
@@ -163,6 +291,38 @@
       "spot_check_mismatches": 0
     },
     {
+      "t": 5,
+      "r": 7,
+      "degree": 2170,
+      "smallest_shift_all_coefficients_nonnegative": 14,
+      "proved_for_all_n_at_least": 14,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 6,
+      "r": 7,
+      "degree": 2426,
+      "smallest_shift_all_coefficients_nonnegative": 13,
+      "proved_for_all_n_at_least": 13,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 7,
+      "r": 7,
+      "degree": 2682,
+      "smallest_shift_all_coefficients_nonnegative": 16,
+      "proved_for_all_n_at_least": 16,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 8,
+      "r": 7,
+      "degree": 2938,
+      "smallest_shift_all_coefficients_nonnegative": 15,
+      "proved_for_all_n_at_least": 15,
+      "spot_check_mismatches": 0
+    },
+    {
       "t": 1,
       "r": 8,
       "degree": 2553,
@@ -193,13 +353,59 @@
       "smallest_shift_all_coefficients_nonnegative": 15,
       "proved_for_all_n_at_least": 15,
       "spot_check_mismatches": 0
+    },
+    {
+      "t": 5,
+      "r": 8,
+      "degree": 4601,
+      "smallest_shift_all_coefficients_nonnegative": 13,
+      "proved_for_all_n_at_least": 13,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 6,
+      "r": 8,
+      "degree": 5113,
+      "smallest_shift_all_coefficients_nonnegative": 16,
+      "proved_for_all_n_at_least": 16,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 7,
+      "r": 8,
+      "degree": 5625,
+      "smallest_shift_all_coefficients_nonnegative": 15,
+      "proved_for_all_n_at_least": 15,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 8,
+      "r": 8,
+      "degree": 6137,
+      "smallest_shift_all_coefficients_nonnegative": 18,
+      "proved_for_all_n_at_least": 18,
+      "spot_check_mismatches": 0
     }
   ],
   "all_proved": true,
   "spot_mismatches_total": 0,
-  "runtime_s": 14.6,
-  "git": "673fbd085184",
-  "git_full": "673fbd085184141ad0b6f14af387b83f7335786b",
+  "shift_excess_by_parity": {
+    "same_parity": [
+      2,
+      3
+    ],
+    "opposite_parity": [
+      0
+    ]
+  },
+  "conjecture_U": {
+    "statement": "D_{t,r}(m + t + r + 3) has all nonnegative coefficients for every t >= 1, r >= 3",
+    "holds_on_every_rung_tested": true,
+    "why_it_matters": "t+r+3 <= 2(t+r)+1 whenever t+r >= 2, which is the domain of the claim, so (U) implies the ENTIRE hierarchy"
+  },
+  "runtime_s": 101.1,
+  "git": "04a2b54e6732",
+  "git_full": "04a2b54e67327ca9212cf33aa45a6d6c1e6a3e2f",
   "dirty": true,
   "dirty_code_files": [
     "projects/qg-bootstrap/lab/hierarchy_rungs.py"
