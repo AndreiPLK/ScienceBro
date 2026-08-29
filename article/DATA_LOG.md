@@ -5247,3 +5247,35 @@ Page for the certificate, built by lab/build_repair_viz.py from
 results/repair_certificate_j*.json and results/farbelow_negative_pattern_j*.json
 (refuses to emit if either half stops holding):
 https://claude.ai/code/artifact/e0631d6e-2535-4105-a85d-ae34012e1c0a
+
+### 2026-08-29 — the b-multiset is DOUBLED, and that may be why everything halves
+
+Chasing why the Newton-excess lemma stops at t ~ n/2 turned up something the
+repository had not written down. The B-form runs over b_k = (n-2k)^2, and
+
+    b_{n-k} = (2k-n)^2 = b_k,
+
+so the multiset is a doubled copy of the half-set beta = {(n-2k)^2 :
+k = 1..ceil(n/2)-1}, plus a single 0 when n is even. Hence
+
+    PROD_k (u - b_k) = [PROD_beta (u - b)]^2 * u^{[n even]}     -- a PERFECT SQUARE,
+    E_{2t}(n) = SUM_i e_i(beta) e_{t-i}(beta)                  -- a SELF-CONVOLUTION.
+
+One-line proofs, checked anyway: pairing at 7 values of n, the square
+factorisation as exact fmpz_poly identities at 5, and the self-convolution over
+182 checks at both parities with 0 mismatches.
+
+WHY IT MATTERS. BFORM sec. 6c records only that the extreme pair b_1 = b_{n-1}
+is a double root. The whole multiset being doubled -- floor(n/2) distinct values
+-- is a different order of fact: the polynomial the programme has been
+differentiating, convolving and contracting all month is the square of one half
+its size, and no route used that.
+
+AND THE FOUR HALVES. Everything measured today broke at the same line: (E)
+vacuous for r > (2n+1)/4; the far-below localisation ending at j <= (n+3)/2; the
+Hausdorff cutoff drifting just under n/2; the Newton-excess lemma holding to
+t ~ n/2. There are only floor(n/2) DISTINCT b's, so any statement reading e_t
+past that count is asking about elementary symmetric functions beyond the number
+of distinct generators. That is a hypothesis on four data points, written down to
+be attacked: the cheap test is to recompute one boundary for a family of the same
+size WITHOUT doubling and see whether it moves.

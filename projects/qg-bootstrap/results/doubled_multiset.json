@@ -1,0 +1,85 @@
+{
+  "what": "b_k = (n-2k)^2 is a doubled multiset: pairing, square factorisation, and E_{2t} as the self-convolution of the half-set",
+  "proof": "b_{n-k} = (2k-n)^2 = b_k -- one line; the rest follows, and is checked here",
+  "pairing": [
+    {
+      "n": 7,
+      "doubled": true,
+      "distinct_values": 3,
+      "of": 6
+    },
+    {
+      "n": 8,
+      "doubled": true,
+      "distinct_values": 4,
+      "of": 7
+    },
+    {
+      "n": 12,
+      "doubled": true,
+      "distinct_values": 6,
+      "of": 11
+    },
+    {
+      "n": 13,
+      "doubled": true,
+      "distinct_values": 6,
+      "of": 12
+    },
+    {
+      "n": 20,
+      "doubled": true,
+      "distinct_values": 10,
+      "of": 19
+    },
+    {
+      "n": 41,
+      "doubled": true,
+      "distinct_values": 20,
+      "of": 40
+    },
+    {
+      "n": 60,
+      "doubled": true,
+      "distinct_values": 30,
+      "of": 59
+    }
+  ],
+  "square_factorisation": [
+    {
+      "n": 7,
+      "is_square_times_u": true
+    },
+    {
+      "n": 8,
+      "is_square_times_u": true
+    },
+    {
+      "n": 12,
+      "is_square_times_u": true
+    },
+    {
+      "n": 13,
+      "is_square_times_u": true
+    },
+    {
+      "n": 20,
+      "is_square_times_u": true
+    }
+  ],
+  "self_convolution": {
+    "checks": 182,
+    "mismatches": 0
+  },
+  "runtime_s": 0.0,
+  "git": "8c4cc2aeeb74",
+  "git_full": "8c4cc2aeeb741a61136cd6ae6a365aebc74e1860",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/doubled_multiset.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
