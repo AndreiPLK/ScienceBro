@@ -1,0 +1,94 @@
+{
+  "what": "H1 of the anomaly-map brief: is Delta^r log p_t < 0 for every r >= 2 on the first-half domain?",
+  "method": "exact: the sign is decided by comparing two products of rationals; no logarithm and no float is used",
+  "range": "n = 9..32, r = 2..8, t = 1..floor((n-1)/2)",
+  "by_order": {
+    "2": {
+      "tested": 396,
+      "negative": 396,
+      "nonnegative": 0
+    },
+    "3": {
+      "tested": 372,
+      "negative": 372,
+      "nonnegative": 0
+    },
+    "4": {
+      "tested": 348,
+      "negative": 348,
+      "nonnegative": 0
+    },
+    "5": {
+      "tested": 324,
+      "negative": 324,
+      "nonnegative": 0
+    },
+    "6": {
+      "tested": 300,
+      "negative": 299,
+      "nonnegative": 1
+    },
+    "7": {
+      "tested": 276,
+      "negative": 274,
+      "nonnegative": 2
+    },
+    "8": {
+      "tested": 253,
+      "negative": 251,
+      "nonnegative": 2
+    }
+  },
+  "violations_by_reading": {
+    "window_inside_first_half": [],
+    "index_in_first_half_window_free": [
+      {
+        "n": 10,
+        "t": 2,
+        "r": 6,
+        "sign": 1
+      },
+      {
+        "n": 10,
+        "t": 1,
+        "r": 7,
+        "sign": 1
+      },
+      {
+        "n": 12,
+        "t": 3,
+        "r": 7,
+        "sign": 1
+      },
+      {
+        "n": 12,
+        "t": 2,
+        "r": 8,
+        "sign": 1
+      },
+      {
+        "n": 14,
+        "t": 4,
+        "r": 8,
+        "sign": 1
+      }
+    ]
+  },
+  "violation_counts": {
+    "window_inside_first_half": 0,
+    "index_in_first_half_window_free": 5
+  },
+  "H1_holds_with_window_inside_first_half": true,
+  "H2_verdict": "(B) says A_t = -Delta^2 log p_t is INCREASING, while a Hausdorff sequence int_0^1 x^t dmu with mu >= 0 is decreasing. So the representation cannot hold for A_t as written; the brief's own hedge -- reversing the index from the centre -- is not optional but forced, and any attempt at this route must start there. Argued on paper, no computation needed.",
+  "runtime_s": 0.0,
+  "git": "e82bef0e8f56",
+  "git_full": "e82bef0e8f567b103601f12268f2649df9f88ac1",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/higher_difference_hierarchy.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

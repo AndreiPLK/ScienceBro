@@ -6010,3 +6010,25 @@ correction wearing different clothes.
 
 Kept as `lab/excess_subadditivity.py` because the direction is worth not
 rediscovering, and because the two ways of testing it wrong are worth not repeating.
+
+### 2026-08-29 night -- the anomaly map: hierarchy confirmed, jackpot needs the reversal
+
+Fifth external brief of the day. Its headline claim: Delta^r log p_t < 0 for EVERY
+r >= 2, so (B) is the first nontrivial member of an infinite hierarchy.
+
+Tested exactly -- the sign of a higher difference of logs is decided by comparing two
+products of rationals, so no logarithm and no float enters a verdict. With the whole
+difference window inside the first half: 0 violations, n = 9..32, r = 2..8. H1 holds.
+
+My first run said otherwise, and my first run was wrong. It let the window run to the
+end of the spectrum, where for even n the multiset contains a zero and p_N = 0; all 19
+"violations" sat exactly there. Their claim was about the first half and my domain was
+looser than their claim. The five residual failures under the loose reading are all
+windows crossing the midpoint -- which is their own Section 7 appearing, since past the
+midpoint the reciprocal spectrum takes over and it is no longer a squared AP.
+
+Their "potential jackpot" -- a Hausdorff representation of A_t = -Delta^2 log p_t --
+cannot hold as written, by one line: (B) says R_{t+1}/R_t = p_{t+1}^3 p_{t-1}/(p_t^3
+p_{t+2}) >= 1, so A is INCREASING, while a Hausdorff sequence int x^t dmu decreases.
+They hedge with "after reversing the index from the center", and the hedge is forced,
+not optional. That is worth sending back: the reversal is where the route must start.
