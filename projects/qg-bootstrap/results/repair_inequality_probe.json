@@ -1,0 +1,621 @@
+{
+  "what": "(BOUNDARY) E_{J-1}[e1p^2 - e2(alpha_1..)] <= poch_2 s^4 E_{J-3}, and the full quadratic form of the neighbour repair, over the far-below region",
+  "points": 315,
+  "points_where_c_Jm2_dips": 91,
+  "boundary_failures": 70,
+  "quadratic_failures_where_it_dips": 0,
+  "undecided_enclosures": 0,
+  "failing_rows": [
+    {
+      "J": 12,
+      "v": 0,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0000533931420856
+    },
+    {
+      "J": 12,
+      "v": 1,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0000095487740193
+    },
+    {
+      "J": 16,
+      "v": 0,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0016099897311772
+    },
+    {
+      "J": 16,
+      "v": 0,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.000933591301605
+    },
+    {
+      "J": 16,
+      "v": 0,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0010335738493994
+    },
+    {
+      "J": 16,
+      "v": 1,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0014953342707669
+    },
+    {
+      "J": 16,
+      "v": 1,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0008460236363905
+    },
+    {
+      "J": 16,
+      "v": 1,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0009446065051637
+    },
+    {
+      "J": 16,
+      "v": 5,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0011121036027353
+    },
+    {
+      "J": 16,
+      "v": 5,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.000556321023138
+    },
+    {
+      "J": 16,
+      "v": 5,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0006488644264202
+    },
+    {
+      "J": 20,
+      "v": 0,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0023769923050543
+    },
+    {
+      "J": 20,
+      "v": 0,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0028066555676147
+    },
+    {
+      "J": 20,
+      "v": 0,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.003448684249082
+    },
+    {
+      "J": 20,
+      "v": 0,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0024422574059284
+    },
+    {
+      "J": 20,
+      "v": 1,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.002227000537317
+    },
+    {
+      "J": 20,
+      "v": 1,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0026372038030977
+    },
+    {
+      "J": 20,
+      "v": 1,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.003255286882741
+    },
+    {
+      "J": 20,
+      "v": 1,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0022886069978278
+    },
+    {
+      "J": 20,
+      "v": 5,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0017226666143193
+    },
+    {
+      "J": 20,
+      "v": 5,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0020668073380814
+    },
+    {
+      "J": 20,
+      "v": 5,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0026014037842157
+    },
+    {
+      "J": 20,
+      "v": 5,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0017722141188463
+    },
+    {
+      "J": 20,
+      "v": 40,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0001016915124874
+    },
+    {
+      "J": 20,
+      "v": 40,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0002152480755346
+    },
+    {
+      "J": 20,
+      "v": 40,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0004213101158137
+    },
+    {
+      "J": 20,
+      "v": 40,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0001146039004842
+    },
+    {
+      "J": 30,
+      "v": 0,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.000609499081876
+    },
+    {
+      "J": 30,
+      "v": 0,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.003984309852382
+    },
+    {
+      "J": 30,
+      "v": 0,
+      "K3": 0,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.035808480229435
+    },
+    {
+      "J": 30,
+      "v": 0,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0060701931037508
+    },
+    {
+      "J": 30,
+      "v": 0,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0077484587009968
+    },
+    {
+      "J": 30,
+      "v": 0,
+      "K3": 3,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.011105608002106
+    },
+    {
+      "J": 30,
+      "v": 1,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0005403694752206
+    },
+    {
+      "J": 30,
+      "v": 1,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0037678936570233
+    },
+    {
+      "J": 30,
+      "v": 1,
+      "K3": 0,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0347277415559133
+    },
+    {
+      "J": 30,
+      "v": 1,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0057678410219086
+    },
+    {
+      "J": 30,
+      "v": 1,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0073742370906806
+    },
+    {
+      "J": 30,
+      "v": 1,
+      "K3": 3,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0109021730649084
+    },
+    {
+      "J": 30,
+      "v": 5,
+      "K3": 0,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0003061217103797
+    },
+    {
+      "J": 30,
+      "v": 5,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0030313763200727
+    },
+    {
+      "J": 30,
+      "v": 5,
+      "K3": 0,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0308595268818652
+    },
+    {
+      "J": 30,
+      "v": 5,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0047359244189131
+    },
+    {
+      "J": 30,
+      "v": 5,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0060964993460242
+    },
+    {
+      "J": 30,
+      "v": 5,
+      "K3": 3,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.010119690928951
+    },
+    {
+      "J": 30,
+      "v": 40,
+      "K3": 0,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0005127427149219
+    },
+    {
+      "J": 30,
+      "v": 40,
+      "K3": 0,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0136112883244606
+    },
+    {
+      "J": 30,
+      "v": 40,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.001124392044473
+    },
+    {
+      "J": 30,
+      "v": 40,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0015965621862895
+    },
+    {
+      "J": 30,
+      "v": 40,
+      "K3": 3,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0054336640283426
+    },
+    {
+      "J": 30,
+      "v": 400,
+      "K3": 0,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.000523138098125
+    },
+    {
+      "J": 30,
+      "v": 400,
+      "K3": 3,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.000182679967378
+    },
+    {
+      "J": 40,
+      "v": 0,
+      "K3": 0,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0790690382157353
+    },
+    {
+      "J": 40,
+      "v": 0,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0033805942818506
+    },
+    {
+      "J": 40,
+      "v": 0,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0079889628302547
+    },
+    {
+      "J": 40,
+      "v": 0,
+      "K3": 3,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0544335443232404
+    },
+    {
+      "J": 40,
+      "v": 1,
+      "K3": 0,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0764403590337042
+    },
+    {
+      "J": 40,
+      "v": 1,
+      "K3": 3,
+      "thL": 0,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0032127962314354
+    },
+    {
+      "J": 40,
+      "v": 1,
+      "K3": 3,
+      "thL": 2,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0076223408609695
+    },
+    {
+      "J": 40,
+      "v": 1,
+      "K3": 3,
+      "thL": 50,
+      "c_Jm2_dips": true,
+      "boundary_ok": false,
+      "quadratic_ok": true,
+      "boundary_ratio": 1.0527354021572406
+    }
+  ],
+  "runtime_s": 0.1,
+  "git": "dce54ca1f1f0",
+  "git_full": "dce54ca1f1f0a6fbfa872915250e10233fbe33c4",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/repair_inequality_probe.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

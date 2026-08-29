@@ -176,6 +176,39 @@ That is why this coefficient, and only this one, changes sign: it is a differenc
 of two quantities that are the same size to a part in a hundred, while every
 other `c_k` is a longer sum whose cancellation resolves in the monomials.
 
+## The repair reduced to one quadratic, and measured to depth 40
+
+Writing `alpha_r = A_r/den = T_cap + c + 2r`, `w = E_{J-1}`,
+`u = poch_1 s^2 E_{J-2}`, and `e1, e1p, e2` for the elementary symmetric
+functions of the alphas (`e1p` omitting `alpha_0`), the verified general formula
+gives all three relevant coefficients with the SAME power of `den`:
+
+    c_{J-1} = den^{J-1} w,
+    c_{J-2} = den^{J-1} (u - w e1),
+    c_{J-3} = den^{J-1} (w e2 - u e1p + poch_2 s^4 E_{J-3}),
+
+so the repair `c_{J-2}^2 <= 4 c_{J-1} c_{J-3}` is a quadratic in `u`, opening
+upward:
+
+    u^2 - 2 u w (alpha_0 - e1p) + w^2 (e1^2 - 4 e2) - 4 w poch_2 s^4 E_{J-3} <= 0.
+
+**Measured (`lab/repair_inequality_probe.py`, certified `arb`, 315 region points
+over `J` = 5, 9, 12, 16, 20, 30, 40): the coefficient dips at 91 of them, and the
+quadratic holds at every single one — 0 failures, 0 undecided enclosures.** That
+extends the repair from the three depths reachable by full polynomial expansion
+to seven, and to depth 40.
+
+**And a near miss worth keeping.** Evaluating the quadratic at the boundary
+`u = w e1` — where `c_{J-2}` changes sign — collapses it, via `e1 - alpha_0 =
+e1p`, to the single explicit inequality
+
+    E_{J-1} [ e1p^2 - e_2(alpha_1..alpha_{J-2}) ]  <=  poch_2 s^4 E_{J-3}.
+
+That form is **false** — at 70 of the 315 points — but only just: the ratios are
+**1.0000 to 1.0016**. So the boundary reduction is a fraction of a percent too
+strong to be the proof, and the true statement is tight at the `10^-3` level.
+Tightness again, in a third independent place today.
+
 ## What is NOT claimed
 
 Nothing here proves anything. This is a localisation of a known failure, measured

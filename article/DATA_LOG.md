@@ -5027,3 +5027,24 @@ inherits the factor. Sixth measured dead end for the keystone.
 What that leaves: the only line with room in it is the one that passes through NO
 inequality -- far-below manifest positivity plus the neighbour repair. That is an
 identity-level argument, and it is where tomorrow's effort belongs.
+
+### 2026-08-29 — the repair holds to depth 40, and its boundary form misses by 0.1%
+
+Reduced the neighbour repair to a single quadratic. With alpha_r = A_r/den,
+w = E_{J-1}, u = poch_1 s^2 E_{J-2}, the three coefficients share den^{J-1}:
+c_{J-1} = w, c_{J-2} = u - w e1, c_{J-3} = w e2 - u e1p + poch_2 s^4 E_{J-3}, so
+c_{J-2}^2 <= 4 c_{J-1} c_{J-3} is
+
+    u^2 - 2 u w (alpha_0 - e1p) + w^2 (e1^2 - 4 e2) - 4 w poch_2 s^4 E_{J-3} <= 0.
+
+Measured over 315 region points at J = 5, 9, 12, 16, 20, 30, 40 with certified
+arb: the coefficient dips at 91 of them and the quadratic holds at ALL 91. Zero
+failures, zero undecided. That takes the repair from three depths to seven, and
+to depth 40 -- far past where full polynomial expansion can reach.
+
+The boundary form -- evaluate at u = w e1, collapse via e1 - alpha_0 = e1p --
+gives the clean E_{J-1}[e1p^2 - e2(alpha_1..)] <= poch_2 s^4 E_{J-3}. It is FALSE,
+at 70 of 315 points, but by ratios of 1.0000 to 1.0016: a tenth of a percent too
+strong. Third independent place today where the truth is tight to a fraction of a
+percent, and a reminder that the clean-looking reduction is not always the true
+one.

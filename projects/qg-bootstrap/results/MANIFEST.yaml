@@ -230,6 +230,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  farbelow_negative_pattern_j14.json:
+    added: '2026-08-29'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   farbelow_negative_pattern_j9.json:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -854,6 +858,10 @@ artefacts:
     status: live
   paper_artifacts.json:
     added: '2026-08-14'
+    note: referenced by a paper, document or lab module
+    status: live
+  repair_inequality_probe.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   root_crossing_probe.json:

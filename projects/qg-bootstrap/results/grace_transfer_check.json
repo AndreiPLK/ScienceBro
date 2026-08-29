@@ -669,170 +669,62 @@
       }
     ]
   },
-  "region_of_E_at_the_shore_per_depth": [
+  "region_of_E_at_the_shore": [
+    {
+      "n": 6,
+      "lam_E": null,
+      "thm6_3n2": 108,
+      "thm9_32n": 192
+    },
     {
       "n": 8,
-      "r": 2,
-      "lam_E": 62,
-      "lam_E_over_n": 7.75,
-      "eta_slope": 9,
+      "lam_E": null,
+      "thm6_3n2": 192,
       "thm9_32n": 256
     },
     {
-      "n": 8,
-      "r": 3,
-      "lam_E": 122,
-      "lam_E_over_n": 15.25,
-      "eta_slope": 5,
-      "thm9_32n": 256
-    },
-    {
-      "n": 8,
-      "r": 4,
-      "lam_E": 662,
-      "lam_E_over_n": 82.75,
-      "eta_slope": 1,
-      "thm9_32n": 256
-    },
-    {
-      "n": 8,
-      "r": 6,
-      "lam_E": null,
-      "eta_slope": -7
-    },
-    {
       "n": 12,
-      "r": 2,
-      "lam_E": 90,
-      "lam_E_over_n": 7.5,
-      "eta_slope": 17,
+      "lam_E": null,
+      "thm6_3n2": 432,
       "thm9_32n": 384
     },
     {
-      "n": 12,
-      "r": 3,
-      "lam_E": 124,
-      "lam_E_over_n": 10.333,
-      "eta_slope": 13,
-      "thm9_32n": 384
-    },
-    {
-      "n": 12,
-      "r": 6,
-      "lam_E": 1858,
-      "lam_E_over_n": 154.833,
-      "eta_slope": 1,
-      "thm9_32n": 384
-    },
-    {
-      "n": 12,
-      "r": 9,
+      "n": 16,
       "lam_E": null,
-      "eta_slope": -11
-    },
-    {
-      "n": 12,
-      "r": 10,
-      "lam_E": null,
-      "eta_slope": -15
+      "thm6_3n2": 768,
+      "thm9_32n": 512
     },
     {
       "n": 20,
-      "r": 2,
-      "lam_E": 150,
-      "lam_E_over_n": 7.5,
-      "eta_slope": 33,
+      "lam_E": null,
+      "thm6_3n2": 1200,
       "thm9_32n": 640
     },
     {
-      "n": 20,
-      "r": 3,
-      "lam_E": 175,
-      "lam_E_over_n": 8.75,
-      "eta_slope": 29,
-      "thm9_32n": 640
-    },
-    {
-      "n": 20,
-      "r": 5,
-      "lam_E": 255,
-      "lam_E_over_n": 12.75,
-      "eta_slope": 21,
-      "thm9_32n": 640
-    },
-    {
-      "n": 20,
-      "r": 10,
-      "lam_E": 6057,
-      "lam_E_over_n": 302.85,
-      "eta_slope": 1,
-      "thm9_32n": 640
-    },
-    {
-      "n": 20,
-      "r": 15,
+      "n": 28,
       "lam_E": null,
-      "eta_slope": -19
-    },
-    {
-      "n": 20,
-      "r": 18,
-      "lam_E": null,
-      "eta_slope": -31
+      "thm6_3n2": 2352,
+      "thm9_32n": 896
     },
     {
       "n": 40,
-      "r": 2,
-      "lam_E": 301,
-      "lam_E_over_n": 7.525,
-      "eta_slope": 73,
+      "lam_E": null,
+      "thm6_3n2": 4800,
       "thm9_32n": 1280
     },
     {
-      "n": 40,
-      "r": 3,
-      "lam_E": 322,
-      "lam_E_over_n": 8.05,
-      "eta_slope": 69,
-      "thm9_32n": 1280
-    },
-    {
-      "n": 40,
-      "r": 10,
-      "lam_E": 590,
-      "lam_E_over_n": 14.75,
-      "eta_slope": 41,
-      "thm9_32n": 1280
-    },
-    {
-      "n": 40,
-      "r": 20,
-      "lam_E": 27094,
-      "lam_E_over_n": 677.35,
-      "eta_slope": 1,
-      "thm9_32n": 1280
-    },
-    {
-      "n": 40,
-      "r": 30,
+      "n": 60,
       "lam_E": null,
-      "eta_slope": -39
-    },
-    {
-      "n": 40,
-      "r": 38,
-      "lam_E": null,
-      "eta_slope": -71
+      "thm6_3n2": 10800,
+      "thm9_32n": 1920
     }
   ],
-  "runtime_s": 7.6,
-  "git": "c3b24dad01c4",
-  "git_full": "c3b24dad01c48226edfa14cd94d16705e9ec04fb",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/grace_transfer_check.py"
-  ],
-  "dirty_count": 1,
+  "runtime_s": 1029.1,
+  "git": "",
+  "git_full": "",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"
