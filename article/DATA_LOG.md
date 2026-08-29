@@ -6032,3 +6032,31 @@ cannot hold as written, by one line: (B) says R_{t+1}/R_t = p_{t+1}^3 p_{t-1}/(p
 p_{t+2}) >= 1, so A is INCREASING, while a Hausdorff sequence int x^t dmu decreases.
 They hedge with "after reversing the index from the center", and the hedge is forced,
 not optional. That is worth sending back: the reversal is where the route must start.
+
+### 2026-08-30 night -- a theorem, with no certificate and no grid in it
+
+The complementarity found an hour earlier turned out to be provable, and the proof is
+elementary.
+
+The Toeplitz minor of p on rows (1,2,3), columns (0,1,2) is p_1^3 - 2 p_1 p_2 + p_3.
+Writing e_1, e_2, e_3 of the centred spectrum in closed form and clearing the binomial
+denominators gives a polynomial that factors completely -- and the factor
+(n-1)^3 (n-2)(n-3) is exactly the denominator, so it cancels:
+
+    p_1^3 - 2 p_1 p_2 + p_3 = -(4/945) n (n+1) (7n^3 - 43n^2 + 58n + 120).
+
+With n = m + 4 the cubic is 7m^3 + 41m^2 + 50m + 112, all coefficients positive. So the
+minor is strictly negative for every n >= 4, and p is NEVER a Polya frequency sequence,
+while e always is.
+
+Four independent checks: the closed forms of e_1..e_3 against direct evaluation
+(n = 4..59), the minor formula against the determinant from the definition (n = 4..60),
+the shift argument re-derived through -Num(m+3), and n = 4 by hand on the spectrum
+{4,0,4} giving -256/27.
+
+This is the first statement in the programme proved with no certificate, no grid and no
+numerical step anywhere in the argument. It kills the total-positivity / LGV route --
+the object with the hierarchy is provably not the object that is totally positive -- and
+it says where to look instead: the phenomenon belongs to the PAIRING of a real-rooted
+spectrum with binomial weights, which is exactly the coordinate system of the finite
+free transforms.

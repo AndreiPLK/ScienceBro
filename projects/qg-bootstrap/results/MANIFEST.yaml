@@ -78,8 +78,8 @@ artefacts:
     status: live
   MOMENT_ROUTE_REFUTED.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   ODD_DEPTH_DIAGNOSIS.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -126,10 +126,18 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  THEOREM_NO_POLYA_FREQUENCY.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   THEOREM_STATE.md:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  TP_AND_HIERARCHY_ARE_COMPLEMENTARY.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   UNGLUED_KEYSTONE.md:
     added: untracked
     note: referenced by a paper, document or lab module

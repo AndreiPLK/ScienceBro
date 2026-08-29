@@ -140,3 +140,57 @@ spread roots the excess is unbounded. Any upper bound must use the specific spec
 **Lesson.** Recorded because it explains why several attractive general tools — Newton,
 Maclaurin, Muirhead — are structurally unable to give what the programme needs, and
 saves re-deriving that each time.
+
+---
+
+## DR-09 — Total positivity / LGV as the mechanism behind the hierarchy
+
+**Statement.** The log-difference hierarchy follows from total positivity of the
+sequence, provable by a planar-network / Lindström-Gessel-Viennot argument.
+
+**Why it was tempting.** It was the leading surviving candidate after the moment route
+died, it is the standard machinery for exactly this kind of sign statement, and the
+underlying polynomial genuinely IS real-rooted.
+
+**What killed it.** The two properties are complementary. The raw `e_t` is a Polya
+frequency sequence — as Aissen-Schoenberg-Whitney requires, and the positive control
+confirms — and it does NOT satisfy the hierarchy. The normalised `p_t = e_t/C(N,t)` DOES
+satisfy the hierarchy and is NOT a PF sequence: an explicit negative 3x3 Toeplitz minor
+at rows (1,2,3), columns (0,1,2), at every `n` tested (`-40832/15` at n=11, `-106240/7`
+at n=15, `-1384592/15` at n=21).
+
+**Local or structural.** Structural, and now PROVED rather than measured: the minor has
+the closed form `-(4/945) n(n+1)(7n^3-43n^2+58n+120)`, strictly negative for every
+`n >= 4` (`CLAIM-NOPF`, `THEOREM_NO_POLYA_FREQUENCY.md`). An LGV argument proves things
+about the totally positive object, and the totally positive object is not the one with
+the hierarchy.
+
+**Weaker variant that survives.** A determinant or minor identity for `H_{N,t}` AFTER
+clearing the binomial denominators is a different object and is not excluded. The finite
+free / S-transform reading lives in normalised coordinates and is on the correct side of
+the division.
+
+**Lesson.** The binomial normalisation is not cosmetic: it destroys one structure and
+creates the other. Before importing machinery, check WHICH of the two sequences the
+machinery actually applies to.
+
+---
+
+## DR-10 — The Jacobi-Stirling special parameters as the explanation
+
+**Statement.** The hierarchy is a phenomenon of the special parameters `z = 0, 1` in the
+deformation `j^2 -> j(j+z)`, where the physical parities sit.
+
+**Why it was tempting.** Both physical parities land exactly on those values, and the
+literature marks them as a distinguished Polya-frequency boundary.
+
+**What killed it.** The hierarchy holds at every tested `z` from `-1/2` to `10`, with no
+failing order anywhere. `z = 0` and `z = 1` are deep interior points of the region where
+it holds, not a boundary.
+
+**Local or structural.** Structural: the phenomenon is much more robust than the
+special parameters, so no explanation resting on their specialness can be right.
+
+**Weaker variant that survives.** The special parameters may still matter for the
+STRENGTH of the inequality or for exact identities, just not for the sign itself. Worth
+measuring the margin as a function of `z` rather than the sign.
