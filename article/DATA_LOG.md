@@ -4842,3 +4842,44 @@ extreme zeros (2 to 7.7, needs < 1) and Fujiwara/Cauchy magnitudes (2.8 to 49).
 Five measured dead ends now sit on the same wall: anything that spends a constant
 factor cannot pass. Measuring the room BEFORE hunting the bound is the lesson
 section 6c taught the expensive way.
+
+### 2026-08-29 — one hypothesis killed in ten minutes: the zeros are not on the T ladder
+
+Since the shore is T_hat = min_k T_k, the cheap hope was that the first zero of
+K_r in D sits ON that ladder, which would turn the keystone into an inequality
+between explicit rational functions. It does not. Measured gaps to the nearest
+T_k are 0.05 to 0.98 at lam = 1 and 7, n = 12..40 -- and the ladder is DENSE at
+those k, so "nearest" carries no information: proximity there is arithmetic, not
+structure. Killed, ten minutes, no code kept.
+
+What the same run did give, and it matters more: every first zero sits ABOVE the
+shore, ratio D0/T_hat from 1.062 (n=12, lam=7, j=4) to 39. And only EVEN knife
+orders have a zero at all, exactly as the Beta-weight parity argument of sec. 6b
+predicts -- the first three attempts found "no zero" purely because I had picked
+even r, i.e. odd j. The parity derivation is now doing predictive work rather
+than describing an old measurement.
+
+### 2026-08-29, night — the shore gap, and a parity claim of mine refuted
+
+THE GAP. results/shore_gap_scan.json: the first zero D0 of the knife in D,
+against the shore, over n = 6..40, lam = 1/10..300, EVERY knife order. 928 rows,
+and D0/T_hat >= 1 in every one. Closest approach 1.0188 at n = 40, j = 4,
+lam = 30; closest among odd j is 1.146 at n = 8, j = 3, lam = 1. So the physical
+claim holds with 2% to spare at the tightest point found, and the extremal corner
+is SHALLOW depth at moderate lam -- not the deep knives the programme has spent
+most of its effort on.
+
+ERR-0016, mine, found by the same scan. Section 6b of BFORM_POSITIVITY_THEOREM
+said "odd j never turns negative; even j must", called it derived, and used it as
+the explanation of the long-measured parity asymmetry. Half of it is derived. The
+D -> infinity limit forbids an odd-j knife from ENDING negative; it says nothing
+about a dip at finite D, and odd knives DO dip: n = 6, j = 3, lam = 1/10 is + at
+D = 12, - at D = 13, + again from D = 20, on BOTH engines. 72 such cases, all at
+small lam (22 at 1/10, 19 at 1/2, 19 at 1, 11 at 5/2, 1 at 7, none above), spread
+over j = 3..17. All above the shore, so no theorem moves.
+
+The lesson is sharper than the error. My FIRST version of the scan skipped odd j
+"because 6b says so" and would have found nothing. A derivation that prunes a
+search is exactly the claim that never gets tested -- so the pruned branch must
+still be sampled. That is ERR-0012's rule (a check that cannot fail is not a
+check) applied to search space instead of to assertions.

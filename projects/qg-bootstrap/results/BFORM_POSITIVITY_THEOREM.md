@@ -343,11 +343,18 @@ measurement (3.131 at `n = 420`, still rising).
 
 **The representation explains the parity dichotomy in one line.** As `D -> inf`
 the Beta weight's mass goes to 0, so the `w -> 0` end dominates and
-`sign(K_r) -> sign(prod_i (-eta_i)) = (-1)^r = (-1)^{j-1}`. Odd `j` never turns
-negative; even `j` must. Verified at `n = 12`, `lam = 7`, `D = 50 .. 2e5`: `j = 3, 5`
-stay `+1` throughout, `j = 4, 6` are `+1` at `D = 50` and `-1` from `D = 500` on.
-That is the programme's long-measured parity asymmetry — even-`j` knives have
-thresholds, odd-`j` knives do not — derived rather than observed.
+`sign(K_r) -> sign(prod_i (-eta_i)) = (-1)^r = (-1)^{j-1}`. **Read ERR-0016 before
+quoting this.** What the limit proves is that every even-`j` knife is negative for
+all sufficiently large `D`. What it does NOT prove — and what I wrongly wrote here
+— is that odd-`j` knives never dip: the limit constrains the sign at infinity, not
+at finite `D`. Odd-`j` knives DO dip negative at small `lam` (72 cases in
+`results/shore_gap_scan.json`; `n = 6`, `j = 3`, `lam = 1/10` is `+` at `D = 12`,
+`-` at `D = 13`, and `+` again from `D = 20` on, on both engines). Every such dip
+lies above the shore — the closest odd-`j` approach is `D0/T_hat = 1.146` — so
+nothing below the shore, and no theorem in this file, is affected. Verified at
+`n = 12`, `lam = 7`, `D = 50 .. 2e5`: `j = 3, 5` stay `+1` throughout, `j = 4, 6`
+are `+1` at `D = 50` and `-1` from `D = 500` on — which is the even-`j` half, the
+half the limit actually derives.
 
 ## 6c. Why no constant-factor fix to this route can matter
 

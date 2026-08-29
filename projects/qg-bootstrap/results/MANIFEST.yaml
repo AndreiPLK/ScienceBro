@@ -832,6 +832,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  shore_gap_scan.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   shore_landscape_data.json:
     added: untracked
     note: referenced by a paper, document or lab module

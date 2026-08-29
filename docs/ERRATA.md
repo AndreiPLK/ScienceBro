@@ -613,3 +613,44 @@ fail is not a check. I built the sweep to test S before asking what S's own
 first term was. The rule to add: before measuring a criterion, expand its
 hypothesis at the trivial index and check that the conclusion is not sitting
 inside it.
+
+## ERR-0016 — "odd-j knives never turn negative" is false (2026-08-29, mine)
+
+**What the file said.** `results/BFORM_POSITIVITY_THEOREM.md` §6b, from the Beta
+representation: as `D -> inf` the weight's mass goes to 0, so
+`sign(K_r) -> (-1)^r = (-1)^{j-1}`, and I concluded — quoting myself — "Odd `j`
+never turns negative; even `j` must. ... That is the programme's long-measured
+parity asymmetry ... derived rather than observed."
+
+**Why it is wrong.** The limit constrains the sign at infinity. It forbids an
+odd-`j` knife from ENDING negative; it says nothing about a dip at finite `D`.
+Half the sentence was derived, the other half was assumed.
+
+**The counterexample, on both engines.** `n = 6`, `j = 3` (odd), `lam = 1/10`:
+
+| D | 10 | 12 | **13** | 20 | 100 | 1e4 | 1e6 |
+|---|---|---|---|---|---|---|---|
+| sign | + | + | **-** | + | + | + | + |
+
+The composition engine and the independent reference engine
+(`jacobi_normal_form` via `moment_kernel_probe.ref_sign`) agree at every point.
+A wider scan (`results/shore_gap_scan.json`, 928 rows) finds **72 odd-`j` knives
+with a zero**, concentrated at small `lam` (22 at `lam = 1/10`, 19 at `1/2`, 19
+at `1`, 11 at `5/2`, 1 at `7`, none above) and spread over `j` = 3, 5, 7, ..., 17.
+
+**What is unaffected.** Every one of those dips is ABOVE the shore: the closest
+odd-`j` approach is `D0/T_hat = 1.146` (`n = 8`, `j = 3`, `lam = 1`), and over all
+928 rows no ratio falls below 1. The physical claim — positivity below the shore
+— is untouched, and so are Theorems 1-9, which never used the parity sentence.
+
+**Corrected statement.** The `D -> inf` limit proves: every EVEN-`j` knife is
+negative for all sufficiently large `D`. For odd `j` it proves only that the
+knife returns to positive; a finite-`D` dip is possible and does occur at small
+`lam`.
+
+**How it was caught, and the lesson.** By a scan that treated the parity claim as
+a hypothesis to be tested rather than a fact to be assumed — it reported odd-`j`
+zeros instead of skipping them. My first version of that scan skipped odd `j`
+"because §6b says so", and would have found nothing. When a derivation is used to
+prune a search, the pruned branch must still be sampled: a claim that removes
+work is exactly the claim that never gets checked.
