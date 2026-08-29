@@ -889,36 +889,36 @@ artefacts:
     status: live
   repair_certificate_j12.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j16.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j20.json:
     added: '2026-08-29'
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j25.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j26.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j27.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j28.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j29.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j30.json:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -929,40 +929,40 @@ artefacts:
     status: live
   repair_certificate_j31_v15.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j32_v17.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j35_v23.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j40.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j40_v33.json:
     added: '2026-08-29'
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j45.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j50_v53.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j7.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j9.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   repair_inequality_probe.json:
     added: untracked
     note: referenced by a paper, document or lab module

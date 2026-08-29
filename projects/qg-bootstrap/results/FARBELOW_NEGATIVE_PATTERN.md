@@ -394,7 +394,8 @@ the same mechanism seen twice; nothing here decides which.
 
 ## The repair is now PROVED on the region, not measured
 
-`lab/repair_certificate.py` -> `results/repair_certificate_j<J>.json`.
+`lab/repair_certificate.py` -> `results/repair_certificate_j<J>.json`, one artefact per
+depth: `repair_certificate_j7.json`, `repair_certificate_j9.json`, `repair_certificate_j12.json`, `repair_certificate_j16.json`, `repair_certificate_j20.json`, `repair_certificate_j25.json`, `repair_certificate_j26.json`, `repair_certificate_j27.json`, `repair_certificate_j28.json`, `repair_certificate_j29.json`, `repair_certificate_j30.json`, `repair_certificate_j30_v13.json`, `repair_certificate_j31_v15.json`, `repair_certificate_j32_v17.json`, `repair_certificate_j35_v23.json`, `repair_certificate_j40.json`, `repair_certificate_j40_v33.json`, `repair_certificate_j45.json`, `repair_certificate_j50_v53.json` (the `_v` suffix marks a run restricted to the regime `n >= 2J-3`).
 
 Two facts turned the measurement into a certificate.
 
