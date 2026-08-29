@@ -1,0 +1,23 @@
+{
+  "what": "does 'only c_{J-2} dips' hold exactly on n >= 2J-3?",
+  "reading": "a dirty point inside the regime or a clean point outside it refutes the law; the grid deliberately contains both sides",
+  "grid": "J = 7..40, n = 44..164 in steps of 3, K3 in {0,4}, thL in {0,3}",
+  "points_tested": 1476,
+  "points_inside_regime": 1376,
+  "violations_inside_regime": 0,
+  "points_outside_regime": 100,
+  "clean_points_outside_regime": 0,
+  "violations": [],
+  "unexpected_clean": [],
+  "runtime_s": 57.1,
+  "git": "b435557c40ce",
+  "git_full": "b435557c40ce51d98ff7016f51c92c3aa6e3cc2b",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/farbelow_regime_map.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

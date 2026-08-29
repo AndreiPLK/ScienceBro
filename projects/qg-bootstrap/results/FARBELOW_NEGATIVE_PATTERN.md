@@ -243,6 +243,18 @@ region,
 Away from the corner (`K3 = 60, thL = 50`, i.e. larger `lam`) the constraint is
 weaker still — cleanliness starts at `n = 44` for every `J` tested.
 
+**Tested on a grid that could refute it** (`lab/farbelow_regime_map.py` ->
+`results/farbelow_regime_map.json`; a boundary claimed from corner scans is
+exactly what ERR-0017 was about). `J` = 7..40, `n` = 44..164 in steps of 3, and
+two off-corner values of each region variable — **1476 points, with both sides of
+the line present**:
+
+* inside the regime: 1376 points, **0 violations** — nothing but `c_{J-2}` dips;
+* outside it: 100 points, **0 unexpectedly clean** — something else always dips.
+
+So the law is sharp in both directions on everything tested. It remains a
+measurement: the grid steps `n` by 3 and the region has more corners than two.
+
 **What this costs the plan above.** The two-statement target — everything except
 `c_{J-2}` manifestly nonnegative, plus the neighbour repair — is a statement
 about the regime `j <= (n+3)/2` only. Above it several coefficients dip and one

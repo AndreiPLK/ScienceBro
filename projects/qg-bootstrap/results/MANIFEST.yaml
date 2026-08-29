@@ -245,6 +245,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  farbelow_regime_map.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   ffp_convolution_check.json:
     added: untracked
     note: referenced by a paper, document or lab module

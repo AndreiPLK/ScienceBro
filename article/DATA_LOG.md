@@ -5100,3 +5100,18 @@ was quoted as "exact", and it is not.
 
 Third instance today of the same failure mode (ERR-0015, ERR-0016, ERR-0017): a
 claim that survived because the sample could not contradict it.
+
+### 2026-08-29 — the regime law tested on a grid that could refute it
+
+n >= 2J-3 was inferred from corner scans, which is precisely the mistake ERR-0017
+was about, so it was retested on a grid containing BOTH sides of the line:
+J = 7..40, n = 44..164 step 3, two off-corner values of each region variable,
+1476 points. Inside the regime: 1376 points, 0 violations. Outside: 100 points,
+0 unexpectedly clean. Sharp in both directions on everything tested.
+
+Also killed today, in ten minutes: my explanation of why the depth boundary is
+lam-independent. I argued that Hankel positivity is invariant under M_t -> c^t M_t
+and that all the lam-dependence is of that form. The first half is true for the
+H0/H1 minors and FALSE for the localizer M_t - M_{t+1}, which is what the [0,1]
+Hausdorff test uses. The lam-free sequence fails at j = 3 for every n, against a
+measured boundary in the twenties. The lam-independence is still unexplained.
