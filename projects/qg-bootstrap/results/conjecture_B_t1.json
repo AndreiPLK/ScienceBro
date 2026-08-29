@@ -1,0 +1,21 @@
+{
+  "theorem": "(B) at t = 1: p_2^3 p_0 >= p_1^3 p_3 for n >= 6",
+  "status": "PROVED; this file checks the computation the proof turns on",
+  "e_polynomials_verified_against_reference_at_n": 55,
+  "numerator_degree": 22,
+  "coefficients_after_n_eq_m_plus_6": 23,
+  "negative_coefficients": 0,
+  "direct_check_failures_n_6_to_69": 0,
+  "why_this_case": "the slack in (B) is smallest at t = 1 -- ratio 1.0195 at n = 10 down to 1.00023 at n = 69 -- so this is the case any proof must survive",
+  "runtime_s": 0.0,
+  "git": "c7f75f71a2ae",
+  "git_full": "c7f75f71a2ae3646758d8833fa88e7d345e3cd06",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/conjecture_B_t1.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

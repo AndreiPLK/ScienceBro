@@ -5655,3 +5655,22 @@ literature carries criteria for sequences obeying a recurrence (Chen, Guo, Wang)
 Since our e_t(n) obey the exact recursion (R), the right first move is to test
 those criteria rather than build a proof from scratch. The brief to the parallel
 chat now says so.
+
+### 2026-08-29 — (B) PROVED at t = 1, which is its tightest case
+
+The slack in (B) shrinks with n and is smallest at t = 1: p_2^3/(p_1^3 p_3) is
+1.0195 at n = 10, 1.0033 at 20, 1.00059 at 44, 1.00023 at 69. So t = 1 is the case
+any proof must survive -- and it is the one with closed forms.
+
+Proof: with N = n-1, the claim over the positive common denominator is
+P(n) = 8 e_2^3 N^4 (N-1)(N-2) - 6 e_1^3 e_3 (N(N-1))^3 >= 0. P has degree 22, and
+substituting n = m+6 makes all 23 coefficients nonnegative. Hence P >= 0 for
+n >= 6. QED
+
+lab/conjecture_B_t1.py checks the computation: the e_i are interpolated exactly and
+verified against the reference engine at 55 values of n before use, the shifted
+coefficients are computed exactly (0 negative of 23), and a direct evaluation over
+n = 6..69 agrees.
+
+So (B) is no longer entirely a conjecture: its hardest case is a theorem, by the
+same all-nonnegative-coefficients move that carries the whole day's work.

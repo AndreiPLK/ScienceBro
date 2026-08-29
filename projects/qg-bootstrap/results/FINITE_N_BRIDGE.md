@@ -99,8 +99,28 @@ it.
 
 ## What is proved and what is not
 
-**Not proved:** (B) and (C). They are conjectures with 2050 and 72 clean tests
-behind them, no more.
+**Not proved in general:** (B) and (C). They are conjectures with 2050 and 72 clean
+tests behind them, no more.
+
+**But (B) is proved at `t = 1`, which is its tightest case.** The slack in (B)
+shrinks with `n` and is smallest at `t = 1`: `p_2^3/(p_1^3 p_3)` = 1.0195 at
+`n = 10`, 1.0033 at 20, 1.00059 at 44, 1.00023 at 69. And `t = 1` is exactly where
+closed forms exist:
+
+> **Theorem.** For `n >= 6`, `p_2^3 p_0 >= p_1^3 p_3`.
+>
+> *Proof.* With `N = n-1`, `p_2^3 = 8 e_2^3/(N(N-1))^3` and
+> `p_1^3 p_3 = 6 e_1^3 e_3/(N^4 (N-1)(N-2))`, so over the positive common
+> denominator the claim is
+> `P(n) := 8 e_2^3 N^4 (N-1)(N-2) - 6 e_1^3 e_3 (N(N-1))^3 >= 0`. The `e_i` are
+> polynomials in `n` of degrees 3, 6, 9, so `P` has degree 22; substituting
+> `n = m + 6` makes **all 23 of its coefficients nonnegative**, hence `P >= 0` for
+> `m >= 0`. QED
+
+Checked in `lab/conjecture_B_t1.py`: the `e_i` are obtained by exact interpolation
+and verified against the reference engine at 55 values of `n` before use, the
+shifted coefficient signs are computed exactly, and a direct evaluation over
+`n = 6..69` agrees.
 
 **Proved:** the exact recursion; the `t = 1` rung in closed form, which the same
 PDF gives as `R_{n,1} = 5n(n-2)^2/(5n^3 - 24n^2 + 28n + 12)` — **verified over 75

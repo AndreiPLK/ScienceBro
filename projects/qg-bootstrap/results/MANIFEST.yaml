@@ -204,6 +204,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  conjecture_B_t1.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   d2_proof.json:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -278,6 +282,10 @@ artefacts:
     note: referenced nowhere; classify before relying on it
     status: unreviewed
   farbelow_negative_pattern_j15.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  farbelow_negative_pattern_j16.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
