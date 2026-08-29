@@ -49,6 +49,33 @@ independently over `n >= 44`.) The central values fall as predicted: 1.882 at
 `n = 20`, 1.843 at 40, 1.839 at 44, 1.830 at 60, 1.823 at 80, toward the proved
 limit `f(1/2) = 1.804`.
 
+## Narrowing (B) to the right class, and a classical handle
+
+The fourth answer from the parallel chat restates (B) and (C) as a proof target
+without proving them. So the target was narrowed here instead, by killing
+generalisations:
+
+| class | (B) |
+|---|---|
+| generic positive sets | **fails**, 1457 of 2940 random pairs |
+| squares of an arbitrary real-rooted polynomial | **fails**, 1160 of 2300 |
+| squares of an ARITHMETIC PROGRESSION `b_k = (a+kd)^2` | **0 failures of 1650** |
+
+So the structure (B) needs is neither positivity, nor squareness, nor the doubling:
+it is the arithmetic progression. Our family is `a = n-2`, `d = -2` — an AP that
+crosses zero, which is where the doubling comes from — but the tested APs with
+`a >= 0`, `d > 0` never cross zero and (B) still holds.
+
+**And squares of an AP have a classical generating function.** Verified exactly:
+
+    PROD_{k=0}^{N-1} (1 + (a+k)^2 z)
+      = z^N * [Gamma(a+N-i/sqrt z)/Gamma(a-i/sqrt z)] * [Gamma(a+N+i/sqrt z)/Gamma(a+i/sqrt z)],
+
+a ratio of Gamma functions at conjugate complex arguments. So the `e_t` of this
+family are Taylor coefficients of a Gamma ratio, which is where a proof of (B)
+should be looked for — and it is why generic real-rooted arguments cannot reach
+it.
+
 ## What is proved and what is not
 
 **Not proved:** (B) and (C). They are conjectures with 2050 and 72 clean tests

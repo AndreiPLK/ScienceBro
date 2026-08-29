@@ -5622,3 +5622,12 @@ NOT cross zero and (B) still holds, so doubling is not the cause either.
 That is a better-posed target than the original: strictly more general than our
 case, hence more likely to have a short proof, and it comes with two explicit
 counterexample classes marking what a proof may NOT rely on.
+
+### 2026-08-29 — squares of an AP have a Gamma-ratio generating function
+
+Verified exactly: PROD_{k=0}^{N-1}(1+(a+k)^2 z) = z^N Gamma(a+N-i/sqrt z)/
+Gamma(a-i/sqrt z) * Gamma(a+N+i/sqrt z)/Gamma(a+i/sqrt z). So the e_t of the class
+(B) actually needs are Taylor coefficients of a ratio of Gamma functions at
+conjugate complex arguments -- a classical object, and the natural place to look
+for a proof. It also explains why generic real-rooted arguments cannot reach (B):
+they do not see this structure.
