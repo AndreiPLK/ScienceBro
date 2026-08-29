@@ -1,9 +1,10 @@
-PASHI - autonomous run until 23:00 - last update 16:40
+PASHI - autonomous run until 23:00 - last update 16:00
 
-[#########.......]  extremal corner located; one of my own claims refuted
-NOW:   writing up the shore-gap scan and ERR-0016
-LAST:  928 rows, D0/T_hat >= 1 everywhere; closest 1.0188 at n=40, j=4, lam=30
-       the tight corner is SHALLOW depth at moderate lam, not the deep knives
-       ERR-0016: odd-j knives DO dip negative at small lam (72 cases, 2 engines)
-NEXT:  study the extremal corner directly -- j=4 is a four-term sum, so its
-       zero in D is explicit; compare it with T_hat as functions of lam
+[###########.....]  the uniformity obstruction now has an address
+NOW:   closed form for c_{J-2}; next its pairing threshold in y
+LAST:  every negative monomial of the far-below criterion sits in ONE
+       y-coefficient (degree J-2) at thL=K3=0 -- j=9,10,11 measured
+       closed form verified: j=6 735 monomials, j=9 1752, 0 mismatches
+       j=12 still building in the background (179k monomials)
+NEXT:  measure whether the pair y^{J-2}(c_{J-1} y + c_{J-2}) >= 0 has its
+       threshold inside or outside the physical y-range

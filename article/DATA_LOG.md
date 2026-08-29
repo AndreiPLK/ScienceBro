@@ -4883,3 +4883,36 @@ The lesson is sharper than the error. My FIRST version of the scan skipped odd j
 search is exactly the claim that never gets tested -- so the pruned branch must
 still be sampled. That is ERR-0012's rule (a check that cannot fail is not a
 check) applied to search space instead of to assertions.
+
+### 2026-08-29, late — the far-below failure has an address, and a closed form
+
+The y-expansion criterion (knife_farbelow2) proves knives 4..8 by manifest
+positivity and breaks at j = 9. The counts said 11, 30, 41, 71 negative monomials
+out of 54k..179k -- two parts in ten thousand. Rebuilt on the fast engine
+(lab/farbelow_negative_pattern.py, Q3Poly via knife_tail2.build_P, no new
+derivation) the exceptions turn out to lie on a LINE:
+
+  j=9 : 11 negatives, ALL at y-degree 7 = J-2, thL=0, K3=0, v=0..10
+  j=10: 30 negatives, ALL at y-degree 8 = J-2, thL=0, K3=0, v=0..29
+  j=11: 41 negatives, ALL at y-degree 9 = J-2, thL=0, K3 in {0,1}, v=0..37
+
+One coefficient out of J, in one corner. And the reason is structural: in
+
+  [y^k] N = (-1)^{J-1+k} den^k SUM_{i<=J-1-k} (-1)^i E_{J-1-i} poch_i s^{2i} den^i e_{J-1-i-k}(A)
+
+the coefficient k = J-1 has ONE term and k = J-2 has exactly TWO of opposite
+sign -- it is the first difference in the family. Closed form, verified against
+the assembled polynomial (j=6: 735 monomials; j=9: 1752; 0 mismatches both):
+
+  c_{J-2} = den^{J-2} [ poch_1 s^2 den E_{J-2} - E_{J-1}(J-1)(tk_num + den(c+J-2)) ],
+  poch_1 = (2n-2J+1)(2n-2J+2)/2.
+
+So its sign is one explicit inequality, and the breakdown at j=9 needs no
+computation to explain: the left side carries (2n-2J)^2 and shrinks as J -> n
+while the right carries (J-1) and grows. The only non-elementary piece is
+E_{J-1}/E_{J-2}, which Newton bounds -- the same tool as Theorem 5.
+
+This is the first time the obstruction to uniformity in depth has an ADDRESS
+rather than a size. Next: the natural repair is the pair
+y^{J-2}(c_{J-1} y + c_{J-2}) >= 0, whose threshold in y is now writable in closed
+form; whether it falls inside the physical range is unmeasured.

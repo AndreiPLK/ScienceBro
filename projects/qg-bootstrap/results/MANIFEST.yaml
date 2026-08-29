@@ -35,6 +35,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  FARBELOW_NEGATIVE_PATTERN.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   FFP_LITERATURE_PASS.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -204,6 +208,22 @@ artefacts:
     status: live
   eft_map_d4.json:
     added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  farbelow_negative_pattern_j10.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  farbelow_negative_pattern_j11.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  farbelow_negative_pattern_j12.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  farbelow_negative_pattern_j9.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   ffp_convolution_check.json:
