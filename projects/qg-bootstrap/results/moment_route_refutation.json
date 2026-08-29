@@ -1,0 +1,143 @@
+{
+  "what": "does A_t = -Delta^2 log p_t admit a positive-measure representation?",
+  "answer": "NO, in either orientation",
+  "why_it_matters": "this was the proposed single mechanism behind the whole log-difference hierarchy; it is now excluded, and the hierarchy needs another cause",
+  "paper_argument": "the hierarchy says A is ABSOLUTELY monotone, i.e. a moment sequence on [1, infinity), so the un-reversed Hausdorff form on [0,1] was ruled out before computing; the reversal was compulsory, and it does not save the route either",
+  "method": "A rationalised to 300 digits, determinants evaluated EXACTLY over Q with flint -- an independent code path from the floating-point version -- with a rigorous error bound on each decisive minor",
+  "rows": [
+    {
+      "n": 21,
+      "terms": 10,
+      "forward_sign_pattern": "+++--",
+      "forward_first_negative_order": 4,
+      "forward_decisive_minor": {
+        "order": 4,
+        "abs_det": "1.8570e-17",
+        "error_bound": "1.7770e-302",
+        "orders_of_magnitude_above_bound": 285.0
+      },
+      "reversed_sign_pattern": "++++-",
+      "reversed_first_negative_order": 5,
+      "reversed_decisive_minor": {
+        "order": 5,
+        "abs_det": "8.7058e-24",
+        "error_bound": "8.0378e-303",
+        "orders_of_magnitude_above_bound": 279.0
+      }
+    },
+    {
+      "n": 31,
+      "terms": 15,
+      "forward_sign_pattern": "+++--++-",
+      "forward_first_negative_order": 4,
+      "forward_decisive_minor": {
+        "order": 4,
+        "abs_det": "1.8066e-21",
+        "error_bound": "5.2501e-303",
+        "orders_of_magnitude_above_bound": 281.5
+      },
+      "reversed_sign_pattern": "+++++-+-",
+      "reversed_first_negative_order": 6,
+      "reversed_decisive_minor": {
+        "order": 6,
+        "abs_det": "3.7399e-38",
+        "error_bound": "5.7182e-304",
+        "orders_of_magnitude_above_bound": 265.8
+      }
+    },
+    {
+      "n": 41,
+      "terms": 20,
+      "forward_sign_pattern": "+++---++--",
+      "forward_first_negative_order": 4,
+      "forward_decisive_minor": {
+        "order": 4,
+        "abs_det": "1.3035e-24",
+        "error_bound": "2.2117e-303",
+        "orders_of_magnitude_above_bound": 278.8
+      },
+      "reversed_sign_pattern": "+++++---+-",
+      "reversed_first_negative_order": 6,
+      "reversed_decisive_minor": {
+        "order": 6,
+        "abs_det": "4.1169e-43",
+        "error_bound": "1.3537e-304",
+        "orders_of_magnitude_above_bound": 261.5
+      }
+    },
+    {
+      "n": 61,
+      "terms": 30,
+      "forward_sign_pattern": "++++---++--++--",
+      "forward_first_negative_order": 5,
+      "forward_decisive_minor": {
+        "order": 5,
+        "abs_det": "1.0249e-39",
+        "error_bound": "9.8481e-305",
+        "orders_of_magnitude_above_bound": 265.0
+      },
+      "reversed_sign_pattern": "+++++++--++--++",
+      "reversed_first_negative_order": 8,
+      "reversed_decisive_minor": {
+        "order": 8,
+        "abs_det": "5.0354e-79",
+        "error_bound": "9.0224e-307",
+        "orders_of_magnitude_above_bound": 227.7
+      }
+    },
+    {
+      "n": 81,
+      "terms": 40,
+      "forward_sign_pattern": "++++---+++--++---++-",
+      "forward_first_negative_order": 5,
+      "forward_decisive_minor": {
+        "order": 5,
+        "abs_det": "5.2153e-44",
+        "error_bound": "3.1130e-305",
+        "orders_of_magnitude_above_bound": 261.2
+      },
+      "reversed_sign_pattern": "++++++++---++--++--+",
+      "reversed_first_negative_order": 9,
+      "reversed_decisive_minor": {
+        "order": 9,
+        "abs_det": "8.9924e-106",
+        "error_bound": "2.4421e-308",
+        "orders_of_magnitude_above_bound": 202.6
+      }
+    },
+    {
+      "n": 101,
+      "terms": 50,
+      "forward_sign_pattern": "+++++---++---++--+++--++-",
+      "forward_first_negative_order": 6,
+      "forward_decisive_minor": {
+        "order": 6,
+        "abs_det": "4.4903e-63",
+        "error_bound": "1.3803e-306",
+        "orders_of_magnitude_above_bound": 243.5
+      },
+      "reversed_sign_pattern": "++++++++----+++--++--++--",
+      "reversed_first_negative_order": 9,
+      "reversed_decisive_minor": {
+        "order": 9,
+        "abs_det": "5.4757e-114",
+        "error_bound": "4.0926e-309",
+        "orders_of_magnitude_above_bound": 195.1
+      }
+    }
+  ],
+  "positive_measure_excluded_in_both_orientations": true,
+  "evidence_kind": "EXACT_FINITE on a rationalised transcendental sequence, with an explicit error bound; this REFUTES a representation and never proves one",
+  "runtime_s": 0.8,
+  "git": "be699630a663",
+  "git_full": "be699630a6630fa8eba7af6032f22a558ee6f516",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/moment_route_refutation.py",
+    "tools/sciencebro_math/"
+  ],
+  "dirty_count": 2,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

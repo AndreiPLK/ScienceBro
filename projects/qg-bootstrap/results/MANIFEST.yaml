@@ -76,6 +76,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  MOMENT_ROUTE_REFUTED.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   ODD_DEPTH_DIAGNOSIS.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -932,6 +936,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   moment_kernel_probe.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  moment_route_refutation.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
