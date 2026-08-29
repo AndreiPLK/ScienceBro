@@ -5603,3 +5603,22 @@ Also verified from the same answer: the closed form R_{n,1} =
 So the bridge is no longer an open analytic problem. It is two inequalities about
 an explicitly recursive family, with every numerical precondition checked and both
 base cases in hand.
+
+### 2026-08-29 — (B) narrowed to the right class: squares of an arithmetic progression
+
+The fourth answer from the parallel chat is a restatement of the targets, not a
+proof -- it says so itself. So I narrowed the target instead, by killing
+generalizations:
+
+  generic positive sets:            (B) FAILS, 1457 of 2940 random pairs
+  squares of any real-rooted poly:  (B) FAILS, 1160 of 2300
+  squares of an ARITHMETIC PROGRESSION b_k = (a+kd)^2:  0 failures of 1650
+
+So the structure (B) needs is neither "positive" nor "a perfect square" -- it is
+squares of an AP. Our family is a = n-2, d = -2, an AP that happens to cross zero,
+which is where the doubling comes from; but the tested APs with a >= 0, d > 0 do
+NOT cross zero and (B) still holds, so doubling is not the cause either.
+
+That is a better-posed target than the original: strictly more general than our
+case, hence more likely to have a short proof, and it comes with two explicit
+counterexample classes marking what a proof may NOT rely on.
