@@ -32,7 +32,16 @@ needs, and it sharpens the target from a false statement to a plausible one:
 > is ratio log-concave, then its hypergeometric self-convolution is ratio
 > log-concave on the first half of its range.
 
-713 supporting cases, 0 against.
+713 supporting cases, 0 against — and then attacked where it is tightest. Of 696
+further real-rooted RLC inputs at `m = 6..18`, the **174 with the smallest input
+margin** were tested: margins from `1.1e-5` to `1.0e-3`, i.e. inputs a hair from
+failing RLC themselves. **0 failures.** Total: 1409 supporting cases, none against,
+including the ones nearest to breaking.
+
+(The first version of that test computed the margin and then ignored it, while its
+comment said the tightest cases were being attacked. Corrected before the number
+was recorded — a comment that does not describe what the code does is the exact
+failure this lab has a standing rule about.)
 
 ## Two things worth noticing in the same table
 

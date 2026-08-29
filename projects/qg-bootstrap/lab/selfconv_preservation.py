@@ -121,6 +121,31 @@ def main() -> int:
         print(f"{fam:<15} RLC inputs {kept:>5} of {tried:>5}   "
               f"outputs failing RLC: {broke}")
 
+    # (P) attacked where it is tightest.  Collect real-rooted RLC inputs with their
+    # margins, then test the SMALLEST-margin quarter -- the cases nearest to breaking.
+    pool = []
+    for m in range(6, 19):
+        for _ in range(300):
+            q = family_b(rng, m)
+            if is_rlc(q):
+                continue
+            marg = min(
+                (q[t + 1] ** 3 * q[t - 1] - q[t] ** 3 * q[t + 2]) / (q[t] ** 3 * q[t + 2])
+                for t in range(1, m - 1)
+            )
+            pool.append((marg, m, q))
+    pool.sort(key=lambda r: r[0])
+    tight = pool[: max(1, len(pool) // 4)]
+    tight_bad = []
+    for marg, m, q in tight:
+        fails = is_rlc(selfconv(q, m), top=m)
+        if fails:
+            tight_bad.append({"m": m, "margin": str(marg), "failing_t": fails,
+                              "q": [str(v) for v in q]})
+    print(f"(P) attacked at m = 6..18: {len(pool)} real-rooted RLC inputs, tightest "
+          f"{len(tight)} tested (margin {float(tight[0][0]):.2e} to "
+          f"{float(tight[-1][0]):.2e}), {len(tight_bad)} failures")
+
     # and the structured one the application actually uses, for contrast
     phys = []
     for m in range(4, 25):
@@ -136,6 +161,14 @@ def main() -> int:
         "why": "the AP-square brief reduces the physical (B) to exactly this preservation",
         "seed": SEED,
         "random_families": out_rows,
+        "conjecture_P_attack": {
+            "statement": "real-rooted RLC input -> self-convolution RLC on the first half",
+            "pool": len(pool),
+            "tightest_quarter_tested": len(tight),
+            "margin_range_of_those": [str(tight[0][0]), str(tight[-1][0])],
+            "failures": tight_bad[:10],
+            "failure_count": len(tight_bad),
+        },
         "physical_half_spectrum": phys,
         "physical_failures": phys_bad,
         "runtime_s": round(time.time() - t0, 1),

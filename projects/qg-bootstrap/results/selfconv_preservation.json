@@ -86,6 +86,17 @@
       "examples": []
     }
   ],
+  "conjecture_P_attack": {
+    "statement": "real-rooted RLC input -> self-convolution RLC on the first half",
+    "pool": 696,
+    "tightest_quarter_tested": 174,
+    "margin_range_of_those": [
+      "170946122943330868061342561123280587105/15134325800551087797129366916712529391710612",
+      "13609085599473097750019312269643520427/13524236655807566693895485730827397623125"
+    ],
+    "failures": [],
+    "failure_count": 0
+  },
   "physical_half_spectrum": [
     {
       "m": 4,
@@ -194,9 +205,9 @@
     }
   ],
   "physical_failures": [],
-  "runtime_s": 0.6,
-  "git": "2cfef574121c",
-  "git_full": "2cfef574121ca75e1193e8d616c5bf4a963414cf",
+  "runtime_s": 1.0,
+  "git": "3df757f5b8b7",
+  "git_full": "3df757f5b8b774941277b55ffef623d534aab405",
   "dirty": true,
   "dirty_code_files": [
     "projects/qg-bootstrap/lab/selfconv_preservation.py"
