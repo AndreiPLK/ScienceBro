@@ -8,14 +8,14 @@
 Let `p_t = e_t/C(N,t)` for the centred spectrum `b_k = (n-2k)^2`, `N = n-1`. For every
 pair
 
-    t = 1, ..., 8        r = 3, 4, 5, 6, 7, 8
+    t = 1, ..., 14        r = 3, 4, 5, 6, 7, 8, 9
 
 and every `n` for which the claim is made — that is, every `n` with the difference
 window inside the first half, `t + r <= floor(N/2)`, equivalently `n >= 2(t+r)+1` —
 
     Delta^r log p_t  <  0.
 
-Forty-eight rungs, each covering infinitely many `n`.
+Ninety-eight rungs, each covering infinitely many `n`.
 
 ## Proof
 
@@ -38,13 +38,13 @@ complete rather than partial — **`s` is always smaller than the domain require
 `2(t+r)+1`**, so the proof covers the entire range where the statement is claimed.
 
 The shifts are tabulated below as the excess `s - (t+r)`, which is where the structure
-shows. Degrees of `D_{t,r}` run from 38 to 6137. The polynomial identities are exact over `Q`
+shows. Degrees of `D_{t,r}` run from 38 to 18936. The polynomial identities are exact over `Q`
 throughout; the `e_t` are obtained by interpolation and each is then **verified at five
 nodes beyond the ones it was built from**, so an interpolation that had gone wrong
 could not pass.
 
 The direction of the inequality is not taken on trust either: each rung is spot-checked
-against the reference sign computation at six values of `n`. Zero mismatches in 48
+against the reference sign computation at six values of `n`. Zero mismatches in 98
 rungs. ∎
 
 ## Why `r >= 4` is the new content
@@ -55,45 +55,59 @@ The rung `r = 3` **is** conjecture (B): `Delta^3 log p_{t-1} <= 0` is exactly
 
 Everything with `r >= 4` is new. It settles a question the hierarchy raised when it was
 first observed: is it a genuinely deeper family of inequalities, or a restatement of
-(B)? **It is deeper.** Forty of these forty-eight rungs are statements that do not follow
-from (B), and each is now a theorem.
+(B)? **It is deeper.** Eighty-four of these ninety-eight rungs are statements that do not
+follow from (B), and each is now a theorem.
 
-## The shift obeys an exact parity law
+## The shift obeys a parity law, and my first reading of it was wrong
 
-Extending to 48 rungs made the pattern unambiguous. Writing the excess
-`s - (t + r)`:
+Extending to 98 rungs settled the structure. Writing the excess `s - (t + r)`:
 
-| `r` \ `t` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-|---|---|---|---|---|---|---|---|---|
-| 3 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
-| 4 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 |
-| 5 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
-| 6 | 0 | 3 | 0 | 2 | 0 | 2 | 0 | 2 |
-| 7 | 3 | 0 | 3 | 0 | 2 | 0 | 2 | 0 |
-| 8 | 0 | 3 | 0 | 3 | 0 | 2 | 0 | 2 |
+| `r` \ `t` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 3 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
+| 4 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 |
+| 5 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
+| 6 | 0 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 |
+| 7 | 3 | 0 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
+| 8 | 0 | 3 | 0 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 | 0 | 2 |
+| 9 | 4 | 0 | 3 | 0 | 3 | 0 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
 
-**The excess is exactly 0 when `t` and `r` have opposite parity, and 2 or 3 when they
-have the same parity.** Twenty-four rungs on each side, no exceptions. That parity is
-presumably the doubling of the spectrum showing through — the centred multiset is a half
-spectrum taken twice.
+**The excess is exactly 0 whenever `t` and `r` have opposite parity** -- 49 rungs, no
+exceptions. That is presumably the doubling of the spectrum showing through: the centred
+multiset is a half spectrum taken twice.
 
-## The whole hierarchy reduces to one statement
+When the parities agree the excess is 2 far from the corner and grows slowly towards it.
+Along `t = 1` it is 2, 3, 3, 4 at `r = 3, 5, 7, 9`, matching `2 + floor((r-1)/4)`.
 
-Since the excess never exceeds 3:
+**A conjecture of mine died here.** On the 48-rung table the excess never exceeded 3, and
+I wrote down (U): that the shift `t + r + 3` always works. The `r = 9`, `t = 1` rung
+gives excess **4**, so (U) is false. It was refuted within the hour by the run launched
+specifically to attack it, which is the only reason it never reached a document as
+anything but a conjecture.
 
-> **Conjecture (U).** For every `t >= 1` and `r >= 3`, the polynomial
-> `D_{t,r}(m + t + r + 3)` has all nonnegative coefficients.
+## The corrected statement, which is the one that matters
 
-It holds on all 48 rungs. And `t + r + 3 <= 2(t+r) + 1` whenever `t + r >= 2`, which is
-the domain of the claim — so **(U) implies the entire log-difference hierarchy, on its
-whole domain, for every `t` and `r` at once.**
+The excess grows, but nothing in the application needs it bounded by a constant. What is
+needed is that the shift stay under the domain requirement:
 
-That is the sharpest form the problem has taken. It is no longer "prove infinitely many
-inequalities"; it is one coefficient-positivity statement about an explicit polynomial
-family, of exactly the kind this programme has proved before at fixed parameters.
+> **Conjecture (U2).** For every `t >= 1` and `r >= 3`, the polynomial
+> `D_{t,r}(m + 2(t+r) + 1)` has all nonnegative coefficients.
+
+This is well posed because shifts are monotone: if `P(m+s)` has nonnegative coefficients
+then so does `P(m+s')` for every `s' > s`, being a substitution `m -> m + (s'-s)` into a
+polynomial with nonnegative coefficients. So (U2) says exactly that the needed shift never
+exceeds the domain bound.
+
+It holds on all 98 rungs, with slack from 3 (at `r=3, t=1`) to 24 (at `r=9, t=14`), and
+the slack grows, since the excess grows like `r/4` while the bound grows like `2(t+r)`.
+
+**(U2) implies the entire log-difference hierarchy on its whole domain**, for every `t`
+and `r` at once -- and with it conjecture (B), which is the rung `r = 3`. It is weaker
+than the (U) that died, and therefore more likely true, while being exactly as strong for
+the application.
 
 ## Status
 
-`CLAIM-HIER-RUNGS` in the registry: **PROVED**, for the 48 listed pairs on their full
-domains. `CLAIM-U` is the uniformity conjecture above, `CONJECTURED`. `CLAIM-HIER` — the hierarchy for all `t` and `r` — remains
+`CLAIM-HIER-RUNGS` in the registry: **PROVED**, for the 98 listed pairs on their full
+domains. `CLAIM-U` is **DISPROVED**; `CLAIM-U2` is the corrected form, `CONJECTURED`. `CLAIM-HIER` — the hierarchy for all `t` and `r` — remains
 `COMPUTATIONALLY_VERIFIED` and is not upgraded by this.

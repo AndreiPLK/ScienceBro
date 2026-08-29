@@ -6118,3 +6118,27 @@ of 3422, no Bernstein step needed.
 So both hypotheses of Proposition 1 hold at j = 17 and the far-below region is closed
 for j = 9..17. The ceiling moved by one depth, and it moved for the reason predicted:
 machine time, not mathematics.
+
+### 2026-08-30 -- 98 rungs, and my own uniformity conjecture killed
+
+Extended the rung theorem to t = 1..14, r = 3..9: 98 rungs, degrees to 18936, all
+proved on their full domains. Eighty-four of them do not follow from (B).
+
+And the run I launched specifically to attack my own conjecture did its job. (U) said
+the shift excess never exceeds 3. At r = 9, t = 1 it is 4. (U) is false, killed within
+an hour of being written, and it never reached a document as anything but a conjecture.
+
+The lesson is about the shape of the mistake. The 48-rung table was square -- t and r
+both to 8 -- and across it the excess looked constant. It is not; it grows like
+2 + floor((r-1)/4) along t = 1. The table was not wide enough in the axis the mechanism
+actually depends on. When a bound looks constant, extend the axis the mechanism should
+depend on, not the one that is convenient to extend.
+
+The corrected form is weaker and sufficient. (U2): the shift never exceeds the DOMAIN
+bound 2(t+r)+1. Well posed because shifts are monotone -- a larger shift cannot spoil
+nonnegative coefficients. Holds on all 98 rungs with slack from 3 to 24, and the slack
+GROWS, since the excess grows like r/4 while the bound grows like 2(t+r). (U2) implies
+the entire hierarchy on its whole domain, and with it (B).
+
+Also: the excess is exactly 0 on all 49 rungs where t and r have opposite parity. No
+exceptions. That is the doubling of the spectrum showing through.

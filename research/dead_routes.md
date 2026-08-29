@@ -194,3 +194,29 @@ special parameters, so no explanation resting on their specialness can be right.
 **Weaker variant that survives.** The special parameters may still matter for the
 STRENGTH of the inequality or for exact identities, just not for the sign itself. Worth
 measuring the margin as a function of `z` rather than the sign.
+
+---
+
+## DR-11 -- The constant-excess form of the uniformity conjecture
+
+**Statement.** (U): for every `t` and `r`, the shift `t + r + 3` makes `D_{t,r}` have all
+nonnegative coefficients. *(registry: `CLAIM-U`)*
+
+**Why it was tempting.** On the first 48 rungs the shift excess `s - (t+r)` never exceeded
+3, and it obeyed a clean parity law. A constant bound would have been the tidiest possible
+uniformity statement.
+
+**What killed it.** The rung `r = 9`, `t = 1` needs shift 14, an excess of **4**. Found by
+the run launched specifically to attack the conjecture, within an hour of writing it.
+
+**Local or structural.** Structural: the excess grows, roughly like `2 + floor((r-1)/4)`
+along `t = 1`, so no constant bound can hold.
+
+**Weaker variant that survives, and it is sufficient.** `CLAIM-U2`: the shift never exceeds
+the DOMAIN bound `2(t+r)+1`. That is all the application needs, it holds on all 98 rungs
+with slack from 3 to 24, and the slack grows because the excess grows like `r/4` while the
+bound grows like `2(t+r)`.
+
+**Lesson.** A pattern that looks constant across a square table can still be growing -- the
+table was not wide enough in `r` to see it. When a bound looks constant, extend the axis the
+mechanism should depend on, not the one that is convenient to extend.

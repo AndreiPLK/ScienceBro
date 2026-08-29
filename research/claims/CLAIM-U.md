@@ -2,18 +2,15 @@
 id: CLAIM-U
 statement: For every t >= 1 and r >= 3 the polynomial D_{t,r}(m + t + r + 3) has all nonnegative coefficients.
 domain: all t >= 1, r >= 3
-status: CONJECTURED
+status: DISPROVED
+counterexample: r = 9, t = 1 needs shift 14, an excess of 4, while this allows only 3
 last_verified: 2026-08-30
 dependencies:
 evidence:
-  - holds on all 48 proved rungs (t = 1..8, r = 3..8), degrees 38 to 6137
-  - the shift excess obeys an exact parity law: 0 when t and r have opposite parity, 2 or 3 when the same
+  - held on all 48 rungs of the first table (t <= 8, r <= 8), which is why it was written
+  - refuted by the run launched specifically to attack it, at r = 9
 references:
 ---
 
-(U) implies the ENTIRE log-difference hierarchy on its whole domain, because
-`t + r + 3 <= 2(t+r) + 1` whenever `t + r >= 2` and the latter is the domain requirement
-(the difference window inside the first half).
-
-So the hierarchy -- and with it conjecture (B), which is the rung r = 3 -- reduces to one
-coefficient-positivity statement about an explicit polynomial family.
+Mine, and killed within the hour by the test written to attack it. Superseded by
+CLAIM-U2, which is weaker and equally sufficient. See `research/dead_routes.md` DR-11.
