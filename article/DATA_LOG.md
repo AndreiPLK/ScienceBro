@@ -5537,3 +5537,15 @@ converges as n grows (at n = 80 they are 1.58, 2.06, 2.77, 3.88, 4.68, 5.45). So
 the second-order term is a SHAPE g(theta)/n, not a constant over n, and it rises
 with theta the way f does. The uniform bound needed on (0,1/2) is g <= 5.6, with
 the supremum sitting at the right endpoint.
+
+### 2026-08-29 — end-to-end check of the conclusion, not just the pieces
+
+The two legs and the grouping are checked separately, so the conclusion itself was
+checked directly: build N(y) for j = 11 and evaluate it exactly at 189 points of
+the region crossed with y in {0, 0.1, 1, 10, 100, 1000, 1e5}. Zero non-positive.
+That tests the grouping argument against the object rather than testing its
+ingredients against each other.
+
+Also recorded, so it is not retried: guessing the second-order shape g(theta) from
+its six measured values does not work -- the best simple candidate, 3f - 1, is off
+by 19%. It needs the actual Laplace expansion.
