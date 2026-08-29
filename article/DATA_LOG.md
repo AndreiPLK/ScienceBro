@@ -5279,3 +5279,21 @@ past that count is asking about elementary symmetric functions beyond the number
 of distinct generators. That is a hypothesis on four data points, written down to
 be attacked: the cheap test is to recompute one boundary for a family of the same
 size WITHOUT doubling and see whether it moves.
+
+### 2026-08-29 — and the doubling does NOT explain the halves: refuted by its own test
+
+The write-up named the cheap test: recompute a boundary for a family of the same
+size without doubling. Done immediately. For the Newton-excess boundary:
+
+  n            20   30   40   50
+  ours (doubled)  9   14   20   25
+  k^2 (distinct) 10   15   21   26
+  ((n-2)k)^2     10   15   21   26
+
+The undoubled families land one step higher, in the same place. So half-depth is a
+property of the SIZE of the multiset -- the midpoint of the elementary symmetric
+range for N = n-1 numbers -- not of the doubling. Hypothesis dead, an hour after
+being written, by the test written next to it.
+
+What survives: the doubling itself (proved, and absent from the repository until
+today), and the four boundaries at half depth, now with no explanation at all.

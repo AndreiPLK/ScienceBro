@@ -54,10 +54,21 @@ that reads off `e_t` for `t` beyond that count is asking about elementary
 symmetric functions past the number of distinct generators — where a doubled set
 stops behaving like a generic one.
 
-**That is a hypothesis, not a derivation.** The doubling is proved; that it
-causes those four boundaries is a coincidence of four data points and is written
-here to be attacked, not believed. The first test is cheap: any of the four
-boundaries computed for a family with the SAME size but no doubling should move.
+**REFUTED, within the hour, by its own test.** The test named here was: compute
+one of those boundaries for a family of the SAME size with no doubling, and see
+whether it moves. It does not. For the Newton-excess boundary at `lam`-free level:
+
+| n | 20 | 30 | 40 | 50 |
+|---|---|---|---|---|
+| ours, doubled `(n-2k)^2` | 9 | 14 | 20 | 25 |
+| distinct `k^2` | 10 | 15 | 21 | 26 |
+| distinct `((n-2)k)^2` | 10 | 15 | 21 | 26 |
+
+The undoubled families sit at the same place, one step higher. So the half-depth
+line is a property of the SIZE of the multiset — the midpoint of the elementary
+symmetric range for `N = n-1` numbers — and not of the doubling. The hypothesis is
+dead; the doubling itself stands, and so does the coincidence of the four
+boundaries, now without an explanation.
 
 ## What it might buy
 
