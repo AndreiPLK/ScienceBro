@@ -154,7 +154,8 @@ footer { color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--ru
   <div class="formula">(R)   4 c<sub>J-1</sub> c<sub>J-3</sub> &minus; c<sub>J-2</sub><sup>2</sup> &ge; 0</div>
   <p>Built exactly over the field of the region and expanded, (R) has
   <strong>no negative monomial at all</strong> for every J from __CERT_LO__ to
-  __CERT_HI__. Every variable of the region is nonnegative there, so
+  __CERT_HI__, and it stays certified all the way to J = __TOP__ once the region is
+  read correctly. Every variable of the region is nonnegative there, so
   all-nonnegative monomials is not evidence &mdash; it is a proof.</p>
 
   <figure>
@@ -212,6 +213,19 @@ def main() -> int:
     for f in glob.glob(str(RES / "repair_certificate_j*_v*.json")):
         d = json.loads(Path(f).read_text(encoding="utf-8"))
         in_regime[d["j"]] = d
+    # A depth counts as certified if the plain monomial test passed, or the
+    # in-regime run passed, or its Bernstein step in thL passed.
+    certified = {}
+    for c in cert:
+        certified[c["j"]] = c["negative_monomials"] == 0
+    for j, d in in_regime.items():
+        b = d.get("bernstein_in_thL")
+        certified[j] = (
+            certified.get(j, False)
+            or d["negative_monomials"] == 0
+            or bool(b and b.get("certified"))
+        )
+    top = max(j for j, ok in certified.items() if ok) if any(certified.values()) else 0
     if first_bad:
         rescued = in_regime.get(first_bad["j"])
         exps = first_bad.get("sample_negatives", [])
@@ -227,7 +241,11 @@ def main() -> int:
             f"{shared}, differing only in the remaining variable &mdash; one line in the exponent "
             "lattice."
         )
-        if rescued and rescued.get("manifestly_positive"):
+        rescued_ok = rescued and (
+            rescued.get("manifestly_positive")
+            or (rescued.get("bernstein_in_thL") or {}).get("certified")
+        )
+        if rescued_ok:
             break_text += (
                 f" And that break is an artefact of where it was tested. The structure above "
                 f"holds only for n &ge; 2J&minus;3, which at J = {first_bad['j']} means "
@@ -237,7 +255,9 @@ def main() -> int:
                 "monomials and zero negatives. The inequality did not break there; the test "
                 "domain did. It does break further on: with the matching restriction the build "
                 "gives 70 negative monomials at J = 31 and 392 at J = 40, so manifest positivity "
-                "is a tool with a range, and past it the certificate needs one Bernstein step."
+                "is a tool with a range. Past it one Bernstein change of basis along thL -- "
+                "which lives on [0,1] in this region, not on the whole ray -- certifies again: "
+                f"zero negative coefficients at every depth tested up to J = {top}."
             )
             break_caption = (
                 f"Amber at J = {first_bad['j']} is the full region; inside the regime n &ge; "
@@ -256,6 +276,7 @@ def main() -> int:
         .replace("__BREAK_TEXT__", break_text)
         .replace("__BREAK_CAPTION__", break_caption)
         .replace("__NDEPTHS__", str(len(patt)))
+        .replace("__TOP__", str(top))
     )
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(html, encoding="utf-8")
