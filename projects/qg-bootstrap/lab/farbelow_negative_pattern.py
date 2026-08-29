@@ -261,5 +261,90 @@ def newton_on_y_coefficients(N=None) -> dict:
     }
 
 
+def general_coefficient_formula(N=None, kmax: int | None = None) -> dict:
+    """Check the closed form for EVERY y-coefficient, not just c_{J-2}.
+
+        [y^k] N = (-1)^{J-1+k} den^k SUM_{i=0}^{J-1-k} (-1)^i E_{J-1-i} poch_i s^{2i}
+                                                        den^i e_{J-1-i-k}(A_i..A_{J-2}),
+
+    with A_r = tk_num + (c+2r) den and poch_i = PROD_{q=1}^{2i}(2n-2J+q)/(i! 2^i).
+
+    This is the foundation the uniformity argument would stand on: statement (1)
+    of the repair -- "every c_k with k != J-2 is manifestly nonnegative" -- is a
+    statement about THIS expression, so the expression itself must be verified
+    against the assembled polynomial first.  Light enough to run at small j while
+    the founder's machine is busy.
+    """
+    import math
+
+    from knife_tail2 import E_at
+
+    lam, D_num, den, m_expr = region()
+    if N is None:
+        N = build_P(lam, D_num, den, m_expr)
+    n_expr = m_expr + 3
+    s = lam + (n_expr - 1)
+    s2 = s * s
+    c_const = 4 * n_expr - 4 * J - 1
+    y = Q3Poly.var(NV, Y)
+    tk_num = D_num + y * den
+    A = [tk_num + den * (c_const + 2 * r) for r in range(J - 1)]
+
+    def e_sym_of(items, t):
+        acc = [Q3Poly.const(NV, 1)] + [Q3Poly.const(NV, 0)] * t
+        for it in items:
+            for q in range(min(t, len(acc) - 1), 0, -1):
+                acc[q] = acc[q] + acc[q - 1] * it
+        return acc[t]
+
+    got = {}
+    for part, idx in ((N.a, 0), (N.b, 1)):
+        for e, cval in part.c.items():
+            got.setdefault(int(e[Y]), [{}, {}])[idx][(int(e[THL]), int(e[V]), int(e[K3]))] = cval
+
+    checked, bad = [], []
+    top = J - 1 if kmax is None else min(J - 1, kmax)
+    for k in range(top + 1):
+        acc = Q3Poly.const(NV, 0)
+        for i in range(J - k):
+            poch = Q3Poly.const(NV, 1)
+            for q in range(1, 2 * i + 1):
+                poch = poch * (2 * n_expr - 2 * J + q)
+            wgt = fmpq(1, math.factorial(i) * 2**i)
+            s2i = Q3Poly.const(NV, 1)
+            for _ in range(i):
+                s2i = s2i * s2
+            deni = Q3Poly.const(NV, 1)
+            for _ in range(i):
+                deni = deni * den
+            term = E_at(m_expr, J - 1 - i) * poch * s2i * deni * e_sym_of(A[i:], J - 1 - i - k)
+            term = Q3Poly(term.a * wgt, term.b * wgt)
+            acc = acc + term if i % 2 == 0 else acc - term
+        denk = Q3Poly.const(NV, 1)
+        for _ in range(k):
+            denk = denk * den
+        pred = acc * denk
+        if (J - 1 + k) % 2:
+            pred = Q3Poly.const(NV, 0) - pred
+        pd = {}
+        for part, idx in ((pred.a, 0), (pred.b, 1)):
+            for e, cval in part.c.items():
+                if e[Y] != 0:
+                    continue
+                pd.setdefault((int(e[THL]), int(e[V]), int(e[K3])), [fmpq(0), fmpq(0)])[idx] = cval
+        gd = got.get(k, [{}, {}])
+        keys = set(pd) | set(gd[0]) | set(gd[1])
+        mism = 0
+        for key in keys:
+            ga, gb = gd[0].get(key, fmpq(0)), gd[1].get(key, fmpq(0))
+            pa, pb = (pd.get(key, [fmpq(0), fmpq(0)]))[0], (pd.get(key, [fmpq(0), fmpq(0)]))[1]
+            if ga != pa or gb != pb:
+                mism += 1
+        checked.append({"k": k, "monomials": len(keys), "mismatches": mism})
+        if mism:
+            bad.append(k)
+    return {"j": J, "coefficients_checked": checked, "coefficients_with_mismatch": bad}
+
+
 if __name__ == "__main__":
     raise SystemExit(main())

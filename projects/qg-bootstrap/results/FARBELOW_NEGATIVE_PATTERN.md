@@ -135,6 +135,31 @@ depth only** — `j = 10, 11, 12` were queued and stopped when the founder's mac
 went under the memory rule (a game was running); they are the first thing to run
 next.
 
+## The general coefficient, verified — and why J-2 is the weakest link
+
+The two-term formula for `c_{J-2}` is the `k = J-2` case of
+
+    [y^k] N = (-1)^{J-1+k} den^k SUM_{i=0}^{J-1-k} (-1)^i E_{J-1-i} poch_i s^{2i}
+                                                    den^i e_{J-1-i-k}(A_i..A_{J-2}),
+
+`A_r = tk_num + (c+2r) den`, `poch_i = PROD_{q=1}^{2i}(2n-2J+q)/(i! 2^i)`. Checked
+against the assembled polynomial for **every** `k` at `j = 6`: `k` = 0..5, 3186 /
+2528 / 1890 / 1292 / 735 / 231 monomials, **0 mismatches at every k**
+(`general_coefficient_formula` in the module).
+
+That expression also says why `J-2` is where it breaks. The term with the highest
+power of `s` is `i = J-1-k`, and its total sign is
+`(-1)^{J-1+k}(-1)^{J-1-k} = +1` — **the dominant term is always positive**, for
+every `k`. Manifest positivity is then the statement that this term's monomials
+swamp the alternating remainder. The swamping is strongest for small `k`, where
+the dominant term carries `s^{2(J-1-k)}` with `s ~ lam` large, and weakest for
+`k = J-2`, where it carries only `s^2` against a term with none. `k = J-1` is
+trivially safe because the sum has a single term.
+
+So the two statements the uniformity argument needs are not arbitrary: (1) is
+"the dominant term wins" for `k <= J-3`, a chain of ratio bounds of exactly the
+kind Theorem 5 runs on, and (2) covers the one place where it cannot win.
+
 ## What is NOT claimed
 
 Nothing here proves anything. This is a localisation of a known failure, measured

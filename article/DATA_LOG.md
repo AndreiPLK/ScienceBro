@@ -4934,3 +4934,21 @@ MACHINE RULE, honoured: j = 10, 11, 12 were queued and I killed the run at 16:20
 when free memory fell to 6.9 GB with cod26-cod (a game, windowed, 1.8 GB) and the
 Firebird editor running. The founder's session comes first; the queue resumes
 when the machine is free. Nothing is claimed from the unrun depths.
+
+### 2026-08-29 — the general y-coefficient, verified, and why J-2 is the weak link
+
+[y^k] N = (-1)^{J-1+k} den^k SUM_{i=0}^{J-1-k} (-1)^i E_{J-1-i} poch_i s^{2i} den^i
+                                               e_{J-1-i-k}(A_i..A_{J-2})
+
+checked against the assembled polynomial for EVERY k at j = 6: 3186, 2528, 1890,
+1292, 735, 231 monomials at k = 0..5, 0 mismatches throughout.
+
+And it explains the weak link without further computation. The highest power of s
+sits at i = J-1-k, and that term's total sign is (-1)^{J-1+k}(-1)^{J-1-k} = +1:
+the DOMINANT term is always positive. Manifest positivity is then "the dominant
+term swamps the alternating rest", which is strongest at small k (it carries
+s^{2(J-1-k)} with s ~ lam) and weakest at k = J-2, where it carries only s^2
+against a term with none. k = J-1 is a single term and trivially safe.
+
+So the two targets are not arbitrary: (1) "the dominant term wins" for k <= J-3 --
+a ratio chain of the Theorem 5 kind -- and (2) the neighbour repair at k = J-2.
