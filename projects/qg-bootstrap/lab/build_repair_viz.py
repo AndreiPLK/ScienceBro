@@ -31,6 +31,8 @@ PAD_L, PAD_R, PAD_T, PAD_B = 62, 20, 20, 46
 def load() -> tuple[list[dict], list[dict]]:
     cert, patt = [], []
     for f in glob.glob(str(RES / "repair_certificate_j*.json")):
+        if "_v" in Path(f).stem:  # in-regime variants are handled separately
+            continue
         cert.append(json.loads(Path(f).read_text(encoding="utf-8")))
     for f in glob.glob(str(RES / "farbelow_negative_pattern_j*.json")):
         patt.append(json.loads(Path(f).read_text(encoding="utf-8")))
@@ -206,7 +208,12 @@ def main() -> int:
             print(f"REFUSING TO BUILD: at j={d['j']} the negatives are not all at y-degree J-2.")
             return 1
         rows.append(f"<tr><td>{d['j']}</td><td>{d['negative_monomials']}</td><td>{deg}</td></tr>")
+    in_regime = {}
+    for f in glob.glob(str(RES / "repair_certificate_j*_v*.json")):
+        d = json.loads(Path(f).read_text(encoding="utf-8"))
+        in_regime[d["j"]] = d
     if first_bad:
+        rescued = in_regime.get(first_bad["j"])
         exps = first_bad.get("sample_negatives", [])
         shared = ""
         if exps:
@@ -214,15 +221,27 @@ def main() -> int:
             fixed = [k for k in ("thL", "y", "K3") if all(e["exponents"][k] == e0[k] for e in exps)]
             shared = ", ".join(f"{k}<sup>{e0[k]}</sup>" for k in fixed)
         break_text = (
-            f"At J = {first_bad['j']} the certificate stops, with "
+            f"At J = {first_bad['j']} the certificate stops on the full region, with "
             f"{first_bad['negative_monomials']} negative monomials out of "
-            f"{first_bad['monomials']}. They are not scattered: every one of them carries the "
-            f"same {shared}, differing only in the remaining variable. One line in the exponent "
-            "lattice. The inequality itself was not seen to fail there &mdash; what fails is the "
-            "crudeness of reading signs off monomials, and the fix is the same escalation the "
-            "criterion itself used earlier: one Bernstein step."
+            f"{first_bad['monomials']}. They are not scattered: every one carries the same "
+            f"{shared}, differing only in the remaining variable &mdash; one line in the exponent "
+            "lattice."
         )
-        break_caption = f"Amber is where it stops, at J = {first_bad['j']}."
+        if rescued and rescued.get("manifestly_positive"):
+            break_text += (
+                f" And that break is an artefact of where it was tested. The structure above "
+                f"holds only for n &ge; 2J&minus;3, which at J = {first_bad['j']} means "
+                f"n &ge; {2 * first_bad['j'] - 3}; the region as parametrised starts lower, so "
+                "part of what was being certified lies outside the regime the proof serves. "
+                f"Restricted to its own regime, the same build gives {rescued['monomials']} "
+                "monomials and zero negatives. The inequality did not break; the test domain did."
+            )
+            break_caption = (
+                f"Amber at J = {first_bad['j']} is the full region; inside the regime n &ge; "
+                f"{2 * first_bad['j'] - 3} it is zero."
+            )
+        else:
+            break_caption = f"Amber is where it stops, at J = {first_bad['j']}."
     else:
         break_text = "No depth tested has broken the certificate yet."
         break_caption = "No break yet in the tested range."
