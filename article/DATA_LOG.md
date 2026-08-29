@@ -5755,3 +5755,12 @@ Also caught here: my first pass at the last two rows used t = (N-1)//2 for the
 central index where the definition is floor((n-1)/2) = floor(N/2) -- off by one for
 the odd family, which produced 150 spurious "violations" of size 1.7815 -> 1.7835.
 The corrected index gives 0. A one-line indexing slip almost became a finding.
+
+### 2026-08-29 — the rung polynomial factors, but not helpfully
+
+Factoring P_t: t = 3, 4, 5 all give n^4 * (n+1) * (n - (t+2)) * several higher-
+multiplicity linear factors * ONE irreducible factor of degree 21, 29, 37 -- i.e.
+8t - 3. So the explicit part peels off cleanly and the positivity question lands
+entirely on the irreducible factor, which is where a uniform proof would have to
+work. No shortcut visible from the factorisation itself; recorded as the structural
+observation it is.
