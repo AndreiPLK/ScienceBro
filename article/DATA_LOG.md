@@ -5515,3 +5515,16 @@ coefficients of 9295 at J = 35 and of 10645 at J = 40 (against 206 and 392 negat
 monomials for the cruder test). So the repair inequality is certified at every J
 from 7 to 40 -- monomial signs to 29, monomial signs in-regime at 30, one Bernstein
 step from 31 on. J = 50 is running.
+
+### 2026-08-29 — the bridge has a number: the correction is 5.5/n
+
+Measured the gap n(excess-1) - f(t/n), maximised over t < n/2: 0.1223, 0.0682,
+0.0343, 0.0230 at n = 44, 80, 160, 240 -- i.e. gap*n = 5.38, 5.45, 5.50, 5.51, a
+stable constant, which points at an exact second-order coefficient rather than a
+bound to be fought for.
+
+Granting gap <= 5.6/n, the lemma closes by arithmetic:
+n(excess-1) <= f(theta) + 5.6/n <= 1.8042 + 5.6/n <= 2 for n >= 29, and the region
+has n >= 44. So what is left of the named lemma is one effective second-order
+estimate with its constant already measured. That is the third question sent to
+the parallel chat.

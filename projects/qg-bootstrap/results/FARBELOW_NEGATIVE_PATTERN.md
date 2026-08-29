@@ -368,7 +368,23 @@ corrected factorisation reproduces the direct evaluation at 31 test points, the
 printed one at none.
 
 What remains of the lemma is the bridge from the limit shape to finite `n` — the
-proved statement is asymptotic, the used statement is `n >= 44`.
+proved statement is asymptotic, the used statement is `n >= 44`. **And the bridge
+now has a number.** The gap `n(excess - 1) - f(t/n)`, maximised over `t < n/2`,
+measures
+
+| n | 44 | 80 | 160 | 240 |
+|---|---|---|---|---|
+| largest gap | 0.1223 | 0.0682 | 0.0343 | 0.0230 |
+| gap x n | 5.38 | 5.45 | 5.50 | 5.51 |
+
+so the correction is `~5.5/n` with a stable constant — which suggests an exact
+second-order coefficient rather than a bound to be fought for. Granting
+`gap <= 5.6/n`, the lemma follows by arithmetic:
+
+    n(excess - 1) <= f(theta) + 5.6/n <= 1.8042 + 5.6/n <= 2   for n >= 29,
+
+and the region has `n >= 44`. So the remaining task is one effective second-order
+estimate, with the constant already measured.
 
 And the proof shape was visible beforehand: `f` is numerically monotone increasing in `u` (59 sampled derivatives,
 all positive), so **monotonicity plus the endpoint suffices** — at `theta = 1/2`,
