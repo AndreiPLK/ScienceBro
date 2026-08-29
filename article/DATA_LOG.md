@@ -5985,3 +5985,28 @@ negative monomials sit only at y-degree J-2 (11, 30, 41, 71, 96, 130, 165, 205),
 at j = 12 the coefficient route confirms zero negatives at both J-1 and J-3.
 
 Nothing was computed for this. It was in the statement the whole time.
+
+### 2026-08-29 night -- an idea of mine, tested properly and killed
+
+An UPPER bound on the Newton excess is the thing real-rootedness cannot give. Since
+the excess behaves like 1/sigma^2 and variances add, the natural candidate was that
+1/L adds under independent sums.
+
+Two mistakes had to be fixed before the answer meant anything, and I made both. The
+first version matched arbitrary point pairs and "refuted" the idea on 59% of them --
+meaningless, because for independent summands the only correspondence that can be
+right is a COMMON TILT. The second version, correctly matched, still failed at 4-10
+summands -- also meaningless, because there the excess is ~0.6, nowhere near the
+1/sigma^2 regime the idea comes from.
+
+In its own regime -- 30 to 70 summands a side -- the answer is uniform and clean:
+120 of 120 the other way. 1/L is SUBadditive, and nearly additive (shortfall at most
+1.15%). So the route bounds a sum's excess from below, which Newton already does,
+and not from above, which is what is needed.
+
+Not a surprise in hindsight: 1/L = sigma^2 (1 - c/n + ...) by tonight's Edgeworth
+identification, and sigma^2 is exactly additive, so the defect measured here IS that
+correction wearing different clothes.
+
+Kept as `lab/excess_subadditivity.py` because the direction is worth not
+rediscovering, and because the two ways of testing it wrong are worth not repeating.

@@ -137,13 +137,18 @@ footer {{ font-size: 13px; color: var(--ink-3); border-top: 1px solid var(--rule
 <div class="node">
   <div><span class="tag t-proved">Proof · every depth</span></div>
   <h2>Proposition 1 — the grouping reduction</h2>
-  <p>If every coefficient except the one at degree <code>J−2</code> is nonnegative
-  <b>(a)</b>, and the repair inequality <b>(R)</b> holds, then the far-below polynomial
-  is positive.</p>
+  <p>If the coefficients away from degrees <code>J−2</code> and <code>J−3</code> are
+  nonnegative, and the repair inequality holds, then the far-below polynomial is
+  positive.</p>
   <span class="f">(R)   4·c_(J−1)·c_(J−3) − c_(J−2)² ≥ 0</span>
   <p>Group the one negative coefficient with its neighbours: a quadratic with positive
-  leading term and nonpositive discriminant cannot go negative. This is an argument,
-  not a computation, and it holds at every depth.</p>
+  leading term and nonpositive discriminant cannot go negative. An argument, not a
+  computation, and it holds at every depth.</p>
+  <p><b>Two ingredients come free.</b> The leading coefficient is positive at every
+  depth by hand — the coefficient formula collapses to one term there, a product of
+  <code>den = kk(kk−2) ≥ 53·51</code> and an elementary symmetric function of squares.
+  And <code>c_(J−3) ≥ 0</code> is not an assumption at all: the repair inequality
+  bounds it below by a square divided by a positive number.</p>
 </div>
 
 <div class="arrow">↓ needs its two hypotheses supplied</div>

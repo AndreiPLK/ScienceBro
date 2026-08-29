@@ -1,0 +1,26 @@
+{
+  "question": "does 1/L (the reciprocal log-concavity excess) add under independent sums?",
+  "candidate": "1/L_{X+Y} >= 1/L_X + 1/L_Y, matched at a common tilt",
+  "verdict": "FALSE -- and uniformly so: 1/L is SUBadditive, hence this bounds the excess of a sum from below, the direction Newton already gives",
+  "summands_per_side": "30..70",
+  "tested": 120,
+  "subadditive_cases": 120,
+  "superadditive_cases": 0,
+  "worst_relative_shortfall": [
+    0.0115,
+    16,
+    10
+  ],
+  "note": "at 4-10 summands the same test is meaningless (excess ~0.6, far from the 1/sigma^2 regime); and matching arbitrary point pairs instead of a common tilt refutes nothing",
+  "git": "62e579c58c77",
+  "git_full": "62e579c58c77abdb9673c5b833857ac6139d1085",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/build_theorem_map.py",
+    "projects/qg-bootstrap/lab/excess_subadditivity.py"
+  ],
+  "dirty_count": 2,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
