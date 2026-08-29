@@ -67,9 +67,10 @@ def check_A_and_C(cases) -> dict:
         # (A): theta_max <= B * max Re zeta.  Our exact side: the certified
         # statement "no real zero of the composition at or above c".
         bound_A = float(B) * mre
-        okA = bound_A <= 0 or no_real_root_above(
-            reduced_poly(conv_e(n, r, lam, H)), fmpq(*bound_A.as_integer_ratio())
-        )
+        # Round the bound UP to a small-denominator rational: a weaker test, and
+        # cheap, where the exact dyadic expansion of a float is neither.
+        bound_q = fmpq(int(bound_A * 1024) + 1, 1024)
+        okA = bound_A <= 0 or no_real_root_above(reduced_poly(conv_e(n, r, lam, H)), bound_q)
         viol_A += not okA
         if eta < 1:
             okC = mre <= float(2 / (1 - eta))
@@ -107,40 +108,59 @@ def condition_E(n: int, r: int, lam: fmpq, D: fmpq) -> bool:
     return (lam + n - 1) ** 2 > 2 * fmpq((n - 2) ** 2) / (1 - eta)
 
 
-def region_of_E(ns, cap: int = 4_000_000) -> list[dict]:
-    """Smallest integer lam for which (E) holds at EVERY depth at the shore."""
+def eta_limit_in_D(n: int, r: int) -> float:
+    """The large-D limit of eta, which decides whether (E) can EVER apply.
+
+    eta = (H+1)(H-2n+2)/[(H-2r+3)(H-2r+1)] -> 1 as H -> inf, from below or above
+    according to the sign of (4r-4) - (2n-3): the numerator loses (2n-3)H, the
+    denominator loses (4r-4)H.  So for deep knives, r > (2n+1)/4, eta EXCEEDS 1
+    at large D and condition (E) is vacuous there no matter how large lam is.
+    """
+    return (2 * n - 3) - (4 * r - 4)
+
+
+def region_of_E_per_depth(ns, cap: int = 200_000) -> list[dict]:
+    """For each (n, r): the smallest integer lam at which (E) holds AT THE SHORE.
+
+    Reported per depth rather than as one number, because (E) cannot cover the
+    deep knives at all -- see eta_limit_in_D.  Anything else would hide that.
+    """
     out = []
     for n in ns:
-        lo, hi = 1, 1
-        while hi <= cap:
-            lam = fmpq(hi)
-            if all(condition_E(n, j - 1, lam, shore(lam)[0]) for j in range(3, n)):
-                break
-            lo, hi = hi, hi * 2
-        if hi > cap:
-            out.append({"n": n, "lam_E": None, "thm6_3n2": 3 * n * n, "thm9_32n": 32 * n})
-            continue
-        while lo + 1 < hi:
-            mid = (lo + hi) // 2
-            lam = fmpq(mid)
-            if all(condition_E(n, j - 1, lam, shore(lam)[0]) for j in range(3, n)):
-                hi = mid
-            else:
-                lo = mid
-        out.append(
-            {
-                "n": n,
-                "lam_E": hi,
-                "lam_E_over_n": hi / n,
-                "lam_E_over_n2": hi / (n * n),
-                "thm6_3n2": 3 * n * n,
-                "thm9_32n": 32 * n,
-            }
-        )
-        print(
-            f"   n={n:4d}: (E) needs lam >= {hi}   (Thm9 needs ~{32 * n}, Thm6 ~{3 * n * n})",
-            flush=True,
-        )
+        for r in sorted({2, 3, n // 4, n // 2, (3 * n) // 4, n - 2}):
+            if not 2 <= r <= n - 2:
+                continue
+            lo, hi, found = 1, 1, False
+            while hi <= cap:
+                lam = fmpq(hi)
+                if condition_E(n, r, lam, shore(lam)[0]):
+                    found = True
+                    break
+                lo, hi = hi, hi * 2
+            if not found:
+                out.append({"n": n, "r": r, "lam_E": None, "eta_slope": eta_limit_in_D(n, r)})
+                continue
+            while lo + 1 < hi:
+                mid = (lo + hi) // 2
+                if condition_E(n, r, fmpq(mid), shore(fmpq(mid))[0]):
+                    hi = mid
+                else:
+                    lo = mid
+            out.append(
+                {
+                    "n": n,
+                    "r": r,
+                    "lam_E": hi,
+                    "lam_E_over_n": round(hi / n, 3),
+                    "eta_slope": eta_limit_in_D(n, r),
+                    "thm9_32n": 32 * n,
+                }
+            )
+            print(
+                f"   n={n:3d} r={r:3d}: (E) from lam >= {hi:8d}  (lam/n = {hi / n:8.2f}, "
+                f"Thm9 needs ~{32 * n})",
+                flush=True,
+            )
     return out
 
 
@@ -160,14 +180,14 @@ def main() -> int:
         f"eta>=1 in {ac['cases_with_eta_ge_1']} of {ac['cases']}",
         flush=True,
     )
-    print("measuring the region of (E) at the shore ...", flush=True)
-    reg = region_of_E((6, 8, 12, 16, 20, 28, 40, 60))
+    print("measuring where (E) holds at the shore, per depth ...", flush=True)
+    reg = region_of_E_per_depth((8, 12, 20, 40))
     out = {
         "what": "verification of the external Grace-Szego transfer bound (A), its Jacobi "
         "spectral-abscissa companion (C), and the region where the resulting condition (E) holds",
         "source": "second-assistant answer, 2026-08-29; UNTRUSTED, hence checked here",
         "A_and_C": ac,
-        "region_of_E_at_the_shore": reg,
+        "region_of_E_at_the_shore_per_depth": reg,
         "runtime_s": round(time.time() - t0, 1),
         **stamp(),
     }

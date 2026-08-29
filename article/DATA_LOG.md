@@ -4982,3 +4982,29 @@ c_{J-2}^2 <= 4 c_{J-1} c_{J-3} holds at every point where the coefficient dips:
 
 33 points in all, and the stronger log-concave form holds at every one of them
 too. Still not a proof, and j=12 is still unrun.
+
+### 2026-08-29 — the parallel chat's answer: verified, useful, and it stops at the same wall
+
+The founder put the root-bound question to a second assistant. Its answer is the
+circular-region form of Grace-Szego, which does NOT need q real-rooted:
+theta_max(p BOX q) <= B max Re zeta over the zeros of q, B = (n-2)^2/s^2 -- only
+the rightmost REAL PART matters. Plus an explicit spectral-abscissa bound via the
+Jacobi three-term recurrence (the Jacobi matrix has A_{k-1}C_k < 0, so the
+Hermitian part is a real diagonal and the numerical range bounds Re y).
+
+VERIFIED HERE, because untrusted input: (A) 0 violations in 144 cases; (C) 0
+violations wherever eta < 1; and their control example reproduces to the digit
+(eta = 0.03295786, lam > 6.886 at n=20, r=8, D=4).
+
+WHAT IT BUYS. At the shore, (E) holds from lam/n = 7.75, 7.50, 7.50, 7.53 at
+r = 2 for n = 8, 12, 20, 40 -- FOUR TIMES better than Theorem 9's 32n, by a
+different mechanism. At r = n/4 it is 12-15n, still better.
+
+WHERE IT STOPS. eta -> 1 as D grows, and eta < 1 at large D iff r < (2n+1)/4.
+Past that depth the hypothesis is empty at every lam. So the deep knives -- where
+uniformity in depth actually lives -- are untouched. Same wall, better corner.
+
+Also: their (U) is exactly our Theorem 5 condition rederived from the coefficient
+side, and their (W) is the criterion we already filed as circular in ERR-0015.
+Their (Y) is not circular and is a small genuine relaxation; their Routh-Hurwitz
+route (AC) is the strongest item and is untested.

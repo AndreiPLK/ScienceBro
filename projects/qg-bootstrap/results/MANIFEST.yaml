@@ -48,6 +48,10 @@ artefacts:
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
       grid. Kept because freezing it first is exactly what made the refutation meaningful.
     status: retracted
+  GRACE_TRANSFER_VERDICT.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   KERNEL_TP_THEOREM.md:
     added: '2026-08-28'
     note: referenced by a paper, document or lab module
@@ -279,6 +283,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   gegenbauer_term_by_term.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  grace_transfer_check.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
