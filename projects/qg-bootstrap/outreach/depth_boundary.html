@@ -1,0 +1,102 @@
+<title>Depth Cutoff Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --ink: #12151d; --ink-soft: #4a5164; --paper: #eceef3; --panel: #f6f7fa;
+  --rule: #cdd2dd; --amber: #a86a1f; --rose: #a63d55; --teal: #1f6f68;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e7e9ef; --ink-soft: #99a1b5; --paper: #101219; --panel: #171a23;
+    --rule: #2b3140; --amber: #e0a35c; --rose: #e07d92; --teal: #56b7ac;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #e7e9ef; --ink-soft: #99a1b5; --paper: #101219; --panel: #171a23;
+  --rule: #2b3140; --amber: #e0a35c; --rose: #e07d92; --teal: #56b7ac;
+}
+body { background: var(--paper); color: var(--ink);
+  font: 400 17px/1.62 "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  margin: 0; padding: 40px 22px 72px; }
+main { max-width: 68ch; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font: 600 clamp(30px, 5vw, 44px)/1.1 "Fraunces", Georgia, serif;
+  margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font: 600 22px/1.25 "Fraunces", Georgia, serif; margin: 14px 0 0; text-wrap: balance; }
+.eyebrow { font: 500 12px/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+p { margin: 0; }
+.lede { font-size: 19px; color: var(--ink-soft); }
+figure { margin: 0; background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 14px 14px 8px; overflow-x: auto; }
+svg { display: block; min-width: 700px; width: 100%; height: auto; }
+.grid { stroke: var(--rule); stroke-width: 1; }
+.tick, .axis { fill: var(--ink-soft); font: 400 11px "IBM Plex Mono", monospace; }
+.split { stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 3 4; }
+.split-label { fill: var(--ink-soft); font: 400 11px "IBM Plex Mono", monospace; }
+.law { fill: none; stroke: var(--rose); stroke-width: 1.6; stroke-dasharray: 6 4; }
+.cand { fill: none; stroke: var(--teal); stroke-width: 1.6; }
+.pt { fill: var(--ink); }
+.pt.miss { fill: var(--amber); }
+figcaption { font: 400 13px/1.5 "IBM Plex Mono", monospace; color: var(--ink-soft);
+  padding-top: 10px; }
+.key { display: flex; flex-wrap: wrap; gap: 16px;
+  font: 400 13px "IBM Plex Mono", monospace; color: var(--ink-soft); }
+.key span { display: inline-flex; align-items: center; gap: 7px; }
+.swatch { width: 16px; height: 3px; border-radius: 2px; }
+.dot { width: 7px; height: 7px; border-radius: 0; }
+ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; }
+code { font: 400 15px "IBM Plex Mono", monospace; background: var(--panel);
+  border: 1px solid var(--rule); border-radius: 3px; padding: 1px 5px; }
+footer { color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--rule);
+  padding-top: 16px; }
+</style>
+<main>
+  <p class="eyebrow">quantum-gravity bootstrap &middot; 29 august 2026</p>
+  <h1>A law that was fitted on multiples of four</h1>
+  <p class="lede">The repository recorded an <em>exact</em> depth cutoff for the
+  Hausdorff mechanism: <code>j &le; n/2 + 1</code>. It was measured at
+  n = 12, 16, 20, 24, 28, 36, 44 &mdash; every one a multiple of four, and that is
+  exactly where the formula is right. Computed at every n from 11 to 100, it
+  fails 70 times out of 90.</p>
+
+  <figure>
+    <svg viewBox="0 0 980 420" role="img" aria-label="measured depth cutoff against two candidate laws"><line class="grid" x1="56.0" y1="376.0" x2="962.0" y2="376.0"/><text class="tick" x="46.0" y="380.0" text-anchor="end">0</text><line class="grid" x1="56.0" y1="305.2" x2="962.0" y2="305.2"/><text class="tick" x="46.0" y="309.2" text-anchor="end">10</text><line class="grid" x1="56.0" y1="234.4" x2="962.0" y2="234.4"/><text class="tick" x="46.0" y="238.4" text-anchor="end">20</text><line class="grid" x1="56.0" y1="163.6" x2="962.0" y2="163.6"/><text class="tick" x="46.0" y="167.6" text-anchor="end">30</text><line class="grid" x1="56.0" y1="92.8" x2="962.0" y2="92.8"/><text class="tick" x="46.0" y="96.8" text-anchor="end">40</text><line class="grid" x1="56.0" y1="22.0" x2="962.0" y2="22.0"/><text class="tick" x="46.0" y="26.0" text-anchor="end">50</text><text class="tick" x="147.6" y="396.0" text-anchor="middle">20</text><text class="tick" x="351.2" y="396.0" text-anchor="middle">40</text><text class="tick" x="554.8" y="396.0" text-anchor="middle">60</text><text class="tick" x="758.4" y="396.0" text-anchor="middle">80</text><text class="tick" x="962.0" y="396.0" text-anchor="middle">100</text><line class="split" x1="570.1" y1="22.0" x2="570.1" y2="376.0"/><text class="split-label" x="578.1" y="36.0">held out from here</text><polyline class="law" points="56.0,333.5 66.2,326.4 76.4,326.4 86.5,319.4 96.7,319.4 106.9,312.3 117.1,312.3 127.3,305.2 137.4,305.2 147.6,298.1 157.8,298.1 168.0,291.0 178.2,291.0 188.3,284.0 198.5,284.0 208.7,276.9 218.9,276.9 229.1,269.8 239.2,269.8 249.4,262.7 259.6,262.7 269.8,255.6 280.0,255.6 290.1,248.6 300.3,248.6 310.5,241.5 320.7,241.5 330.9,234.4 341.0,234.4 351.2,227.3 361.4,227.3 371.6,220.2 381.8,220.2 391.9,213.2 402.1,213.2 412.3,206.1 422.5,206.1 432.7,199.0 442.8,199.0 453.0,191.9 463.2,191.9 473.4,184.8 483.6,184.8 493.7,177.8 503.9,177.8 514.1,170.7 524.3,170.7 534.4,163.6 544.6,163.6 554.8,156.5 565.0,156.5 575.2,149.4 585.3,149.4 595.5,142.4 605.7,142.4 615.9,135.3 626.1,135.3 636.2,128.2 646.4,128.2 656.6,121.1 666.8,121.1 677.0,114.0 687.1,114.0 697.3,107.0 707.5,107.0 717.7,99.9 727.9,99.9 738.0,92.8 748.2,92.8 758.4,85.7 768.6,85.7 778.8,78.6 788.9,78.6 799.1,71.6 809.3,71.6 819.5,64.5 829.7,64.5 839.8,57.4 850.0,57.4 860.2,50.3 870.4,50.3 880.6,43.2 890.7,43.2 900.9,36.2 911.1,36.2 921.3,29.1 931.5,29.1 941.6,22.0 951.8,22.0 962.0,14.9"/><polyline class="cand" points="56.0,326.4 66.2,326.4 76.4,312.3 86.5,312.3 96.7,312.3 106.9,312.3 117.1,298.1 127.3,298.1 137.4,298.1 147.6,298.1 157.8,298.1 168.0,284.0 178.2,284.0 188.3,284.0 198.5,284.0 208.7,269.8 218.9,269.8 229.1,269.8 239.2,269.8 249.4,269.8 259.6,255.6 269.8,255.6 280.0,255.6 290.1,255.6 300.3,241.5 310.5,241.5 320.7,241.5 330.9,241.5 341.0,241.5 351.2,227.3 361.4,227.3 371.6,227.3 381.8,227.3 391.9,213.2 402.1,213.2 412.3,213.2 422.5,213.2 432.7,213.2 442.8,199.0 453.0,199.0 463.2,199.0 473.4,199.0 483.6,184.8 493.7,184.8 503.9,184.8 514.1,184.8 524.3,184.8 534.4,170.7 544.6,170.7 554.8,170.7 565.0,170.7 575.2,156.5 585.3,156.5 595.5,156.5 605.7,156.5 615.9,156.5 626.1,142.4 636.2,142.4 646.4,142.4 656.6,142.4 666.8,128.2 677.0,128.2 687.1,128.2 697.3,128.2 707.5,128.2 717.7,114.0 727.9,114.0 738.0,114.0 748.2,114.0 758.4,99.9 768.6,99.9 778.8,99.9 788.9,99.9 799.1,99.9 809.3,85.7 819.5,85.7 829.7,85.7 839.8,85.7 850.0,71.6 860.2,71.6 870.4,71.6 880.6,71.6 890.7,71.6 900.9,57.4 911.1,57.4 921.3,57.4 931.5,57.4 941.6,43.2 951.8,43.2 962.0,43.2"/><rect class="pt hit" x="53.8" y="324.2" width="4.4" height="4.4"/><rect class="pt hit" x="64.0" y="324.2" width="4.4" height="4.4"/><rect class="pt miss" x="74.2" y="324.2" width="4.4" height="4.4"/><rect class="pt hit" x="84.3" y="310.1" width="4.4" height="4.4"/><rect class="pt hit" x="94.5" y="310.1" width="4.4" height="4.4"/><rect class="pt hit" x="104.7" y="310.1" width="4.4" height="4.4"/><rect class="pt miss" x="114.9" y="310.1" width="4.4" height="4.4"/><rect class="pt hit" x="125.1" y="295.9" width="4.4" height="4.4"/><rect class="pt hit" x="135.2" y="295.9" width="4.4" height="4.4"/><rect class="pt hit" x="145.4" y="295.9" width="4.4" height="4.4"/><rect class="pt hit" x="155.6" y="295.9" width="4.4" height="4.4"/><rect class="pt hit" x="165.8" y="281.8" width="4.4" height="4.4"/><rect class="pt hit" x="176.0" y="281.8" width="4.4" height="4.4"/><rect class="pt hit" x="186.1" y="281.8" width="4.4" height="4.4"/><rect class="pt hit" x="196.3" y="281.8" width="4.4" height="4.4"/><rect class="pt hit" x="206.5" y="267.6" width="4.4" height="4.4"/><rect class="pt hit" x="216.7" y="267.6" width="4.4" height="4.4"/><rect class="pt hit" x="226.9" y="267.6" width="4.4" height="4.4"/><rect class="pt hit" x="237.0" y="267.6" width="4.4" height="4.4"/><rect class="pt hit" x="247.2" y="267.6" width="4.4" height="4.4"/><rect class="pt hit" x="257.4" y="253.4" width="4.4" height="4.4"/><rect class="pt hit" x="267.6" y="253.4" width="4.4" height="4.4"/><rect class="pt hit" x="277.8" y="253.4" width="4.4" height="4.4"/><rect class="pt hit" x="287.9" y="253.4" width="4.4" height="4.4"/><rect class="pt hit" x="298.1" y="239.3" width="4.4" height="4.4"/><rect class="pt hit" x="308.3" y="239.3" width="4.4" height="4.4"/><rect class="pt hit" x="318.5" y="239.3" width="4.4" height="4.4"/><rect class="pt hit" x="328.7" y="239.3" width="4.4" height="4.4"/><rect class="pt hit" x="338.8" y="239.3" width="4.4" height="4.4"/><rect class="pt hit" x="349.0" y="225.1" width="4.4" height="4.4"/><rect class="pt hit" x="359.2" y="225.1" width="4.4" height="4.4"/><rect class="pt hit" x="369.4" y="225.1" width="4.4" height="4.4"/><rect class="pt hit" x="379.6" y="225.1" width="4.4" height="4.4"/><rect class="pt hit" x="389.7" y="211.0" width="4.4" height="4.4"/><rect class="pt hit" x="399.9" y="211.0" width="4.4" height="4.4"/><rect class="pt hit" x="410.1" y="211.0" width="4.4" height="4.4"/><rect class="pt hit" x="420.3" y="211.0" width="4.4" height="4.4"/><rect class="pt hit" x="430.5" y="211.0" width="4.4" height="4.4"/><rect class="pt hit" x="440.6" y="196.8" width="4.4" height="4.4"/><rect class="pt hit" x="450.8" y="196.8" width="4.4" height="4.4"/><rect class="pt hit" x="461.0" y="196.8" width="4.4" height="4.4"/><rect class="pt hit" x="471.2" y="196.8" width="4.4" height="4.4"/><rect class="pt hit" x="481.4" y="182.6" width="4.4" height="4.4"/><rect class="pt hit" x="491.5" y="182.6" width="4.4" height="4.4"/><rect class="pt hit" x="501.7" y="182.6" width="4.4" height="4.4"/><rect class="pt hit" x="511.9" y="182.6" width="4.4" height="4.4"/><rect class="pt hit" x="522.1" y="182.6" width="4.4" height="4.4"/><rect class="pt hit" x="532.2" y="168.5" width="4.4" height="4.4"/><rect class="pt hit" x="542.4" y="168.5" width="4.4" height="4.4"/><rect class="pt hit" x="552.6" y="168.5" width="4.4" height="4.4"/><rect class="pt hit" x="562.8" y="168.5" width="4.4" height="4.4"/><rect class="pt hit" x="573.0" y="154.3" width="4.4" height="4.4"/><rect class="pt hit" x="583.1" y="154.3" width="4.4" height="4.4"/><rect class="pt hit" x="593.3" y="154.3" width="4.4" height="4.4"/><rect class="pt hit" x="603.5" y="154.3" width="4.4" height="4.4"/><rect class="pt hit" x="613.7" y="154.3" width="4.4" height="4.4"/><rect class="pt hit" x="623.9" y="140.2" width="4.4" height="4.4"/><rect class="pt hit" x="634.0" y="140.2" width="4.4" height="4.4"/><rect class="pt hit" x="644.2" y="140.2" width="4.4" height="4.4"/><rect class="pt hit" x="654.4" y="140.2" width="4.4" height="4.4"/><rect class="pt hit" x="664.6" y="126.0" width="4.4" height="4.4"/><rect class="pt hit" x="674.8" y="126.0" width="4.4" height="4.4"/><rect class="pt hit" x="684.9" y="126.0" width="4.4" height="4.4"/><rect class="pt hit" x="695.1" y="126.0" width="4.4" height="4.4"/><rect class="pt hit" x="705.3" y="126.0" width="4.4" height="4.4"/><rect class="pt hit" x="715.5" y="111.8" width="4.4" height="4.4"/><rect class="pt hit" x="725.7" y="111.8" width="4.4" height="4.4"/><rect class="pt hit" x="735.8" y="111.8" width="4.4" height="4.4"/><rect class="pt hit" x="746.0" y="111.8" width="4.4" height="4.4"/><rect class="pt miss" x="756.2" y="111.8" width="4.4" height="4.4"/><rect class="pt hit" x="766.4" y="97.7" width="4.4" height="4.4"/><rect class="pt hit" x="776.6" y="97.7" width="4.4" height="4.4"/><rect class="pt hit" x="786.7" y="97.7" width="4.4" height="4.4"/><rect class="pt hit" x="796.9" y="97.7" width="4.4" height="4.4"/><rect class="pt hit" x="807.1" y="83.5" width="4.4" height="4.4"/><rect class="pt hit" x="817.3" y="83.5" width="4.4" height="4.4"/><rect class="pt hit" x="827.5" y="83.5" width="4.4" height="4.4"/><rect class="pt hit" x="837.6" y="83.5" width="4.4" height="4.4"/><rect class="pt miss" x="847.8" y="83.5" width="4.4" height="4.4"/><rect class="pt hit" x="858.0" y="69.4" width="4.4" height="4.4"/><rect class="pt hit" x="868.2" y="69.4" width="4.4" height="4.4"/><rect class="pt hit" x="878.4" y="69.4" width="4.4" height="4.4"/><rect class="pt hit" x="888.5" y="69.4" width="4.4" height="4.4"/><rect class="pt hit" x="898.7" y="55.2" width="4.4" height="4.4"/><rect class="pt hit" x="908.9" y="55.2" width="4.4" height="4.4"/><rect class="pt hit" x="919.1" y="55.2" width="4.4" height="4.4"/><rect class="pt hit" x="929.3" y="55.2" width="4.4" height="4.4"/><rect class="pt miss" x="939.4" y="55.2" width="4.4" height="4.4"/><rect class="pt hit" x="949.6" y="41.0" width="4.4" height="4.4"/><rect class="pt hit" x="959.8" y="41.0" width="4.4" height="4.4"/><text class="axis" x="56.0" y="414.0">n</text><text class="axis" x="12.0" y="26.0">j</text></svg>
+    <figcaption>Each square is one measurement: the largest knife order j for which
+    the moment conditions hold, at &lambda; = 10<sup>4</sup>, from exact Hankel minors.
+    Dark squares are where the candidate line agrees, amber where it does not.</figcaption>
+  </figure>
+  <p class="key">
+    <span><span class="swatch" style="background:var(--rose)"></span>recorded law n/2+1</span>
+    <span><span class="swatch" style="background:var(--teal)"></span>candidate (4n+32)/9</span>
+    <span><span class="swatch dot" style="background:var(--ink)"></span>measured, agrees</span>
+    <span><span class="swatch dot" style="background:var(--amber)"></span>measured, disagrees</span>
+  </p>
+
+  <h2>What the boundary actually does</h2>
+  <p>It is always odd. It rises in runs of four or five consecutive n. And it drifts
+  below n/2 as n grows &mdash; so the mechanism reaches a shrinking fraction of the
+  available depths, not half of them.</p>
+
+  <h2>The candidate, and its honest score</h2>
+  <p>Fitting the simplest shape that matches &mdash; the largest odd j below a straight
+  line &mdash; on n = 11..61 gives <code>j &le; (4n+32)/9</code>, right 49 of 51 there.
+  On the held-out sample, which it was never shown, it is right 36 of 39 (92%). Every miss (n = 80, n = 89, n = 98) OVER-predicts, and they arrive as n grows &mdash; so the true boundary rises more slowly than any straight line, and this one is a local fit rather than the law.</p>
+
+  <h2>Why the wrong law survived</h2>
+  <p>The sample could not contradict it. The two candidate formulas agree on every
+  even n, and the recorded run contained no odd n at all; the odd case was computed
+  for the first time today, while chasing an unrelated question.</p>
+  <ul>
+    <li>A claim that <em>prunes a search</em> is the claim that never gets tested
+    &mdash; keep sampling the pruned branch.</li>
+    <li>Before recording &ldquo;exact&rdquo;, name the nearest rival formula and check
+    that the grid can tell them apart.</li>
+  </ul>
+
+  <footer>Built by <code>lab/build_depth_boundary_viz.py</code> from
+  <code>results/depth_boundary_map.json</code>. Every number here is computed from that
+  artefact, and the builder refuses to emit if the data stops supporting the claim.
+  Recorded as ERR-0017.</footer>
+</main>

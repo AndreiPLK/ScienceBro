@@ -5115,3 +5115,17 @@ and that all the lam-dependence is of that form. The first half is true for the
 H0/H1 minors and FALSE for the localizer M_t - M_{t+1}, which is what the [0,1]
 Hausdorff test uses. The lam-free sequence fails at j = 3 for every n, against a
 measured boundary in the twenties. The lam-independence is still unexplained.
+
+### 2026-08-29 — the depth boundary to n = 100, and the candidate's honest score
+
+Mapped n = 11..100 (rows 90 with a boundary). The recorded law fails in 70 of
+them. The candidate fitted on n <= 61, "largest odd j <= (4n+32)/9", scores
+49/51 on the fit sample and 36/39 on the HELD-OUT sample it was never shown --
+and all three misses (n = 80, 89, 98) OVER-predict by 2. So the true boundary
+rises more slowly than any straight line; the candidate is a local fit with
+visible curvature against it, not the law. Recorded as such.
+
+Page built from that artefact in the house pattern (every number computed by the
+builder, refuses to emit if the data stops supporting the claim):
+outreach/depth_boundary.html ->
+https://claude.ai/code/artifact/04252c94-60e7-426d-983d-6d428f0f59d1

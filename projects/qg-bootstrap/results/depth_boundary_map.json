@@ -9,7 +9,9 @@
       "law_n_over_2_plus_1": 6,
       "matches_recorded_law": false,
       "offset_from_half_n": 1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 7,
+      "sample": "fit"
     },
     {
       "n": 12,
@@ -17,7 +19,9 @@
       "law_n_over_2_plus_1": 7,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 7,
+      "sample": "fit"
     },
     {
       "n": 13,
@@ -25,7 +29,9 @@
       "law_n_over_2_plus_1": 7,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 9,
+      "sample": "fit"
     },
     {
       "n": 14,
@@ -33,7 +39,9 @@
       "law_n_over_2_plus_1": 8,
       "matches_recorded_law": false,
       "offset_from_half_n": 2.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 9,
+      "sample": "fit"
     },
     {
       "n": 15,
@@ -41,7 +49,9 @@
       "law_n_over_2_plus_1": 8,
       "matches_recorded_law": false,
       "offset_from_half_n": 1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 9,
+      "sample": "fit"
     },
     {
       "n": 16,
@@ -49,7 +59,9 @@
       "law_n_over_2_plus_1": 9,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 9,
+      "sample": "fit"
     },
     {
       "n": 17,
@@ -57,7 +69,9 @@
       "law_n_over_2_plus_1": 9,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 11,
+      "sample": "fit"
     },
     {
       "n": 18,
@@ -65,7 +79,9 @@
       "law_n_over_2_plus_1": 10,
       "matches_recorded_law": false,
       "offset_from_half_n": 2.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 11,
+      "sample": "fit"
     },
     {
       "n": 19,
@@ -73,7 +89,9 @@
       "law_n_over_2_plus_1": 10,
       "matches_recorded_law": false,
       "offset_from_half_n": 1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 11,
+      "sample": "fit"
     },
     {
       "n": 20,
@@ -81,7 +99,9 @@
       "law_n_over_2_plus_1": 11,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 11,
+      "sample": "fit"
     },
     {
       "n": 21,
@@ -89,7 +109,9 @@
       "law_n_over_2_plus_1": 11,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 11,
+      "sample": "fit"
     },
     {
       "n": 22,
@@ -97,7 +119,9 @@
       "law_n_over_2_plus_1": 12,
       "matches_recorded_law": false,
       "offset_from_half_n": 2.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 13,
+      "sample": "fit"
     },
     {
       "n": 23,
@@ -105,7 +129,9 @@
       "law_n_over_2_plus_1": 12,
       "matches_recorded_law": false,
       "offset_from_half_n": 1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 13,
+      "sample": "fit"
     },
     {
       "n": 24,
@@ -113,7 +139,9 @@
       "law_n_over_2_plus_1": 13,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 13,
+      "sample": "fit"
     },
     {
       "n": 25,
@@ -121,7 +149,9 @@
       "law_n_over_2_plus_1": 13,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 13,
+      "sample": "fit"
     },
     {
       "n": 26,
@@ -129,7 +159,9 @@
       "law_n_over_2_plus_1": 14,
       "matches_recorded_law": false,
       "offset_from_half_n": 2.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 15,
+      "sample": "fit"
     },
     {
       "n": 27,
@@ -137,7 +169,9 @@
       "law_n_over_2_plus_1": 14,
       "matches_recorded_law": false,
       "offset_from_half_n": 1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 15,
+      "sample": "fit"
     },
     {
       "n": 28,
@@ -145,7 +179,9 @@
       "law_n_over_2_plus_1": 15,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 15,
+      "sample": "fit"
     },
     {
       "n": 29,
@@ -153,7 +189,9 @@
       "law_n_over_2_plus_1": 15,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 15,
+      "sample": "fit"
     },
     {
       "n": 30,
@@ -161,7 +199,9 @@
       "law_n_over_2_plus_1": 16,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 15,
+      "sample": "fit"
     },
     {
       "n": 31,
@@ -169,7 +209,9 @@
       "law_n_over_2_plus_1": 16,
       "matches_recorded_law": false,
       "offset_from_half_n": 1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 17,
+      "sample": "fit"
     },
     {
       "n": 32,
@@ -177,7 +219,9 @@
       "law_n_over_2_plus_1": 17,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 17,
+      "sample": "fit"
     },
     {
       "n": 33,
@@ -185,7 +229,9 @@
       "law_n_over_2_plus_1": 17,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 17,
+      "sample": "fit"
     },
     {
       "n": 34,
@@ -193,7 +239,9 @@
       "law_n_over_2_plus_1": 18,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 17,
+      "sample": "fit"
     },
     {
       "n": 35,
@@ -201,7 +249,9 @@
       "law_n_over_2_plus_1": 18,
       "matches_recorded_law": false,
       "offset_from_half_n": 1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 19,
+      "sample": "fit"
     },
     {
       "n": 36,
@@ -209,7 +259,9 @@
       "law_n_over_2_plus_1": 19,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 19,
+      "sample": "fit"
     },
     {
       "n": 37,
@@ -217,7 +269,9 @@
       "law_n_over_2_plus_1": 19,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 19,
+      "sample": "fit"
     },
     {
       "n": 38,
@@ -225,7 +279,9 @@
       "law_n_over_2_plus_1": 20,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 19,
+      "sample": "fit"
     },
     {
       "n": 39,
@@ -233,7 +289,9 @@
       "law_n_over_2_plus_1": 20,
       "matches_recorded_law": false,
       "offset_from_half_n": -0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 19,
+      "sample": "fit"
     },
     {
       "n": 40,
@@ -241,7 +299,9 @@
       "law_n_over_2_plus_1": 21,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 21,
+      "sample": "fit"
     },
     {
       "n": 41,
@@ -249,7 +309,9 @@
       "law_n_over_2_plus_1": 21,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 21,
+      "sample": "fit"
     },
     {
       "n": 42,
@@ -257,7 +319,9 @@
       "law_n_over_2_plus_1": 22,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 21,
+      "sample": "fit"
     },
     {
       "n": 43,
@@ -265,7 +329,9 @@
       "law_n_over_2_plus_1": 22,
       "matches_recorded_law": false,
       "offset_from_half_n": -0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 21,
+      "sample": "fit"
     },
     {
       "n": 44,
@@ -273,7 +339,9 @@
       "law_n_over_2_plus_1": 23,
       "matches_recorded_law": true,
       "offset_from_half_n": 1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 23,
+      "sample": "fit"
     },
     {
       "n": 45,
@@ -281,7 +349,9 @@
       "law_n_over_2_plus_1": 23,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 23,
+      "sample": "fit"
     },
     {
       "n": 46,
@@ -289,7 +359,9 @@
       "law_n_over_2_plus_1": 24,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 23,
+      "sample": "fit"
     },
     {
       "n": 47,
@@ -297,7 +369,9 @@
       "law_n_over_2_plus_1": 24,
       "matches_recorded_law": false,
       "offset_from_half_n": -0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 23,
+      "sample": "fit"
     },
     {
       "n": 48,
@@ -305,7 +379,9 @@
       "law_n_over_2_plus_1": 25,
       "matches_recorded_law": false,
       "offset_from_half_n": -1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 23,
+      "sample": "fit"
     },
     {
       "n": 49,
@@ -313,7 +389,9 @@
       "law_n_over_2_plus_1": 25,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 25,
+      "sample": "fit"
     },
     {
       "n": 50,
@@ -321,7 +399,9 @@
       "law_n_over_2_plus_1": 26,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 25,
+      "sample": "fit"
     },
     {
       "n": 51,
@@ -329,7 +409,9 @@
       "law_n_over_2_plus_1": 26,
       "matches_recorded_law": false,
       "offset_from_half_n": -0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 25,
+      "sample": "fit"
     },
     {
       "n": 52,
@@ -337,7 +419,9 @@
       "law_n_over_2_plus_1": 27,
       "matches_recorded_law": false,
       "offset_from_half_n": -1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 25,
+      "sample": "fit"
     },
     {
       "n": 53,
@@ -345,7 +429,9 @@
       "law_n_over_2_plus_1": 27,
       "matches_recorded_law": true,
       "offset_from_half_n": 0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 27,
+      "sample": "fit"
     },
     {
       "n": 54,
@@ -353,7 +439,9 @@
       "law_n_over_2_plus_1": 28,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 27,
+      "sample": "fit"
     },
     {
       "n": 55,
@@ -361,7 +449,9 @@
       "law_n_over_2_plus_1": 28,
       "matches_recorded_law": false,
       "offset_from_half_n": -0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 27,
+      "sample": "fit"
     },
     {
       "n": 56,
@@ -369,7 +459,9 @@
       "law_n_over_2_plus_1": 29,
       "matches_recorded_law": false,
       "offset_from_half_n": -1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 27,
+      "sample": "fit"
     },
     {
       "n": 57,
@@ -377,7 +469,9 @@
       "law_n_over_2_plus_1": 29,
       "matches_recorded_law": false,
       "offset_from_half_n": -1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 27,
+      "sample": "fit"
     },
     {
       "n": 58,
@@ -385,7 +479,9 @@
       "law_n_over_2_plus_1": 30,
       "matches_recorded_law": false,
       "offset_from_half_n": 0.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 29,
+      "sample": "fit"
     },
     {
       "n": 59,
@@ -393,7 +489,9 @@
       "law_n_over_2_plus_1": 30,
       "matches_recorded_law": false,
       "offset_from_half_n": -0.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 29,
+      "sample": "fit"
     },
     {
       "n": 60,
@@ -401,7 +499,9 @@
       "law_n_over_2_plus_1": 31,
       "matches_recorded_law": false,
       "offset_from_half_n": -1.0,
-      "parity": "even"
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 29,
+      "sample": "fit"
     },
     {
       "n": 61,
@@ -409,10 +509,402 @@
       "law_n_over_2_plus_1": 31,
       "matches_recorded_law": false,
       "offset_from_half_n": -1.5,
-      "parity": "odd"
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 29,
+      "sample": "fit"
+    },
+    {
+      "n": 62,
+      "largest_good_j": 31,
+      "law_n_over_2_plus_1": 32,
+      "matches_recorded_law": false,
+      "offset_from_half_n": 0.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 31,
+      "sample": "held-out"
+    },
+    {
+      "n": 63,
+      "largest_good_j": 31,
+      "law_n_over_2_plus_1": 32,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 31,
+      "sample": "held-out"
+    },
+    {
+      "n": 64,
+      "largest_good_j": 31,
+      "law_n_over_2_plus_1": 33,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 31,
+      "sample": "held-out"
+    },
+    {
+      "n": 65,
+      "largest_good_j": 31,
+      "law_n_over_2_plus_1": 33,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 31,
+      "sample": "held-out"
+    },
+    {
+      "n": 66,
+      "largest_good_j": 31,
+      "law_n_over_2_plus_1": 34,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 31,
+      "sample": "held-out"
+    },
+    {
+      "n": 67,
+      "largest_good_j": 33,
+      "law_n_over_2_plus_1": 34,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 33,
+      "sample": "held-out"
+    },
+    {
+      "n": 68,
+      "largest_good_j": 33,
+      "law_n_over_2_plus_1": 35,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 33,
+      "sample": "held-out"
+    },
+    {
+      "n": 69,
+      "largest_good_j": 33,
+      "law_n_over_2_plus_1": 35,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 33,
+      "sample": "held-out"
+    },
+    {
+      "n": 70,
+      "largest_good_j": 33,
+      "law_n_over_2_plus_1": 36,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 33,
+      "sample": "held-out"
+    },
+    {
+      "n": 71,
+      "largest_good_j": 35,
+      "law_n_over_2_plus_1": 36,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -0.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 35,
+      "sample": "held-out"
+    },
+    {
+      "n": 72,
+      "largest_good_j": 35,
+      "law_n_over_2_plus_1": 37,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 35,
+      "sample": "held-out"
+    },
+    {
+      "n": 73,
+      "largest_good_j": 35,
+      "law_n_over_2_plus_1": 37,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 35,
+      "sample": "held-out"
+    },
+    {
+      "n": 74,
+      "largest_good_j": 35,
+      "law_n_over_2_plus_1": 38,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 35,
+      "sample": "held-out"
+    },
+    {
+      "n": 75,
+      "largest_good_j": 35,
+      "law_n_over_2_plus_1": 38,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 35,
+      "sample": "held-out"
+    },
+    {
+      "n": 76,
+      "largest_good_j": 37,
+      "law_n_over_2_plus_1": 39,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 37,
+      "sample": "held-out"
+    },
+    {
+      "n": 77,
+      "largest_good_j": 37,
+      "law_n_over_2_plus_1": 39,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 37,
+      "sample": "held-out"
+    },
+    {
+      "n": 78,
+      "largest_good_j": 37,
+      "law_n_over_2_plus_1": 40,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 37,
+      "sample": "held-out"
+    },
+    {
+      "n": 79,
+      "largest_good_j": 37,
+      "law_n_over_2_plus_1": 40,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 37,
+      "sample": "held-out"
+    },
+    {
+      "n": 80,
+      "largest_good_j": 37,
+      "law_n_over_2_plus_1": 41,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 39,
+      "sample": "held-out"
+    },
+    {
+      "n": 81,
+      "largest_good_j": 39,
+      "law_n_over_2_plus_1": 41,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 39,
+      "sample": "held-out"
+    },
+    {
+      "n": 82,
+      "largest_good_j": 39,
+      "law_n_over_2_plus_1": 42,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 39,
+      "sample": "held-out"
+    },
+    {
+      "n": 83,
+      "largest_good_j": 39,
+      "law_n_over_2_plus_1": 42,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 39,
+      "sample": "held-out"
+    },
+    {
+      "n": 84,
+      "largest_good_j": 39,
+      "law_n_over_2_plus_1": 43,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 39,
+      "sample": "held-out"
+    },
+    {
+      "n": 85,
+      "largest_good_j": 41,
+      "law_n_over_2_plus_1": 43,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -1.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 41,
+      "sample": "held-out"
+    },
+    {
+      "n": 86,
+      "largest_good_j": 41,
+      "law_n_over_2_plus_1": 44,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 41,
+      "sample": "held-out"
+    },
+    {
+      "n": 87,
+      "largest_good_j": 41,
+      "law_n_over_2_plus_1": 44,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 41,
+      "sample": "held-out"
+    },
+    {
+      "n": 88,
+      "largest_good_j": 41,
+      "law_n_over_2_plus_1": 45,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 41,
+      "sample": "held-out"
+    },
+    {
+      "n": 89,
+      "largest_good_j": 41,
+      "law_n_over_2_plus_1": 45,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 43,
+      "sample": "held-out"
+    },
+    {
+      "n": 90,
+      "largest_good_j": 43,
+      "law_n_over_2_plus_1": 46,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 43,
+      "sample": "held-out"
+    },
+    {
+      "n": 91,
+      "largest_good_j": 43,
+      "law_n_over_2_plus_1": 46,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 43,
+      "sample": "held-out"
+    },
+    {
+      "n": 92,
+      "largest_good_j": 43,
+      "law_n_over_2_plus_1": 47,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 43,
+      "sample": "held-out"
+    },
+    {
+      "n": 93,
+      "largest_good_j": 43,
+      "law_n_over_2_plus_1": 47,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 43,
+      "sample": "held-out"
+    },
+    {
+      "n": 94,
+      "largest_good_j": 45,
+      "law_n_over_2_plus_1": 48,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 45,
+      "sample": "held-out"
+    },
+    {
+      "n": 95,
+      "largest_good_j": 45,
+      "law_n_over_2_plus_1": 48,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 45,
+      "sample": "held-out"
+    },
+    {
+      "n": 96,
+      "largest_good_j": 45,
+      "law_n_over_2_plus_1": 49,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 45,
+      "sample": "held-out"
+    },
+    {
+      "n": 97,
+      "largest_good_j": 45,
+      "law_n_over_2_plus_1": 49,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 45,
+      "sample": "held-out"
+    },
+    {
+      "n": 98,
+      "largest_good_j": 45,
+      "law_n_over_2_plus_1": 50,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -4.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 47,
+      "sample": "held-out"
+    },
+    {
+      "n": 99,
+      "largest_good_j": 47,
+      "law_n_over_2_plus_1": 50,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -2.5,
+      "parity": "odd",
+      "candidate_4n_plus_32_over_9": 47,
+      "sample": "held-out"
+    },
+    {
+      "n": 100,
+      "largest_good_j": 47,
+      "law_n_over_2_plus_1": 51,
+      "matches_recorded_law": false,
+      "offset_from_half_n": -3.0,
+      "parity": "even",
+      "candidate_4n_plus_32_over_9": 47,
+      "sample": "held-out"
     }
   ],
-  "mismatches": 31,
+  "mismatches": 70,
   "mismatching_n": [
     [
       11,
@@ -568,8 +1060,215 @@
       61,
       29,
       31
+    ],
+    [
+      62,
+      31,
+      32
+    ],
+    [
+      63,
+      31,
+      32
+    ],
+    [
+      64,
+      31,
+      33
+    ],
+    [
+      65,
+      31,
+      33
+    ],
+    [
+      66,
+      31,
+      34
+    ],
+    [
+      67,
+      33,
+      34
+    ],
+    [
+      68,
+      33,
+      35
+    ],
+    [
+      69,
+      33,
+      35
+    ],
+    [
+      70,
+      33,
+      36
+    ],
+    [
+      71,
+      35,
+      36
+    ],
+    [
+      72,
+      35,
+      37
+    ],
+    [
+      73,
+      35,
+      37
+    ],
+    [
+      74,
+      35,
+      38
+    ],
+    [
+      75,
+      35,
+      38
+    ],
+    [
+      76,
+      37,
+      39
+    ],
+    [
+      77,
+      37,
+      39
+    ],
+    [
+      78,
+      37,
+      40
+    ],
+    [
+      79,
+      37,
+      40
+    ],
+    [
+      80,
+      37,
+      41
+    ],
+    [
+      81,
+      39,
+      41
+    ],
+    [
+      82,
+      39,
+      42
+    ],
+    [
+      83,
+      39,
+      42
+    ],
+    [
+      84,
+      39,
+      43
+    ],
+    [
+      85,
+      41,
+      43
+    ],
+    [
+      86,
+      41,
+      44
+    ],
+    [
+      87,
+      41,
+      44
+    ],
+    [
+      88,
+      41,
+      45
+    ],
+    [
+      89,
+      41,
+      45
+    ],
+    [
+      90,
+      43,
+      46
+    ],
+    [
+      91,
+      43,
+      46
+    ],
+    [
+      92,
+      43,
+      47
+    ],
+    [
+      93,
+      43,
+      47
+    ],
+    [
+      94,
+      45,
+      48
+    ],
+    [
+      95,
+      45,
+      48
+    ],
+    [
+      96,
+      45,
+      49
+    ],
+    [
+      97,
+      45,
+      49
+    ],
+    [
+      98,
+      45,
+      50
+    ],
+    [
+      99,
+      47,
+      50
+    ],
+    [
+      100,
+      47,
+      51
     ]
   ],
+  "candidate_law": {
+    "form": "largest odd j <= (4n+32)/9",
+    "fitted_on": "n = 11..61",
+    "hits_on_fit_sample": [
+      49,
+      51
+    ],
+    "hits_on_held_out_sample": [
+      36,
+      39
+    ]
+  },
   "stability_of_counterexamples": [
     {
       "n": 31,
@@ -592,14 +1291,12 @@
       }
     }
   ],
-  "runtime_s": 19.8,
-  "git": "fbebdf8749cf",
-  "git_full": "fbebdf8749cfc7a988ec94a9d65d20d483a28d10",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/depth_boundary_map.py"
-  ],
-  "dirty_count": 1,
+  "runtime_s": 349.7,
+  "git": "7eb0010abf7e",
+  "git_full": "7eb0010abf7ee3b2fe2e0d1358580aa5270e80e3",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"

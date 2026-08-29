@@ -198,11 +198,27 @@ def main() -> int:
         return 1
     fit = data["candidate_law"]["hits_on_fit_sample"]
     held = data["candidate_law"]["hits_on_held_out_sample"]
+    held_rows = [r for r in rows if r["sample"] == "held-out"]
+    misses = [r for r in held_rows if r["largest_good_j"] != r["candidate_4n_plus_32_over_9"]]
+    over = [r for r in misses if r["candidate_4n_plus_32_over_9"] > r["largest_good_j"]]
     if held[1]:
         pct = 100 * held[0] / held[1]
-        verdict = f"On the held-out sample, which it was never shown, it is right {held[0]} of {held[1]} ({pct:.0f}%)."
-        if pct < 80:
-            verdict += " That is not a law, that is a shape."
+        verdict = (
+            f"On the held-out sample, which it was never shown, it is right "
+            f"{held[0]} of {held[1]} ({pct:.0f}%)."
+        )
+        if misses:
+            where = ", ".join(f"n = {r['n']}" for r in misses[:4])
+            if len(over) == len(misses):
+                verdict += (
+                    f" Every miss ({where}) OVER-predicts, and they arrive as n grows &mdash; "
+                    "so the true boundary rises more slowly than any straight line, and this "
+                    "one is a local fit rather than the law."
+                )
+            else:
+                verdict += f" It misses at {where}, in both directions."
+        else:
+            verdict += " It has not missed yet."
     else:
         verdict = "It has not been tested out of sample yet, so it is a fit and nothing more."
     html = (
