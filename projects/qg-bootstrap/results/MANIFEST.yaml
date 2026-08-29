@@ -126,6 +126,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  THEOREM_HIERARCHY_RUNGS.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   THEOREM_NO_POLYA_FREQUENCY.md:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -443,6 +447,10 @@ artefacts:
     status: live
   grav_zoomout_v2.json:
     added: '2026-08-15'
+    note: referenced by a paper, document or lab module
+    status: live
+  hierarchy_rungs.json:
+    added: untracked
     note: referenced by a paper, document or lab module
     status: live
   higher_difference_hierarchy.json:

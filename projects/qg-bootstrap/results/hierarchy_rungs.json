@@ -1,0 +1,211 @@
+{
+  "what": "the log-difference hierarchy proved at fixed (t, r) for every n >= s, by all-nonnegative coefficients after a shift",
+  "why_r_ge_4_matters": "r = 3 IS conjecture (B), already proved per t; r >= 4 is new content and shows whether the hierarchy is deeper than (B)",
+  "rows": [
+    {
+      "t": 1,
+      "r": 3,
+      "degree": 38,
+      "smallest_shift_all_coefficients_nonnegative": 6,
+      "proved_for_all_n_at_least": 6,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 2,
+      "r": 3,
+      "degree": 54,
+      "smallest_shift_all_coefficients_nonnegative": 5,
+      "proved_for_all_n_at_least": 5,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 3,
+      "r": 3,
+      "degree": 70,
+      "smallest_shift_all_coefficients_nonnegative": 8,
+      "proved_for_all_n_at_least": 8,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 4,
+      "r": 3,
+      "degree": 86,
+      "smallest_shift_all_coefficients_nonnegative": 7,
+      "proved_for_all_n_at_least": 7,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 1,
+      "r": 4,
+      "degree": 93,
+      "smallest_shift_all_coefficients_nonnegative": 5,
+      "proved_for_all_n_at_least": 5,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 2,
+      "r": 4,
+      "degree": 125,
+      "smallest_shift_all_coefficients_nonnegative": 8,
+      "proved_for_all_n_at_least": 8,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 3,
+      "r": 4,
+      "degree": 157,
+      "smallest_shift_all_coefficients_nonnegative": 7,
+      "proved_for_all_n_at_least": 7,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 4,
+      "r": 4,
+      "degree": 189,
+      "smallest_shift_all_coefficients_nonnegative": 10,
+      "proved_for_all_n_at_least": 10,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 1,
+      "r": 5,
+      "degree": 220,
+      "smallest_shift_all_coefficients_nonnegative": 9,
+      "proved_for_all_n_at_least": 9,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 2,
+      "r": 5,
+      "degree": 284,
+      "smallest_shift_all_coefficients_nonnegative": 7,
+      "proved_for_all_n_at_least": 7,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 3,
+      "r": 5,
+      "degree": 348,
+      "smallest_shift_all_coefficients_nonnegative": 10,
+      "proved_for_all_n_at_least": 10,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 4,
+      "r": 5,
+      "degree": 412,
+      "smallest_shift_all_coefficients_nonnegative": 9,
+      "proved_for_all_n_at_least": 9,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 1,
+      "r": 6,
+      "degree": 507,
+      "smallest_shift_all_coefficients_nonnegative": 7,
+      "proved_for_all_n_at_least": 7,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 2,
+      "r": 6,
+      "degree": 635,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 3,
+      "r": 6,
+      "degree": 763,
+      "smallest_shift_all_coefficients_nonnegative": 9,
+      "proved_for_all_n_at_least": 9,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 4,
+      "r": 6,
+      "degree": 891,
+      "smallest_shift_all_coefficients_nonnegative": 12,
+      "proved_for_all_n_at_least": 12,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 1,
+      "r": 7,
+      "degree": 1146,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 2,
+      "r": 7,
+      "degree": 1402,
+      "smallest_shift_all_coefficients_nonnegative": 9,
+      "proved_for_all_n_at_least": 9,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 3,
+      "r": 7,
+      "degree": 1658,
+      "smallest_shift_all_coefficients_nonnegative": 13,
+      "proved_for_all_n_at_least": 13,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 4,
+      "r": 7,
+      "degree": 1914,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 1,
+      "r": 8,
+      "degree": 2553,
+      "smallest_shift_all_coefficients_nonnegative": 9,
+      "proved_for_all_n_at_least": 9,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 2,
+      "r": 8,
+      "degree": 3065,
+      "smallest_shift_all_coefficients_nonnegative": 13,
+      "proved_for_all_n_at_least": 13,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 3,
+      "r": 8,
+      "degree": 3577,
+      "smallest_shift_all_coefficients_nonnegative": 11,
+      "proved_for_all_n_at_least": 11,
+      "spot_check_mismatches": 0
+    },
+    {
+      "t": 4,
+      "r": 8,
+      "degree": 4089,
+      "smallest_shift_all_coefficients_nonnegative": 15,
+      "proved_for_all_n_at_least": 15,
+      "spot_check_mismatches": 0
+    }
+  ],
+  "all_proved": true,
+  "spot_mismatches_total": 0,
+  "runtime_s": 14.6,
+  "git": "673fbd085184",
+  "git_full": "673fbd085184141ad0b6f14af387b83f7335786b",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/hierarchy_rungs.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

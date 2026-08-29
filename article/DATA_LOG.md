@@ -6060,3 +6060,27 @@ the object with the hierarchy is provably not the object that is totally positiv
 it says where to look instead: the phenomenon belongs to the PAIRING of a real-rooted
 spectrum with binomial weights, which is exactly the coordinate system of the finite
 free transforms.
+
+### 2026-08-30 night -- 24 rungs of the hierarchy, proved
+
+The method that proved the no-PF theorem is not a one-off. At fixed t and r the
+statement Delta^r log p_t < 0 is one polynomial inequality in n, so the same move --
+shift and check all coefficients are nonnegative -- proves it for infinitely many n at
+once.
+
+24 rungs: t = 1..4, r = 3..8, degrees 38 to 4089, every one proved. And each shift is
+SMALLER than the domain requirement n >= 2(t+r)+1, so every rung is complete on the
+whole range where the claim is even made, not partial.
+
+The content is r >= 4. The rung r = 3 is exactly (B), already proved per t. The
+eighteen rungs above it do not follow from (B), so the hierarchy is genuinely a deeper
+family of inequalities and not a restatement -- a question open since the hierarchy was
+first observed a few hours earlier.
+
+Guards that had to hold: the e_t interpolations are verified at five nodes beyond those
+they were built from, and each rung is spot-checked against the reference sign
+computation at six values of n. Zero mismatches across all 24.
+
+Open, and now sharp: uniformity in (t,r). Degrees grow like 3(t+r)2^r so computation
+cannot reach it. The shifts depend on the PARITIES of t and r, not just their sizes
+(r=5,t=1 needs 9 while r=6,t=1 needs 7); explaining that parity is probably the way in.
