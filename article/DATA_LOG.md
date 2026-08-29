@@ -5735,3 +5735,23 @@ So no local condition of that kind implies (C) -- the actual values of the famil
 do the work, not the shape of five neighbours. Any proof of (C) must reach for the
 global structure: the Gamma-ratio generating function, or the recursion iterated,
 not a five-term window. Recorded so the three experiments are not repeated.
+
+### 2026-08-29 — (C) is specific to the exact structure, and an index bug caught
+
+Tried to generalise (C) the way (B) generalised. It does not:
+
+  general APs, two new points at the ends:        200 violations of 200
+  general APs, the same new value twice:          157 of 200
+  centered APs (jd)^2 doubled:                    200 of 200
+  odd multiples ((2j-1)d)^2 doubled:                0 of 150
+  even multiples doubled plus a zero:               0 of 150
+
+The last two are scale copies of our own family (M is scale-invariant), so they
+confirm rather than extend. The informative rows are the first three: (C) fails for
+arithmetic progressions in general, so unlike (B) it is not an AP-family fact -- it
+needs the exact odd/even doubled structure.
+
+Also caught here: my first pass at the last two rows used t = (N-1)//2 for the
+central index where the definition is floor((n-1)/2) = floor(N/2) -- off by one for
+the odd family, which produced 150 spurious "violations" of size 1.7815 -> 1.7835.
+The corrected index gives 0. A one-line indexing slip almost became a finding.
