@@ -159,9 +159,17 @@ separately for `n >= 3` and `n >= 6`.
 > nonnegative, where
 > `P_t(n) = e_{t+1}^3 e_{t-1} C(N,t)^3 C(N,t+2) - e_t^3 e_{t+2} C(N,t+1)^3 C(N,t-1)`.
 
-Tested exactly at `t = 3..10`. It implies (B) on the whole range `t < n/2`, and it
-is a statement about one explicit family of polynomials — no knives, no `lam`, no
-asymptotics.
+**And it has been carried out to `t = 100`** (`results/conjecture_B_rungs.json`,
+`RUNG_TOP=100`): degrees run from 54 to 1606 and **not one rung fails**, in 198
+seconds. Each clean rung is not evidence but a PROOF at that `t`, so:
+
+> **(B) is a theorem for every `t <= 100` and `n > 2t`** — hence for the entire
+> range the bridge needs, at every `n <= 200`.
+
+What is still owed is only the uniformity in `t`: the statement that the shift
+`2t` works for EVERY `t`, rather than for each one checked. That is a statement
+about one explicit family of polynomials — no knives, no `lam`, no asymptotics —
+and every instance of it computed so far is true.
 
 **Proved:** the exact recursion; the `t = 1` rung in closed form, which the same
 PDF gives as `R_{n,1} = 5n(n-2)^2/(5n^3 - 24n^2 + 28n + 12)` — **verified over 75

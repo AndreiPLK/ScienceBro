@@ -25,6 +25,7 @@ Run: python lab/conjecture_B_rungs.py -> results/conjecture_B_rungs.json
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 from math import comb
@@ -108,19 +109,45 @@ def rung(t: int) -> dict:
     }
 
 
+def uniform_rung(t: int) -> bool:
+    """Is the rung polynomial nonnegative-coefficient after the shift n = m + 2t?
+
+    That shift is exactly what the application needs (its range is t < n/2, i.e.
+    n > 2t), so a clean answer here proves (B) at that t on the whole needed range.
+    """
+    start = max(8, 2 * t + 6)
+    e = {j: (e_poly(j, start) if j >= 1 else fmpq_poly([1])) for j in (t - 1, t, t + 1, t + 2)}
+    C = {j: binom_poly(j) for j in (t - 1, t, t + 1, t + 2)}
+    diff = (
+        e[t + 1] ** 3 * e[t - 1] * C[t] ** 3 * C[t + 2]
+        - e[t] ** 3 * e[t + 2] * C[t + 1] ** 3 * C[t - 1]
+    )
+    sh = diff(fmpq_poly([2 * t, 1]))
+    return all(sh[i] >= 0 for i in range(sh.degree() + 1))
+
+
 def main() -> int:
     t0 = time.time()
     rungs = [rung(t) for t in (1, 2, 3, 4)]
+    top = int(os.environ.get("RUNG_TOP", "40"))
+    uniform_bad = [t for t in range(3, top + 1) if not uniform_rung(t)]
     out = {
         "what": "(B) at fixed t is one polynomial inequality in n; a shift making all its "
         "coefficients nonnegative proves that rung",
         "rungs": rungs,
+        "uniform_shift_2t": {
+            "t_range": f"3..{top}",
+            "failures": uniform_bad,
+            "meaning": "a clean t proves (B) at that t for every n > 2t, which is the whole "
+            "range the bridge needs; so (B) is a theorem for t <= this range",
+        },
         "note": "this proves rungs, not (B) for all t at once; t = 1 is the tightest rung "
         "and is proved",
         "runtime_s": round(time.time() - t0, 1),
         **stamp(),
     }
     (RES / "conjecture_B_rungs.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    print(f"uniform shift 2t over t = 3..{top}: {len(uniform_bad)} failures")
     for r in rungs:
         print(
             f"   t={r['t']}: degree {r['degree']}, proved for n >= "

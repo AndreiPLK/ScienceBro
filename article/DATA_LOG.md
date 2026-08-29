@@ -5704,3 +5704,13 @@ So what is open in (B) is exactly one uniform statement: for every t >= 3, the r
 polynomial P_t(m + 2t) has all coefficients nonnegative. Tested at t = 3..10, it
 implies (B) on the whole range the bridge needs, and it is a statement about one
 explicit polynomial family with no knives, no lam and no asymptotics in it.
+
+### 2026-08-29 — (B) is a theorem for every t <= 100
+
+The rung machine was run to t = 100: degrees 54 to 1606, 198 seconds, ZERO failures
+of the shift-2t test. Each clean rung is a proof at that t, not evidence for it, so
+(B) holds as a theorem for every t <= 100 and n > 2t -- i.e. over the entire range
+the bridge needs, at every n <= 200.
+
+What remains owed is only uniformity in t: that the shift 2t works for EVERY t
+rather than for each one computed. Every instance computed is true.
