@@ -573,3 +573,43 @@ identical forms** — the domain-critic wrote `(D-1)/2 + 2(n-1-r)`, the
 independent-validator wrote `(D+3)/2 + 2(n-2-r)`; both equal `(D+4n-5-4r)/2`,
 and both differ from what I wrote. Two reviewers converging on the same line is
 the strongest signal available here that the slip was real and mine.
+
+## ERR-0015 — "Criterion S" contains its own conclusion (2026-08-29, mine, same day)
+
+**What I claimed.** In `results/FFP_LITERATURE_PASS.md` §3 and in the commit
+`c50b146` I presented CRITERION S — every Taylor coefficient `A_m` of the
+reduced composition at `x = 1` strictly positive — as a *criterion* sufficient
+for `K_r > 0`, and called it "the first candidate all-depths criterion whose
+tested region is the physical domain rather than a corner".
+
+**Why that is wrong.** `A_0 = P(1) = K_r`. The hypothesis contains the
+conclusion. The Descartes argument is valid but useless: `K_r > 0 and (stuff)`
+implies `K_r > 0`. As a criterion S is trivial, and the 3094/3094 measurement,
+while true, does not measure what I said it measured.
+
+**How it was caught.** Not by a check — by asking, an hour later, what `A_m`
+actually *is*. The answer is an exact identity, verified first in 1236 ad-hoc cases and then
+in the artefact itself (`results/ffp_convolution_check.json`, 1696 checks), 0
+mismatches either time:
+
+    A_m = C(r,m) * K_{r-m} evaluated at H -> H - m,   i.e. at D -> D - 2m.
+
+Reading `A_0` in that identity, with `m = 0`, is what exposed the circularity.
+
+**What survives, and it is worth more than the false criterion.** The Taylor
+coefficients of the knife polynomial at `x = 1` ARE knives — of lower depth, at
+lower dimension, along the diagonal `(j, D) -> (j-m, D-2m)`. So
+
+  * the measurement says the whole diagonal staircase is positive below the
+    shore (3094 points) and breaks above it (0 of 26 negative knives);
+  * the useful implication runs the OTHER way from what I wrote: a bound
+    `theta_max(p BOX q) < 1` — a root-location statement about a Schur-Szegő
+    composition, which is a studied problem — would give the entire diagonal at
+    once, without knowing any knife value in advance. That direction is not
+    circular, and it is now the live route.
+
+**The lesson, which this repository already had.** ERR-0012: a check that cannot
+fail is not a check. I built the sweep to test S before asking what S's own
+first term was. The rule to add: before measuring a criterion, expand its
+hypothesis at the trivial index and check that the conclusion is not sitting
+inside it.

@@ -169,17 +169,46 @@ def taylor_at_one(poly: fmpq_poly) -> list[fmpq]:
     return out
 
 
-def criterion_S(poly: fmpq_poly) -> bool:
-    """CRITERION S: every A_m > 0.  Sufficient for K_r > 0, exactly.
+def staircase_positive(poly: fmpq_poly) -> bool:
+    """Every A_m > 0, i.e. the whole diagonal (j,D) -> (j-m, D-2m) is positive.
 
-    The reduced polynomial has leading coefficient +1, so if all A_m > 0 then
-    poly(1+y) > 0 for y >= 0, i.e. poly has NO real root in [1, inf); having no
-    real root there, poly keeps the sign it has at +infinity on the whole ray,
-    which is +.  Hence K_r = poly(1) > 0.  (Descartes' rule of signs applied to
-    the shift; nothing is evaluated in floating point.)
+    READ ERR-0015 BEFORE USING THIS.  It was first written as "CRITERION S:
+    all A_m > 0 implies K_r > 0", which is true and EMPTY, because A_0 = poly(1)
+    = K_r sits inside the hypothesis.  What it actually tests is the diagonal
+    identity's content: by diagonal_identity_check below,
+
+        A_m = C(r,m) * K_{r-m} at H -> H - m,
+
+    so "all A_m > 0" says every knife on the diagonal staircase is positive, the
+    knife under test included.  Useful as a MEASUREMENT of the family, useless as
+    a criterion.  The non-circular direction is theta_max(p BOX q) < 1, which
+    implies the whole staircase without knowing any knife value first.
     """
-    A = taylor_at_one(poly)
-    return all(a > 0 for a in A)
+    return all(a > 0 for a in taylor_at_one(poly))
+
+
+def diagonal_identity_check(cases: list[tuple[int, int, fmpq, fmpq]]) -> dict:
+    """A_m = C(r,m) * K_{r-m} at H -> H-m, i.e. at D -> D-2m.  Exact.
+
+    The Taylor coefficients of the knife polynomial at x = 1 are knives again --
+    of lower depth, at lower dimension.  Proof in one line:
+    (r)_t (r-t)_m = (r)_m (r-m)_t turns the C(r-t,m) weight into a c-sequence
+    with r -> r-m and (H-r) unchanged, i.e. H -> H-m.  This is the finding the
+    circular "criterion S" was hiding (ERR-0015).
+    """
+    checks = bad = 0
+    first_bad = None
+    for n, j, lam, D in cases:
+        r = j - 1
+        H = (D + 4 * n - 7) / 2
+        A = taylor_at_one(reduced_poly(conv_e(n, r, lam, H)))
+        for m in range(r + 1):
+            rhs = fmpq(comb(r, m)) * K_from_conv(conv_e(n, r - m, lam, H - m))
+            checks += 1
+            if A[m] != rhs:
+                bad += 1
+                first_bad = first_bad or {"n": n, "j": j, "m": m, "lam": str(lam), "D": str(D)}
+    return {"checks": checks, "mismatches": bad, "first_mismatch": first_bad}
 
 
 # ------------------------------------------------------------------ the checks
@@ -219,7 +248,7 @@ def check_identity_and_rootedness(cases: list[tuple[int, int, fmpq, fmpq]]) -> d
                 "conv_all_real": ok_c,
                 "conv_why": why_c,
                 "theta_max": theta_max(conv_red),
-                "criterion_S": criterion_S(conv_red),
+                "staircase_positive": staircase_positive(conv_red),
             }
         )
     return {
@@ -254,7 +283,7 @@ def scan_below_shore(ns: tuple[int, ...], lams: tuple[fmpq, ...], fracs: tuple[f
                 H = (D + 4 * n - 7) / 2
                 for j in range(3, n):
                     poly = reduced_poly(conv_e(n, j - 1, lam, H))
-                    ok = criterion_S(poly)
+                    ok = staircase_positive(poly)
                     tested += 1
                     n_tested += 1
                     fired += ok
@@ -293,7 +322,7 @@ def control_above_shore(ns: tuple[int, ...], lams: tuple[fmpq, ...], mult: fmpq)
             H = (D + 4 * n - 7) / 2
             for j in range(3, n):
                 s = ref_sign(j, n, lam, D)
-                ok = criterion_S(reduced_poly(conv_e(n, j - 1, lam, H)))
+                ok = staircase_positive(reduced_poly(conv_e(n, j - 1, lam, H)))
                 tested += 1
                 if s < 0:
                     negatives += 1
@@ -316,6 +345,7 @@ def main() -> int:
                 for D in (fmpq(4), T_hat, T_hat * 2, T_hat * 40):
                     cases.append((n, j, lam, D))
     ident = check_identity_and_rootedness(cases)
+    diag = diagonal_identity_check(cases)
 
     lams = (fmpq(1, 10), fmpq(1, 2), fmpq(1), fmpq(5, 2), fmpq(7), fmpq(30), fmpq(300))
     fracs = (fmpq(1, 4), fmpq(1, 2), fmpq(9, 10), fmpq(99, 100), fmpq(1))
@@ -328,7 +358,8 @@ def main() -> int:
         "framework_reference": "arXiv:2309.10970 Def 2.2 / eq (33) and Prop 2.7 "
         "(Martinez-Finkelshtein, Morales, Perales)",
         "identity_and_rootedness": ident,
-        "criterion_S_below_the_shore": scan,
+        "diagonal_identity": diag,
+        "staircase_below_the_shore": scan,
         "negative_control_above_the_shore": control,
         "runtime_s": round(time.time() - t0, 1),
         **stamp(),
@@ -343,7 +374,11 @@ def main() -> int:
         f"p BOX q real-rooted in {ident['cases'] - ident['conv_not_real_rooted']}/{ident['cases']}"
     )
     print(
-        f"CRITERION S below the shore: fired {scan['fired']}/{scan['tested']}, "
+        f"diagonal identity A_m = C(r,m) K_(r-m)(H-m): "
+        f"{diag['checks']} checks, {diag['mismatches']} mismatches"
+    )
+    print(
+        f"staircase positive below the shore: held {scan['fired']}/{scan['tested']}, "
         f"failures {scan['failures_recorded']}"
     )
     for n, row in scan["per_n"].items():

@@ -23,7 +23,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.35,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -40,7 +40,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.933333333333333,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -57,7 +57,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.7,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 4,
@@ -74,7 +74,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 30.8333333333333,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 4,
@@ -91,7 +91,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.185123966942149,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -108,7 +108,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.937079889807163,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -125,7 +125,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.78600550964187,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 4,
@@ -142,7 +142,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 34.0451790633609,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 4,
@@ -159,7 +159,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.056,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -176,7 +176,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.725866666666667,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -193,7 +193,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.42506666666667,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 4,
@@ -210,7 +210,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 27.9946666666667,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 4,
@@ -227,7 +227,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.00514233241505969,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -244,7 +244,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.279453368180641,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -261,7 +261,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.556458006639825,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 4,
@@ -278,7 +278,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 11.0826342680888,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -295,7 +295,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.526005876136434,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -312,7 +312,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.888888888888889,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -329,7 +329,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.45679012345679,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -346,7 +346,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 23.037037037037,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -363,7 +363,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.336643760727318,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -380,7 +380,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.966320987654321,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -397,7 +397,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.72720987654321,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -414,7 +414,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 30.640987654321,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -431,7 +431,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.131501469034108,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -448,7 +448,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.889506172839506,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -465,7 +465,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.69876543209877,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -482,7 +482,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 32.4506172839506,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -499,7 +499,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.0154581318701319,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -516,7 +516,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.41985222396651,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -533,7 +533,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.830271341357056,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -550,7 +550,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 16.4261978021978,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -567,7 +567,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.53214871399541,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -584,7 +584,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.977678995520973,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -601,7 +601,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.58072491526034,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -618,7 +618,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 24.513428980449,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -635,7 +635,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.340575176957062,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -652,7 +652,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.04767212521935,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -669,7 +669,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.85444032324299,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -686,7 +686,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 32.5888331838391,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -703,7 +703,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.133037178498853,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -720,7 +720,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.952401239247487,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -737,7 +737,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.81212347136354,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -754,7 +754,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 34.5039720060745,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -771,7 +771,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.0156386560847631,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -788,7 +788,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.447027181083743,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -805,7 +805,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.883326664442728,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -822,7 +822,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 17.4634600708255,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -839,7 +839,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.502950683642413,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -856,7 +856,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.11405233838644,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -873,7 +873,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.8530170076934,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -890,7 +890,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 29.9109687188214,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -907,7 +907,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.321888437531144,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -924,7 +924,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.23013157678502,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -941,7 +941,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 2.21978074811103,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -958,7 +958,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 39.8109732214196,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -975,7 +975,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.125737670910603,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -992,7 +992,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.14644106096181,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -1009,7 +1009,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 2.19865012822304,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -1026,7 +1026,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 42.1789484839501,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 6,
@@ -1043,7 +1043,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.0147805915192872,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -1060,7 +1060,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.544689471305943,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -1077,7 +1077,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.07827475107056,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 6,
@@ -1094,7 +1094,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 21.3543911966547,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1111,7 +1111,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.58679641145724,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1128,7 +1128,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.942307692307692,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1145,7 +1145,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.28846153846154,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1162,7 +1162,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 18.0961538461538,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1179,7 +1179,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.416121554939206,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1196,7 +1196,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.943021521414873,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1213,7 +1213,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.59965906669508,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1230,7 +1230,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 26.5518857873429,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1247,7 +1247,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.191606991496241,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1264,7 +1264,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.955102040816327,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1281,7 +1281,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.77833594976452,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1298,7 +1298,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 33.0612244897959,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1315,7 +1315,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.0274324107620623,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1332,7 +1332,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.527377734363181,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1349,7 +1349,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.03587588227921,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1366,7 +1366,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 20.3588055030882,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1383,7 +1383,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.619941026321765,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1400,7 +1400,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.914088309191581,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1417,7 +1417,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.35483957725465,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1434,7 +1434,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 18.2675246682387,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1451,7 +1451,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.439625769358371,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1468,7 +1468,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.989650787471442,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1485,7 +1485,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.63785209489552,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1502,7 +1502,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 26.794421158845,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1519,7 +1519,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.202429722880576,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1536,7 +1536,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.972198441446573,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1553,7 +1553,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.79957325323063,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1570,7 +1570,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 33.3576917398377,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1587,7 +1587,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.0289819033488627,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1604,7 +1604,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.532626300631018,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1621,7 +1621,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.04555426199955,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1638,7 +1638,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 20.539978060269,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1655,7 +1655,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.630458949291039,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1672,7 +1672,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.974118282758123,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1689,7 +1689,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.45000163350201,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1706,7 +1706,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 18.9699242876852,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1723,7 +1723,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.447084462655141,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1740,7 +1740,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.05961920100808,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1757,7 +1757,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.75722947618085,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1774,7 +1774,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 27.706939856187,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1791,7 +1791,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.205864146707278,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1808,7 +1808,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.03941894988897,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1825,7 +1825,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.90034634876761,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1842,7 +1842,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 34.4081857258475,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1859,7 +1859,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.0294736104854832,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1876,7 +1876,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.555789485656427,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1893,7 +1893,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.08412759264838,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1910,7 +1910,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 21.1634568558637,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1927,7 +1927,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.595372241159095,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1944,7 +1944,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.04693842735288,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -1961,7 +1961,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.59071646201914,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1978,7 +1978,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 22.3034081981728,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -1995,7 +1995,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.42220302974163,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2012,7 +2012,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.16407558989202,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2029,7 +2029,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.97119705838251,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2046,7 +2046,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 32.7346644430292,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2063,7 +2063,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.194407262419296,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2080,7 +2080,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.17646266852109,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2097,7 +2097,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 2.19024243448051,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2114,7 +2114,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 40.7679060810931,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2131,7 +2131,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.0278333261023974,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2148,7 +2148,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.649811562199214,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2165,7 +2165,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.27683606602299,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2182,7 +2182,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.1069457201192,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2199,7 +2199,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.613825786877813,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2216,7 +2216,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.13955080274669,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2233,7 +2233,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.79241524855409,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2250,7 +2250,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 27.0452816278137,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2267,7 +2267,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.435289200666815,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2284,7 +2284,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.31464401396935,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2301,7 +2301,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 2.29552544909409,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2318,7 +2318,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 39.8072520725184,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2335,7 +2335,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.200432910000919,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2352,7 +2352,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.38465541661073,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2369,7 +2369,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 2.62114678008209,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2386,7 +2386,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 49.6582705992373,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2403,7 +2403,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.0286960192550621,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2420,7 +2420,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.785315284349511,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 8,
@@ -2437,7 +2437,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.54986983812265,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 8,
@@ -2454,7 +2454,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 30.604734641765,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2471,7 +2471,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.637285412715017,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2488,7 +2488,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.890579535901888,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2505,7 +2505,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 1.17932594347062,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2522,7 +2522,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 12.6587301587302,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2539,7 +2539,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.50353415325631,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2556,7 +2556,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.95212022078097,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2573,7 +2573,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.39316741785878,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2590,7 +2590,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 20.5160363185055,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2607,7 +2607,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.283237961206674,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2624,7 +2624,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.988242210464433,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2641,7 +2641,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.75896531452087,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2658,7 +2658,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 31.0464432686655,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2675,7 +2675,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.0545919687275208,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2692,7 +2692,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.682823541717057,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2709,7 +2709,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.32372192550658,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2726,7 +2726,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.6778605095083,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2743,7 +2743,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.679045518992263,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2760,7 +2760,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.927459976141488,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2777,7 +2777,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.15615213971416,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2794,7 +2794,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 12.7020642652875,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2811,7 +2811,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.53652979278401,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2828,7 +2828,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.935292283137608,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2845,7 +2845,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.41039058139929,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2862,7 +2862,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 20.645916450981,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2879,7 +2879,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.301798008441006,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2896,7 +2896,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.989783062870921,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2913,7 +2913,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.75126295930103,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2930,7 +2930,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 31.2950190118182,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2947,7 +2947,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.0581692770582307,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2964,7 +2964,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.682752852597149,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -2981,7 +2981,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.32963227296879,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -2998,7 +2998,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.9026299588728,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3015,7 +3015,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.706714499048962,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3032,7 +3032,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.939239458323613,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3049,7 +3049,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.19652583617638,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3066,7 +3066,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 12.696636869388,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3083,7 +3083,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.558391702952267,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3100,7 +3100,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.967015783052972,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3117,7 +3117,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.44281373739436,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3134,7 +3134,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 20.6694863234503,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3151,7 +3151,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.31409533291065,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3168,7 +3168,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.0031973152865,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3185,7 +3185,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.74682095068245,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3202,7 +3202,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 31.3590812850641,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3219,7 +3219,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.060539493077365,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3236,7 +3236,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.681157825641944,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3253,7 +3253,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.32981159032402,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3270,7 +3270,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.9661211338369,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3287,7 +3287,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.724768173477823,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3304,7 +3304,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.930119564543991,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3321,7 +3321,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.23810783241394,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3338,7 +3338,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 12.9301594640033,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3355,7 +3355,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.572656334599761,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3372,7 +3372,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.00067934677674,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3389,7 +3389,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.49453881166265,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3406,7 +3406,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 21.0236296931753,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3423,7 +3423,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.322119188212366,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3440,7 +3440,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.03541100556605,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3457,7 +3457,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.77226661213984,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3474,7 +3474,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 31.8769667847521,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3491,7 +3491,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.062086030327666,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3508,7 +3508,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.694937912016746,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3525,7 +3525,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.35363444778453,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3542,7 +3542,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 26.3884296275696,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3559,7 +3559,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.735052451771145,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3576,7 +3576,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.961546146036036,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3593,7 +3593,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.28700815090698,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3610,7 +3610,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 13.6066597044472,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3627,7 +3627,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.580782184115473,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3644,7 +3644,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.04074980920772,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3661,7 +3661,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.57034553259849,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3678,7 +3678,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 21.9913141256452,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3695,7 +3695,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.326689978564953,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3712,7 +3712,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.09758532353321,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3729,7 +3729,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.91386595959845,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3746,7 +3746,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 33.2239132795356,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3763,7 +3763,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.0629670154997293,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3780,7 +3780,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.736254922651656,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3797,7 +3797,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.42146233679047,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3814,7 +3814,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 27.458504326271,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3831,7 +3831,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.737696909036742,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3848,7 +3848,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.993817552118438,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3865,7 +3865,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.3441527061137,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3882,7 +3882,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 14.9319960281245,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3899,7 +3899,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.5828716318315,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3916,7 +3916,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.08789806762137,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3933,7 +3933,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.6688150481796,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3950,7 +3950,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 24.1924045255429,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -3967,7 +3967,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.327865292905219,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -3984,7 +3984,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.17677912781474,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -4001,7 +4001,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 2.08069242592985,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -4018,7 +4018,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 36.6048297319035,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -4035,7 +4035,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.0631935484243253,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -4052,7 +4052,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.805867920004918,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 12,
@@ -4069,7 +4069,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.5612350405729,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 12,
@@ -4086,7 +4086,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 30.2736860612895,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4103,7 +4103,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.669373330538349,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4120,7 +4120,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.825654797344889,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4137,7 +4137,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 1.01058185616002,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4154,7 +4154,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 8.01891891891892,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4171,7 +4171,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.579230572667041,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4188,7 +4188,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.88923841767597,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4205,7 +4205,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 1.20726824823058,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4222,7 +4222,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 13.9973396869016,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4239,7 +4239,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.396078893809674,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4256,7 +4256,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.960019190788422,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4273,7 +4273,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.58899728130497,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4290,7 +4290,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.490164720934,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4307,7 +4307,7 @@
         "conv_all_real": true,
         "conv_why": "2 sign changes on 3 exact rational points",
         "theta_max": 0.111515756857701,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4324,7 +4324,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.857222345852083,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4341,7 +4341,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.62124028363095,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4358,7 +4358,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 30.653921919228,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4375,7 +4375,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.709706628775324,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4392,7 +4392,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.866295226082687,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4409,7 +4409,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 1.04746563891671,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4426,7 +4426,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 8.05101032164809,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4443,7 +4443,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.614132290990005,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4460,7 +4460,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.920619243364239,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4477,7 +4477,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.19618742505788,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4494,7 +4494,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 14.0874073345677,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4511,7 +4511,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.41994475075463,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4528,7 +4528,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.973277250829401,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4545,7 +4545,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.58165396061383,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4562,7 +4562,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.6904091085457,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4579,7 +4579,7 @@
         "conv_all_real": true,
         "conv_why": "3 sign changes on 4 exact rational points",
         "theta_max": 0.118235173473607,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4596,7 +4596,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.858140657122932,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4613,7 +4613,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.62913576102211,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4630,7 +4630,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 30.9143316678394,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4647,7 +4647,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.739547659683097,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4664,7 +4664,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.895388937017251,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4681,7 +4681,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 1.07076409007752,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4698,7 +4698,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 8.04586915710203,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4715,7 +4715,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.63995470821685,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4732,7 +4732,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.939961328897441,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4749,7 +4749,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.2160686726915,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4766,7 +4766,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 14.0973674848075,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4783,7 +4783,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.437602165492957,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4800,7 +4800,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.980849073602528,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4817,7 +4817,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.57559631489822,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4834,7 +4834,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.7292684849551,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4851,7 +4851,7 @@
         "conv_all_real": true,
         "conv_why": "4 sign changes on 5 exact rational points",
         "theta_max": 0.123206607194185,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4868,7 +4868,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.856255495380399,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4885,7 +4885,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.62886933800465,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4902,7 +4902,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 30.9724293307712,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4919,7 +4919,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.762740162080012,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4936,7 +4936,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.916950556123688,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -4953,7 +4953,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 1.08282159792693,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4970,7 +4970,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 8.05476595867808,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -4987,7 +4987,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.660023936899956,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5004,7 +5004,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.948700931546041,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5021,7 +5021,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.23185755208326,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5038,7 +5038,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 14.1475636758478,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5055,7 +5055,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.451325539692315,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5072,7 +5072,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.989908253466687,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5089,7 +5089,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.56915991395449,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5106,7 +5106,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.8568084516277,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5123,7 +5123,7 @@
         "conv_all_real": true,
         "conv_why": "5 sign changes on 6 exact rational points",
         "theta_max": 0.127070414340693,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5140,7 +5140,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.854551303034454,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5157,7 +5157,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.63211432160041,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5174,7 +5174,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 31.1451782808428,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5191,7 +5191,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.781195926588699,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5208,7 +5208,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.932744237315686,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5225,7 +5225,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.07140768412277,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5242,7 +5242,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 8.05079183536124,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5259,7 +5259,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.675994311812828,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5276,7 +5276,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.941447748390586,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5293,7 +5293,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.24927248471334,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5310,7 +5310,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 14.1630912057515,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5327,7 +5327,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.462246110407514,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5344,7 +5344,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.00015716729279,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5361,7 +5361,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.56666676135597,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5378,7 +5378,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.908996203423,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5395,7 +5395,7 @@
         "conv_all_real": true,
         "conv_why": "6 sign changes on 7 exact rational points",
         "theta_max": 0.130145093975627,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5412,7 +5412,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.852442213818719,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5429,7 +5429,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.63224062975076,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5446,7 +5446,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 31.2209110687689,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5463,7 +5463,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.796018926199462,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5480,7 +5480,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.943283345001141,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5497,7 +5497,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.0902654980003,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5514,7 +5514,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 8.07102192799349,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5531,7 +5531,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.688821136786987,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5548,7 +5548,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.957781761628816,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5565,7 +5565,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.26920637384893,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5582,7 +5582,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 14.1985356089467,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5599,7 +5599,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.471017116094356,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5616,7 +5616,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.01383614697907,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5633,7 +5633,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.58150992684233,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5650,7 +5650,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 25.9777613698877,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5667,7 +5667,7 @@
         "conv_all_real": true,
         "conv_why": "7 sign changes on 8 exact rational points",
         "theta_max": 0.132614564964509,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5684,7 +5684,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 0.855037737741251,
-        "criterion_S": true
+        "staircase_positive": true
       },
       {
         "n": 20,
@@ -5701,7 +5701,7 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 1.63626678749126,
-        "criterion_S": false
+        "staircase_positive": false
       },
       {
         "n": 20,
@@ -5718,11 +5718,16 @@
         "conv_all_real": false,
         "conv_why": "a root enclosure excludes the real axis",
         "theta_max": 31.3069186864456,
-        "criterion_S": false
+        "staircase_positive": false
       }
     ]
   },
-  "criterion_S_below_the_shore": {
+  "diagonal_identity": {
+    "checks": 1696,
+    "mismatches": 0,
+    "first_mismatch": null
+  },
+  "staircase_below_the_shore": {
     "tested": 3094,
     "fired": 3094,
     "failures_recorded": 0,
@@ -5756,9 +5761,9 @@
     "criterion_fired_on_a_negative_knife": 0,
     "D_over_T_hat": "40"
   },
-  "runtime_s": 1.8,
-  "git": "cf884ff8eb02",
-  "git_full": "cf884ff8eb02b80cb84832aaa115d55291d03b38",
+  "runtime_s": 2.5,
+  "git": "c50b14654a35",
+  "git_full": "c50b14654a35122149fd726d1426ef9799128c1e",
   "dirty": true,
   "dirty_code_files": [
     "projects/qg-bootstrap/lab/ffp_convolution_check.py"

@@ -79,56 +79,47 @@ considered in the framework of finite multiplier sequences", and is confirmed as
 insufficient here by the measurement: our multiplier is not one of the
 zero-preserving ones.
 
-## 3. What the pass produced instead: CRITERION S
+## 3. What the pass produced instead: the diagonal identity
 
-Failing the real-rootedness route, the same reduced polynomial admits a
-different exact test. Write the reduced composition as `P(x) = SUM_{t=0}^{r}
-(-1)^t c_t e_t(b) x^{r-t}`, leading coefficient `+1`, and expand at `x = 1`:
+**Read the correction first: `docs/ERRATA.md` ERR-0015.** This section first
+claimed a positivity CRITERION, and that claim was circular. What is true is an
+identity, and it is more useful than the thing I thought I had.
 
-    P(1+y) = SUM_{m=0}^{r} A_m y^m,   A_m = SUM_t (-1)^t C(r-t, m) c_t e_t(b),
-    A_0 = K_r.
+Write the reduced composition as `P(x) = SUM_{t=0}^{r} (-1)^t c_t e_t(b) x^{r-t}`
+and expand at `x = 1`:
 
-**CRITERION S: if every `A_m > 0` then `K_r > 0`.** Proof: all `A_m > 0` makes
-`P(1+y) > 0` for `y >= 0`, so `P` has no real zero in `[1, inf)`; a real
-polynomial with no zero on a ray keeps its sign there, and at `+inf` that sign
-is `+`; hence `P(1) = K_r > 0`. (Descartes' rule of signs applied to the shift.
-Everything is evaluated in exact `fmpq`.)
+    P(1+y) = SUM_{m=0}^{r} A_m y^m,   A_m = SUM_t (-1)^t C(r-t, m) c_t e_t(b).
 
-`S` is one-sided — sufficient, not necessary — and the technique is itself
-classical (Descartes; Pólya's Positivstellensatz; certificates of positivity in
-the Bernstein basis). Its interest is entirely empirical, and the measurement is
-strong:
+**The identity.** Using `(r)_t (r-t)_m = (r)_m (r-m)_t`,
 
-| | tested | criterion S fired |
-|---|---|---|
-| n = 6 | 102 | 102 |
-| n = 12 | 306 | 306 |
-| n = 20 | 578 | 578 |
-| n = 28 | 850 | 850 |
-| n = 40 | 1258 | 1258 |
-| **total below the shore** | **3094** | **3094** |
+    A_m = C(r,m) * K_{r-m}  evaluated at  H -> H - m,  i.e. at  D -> D - 2m.
 
-over `lam` in {1/10, 1/2, 1, 5/2, 7, 30, 300}, `D/T_hat` in {1/4, 1/2, 9/10,
-99/100, 1}, and **every** depth `3 <= j <= n-1`. Negative control, far above the
-shore (`D = 40 T_hat`, `n` = 6, 12, 20): 26 negative knives seen, criterion
-fired on **0** of them.
+Verified exactly in the artefact: **1696 checks, 0 mismatches**. So the Taylor coefficients of
+the knife polynomial at `x = 1` are themselves knives — of lower depth, at lower
+dimension, walking the diagonal `(j, D) -> (j-m, D-2m)`.
 
-Put beside the two proved theorems, which are corners:
+**Why the criterion reading was worthless.** `A_0 = P(1) = K_r`. "All `A_m > 0`
+implies `K_r > 0`" is true and empty: the hypothesis contains the conclusion.
+ERR-0015.
 
-| route | status | region |
-|---|---|---|
-| Leibniz + Newton (Thm 6) | proved | `lam ~> 3 n^2` |
-| J-form bound (Thm 9) | proved | `lam ~> 32 n` |
-| Hausdorff corner | measured | `lam ~> 2n`, `j <= n/2+1` |
-| **Criterion S** | **measured, no failure yet** | **every point tested below the shore** |
+**What the sweep therefore measured.** Not a criterion firing, but the whole
+diagonal staircase being positive: 3094 of 3094 points below the shore
+(`n` = 6, 12, 20, 28, 40, every depth `3 <= j <= n-1`, `lam` in {1/10, 1/2, 1,
+5/2, 7, 30, 300}, `D/T_hat` in {1/4, 1/2, 9/10, 99/100, 1}), and, above the
+shore at `D = 40 T_hat`, 26 negative knives with the staircase intact in 0 of
+them. That is a real fact about the family; it is just not the fact I announced.
 
-**This is a measurement and nothing more.** No `A_m > 0` has been proved for any
-`m > 0`, `n <= 40` is not all `n`, and a criterion that has not failed on 3094
-points is not a theorem — this repository has killed statements that survived
-larger sweeps (ERR-0013 killed a statement that had certified at three depths).
-What it is: the first candidate all-depths criterion in the programme whose
-tested region is not a corner, and the obvious next target — prove `A_m > 0` by
-downward induction from `A_r = 1`.
+**The direction that is not circular.** By Descartes, all `A_m > 0` is
+equivalent to `P` having no real zero in `[1, inf)`. Read forwards that is
+circular; read backwards it is not:
+
+    theta_max(p BOX_N q) < 1   ==>   K_{r-m}(D - 2m) > 0 for every m = 0..r,
+
+i.e. a single root-location bound on a Schur–Szegő composition delivers the
+entire diagonal at once, without knowing any knife value in advance. Bounding
+the largest root of a finite free multiplicative convolution is a studied
+problem — it is what Marcus, Spielman and Srivastava used the `S`-transform for.
+That is the live route out of this pass.
 
 ## 4. Claim-state changes this pass forces
 

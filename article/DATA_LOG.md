@@ -4772,3 +4772,32 @@ Also recorded: INSPIRE title searches for "Schur-Szego composition" and
 "finite free convolution" return 0 records, with the control query returning
 the expected papers — weak evidence that the framing is absent from the
 amplitude literature, and labelled weak in results/FFP_LITERATURE_PASS.md.
+
+### 2026-08-29, same day — CORRECTION: criterion S was circular; the identity behind it is not
+
+An hour after committing the pass I asked what `A_m` actually is, and the answer
+killed the criterion and paid for itself twice over.
+
+    A_m = C(r,m) * K_{r-m} evaluated at H -> H - m, i.e. at D -> D - 2m.
+
+Exact: 1236 ad-hoc checks and then 1696 inside the artefact, 0 mismatches.
+Proof is one line: (r)_t (r-t)_m = (r)_m (r-m)_t turns the C(r-t,m) weight into
+the c-sequence with r -> r-m and (H-r) untouched.
+
+At m = 0 that reads A_0 = K_r. So "all A_m > 0 implies K_r > 0" has the
+conclusion sitting inside the hypothesis — true, and empty. ERR-0015 records it.
+The sweep is not wrong, it just measured something else: the whole DIAGONAL
+STAIRCASE (j,D) -> (j-m, D-2m) is positive at all 3094 points below the shore,
+and intact at 0 of the 26 negative knives above it.
+
+WHAT THIS BUYS. The Taylor coefficients of the knife polynomial at x = 1 are
+knives again, lower depth and lower dimension. Two consequences:
+  * the family is self-similar along that diagonal, which no route so far used;
+  * the non-circular direction is theta_max(p BOX_N q) < 1 ==> the entire
+    diagonal positive at once, with no knife value known in advance. Bounding
+    the largest root of a Schur-Szego composition is a studied problem (the
+    S-transform bounds of Marcus-Spielman-Srivastava). That is the live route.
+
+Caught by asking what the object was, not by a check — ERR-0012's lesson again,
+one level up: before measuring a criterion, expand its hypothesis at the trivial
+index and see whether the conclusion is already there.
