@@ -556,12 +556,12 @@ carried by `K`. So the monomial test was certifying a strictly larger set than t
 region. One Bernstein change of basis along that axis, with `v` and `K3` still in
 the orthant, fixes it:
 
-| J | 31 | 32 | 35 | 40 |
-|---|---|---|---|---|
-| monomials negative | 70 | 143 | 206 | 392 |
-| **Bernstein coefficients negative** | **0 of 8215** | **0 of 8485** | **0 of 9295** | **0 of 10645** |
+| J | 31 | 32 | 35 | 40 | 50 |
+|---|---|---|---|---|---|
+| monomials negative | 70 | 143 | 206 | 392 | 746 |
+| **Bernstein coefficients negative** | **0 of 8215** | **0 of 8485** | **0 of 9295** | **0 of 10645** | **0 of 13345** |
 
-So (R) is **certified at every `J` from 7 to 40** — by monomial signs up to 29, by
+So (R) is **certified at every `J` tested from 7 to 50** — by monomial signs up to 29, by
 monomial signs inside the regime at 30, and by one Bernstein step in `thL` from 31
 on. That escalation is the same one the far-below criterion itself used past
 `j = 8`, and it is now part of `lab/repair_certificate.py`: it runs automatically

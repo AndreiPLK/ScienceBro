@@ -5,6 +5,13 @@
   "monomials": 10352,
   "negative_monomials": 746,
   "manifestly_positive": false,
+  "bernstein_in_thL": {
+    "axis": "thL on [0,1]",
+    "coefficients": 13345,
+    "negative": 0,
+    "certified": true
+  },
+  "certified": true,
   "sample_negatives": [
     {
       "exponents": {
@@ -192,12 +199,14 @@
     "terms_u": 886,
     "terms_inner": 5207
   },
-  "runtime_s": 70.8,
-  "git": "b9e1a9ca7848",
-  "git_full": "b9e1a9ca78483f72c4f7d87ff2ec273b319c0cf1",
-  "dirty": false,
-  "dirty_code_files": [],
-  "dirty_count": 0,
+  "runtime_s": 75.2,
+  "git": "3e9d7bf0cfcc",
+  "git_full": "3e9d7bf0cfcc0e9636a6c297ee29a3aeb585629f",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/farbelow_endtoend_check.py"
+  ],
+  "dirty_count": 1,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"

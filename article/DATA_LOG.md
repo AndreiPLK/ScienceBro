@@ -5549,3 +5549,15 @@ ingredients against each other.
 Also recorded, so it is not retried: guessing the second-order shape g(theta) from
 its six measured values does not work -- the best simple candidate, 3f - 1, is off
 by 19%. It needs the actual Laplace expansion.
+
+### 2026-08-29 — (R) certified to J = 50, and the conclusion checked end to end
+
+J = 50 in-regime: 746 negative monomials for the crude test, 0 negative of 13345
+Bernstein coefficients -> CERTIFIED. So the repair inequality holds at every depth
+tested from 7 to 50, with no exception.
+
+And the conclusion itself was tested against the object, not only its ingredients:
+lab/farbelow_endtoend_check.py assembles N(y) and evaluates it exactly over the
+region crossed with y up to 1e5 -- j = 9: 252 points, 0 non-positive; j = 11: 252
+points, 0 non-positive. That is the check a separated verification cannot do,
+since the grouping argument could in principle be wrong while both its legs pass.

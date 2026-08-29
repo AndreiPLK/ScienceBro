@@ -162,9 +162,9 @@ place is now repaired:
   130, 165 of them), always that one;
 * **the repair is certified.** Grouping it with its neighbours reduces positivity
   to `(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0`, which is UNCONDITIONAL (holds at
-  all 504 region points, not just the 117 dips) and **certified at every `J` from
-  7 to 40** — monomial signs to 29, in-regime monomial signs at 30, one Bernstein
-  step in `thL` from 31 on (`results/repair_certificate_j*.json`);
+  all 504 region points, not just the 117 dips) and **certified at every `J` tested
+  from 7 to 50** — monomial signs to 29, in-regime monomial signs at 30, one
+  Bernstein step in `thL` from 31 on, with no depth failing (`results/repair_certificate_j*.json`);
 * **together they close `j = 9..15`** by manifest positivity plus one grouping,
   where the programme previously needed the interval-Bernstein route. The two legs
   are checked on the same set for `j <= 23`; beyond that only on the intersection.

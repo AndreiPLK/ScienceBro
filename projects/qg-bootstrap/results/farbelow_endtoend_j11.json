@@ -1,0 +1,45 @@
+{
+  "j": 11,
+  "what": "N(y) evaluated exactly on the far-below region; the conclusion of the two-leg proof, tested against the object rather than against its pieces",
+  "points": 252,
+  "non_positive": 0,
+  "failures": [],
+  "grid": {
+    "thL": [
+      "0",
+      "1/2",
+      "1"
+    ],
+    "v": [
+      "0",
+      "3",
+      "40",
+      "400"
+    ],
+    "K3": [
+      "0",
+      "5",
+      "60"
+    ],
+    "y": [
+      "0",
+      "1/10",
+      "1",
+      "10",
+      "100",
+      "1000",
+      "100000"
+    ]
+  },
+  "runtime_s": 302.5,
+  "git": "3e9d7bf0cfcc",
+  "git_full": "3e9d7bf0cfcc0e9636a6c297ee29a3aeb585629f",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/farbelow_endtoend_check.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
