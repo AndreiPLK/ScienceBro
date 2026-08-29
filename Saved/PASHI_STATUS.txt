@@ -1,10 +1,11 @@
-PASHI - autonomous run until 23:00 - last update 16:25
+PASHI - autonomous run until 23:00 - last update 17:05
 
-[############....]  repair mechanism found; heavy runs PAUSED for the founder
-NOW:   light work only -- a game (cod26-cod) is running, free RAM 7.6 GB
-LAST:  all negatives sit in c_{J-2}; closed form for it verified (0 mismatches)
-       repair candidate: c_{J-2}^2 <= 4 c_{J-1} c_{J-3}; at j=9 it holds at all
-       6 points where c_{J-2} < 0, and the stronger log-concave form does too
-QUEUED (needs the machine free): the same test at j = 10, 11, 12
-NEXT while paused: derive c_{J-3} in closed form the same way, on paper, so the
-       repair inequality becomes fully explicit and provable rather than sampled
+[###############.]  three of my own claims corrected; one law replaced-in-waiting
+NOW:   depth-boundary map running to n = 100 (held-out test of the candidate law)
+LAST:  ERR-0017 - the recorded depth law was fitted on multiples of four and
+       fails in 31 of 51 cases; the same sampling mistake was already paid for
+       on 18 Aug (even j), so the lesson is now a rule in lab memory
+       fixed the int->str landmine that kept these probes below n ~ 100
+       page builder written in the house pattern (refuses to emit if falsified)
+NEXT:  when the map lands - score the candidate (4n+32)/9 on n = 62..100,
+       build and publish the page, then back to the far-below line
