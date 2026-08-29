@@ -269,6 +269,19 @@ So the leading obstruction of (R) is J-uniform as soon as the Newton-excess lemm
 is proved, and that lemma is a self-contained question about
 `e_t({(n-2k)^2})` — squares of an arithmetic progression.
 
+**Stress-tested to `n = 200`**, over every `t < n/2`: the largest constant needed
+is **1.9862, attained at the smallest `n = 8`**, not at the largest. So `1 + 2/n`
+is stable across the range and tight only at the edge of the physical domain.
+
+**Where the `1/n` comes from, and it is not special to us.** Writing
+`p_t = e_t/C(N,t)`, the Newton excess is the second difference of `log p_t`, and
+for a family whose empirical measure has a limit as `N -> inf` with `t/N -> theta`
+fixed, `log p_t` converges to a concave limit shape whose curvature contributes at
+order `1/N`. The control run above confirms the same size of excess for undoubled
+families of the same size. So the lemma is a QUANTITATIVE version of a general
+asymptotic, and the work is in the constant, not the shape — which points at
+large-deviations/Legendre analysis of `e_t` rather than at anything about knives.
+
 ## What the two pieces prove together
 
 The far-below criterion asks for `N(y) = SUM_k c_k y^k > 0` on `y >= 0`. Put the
