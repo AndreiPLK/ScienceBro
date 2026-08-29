@@ -5795,3 +5795,12 @@ before (B) and (C) were introduced as a route around it.
 
 Practical upshot: (B) is a theorem for t <= 100 by finite proofs, and (C) should be
 attacked through the expansion rather than head-on.
+
+### 2026-08-29 — the second-order shape measured, as a target for the expansion
+
+g(theta) by Richardson extrapolation of n(M - f) from n = 120 and 240 (which agree
+to about 1%): 1.386, 1.564, 1.775, 2.028, 2.335, 2.711, 3.179, 3.770, 4.533, 5.350
+at theta = 0.05 .. 0.49. Positive and increasing, max about 5.35 on the needed
+range. Positivity gives (C); the size is the room the bound has. That is the
+target for whoever proves the expansion, and it is the last analytic ingredient
+the bridge needs.

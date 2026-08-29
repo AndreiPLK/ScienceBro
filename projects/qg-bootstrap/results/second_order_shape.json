@@ -1,0 +1,89 @@
+{
+  "what": "the second-order coefficient g(theta) in M_{n,t} = f(t/n) + g(t/n)/n + O(1/n^2)",
+  "why": "proving this expansion with explicit remainder closes BOTH remaining bridge conjectures at once -- the bound and (C)",
+  "method": "n(M - f) evaluated at n = 120 and 240, Richardson-extrapolated in 1/n",
+  "rows": [
+    {
+      "theta": 0.05,
+      "f": 0.852931,
+      "n_120": 1.39,
+      "n_240": 1.388,
+      "g_extrapolated": 1.386
+    },
+    {
+      "theta": 0.1,
+      "f": 0.911739,
+      "n_120": 1.5732,
+      "n_240": 1.5686,
+      "g_extrapolated": 1.5641
+    },
+    {
+      "theta": 0.15,
+      "f": 0.977454,
+      "n_120": 1.7903,
+      "n_240": 1.7828,
+      "g_extrapolated": 1.7753
+    },
+    {
+      "theta": 0.2,
+      "f": 1.051366,
+      "n_120": 2.0504,
+      "n_240": 2.0394,
+      "g_extrapolated": 2.0284
+    },
+    {
+      "theta": 0.25,
+      "f": 1.135107,
+      "n_120": 2.3655,
+      "n_240": 2.3502,
+      "g_extrapolated": 2.3349
+    },
+    {
+      "theta": 0.3,
+      "f": 1.230779,
+      "n_120": 2.7523,
+      "n_240": 2.7315,
+      "g_extrapolated": 2.7108
+    },
+    {
+      "theta": 0.35,
+      "f": 1.341129,
+      "n_120": 3.2341,
+      "n_240": 3.2063,
+      "g_extrapolated": 3.1785
+    },
+    {
+      "theta": 0.4,
+      "f": 1.469817,
+      "n_120": 3.8445,
+      "n_240": 3.8072,
+      "g_extrapolated": 3.7699
+    },
+    {
+      "theta": 0.45,
+      "f": 1.621839,
+      "n_120": 4.6334,
+      "n_240": 4.5829,
+      "g_extrapolated": 4.5325
+    },
+    {
+      "theta": 0.49,
+      "f": 1.764863,
+      "n_120": 5.4811,
+      "n_240": 5.4154,
+      "g_extrapolated": 5.3497
+    }
+  ],
+  "max_g_on_the_needed_range": 5.3497,
+  "runtime_s": 0.0,
+  "git": "bf94874215dc",
+  "git_full": "bf94874215dc3ea90a1591bbaa37a279dce39938",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/second_order_shape.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

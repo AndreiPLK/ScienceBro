@@ -130,6 +130,19 @@ the bridge asked for before (B) and (C) were introduced as a route around it.
 That is worth stating plainly: (B) is now a theorem for `t <= 100` by finite
 proofs, and (C) is best attacked not directly but through the expansion.
 
+**And the target has numbers.** `lab/second_order_shape.py` measures `g` by
+Richardson extrapolation of `n(M - f)` from `n = 120` and `240` (the two agree to
+about 1%, so the extrapolation is not doing heavy lifting):
+
+| theta | 0.05 | 0.1 | 0.2 | 0.3 | 0.4 | 0.45 | 0.49 |
+|---|---|---|---|---|---|---|---|
+| `f` | 0.853 | 0.912 | 1.051 | 1.231 | 1.470 | 1.622 | 1.765 |
+| `g` | 1.386 | 1.564 | 2.028 | 2.711 | 3.770 | 4.533 | 5.350 |
+
+`g` is positive and increasing, with a maximum of about **5.35** on the range the
+bridge needs. Positivity is what gives (C); the size is what the bound has room
+for.
+
 ## What is proved and what is not
 
 **Not proved in general:** (B) and (C). They are conjectures with 2050 and 72 clean

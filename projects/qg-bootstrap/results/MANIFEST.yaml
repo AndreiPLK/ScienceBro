@@ -1023,6 +1023,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  second_order_shape.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   shore_gap_scan.json:
     added: untracked
     note: referenced by a paper, document or lab module
