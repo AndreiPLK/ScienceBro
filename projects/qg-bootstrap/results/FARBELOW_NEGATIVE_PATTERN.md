@@ -301,13 +301,38 @@ and since `S_2 ~ n^5/5` against `e_1^2 ~ n^6/9`, this is
 at `n = 5` falling to 0.809 at `n = 240` — the limit `4/5` on the nose. That is
 `f(0)` of the table above.
 
+**The limit shape, derived.** For that measure,
+
+    L(x) = INT_0^1 log(1 + x w^2) dw = log(1+x) - 2 + 2 arctan(sqrt x)/sqrt x,
+
+and the Legendre stationarity `L'(x) = theta/x` collapses to something remarkably
+clean. With `u = sqrt x`,
+
+    L'(x) = [1 - arctan(u)/u]/x      ==>      theta = 1 - arctan(u)/u,
+
+a bijection `(0, inf) -> (0, 1)`. Since `f = -g''` with
+`g(theta) = inf_x[L(x) - theta log x] - H(theta)`,
+
+    f(theta) = (2/u) / (dtheta/du) - 1/theta - 1/(1-theta),
+    dtheta/du = arctan(u)/u^2 - 1/(u(1+u^2)).
+
+**Checked against the measurement**, and the residual is the expected `O(1/n)`:
+
+| theta | 0.05 | 0.1 | 0.2 | 0.3 | 0.4 | 0.45 | 0.49 |
+|---|---|---|---|---|---|---|---|
+| derived `f` | 0.853 | 0.912 | 1.051 | 1.231 | 1.470 | 1.622 | 1.765 |
+| measured, `n = 240` | 0.859 | 0.918 | 1.060 | 1.242 | 1.486 | 1.641 | 1.777 |
+
+and `f(theta) -> 0.801, 0.8001` at `theta = 10^-3, 10^-4` — the `4/5` of the exact
+`t = 1` rung, from the other side.
+
 **So the lemma splits into an asymptotic and a finite check.** The limiting
 empirical measure is explicit: with `x = k/n`, `b/n^2 -> (1-2x)^2`, i.e. the law of
 `V^2` for `V` uniform on `(-1,1)` — density `1/(2 sqrt(v))` on `(0,1)`, a
-`Beta(1/2, 1)`. The limit shape `f(theta)` is the second difference of the
-Legendre-type limit of `log p_t` for that measure; the lemma is `f(theta) <= 2` on
-`(0, 1/2)` plus an exact check for `n` below some `n_0`. Both halves are ordinary
-work — no knives, no `lam`, and the measure is named.
+`Beta(1/2, 1)`. The lemma is now exactly: **`f(theta) < 2` on `(0, 1/2)`** for the explicit `f`
+above, plus an exact check for `n` below some `n_0`. Both halves are ordinary
+one-variable work — no knives, no `lam`, and both the measure and the function are
+written down.
 
 **Where the `1/n` comes from, and it is not special to us.** Writing
 `p_t = e_t/C(N,t)`, the Newton excess is the second difference of `log p_t`, and

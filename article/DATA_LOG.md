@@ -5400,3 +5400,22 @@ the law of V^2 for V uniform on (-1,1), density 1/(2 sqrt v) on (0,1) --
 Beta(1/2,1). So the lemma is: f(theta) <= 2 on (0,1/2) for the limit shape of that
 measure, plus an exact check below some n_0. Ordinary analysis, with the measure
 named and no knives in it.
+
+### 2026-08-29 — the limit shape is derived, and it is a one-variable problem
+
+For the limiting measure (density 1/(2 sqrt v) on (0,1)),
+L(x) = INT_0^1 log(1+x w^2) dw = log(1+x) - 2 + 2 arctan(sqrt x)/sqrt x, and the
+Legendre stationarity collapses: with u = sqrt x, L'(x) = [1 - arctan(u)/u]/x, so
+
+    theta = 1 - arctan(u)/u,
+    f(theta) = (2/u)/(dtheta/du) - 1/theta - 1/(1-theta),
+    dtheta/du = arctan(u)/u^2 - 1/(u(1+u^2)).
+
+Derived vs measured at n = 240: 0.853/0.859, 0.912/0.918, 1.051/1.060,
+1.231/1.242, 1.470/1.486, 1.622/1.641, 1.765/1.777 -- the residual is the expected
+O(1/n). And f -> 0.8001 as theta -> 0, matching the exact t = 1 rung's 4/5 from the
+other side.
+
+So the named lemma is now: f(theta) < 2 on (0, 1/2) for that explicit function,
+plus an exact check for small n. That is ordinary one-variable analysis, and it is
+the piece handed to the parallel chat.
