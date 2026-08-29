@@ -8,7 +8,7 @@ dependencies:
 evidence:
   - holds on all 98 proved rungs (t = 1..14, r = 3..9), degrees 38 to 18936
   - slack from 3 to 24 and growing: the excess grows like r/4, the bound like 2(t+r)
-  - the excess is exactly 0 on all 49 rungs where t and r have opposite parity
+  - the excess is exactly 0 on all 49 rungs where t+r is ODD, i.e. exactly when the centred spectrum at n = t+r contains no zero; 49 rungs on each side, no exceptions
 references:
 ---
 

@@ -6142,3 +6142,18 @@ the entire hierarchy on its whole domain, and with it (B).
 
 Also: the excess is exactly 0 on all 49 rungs where t and r have opposite parity. No
 exceptions. That is the doubling of the spectrum showing through.
+
+### 2026-08-30 -- the parity law is the zero in the spectrum
+
+The parity in the shift table is not a coincidence. Opposite parity of t and r means
+t+r is ODD, and the centred multiset {(n-2k)^2} contains the element 0 exactly when n is
+EVEN. So the law is:
+
+  the minimal shift is exactly t+r  <=>  the centred spectrum at n = t+r has no zero.
+
+49 rungs on each side of that dichotomy, no exceptions. When a zero sits in the spectrum
+at the shift point, that degeneracy pushes the needed shift 2 to 4 further out.
+
+Worth having because it converts an empirical parity into a mechanism, and it says where
+a proof of (U2) should start: the odd case, where there is no zero to handle and the
+minimal shift is exactly the edge of where the objects exist.

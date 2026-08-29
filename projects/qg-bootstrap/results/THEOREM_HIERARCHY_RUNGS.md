@@ -73,8 +73,19 @@ Extending to 98 rungs settled the structure. Writing the excess `s - (t + r)`:
 | 9 | 4 | 0 | 3 | 0 | 3 | 0 | 3 | 0 | 2 | 0 | 2 | 0 | 2 | 0 |
 
 **The excess is exactly 0 whenever `t` and `r` have opposite parity** -- 49 rungs, no
-exceptions. That is presumably the doubling of the spectrum showing through: the centred
-multiset is a half spectrum taken twice.
+exceptions, against 49 rungs with excess 2, 3 or 4 when the parities agree.
+
+And the parity is not a coincidence, it is the spectrum. Opposite parity means `t + r`
+is ODD, and the centred multiset `{(n-2k)^2}` contains the element `0` exactly when `n`
+is EVEN. So the law reads:
+
+> the minimal shift is exactly `t + r` if and only if the centred spectrum at
+> `n = t + r` contains no zero.
+
+Tested on all 98 rungs, 49 on each side, no exceptions. When the spectrum at the shift
+point carries a zero, that degeneracy pushes the needed shift 2 to 4 further out. This
+turns an empirical parity into a mechanism, and it says where a proof should start: the
+odd case, where there is no zero to handle.
 
 When the parities agree the excess is 2 far from the corner and grows slowly towards it.
 Along `t = 1` it is 2, 3, 3, 4 at `r = 3, 5, 7, 9`, matching `2 + floor((r-1)/4)`.
