@@ -151,38 +151,50 @@ The rule that came out of it, saved to memory: before recording a law, check the
 sample can distinguish it from its nearest rival — and if a claim PRUNES a
 search, keep sampling the pruned branch.
 
-**THE ONE PROVED THING FROM 29 AUG.** The neighbour repair is no longer a
-measurement. It is unconditional (it holds at all 504 region points, not only the
-117 dips), so it is the single polynomial statement
+**WHERE 29 AUGUST ENDED — the far-below front now stands on proofs.**
 
-    (R)   4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0   on the far-below region,
+The far-below criterion (`knife_farbelow2`) proves knife positivity by manifest
+positivity and fails from `j = 9`. It fails narrowly and in one place, and that
+place is now repaired:
 
-and built exactly over `Q(sqrt3)` in the region variables — all nonnegative there —
-it expands with **no negative monomial at all**: 1322 / 1742 / 2372 / 3212 / 4052 /
-5102 monomials at `J = 7, 9, 12, 16, 20, 25`, zero negatives in each
-(`results/repair_certificate_j<J>.json`). Nonnegative monomials over a nonnegative
-orthant is a proof. The general `y`-coefficient formula it rests on was verified
-against the assembled polynomial at EVERY `k` for `j = 6` and `j = 9`, 0 mismatches.
-Its sign comes from one place: `w e2 - u den e1p` is negative in all 1520 of its
-monomials, and `4 w poch_2 s^4 E_{J-3} den^2` beats it and `outer^2` term by term.
+* **the failure is one coefficient.** Every negative monomial sits in the
+  `y`-coefficient of degree `J-2` — measured at `j = 9..15` (11, 30, 41, 71, 96,
+  130, 165 of them), always that one;
+* **the repair is certified.** Grouping it with its neighbours reduces positivity
+  to `(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0`, which is UNCONDITIONAL (holds at
+  all 504 region points, not just the 117 dips) and **certified at every `J` from
+  7 to 40** — monomial signs to 29, in-regime monomial signs at 30, one Bernstein
+  step in `thL` from 31 on (`results/repair_certificate_j*.json`);
+* **together they close `j = 9..15`** by manifest positivity plus one grouping,
+  where the programme previously needed the interval-Bernstein route. The two legs
+  are checked on the same set for `j <= 23`; beyond that only on the intersection.
 
-**Still NOT proved, and it is the other leg:** that every `c_k` with `k != J-2` is
-nonnegative. That stays a measurement and holds only while `n >= 2J-3`.
+**What is still measured, not proved:** that every `c_k` with `k != J-2` is
+nonnegative. It holds on 1476 points tested on BOTH sides of its boundary, and the
+boundary is `n >= 2J-3` (`results/farbelow_regime_map.json`).
 
-**The far-below front (29 Aug), and its exact limit.** Every negative monomial of
-the `knife_farbelow2` criterion sits in ONE `y`-coefficient (degree `J-2`), with
-closed form verified; the neighbour repair `c_{J-2}^2 <= 4 c_{J-1} c_{J-3}` holds
-at all 91 measured dips over `J = 5..40`. **But the localisation itself holds only
-while `n >= 2J-3`** (five of five at `J = 25, 26, 28, 32, 35`); past that several
-coefficients dip and one pairing cannot absorb them. So this route covers
-`j <= (n+3)/2` and no further.
+**The road to depth-uniformity, and how much of it is built.** A `J`-uniform (R)
+reduces to two statements. One is now **proved twice** — by a one-line cancellation
+here and independently by the parallel chat. The other is a lemma about the
+central factorial family, `p_t^2/(p_{t-1}p_{t+1}) <= 1 + 2/n`, and it has been
+taken apart:
 
-**Where every road stopped today:** condition (E) from the parallel chat is
-vacuous for `r > (2n+1)/4`; the far-below localisation ends at `j <= (n+3)/2`; the
-Hausdorff cutoff drifts near `n/2`. Three unrelated mechanisms breaking in the
-deep half of the depth range. Tested and rejected as a common cause: the peak of
-the terms `T_t`, which sits at `n/4`-`n/3` and moves with `lam` while the
-boundaries do not.
+* its **asymptotic half is proved** (`results/LIMIT_SHAPE_BOUND.md`): the limit
+  shape is `f(theta) = (2/u)/(dtheta/du) - 1/theta - 1/(1-theta)` with
+  `theta = 1 - arctan(u)/u`, and `f < 2` on `(0, 1/2)`. That proof came from the
+  parallel chat and needed one repair: its factorisation had `(z-1)` where the
+  quartic has `z = 1` as a DOUBLE root;
+* what is left is the **bridge to finite `n`**, and it has a number: the
+  correction is `g(theta)/n` with `g` rising to about 5.3 at `theta -> 1/2`.
+  Granting `g <= 5.6`, the lemma closes by arithmetic for `n >= 29`, and the
+  region has `n >= 44`.
+
+**A structural fact found on the way, absent from the repository before:** the
+B-form's multiset is DOUBLED — `b_{n-k} = b_k` — so `prod_k (u - b_k)` is a perfect
+square times at most one linear factor, and `E_{2t}` is the self-convolution of a
+half-set of `floor(n/2)` distinct values (`results/DOUBLED_MULTISET.md`). My
+hypothesis that this explains the half-depth boundaries was refuted the same hour
+by the control written beside it.
 
 **Refuted the same day, do not retry:** "the highest-`s` term dominates". Measured
 `rest/dominant` = 3 to 3.2e8 (`results/dominant_term_probe.json`). The terms are
