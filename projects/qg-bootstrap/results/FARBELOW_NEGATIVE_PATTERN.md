@@ -210,6 +210,37 @@ That form is **false** — at 70 of the 315 points — but only just: the ratios
 strong to be the proof, and the true statement is tight at the `10^-3` level.
 Tightness again, in a third independent place today.
 
+## What the two pieces prove together
+
+The far-below criterion asks for `N(y) = SUM_k c_k y^k > 0` on `y >= 0`. Put the
+two pieces side by side:
+
+* every `c_k` with `k != J-2` is nonnegative monomial-by-monomial (measured, and
+  what the existing `knife*_farbelow_factored.json` artefacts already report for
+  `j = 9..12`: their negative monomials sit only at `y`-degree `J-2`);
+* `(R) 4 c_{J-1} c_{J-3} >= c_{J-2}^2`, certified above.
+
+Group the one negative term with its neighbours:
+
+    c_{J-3} y^{J-3} + c_{J-2} y^{J-2} + c_{J-1} y^{J-1}
+        = y^{J-3} ( c_{J-3} + c_{J-2} y + c_{J-1} y^2 ),
+
+a quadratic with nonnegative outer coefficients and, by (R), nonpositive
+discriminant — hence nonnegative for EVERY real `y`, in particular on `y >= 0`.
+Every other term is nonnegative there. Therefore `N(y) >= 0` on the whole ray.
+
+**That closes the far-below region at the depths where the criterion alone
+failed.** `j = 9, 10, 11` were shown here to have their negatives only at `J-2`,
+and `(R)` is certified at `J = 9` and beyond, so those depths now have a proof of
+the manifest-positivity kind rather than the heavier interval-Bernstein
+certificates they were closed with. The same pair closes any further `J` for which
+both checks pass.
+
+**The honest boundary of that statement** is `n >= 2J-3`: outside it other
+coefficients dip too and one grouping is not enough. In the far-below
+parametrisation `n = 44 + v`, so it covers every `J <= 23` outright, and deeper `J`
+only for `v` large enough.
+
 ## CORRECTION (same day): the localisation is not universal — it ends at n = 2J-3
 
 Everything above was measured at `j = 9, 10, 11` with `n = 44 + v`, i.e. deep

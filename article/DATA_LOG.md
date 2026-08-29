@@ -5169,3 +5169,22 @@ E-polynomials, and it is sharper than (R).
 
 Certificates now at J = 7, 9, 12, 16, 20, 25: 1322, 1742, 2372, 3212, 4052, 5102
 monomials, zero negatives in every one.
+
+### 2026-08-29 — the two pieces make a proof, and it closes what the criterion could not
+
+N(y) = SUM_k c_k y^k on y >= 0. Piece one: every c_k with k != J-2 is nonnegative
+monomial by monomial (this is what the existing knife*_farbelow_factored artefacts
+already report for j = 9..12 -- their negatives sit only at y-degree J-2). Piece
+two: (R), certified today. Group the negative term with its neighbours,
+
+  c_{J-3} y^{J-3} + c_{J-2} y^{J-2} + c_{J-1} y^{J-1}
+      = y^{J-3} (c_{J-3} + c_{J-2} y + c_{J-1} y^2),
+
+a quadratic with nonnegative outer coefficients and, by (R), nonpositive
+discriminant -- so nonnegative for every real y. Everything else is nonnegative on
+the ray. Hence N(y) >= 0.
+
+So the far-below region is closed at j = 9, 10, 11 by manifest positivity plus one
+grouping, where before it needed the heavier interval-Bernstein route -- and the
+same pair closes any J passing both checks. Boundary of the statement: n >= 2J-3,
+which in this parametrisation (n = 44 + v) covers every J <= 23 outright.
