@@ -51,9 +51,15 @@ THL, Y, V, K3 = 0, 1, 2, 3
 NAMES = ("thL", "y", "v", "K3")
 
 
-def region():
-    """The far-below parametrisation, as Q3Poly objects."""
+def region(v_offset: int = 0):
+    """The far-below parametrisation, as Q3Poly objects.
+
+    v_offset shifts the origin of v, i.e. starts the region at n = 44 + v_offset
+    instead of n = 44.  Used to test statements that only hold inside the regime
+    n >= 2J-3, where the region's own corner lies outside it.
+    """
     thl, y, vv, k3 = (Q3Poly.var(NV, i) for i in range(NV))
+    vv = vv + v_offset
     lam = (vv + k3 + 51 + thl) * Q3Poly.const(NV, 0, fmpq(1, 3))  # (K+51+thL) sqrt3/3
     kk = vv + k3 + 53
     m_expr = vv + 41

@@ -5297,3 +5297,16 @@ being written, by the test written next to it.
 
 What survives: the doubling itself (proved, and absent from the repository until
 today), and the four boundaries at half depth, now with no explanation at all.
+
+### 2026-08-29 — the break at J = 30 was mine, not the mathematics'
+
+The far-below parametrisation starts at n = 44, but the one-negative-coefficient
+structure holds only for n >= 2J-3 -- at J = 30 that means n >= 57. I had been
+certifying (R) on the whole region, corner included, i.e. partly OUTSIDE the
+regime where the proof it serves applies at all. Restricting the region to its own
+regime (v starting at 13 instead of 0), the same build gives 6152 monomials and
+ZERO negatives: manifestly positive after all.
+
+So (R) is certified at J = 30 where it is needed, and the "break" was a statement
+about my test domain, not about the inequality. J = 40, 50, 60 with the matching
+offsets are running.

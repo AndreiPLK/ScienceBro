@@ -382,7 +382,17 @@ and expanded, it has **no negative monomial at all**:
 | monomials of (R) | 1322 | 1742 | 2372 | 3212 | 4052 | 5102 | 5312 | 5522 | 5732 | 5942 | 6152 |
 | negative | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **39** |
 
-**The certificate covers `J = 7..29` and breaks at exactly `J = 30`** — and it
+**The break at `J = 30` was an artefact of testing outside the statement's own
+regime.** The far-below parametrisation starts at `n = 44`, but the
+one-negative-coefficient structure only holds for `n >= 2J-3`, which at `J = 30`
+means `n >= 57`. Restricting the region to its own regime — starting `v` at 13
+instead of 0 — the same build gives **6152 monomials and 0 negatives**:
+manifestly positive after all (`results/repair_certificate_j30_v13.json`). So
+(R) is certified at `J = 30` where the proof it serves actually applies.
+
+The table below is therefore the picture on the FULL region, corner included:
+
+**On the full region, the certificate covers `J = 7..29` and stops at `J = 30`** — and it
 breaks in the narrowest way possible: all 39 negative monomials carry the same
 `thL^3 K3^1 y^0`, differing only in the power of `v` (0..38). One exponent line
 out of 6152 monomials. `(R)` itself was not seen to fail there — the 504-point

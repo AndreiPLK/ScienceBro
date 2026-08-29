@@ -913,8 +913,12 @@ artefacts:
     status: unreviewed
   repair_certificate_j30.json:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
+  repair_certificate_j30_v13.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   repair_certificate_j40.json:
     added: untracked
     note: referenced nowhere; classify before relying on it

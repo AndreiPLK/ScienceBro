@@ -63,8 +63,8 @@ def e_sym(items: list, t: int) -> Q3Poly:
     return acc[t]
 
 
-def build_R() -> tuple[Q3Poly, dict]:
-    lam, D_num, den, m_expr = region()
+def build_R(v_offset: int = 0) -> tuple[Q3Poly, dict]:
+    lam, D_num, den, m_expr = region(v_offset)
     n_expr = m_expr + 3
     s = lam + (n_expr - 1)
     c_const = 4 * n_expr - 4 * J - 1
@@ -97,7 +97,8 @@ def build_R() -> tuple[Q3Poly, dict]:
 
 def main() -> int:
     t0 = time.time()
-    R, info = build_R()
+    v_offset = int(os.environ.get("V_OFFSET", "0"))
+    R, info = build_R(v_offset)
     mons = {}
     for part, store in ((R.a, "a"), (R.b, "b")):
         for e, cval in part.c.items():
@@ -111,6 +112,7 @@ def main() -> int:
     neg.sort(key=lambda d: d["total_degree"])
     out = {
         "j": J,
+        "v_offset": v_offset,
         "statement": "(R) 4 c_{J-1} c_{J-3} - c_{J-2}^2 >= 0 on the far-below region, "
         "cleared by den^2; every region variable is >= 0, so all-nonnegative monomials "
         "PROVE it there",
@@ -122,9 +124,16 @@ def main() -> int:
         "runtime_s": round(time.time() - t0, 1),
         **stamp(),
     }
-    (RES / f"repair_certificate_j{J}.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    (
+        RES
+        / (
+            f"repair_certificate_j{J}.json"
+            if not v_offset
+            else f"repair_certificate_j{J}_v{v_offset}.json"
+        )
+    ).write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(
-        f"[j={J}] (R): {len(mons)} monomials, {len(neg)} negative -> "
+        f"[j={J}, v>={v_offset}] (R): {len(mons)} monomials, {len(neg)} negative -> "
         f"{'MANIFESTLY POSITIVE (certificate)' if not neg else 'not manifest; needs Bernstein'}"
     )
     for d in neg[:8]:
