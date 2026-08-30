@@ -6157,3 +6157,27 @@ at the shift point, that degeneracy pushes the needed shift 2 to 4 further out.
 Worth having because it converts an empirical parity into a mechanism, and it says where
 a proof of (U2) should start: the odd case, where there is no zero to handle and the
 minimal shift is exactly the edge of where the objects exist.
+
+### 2026-08-30 morning -- the rung polynomial factors, and the hard part shrinks
+
+D_{t,r} is far from generic. It factors as c (n+1) PROD (n-k)^{m_k} Q(n) with every root an
+integer in [-1, t+r], m_0 = 2^{r-1}, m_1 = 2^r, and -- the useful part -- a SIMPLE root
+exactly at n = t+r, which is the shift point.
+
+That gives a reduction that is a proof, not a measurement: under a shift s >= t+r every
+linear factor becomes m + (nonnegative), and a product of such has nonnegative
+coefficients. So the rung reduces to the core factor Q, at 2.3 to 2.6 times smaller degree
+(507 -> 218 at t=1, r=6).
+
+And it locates the parity. The root structure is IDENTICAL for both parities -- simple root
+at t+r, multiplicity 4-6 at t+r-1, a root at -1. But Q(m+t+r) is nonnegative in all 6 odd
+cases and in none of the 6 even ones. The parity lives inside Q, which is where an argument
+has to look, and Q is now a much smaller object.
+
+So (U2) reduces to (U2-core): the same statement about Q. Same consequence -- the whole
+hierarchy and (B) -- on two-fifths of the degree with the trivially positive structure
+stripped away.
+
+Honest limit: m_0 = 2^{r-1} and m_1 = 2^r are observed, not derived. The reduction does not
+need them; it needs only that all roots are integers in [-1, t+r], which should follow from
+e_j(n) vanishing for n <= j.
