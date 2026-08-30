@@ -345,6 +345,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  farbelow_coeff_signs_j18.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   farbelow_endtoend_j11.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -1064,6 +1068,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   repair_certificate_j17.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j18.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed

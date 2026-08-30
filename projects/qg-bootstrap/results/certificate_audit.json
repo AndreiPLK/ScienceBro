@@ -6,6 +6,7 @@
     12,
     16,
     17,
+    18,
     20,
     25,
     26,
@@ -27,6 +28,7 @@
     12,
     16,
     17,
+    18,
     20,
     25,
     26,
@@ -124,6 +126,21 @@
           "by": "monomial signs",
           "negative_monomials": 0,
           "artefact": "repair_certificate_j17.json"
+        }
+      ]
+    },
+    {
+      "j": 18,
+      "certified": true,
+      "smallest_certified_v_offset": 0,
+      "by": "monomial signs",
+      "runs": [
+        {
+          "v_offset": 0,
+          "certified": true,
+          "by": "monomial signs",
+          "negative_monomials": 0,
+          "artefact": "repair_certificate_j18.json"
         }
       ]
     },
@@ -344,9 +361,9 @@
       ]
     }
   ],
-  "runtime_s": 0.0,
-  "git": "668cab406059",
-  "git_full": "668cab4060595b615abf7ce6d63a0dc6a92c7ebf",
+  "runtime_s": 0.1,
+  "git": "d5b1c7dd50eb",
+  "git_full": "d5b1c7dd50eb6008264dcdb3d1ccdff23ac71c79",
   "dirty": false,
   "dirty_code_files": [],
   "dirty_count": 0,

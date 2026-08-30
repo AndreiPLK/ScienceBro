@@ -35,9 +35,9 @@ and at `j = 12` the coefficient route confirms zero at both `J-1` and `J-3`.
 This is a proof, not a measurement, and it holds at every depth. Everything below is
 about supplying its two hypotheses.
 
-## Theorem 2 (what that gives today). Depths 9 to 17.
+## Theorem 2 (what that gives today). Depths 9 to 18.
 
-For `j = 9, 10, ..., 17`, in the far-below region with `n >= 2J-3`,
+For `j = 9, 10, ..., 18`, in the far-below region with `n >= 2J-3`,
 
     N(y) > 0   for every y >= 0.
 
@@ -46,7 +46,7 @@ with no computation: the coefficient formula collapses to one term there, and it
 a product of `den = kk(kk-2) >= 53*51` and an elementary symmetric function of
 squares (`UNIFORM_TOP_COEFFICIENT.md`).
 
-*Hypotheses discharged:* (a) certified per depth over `j = 9..17` (`j = 17` on the FULL region, 253 negative monomials all at `y`-degree 15 = J-2)
+*Hypotheses discharged:* (a) certified per depth over `j = 9..18` (`j = 17` and `j = 18` on the FULL region, 253 and 351 negative monomials, all at `y`-degree `J-2`)
 (`farbelow_negative_pattern_j*.json`, and independently by the faster coefficient
 route, `farbelow_coeff_signs_j*.json`); (R) certified
 (`repair_certificate_j*.json`, audited by `lab/certificate_audit.py`).
@@ -61,8 +61,8 @@ It is **(a)**, not (R).
 
 | depth | (R) | (a) |
 |---|---|---|
-| 7 – 16 | certified | **certified** |
-| 17 – 50 | certified at 7, 9, 12, 16, 20, 25–32, 35, 40, 45, 50 | not yet computed |
+| 7 – 18 | certified | **certified** |
+| 19 – 50 | certified at 20, 25–32, 35, 40, 45, 50 | not yet computed |
 
 (R) is certified at 17 depths up to 50; (a) has been computed only to 16 because it
 used to require assembling the whole polynomial. That cost is now down — the

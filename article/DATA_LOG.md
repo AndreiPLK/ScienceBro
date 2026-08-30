@@ -6205,3 +6205,13 @@ A constant I am NOT claiming: fitting rho* = a - b/N on N = 10..24 gives a = 0.1
 within 1e-4 of 2/13. Tested by PREDICTION instead of by fitting, the errors at N = 30, 36,
 44 are 0.00022, 0.00045, 0.00072 and growing. The form is incomplete and the constant is
 not pinned. Recorded only so nobody rediscovers the coincidence and believes it.
+
+### 2026-08-30 -- Theorem 2 reaches j = 18
+
+Leg (a) at j = 18 finished after 3.7 hours on the full region: 351 negative monomials,
+every one at y-degree 16 = J-2, which is exactly the statement. (R) at J = 18 then
+certified immediately -- 0 negative of 3632 monomials, manifest, no Bernstein step.
+
+Both hypotheses of Proposition 1 hold at j = 18, so the far-below region is now closed for
+j = 9..18. Ten consecutive depths, and the ceiling keeps moving for the reason predicted:
+machine time, not mathematics.

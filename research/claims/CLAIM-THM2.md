@@ -1,7 +1,7 @@
 ---
 id: CLAIM-THM2
-statement: For j = 9..17, inside n >= 2J-3, the far-below polynomial is positive for all y >= 0.
-domain: j = 9..17
+statement: For j = 9..18, inside n >= 2J-3, the far-below polynomial is positive for all y >= 0.
+domain: j = 9..18
 status: CERTIFIED
 certificate_artifact: projects/qg-bootstrap/results/THEOREM_STATE.md
 last_verified: 2026-08-29
