@@ -59,6 +59,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  FLINT_ENGINE_BREAKS_THE_CEILING.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   FROZEN_PREDICTION_blocks.md:
     added: '2026-08-18'
     note: the block-width step law was an artefact of scanning only even j; refuted by the full integer
@@ -353,6 +357,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  farbelow_coeff_fast_j12.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   farbelow_coeff_signs_j12.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -969,6 +977,42 @@ artefacts:
     status: unreviewed
   knife_tail_deep_j5.json:
     added: '2026-08-15'
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j12.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j14.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j16.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j18.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j20.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j22.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j22_v4.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j24_v1.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j9.json:
+    added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
   lemma_a_exact_j12.json:

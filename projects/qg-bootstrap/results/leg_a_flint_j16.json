@@ -1,0 +1,102 @@
+{
+  "j": 16,
+  "v_offset": 0,
+  "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
+  "coefficients": [
+    {
+      "k": 0,
+      "monomials": 75175,
+      "negative": 0
+    },
+    {
+      "k": 1,
+      "monomials": 69553,
+      "negative": 0
+    },
+    {
+      "k": 2,
+      "monomials": 63990,
+      "negative": 0
+    },
+    {
+      "k": 3,
+      "monomials": 58522,
+      "negative": 0
+    },
+    {
+      "k": 4,
+      "monomials": 53130,
+      "negative": 0
+    },
+    {
+      "k": 5,
+      "monomials": 47846,
+      "negative": 0
+    },
+    {
+      "k": 6,
+      "monomials": 42655,
+      "negative": 0
+    },
+    {
+      "k": 7,
+      "monomials": 37585,
+      "negative": 0
+    },
+    {
+      "k": 8,
+      "monomials": 32625,
+      "negative": 0
+    },
+    {
+      "k": 9,
+      "monomials": 27799,
+      "negative": 0
+    },
+    {
+      "k": 10,
+      "monomials": 23100,
+      "negative": 0
+    },
+    {
+      "k": 11,
+      "monomials": 18548,
+      "negative": 0
+    },
+    {
+      "k": 12,
+      "monomials": 14140,
+      "negative": 0
+    },
+    {
+      "k": 13,
+      "monomials": 9892,
+      "negative": 0
+    },
+    {
+      "k": 14,
+      "monomials": 5805,
+      "negative": 205
+    },
+    {
+      "k": 15,
+      "monomials": 1891,
+      "negative": 0
+    }
+  ],
+  "negatives_outside_excluded_indices": [],
+  "leg_a_holds": true,
+  "runtime_s": 38.6,
+  "git": "ca62af193181",
+  "git_full": "ca62af19318183c3a0c5c3bae8344b0d699548e2",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/farbelow_coeff_fast.py",
+    "projects/qg-bootstrap/lab/leg_a_flint.py",
+    "projects/qg-bootstrap/lab/q3_mpoly.py"
+  ],
+  "dirty_count": 3,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

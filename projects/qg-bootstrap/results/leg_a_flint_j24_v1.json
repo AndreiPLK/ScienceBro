@@ -1,0 +1,144 @@
+{
+  "j": 24,
+  "v_offset": 1,
+  "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
+  "coefficients": [
+    {
+      "k": 0,
+      "monomials": 264469,
+      "negative": 0
+    },
+    {
+      "k": 1,
+      "monomials": 251387,
+      "negative": 0
+    },
+    {
+      "k": 2,
+      "monomials": 238392,
+      "negative": 0
+    },
+    {
+      "k": 3,
+      "monomials": 225536,
+      "negative": 0
+    },
+    {
+      "k": 4,
+      "monomials": 212784,
+      "negative": 0
+    },
+    {
+      "k": 5,
+      "monomials": 200184,
+      "negative": 0
+    },
+    {
+      "k": 6,
+      "monomials": 187705,
+      "negative": 0
+    },
+    {
+      "k": 7,
+      "monomials": 175391,
+      "negative": 0
+    },
+    {
+      "k": 8,
+      "monomials": 163215,
+      "negative": 0
+    },
+    {
+      "k": 9,
+      "monomials": 151217,
+      "negative": 0
+    },
+    {
+      "k": 10,
+      "monomials": 139374,
+      "negative": 0
+    },
+    {
+      "k": 11,
+      "monomials": 127722,
+      "negative": 0
+    },
+    {
+      "k": 12,
+      "monomials": 116242,
+      "negative": 0
+    },
+    {
+      "k": 13,
+      "monomials": 104966,
+      "negative": 0
+    },
+    {
+      "k": 14,
+      "monomials": 93879,
+      "negative": 0
+    },
+    {
+      "k": 15,
+      "monomials": 83009,
+      "negative": 0
+    },
+    {
+      "k": 16,
+      "monomials": 72345,
+      "negative": 0
+    },
+    {
+      "k": 17,
+      "monomials": 61911,
+      "negative": 0
+    },
+    {
+      "k": 18,
+      "monomials": 51700,
+      "negative": 0
+    },
+    {
+      "k": 19,
+      "monomials": 41732,
+      "negative": 0
+    },
+    {
+      "k": 20,
+      "monomials": 32004,
+      "negative": 279
+    },
+    {
+      "k": 21,
+      "monomials": 22532,
+      "negative": 0
+    },
+    {
+      "k": 22,
+      "monomials": 13317,
+      "negative": 986
+    },
+    {
+      "k": 23,
+      "monomials": 4371,
+      "negative": 0
+    }
+  ],
+  "negatives_outside_excluded_indices": [
+    {
+      "k": 20,
+      "monomials": 32004,
+      "negative": 279
+    }
+  ],
+  "leg_a_holds": false,
+  "runtime_s": 550.2,
+  "git": "",
+  "git_full": "",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
