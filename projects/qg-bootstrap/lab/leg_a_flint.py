@@ -80,6 +80,33 @@ def region(v_offset: int = 0):
     return lam, tk - y * den, den, m, n, y
 
 
+def bernstein_in_thL(terms: dict) -> dict:
+    """Change to the Bernstein basis along thL, which lives on [0, 1].
+
+    b_i = SUM_{q<=i} C(i,q)/C(d,q) c_q, applied fibre by fibre in the other three
+    variables. This is the escalation the repair certificate already uses, and the only
+    variable it can be applied to, the rest being unbounded.
+    """
+    from math import comb
+
+    d = max((e[0] for e in terms), default=0)
+    fib: dict[tuple[int, ...], dict[int, tuple[fmpq, fmpq]]] = {}
+    for e, ab in terms.items():
+        fib.setdefault(e[1:], {})[e[0]] = ab
+    out: dict[tuple[int, ...], tuple[fmpq, fmpq]] = {}
+    for rest, col in fib.items():
+        for i in range(d + 1):
+            sa = sb = fmpq(0)
+            for q, (a, b) in col.items():
+                if q <= i:
+                    w = fmpq(comb(i, q), comb(d, q))
+                    sa += w * a
+                    sb += w * b
+            if sa != 0 or sb != 0:
+                out[(i,) + rest] = (sa, sb)
+    return out
+
+
 def main() -> int:
     t0 = time.time()
     v_offset = int(os.environ.get("V_OFFSET", "0"))
@@ -147,9 +174,23 @@ def main() -> int:
         acc = acc * denp[k]
         terms = acc.terms()
         neg = sum(1 for a, b in terms.values() if Q.sign_q3(a, b) < 0)
-        rows.append({"k": k, "monomials": len(terms), "negative": neg})
+        row = {"k": k, "monomials": len(terms), "negative": neg}
+        # Same escalation the repair certificate uses: when monomial signs are not enough,
+        # change to the Bernstein basis in thL, which is the only bounded variable.
+        if neg and k not in (J - 2,):
+            bt = bernstein_in_thL(terms)
+            bneg = sum(1 for a, b in bt.values() if Q.sign_q3(a, b) < 0)
+            row["bernstein_thL"] = {"coefficients": len(bt), "negative": bneg,
+                                    "certified": bneg == 0}
+        rows.append(row)
 
-    off = [r for r in rows if r["negative"] and r["k"] not in (J - 2, J - 3)]
+    def still_bad(r: dict) -> bool:
+        if not r["negative"] or r["k"] in (J - 2, J - 3):
+            return False
+        b = r.get("bernstein_thL")
+        return not (b and b["certified"])
+
+    off = [r for r in rows if still_bad(r)]
     out = {
         "j": J,
         "v_offset": v_offset,

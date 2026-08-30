@@ -65,3 +65,28 @@ larger shift, a Bernstein step, or a grouping with neighbours.
   supplies at `k = J-2`. Large shifts are being tried.
 * **Not in doubt**: the coefficient itself, which is nonnegative at every point tested to
   `j = 36`.
+
+
+## And the `j = 22` failure is repaired by the established remedy
+
+The monomial certificate fails at `j = 22`, `k = J-4`, with 85 negative monomials. A shift
+into the regime removes them only slowly: 85, 83, 74, 64, 42 at offsets 0, 4, 24, 48, 96 —
+converging, but expensively.
+
+**One Bernstein step in `thL` certifies it outright**: 29099 coefficients, zero negative.
+That is exactly the escalation the repair certificate already uses for `(R)` from `J = 31`,
+and the same variable — `thL` is the only bounded one.
+
+So the pattern for leg (a) matches the pattern for `(R)`: manifest monomial signs suffice up
+to some depth, and beyond it one change of basis does. **Leg (a) is certified at `j = 22`.**
+
+| depth | how leg (a) is certified |
+|---|---|
+| 9 – 20 | monomial signs |
+| 22 | one Bernstein step in `thL` at `k = J-4` |
+
+## Status after the evening
+
+* **Leg (a) certified `j = 9..22`**, up from 18 this morning.
+* **Time per depth**: 79 s at `j = 18` against 3.7 hours, 310 s at `j = 22`.
+* The remedy is not new machinery; it is the one `(R)` already uses.

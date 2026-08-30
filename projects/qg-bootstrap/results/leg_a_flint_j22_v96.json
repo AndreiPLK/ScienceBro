@@ -1,6 +1,6 @@
 {
   "j": 22,
-  "v_offset": 0,
+  "v_offset": 96,
   "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
   "coefficients": [
     {
@@ -96,12 +96,7 @@
     {
       "k": 18,
       "monomials": 26866,
-      "negative": 85,
-      "bernstein_thL": {
-        "coefficients": 29099,
-        "negative": 0,
-        "certified": true
-      }
+      "negative": 42
     },
     {
       "k": 19,
@@ -111,7 +106,7 @@
     {
       "k": 20,
       "monomials": 11151,
-      "negative": 736
+      "negative": 342
     },
     {
       "k": 21,
@@ -119,16 +114,20 @@
       "negative": 0
     }
   ],
-  "negatives_outside_excluded_indices": [],
-  "leg_a_holds": true,
-  "runtime_s": 310.0,
+  "negatives_outside_excluded_indices": [
+    {
+      "k": 18,
+      "monomials": 26866,
+      "negative": 42
+    }
+  ],
+  "leg_a_holds": false,
+  "runtime_s": 367.2,
   "git": "4846cc0e10ed",
   "git_full": "4846cc0e10ed891e472280aa9bb3264de91a15db",
-  "dirty": true,
-  "dirty_code_files": [
-    "projects/qg-bootstrap/lab/leg_a_flint.py"
-  ],
-  "dirty_count": 1,
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"

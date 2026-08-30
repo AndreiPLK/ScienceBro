@@ -66,16 +66,14 @@
   ],
   "negatives_outside_excluded_indices": [],
   "leg_a_holds": true,
-  "runtime_s": 6.6,
-  "git": "ca62af193181",
-  "git_full": "ca62af19318183c3a0c5c3bae8344b0d699548e2",
+  "runtime_s": 6.7,
+  "git": "4846cc0e10ed",
+  "git_full": "4846cc0e10ed891e472280aa9bb3264de91a15db",
   "dirty": true,
   "dirty_code_files": [
-    "projects/qg-bootstrap/lab/farbelow_coeff_fast.py",
-    "projects/qg-bootstrap/lab/leg_a_flint.py",
-    "projects/qg-bootstrap/lab/q3_mpoly.py"
+    "projects/qg-bootstrap/lab/leg_a_flint.py"
   ],
-  "dirty_count": 3,
+  "dirty_count": 1,
   "python": "3.12.10",
   "flint": "0.9.0",
   "platform": "Windows-11-10.0.22631-SP0"
