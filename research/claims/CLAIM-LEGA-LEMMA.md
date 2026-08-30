@@ -16,6 +16,15 @@ evidence:
 references:
 ---
 
+The increasing half of Lemma A is EXACTLY the inequality
+
+    (product of the other factor ratios) >= rho_{t-1},   rho = E_{t-1}^2/(E_{t-2} E_t)
+
+with rho the Newton excess of the central factorial numbers, which is >= 1 by Newton
+(classical, the generating polynomial is real-rooted). Measured margin: 1.0017 -- under two
+parts in a thousand. The inequality is nearly tight, which is why no generic criterion
+reaches it, and why a sharp Newton-excess bound is exactly what is needed.
+
 If proved, leg (a) holds at EVERY depth at once -- Step 1 of THE_THEOREM.md.
 
 What is known about the shape: G = poch_i (s^2 den)^i / prod_{r<i} A_r IS absolutely

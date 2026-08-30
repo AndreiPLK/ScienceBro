@@ -135,3 +135,37 @@ So **Gap 1 and Gap 2 are not independent.** Both come down to controlling consec
 ratios of the central factorial numbers, from opposite directions. A bound good enough for
 one is likely to serve the other, and the programme should stop treating them as separate
 problems.
+
+
+## And the inequality is razor-thin
+
+Making the balance explicit turns Lemma A's "R increasing" half into a single inequality
+with no slack to spare.
+
+The awkward factor `E_{t-1}/E_t` decays as `i` grows, and the rate of that decay is exactly
+
+    [E_{t-2}/E_{t-1}] / [E_{t-1}/E_t] = E_{t-2} E_t / E_{t-1}^2 = 1 / rho_{t-1},
+
+where `rho` is the **Newton excess of the central factorial numbers**. So
+
+> `R` is increasing  <=>  (product of the other factor ratios)  >=  `rho_{t-1}`.
+
+`E` is log-concave — classical, since its generating polynomial is real-rooted — so
+`rho >= 1` and the inequality is not free.
+
+**Measured margin: 1.0017.** The left side exceeds the right by under two parts in a
+thousand, uniformly across the sampled points, with `rho` running from 1.20 to 1.39 and the
+other-ratios tracking it almost exactly.
+
+Three things follow.
+
+* It explains why every generic criterion failed today. The inequality is nearly tight, so
+  no structural argument with slack in it can reach.
+* A proof must be **quantitative and sharp**, not qualitative.
+* The link to Gap 2 is not a family resemblance. A sharp bound on the Newton excess is
+  precisely what Lemma A needs, with almost no room, which is the strongest evidence yet
+  that the two gaps are one.
+
+It is also the best place to hunt for a counterexample: any point where the margin drops
+below 1 kills Lemma A outright. A broad scan over depths `J = 6..13` and region extremes is
+running.
