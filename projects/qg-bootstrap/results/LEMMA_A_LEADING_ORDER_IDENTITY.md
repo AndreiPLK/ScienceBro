@@ -67,3 +67,56 @@ The `tau_i` decreasing; `phi` factoring into absolutely monotone pieces; `c_t` a
 moment sequence; copositivity of the knife's Hankel matrix; generic sequence criteria
 (`R >= 1`, increasing, log-convex — all three insufficient, with explicit counterexamples).
 Each is recorded in `research/dead_routes.md` with what killed it.
+
+
+## The 1/n coefficient, computed — and it is a single constant
+
+Extracting the coefficient by Richardson in `1/n` from `n = 1048` and `n = 3048` gives a
+structure much simpler than expected. Write `t = J - 1 - i`.
+
+**The coefficient depends only on `t`, and only through the same factor `t/(t-1)`.**
+Across `J = 9` and `J = 12` and every `k` tested, `c * (t-1)/t` is one constant:
+
+| `t` | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|
+| `c * (t-1)/t` | .066025 | .066025 | .066025 | .066025 | .066025 | .066025 | .066025 | .066025 | .066025 |
+
+So, writing that constant `K`,
+
+    (other ratios) - rho  =  (K / n) * t/(t-1)  +  O(1/n^2),
+
+and since the common limit is itself `t/(t-1)`,
+
+    (other ratios) / rho  =  1 + K/n + O(1/n^2).
+
+**The whole increasing half of Lemma A is the single statement `K > 0`.**
+
+## `K` across the region
+
+`K` does not depend on `y` at all — identical to eight digits at `y = 0, 3, 500`. It barely
+depends on `thL` (`0.0660246` to `0.0660248` across `thL = 0, 1/2, 1`). It depends on `K3`
+only through the ratio `K3/v`, and monotonically:
+
+| `K3/v` | 0 | 0.01 | 0.1 | 0.5 | 1 | 10 | 100 | `10^5` |
+|---|---|---|---|---|---|---|---|---|
+| `K` | .06602 | .06699 | .07517 | .10193 | .12266 | .18391 | .19819 | .20000 |
+
+**`K` is positive across five orders of magnitude**, rising monotonically from an infimum
+near `0.0660` at the corner `K3 = 0` to what looks like exactly `1/5` in the limit.
+
+## Status, stated exactly
+
+* **Measured, and strongly:** `K > 0` on the whole region, bounded below by about `0.066`,
+  independent of `y` and of `k` and of `i` beyond the factor `t/(t-1)`.
+* **Consequence, if the expansion is made rigorous:** the increasing half of Lemma A holds
+  for all sufficiently large `n`, uniformly in the depth, with an explicit constant.
+* **What a proof still owes:** the expansion itself with a bounded remainder — the `O(1/n^2)`
+  term — which is exactly the species of estimate Gap 2 needs. Fourth independent sign that
+  the two gaps are one problem.
+* **Still untouched:** the higher differences. `R >= 1` and `R` increasing give absolute
+  monotonicity only to order 2.
+
+**A constant not claimed.** The infimum reads `0.06602468` and the limit reads `0.19999676`,
+which is `1/5` to five digits. `1/5` is worth stating as a measurement; the infimum is not
+identified, and no closed form is asserted for either. The programme has been bitten once
+already by naming a constant from a fit.

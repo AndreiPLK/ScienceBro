@@ -14,6 +14,14 @@ evidence:
 references:
 ---
 
+The 1/n coefficient is c = K * t/(t-1) with K a single constant, independent of J, k, and of
+i beyond that factor. So (other ratios)/rho = 1 + K/n + O(1/n^2) and the increasing half of
+Lemma A is exactly K > 0.
+
+Measured: K is independent of y, nearly independent of thL, depends on K3 only through K3/v,
+and is positive across five orders of magnitude -- from about 0.0660 at the corner to 0.2 in
+the limit.
+
 Turns Lemma A's increasing half from a razor-thin inequality (margin 1.0017) into the sign
 of one explicit 1/n coefficient -- the same species of statement as the effective expansion
 Gap 2 needs.
