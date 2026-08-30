@@ -220,3 +220,33 @@ bound grows like `2(t+r)`.
 **Lesson.** A pattern that looks constant across a square table can still be growing -- the
 table was not wide enough in `r` to see it. When a bound looks constant, extend the axis the
 mechanism should depend on, not the one that is convenient to extend.
+
+---
+
+## DR-12 -- (B) as a statement about the whole PSD quadratic cone
+
+**Statement.** (B) holds for every positive semidefinite `Q` in `b_k = A + 2Bk + Ck^2`,
+so the mechanism is quadratic-form positivity rather than the arithmetic progression.
+*(registry: `CLAIM-PSDCONE`)*
+
+**Why it was tempting.** Our weights are exactly the rank-one case, and if the whole cone
+worked, the cone-restricted Rayleigh / K-Lorentzian theory would apply directly and
+supply the machinery the programme lacks.
+
+**What killed it.** 15 of 300 exact PSD-interior points fail, every one with `B < 0` and a
+large `AC - B^2`.
+
+**Local or structural.** Structural for the full cone -- but the failure is quantitative,
+not qualitative, which is the useful part.
+
+**Weaker variant that survives, and it is the real finding.** Writing
+`b_k = C(k-v)^2 + h`, (B) holds whenever the relative height
+`rho = h / (C max_k (k-v)^2)` is below a critical value, measured from 0.122 at `N = 10`
+to 0.146 at `N = 44`. So (B) lives on a proper SUB-cone, the condition is scale-invariant
+and therefore still cone-shaped, and our case `rho = 0` sits comfortably in its interior
+rather than on its boundary.
+
+**Lesson.** The answer was neither of the two proposed extremes, and the informative
+parametrisation was not the one the question came in. Re-parametrising the failures by
+the height of the minimum turned "some interior points fail" into a threshold with a
+number.

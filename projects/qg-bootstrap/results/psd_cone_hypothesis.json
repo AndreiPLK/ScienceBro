@@ -1,0 +1,101 @@
+{
+  "question": "does (B) hold for every PSD quadratic form b_k = A + 2Bk + Ck^2, or only on the rank-one boundary where b_k = (a+kd)^2?",
+  "why_it_matters": "if the whole cone works, the mechanism is quadratic-form positivity rather than the arithmetic progression, and cone-restricted Rayleigh / K-Lorentzian machinery applies; if only rank-one works, that narrows the mechanism just as sharply",
+  "domain": "1 <= t <= floor(N/2), the same domain (B) is stated on",
+  "seed": 20260830,
+  "regimes": {
+    "rank-one boundary (our case)": {
+      "tested": 300,
+      "failures": 0,
+      "examples": []
+    },
+    "PSD interior": {
+      "tested": 300,
+      "failures": 15,
+      "examples": [
+        {
+          "N": 8,
+          "A": "4",
+          "B": "-20/17",
+          "C": "8/5",
+          "det": "7248/1445",
+          "failing_t": [
+            4
+          ]
+        },
+        {
+          "N": 8,
+          "A": "28",
+          "B": "-3/11",
+          "C": "10/3",
+          "det": "33853/363",
+          "failing_t": [
+            3,
+            4
+          ]
+        },
+        {
+          "N": 8,
+          "A": "31",
+          "B": "-2/3",
+          "C": "4",
+          "det": "1112/9",
+          "failing_t": [
+            3,
+            4
+          ]
+        },
+        {
+          "N": 8,
+          "A": "30",
+          "B": "-1",
+          "C": "2",
+          "det": "59",
+          "failing_t": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "N": 8,
+          "A": "5/2",
+          "B": "-1",
+          "C": "1",
+          "det": "3/2",
+          "failing_t": [
+            4
+          ]
+        }
+      ]
+    },
+    "near the rank-one boundary": {
+      "tested": 300,
+      "failures": 0,
+      "examples": []
+    },
+    "extreme ray C = 0": {
+      "tested": 25,
+      "failures": 0,
+      "examples": []
+    },
+    "extreme ray A = 0": {
+      "tested": 0,
+      "failures": 0,
+      "examples": []
+    }
+  },
+  "holds_on_the_whole_PSD_cone": false,
+  "runtime_s": 0.1,
+  "git": "21a32785807a",
+  "git_full": "21a32785807acd8658db69e0d6d2453ec2e883fd",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/psd_cone_hypothesis.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

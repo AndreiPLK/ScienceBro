@@ -6181,3 +6181,27 @@ stripped away.
 Honest limit: m_0 = 2^{r-1} and m_1 = 2^r are observed, not derived. The reduction does not
 need them; it needs only that all roots are integers in [-1, t+r], which should follow from
 e_j(n) vanishing for n <= j.
+
+### 2026-08-30 -- (B) lives on a sub-cone, and the answer was neither extreme
+
+A brief proposed the sharpest new experiment available: is (B) really about arithmetic
+progressions, or about quadratic forms on the 2D PSD cone? Our weights are the rank-one
+case of b_k = A + 2Bk + Ck^2.
+
+Answer: neither. On the PSD cone (B) FAILS -- 15 of 300 interior points, all with B < 0
+and large AC - B^2. But it is not confined to the rank-one boundary either: 300 rank-one
+and 300 near-boundary cases all hold.
+
+Re-parametrising by the height of the minimum, b_k = C(k-v)^2 + h, turned that into a
+threshold with a number. (B) holds whenever rho = h/(C max(k-v)^2) is below a critical
+value: 0.1223 at N=10 rising to 0.1459 at N=44. The condition is scale-invariant, so (B)
+does live on a cone -- a proper SUB-cone of the PSD cone -- and our case rho = 0 sits
+comfortably in its interior, not on a knife edge.
+
+For the programme that is a sharp redirection: cone machinery is the right KIND of tool,
+but no theorem quantified over all PSD Q can prove (B).
+
+A constant I am NOT claiming: fitting rho* = a - b/N on N = 10..24 gives a = 0.15375,
+within 1e-4 of 2/13. Tested by PREDICTION instead of by fitting, the errors at N = 30, 36,
+44 are 0.00022, 0.00045, 0.00072 and growing. The form is incomplete and the constant is
+not pinned. Recorded only so nobody rediscovers the coincidence and believes it.

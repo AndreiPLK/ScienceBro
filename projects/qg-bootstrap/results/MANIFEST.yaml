@@ -97,6 +97,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  PSD_CONE_ANSWER.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   RUNG_FACTORISATION.md:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -1020,6 +1024,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   poisson_binomial_view.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  psd_cone_hypothesis.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
