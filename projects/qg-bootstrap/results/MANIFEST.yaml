@@ -80,6 +80,10 @@ artefacts:
     added: '2026-08-28'
     note: referenced by a paper, document or lab module
     status: live
+  LEG_A_REDUCED_TO_ONE_LEMMA.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   LIMIT_SHAPE_BOUND.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -1191,6 +1195,10 @@ artefacts:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
     status: live
+  tau_monotonicity_j12.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   threshold_table.json:
     added: untracked
     note: referenced by a paper, document or lab module

@@ -1,0 +1,101 @@
+{
+  "j": 12,
+  "question": "is c_k an alternating sum with DECREASING terms for every k != J-2?",
+  "why": "an alternating sum with decreasing terms is nonnegative with no computation, so this shape would give leg (a) at every depth at once",
+  "region_points": 54,
+  "rows": [
+    {
+      "k": 0,
+      "terms": 12,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 1,
+      "terms": 11,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 2,
+      "terms": 10,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 3,
+      "terms": 9,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 4,
+      "terms": 8,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 5,
+      "terms": 7,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 6,
+      "terms": 6,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 7,
+      "terms": 5,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 8,
+      "terms": 4,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 9,
+      "terms": 3,
+      "decreasing": 0,
+      "not_decreasing": 54
+    },
+    {
+      "k": 10,
+      "terms": 2,
+      "decreasing": 27,
+      "not_decreasing": 27
+    },
+    {
+      "k": 11,
+      "terms": 1,
+      "decreasing": 0,
+      "not_decreasing": 0
+    }
+  ],
+  "instrument_self_check": {
+    "reconstructed_negative_k": [],
+    "expected": [
+      10
+    ],
+    "passes": false
+  },
+  "shape_holds_away_from_J_minus_2": false,
+  "exceptional_k": 10,
+  "status": "EXACT region points, floats used ONLY to compare magnitudes of positive quantities; a verdict here is a shape check, not a proof",
+  "runtime_s": 1.1,
+  "git": "0e2004a7703f",
+  "git_full": "0e2004a7703f5a7fb8c75e45d2f88c8ae23013f1",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/tau_monotonicity.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
