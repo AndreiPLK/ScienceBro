@@ -315,3 +315,29 @@ them.
 **Lesson.** "A ratio of Pochhammers is a Beta moment" is true for ONE ratio and false for a
 product when the second runs the wrong way. Check the direction of every factor before
 assuming the standard representation.
+
+---
+
+## DR-15 -- Copositivity of the knife's Hankel matrix
+
+**Statement.** With `knife = h^T D h`, `D_{ij} = (-1)^{i+j} c_{i+j}` and `h > 0`, the matrix
+`D` is copositive, so the keystone follows at every depth in one line.
+
+**Why it was tempting.** The identity `knife = h^T D h` is exact and `h` is entrywise
+positive, so copositivity -- much weaker than positive semidefiniteness, which `DR-14`
+already killed -- would have been enough.
+
+**What killed it.** Random `h > 0` gives `h^T D h < 0` in every one of 36 parameter
+settings, from `-5e-3` at `n = 21, j = 3` to `-2.2e3` at `n = 9, j = 8`.
+
+**Local or structural.** Structural: `D` is genuinely indefinite on the orthant.
+
+**Weaker variant that survives, and it is the point.** The identity itself. The keystone is
+exactly `h^T D h > 0` for the SPECIFIC `h` -- the elementary symmetric sequence of the half
+spectrum. Since no property of `D` alone suffices, the proof must use what we already know
+about `h`, which is a great deal: Polya frequency, ratio log-concave on its whole range,
+(B) for every `t <= 200`, hyperbolic Jensen polynomials.
+
+**Lesson.** When a quadratic-form reformulation appears, test the matrix-only sufficient
+conditions immediately. Both died in minutes, and their death is what identifies the vector
+as the load-bearing object.

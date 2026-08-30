@@ -80,10 +80,14 @@ artefacts:
     added: '2026-08-28'
     note: referenced by a paper, document or lab module
     status: live
-  LEG_A_REDUCED_TO_ONE_LEMMA.md:
+  KNIFE_IS_A_QUADRATIC_FORM.md:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  LEG_A_REDUCED_TO_ONE_LEMMA.md:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
   LIMIT_SHAPE_BOUND.md:
     added: untracked
     note: referenced by a paper, document or lab module
