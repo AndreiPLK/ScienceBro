@@ -338,6 +338,67 @@ def real_rootedness(coeffs: Any) -> Result:
     )
 
 
+def absolutely_monotone(values: Any, noise_guard: float = 1.0) -> Result:
+    """All forward differences nonnegative -- with a guard against cancellation noise.
+
+    High-order finite differences of floating-point numbers cancel catastrophically: on
+    30 August a 13th difference of doubles reported violations that vanished entirely at 60
+    and 200 digits. Every one was noise.
+
+    The guard is therefore the RIGOROUS error bound, not a relative threshold at the current
+    order. Since `Delta^m phi = SUM_j (-1)^j C(m,j) phi_{i+j}`, the absolute error is at most
+    `2^m * eps * max|phi|` in the INPUT. A negative value is reported as a violation only
+    when it exceeds that bound; otherwise the order is UNDECIDED and the caller must
+    recompute at higher precision.
+
+    A first version of this guard used the largest magnitude at the current order instead,
+    which is not a bound on anything, and it duly passed the same noise through as
+    "refuted".
+
+    Exact rational input is checked exactly and needs no guard.
+    """
+    tm = timed()
+    exact = all(isinstance(v, fmpq) for v in values)
+    seq = as_seq(values) if exact else [float(v) for v in values]
+    cur = list(seq)
+    order = 0
+    violations, undecided = [], []
+    input_scale = 0.0 if exact else max((abs(x) for x in seq), default=0.0)
+    eps = 2.220446049250313e-16
+    while len(cur) > 1:
+        cur = [cur[i + 1] - cur[i] for i in range(len(cur) - 1)]
+        order += 1
+        bound = 0.0 if exact else (2.0**order) * eps * input_scale * noise_guard
+        for idx, x in enumerate(cur):
+            if x < 0:
+                if exact or abs(x) > bound:
+                    violations.append({"order": order, "index": idx,
+                                       "value": None if exact else float(x),
+                                       "error_bound": None if exact else bound})
+                else:
+                    undecided.append({"order": order, "index": idx})
+    status = "ok" if not violations else "refuted"
+    if undecided and not violations:
+        status = "inconclusive"
+    return Result(
+        tool="absolutely_monotone",
+        inputs={"n": len(seq), "exact_input": exact,
+                "guard": "2^order * eps * max|input| * noise_guard", "noise_guard": noise_guard},
+        status=status,
+        evidence_kind="EXACT_FINITE" if exact else "NUMERIC",
+        precision=None if exact else "double, with a relative noise guard",
+        data={
+            "violations": violations[:20],
+            "violation_count": len(violations),
+            "undecided_below_noise": undecided[:20],
+            "undecided_count": len(undecided),
+            "note": "an undecided order means the difference is inside the cancellation "
+            "noise; recompute at higher precision before concluding anything",
+        },
+        runtime_s=tm.stop(),
+    )
+
+
 def reciprocal(values: Any) -> Seq:
     """The reciprocal sequence; several structures live here and not in the original."""
     return [fmpq(1) / v for v in as_seq(values)]

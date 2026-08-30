@@ -15,6 +15,7 @@ from .positivity import (
     verify_polynomial_positive,
 )
 from .sequences import (
+    absolutely_monotone,
     hankel_minors,
     hausdorff_conditions,
     log_difference_hierarchy,
@@ -27,6 +28,7 @@ from .sequences import (
 
 __all__ = [
     "Result",
+    "absolutely_monotone",
     "anomaly_scan",
     "scan_family_centered",
     "centered_squares",

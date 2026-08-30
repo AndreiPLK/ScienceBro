@@ -169,3 +169,34 @@ Three things follow.
 It is also the best place to hunt for a counterexample: any point where the margin drops
 below 1 kills Lemma A outright. A broad scan over depths `J = 6..13` and region extremes is
 running.
+
+
+## Correction: Lemma A as first stated was false, and the instrument lied twice
+
+**The domain.** Lemma A was written as "for every `k`". That is false: at `J = 16`, `k = 13`
+the sequence `phi` fails at the FIRST difference, verified at 250 digits, and the same at
+`J = 18, 20`. But `13 = J - 3`, and Proposition 1 excludes exactly `k` in `{J-2, J-3}`.
+
+Restated on the domain Proposition 1 actually needs — `k` outside `{J-2, J-3}` — Lemma A
+has **zero refutations** across `J = 9, 12, 14, 16, 18, 20`, with 5751 cases checked.
+
+> **Lemma A (corrected).** For `k` outside `{J-2, J-3}`, the sequence
+> `phi_i = tau_i / C(L-1, i)` is absolutely monotone on the far-below region.
+
+**The instrument.** Getting there took two corrections to the checker itself.
+
+A first scan reported 75 violations at `J = 14`, order 13. Every one vanished at 60 and 200
+digits: pure cancellation noise in a thirteenth finite difference of doubles.
+
+The guard added in response was also wrong. It compared the offending value against the
+largest magnitude **at the current order**, which bounds nothing, and duly passed the same
+noise through as "refuted". The correct guard is the rigorous bound: since
+`Delta^m phi = SUM_j (-1)^j C(m,j) phi_{i+j}`, the error is at most
+`2^m * eps * max|phi|` in the INPUT. With that installed, the `J = 14` cases become
+UNDECIDED, which is the truthful answer — double precision cannot decide them.
+
+Undecided cases grow with `J` (30 at `J = 14`, 396 at `J = 20`) because the cancellation
+does. They are a precision limit, not mathematics, and the tool now says so instead of
+guessing.
+
+`absolutely_monotone` with that guard is now part of `tools/sciencebro_math`.

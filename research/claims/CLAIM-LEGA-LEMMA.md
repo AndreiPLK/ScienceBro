@@ -1,12 +1,15 @@
 ---
 id: CLAIM-LEGA-LEMMA
-statement: On the far-below region the sequence phi_i = tau_i / C(L-1,i) is absolutely monotone in i, i.e. Delta^j phi >= 0 for every j.
-domain: far-below region, every depth J, every coefficient index k
+statement: For k outside {J-2, J-3}, the sequence phi_i = tau_i / C(L-1,i) is absolutely monotone in i on the far-below region.
+domain: far-below region, every depth J, coefficient indices k outside {J-2, J-3}
 status: CONJECTURED
 last_verified: 2026-08-30
 dependencies:
   - CLAIM-LEGA-REDUCTION
 evidence:
+  - CORRECTED DOMAIN: the unrestricted version is FALSE -- at J=16, k=13=J-3 it fails at the first difference, verified at 250 digits. Proposition 1 excludes exactly those indices.
+  - on the correct domain: 0 refutations across J = 9,12,14,16,18,20, 5751 cases
+  - the increasing half is exactly K > 0 where the margin is 1 + K/n (CLAIM-LEADING-IDENTITY)
   - 378 of 378 (point, k) combinations at J = 9, zero violations
   - 2520 combinations across J = 6, 8, 9, 10, 12, zero violations
   - R = phi_{i+1}/phi_i is >= 1, increasing AND log-convex in all 2520 cases -- but all three together are insufficient as generic sequence conditions (counterexamples found)
