@@ -84,6 +84,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  MINOR_REPRESENTATION.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   MOMENT_ROUTE_REFUTED.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -968,6 +972,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   measure_mass_test.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  minor_representation.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
