@@ -1035,6 +1035,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  leg_a_flint_j26_v5.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   leg_a_flint_j28.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -1179,6 +1183,14 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  repair_certificate_j10.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j11.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_certificate_j12.json:
     added: untracked
     note: referenced by a paper, document or lab module

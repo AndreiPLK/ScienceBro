@@ -35,9 +35,11 @@ and at `j = 12` the coefficient route confirms zero at both `J-1` and `J-3`.
 This is a proof, not a measurement, and it holds at every depth. Everything below is
 about supplying its two hypotheses.
 
-## Theorem 2 (what that gives today). Depths 9 to 18.
+## Theorem 2 (what that gives today). The depths where BOTH legs are certified.
 
-For `j = 9, 10, ..., 18`, in the far-below region with `n >= 2J-3`,
+For every `j` at which **both** hypotheses are certified -- as of 30 August
+`j = 9, 12, 16, 17, 18, 20, 26`, the longest consecutive stretch being `16..18` --
+in the far-below region with `n >= 2J-3`,
 
     N(y) > 0   for every y >= 0.
 
@@ -46,7 +48,11 @@ with no computation: the coefficient formula collapses to one term there, and it
 a product of `den = kk(kk-2) >= 53*51` and an elementary symmetric function of
 squares (`UNIFORM_TOP_COEFFICIENT.md`).
 
-*Hypotheses discharged:* (a) certified per depth over `j = 9..18` (`j = 17` and `j = 18` on the FULL region, 253 and 351 negative monomials, all at `y`-degree `J-2`)
+*Hypotheses discharged:* (a) certified at `j = 9..18, 20, 22, 24, 26`; (R) at
+`j = 7, 9, 12, 16, 17, 18, 20, 25-32, 35, 40, 45, 50`. **Theorem 2 needs both**, so it
+holds exactly on the intersection. An earlier version of this file claimed the range
+`9..18`, which was wrong: (R) is absent at 10, 11, 13, 14, 15. Caught by the
+certificate audit; the missing depths are being run.
 (`farbelow_negative_pattern_j*.json`, and independently by the faster coefficient
 route, `farbelow_coeff_signs_j*.json`); (R) certified
 (`repair_certificate_j*.json`, audited by `lab/certificate_audit.py`).

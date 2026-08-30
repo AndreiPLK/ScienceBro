@@ -1,139 +1,154 @@
 {
-  "j": 24,
-  "v_offset": 1,
-  "regime_offset_required": 1,
+  "j": 26,
+  "v_offset": 5,
+  "regime_offset_required": 5,
   "inside_regime": true,
   "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
   "coefficients": [
     {
       "k": 0,
-      "monomials": 264469,
+      "monomials": 338385,
       "negative": 0
     },
     {
       "k": 1,
-      "monomials": 251387,
+      "monomials": 322953,
       "negative": 0
     },
     {
       "k": 2,
-      "monomials": 238392,
+      "monomials": 307615,
       "negative": 0
     },
     {
       "k": 3,
-      "monomials": 225536,
+      "monomials": 292427,
       "negative": 0
     },
     {
       "k": 4,
-      "monomials": 212784,
+      "monomials": 277350,
       "negative": 0
     },
     {
       "k": 5,
-      "monomials": 200184,
+      "monomials": 262436,
       "negative": 0
     },
     {
       "k": 6,
-      "monomials": 187705,
+      "monomials": 247650,
       "negative": 0
     },
     {
       "k": 7,
-      "monomials": 175391,
+      "monomials": 233040,
       "negative": 0
     },
     {
       "k": 8,
-      "monomials": 163215,
+      "monomials": 218575,
       "negative": 0
     },
     {
       "k": 9,
-      "monomials": 151217,
+      "monomials": 204299,
       "negative": 0
     },
     {
       "k": 10,
-      "monomials": 139374,
+      "monomials": 190185,
       "negative": 0
     },
     {
       "k": 11,
-      "monomials": 127722,
+      "monomials": 176273,
       "negative": 0
     },
     {
       "k": 12,
-      "monomials": 116242,
+      "monomials": 162540,
       "negative": 0
     },
     {
       "k": 13,
-      "monomials": 104966,
+      "monomials": 149022,
       "negative": 0
     },
     {
       "k": 14,
-      "monomials": 93879,
+      "monomials": 135700,
       "negative": 0
     },
     {
       "k": 15,
-      "monomials": 83009,
+      "monomials": 122606,
       "negative": 0
     },
     {
       "k": 16,
-      "monomials": 72345,
+      "monomials": 109725,
       "negative": 0
     },
     {
       "k": 17,
-      "monomials": 61911,
+      "monomials": 97085,
       "negative": 0
     },
     {
       "k": 18,
-      "monomials": 51700,
+      "monomials": 84675,
       "negative": 0
     },
     {
       "k": 19,
-      "monomials": 41732,
+      "monomials": 72519,
       "negative": 0
     },
     {
       "k": 20,
-      "monomials": 32004,
-      "negative": 279,
+      "monomials": 60610,
+      "negative": 218,
       "bernstein_thL": {
-        "coefficients": 34447,
+        "coefficients": 67573,
         "negative": 0,
         "certified": true
       }
     },
     {
       "k": 21,
-      "monomials": 22532,
+      "monomials": 48968,
       "negative": 0
     },
     {
       "k": 22,
-      "monomials": 13317,
-      "negative": 986
+      "monomials": 37590,
+      "negative": 556,
+      "bernstein_thL": {
+        "coefficients": 40243,
+        "negative": 0,
+        "certified": true
+      }
     },
     {
       "k": 23,
-      "monomials": 4371,
+      "monomials": 26492,
+      "negative": 0
+    },
+    {
+      "k": 24,
+      "monomials": 15675,
+      "negative": 1214
+    },
+    {
+      "k": 25,
+      "monomials": 5151,
       "negative": 0
     }
   ],
   "negatives_outside_excluded_indices": [],
   "leg_a_holds": true,
-  "runtime_s": 525.7,
+  "runtime_s": 883.4,
   "git": "8041cd0ec3fa",
   "git_full": "8041cd0ec3faab09c7f668e3aaa56563bef66a40",
   "dirty": false,
