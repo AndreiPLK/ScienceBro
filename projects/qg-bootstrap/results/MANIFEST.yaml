@@ -92,6 +92,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  LEG_A_SPLITS_PER_MONOMIAL.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   LEMMA_A_LEADING_ORDER_IDENTITY.md:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -995,6 +999,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  leg_a_flint_j19.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   leg_a_flint_j20.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
@@ -1195,6 +1203,18 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  repair_certificate_j13.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j14.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j15.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_certificate_j16.json:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -1207,10 +1227,22 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  repair_certificate_j19.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_certificate_j20.json:
     added: '2026-08-29'
     note: referenced by a paper, document or lab module
     status: live
+  repair_certificate_j21.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  repair_certificate_j22.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   repair_certificate_j25.json:
     added: untracked
     note: referenced by a paper, document or lab module

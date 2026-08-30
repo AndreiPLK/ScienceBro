@@ -1,0 +1,115 @@
+{
+  "j": 19,
+  "v_offset": 0,
+  "regime_offset_required": 0,
+  "inside_regime": true,
+  "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
+  "coefficients": [
+    {
+      "k": 0,
+      "monomials": 128404,
+      "negative": 0
+    },
+    {
+      "k": 1,
+      "monomials": 120330,
+      "negative": 0
+    },
+    {
+      "k": 2,
+      "monomials": 112361,
+      "negative": 0
+    },
+    {
+      "k": 3,
+      "monomials": 104470,
+      "negative": 0
+    },
+    {
+      "k": 4,
+      "monomials": 96697,
+      "negative": 0
+    },
+    {
+      "k": 5,
+      "monomials": 89019,
+      "negative": 0
+    },
+    {
+      "k": 6,
+      "monomials": 81472,
+      "negative": 0
+    },
+    {
+      "k": 7,
+      "monomials": 74037,
+      "negative": 0
+    },
+    {
+      "k": 8,
+      "monomials": 66746,
+      "negative": 0
+    },
+    {
+      "k": 9,
+      "monomials": 59584,
+      "negative": 0
+    },
+    {
+      "k": 10,
+      "monomials": 52579,
+      "negative": 0
+    },
+    {
+      "k": 11,
+      "monomials": 45720,
+      "negative": 0
+    },
+    {
+      "k": 12,
+      "monomials": 39031,
+      "negative": 0
+    },
+    {
+      "k": 13,
+      "monomials": 32505,
+      "negative": 0
+    },
+    {
+      "k": 14,
+      "monomials": 26162,
+      "negative": 0
+    },
+    {
+      "k": 15,
+      "monomials": 19999,
+      "negative": 0
+    },
+    {
+      "k": 16,
+      "monomials": 14032,
+      "negative": 0
+    },
+    {
+      "k": 17,
+      "monomials": 8262,
+      "negative": 453
+    },
+    {
+      "k": 18,
+      "monomials": 2701,
+      "negative": 0
+    }
+  ],
+  "negatives_outside_excluded_indices": [],
+  "leg_a_holds": true,
+  "runtime_s": 137.1,
+  "git": "8cef13b6c5db",
+  "git_full": "8cef13b6c5db2d62a613b8bfa6d868a40af0afae",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}
