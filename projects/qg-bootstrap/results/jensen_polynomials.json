@@ -1,0 +1,305 @@
+{
+  "question": "are the Jensen polynomials of t -> p_t hyperbolic on the first half?",
+  "why_it_matters": "hyperbolicity for every d gives the whole family of higher-order Turan inequalities at once, instead of one rung at a time",
+  "method": "exact rational coefficients; roots isolated by flint with certified boxes, so 'real' means the imaginary interval contains zero",
+  "domain": "window t..t+d inside the first half",
+  "rows": [
+    {
+      "n": 11,
+      "d": 2,
+      "tested": 4,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 11,
+      "d": 3,
+      "tested": 3,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 11,
+      "d": 4,
+      "tested": 2,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 11,
+      "d": 5,
+      "tested": 1,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 11,
+      "d": 6,
+      "tested": 0,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 11,
+      "d": 7,
+      "tested": 0,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 11,
+      "d": 8,
+      "tested": 0,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 15,
+      "d": 2,
+      "tested": 6,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 15,
+      "d": 3,
+      "tested": 5,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 15,
+      "d": 4,
+      "tested": 4,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 15,
+      "d": 5,
+      "tested": 3,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 15,
+      "d": 6,
+      "tested": 2,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 15,
+      "d": 7,
+      "tested": 1,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 15,
+      "d": 8,
+      "tested": 0,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 21,
+      "d": 2,
+      "tested": 9,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 21,
+      "d": 3,
+      "tested": 8,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 21,
+      "d": 4,
+      "tested": 7,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 21,
+      "d": 5,
+      "tested": 6,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 21,
+      "d": 6,
+      "tested": 5,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 21,
+      "d": 7,
+      "tested": 4,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 21,
+      "d": 8,
+      "tested": 3,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 27,
+      "d": 2,
+      "tested": 12,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 27,
+      "d": 3,
+      "tested": 11,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 27,
+      "d": 4,
+      "tested": 10,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 27,
+      "d": 5,
+      "tested": 9,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 27,
+      "d": 6,
+      "tested": 8,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 27,
+      "d": 7,
+      "tested": 7,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 27,
+      "d": 8,
+      "tested": 6,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 33,
+      "d": 2,
+      "tested": 15,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 33,
+      "d": 3,
+      "tested": 14,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 33,
+      "d": 4,
+      "tested": 13,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 33,
+      "d": 5,
+      "tested": 12,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 33,
+      "d": 6,
+      "tested": 11,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 33,
+      "d": 7,
+      "tested": 10,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 33,
+      "d": 8,
+      "tested": 9,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 41,
+      "d": 2,
+      "tested": 19,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 41,
+      "d": 3,
+      "tested": 18,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 41,
+      "d": 4,
+      "tested": 17,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 41,
+      "d": 5,
+      "tested": 16,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 41,
+      "d": 6,
+      "tested": 15,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 41,
+      "d": 7,
+      "tested": 14,
+      "not_hyperbolic": 0
+    },
+    {
+      "n": 41,
+      "d": 8,
+      "tested": 13,
+      "not_hyperbolic": 0
+    }
+  ],
+  "by_degree": {
+    "2": {
+      "tested": 65,
+      "not_hyperbolic": 0
+    },
+    "3": {
+      "tested": 59,
+      "not_hyperbolic": 0
+    },
+    "4": {
+      "tested": 53,
+      "not_hyperbolic": 0
+    },
+    "5": {
+      "tested": 47,
+      "not_hyperbolic": 0
+    },
+    "6": {
+      "tested": 41,
+      "not_hyperbolic": 0
+    },
+    "7": {
+      "tested": 36,
+      "not_hyperbolic": 0
+    },
+    "8": {
+      "tested": 31,
+      "not_hyperbolic": 0
+    }
+  },
+  "tested": 332,
+  "not_hyperbolic": 0,
+  "all_hyperbolic": true,
+  "failures": [],
+  "runtime_s": 0.1,
+  "git": "da9b51ffe81f",
+  "git_full": "da9b51ffe81f0876e2ba7fc7c26570f9a1d47ebb",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/jensen_polynomials.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

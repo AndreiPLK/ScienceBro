@@ -68,6 +68,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  JENSEN_HYPERBOLICITY.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   KERNEL_TP_THEOREM.md:
     added: '2026-08-28'
     note: referenced by a paper, document or lab module
@@ -140,8 +144,8 @@ artefacts:
     status: unreviewed
   THEOREM_NO_POLYA_FREQUENCY.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   THEOREM_STATE.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -481,6 +485,10 @@ artefacts:
     added: '2026-08-18'
     note: the reformulation the whole program now runs on; 4500 sign checks against the independent exact
       value, 0 mismatches
+    status: live
+  jensen_polynomials.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
     status: live
   kernel_minor_identity.json:
     added: untracked

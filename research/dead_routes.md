@@ -250,3 +250,30 @@ rather than on its boundary.
 parametrisation was not the one the question came in. Re-parametrising the failures by
 the height of the minimum turned "some interior points fail" into a threshold with a
 number.
+
+---
+
+## DR-13 -- Jensen-polynomial hyperbolicity as the mechanism behind the hierarchy
+
+**Statement.** The log-difference hierarchy follows from hyperbolicity of the Jensen
+polynomials of `t -> p_t`, so a Hermite-Jensen limit argument would give the whole family
+at once. *(registry: `CLAIM-JENSEN`)*
+
+**Why it was tempting.** It is exactly the shape of the recent literature on signs of
+higher log-differences, and hyperbolicity does hold: 332 of 332 tested, `d = 2..8`.
+
+**What killed it.** Hyperbolicity has neither signature of our phenomenon. It does not stop
+at the midpoint -- it holds on the whole range, while the hierarchy fails past the middle.
+And it does not distinguish `e` from `p` -- it holds for both, while the hierarchy holds
+only for `p` and total positivity only for `e`.
+
+**Local or structural.** Structural: the property is coarser than the phenomenon, so no
+argument resting on it can produce a statement that is false for `e` or false past the
+midpoint.
+
+**Weaker variant that survives.** The hyperbolicity itself, which delivers the higher-order
+Turan inequalities for `p` as a by-product. Kept as `CLAIM-JENSEN`.
+
+**Lesson.** Before adopting a property as the mechanism, check it against the phenomenon's
+BOUNDARIES, not its interior. Two boundary tests -- the midpoint, and `e` versus `p` --
+settled this in minutes.
