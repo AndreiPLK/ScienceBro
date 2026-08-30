@@ -23,6 +23,10 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  CENTRAL_DIAGONAL_HOLONOMY.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   D2_COMPLETE.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -237,6 +241,10 @@ artefacts:
     note: referenced by a paper, document or lab module
     status: live
   cancellation_bound_sweep.json:
+    added: untracked
+    note: referenced by a paper, document or lab module
+    status: live
+  central_diagonal_holonomy.json:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live

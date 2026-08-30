@@ -1,0 +1,41 @@
+{
+  "question": "is the central diagonal e_{floor(N/2)}(n) P-recursive?",
+  "search": {
+    "terms": 46,
+    "branches": [
+      "odd n=2m+1",
+      "even n=2m"
+    ],
+    "pairs_genuinely_tested": 52,
+    "max_order": 5,
+    "max_degree": 14,
+    "survivors": 0,
+    "method": "fit on part, verify on held-out equations; a fit that predicts nothing is an artefact"
+  },
+  "controls": {
+    "catalan": "found at order 1 degree 1",
+    "random_sequence": "correctly rejected"
+  },
+  "two_d_recursion": {
+    "formula": "e_t(n+2) = e_t(n) + 2 n^2 e_{t-1}(n) + n^4 e_{t-2}(n)",
+    "pairs_tested": 1767,
+    "range": "n = 3..59",
+    "mismatches": 0
+  },
+  "conclusion": "the array is P-recursive in both indices, so by Lipshitz the diagonal IS holonomic; the search window was too small, and the right instrument is creative telescoping, not a larger fit",
+  "status": "route open and viable, with an explicit next step",
+  "provenance": {
+    "git": "2e7a03f",
+    "git_full": "2e7a03f26290271d0b84333dc2129784cc853e33",
+    "dirty": true,
+    "dirty_count": 3,
+    "engines": {
+      "python": "3.12.10",
+      "platform": "Windows-11-10.0.22631-SP0",
+      "flint": "0.9.0",
+      "sympy": "1.14.0",
+      "mpmath": "1.3.0",
+      "numpy": "2.5.2"
+    }
+  }
+}
