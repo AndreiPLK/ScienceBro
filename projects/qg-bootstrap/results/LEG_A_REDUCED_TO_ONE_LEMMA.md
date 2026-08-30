@@ -99,3 +99,39 @@ also failed its own self-check, because the check compared against the wrong exp
 leg (a) says the negative MONOMIAL sits at `k = J-2`, not that `c_{J-2}` is negative at
 region points. The instrument was right and the expectation was wrong. Both were fixed
 before any conclusion was recorded.
+
+
+## Afternoon of 30 August: Lemma A does not come from generic sequence conditions
+
+`phi` satisfies three natural conditions, each verified on 2520 (point, `k`) combinations
+across `J = 6, 8, 9, 10, 12`, with zero exceptions:
+
+* `R_i = phi_{i+1}/phi_i >= 1`;
+* `R` is increasing;
+* `R` is log-convex.
+
+On paper the first two already give `Delta phi >= 0` and `Delta^2 phi >= 0`. They do not
+give the rest: **as general facts about sequences, all three together are insufficient.**
+Random search produced counterexamples in both cases — for `R >= 1` and increasing, within
+1112 tries; for `R >= 1` and log-convex, within 25978. So no generic criterion of this shape
+will prove Lemma A.
+
+Nor does the ratio decompose. Writing `R_i` as the explicit product
+
+    R_i = [E_{J-2-i}/E_{J-1-i}] * [poch ratio] * (s^2 den) * [1/A_i]
+          * [e_k(1/A_{i+1}..)/e_k(1/A_i..)] * [(i+1)/(L-1-i)],
+
+only the constant factor `(s^2 den)` is both `>= 1` and increasing. The Pochhammer ratio is
+`>= 1` but not increasing; `(i+1)/(L-1-i)` is increasing but not `>= 1`; the central
+factorial ratio and `1/A_i` are neither. **`R`'s good behaviour is a balance between
+growing and shrinking factors, not a property any of them has.**
+
+### What that says about the programme
+
+The awkward factor is `E_{J-2-i}/E_{J-1-i}` — the ratio of consecutive central factorial
+numbers. That is the same quantity the Newton-excess lemma of Gap 2 exists to control.
+
+So **Gap 1 and Gap 2 are not independent.** Both come down to controlling consecutive
+ratios of the central factorial numbers, from opposite directions. A bound good enough for
+one is likely to serve the other, and the programme should stop treating them as separate
+problems.

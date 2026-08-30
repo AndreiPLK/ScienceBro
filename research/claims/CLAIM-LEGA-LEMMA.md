@@ -9,6 +9,9 @@ dependencies:
 evidence:
   - 378 of 378 (point, k) combinations at J = 9, zero violations
   - 2520 combinations across J = 6, 8, 9, 10, 12, zero violations
+  - R = phi_{i+1}/phi_i is >= 1, increasing AND log-convex in all 2520 cases -- but all three together are insufficient as generic sequence conditions (counterexamples found)
+  - the ratio does not decompose: only the constant factor (s^2 den) is both >= 1 and increasing
+  - the awkward factor is E_{J-2-i}/E_{J-1-i}, the SAME central factorial ratio the Newton-excess lemma of Gap 2 controls
   - the factorisation route is CLOSED: tau itself is 0/378 absolutely monotone, and no grouping of the complementary half reaches it either, so the property is joint and the binomial division is essential
 references:
 ---
