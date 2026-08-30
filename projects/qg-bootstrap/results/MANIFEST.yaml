@@ -82,8 +82,8 @@ artefacts:
     status: live
   KNIFE_IS_A_QUADRATIC_FORM.md:
     added: untracked
-    note: referenced nowhere; classify before relying on it
-    status: unreviewed
+    note: referenced by a paper, document or lab module
+    status: live
   LEG_A_REDUCED_TO_ONE_LEMMA.md:
     added: untracked
     note: referenced by a paper, document or lab module
@@ -138,6 +138,10 @@ artefacts:
     added: untracked
     note: referenced by a paper, document or lab module
     status: live
+  STEP1_STATE_2026-08-30.md:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   T2n10_brackets.json:
     added: '2026-08-15'
     note: referenced by a paper, document or lab module
