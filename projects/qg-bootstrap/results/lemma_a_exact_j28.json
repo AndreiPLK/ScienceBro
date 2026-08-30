@@ -1,0 +1,124 @@
+{
+  "j": 28,
+  "statement": "Lemma A: phi_i = tau_i/C(L-1,i) is absolutely monotone, for k outside {J-2, J-3}",
+  "arithmetic": "EXACT over Q(sqrt3); signs by sign_q3; no floating point anywhere",
+  "region_points": 81,
+  "checked_on_domain": 2025,
+  "violations_on_domain": 444,
+  "examples": [
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 0,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 1,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 2,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 3,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 4,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 5,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 6,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "k": 7,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "3"
+      ],
+      "k": 0,
+      "order": 20
+    },
+    {
+      "point": [
+        "0",
+        "0",
+        "0",
+        "3"
+      ],
+      "k": 1,
+      "order": 20
+    }
+  ],
+  "excluded_indices_checked": 81,
+  "excluded_indices_that_fail": 45,
+  "holds": false,
+  "runtime_s": 12.3,
+  "git": "6e8380663426",
+  "git_full": "6e83806634264a9b6b7df512710c3bbee50f24fb",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/lemma_a_exact.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

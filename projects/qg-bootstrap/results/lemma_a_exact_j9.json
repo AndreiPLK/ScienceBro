@@ -1,0 +1,23 @@
+{
+  "j": 9,
+  "statement": "Lemma A: phi_i = tau_i/C(L-1,i) is absolutely monotone, for k outside {J-2, J-3}",
+  "arithmetic": "EXACT over Q(sqrt3); signs by sign_q3; no floating point anywhere",
+  "region_points": 81,
+  "checked_on_domain": 486,
+  "violations_on_domain": 0,
+  "examples": [],
+  "excluded_indices_checked": 81,
+  "excluded_indices_that_fail": 0,
+  "holds": true,
+  "runtime_s": 0.4,
+  "git": "6e8380663426",
+  "git_full": "6e83806634264a9b6b7df512710c3bbee50f24fb",
+  "dirty": true,
+  "dirty_code_files": [
+    "projects/qg-bootstrap/lab/lemma_a_exact.py"
+  ],
+  "dirty_count": 1,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

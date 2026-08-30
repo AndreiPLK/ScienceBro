@@ -967,6 +967,38 @@ artefacts:
     added: '2026-08-15'
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  lemma_a_exact_j12.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lemma_a_exact_j14.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lemma_a_exact_j16.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lemma_a_exact_j18.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lemma_a_exact_j20.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lemma_a_exact_j24.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lemma_a_exact_j28.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  lemma_a_exact_j9.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   limit_shape_check.json:
     added: untracked
     note: referenced by a paper, document or lab module

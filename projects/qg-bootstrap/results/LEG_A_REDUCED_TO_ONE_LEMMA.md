@@ -200,3 +200,44 @@ does. They are a precision limit, not mathematics, and the tool now says so inst
 guessing.
 
 `absolutely_monotone` with that guard is now part of `tools/sciencebro_math`.
+
+
+## Lemma A is FALSE — and what is actually needed is not
+
+Exact arithmetic over `Q(sqrt3)` settled it. `phi` and all its finite differences are exact
+at a rational region point, so no precision question survives.
+
+**Lemma A fails at `J >= 24`**, on the domain `k` outside `{J-2, J-3}`: 63 violations at
+`J = 24` and 444 at `J = 28`, in two distinct modes — at `k = J-4` the sequence fails
+already at the first difference, and at `k = 0, 1` it fails at order 22 of 23.
+
+That kills the lemma. It does not kill the programme, because **Proposition 1 never needed
+it.** Absolute monotonicity was a sufficient condition I imposed; what Proposition 1 asks
+for is `c_k >= 0`, and by the reduction that is only the TOP difference,
+`c_k = den^k Delta^{L-1} phi(0)`. All the intermediate differences are free to go negative.
+
+## Leg (a) itself, checked exactly and far beyond the certificate ceiling
+
+Testing the actual requirement — the top difference only — inside the regime `n >= 2J-3`:
+
+| `J` | 12 | 16 | 20 | 24 | 28 | 32 | 36 |
+|---|---|---|---|---|---|---|---|
+| checks | 972 | 1404 | 1836 | 2268 | 2700 | 3132 | 3564 |
+| `c_k < 0` | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+**15876 exact checks, zero failures**, at depths up to 36 — double the ceiling the
+certificate route reached, and in seconds rather than hours per depth, because evaluating
+at a rational point is far cheaper than assembling the polynomial.
+
+This is point evaluation, not a certificate: it does not prove positivity on the whole
+region. But it is exact, it is fast, and it can be pushed to any depth.
+
+## A false refutation I nearly recorded
+
+The same test run WITHOUT the regime shift reports `c_k < 0` at `J = 24, 28, 32`, at odd
+`k`. Every one of those points has `n < 2J-3` — outside the regime where leg (a) is claimed
+at all. At `J = 28` the regime needs `n >= 53` and the sampled points had `n <= 47`.
+
+That is the third time today a result came from testing outside the stated domain, and the
+second time it would have been reported as a refutation. The regime condition is not a
+detail; it is where the statement lives.
