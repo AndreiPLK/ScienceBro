@@ -90,3 +90,27 @@ to some depth, and beyond it one change of basis does. **Leg (a) is certified at
 * **Leg (a) certified `j = 9..22`**, up from 18 this morning.
 * **Time per depth**: 79 s at `j = 18` against 3.7 hours, 310 s at `j = 22`.
 * The remedy is not new machinery; it is the one `(R)` already uses.
+
+
+## A trap that caught four runs today, now closed in the module
+
+Pushing to `j = 24, 26, 28` produced a new-looking failure family: negative monomials at the
+LOW ODD indices `k = 1, 3, 5, 7`, growing with the depth, and Bernstein did not clear them.
+
+Every one of those runs had `v_offset = 0`, so `n` started at 44 — while the regime
+`n >= 2J-3` needs 45, 49 and 53 respectively. **They were computed outside the region where
+leg (a) is claimed at all.**
+
+That is the fourth time today a result came from outside the stated domain: the difference
+window past the midpoint, `k = J-3` in Lemma A, `n < 2J-3` in the exact point check, and now
+this. Three of the four looked like refutations.
+
+The module now **defaults `V_OFFSET` to the regime edge** `max(0, 2J-3-44)` and records both
+the offset used and whether it is inside the regime, so the mistake cannot be made silently
+again. Passing `V_OFFSET` still overrides, deliberately.
+
+The two families of failure remain worth separating:
+
+* **near `J-2`** — `k = J-4`, `J-6`, `J-8` — cleared by one Bernstein step in `thL`
+  (certified at `j = 22, 24, 26, 28`);
+* **low odd `k`** — appeared only outside the regime, and is being rechecked inside it.

@@ -1,6 +1,8 @@
 {
   "j": 12,
   "v_offset": 0,
+  "regime_offset_required": 0,
+  "inside_regime": true,
   "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
   "coefficients": [
     {
@@ -66,9 +68,9 @@
   ],
   "negatives_outside_excluded_indices": [],
   "leg_a_holds": true,
-  "runtime_s": 6.7,
-  "git": "4846cc0e10ed",
-  "git_full": "4846cc0e10ed891e472280aa9bb3264de91a15db",
+  "runtime_s": 6.6,
+  "git": "6971695ddd65",
+  "git_full": "6971695ddd65060cdeef38f6ef6f01c2c54baa11",
   "dirty": true,
   "dirty_code_files": [
     "projects/qg-bootstrap/lab/leg_a_flint.py"

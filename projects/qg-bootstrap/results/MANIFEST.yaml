@@ -1023,7 +1023,19 @@ artefacts:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed
+  leg_a_flint_j24.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
   leg_a_flint_j24_v1.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j26.json:
+    added: untracked
+    note: referenced nowhere; classify before relying on it
+    status: unreviewed
+  leg_a_flint_j28.json:
     added: untracked
     note: referenced nowhere; classify before relying on it
     status: unreviewed

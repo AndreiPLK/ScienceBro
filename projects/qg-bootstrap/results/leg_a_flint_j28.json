@@ -1,0 +1,234 @@
+{
+  "j": 28,
+  "v_offset": 0,
+  "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
+  "coefficients": [
+    {
+      "k": 0,
+      "monomials": 424930,
+      "negative": 0
+    },
+    {
+      "k": 1,
+      "monomials": 406954,
+      "negative": 10764,
+      "bernstein_thL": {
+        "coefficients": 598847,
+        "negative": 40306,
+        "certified": false
+      }
+    },
+    {
+      "k": 2,
+      "monomials": 389079,
+      "negative": 0
+    },
+    {
+      "k": 3,
+      "monomials": 371365,
+      "negative": 5304,
+      "bernstein_thL": {
+        "coefficients": 534835,
+        "negative": 24570,
+        "certified": false
+      }
+    },
+    {
+      "k": 4,
+      "monomials": 353769,
+      "negative": 0
+    },
+    {
+      "k": 5,
+      "monomials": 336347,
+      "negative": 1899,
+      "bernstein_thL": {
+        "coefficients": 473715,
+        "negative": 11945,
+        "certified": false
+      }
+    },
+    {
+      "k": 6,
+      "monomials": 319060,
+      "negative": 0
+    },
+    {
+      "k": 7,
+      "monomials": 301960,
+      "negative": 281,
+      "bernstein_thL": {
+        "coefficients": 415535,
+        "negative": 3053,
+        "certified": false
+      }
+    },
+    {
+      "k": 8,
+      "monomials": 285012,
+      "negative": 0
+    },
+    {
+      "k": 9,
+      "monomials": 268264,
+      "negative": 0
+    },
+    {
+      "k": 10,
+      "monomials": 251685,
+      "negative": 0
+    },
+    {
+      "k": 11,
+      "monomials": 235319,
+      "negative": 0
+    },
+    {
+      "k": 12,
+      "monomials": 219139,
+      "negative": 0
+    },
+    {
+      "k": 13,
+      "monomials": 203185,
+      "negative": 0
+    },
+    {
+      "k": 14,
+      "monomials": 187434,
+      "negative": 0
+    },
+    {
+      "k": 15,
+      "monomials": 171922,
+      "negative": 0
+    },
+    {
+      "k": 16,
+      "monomials": 156630,
+      "negative": 0
+    },
+    {
+      "k": 17,
+      "monomials": 141590,
+      "negative": 0
+    },
+    {
+      "k": 18,
+      "monomials": 126787,
+      "negative": 0
+    },
+    {
+      "k": 19,
+      "monomials": 112249,
+      "negative": 0
+    },
+    {
+      "k": 20,
+      "monomials": 97965,
+      "negative": 135,
+      "bernstein_thL": {
+        "coefficients": 112335,
+        "negative": 0,
+        "certified": true
+      }
+    },
+    {
+      "k": 21,
+      "monomials": 83959,
+      "negative": 0
+    },
+    {
+      "k": 22,
+      "monomials": 70224,
+      "negative": 528,
+      "bernstein_thL": {
+        "coefficients": 77737,
+        "negative": 0,
+        "certified": true
+      }
+    },
+    {
+      "k": 23,
+      "monomials": 56780,
+      "negative": 0
+    },
+    {
+      "k": 24,
+      "monomials": 43624,
+      "negative": 944,
+      "bernstein_thL": {
+        "coefficients": 46487,
+        "negative": 0,
+        "certified": true
+      }
+    },
+    {
+      "k": 25,
+      "monomials": 30772,
+      "negative": 0
+    },
+    {
+      "k": 26,
+      "monomials": 18225,
+      "negative": 1688
+    },
+    {
+      "k": 27,
+      "monomials": 5995,
+      "negative": 0
+    }
+  ],
+  "negatives_outside_excluded_indices": [
+    {
+      "k": 1,
+      "monomials": 406954,
+      "negative": 10764,
+      "bernstein_thL": {
+        "coefficients": 598847,
+        "negative": 40306,
+        "certified": false
+      }
+    },
+    {
+      "k": 3,
+      "monomials": 371365,
+      "negative": 5304,
+      "bernstein_thL": {
+        "coefficients": 534835,
+        "negative": 24570,
+        "certified": false
+      }
+    },
+    {
+      "k": 5,
+      "monomials": 336347,
+      "negative": 1899,
+      "bernstein_thL": {
+        "coefficients": 473715,
+        "negative": 11945,
+        "certified": false
+      }
+    },
+    {
+      "k": 7,
+      "monomials": 301960,
+      "negative": 281,
+      "bernstein_thL": {
+        "coefficients": 415535,
+        "negative": 3053,
+        "certified": false
+      }
+    }
+  ],
+  "leg_a_holds": false,
+  "runtime_s": 1517.3,
+  "git": "6971695ddd65",
+  "git_full": "6971695ddd65060cdeef38f6ef6f01c2c54baa11",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

@@ -1,0 +1,204 @@
+{
+  "j": 26,
+  "v_offset": 0,
+  "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
+  "coefficients": [
+    {
+      "k": 0,
+      "monomials": 338385,
+      "negative": 0
+    },
+    {
+      "k": 1,
+      "monomials": 322953,
+      "negative": 3092,
+      "bernstein_thL": {
+        "coefficients": 474663,
+        "negative": 15567,
+        "certified": false
+      }
+    },
+    {
+      "k": 2,
+      "monomials": 307615,
+      "negative": 0
+    },
+    {
+      "k": 3,
+      "monomials": 292427,
+      "negative": 752,
+      "bernstein_thL": {
+        "coefficients": 419895,
+        "negative": 5856,
+        "certified": false
+      }
+    },
+    {
+      "k": 4,
+      "monomials": 277350,
+      "negative": 0
+    },
+    {
+      "k": 5,
+      "monomials": 262436,
+      "negative": 8,
+      "bernstein_thL": {
+        "coefficients": 367811,
+        "negative": 213,
+        "certified": false
+      }
+    },
+    {
+      "k": 6,
+      "monomials": 247650,
+      "negative": 0
+    },
+    {
+      "k": 7,
+      "monomials": 233040,
+      "negative": 0
+    },
+    {
+      "k": 8,
+      "monomials": 218575,
+      "negative": 0
+    },
+    {
+      "k": 9,
+      "monomials": 204299,
+      "negative": 0
+    },
+    {
+      "k": 10,
+      "monomials": 190185,
+      "negative": 0
+    },
+    {
+      "k": 11,
+      "monomials": 176273,
+      "negative": 0
+    },
+    {
+      "k": 12,
+      "monomials": 162540,
+      "negative": 0
+    },
+    {
+      "k": 13,
+      "monomials": 149022,
+      "negative": 0
+    },
+    {
+      "k": 14,
+      "monomials": 135700,
+      "negative": 0
+    },
+    {
+      "k": 15,
+      "monomials": 122606,
+      "negative": 0
+    },
+    {
+      "k": 16,
+      "monomials": 109725,
+      "negative": 0
+    },
+    {
+      "k": 17,
+      "monomials": 97085,
+      "negative": 0
+    },
+    {
+      "k": 18,
+      "monomials": 84675,
+      "negative": 0
+    },
+    {
+      "k": 19,
+      "monomials": 72519,
+      "negative": 0
+    },
+    {
+      "k": 20,
+      "monomials": 60610,
+      "negative": 221,
+      "bernstein_thL": {
+        "coefficients": 67573,
+        "negative": 0,
+        "certified": true
+      }
+    },
+    {
+      "k": 21,
+      "monomials": 48968,
+      "negative": 0
+    },
+    {
+      "k": 22,
+      "monomials": 37590,
+      "negative": 609,
+      "bernstein_thL": {
+        "coefficients": 40243,
+        "negative": 0,
+        "certified": true
+      }
+    },
+    {
+      "k": 23,
+      "monomials": 26492,
+      "negative": 0
+    },
+    {
+      "k": 24,
+      "monomials": 15675,
+      "negative": 1319
+    },
+    {
+      "k": 25,
+      "monomials": 5151,
+      "negative": 0
+    }
+  ],
+  "negatives_outside_excluded_indices": [
+    {
+      "k": 1,
+      "monomials": 322953,
+      "negative": 3092,
+      "bernstein_thL": {
+        "coefficients": 474663,
+        "negative": 15567,
+        "certified": false
+      }
+    },
+    {
+      "k": 3,
+      "monomials": 292427,
+      "negative": 752,
+      "bernstein_thL": {
+        "coefficients": 419895,
+        "negative": 5856,
+        "certified": false
+      }
+    },
+    {
+      "k": 5,
+      "monomials": 262436,
+      "negative": 8,
+      "bernstein_thL": {
+        "coefficients": 367811,
+        "negative": 213,
+        "certified": false
+      }
+    }
+  ],
+  "leg_a_holds": false,
+  "runtime_s": 915.3,
+  "git": "6971695ddd65",
+  "git_full": "6971695ddd65060cdeef38f6ef6f01c2c54baa11",
+  "dirty": false,
+  "dirty_code_files": [],
+  "dirty_count": 0,
+  "python": "3.12.10",
+  "flint": "0.9.0",
+  "platform": "Windows-11-10.0.22631-SP0"
+}

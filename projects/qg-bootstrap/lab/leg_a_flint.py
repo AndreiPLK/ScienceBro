@@ -109,7 +109,11 @@ def bernstein_in_thL(terms: dict) -> dict:
 
 def main() -> int:
     t0 = time.time()
-    v_offset = int(os.environ.get("V_OFFSET", "0"))
+    # The regime n >= 2J-3 is where leg (a) is claimed at all. Defaulting the shift to 0
+    # put four separate runs outside it today, and every time the resulting "failure" was an
+    # artefact. The default is now the regime edge; pass V_OFFSET to override deliberately.
+    regime_offset = max(0, 2 * J - 3 - 44)
+    v_offset = int(os.environ.get("V_OFFSET", str(regime_offset)))
     lam, D_num, den, m_expr, n_expr, y = region(v_offset)
     s = lam + (n_expr - 1)
     c_const = (n_expr * 4) - 4 * J - 1
@@ -194,6 +198,8 @@ def main() -> int:
     out = {
         "j": J,
         "v_offset": v_offset,
+        "regime_offset_required": regime_offset,
+        "inside_regime": v_offset >= regime_offset,
         "engine": "flint fmpq_mpoly over Q(sqrt3); the dict-based QPoly is 500-1200x slower",
         "coefficients": rows,
         "negatives_outside_excluded_indices": off,
@@ -204,7 +210,8 @@ def main() -> int:
     name = f"leg_a_flint_j{J}" + (f"_v{v_offset}" if v_offset else "") + ".json"
     (RES / name).write_text(json.dumps(out, indent=2), encoding="utf-8")
     negs = {r["k"]: r["negative"] for r in rows if r["negative"]}
-    print(f"[j={J}] negatives by k: {negs}   leg (a) holds: {not off}   ({out['runtime_s']}s)")
+    print(f"[j={J}] v>={v_offset} (regime needs {regime_offset})  negatives by k: {negs}   "
+          f"leg (a) holds: {not off}   ({out['runtime_s']}s)")
     return 0 if not off else 1
 
 
