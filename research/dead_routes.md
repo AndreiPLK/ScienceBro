@@ -277,3 +277,41 @@ Turan inequalities for `p` as a by-product. Kept as `CLAIM-JENSEN`.
 **Lesson.** Before adopting a property as the mechanism, check it against the phenomenon's
 BOUNDARIES, not its interior. Two boundary tests -- the midpoint, and `e` versus `p` --
 settled this in minutes.
+
+---
+
+## DR-14 -- The knife as an integral of prod(1 - z b_k) against a positive measure
+
+**Statement.** The B-form coefficients `c_t = (r)_t (H-r)_t / [(n-1)_t (n-3/2)_t]` are a
+positive moment sequence, `c_t = int z^t dsigma(z)` with `sigma >= 0`. Then
+
+    SUM_t (-1)^t c_t e_t(b) = int PROD_k (1 - z b_k) dsigma(z),
+
+since `SUM_t (-1)^t z^t e_t = PROD (1 - z b_k)`, and positivity would follow in one line at
+every depth whenever `z max(b_k) < 1` on the support.
+
+**Why it was tempting.** It is the cleanest possible proof of the keystone: the alternating
+sum turns into an integral of a product, and the product is manifestly positive below the
+reciprocal of the largest weight. A single Pochhammer ratio IS a Beta moment sequence, so
+the hypothesis looked almost automatic.
+
+**What killed it.** `c_t` is a product of TWO Pochhammer ratios, and the second runs the
+wrong way: `H - r > n - 3/2`, so that factor INCREASES with `t`. Measured: a negative
+Hankel minor in **33 of 36** parameter settings, already at order 2, across
+`j = 3, 5, 8, 12`, `n = 12, 25, 44` and three values of `D` each.
+
+**Local or structural.** Structural. No positive measure represents `c_t`.
+
+**Weaker variant that survives.** Split `c_t = A_t B_t` with `A_t = (r)_t/(n-1)_t`, which
+IS a Beta moment sequence since `0 < r < n-1`. Then
+
+    SUM_t (-1)^t c_t e_t = int_0^1 [ SUM_t (-1)^t B_t e_t z^t ] d alpha(z),
+
+reducing the problem from two Pochhammer ratios to one. That inner sum is not yet settled:
+the natural bound `z w max(b_k) < 1` fails numerically (about 1.69 at `n = 44`, `j = 12`),
+so if this route works it must count sign changes of `PROD (1 - x b_k)` rather than avoid
+them.
+
+**Lesson.** "A ratio of Pochhammers is a Beta moment" is true for ONE ratio and false for a
+product when the second runs the wrong way. Check the direction of every factor before
+assuming the standard representation.
